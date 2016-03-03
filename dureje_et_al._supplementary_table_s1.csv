@@ -1,0 +1,334 @@
+"Supplementary Table S1. List of localities, coordinates and average frequencies at autosomal (HIAA), X-linked (HIX), Y-linked and mtDNA loci.",,,,,,,,,,
+Loc#,Locality,State,Latitude,Longitude,HIAA,HIX,Y,mtDNA,Morp,Source
+1,Burg,Germany,54° 26',11° 12',0.955,,1.000,0.870,,"Prager et al. 1993, 1997"
+2,Gammendorf,Germany,54° 30',11° 9', ,,1.000,1.000,,"Prager et al. 1993, 1997"
+3,Teschendorf,Germany,54° 26',11° 7',1.000,,,1.000,,"Prager et al. 1993, 1997"
+4,Schashagen,Germany,54° 8',10° 53',0.810,,1.000,1.000,,"Prager et al. 1993, 1997"
+5,Lensahn,Germany,54° 13',10° 53',0.833,,1.000,0.333,,"Prager et al. 1993, 1997"
+6,Oldenburg,Germany,54° 18',10° 53',0.688,,1.000,1.000,,"Prager et al. 1993, 1997"
+7,Sieversdorf,Germany,54° 12',10° 34',0.388,,1.000,1.000,,"Prager et al. 1993, 1997"
+8,Dannau,Germany,54° 14',10° 32',0.833,,1.000,1.000,,"Prager et al. 1993, 1997"
+9,Bokhorst,Germany,"54° 5' 55""","10° 6' 31""",0.013,,0.130,1.000,,"Prager et al. 1993, 1997"
+10,Heidmühlen,Germany,53° 57',10° 5',0.000,,0.000,0.000,,"Prager et al. 1993, 1997"
+11,Neumünster,Germany,54° 4',9° 59',0.023,,0.000,0.091,,"Prager et al. 1993, 1997"
+12,Hamdorf,Germany,54° 13',9° 50',0.000,,,0.154,,"Prager et al. 1993, 1997"
+13,Lübeck,Germany,53° 52',10° 41',,,,0.000,,Ferris et al. 1983
+14,Weitendorf,Germany,"53° 53' 49""","11° 21' 23""",,0.100,0.500,0.000,,This paper
+15,Lübz,Germany,"53° 28' 26""","11° 59' 39""",,0.114,0.000,0.000,,This paper
+16,Suckow,Germany,"53° 24' 44""","12° 19' 40""",,0.000,0.000,0.000,,This paper
+17,Hamersen-Hornfeld,Germany,"53° 15' 15""","9° 28' 50""",,0.000,0.000,0.000,,This paper
+18,Mützdorf,Germany,"53° 3' 8""","12° 13' 7""",,0.000,0.000,0.000,,This paper
+19,Rehfeld,Germany,"52° 56' 39""","12° 19' 44""",,0.000,0.000,0.000,,This paper
+20,Kümmernitz,Germany,"52° 51' 16""","12° 13' 7""",,0.000,0.000,0.000,,This paper
+21,Behrendorf-Berge,Germany,"52° 49' 11""","11° 59' 16""",,0.000,0.000,0.000,,This paper
+22,Lindtorf,Germany,"52° 41' 8""","11° 54' 59""",,0.200,0.000,0.000,,This paper
+23,Kalitz,Germany,"52° 5' 53""","12° 1' 10""",,0.000,0.000,0.000,,This paper
+24,Kerchau 2,Germany,"52° 1' 33""","12° 8' 29""",,0.000,0.000,0.000,,This paper
+25,Gröna-Gnetsch,Germany,"51° 45' 23""","11° 44' 28""",,0.000,0.000,0.000,,This paper
+26,Gebenbach,Germany,"49° 32' 13.5""","11° 52' 29.5""",,0.000,0.000,0.000,,This paper
+27,Pessensricht,Germany,"49° 26' 43""","11° 39' 49""",,0.000,0.000,0.000,,This paper
+28,Frechetsfeld,Germany,"49° 26' 17""","11° 36' 56""",,0.000,0.000,0.000,,This paper
+29,Unterkatzbach,Germany,"49° 26' 9""","12° 16' 21""",,0.133,0.000,0.000,,This paper
+30,Günzenhausen,Germany,"48° 19' 32""","11° 36' 7""",,0.000,0.000,0.000,,This paper
+31,München,Germany,48° 9',11° 26',,0.133,1.000,0.000,,This paper
+32,Sonnenham,Germany,"47° 56' 30""","11° 33' 20""",,0.050,1.000,1.000,,This paper
+33,Palnkam 39,Germany,"47° 53' 42""","11° 39' 48""",,0.000,,0.000,,This paper
+34,Degerndorf,Germany,"47° 52' 31""","11° 23' 10""",,0.000,0.000,0.000,,This paper
+35,Attenkam 5,Germany,"47° 52' 19""","11° 21' 45""",,0.000,0.000,0.000,,This paper
+36,Reinstorf,Germany,"53° 50' 51""","11° 38' 25""",,1.000,,0.000,,This paper
+37,Lalendorf,Germany,"53° 45' 28""","12° 29' 37""",,1.000,1.000,0.000,,This paper
+38,Groß Wokern,Germany,"53° 45' 5""","12° 29' 29""",,1.000,1.000,0.000,,This paper
+39,"Lindhorst, Uckerland",Germany,"53° 26' 34""","13° 46' 6""",,1.000,1.000,0.000,,This paper
+40,Grimme,Germany,"53° 25' 30""","14° 9' 20""",,1.000,1.000,1.000,,This paper
+41,"Blindow, Prenzlau",Germany,"53° 21' 5""","13° 53' 14""",,1.000,1.000,0.500,,This paper
+42,"Hohenstein, Strausberg",Germany,"52° 34' 3""","13° 58' 3""",,1.000,1.000,0.500,,This paper
+43,Lauchhammer,Germany,"51° 28' 6""","13° 44' 24""",,0.880,1.000,0.250,,This paper
+44,Elsterwerda,Germany,"51° 27' 13""","13° 31' 46""",,1.000,,1.000,,This paper
+45,Białun,Poland,"53° 36' 37""","14° 51' 17""",,1.000,1.000,0.500,,This paper
+46,Parlino,Poland,"53° 26' 53""","15° 3' 53""",,1.000,1.000,0.000,,This paper
+47,Długoszyn,Poland,"52° 27' 49""","15° 4' 40""",,1.000,1.000,0.500,,This paper
+48,Śliwnik,Poland,"51° 32' 34""","15° 30' 5""",,1.000,1.000,1.000,,This paper
+49,Nowa Vieś,Poland,"51° 16' 2""","15° 24' 40""",,1.000,1.000,1.000,,This paper
+50,Filipov,Czechia,"50° 48' 45""","14° 23' 40""",,1.000,1.000,1.000,,This paper
+51,Horní Jiřetín,Czechia,"50° 34' 59""","13° 32' 29.5""",,1.000,1.000,1.000,,This paper
+52,Žihle,Czechia,"50° 2' 34""","13° 22' 49""",1.000,1.000,1.000,1.000,,This paper
+53,Horní Ves (Trstěnice),Czechia,"49° 55' 2""","12° 39' 11""",,1.000,1.000,1.000,,This paper
+54,Mrtník,Czechia,"49° 53' 47""","13° 18' 32""",1.000,1.000,,1.000,,This paper
+55,Ctiboř,Czechia,"49° 49' 36""","12° 36' 41""",,1.000,1.000,1.000,,This paper
+56,Rybník,Czechia,"49° 30' 41""","12° 40' 31""",,1.000,1.000,1.000,,This paper
+57,Benešova Hora,Czechia,49° 7',13° 41',,1.000,1.000,1.000,,This paper
+58,Studenec,Czechia,49° 12',16° 4',1.000,1.000,1.000,1.000,,"Piálek et al. 2008, this paper"
+59,Turew,Poland,"52° 3' 49""","16° 49' 3""",,,,1.000,,"Ferris et al., 1983, Prager et al. 1996"
+60,Petrov near Prague,Czechia,"49° 53' 12""","14° 26' 18""",,,,1.000,,Prager et al. 1996
+61,Remderoda,Germany,"50° 56' 17.04""","11° 31' 26.42""",0.001,0.000,,,,Teeter et al. 2010
+62,Benkendorf,Germany,"51° 30' 54.14""","11° 49' 19.49""",0.000,0.000,,,,Teeter et al. 2010
+63,Doellnitz-Halle,Germany,"51° 24' 30.1""","12° 1' 26.34""",0.013,0.000,,,,Teeter et al. 2010
+64,Borau bei Weissenfels,Germany,"51° 12' 2.65""","12° 0' 18.73""",0.004,0.000,,,,Teeter et al. 2010
+65,Burgliebenau,Germany,"51° 23' 34.59""","12° 2' 29.85""",0.000,0.000,,,,Teeter et al. 2010
+66,Muschwitz bei Weissenfels,Germany,"51° 11' 33.14""","12° 7' 13.55""",0.027,0.000,,,,Teeter et al. 2010
+67,Zeitz,Germany,"51° 2' 21.51""","12° 8' 25.75""",0.013,0.000,,,,Teeter et al. 2010
+68,Grosspoerthen bei Zeitz,Germany,"50° 59' 52.43""","12° 10' 12.64""",0.023,0.000,,,,Teeter et al. 2010
+69,Nissma bei Kayna,Germany,"51° 1' 5.99""","12° 16' 48.56""",0.027,0.000,,,,Teeter et al. 2010
+70,Borna,Germany,"51° 7' 25.82""","12° 29' 50.19""",0.059,0.000,,,,Teeter et al. 2010
+71,Floessberg,Germany,"51° 7' 21.9""","12° 35' 20.93""",0.060,0.083,,,,Teeter et al. 2010
+72,Trebishain bei Floessberg,Germany,"51° 6' 51.61""","12° 36' 48.01""",0.056,0.000,,,,Teeter et al. 2010
+73,Thallwitz,Germany,"51° 25' 52.23""","12° 41' 1.52""",0.052,0.022,,,,Teeter et al. 2010
+74,Nischwitz,Germany,"51° 23' 36.46""","12° 42' 53.41""",0.092,0.000,,,,Teeter et al. 2010
+75,"Dehnitz b. Wurzen, Family Lehne",Germany,"51° 21' 4""","12° 44' 2""",0.094,0.045,,,,Teeter et al. 2010
+76,Dehnitz/NSI,Germany,"51° 21' 10""","12° 44' 5""",0.094,0.000,,,,Teeter et al. 2010
+77,Lueptitz,Germany,"51° 23' 35.27""","12° 46' 16.14""",0.100,0.005,,,,Teeter et al. 2010
+78,Gniebitz bei Trossin,Germany,"51° 36' 42.79""","12° 47' 3.57""",0.029,0.000,,,,Teeter et al. 2010
+79,Trebelshain,Germany,"51° 21' 25.37""","12° 49' 48.17""",0.151,0.000,,,,Teeter et al. 2010
+80,Zschirla,Germany,"51° 7' 51.69""","12° 50' 47.86""",0.711,0.667,,,,Teeter et al. 2010
+81,Mehderitzsch/Losswig,Germany,"51° 30' 13.42""","13° 3' 1.59""",0.066,0.333,,,,Teeter et al. 2010
+82,Kreischau,Germany,"51° 34' 12.71""","13° 1' 53.01""",0.086,0.000,,,,Teeter et al. 2010
+83,"Hohenlauft, by Rosswein",Germany,"51° 3' 54.11""","13° 8' 53.23""",0.795,1.000,,,,Teeter et al. 2010
+84,"Troischau, by Rosswein",Germany,"51° 4' 17.62""","13° 10' 5.24""",0.748,1.000,,,,Teeter et al. 2010
+85,Wilsdruff,Germany,"51° 3' 1.88""","13° 32' 17.67""",0.863,1.000,,,,Teeter et al. 2010
+86,Lohmen,Germany,"50° 59' 0.96""","13° 59' 45.27""",0.803,,,,,Teeter et al. 2010
+87,Pulsnitz,Germany,"51° 10' 52.27""","14° 0' 54.09""",0.921,1.000,,,,Teeter et al. 2010
+88,"Kamenz, Museum",Germany,"51° 16' 11.64""","14° 5' 34.58""",0.822,0.917,,,,Teeter et al. 2010
+89,Kamenz OT Wiesa,Germany,"51° 16' 11.64""","14° 5' 34.58""",0.876,1.000,,,,Teeter et al. 2010
+90,Deutschbaselitz,Germany,"51° 17' 14.71""","14° 8' 52.63""",0.810,,,,,Teeter et al. 2010
+91,Piskowitz,Germany,"51° 17' 1.22""","14° 11' 15.01""",0.864,,,,,Teeter et al. 2010
+92,Skerbersdorf,Germany,"51° 30' 4.64""","14° 48' 39.6""",0.854,1.000,,,,Teeter et al. 2010
+93,Friedersdorf bei Goerlitz,Germany,"51° 5' 45.87""","14° 52' 6.41""",0.940,1.000,,,,Teeter et al. 2010
+94,"Goerlitz, Tierpark",Germany,"51° 8' 30.87""","14° 58' 48.28""",0.946,1.000,,,,Teeter et al. 2010
+95,Augsburg (quail),Germany,"48° 20' 54""","10° 54' 48""",0.054,0.032,0.000,0.000,,"Tucker et al. 1992, Payseur et al. 2004, Božíková et al. 2005, Teeter et al. 2008, 2010"
+96,Augsburg (birdhouse),Germany,"48° 20' 54""","10° 54' 47""",,0.000,0.000,,,"Tucker et al. 1992, Payseur et al. 2004, Božíková et al. 2005, Teeter et al. 2008, 2010"
+97,Augsburg (camel),Germany,"48° 20' 44""","10° 55' 2""",0.020,0.000,0.000,0.000,,"Tucker et al. 1992, Payseur et al. 2004, Božíková et al. 2005, Teeter et al. 2008, 2010"
+98,Ebersbach (farm building),Germany,"48° 23' 22""","11° 26' 28""",0.031,0.000,0.000,0.000,,"Tucker et al. 1992, Payseur et al. 2004, Božíková et al. 2005, Teeter et al. 2008, 2010"
+99,Ebersbach (chicken pen),Germany,"48° 23' 22""","11° 26' 28""",,0.000,,,,"Tucker et al. 1992, Payseur et al. 2004, Božíková et al. 2005, Teeter et al. 2008, 2010"
+100,Kammerberg-Zandt,Germany,"48° 22' 17""","11° 31' 5""",0.035,0.011,0.000,0.000,,"Tucker et al. 1992, Payseur et al. 2004, Božíková et al. 2005, Teeter et al. 2008, 2010"
+101,Kammerberg-Hartl (cow barn),Germany,"48° 22' 20""","11° 31' 5""",0.049,0.000,0.000,0.000,,"Tucker et al. 1992, Payseur et al. 2004, Božíková et al. 2005, Teeter et al. 2008, 2010"
+102,Kammerberg-Hartl (chicken),Germany,"48° 22' 20""","11° 31' 5""",,0.000,,,,"Tucker et al. 1992, Payseur et al. 2004, Božíková et al. 2005, Teeter et al. 2008, 2010"
+103,Bachenhausen,Germany,"48° 21' 40""","11° 32' 10""",0.064,,,,,"Tucker et al. 1992, Payseur et al. 2004, Božíková et al. 2005, Teeter et al. 2008, 2010"
+104,Appercha,Germany,"48° 22' 28""","11° 34' 12""",0.064,0.000,,0.000,,"Tucker et al. 1992, Payseur et al. 2004, Božíková et al. 2005, Teeter et al. 2008, 2010"
+105,Gesselthausen-Ziigletrumm,Germany,"48° 21' 56""","11° 36' 33""",0.137,0.025,0.000,0.000,,"Tucker et al. 1992, Payseur et al. 2004, Božíková et al. 2005, Teeter et al. 2008, 2010"
+106,Gesselthausen-Warta,Germany,"48° 22' 0""","11° 36' 30""",0.112,0.011,0.000,0.000,,"Tucker et al. 1992, Payseur et al. 2004, Božíková et al. 2005, Teeter et al. 2008, 2010"
+107,Giesenbach,Germany,"48° 23' 5""","11° 36' 55""",0.113,0.019,,0.000,,"Tucker et al. 1992, Payseur et al. 2004, Božíková et al. 2005, Teeter et al. 2008, 2010"
+108,Eberspoint,Germany,"48° 25' 16""","11° 37' 45""",0.182,0.076,0.000,0.000,,"Tucker et al. 1992, Payseur et al. 2004, Božíková et al. 2005, Teeter et al. 2008, 2010"
+109,Thalhausen-Kranzberg,Germany,"48° 25' 38""","11° 40' 34""",0.256,0.500,0.000,0.000,,"Tucker et al. 1992, Payseur et al. 2004, Božíková et al. 2005, Teeter et al. 2008, 2010"
+110,Giggenhausen/Neufahrn,Germany,"48° 21' 48""","11° 38' 57""",0.108,0.000,1.000,0.000,,"Tucker et al. 1992, Payseur et al. 2004, Božíková et al. 2005, Teeter et al. 2008, 2010"
+111,Massenhausen/Neufahrn,Germany,"48° 20' 50""","11° 38' 10""",0.223,0.299,0.250,0.083,,"Tucker et al. 1992, Payseur et al. 2004, Božíková et al. 2005, Teeter et al. 2008, 2010"
+112,Neufahrn bei Freising,Germany,"48° 19' 15""","11° 39' 32""",0.414,0.590,0.110,0.000,,"Tucker et al. 1992, Payseur et al. 2004, Božíková et al. 2005, Teeter et al. 2008, 2010"
+113,Pulling-Petryszak,Germany,"48° 21' 52""","11° 42' 0""",0.543,0.533,,0.000,,"Tucker et al. 1992, Payseur et al. 2004, Božíková et al. 2005, Teeter et al. 2008, 2010"
+114,Pulling-Appels,Germany,"48° 21' 52""","11° 42' 20""",0.596,,,0.000,,"Tucker et al. 1992, Payseur et al. 2004, Božíková et al. 2005, Teeter et al. 2008, 2010"
+115,Achering,Germany,"48° 20' 30""","11° 42' 30""",0.687,0.835,0.750,0.526,,"Tucker et al. 1992, Payseur et al. 2004, Božíková et al. 2005, Teeter et al. 2008, 2010"
+116,Freising,Germany,"48° 23' 18""","11° 43' 57""",0.728,0.867,1.000,1.000,,"Tucker et al. 1992, Payseur et al. 2004, Božíková et al. 2005, Teeter et al. 2008, 2010"
+117,Tüntenhausen,Germany,"48° 25' 45""","11° 45' 0""",0.722,0.828,1.000,0.400,,"Tucker et al. 1992, Payseur et al. 2004, Božíková et al. 2005, Teeter et al. 2008, 2010"
+118,Rudlfing (furniture),Germany,"48° 24' 31""","11° 49' 9""",0.765,0.918,1.000,1.000,,"Tucker et al. 1992, Payseur et al. 2004, Božíková et al. 2005, Teeter et al. 2008, 2010"
+119,Rudlfing (silo),Germany,"48° 24' 31""","11° 49' 8""",,1.000,1.000,,,"Tucker et al. 1992, Payseur et al. 2004, Božíková et al. 2005, Teeter et al. 2008, 2010"
+120,Gut Wildschwaig,Germany,"48° 19' 28""","11° 46' 33""",0.764,0.956,1.000,0.000,,"Tucker et al. 1992, Payseur et al. 2004, Božíková et al. 2005, Teeter et al. 2008, 2010"
+121,Schwaig,Germany,"48° 20' 16""","11° 50' 43""",0.829,0.937,1.000,0.538,,"Tucker et al. 1992, Payseur et al. 2004, Božíková et al. 2005, Teeter et al. 2008, 2010"
+122,Dornhaselbach,Germany,48° 30',11° 56',0.756,1.000,1.000,0.000,,"Tucker et al. 1992, Payseur et al. 2004, Božíková et al. 2005, Teeter et al. 2008, 2010"
+123,Tittenkofen (grain attic),Germany,"48° 21' 3""","11° 57' 28""",0.846,1.000,,1.000,,"Tucker et al. 1992, Payseur et al. 2004, Božíková et al. 2005, Teeter et al. 2008, 2010"
+124,Tittenkofen (chicken),Germany,"48° 21' 3""","11° 57' 29""",,,,,,"Tucker et al. 1992, Payseur et al. 2004, Božíková et al. 2005, Teeter et al. 2008, 2010"
+125,Hörgersdorf,Germany,"48° 18' 2""","12° 3' 27""",0.846,1.000,1.000,1.000,,"Tucker et al. 1992, Payseur et al. 2004, Božíková et al. 2005, Teeter et al. 2008, 2010"
+126,Sonnendorf (feed room),Germany,"48° 14' 2""","11° 54' 25""",0.846,0.968,1.000,0.071,,"Tucker et al. 1992, Payseur et al. 2004, Božíková et al. 2005, Teeter et al. 2008, 2010"
+127,Sonnendorf (kitchen),Germany,"48° 14' 2""","11° 54' 26""",,1.000,1.000,,,"Tucker et al. 1992, Payseur et al. 2004, Božíková et al. 2005, Teeter et al. 2008, 2010"
+128,Atting,Germany,"48° 21' 5""","12° 7' 2""",0.905,1.000,,1.000,,"Tucker et al. 1992, Payseur et al. 2004, Božíková et al. 2005, Teeter et al. 2008, 2010"
+129,Bründl,Germany,"48° 24' 14""","12° 19' 23""",0.850,0.886,,1.000,,"Tucker et al. 1992, Payseur et al. 2004, Božíková et al. 2005, Teeter et al. 2008, 2010"
+130,Attenham,Germany,"48° 23' 17""","12° 41' 14""",0.875,0.941,,1.000,,"Tucker et al. 1992, Payseur et al. 2004, Božíková et al. 2005, Teeter et al. 2008, 2010"
+131,Mitterskirchen,Germany,48° 21',"12° 47' 40""",0.923,1.000,1.000,1.000,,"Tucker et al. 1992, Payseur et al. 2004, Božíková et al. 2005, Teeter et al. 2008, 2010"
+132,Simbach (hay barn),Germany,48° 16',"13° 1' 21""",0.866,0.894,,0.389,,"Tucker et al. 1992, Payseur et al. 2004, Božíková et al. 2005, Teeter et al. 2008, 2010"
+133,Simbach (chicken),Germany,48° 16',"13° 1' 22""",,1.000,1.000,,,"Tucker et al. 1992, Payseur et al. 2004, Božíková et al. 2005, Teeter et al. 2008, 2010"
+134,Simbach (furniture room),Germany,48° 16',"13° 1' 23""",,1.000,1.000,,,"Tucker et al. 1992, Payseur et al. 2004, Božíková et al. 2005, Teeter et al. 2008, 2010"
+135,Simbach (grain attic),Germany,48° 16',"13° 1' 24""",,1.000,1.000,,,"Tucker et al. 1992, Payseur et al. 2004, Božíková et al. 2005, Teeter et al. 2008, 2010"
+136,Simbach (farm bldg),Germany,48° 16',"13° 1' 25""",,1.000,1.000,,,"Tucker et al. 1992, Payseur et al. 2004, Božíková et al. 2005, Teeter et al. 2008, 2010"
+137,Konigsaich,Germany,"48° 12' 10""","12° 59' 48""",0.917,1.000,,1.000,,"Tucker et al. 1992, Payseur et al. 2004, Božíková et al. 2005, Teeter et al. 2008, 2010"
+138,Ranshofen-Holfinger,Austria,"48° 13' 16""","13° 0' 58""",0.904,0.978,1.000,0.000,,"Tucker et al. 1992, Payseur et al. 2004, Božíková et al. 2005, Teeter et al. 2008, 2010"
+139,Ranshofen-Penias,Austria,"48° 14' 1""","13° 0' 58""",0.910,1.000,1.000,1.000,,"Tucker et al. 1992, Payseur et al. 2004, Božíková et al. 2005, Teeter et al. 2008, 2010"
+140,Braunau,Austria,"48° 15' 38""","13° 2' 47""",0.915,0.973,1.000,1.000,,"Tucker et al. 1992, Payseur et al. 2004, Božíková et al. 2005, Teeter et al. 2008, 2010"
+141,Nöfing,Austria,"48° 15' 47""","13° 5' 7""",0.924,0.964,1.000,1.000,,"Tucker et al. 1992, Payseur et al. 2004, Božíková et al. 2005, Teeter et al. 2008, 2010"
+142,Aufhausen,Austria,,,0.955,1.000,,1.000,,"Tucker et al. 1992, Payseur et al. 2004, Božíková et al. 2005, Teeter et al. 2008, 2010"
+143,Rodham,Austria,"48° 11' 15.19""","13° 14' 16.66""",0.945,0.992,,1.000,,"Tucker et al. 1992, Payseur et al. 2004, Božíková et al. 2005, Teeter et al. 2008, 2010"
+144,Leitham-Fuchs,Austria,"48° 9' 16.22""","13° 17' 38.01""",0.939,0.994,,0.938,,"Tucker et al. 1992, Payseur et al. 2004, Božíková et al. 2005, Teeter et al. 2008, 2010"
+145,Leitham-Hubinger,Austria,"48° 9' 16.22""","13° 17' 38.01""",0.910,1.000,,1.000,,"Tucker et al. 1992, Payseur et al. 2004, Božíková et al. 2005, Teeter et al. 2008, 2010"
+146,As,Czechia,"50° 12' 43""","12° 12' 14""",0.010,0.000,0.000,0.170,,Macholán et al. 2008
+147,Anenska Ves,Czechia,"50° 12' 19""","12° 33' 5""",0.860,1.000,1.000,1.000,,Macholán et al. 2008
+148,Benk,Germany,"50° 10' 38""","11° 51' 46""",0.030,0.000,0.000,0.000,,Macholán et al. 2008
+149,Bochov,Czechia,"50° 8' 55""","13° 3' 17""",1.000,1.000,1.000,1.000,,Macholán et al. 2008
+150,Bouci,Czechia,"50° 14' 11""","12° 35' 11""",0.950,1.000,1.000,1.000,,Macholán et al. 2008
+151,Bozetin,Czechia,"50° 13' 26""","12° 26' 4""",0.000,0.000,0.000,0.000,,Macholán et al. 2008
+152,Buskovice,Czechia,"50° 13' 18""","13° 22' 27""",1.000,1.000,1.000,1.000,,Macholán et al. 2008
+153,Chotikov,Czechia,"50° 7' 9""","12° 30' 15""",0.900,1.000,1.000,1.000,,Macholán et al. 2008
+154,Cira,Czechia,"50° 17' 31""","12° 27' 1""",0.070,0.000,1.000,0.000,,Macholán et al. 2008
+155,Dalovice,Czechia,"50° 15' 36""","12° 53' 21""",1.000,1.000,,1.000,,Macholán et al. 2008
+156,Depoltovice,Czechia,"50° 17' 21""","12° 49' 12""",0.970,1.000,1.000,1.000,,Macholán et al. 2008
+157,Devin,Czechia,"50° 9' 51""","12° 25' 52""",0.360,0.000,,0.000,,Macholán et al. 2008
+158,Dlouhe Mosty,Czechia,"50° 6' 45""","12° 22' 26""",0.280,0.230,1.000,0.850,,Macholán et al. 2008
+159,Dolina,Czechia,"50° 13' 13""","12° 32' 50""",0.760,0.940,1.000,1.000,,Macholán et al. 2008
+160,Dolnice,Czechia,"50° 5' 42""","12° 23' 1""",0.230,0.080,1.000,0.890,,Macholán et al. 2008
+161,Dolni Luby,Czechia,"50° 14' 21""","12° 25' 11""",0.180,0.000,0.000,0.000,,Macholán et al. 2008
+162,Dolni Nivy,Czechia,"50° 14' 38""","12° 38' 21""",0.890,1.000,1.000,1.000,,Macholán et al. 2008
+163,Doubi,Czechia,"50° 7' 9""","12° 24' 4""",0.410,0.360,1.000,0.060,,Macholán et al. 2008
+164,Dolni Zandov 1,Czechia,"50° 1' 15""","12° 32' 52""",1.000,1.000,1.000,1.000,,Macholán et al. 2008
+165,Dolni Zandov 2,Czechia,"50° 1' 3""","12° 32' 51""",0.930,1.000,1.000,1.000,,Macholán et al. 2008
+166,Dolni Pelhrimov,Czechia,"50° 3' 47""","12° 20' 25""",0.420,0.130,1.000,0.000,,Macholán et al. 2008
+167,Grassemann,Germany,"50° 1' 7""","11° 47' 17""",0.000,0.000,0.000,0.000,,Macholán et al. 2008
+168,Habartov,Czechia,"50° 11' 7""","12° 33' 47""",0.860,1.000,1.000,1.000,,Macholán et al. 2008
+169,Hammermuehle 1,Germany,"50° 6' 2""","12° 13' 44""",0.040,0.200,1.000,0.000,,Macholán et al. 2008
+170,Hammermuehle 2,Germany,"50° 6' 1""","12° 13' 43""",0.210,0.000,,0.000,,Macholán et al. 2008
+171,Hazlov,Czechia,"50° 9' 26""","12° 16' 22""",0.120,0.000,1.000,0.220,,Macholán et al. 2008
+172,Hebanz,Germany,"50° 7' 1""","12° 2' 29""",0.060,0.000,0.000,0.270,,Macholán et al. 2008
+173,Hlavno,Czechia,"50° 8' 57""","12° 35' 49""",0.850,1.000,1.000,1.000,,Macholán et al. 2008
+174,Hluboka,Czechia,"50° 10' 10""","12° 29' 15""",0.500,1.000,1.000,0.000,,Macholán et al. 2008
+175,Hoechstaedt-Zelch,Germany,"50° 5' 14""","12° 6' 19""",0.000,0.140,0.600,0.170,,Macholán et al. 2008
+176,Hohenberg,Germany,"50° 5' 53""","12° 13' 25""",0.000,0.000,1.000,0.000,,Macholán et al. 2008
+177,Horni Slavkov,Czechia,"50° 7' 55""","12° 46' 56""",0.990,1.000,1.000,1.000,,Macholán et al. 2008
+178,Horni Studenec,Czechia,"50° 15' 16""","12° 32' 59""",0.920,1.000,,1.000,,Macholán et al. 2008
+179,Hranice,Czechia,"50° 18' 14""","12° 10' 27""",0.120,0.000,0.100,0.000,,Macholán et al. 2008
+180,Hrebeny 1,Czechia,"50° 13' 7""","12° 34' 23""",0.860,1.000,1.000,1.000,,Macholán et al. 2008
+181,Hrebeny 2,Czechia,"50° 13' 9""","12° 34' 22""",0.770,1.000,1.000,1.000,,Macholán et al. 2008
+182,Hurka 1,Czechia,"50° 7' 1""","12° 15' 22""",0.120,0.350,1.000,0.930,,Macholán et al. 2008
+183,Hurka 2,Czechia,"50° 7' 14""","12° 15' 21""",0.160,0.170,1.000,1.000,,Macholán et al. 2008
+184,Horni Ves,Czechia,"50° 7' 39""","12° 22' 33""",0.200,0.080,0.830,0.840,,Macholán et al. 2008
+185,Jindrichov,Czechia,"50° 6' 22""","12° 24' 6""",0.570,0.250,0.860,1.000,,Macholán et al. 2008
+186,Josefov,Czechia,"50° 12' 42""","12° 34' 46""",0.800,1.000,1.000,1.000,,Macholán et al. 2008
+187,Kacerov 1,Czechia,"50° 8' 47""","12° 30' 11""",0.880,1.000,1.000,0.680,,Macholán et al. 2008
+188,Kacerov 2,Czechia,"50° 8' 57""","12° 30' 24""",0.840,0.990,1.000,0.510,,Macholán et al. 2008
+189,Kleinwerndern,Germany,"50° 0' 2""","12° 1' 13""",0.000,0.000,0.000,0.000,,Macholán et al. 2008
+190,Klest,Czechia,"50° 6' 9""","12° 19' 18""",0.180,0.000,1.000,1.000,,Macholán et al. 2008
+191,Kostelni Briza1,Czechia,"50° 6' 59""","12° 37' 21""",0.980,1.000,1.000,1.000,,Macholán et al. 2008
+192,Kopanina 1,Czechia,"50° 11' 55""","12° 28' 17""",0.160,0.000,1.000,1.000,,Macholán et al. 2008
+193,Kopanina 2,Czechia,"50° 11' 36""","12° 28' 18""",0.390,0.500,,0.000,,Macholán et al. 2008
+194,Kothigenbibersbach,Germany,"50° 4' 56""","12° 9' 33""",0.100,0.000,1.000,0.670,,Macholán et al. 2008
+195,Krajkova 1,Czechia,"50° 13' 1""","12° 31' 56""",0.780,1.000,1.000,1.000,,Macholán et al. 2008
+196,Krajkova 2,Czechia,"50° 12' 54""","12° 32' 26""",0.750,1.000,1.000,1.000,,Macholán et al. 2008
+197,Krajkova 3,Czechia,"50° 12' 48""","12° 32' 41""",0.720,1.000,1.000,1.000,,Macholán et al. 2008
+198,Krajkova 4,Czechia,"50° 12' 59""","12° 32' 20""",0.780,1.000,1.000,1.000,,Macholán et al. 2008
+199,Krasnany,Czechia,"50° 17' 52""","12° 11' 14""",0.060,0.000,0.000,0.000,,Macholán et al. 2008
+200,Krizovatka1,Czechia,"50° 11' 51""","12° 23' 22""",0.120,0.000,0.670,0.130,,Macholán et al. 2008
+201,Kuebelhof1,Germany,"50° 11' 42""","11° 26' 28""",0.000,0.000,0.000,0.000,,Macholán et al. 2008
+202,Kvetna 13,Czechia,"50° 12' 14""","12° 31' 7""",0.850,1.000,1.000,1.000,,Macholán et al. 2008
+203,Lehsten,Germany,"50° 7' 7""","11° 55' 0""",0.040,0.020,0.000,0.000,,Macholán et al. 2008
+204,Liba 1,Czechia,"50° 7' 18""","12° 13' 56""",0.210,0.100,1.000,0.540,,Macholán et al. 2008
+205,Liba 2,Czechia,"50° 7' 36""","12° 14' 2""",0.130,0.040,1.000,0.860,,Macholán et al. 2008
+206,Libnov,Czechia,"50° 13' 45""","12° 31' 48""",0.930,1.000,1.000,1.000,,Macholán et al. 2008
+207,Lipoltov,Czechia,"50° 5' 20""","12° 30' 15""",0.860,1.000,1.000,0.000,,Macholán et al. 2008
+208,Lomnice,Czechia,"50° 13' 0""","12° 37' 26""",0.810,1.000,1.000,1.000,,Macholán et al. 2008
+209,Luby,Czechia,"50° 15' 0""","12° 24' 12""",0.170,0.000,1.000,0.000,,Macholán et al. 2008
+210,Luzna,Czechia,"50° 7' 8""","12° 18' 14""",0.220,0.050,1.000,0.070,,Macholán et al. 2008
+211,Meierhof (Weissenstadt),Germany,"50° 4' 15""","11° 54' 30""",0.000,0.000,,0.000,,Macholán et al. 2008
+212,Milhostov1,Czechia,"50° 9' 17""","12° 26' 45""",0.690,0.790,0.870,0.030,,Macholán et al. 2008
+213,Mlynek 1,Czechia,"50° 11' 28""","12° 27' 2""",0.330,0.570,1.000,0.000,,Macholán et al. 2008
+214,Mlynek 2,Czechia,"50° 11' 27""","12° 26' 48""",0.150,0.000,1.000,1.000,,Macholán et al. 2008
+215,Mostov 26,Czechia,"50° 6' 53""","12° 29' 28""",0.880,0.980,1.000,0.950,,Macholán et al. 2008
+216,Muenchberg,Germany,"50° 11' 24""","11° 47' 21""",0.030,0.000,0.000,0.000,,Macholán et al. 2008
+217,Novy Drahov,Czechia,"50° 8' 20""","12° 23' 24""",0.140,0.000,1.000,0.440,,Macholán et al. 2008
+218,Nebanice 1,Czechia,"50° 7' 7""","12° 28' 13""",0.620,0.780,1.000,0.500,,Macholán et al. 2008
+219,Nebanice 2,Czechia,"50° 6' 53""","12° 28' 28""",0.810,1.000,1.000,1.000,,Macholán et al. 2008
+220,Nebanice 3,Czechia,"50° 6' 52""","12° 28' 13""",0.820,0.960,1.000,1.000,,Macholán et al. 2008
+221,Neuenreuth8,Germany,"50° 5' 16""","12° 8' 4""",0.100,0.010,0.930,0.080,,Macholán et al. 2008
+222,Neuenreuth,Germany,"50° 5' 17""","12° 7' 43""",0.070,0.040,0.970,0.000,,Macholán et al. 2008
+223,Novy Kostel,Czechia,"50° 13' 6""","12° 26' 9""",0.060,0.000,0.000,0.630,,Macholán et al. 2008
+224,Nova Role,Czechia,"50° 16' 23""","12° 47' 44""",0.790,1.000,1.000,1.000,,Macholán et al. 2008
+225,Nova Ves (Cheb),Czechia,"50° 10' 39""","12° 25' 14""",0.160,0.180,0.900,0.910,,Macholán et al. 2008
+226,Nova Ves (SO) 1,Czechia,"50° 5' 7""","12° 46' 27""",0.990,1.000,1.000,1.000,,Macholán et al. 2008
+227,Nova Ves (SO) 2,Czechia,"50° 5' 5""","12° 46' 29""",1.000,1.000,1.000,1.000,,Macholán et al. 2008
+228,Nova Ves (SO) 3,Czechia,"50° 5' 6""","12° 46' 35""",0.980,0.960,1.000,1.000,,Macholán et al. 2008
+229,Obilna1,Czechia,"50° 5' 42""","12° 28' 24""",0.910,0.980,1.000,0.970,,Macholán et al. 2008
+230,Okrouhla,Czechia,"50° 3' 44""","12° 29' 21""",0.640,1.000,1.000,1.000,,Macholán et al. 2008
+231,Osvinov,Czechia,"50° 21' 16""","13° 1' 49""",0.980,1.000,,1.000,,Macholán et al. 2008
+232,Plesna,Czechia,"50° 13' 10""","12° 20' 23""",0.230,0.010,0.130,0.110,,Macholán et al. 2008
+233,Ploesberg,Germany,"50° 11' 45""","12° 7' 21""",0.050,0.110,0.000,0.800,,Macholán et al. 2008
+234,Pocerny 1,Czechia,"50° 14' 2""","12° 48' 24""",0.930,0.930,1.000,1.000,,Macholán et al. 2008
+235,Pocerny 2,Czechia,"50° 14' 21""","12° 48' 24""",0.940,0.960,1.000,1.000,,Macholán et al. 2008
+236,Polna,Czechia,"50° 9' 12""","12° 14' 45""",0.190,0.000,1.000,0.920,,Macholán et al. 2008
+237,Poustka 1,Czechia,"50° 8' 45""","12° 17' 16""",0.260,0.090,1.000,0.880,,Macholán et al. 2008
+238,Poustka 2,Czechia,"50° 8' 28""","12° 18' 2""",0.170,0.070,0.890,0.250,,Macholán et al. 2008
+239,Podboransky Rohozec,Czechia,"50° 12' 50""","13° 15' 47""",0.990,1.000,1.000,1.000,,Macholán et al. 2008
+240,Radvanov,Czechia,"50° 12' 5""","12° 34' 39""",1.000,1.000,1.000,1.000,,Macholán et al. 2008
+241,Roeslau,Germany,"50° 4' 54""","11° 59' 20""",0.000,0.000,0.000,0.000,,Macholán et al. 2008
+242,Rudolec 1,Czechia,"50° 7' 57""","12° 36' 55""",0.890,1.000,0.500,1.000,,Macholán et al. 2008
+243,Rudolec 2,Czechia,"50° 7' 52""","12° 37' 4""",0.960,1.000,0.860,0.980,,Macholán et al. 2008
+244,Rudolec 3,Czechia,"50° 8' 0""","12° 36' 43""",0.790,1.000,1.000,1.000,,Macholán et al. 2008
+245,Sedlecko,Czechia,"50° 14' 12""","12° 57' 30""",0.980,1.000,1.000,1.000,,Macholán et al. 2008
+246,Skalka (Hazlov),Czechia,"50° 10' 43""","12° 16' 4""",0.140,0.040,0.110,0.000,,Macholán et al. 2008
+247,Skalka (Cheb),Czechia,"50° 5' 53""","12° 17' 4""",0.300,0.000,0.500,0.000,,Macholán et al. 2008
+248,Smrciny,Czechia,"50° 15' 2""","12° 11' 3""",0.030,0.000,1.000,0.000,,Macholán et al. 2008
+249,Spalena,Czechia,"50° 13' 8""","12° 25' 16""",0.000,0.000,0.000,0.000,,Macholán et al. 2008
+250,Stary Rybnik,Czechia,"50° 9' 45""","12° 21' 15""",0.280,0.210,1.000,1.000,,Macholán et al. 2008
+251,Stare Sedlo,Czechia,"50° 10' 28""","12° 42' 44""",0.990,1.000,1.000,1.000,,Macholán et al. 2008
+252,Straz nad Ohri,Czechia,"50° 21' 14""","13° 2' 22""",1.000,1.000,1.000,1.000,,Macholán et al. 2008
+253,Straas 1,Germany,"50° 10' 54""","11° 45' 57""",0.010,0.000,0.000,0.000,,Macholán et al. 2008
+254,Straas 2,Germany,"50° 10' 53""","11° 45' 44""",0.010,0.010,0.000,0.010,,Macholán et al. 2008
+255,Strizov,Czechia,"50° 5' 53""","12° 21' 27""",0.240,0.400,1.000,0.600,,Macholán et al. 2008
+256,Stara Voda,Czechia,"49° 59' 42""","12° 35' 27""",1.000,1.000,1.000,1.000,,Macholán et al. 2008
+257,Sucha,Czechia,"50° 10' 1""","12° 23' 32""",0.290,0.000,,0.000,,Macholán et al. 2008
+258,Svatava,Czechia,"50° 11' 26""","12° 37' 43""",0.790,1.000,,1.000,,Macholán et al. 2008
+259,Svaty Kriz,Czechia,"50° 3' 9""","12° 21' 17""",0.300,0.000,1.000,0.000,,Macholán et al. 2008
+260,Telec,Czechia,"50° 7' 16""","13° 2' 59""",1.000,1.000,1.000,1.000,,Macholán et al. 2008
+261,Tesetice,Czechia,"50° 9' 42""","13° 5' 15""",1.000,1.000,1.000,1.000,,Macholán et al. 2008
+262,Thierstein,Germany,"50° 6' 29""","12° 6' 36""",0.090,0.000,0.600,0.000,,Macholán et al. 2008
+263,Trojmezi,Czechia,"50° 18' 10""","12° 8' 41""",0.130,0.000,,0.000,,Macholán et al. 2008
+264,Tyniste 1,Czechia,"50° 8' 54""","13° 10' 26""",0.940,1.000,1.000,,,Macholán et al. 2008
+265,Tyniste 2,Czechia,"50° 8' 55""","13° 10' 24""",0.970,1.000,1.000,1.000,,Macholán et al. 2008
+266,Unterweissenbach,Germany,"50° 9' 25""","12° 6' 12""",0.010,0.000,0.000,0.100,,Macholán et al. 2008
+267,Vintirov,Czechia,"50° 14' 4""","12° 42' 55""",1.000,1.000,1.000,1.000,,Macholán et al. 2008
+268,Vojtanov,Czechia,"50° 10' 3""","12° 19' 46""",0.290,0.000,,0.000,,Macholán et al. 2008
+269,Vrbicka,Czechia,"50° 10' 40""","13° 17' 34""",1.000,1.000,1.000,,,Macholán et al. 2008
+270,Weidessgruen 1,Germany,"50° 10' 1""","11° 39' 45""",0.010,0.000,0.000,,,Macholán et al. 2008
+271,Weidessgruen 2,Germany,"50° 18' 3""","11° 44' 40""",0.000,0.000,0.000,0.000,,Macholán et al. 2008
+272,Hiddensee Island,Germany,54° 32' ,13° 6' ,,,,,1.00,Zimmermann 1949
+273,Hiddensee Island,Germany,54° 0' ,11° 26' ,,,,,1.00,Zimmermann 1949
+274,Fehmarn Island,Germany,54° 26' ,11° 12' ,,,,,1.00,Zimmermann 1949
+275,"Oldenburg, Holstein",Germany,54° 18' ,10° 53' ,,,,,1.00,Zimmermann 1949
+276,Lichtenwalde,Germany,50° 53' ,13° 1' ,,,,,1.00,Zimmermann 1949
+277,Parsberg/Oberpfalz,Germany,49° 10' ,11° 43' ,,,,,1.00,"Zimmermann 1949, Kraft 1985"
+278,Amberg,Germany,49° 27' ,11° 51' ,,,,,1.00,Zimmermann 1949
+279,Neumarkt,Germany,49° 17' ,11° 27' ,,,,,1.00,Zimmermann 1949
+280,Burglengenfeld,Germany,49° 13' ,12° 2' ,,,,,1.00,Zimmermann 1949
+281,Parsberg,Germany,49° 10' ,11° 43' ,,,,,1.00,Zimmermann 1949
+282,Deggendorf,Germany,48° 50' ,12° 58' ,,,,,1.00,Zimmermann 1949
+283,Frauenberg,Germany,48° 47' ,13° 46' ,,,,,1.00,Kraft 1985
+284,Osterhofen,Germany,48° 42' ,13° 1' ,,,,,1.00,Zimmermann 1949
+285,Dingolfing,Germany,48° 38' ,12° 29' ,,,,,1.00,Kraft 1985
+286,Passau,Germany,48° 34' ,13° 27' ,,,,,1.00,Zimmermann 1949
+287,Moosburg,Germany,48° 28' ,11° 56' ,,,,,1.00,Zimmermann 1949
+288,Weisleithen,Germany,48° 20' ,13° 4' ,,,,,1.00,Kraft 1985
+289,Erding,Germany,48° 18' ,11° 54' ,,,,,1.00,Zimmermann 1949
+290,Altötting,Germany,48° 14' ,12° 41' ,,,,,1.00,"Zimmermann 1949, Kraft 1985"
+291,München-Trudering,Germany,48° 7' ,11° 40' ,,,,,1.00,Zimmermann 1949
+292,Assling,Germany,48° 0' ,12° 0' ,,,,,1.00,Zimmermann 1949
+293,Maising b. Starnberg,Germany,49° 59' ,11° 17' ,,,,,1.00,Zimmermann 1949
+294,Traunstein,Germany,47° 52' ,12° 39' ,,,,,1.00,Zimmermann 1949
+295,"Langbalig, Flensburg",Germany,54° 48' ,9° 38' ,,,,,0.50,Zimmermann 1949
+296,"Unewatt, Flensburg",Germany,54° 47' ,9° 39' ,,,,,0.50,Zimmermann 1949
+297,near Schwerin,Germany,53° 38' ,11° 25' ,,,,,0.50,Zimmermann 1949
+298,Melchow,Germany,52° 47' ,13° 42' ,,,,,0.50,Zimmermann 1949
+299,"Saarmund, Nuthetal",Germany,52° 21' ,13° 6' ,,,,,0.50,Zimmermann 1949
+300,Sulzbach,Germany,49° 30' ,11° 44' ,,,,,0.50,"Zimmermann 1949, Kraft 1985"
+301,Regensburg,Germany,49° 0' ,12° 6' ,,,,,0.50,"Zimmermann 1949, Kraft 1985"
+302,Erdinger Moos,Germany,48° 20' ,11° 48' ,,,,,0.50,Kraft 1985
+303,München,Germany,48° 9' ,11° 26' ,,,,,0.50,Kraft 1985
+304,Rimsting/Chiemsee,Germany,47° 53' ,12° 20' ,,,,,0.50,Kraft 1985
+305,Sylt Island,Germany,54° 55' ,8° 18' ,,,,,0.00,Zimmermann 1949
+306,"Ellerdorf, Nortorf",Germany,54° 12' ,9° 50' ,,,,,0.00,Zimmermann 1949
+307,near Bremervörde,Germany,53° 29' ,9° 9' ,,,,,0.00,Zimmermann 1949
+308,Lüneburg,Germany,53° 15' ,10° 25' ,,,,,0.00,Zimmermann 1949
+309,Neu Kaliß,Germany,53° 10' ,11° 18' ,,,,,0.00,Zimmermann 1949
+310,Bad Wilsnack,Germany,52° 57' ,11° 57' ,,,,,0.00,Zimmermann 1949
+311,"Berlin, Buch",Germany,52° 38' ,13° 30' ,,,,,0.00,Zimmermann 1949
+312,Posdam-Rehbrücke,Germany,52° 21' ,13° 6' ,,,,,0.00,Zimmermann 1949
+313,near Treuenbrietzen,Germany,52° 5' ,12° 52' ,,,,,0.00,Zimmermann 1949
+314,"Waldenburg, Saxony",Germany,51° 52',"12° 36' 30""",,,,,0.00,Zimmermann 1949
+315,"Lettin, Halle",Germany,51° 31' ,11° 55' ,,,,,0.00,Zimmermann 1949
+316,Wülfershausen/Saale,Germany,50° 20' ,10° 21' ,,,,,0.00,Kraft 1985
+317,Breitenbrunn b. Wunsiedel,Germany,50° 1' ,11° 59' ,,,,,0.00,Kraft 1985
+318,Pottenstein,Germany,49° 46' ,11° 25' ,,,,,0.00,Zimmermann 1949
+319,Kleinlangheim,Germany,49° 46' ,10° 17' ,,,,,0.00,Kraft 1985
+320,Heroldsbach,Germany,49° 41' ,11° 0' ,,,,,0.00,Kraft 1985
+321,Grossmehring,Germany,48° 46' ,11° 32' ,,,,,0.00,Kraft 1985
+322,Oberwöhr,Germany,48° 46' ,11° 39' ,,,,,0.00,Kraft 1985
+323,Reichertshofen,Germany,48° 40' ,11° 28' ,,,,,0.00,Kraft 1985
+324,Pfaffenhofen,Germany,48° 32' ,11° 30' ,,,,,0.00,Kraft 1985
+325,Augsburg,Germany,48° 21' ,10° 55' ,,,,,0.00,Kraft 1985
+326,Dachau,Germany,48° 15' ,11° 26' ,,,,,0.00,Kraft 1985
+327,Planegg,Germany,48° 6' ,11° 25' ,,,,,0.00,Zimmermann 1949
+328,Wangen/ Obb.,Germany,48° 1' ,11° 24' ,,,,,0.00,Kraft 1985
+329,Allgäu,Germany,47° 49' ,11° 41' ,,,,,0.00,Zimmermann 1949
+330,Staltach b. Iffeldorf,Germany,47° 47' ,11° 19' ,,,,,0.00,Kraft 1985
+331,Schlehdorf/Kochelsee,Germany,47° 39' ,11° 19' ,,,,,0.00,Kraft 1985
+332,Kloster Ettal,Germany,47° 34' ,11° 6' ,,,,,0.00,Kraft 1985
