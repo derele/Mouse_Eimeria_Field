@@ -22,4 +22,5 @@ vignettes/*.pdf
 R/*.R~
 
 # figures
-/figures/*
+figures/*
+*/figures/*
