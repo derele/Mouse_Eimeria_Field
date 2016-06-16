@@ -115,7 +115,6 @@ dev.off()
 
 HZ15G <- read.csv("HZ15_Mice_genotypes.csv")
 
-
 HZ15G$collapsed.GT <-
     apply(HZ15G[, X.col],
           1, paste, collapse = "/")
@@ -136,9 +135,23 @@ loc.HIX.2015 <- get.HIX(
                paste(x, collapse="/")}))
 
 loc.2015 <- merge(raw.loc.2015, loc.HIX.2015, by.x="Code", by.y = 0)
-
 names(loc.2015)[names(loc.2015)%in%"y"] <- "HIX"
 
+HZ15G.Bav <- read.csv("Genotypes_Bav2015.csv")
+
+HZ15G.Bav$collapsed.GT <-
+    apply(HZ15G.Bav[, X.col],
+          1, paste, collapse = "/")
+
+HZ15G.Bav$HIX <- sapply(HZ15G.Bav$collapsed.GT, get.HIX)
+
+loc.HIX.2015.Bav <- get.HIX(
+    tapply(HZ15G.Bav$collapsed.GT, HZ15G.Bav$Code,
+           function (x){
+               paste(x, collapse="/")}))
+
+loc.2015 <- merge(raw.loc.2015, loc.HIX.2015.Bav, by.x="Code", by.y = 0)
+names(loc.2015)[names(loc.2015)%in%"y"] <- "HIX"
 
 png("figures/Ludo_plus_Berlin15_plus_Bavaria.png", units="in", width = 6, height = 7,  res=300)
 ggmap(area,  zoom = 15) +
@@ -161,6 +174,14 @@ ggmap(area.B,  zoom = 15) +
                        aes(Longitude, Latitude, color=y), alpha=0.5)
 dev.off()
 
+png("figures/Bavaria_2015.png", units="in", width = 6, height = 6,  res=300)
+ggmap(area.B,  zoom = 15) +
+    scale_color_gradient("Hybrid\nindex", high="red",low="blue")+
+        geom_point(data = loc.2015,
+                   aes(X_Map, Y_Map, color=HIX, alpha=0.5))+
+            geom_point(data = subset(loc.2014, !is.na(loc.2014$y)),
+                       aes(Longitude, Latitude, color=y), alpha=0.5)
+dev.off()
 
 png("figures/Berlin_2015_labeled.png", units="in", width = 6, height = 6,  res=300)
 ggmap(area.B,  zoom = 15) +
@@ -172,5 +193,8 @@ ggmap(area.B,  zoom = 15) +
                 geom_text(data = loc.2015,
                            aes(X_Map, Y_Map, label=Code), size = 1)
 dev.off()
+
+
+
 
 
