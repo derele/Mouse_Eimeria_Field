@@ -1,5 +1,5 @@
 ###libraries
-setwd("/SAN/Alices_sandpit/sequencing_data_dereplicated/")
+## setwd("/SAN/Alices_sandpit/sequencing_data_dereplicated/")
 #source("http://bioconductor.org/biocLite.R")
 #biocLite("BiocUpgrade")
 library(Rsubread)
@@ -26,12 +26,9 @@ themeAlice<-theme(text = element_text(size=15),
 #legend.position = "none")
 
 
-##### PART I
+#####  I
 
-
-
-
-
+            
 #Rsubread package: (1) build an index (E.Falciformis genome)
 
 ##################
@@ -46,24 +43,25 @@ buildindex(basename="reference_index",reference="Efal_genome.fa")
 
 
 #Tally program on Bash (2): Deduplication of sequence fragments [Tally processes both files record-by-record and pair up records at the same offset. This requires the option --pair-by-offset.]
+#Tallying implicitly paired files
+#In this scenario two files are implicitly paired, such as is the case for unprocessed paired-end FASTQ files. Tally will process both files record-by-record and pair up records at the same offset. This requires the option --pair-by-offset.
+#tally -i out1.gz -j out2.gz -o out1.unique.gz -p out2.unique.gz --pair-by-offset
+
+#And parallel...... to be continued
 
 
 
 #Rsubread package: (3) align the dereplicated sequences to the index
 #Map paired-end reads
-FilesR1 <- list.files(pattern = "R1_001.fastq.unique.gz")
-FilesR2 <-list.files(pattern = "R2_001.fastq.unique.gz")
-#secondList <- list(rep("sequencing_data",length(FilesR1)))
-FilesR1path <- NA
-FilesR2path <- NA
+FilesR1 <- list.files(path = "/SAN/Alices_sandpit/sequencing_data_dereplicated",
+                      pattern="R1_001.fastq.unique.gz", full.names=TRUE)
+FilesR2 <- list.files(path = "/SAN/Alices_sandpit/sequencing_data_dereplicated",
+                      pattern="R2_001.fastq.unique.gz", full.names=TRUE)
 
-for (i in 1:length(FilesR1))
-  (FilesR1path <- c(FilesR1path,paste(c(FilesR1[i]),collapse = "")))
-FilesR1path <- FilesR1path[-1]
-for (i in 1:length(FilesR2))
-  (FilesR2path <- c(FilesR2path,paste(c(FilesR2[i]),collapse = "")))
-FilesR2path <- FilesR2path[-1]
-FilesR1path;FilesR2path
+
+
+## Run again with slimmer Code ## try using mclapply (multi-core apply) or snow for parallelization...
+## library(snow) or library(mcapply)
 
 #Create 1 alignments (20min/alignment !!)
 #*************
@@ -98,10 +96,17 @@ FilesR1path;FilesR2path
 #Function propmapped returns the proportion of mapped reads included in a SAM/BAM
 #file. For paired end reads, it can return the proportion of mapped fragments (ie. read pairs).
 #*************
-for (i in c(1:8,10,12:14,16:19)) {
-  assign(paste("PropMapped.dereplicated_", substr(FilesR1[i],1,6), sep = ""),
-         propmapped(paste("Alignment_", substr(FilesR1[i],1,6), sep = "")))
-}
+
+Align.file <- list.files(path = "/SAN/Alices_sandpit/sequencing_data_dereplicated",
+                         pattern="Alignment_", full.names=TRUE)
+
+
+propmapped(paste("Alignment_", substr(FilesR1[i],1,6), sep = "")))
+
+# Add a . bam !!!!!
+
+
+
 #*************
 # Add them all in ONE dataframe, make a distribution plot
 #*************
@@ -157,23 +162,23 @@ for (i in  c(1:8,10,12:14,16:19)) {
 
 mylist <- lapply(fc2, "[[", "counts")
 
-mylist2 <- do.call(cbind,mylist)
+countsDF <- do.call(cbind,mylist)
 
-head(mylist2)
+head(countsDF)
 
-table(rowSums(mylist2)>100)
+table(rowSums(countsDF)>100)
 
-table(rowSums(mylist2>10)>5) #a coverage >10 in >5 lib = how many baits are "working" with more than 10 sequences captured in more than 5 libraries
+table(rowSums(countsDF>10)>5) #a coverage >10 in >5 lib = how many baits are "working" with more than 10 sequences captured in more than 5 libraries
 
-table(rowSums(mylist2>0)>10)#a coverage >0 in >10 lib = how many baits are "working" in more than 10 libraries
+table(rowSums(countsDF>0)>10)#a coverage >0 in >10 lib = how many baits are "working" in more than 10 libraries
 
 
 
 ##### 
 
 ##### PART II
-#PropDataFrame <- propmapped(paste("Alignment_", substr(FilesR1[1],1,6), sep = ""))
-#for (i in c(2:8,10,12:14,16:19)) {
+PropDataFrame <- propmapped(paste("Alignment_", substr(FilesR1[1],1,6), sep = ""))
+for (i in c(2:8,10,12:14,16:19)) {
   PropDataFrame <- rbind(PropDataFrame, propmapped(paste("Alignment_", substr(FilesR1[i],1,6), sep = "")))
 }
 
@@ -434,12 +439,6 @@ substr(vect[1],1,4)
 
 # Get the bait sequences? [especially the NEIBOURING ONES]
 
-
-
-
-mylist <- lapply(fc2, "[[", "counts") #select fc2$eachsample$counts
-mylist2 <- do.call(cbind,mylist) # bind by column
-head(mylist2)
 
 a<-table(rowSums(mylist2)>100) #a coverage >100
 b<-table(rowSums(mylist2>10)>5) #a coverage >10 in >5 lib
