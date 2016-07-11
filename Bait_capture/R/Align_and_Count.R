@@ -13,6 +13,10 @@ library(compare)
 library(ggrepel)
 library(grid)
 library(RColorBrewer)
+library(reshape)
+library(viridis)
+library(ggthemes)
+library(pheatmap)
 
 themeAlice<-theme(text = element_text(size=15), 
                   #axis.line.x = element_line(linetype = "solid"),
@@ -71,6 +75,8 @@ FilesR1; FilesR2
 ####                  output_file = paste("Alignment_", substr(FilesR1[i],1,6), sep = ""))
 ####}
 
+# Add a . bam !!!!!
+
 ##########
 # repair manually the errors (to delete later) REPEATED FAILURE
 ####reads1 <- FilesR1path[9]
@@ -90,6 +96,11 @@ FilesR1; FilesR2
 #*************
 
 
+
+#Cf Totta things: 
+#parallel --gnu -P 5 --xapply tophat -r 200 --library-type fr-unstranded -G reference_genomes/indexes_bowtie2_good/mm10_GRCm38_eimeriaHaberkorn.gtf -o tophat_March_c/{1/.}_paired reference_genomes/indexes_bowtie2_good/index_mm10_eimeria3 {1} {2} ::: /data/Eimeria_Totta/RNAseq*/*_forw.fastq.gz ::: /data/Eimeria_Totta/RNAseq*/*_rev.fastq.gz
+
+
 ######################
 ##Mapping percentage##
 ######################
@@ -100,13 +111,8 @@ FilesR1; FilesR2
 Align.file <- list.files(path = "/SAN/Alices_sandpit/sequencing_data_dereplicated",
                          pattern="Alignment_", full.names=TRUE)
 
-
 propmapped(paste("Alignment_", substr(FilesR1[i],1,6), sep = "")))
-
-# Add a . bam !!!!!
-
-
-
+ 
 #*************
 # Add them all in ONE dataframe, make a distribution plot
 #*************
@@ -163,23 +169,36 @@ for (i in  c(1:8,10,12:14,16:19)) {
                                       reportReads=TRUE)
 }
 
-
+# First look into the data
 mylist <- lapply(fc2, "[[", "counts")
-
 countsDF <- do.call(cbind,mylist)
-
 head(countsDF)
-
+colnames(countsDF) <-  substr(colnames(countsDF),61,66) # shorten names 
 table(rowSums(countsDF)>100)
-
 table(rowSums(countsDF>10)>5) #a coverage >10 in >5 lib = how many baits are "working" with more than 10 sequences captured in more than 5 libraries
-
 table(rowSums(countsDF>0)>10)#a coverage >0 in >10 lib = how many baits are "working" in more than 10 libraries
 
+#Plot a heatmap
+pheatmap(log10(countsDF[rowSums(countsDF)>500,]+0.1))
+pheatmap(log10(countsDF[rowSums(countsDF)>50,]+0.1))
+pheatmap(log10(countsDF[rowSums(countsDF)>10,]+0.1))
+pheatmap(log10(countsDF[rowSums(countsDF)>500,]+0.1))
+table(rowSums(countDF)>10)
 
+#Pairs plot to identify correlating (good) libraries
+subcountsDF.100 <- countsDF[rowSums(countsDF)>100,] # keep only the baits with at least 100 hits on all the libraries
+pairs(subcountsDF.100)
+
+#subcountsDF.10 <- countsDF[rowSums(countsDF)>10,] # keep only the baits with at least 10 hits on all the libraries
+#pairs(subcountsDF.10)
+
+pairwiseSpear <- cor(subcountsDF.100, method ="spearman")
+class(pairwiseSpear)
+
+cor(subcountsDF.100, method ="kendall")
 
 ###################################################
-#Hierarchical clustering on the readcouts per bait.
+#Hierarchical clustering on the readcounts per bait.
 #A heatmap just on this raw data?
 #Pairs plot to identify correlating (good) libraries.
 #Table of pairwise correlation coefficients.
@@ -188,6 +207,12 @@ table(rowSums(countsDF>0)>10)#a coverage >0 in >10 lib = how many baits are "wor
 #My guess is the hierarchical clustering will show a cluster of "working" baits. And the correlations will show "working" libraries.
 #column scaling of the libraries might give the best clustering.
 ################################################### 
+
+
+
+
+
+
 
 
 
@@ -262,7 +287,7 @@ myplot
 #2811 Eastern domesticus
 #2812 Eastern domesticus
 #2848 Eastern hybrid
-#2919 Eastern domesticus
+#2919 bEastern domesticus
 #2TRAnn X apodemus
 #95Anna X apodemus
 #f9Anna X apodemus
