@@ -49,16 +49,15 @@ buildindex(basename="reference_index",reference="Efal_genome.fa")
 
 #And parallel...... to be continued
 
-
-
 #Rsubread package: (3) align the dereplicated sequences to the index
 #Map paired-end reads
 FilesR1 <- list.files(path = "/SAN/Alices_sandpit/sequencing_data_dereplicated",
                       pattern="R1_001.fastq.unique.gz", full.names=TRUE)
 FilesR2 <- list.files(path = "/SAN/Alices_sandpit/sequencing_data_dereplicated",
                       pattern="R2_001.fastq.unique.gz", full.names=TRUE)
+FilesR1; FilesR2
 
-
+#Played around with snow, really tough, ask Totta for help with parallelisation proccess
 
 ## Run again with slimmer Code ## try using mclapply (multi-core apply) or snow for parallelization...
 ## library(snow) or library(mcapply)
@@ -71,6 +70,7 @@ FilesR2 <- list.files(path = "/SAN/Alices_sandpit/sequencing_data_dereplicated",
 ####  Rsubread::align(index="reference_index",readfile1=reads1,readfile2=reads2, type="dna",maxMismatches=20, indels=10,
 ####                  output_file = paste("Alignment_", substr(FilesR1[i],1,6), sep = ""))
 ####}
+
 ##########
 # repair manually the errors (to delete later) REPEATED FAILURE
 ####reads1 <- FilesR1path[9]
@@ -148,9 +148,12 @@ dev.off()
 ## Counting mapped reads for genomic features##
 ###############################################
 fc2 <- list()
+FilesR1
+ substr(FilesR1[1],50,55)
+
 for (i in  c(1:8,10,12:14,16:19)) {
-  fc2[[FilesR1[i]]] <-  featureCounts(paste("Alignment_", substr(FilesR1[i],1,6), sep = ""),
-                                      annot.ext="MYbaits_Eimeria_V1.single120_feature_counted.gtf",
+  fc2[[FilesR1[i]]] <-  featureCounts(paste("/SAN/Alices_sandpit/sequencing_data_dereplicated/Alignment_", substr(FilesR1[i],50,55), sep = ""),
+                                      annot.ext="/SAN/Alices_sandpit/sequencing_data_dereplicated/MYbaits_Eimeria_V1.single120_feature_counted.gtf",
                                       isGTFAnnotationFile=TRUE,
                                       GTF.featureType = "sequence_feature",
                                       useMetaFeatures=FALSE,
@@ -159,6 +162,7 @@ for (i in  c(1:8,10,12:14,16:19)) {
                                       isPairedEnd=TRUE,
                                       reportReads=TRUE)
 }
+
 
 mylist <- lapply(fc2, "[[", "counts")
 
@@ -174,7 +178,27 @@ table(rowSums(countsDF>0)>10)#a coverage >0 in >10 lib = how many baits are "wor
 
 
 
-##### 
+###################################################
+#Hierarchical clustering on the readcouts per bait.
+#A heatmap just on this raw data?
+#Pairs plot to identify correlating (good) libraries.
+#Table of pairwise correlation coefficients.
+#And a truly random 120nt baits gff would be awesome ;-)
+#Just random no intron or etc selection needed.
+#My guess is the hierarchical clustering will show a cluster of "working" baits. And the correlations will show "working" libraries.
+#column scaling of the libraries might give the best clustering.
+################################################### 
+
+
+
+
+
+
+
+
+
+
+##### Plots & Stuff Not optimized DO NOT RUN 
 
 ##### PART II
 PropDataFrame <- propmapped(paste("Alignment_", substr(FilesR1[1],1,6), sep = ""))
@@ -353,9 +377,7 @@ Histo
 
 
 
-
-
-################################## Later not checked
+################################## Later not checked DO NOT RUN
 #1. Total baits assigned
 #read.table("/SAN/Alices_sandpit/FeatureCounts_results_dereplicated/OnlyAssigned", sep="\t", header=FALSE)
 #length(AssignedBaits$V3)
