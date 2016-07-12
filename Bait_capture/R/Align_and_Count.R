@@ -172,7 +172,7 @@ for (i in  c(1:8,10,12:14,16:19)) {
 # First look into the data
 mylist <- lapply(fc2, "[[", "counts")
 countsDF <- do.call(cbind,mylist)
-head(countsDF)
+countsDF <- as.data.frame(countsDF)
 colnames(countsDF) <-  substr(colnames(countsDF),61,66) # shorten names 
 table(rowSums(countsDF)>100)
 table(rowSums(countsDF>10)>5) #a coverage >10 in >5 lib = how many baits are "working" with more than 10 sequences captured in more than 5 libraries
@@ -183,19 +183,49 @@ pheatmap(log10(countsDF[rowSums(countsDF)>500,]+0.1))
 pheatmap(log10(countsDF[rowSums(countsDF)>50,]+0.1))
 pheatmap(log10(countsDF[rowSums(countsDF)>10,]+0.1))
 pheatmap(log10(countsDF[rowSums(countsDF)>500,]+0.1))
-table(rowSums(countDF)>10)
+table(rowSums(countsDF)>10)
 
 #Pairs plot to identify correlating (good) libraries
+############
+###GOOD library, definition
+############
+b <- 5000 # we want minimum 5000 "good baits"
+c <- 10 # with minimum 10 counts
+############
+
+#Filtrate the column with at least a line > 0,5
+datas[apply(datas, 2, function(x) any(x > 0.5)), ]
+
+head(which(countsDF[,-1] > c), 30)
+
+GoodLib.countsDF <- subset(countsDF,
+
+help(subset)
+class(countsDF)
+
+head(countsDF,30)
+head(countsDF[countsDF$f9Anna == 1,],30)
+
+head(countsDF[,-1] > 10, 30)
+
+
+countsDF$f9Anna
+
 subcountsDF.100 <- countsDF[rowSums(countsDF)>100,] # keep only the baits with at least 100 hits on all the libraries
+
+head(countsDF)
+
+
+subcountsDF.100.goodlib <- #keep only the libraries with more than 5000 baits (1/4) "working"
 pairs(subcountsDF.100)
 
-#subcountsDF.10 <- countsDF[rowSums(countsDF)>10,] # keep only the baits with at least 10 hits on all the libraries
-#pairs(subcountsDF.10)
-
+# Pairwise comparisons
 pairwiseSpear <- cor(subcountsDF.100, method ="spearman")
 class(pairwiseSpear)
+pairwiseKendall <- cor(subcountsDF.100, method ="kendall")
+class(pairwiseKendall)
 
-cor(subcountsDF.100, method ="kendall")
+
 
 ###################################################
 #Hierarchical clustering on the readcounts per bait.
