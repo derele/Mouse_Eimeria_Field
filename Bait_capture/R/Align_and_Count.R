@@ -17,6 +17,7 @@ library(reshape)
 library(viridis)
 library(ggthemes)
 library(pheatmap)
+library(GGally)
 
 themeAlice<-theme(text = element_text(size=15), 
                   #axis.line.x = element_line(linetype = "solid"),
@@ -111,7 +112,7 @@ FilesR1; FilesR2
 Align.file <- list.files(path = "/SAN/Alices_sandpit/sequencing_data_dereplicated",
                          pattern="Alignment_", full.names=TRUE)
 
-propmapped(paste("Alignment_", substr(FilesR1[i],1,6), sep = "")))
+#propmapped(paste("Alignment_", substr(FilesR1[i],1,6), sep = "")))
  
 #*************
 # Add them all in ONE dataframe, make a distribution plot
@@ -155,8 +156,6 @@ dev.off()
 ###############################################
 fc2 <- list()
 FilesR1
- substr(FilesR1[1],50,55)
-
 for (i in  c(1:8,10,12:14,16:19)) {
   fc2[[FilesR1[i]]] <-  featureCounts(paste("/SAN/Alices_sandpit/sequencing_data_dereplicated/Alignment_", substr(FilesR1[i],50,55), sep = ""),
                                       annot.ext="/SAN/Alices_sandpit/sequencing_data_dereplicated/MYbaits_Eimeria_V1.single120_feature_counted.gtf",
@@ -178,6 +177,20 @@ table(rowSums(countsDF)>100)
 table(rowSums(countsDF>10)>5) #a coverage >10 in >5 lib = how many baits are "working" with more than 10 sequences captured in more than 5 libraries
 table(rowSums(countsDF>0)>10)#a coverage >0 in >10 lib = how many baits are "working" in more than 10 libraries
 
+#For later: change the names of countsDF libraries with a "Lib" in front
+names(countsDF)<- paste("Lib_",names(countsDF),sep="")
+
+###################################################
+#Hierarchical clustering on the readcounts per bait.
+#A heatmap just on this raw data?
+#Pairs plot to identify correlating (good) libraries.
+#Table of pairwise correlation coefficients.
+#And a truly random 120nt baits gff would be awesome ;-)
+#Just random no intron or etc selection needed.
+#My guess is the hierarchical clustering will show a cluster of "working" baits. And the correlations will show "working" libraries.
+#column scaling of the libraries might give the best clustering.
+################################################### 
+
 #Plot a heatmap
 pheatmap(log10(countsDF[rowSums(countsDF)>500,]+0.1))
 pheatmap(log10(countsDF[rowSums(countsDF)>50,]+0.1))
@@ -185,46 +198,34 @@ pheatmap(log10(countsDF[rowSums(countsDF)>10,]+0.1))
 pheatmap(log10(countsDF[rowSums(countsDF)>500,]+0.1))
 table(rowSums(countsDF)>10)
 
-#Pairs plot to identify correlating (good) libraries
 ############
 ###GOOD library, definition
 ############
-b <- 5000 # we want minimum 5000 "good baits"
-c <- 10 # with minimum 10 counts
+b <- 5000 # we want minimum b "good baits"
+c <- 10 # with minimum c counts each
 ############
 
-#Filtrate the column with at least a line > 0,5
-datas[apply(datas, 2, function(x) any(x > 0.5)), ]
+# Keep the lib with at least b baits with greater than c counts
+goodlib <- apply(countsDF,2, function(x) sum((table(x))[c(1:c)])<totbaits-b) #if NA, there is always less than c counts per bait/if FALSE there is not enough "good" baits/we want to keep the TRUE ones
+NewDF <- countsDF[which(goodlib==TRUE)]
 
-head(which(countsDF[,-1] > c), 30)
+#Now, remove rows with zeros on the lib selected
+##Go through each row and determine if a value is zero
+row_sub <- apply(NewDF, 1, function(row) all(row !=0 ))
+##Subset as usual
+FinalDF <- NewDF[row_sub,]
+baits.to.keep <- nrow(FinalDF)
+head(FinalDF)
+#################
+##### CountsDF is the original table,
+##### NewDF is the table with just "good" libraries
+##### FinalDF is the table with "good" libraries and no zeros!
+#################
 
-GoodLib.countsDF <- subset(countsDF,
+#Pairs plot to identify correlating (good) libraries
+ggpairs(data=NewDF)
 
-help(subset)
-class(countsDF)
-
-head(countsDF,30)
-head(countsDF[countsDF$f9Anna == 1,],30)
-
-head(countsDF[,-1] > 10, 30)
-
-
-countsDF$f9Anna
-
-subcountsDF.100 <- countsDF[rowSums(countsDF)>100,] # keep only the baits with at least 100 hits on all the libraries
-
-head(countsDF)
-
-
-subcountsDF.100.goodlib <- #keep only the libraries with more than 5000 baits (1/4) "working"
-pairs(subcountsDF.100)
-
-# Pairwise comparisons
-pairwiseSpear <- cor(subcountsDF.100, method ="spearman")
-class(pairwiseSpear)
-pairwiseKendall <- cor(subcountsDF.100, method ="kendall")
-class(pairwiseKendall)
-
+ggcorr(countsDF)
 
 
 ###################################################
@@ -237,6 +238,7 @@ class(pairwiseKendall)
 #My guess is the hierarchical clustering will show a cluster of "working" baits. And the correlations will show "working" libraries.
 #column scaling of the libraries might give the best clustering.
 ################################################### 
+                                        #is there reads to non baits region in the genomes?
 
 
 
