@@ -112,44 +112,18 @@ FilesR1; FilesR2
 Align.file <- list.files(path = "/SAN/Alices_sandpit/sequencing_data_dereplicated",
                          pattern="Alignment_", full.names=TRUE)
 
-#propmapped(paste("Alignment_", substr(FilesR1[i],1,6), sep = "")))
- 
-#*************
-# Add them all in ONE dataframe, make a distribution plot
-#*************
-name <- NA
-for (i in c(1:8,10,12:14,16:19)) {
-  name <- c(name,paste(substr(FilesR1[i],1,6)))
-}
-name <- name[-1]
-#*************
-Prop <- NA
-for (i in c(1:8,10,12:14,16:19)) {
-  prop <- paste("PropMapped.dereplicated_", substr(FilesR1[i],1,6), sep = "")
-  prop1 <- get(prop) #get a list of values
-  prop2 <- prop1$PropMapped #get the value
-  Prop <- c(Prop, prop2)
-}
-Prop <- Prop[-1]
+Prop.mapped <- propmapped(Align.file)
 
-#*************
-dat <- data.frame(name = name, propMapped = Prop)
-dat$propMapped <- dat$propMapped*100
-#*************
+Prop.mapped$Samples <- substr(Prop.mapped$Samples,60,65)
+Prop.mapped$propMapped <- Prop.mapped$PropMapped*100
 
 # Histogram overlaid with kernel density curve
-Histo <- ggplot(dat, aes(x=propMapped)) + 
+Histo <- ggplot(Prop.mapped, aes(x=propMapped)) + 
   geom_histogram(colour="black", fill="white")+ # Histogram with count on y-axis
   themeAlice+
   scale_x_continuous(name = "Proportion Mapped")+
   scale_y_continuous(breaks = 0:10)
 Histo
-#ggsave("PlotHistoDens.pdf")
-#*************
-x = knitr::kable(dat)
-pdf("PropMapped.pdf", height=11, width=8.5)
-grid.table(x)
-dev.off()
 
 ###############################################
 ## Counting mapped reads for genomic features##
@@ -171,14 +145,14 @@ for (i in  c(1:8,10,12:14,16:19)) {
 # First look into the data
 mylist <- lapply(fc2, "[[", "counts")
 countsDF <- do.call(cbind,mylist)
-countsDF <- as.data.frame(countsDF)
+cgountsDF <- as.data.frame(countsDF)
 colnames(countsDF) <-  substr(colnames(countsDF),61,66) # shorten names 
 table(rowSums(countsDF)>100)
 table(rowSums(countsDF>10)>5) #a coverage >10 in >5 lib = how many baits are "working" with more than 10 sequences captured in more than 5 libraries
 table(rowSums(countsDF>0)>10)#a coverage >0 in >10 lib = how many baits are "working" in more than 10 libraries
 
 #For later: change the names of countsDF libraries with a "Lib" in front
-names(countsDF)<- paste("Lib_",names(countsDF),sep="")
+colnames(countsDF)<- paste("Lib_",colnames(countsDF),sep="")
 
 ###################################################
 #Hierarchical clustering on the readcounts per bait.
@@ -209,7 +183,6 @@ totbaits <- nrow(countsDF)
 # Keep the lib with at least b baits with greater than c counts
 goodlib <- apply(countsDF,2, function(x) sum((table(x))[c(1:mincounts)])<totbaits-minbaits) #if NA, there is always less than c counts per bait/if FALSE there is not enough "good" baits/we want to keep the TRUE ones
 NewDF <- countsDF[which(goodlib==TRUE)]
-
 #Now, remove rows with zeros on the lib selected
 ##Go through each row and determine if a value is zero
 row_sub <- apply(NewDF, 1, function(row) all(row !=0 ))
@@ -299,7 +272,6 @@ create_heatmap_correl(countsDFreduced)
 #column scaling of the libraries might give the best clustering.
 ################################################### 
                                         #is there reads to non baits region in the genomes?
-
 
 
 
