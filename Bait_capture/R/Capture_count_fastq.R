@@ -93,5 +93,4 @@ uniq.subject <- lapply(blast.results.l, function(x){
 
 uniq.subject <- melt(uniq.subject)
 
-merge(S.table, 
 
