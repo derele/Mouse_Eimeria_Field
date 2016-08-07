@@ -60,57 +60,26 @@ FilesR1 <- list.files(path = "/SAN/Alices_sandpit/sequencing_data_dereplicated",
                       pattern="R1_001.fastq.unique.gz", full.names=TRUE)
 FilesR2 <- list.files(path = "/SAN/Alices_sandpit/sequencing_data_dereplicated",
                       pattern="R2_001.fastq.unique.gz", full.names=TRUE)
-FilesR1; FilesR2
 
-<<<<<<< HEAD
 
-## Rsubread::align is vectorized and parallelized via an option!
-=======
-#Played around with snow, really tough, ask Totta for help with parallelisation proccess
->>>>>>> 941f0b576e1b127d50984523ec6cd1d8b74ea600
+## Played around with snow, really tough, ask Totta for help with
+## parallelisation proccess
 
 ## RTFHF... Read the F.. (well, fine ;-)) Help File: 
+## Rsubread::align is vectorized and parallelized via an option!
+
+## See this: 
 
 ## readfile2: a character vector giving names of files that include second
 ##          reads in paired-end read data. Files included in ‘readfile2’
 ## A CHARACTER VECTOR!!
 
-<<<<<<< HEAD
-=======
-#Create 1 alignments (20min/alignment !!)
-#*************
-####for (i in 1:length(FilesR1path)){
-####  reads1 <- FilesR1path[i]
-####  reads2 <- FilesR2path[i]
-####  Rsubread::align(index="reference_index",readfile1=reads1,readfile2=reads2, type="dna",maxMismatches=20, indels=10,
-####                  output_file = paste("Alignment_", substr(FilesR1[i],1,6), sep = ""))
-####}
-
-# Add a . bam !!!!!
-
-##########
-# repair manually the errors (to delete later) REPEATED FAILURE
-####reads1 <- FilesR1path[9]
-####reads2 <- FilesR2path[9]
-####Rsubread::align(index="reference_index",readfile1=reads1,readfile2=reads2, type="dna",maxMismatches=20, indels=10,
-####                  output_file = paste("Alignment_", substr(FilesR1[9],1,6), sep = ""))
-
-####reads1 <- FilesR1path[11]
-####reads2 <- FilesR2path[11]
-####Rsubread::align(index="reference_index",readfile1=reads1,readfile2=reads2, type="dna",maxMismatches=20, indels=10,
-####                  output_file = paste("Alignment_", substr(FilesR1[11],1,6), sep = ""))
-
-####reads1 <- FilesR1path[15]
-####reads2 <- FilesR2path[15]
-####Rsubread::align(index="reference_index",readfile1=reads1,readfile2=reads2, type="dna",maxMismatches=20, indels=10,
-####                  output_file = paste("Alignment_", substr(FilesR1[15],1,6), sep = ""))
-#*************
->>>>>>> 941f0b576e1b127d50984523ec6cd1d8b74ea600
-
 ## nthreads: numeric value giving the number of threads used for mapping.
 ##           ‘1’ by default.
 
-                                        #Create 1 alignments (20min/alignment !!) This means 20min in total on nthreads=lenght(FileR1path)
+### Create 1 alignments (20min/alignment !!)
+
+## This means 20min in total on nthreads=lenght(FileR1path)
 
 ## not tested but this should be all:
 Rsubread::align(index="reference_index",
@@ -122,7 +91,12 @@ Rsubread::align(index="reference_index",
                 nthreads=length(FilesR1))
 
 
-#Cf Totta things: 
+
+
+## This is bash parallelization. Why bother if you are using a
+## parallelized package?!!
+
+## Cf Totta things: 
 #parallel --gnu -P 5 --xapply tophat -r 200 --library-type fr-unstranded -G reference_genomes/indexes_bowtie2_good/mm10_GRCm38_eimeriaHaberkorn.gtf -o tophat_March_c/{1/.}_paired reference_genomes/indexes_bowtie2_good/index_mm10_eimeria3 {1} {2} ::: /data/Eimeria_Totta/RNAseq*/*_forw.fastq.gz ::: /data/Eimeria_Totta/RNAseq*/*_rev.fastq.gz
 
 
@@ -138,7 +112,6 @@ Align.file <- list.files(path = "/SAN/Alices_sandpit/sequencing_data_dereplicate
 
 Prop.mapped <- propmapped(Align.file)
 
-<<<<<<< HEAD
 propmapped(paste("Alignment_", substr(FilesR1[i],1,6), sep = "")))
 
 
