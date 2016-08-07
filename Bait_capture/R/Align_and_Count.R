@@ -59,36 +59,28 @@ FilesR2 <- list.files(path = "/SAN/Alices_sandpit/sequencing_data_dereplicated",
                       pattern="R2_001.fastq.unique.gz", full.names=TRUE)
 
 
+## Rsubread::align is vectorized and parallelized via an option!
 
-## Run again with slimmer Code ## try using mclapply (multi-core apply) or snow for parallelization...
-## library(snow) or library(mcapply)
+## RTFHF... Read the F.. (well, fine ;-)) Help File: 
 
-#Create 1 alignments (20min/alignment !!)
-#*************
-####for (i in 1:length(FilesR1path)){
-####  reads1 <- FilesR1path[i]
-####  reads2 <- FilesR2path[i]
-####  Rsubread::align(index="reference_index",readfile1=reads1,readfile2=reads2, type="dna",maxMismatches=20, indels=10,
-####                  output_file = paste("Alignment_", substr(FilesR1[i],1,6), sep = ""))
-####}
-##########
-# repair manually the errors (to delete later) REPEATED FAILURE
-####reads1 <- FilesR1path[9]
-####reads2 <- FilesR2path[9]
-####Rsubread::align(index="reference_index",readfile1=reads1,readfile2=reads2, type="dna",maxMismatches=20, indels=10,
-####                  output_file = paste("Alignment_", substr(FilesR1[9],1,6), sep = ""))
+## readfile2: a character vector giving names of files that include second
+##          reads in paired-end read data. Files included in ‘readfile2’
+## A CHARACTER VECTOR!!
 
-####reads1 <- FilesR1path[11]
-####reads2 <- FilesR2path[11]
-####Rsubread::align(index="reference_index",readfile1=reads1,readfile2=reads2, type="dna",maxMismatches=20, indels=10,
-####                  output_file = paste("Alignment_", substr(FilesR1[11],1,6), sep = ""))
 
-####reads1 <- FilesR1path[15]
-####reads2 <- FilesR2path[15]
-####Rsubread::align(index="reference_index",readfile1=reads1,readfile2=reads2, type="dna",maxMismatches=20, indels=10,
-####                  output_file = paste("Alignment_", substr(FilesR1[15],1,6), sep = ""))
-#*************
+## nthreads: numeric value giving the number of threads used for mapping.
+##           ‘1’ by default.
 
+                                        #Create 1 alignments (20min/alignment !!) This means 20min in total on nthreads=lenght(FileR1path)
+
+## not tested but this should be all:
+Rsubread::align(index="reference_index",
+                readfile1=FilesR1,
+                readfile2=FilesR2,
+                type="dna",
+                maxMismatches=20,
+                indels=10,
+                nthreads=length(FilesR1))
 
 ######################
 ##Mapping percentage##
@@ -102,9 +94,6 @@ Align.file <- list.files(path = "/SAN/Alices_sandpit/sequencing_data_dereplicate
 
 
 propmapped(paste("Alignment_", substr(FilesR1[i],1,6), sep = "")))
-
-# Add a . bam !!!!!
-
 
 
 #*************
@@ -147,6 +136,15 @@ dev.off()
 ###############################################
 ## Counting mapped reads for genomic features##
 ###############################################
+
+
+## Duhhh .... featureCounts  is natively vectorized and has and option "nthreads"!!!
+
+## RTFHF ;-) : 
+##     featureCounts(files, # plural!
+## # further down
+##     nthreads=1, # short for number of threads
+
 fc2 <- list()
 for (i in  c(1:8,10,12:14,16:19)) {
   fc2[[FilesR1[i]]] <-  featureCounts(paste("Alignment_", substr(FilesR1[i],1,6), sep = ""),
