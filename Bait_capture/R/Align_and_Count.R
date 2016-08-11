@@ -19,88 +19,36 @@ FilesR1 <- list.files(path = "/SAN/Alices_sandpit/sequencing_data_dereplicated",
 FilesR2 <- list.files(path = "/SAN/Alices_sandpit/sequencing_data_dereplicated",
                       pattern="R2_001.fastq.unique.gz$", full.names=TRUE)
 
-Rsubread::align(index="/SAN/Alices_sandpit/sequencing_data_dereplicated/Efal_mtapi_reference_index",
-                readfile1=FilesR1,
-                readfile2=FilesR2,
-                type="dna",
-                maxMismatches=20,
-                indels=10,
-                nthreads=length(FilesR1))
+Mismatches <- c(10, 20, 30, 50, 70)
 
-######################
-##Mapping percentage##
-######################
-#Function propmapped returns the proportion of mapped reads included in a SAM/BAM
-#file. For paired end reads, it can return the proportion of mapped fragments (ie. read pairs).
-#*************
+sapply(Mismatches, function (MM){
+       Rsubread::align(index="/SAN/Alices_sandpit/sequencing_data_dereplicated/Efal_mtapi_reference_index",
+                       readfile1=FilesR1,
+                       readfile2=FilesR2,
+                       type="dna",
+                       maxMismatches=MM,
+                       indels=10,
+                       nthreads=length(FilesR1),
+                       output_file=paste(FilesR1, "_", MM, ".BAM", sep="")
+                       )}
 
-Align.file <- list.files(path = "/SAN/Alices_sandpit/sequencing_data_dereplicated",
-                         pattern="Alignment_", full.names=TRUE)
-
-Prop.mapped <- propmapped(Align.file)
-
-propmapped(paste("Alignment_", substr(FilesR1[i],1,6), sep = "")))
+bams <- list.files(path = "/SAN/Alices_sandpit/sequencing_data_dereplicated",
+                  pattern=".BAM$", full.names=TRUE)
 
 
-#*************
-# Add them all in ONE dataframe, make a distribution plot
-#*************
-name <- NA
-for (i in c(1:8,10,12:14,16:19)) {
-  name <- c(name,paste(substr(FilesR1[i],1,6)))
-}
-name <- name[-1]
-#*************
-Prop <- NA
-for (i in c(1:8,10,12:14,16:19)) {
-  prop <- paste("PropMapped.dereplicated_", substr(FilesR1[i],1,6), sep = "")
-  prop1 <- get(prop) #get a list of values
-  prop2 <- prop1$PropMapped #get the value
-  Prop <- c(Prop, prop2)
-}
-Prop <- Prop[-1]
-
-#*************
-dat <- data.frame(name = name, propMapped = Prop)
-dat$propMapped <- dat$propMapped*100
-#*************
-=======
-Prop.mapped$Samples <- substr(Prop.mapped$Samples,60,65)
-Prop.mapped$propMapped <- Prop.mapped$PropMapped*100
-
-# Histogram overlaid with kernel density curve
-Histo <- ggplot(Prop.mapped, aes(x=propMapped)) + 
-  geom_histogram(colour="black", fill="white")+ # Histogram with count on y-axis
-  themeAlice+
-  scale_x_continuous(name = "Proportion Mapped")+
-  scale_y_continuous(breaks = 0:10)
-Histo
-
-###############################################
-## Counting mapped reads for genomic features##
-###############################################
-
-
-## Duhhh .... featureCounts  is natively vectorized and has and option "nthreads"!!!
-
-## RTFHF ;-) : 
-##     featureCounts(files, # plural!
-## # further down
-##     nthreads=1, # short for number of threads
-
-fc2 <- list()
-FilesR1
-for (i in  c(1:8,10,12:14,16:19)) {
-  fc2[[FilesR1[i]]] <-  featureCounts(paste("/SAN/Alices_sandpit/sequencing_data_dereplicated/Alignment_", substr(FilesR1[i],50,55), sep = ""),
-                                      annot.ext="/SAN/Alices_sandpit/MYbaits_Eimeria_V1.single120_feature_counted.gtf",
-                                      isGTFAnnotationFile=TRUE,
-                                      GTF.featureType = "sequence_feature",
-                                      useMetaFeatures=FALSE,
-                                      GTF.attrType="bait_id",
-                                      # parameters specific to paired end reads
-                                      isPairedEnd=TRUE,
-                                      reportReads=TRUE)
-}
+FC <- featureCounts(bams,
+                    annot.ext="/SAN/Alices_sandpit/MYbaits_Eimeria_V1.single120_feature_counted.gtf",
+                    isGTFAnnotationFile=TRUE,
+                    GTF.featureType = "sequence_feature",
+                    useMetaFeatures=FALSE,
+                    GTF.attrType="bait_id",
+                    ## important to allow reads to map multiple baits
+                    allowMultiOverlap=TRUE,
+                    ##parameters specific to paired end reads
+                    isPairedEnd=TRUE,
+                    reportReads=TRUE,
+                    nthreads=20
+                    )
 
 # First look into the data
 mylist <- lapply(fc2, "[[", "counts")
