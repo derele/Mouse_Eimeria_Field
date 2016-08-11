@@ -1,104 +1,31 @@
-###libraries
-## setwd("/SAN/Alices_sandpit/sequencing_data_dereplicated/")
-#source("http://bioconductor.org/biocLite.R")
-#biocLite("BiocUpgrade")
+setwd("~/Eimeria_Wild_coding/Bait_capture/")
+
 library(Rsubread)
-library("rbamtools")
-library(IRanges)
-library(GenomicRanges)
-library(Rsamtools)
-library(ggplot2)
-library(xtable)
-library(compare)
-library(ggrepel)
-library(grid)
-library(RColorBrewer)
-library(reshape)
-library(viridis)
-library(ggthemes)
-library(pheatmap)
-library(GGally)
-
-themeAlice<-theme(text = element_text(size=15), 
-                  #axis.line.x = element_line(linetype = "solid"),
-                  axis.line.y = element_line(linetype = "solid"),
-                  axis.line.x = element_line(linetype = "solid"),
-                  axis.title = element_text(size=20),
-                  axis.text = element_text(size=16),
-                  axis.title.y=element_text(margin=margin(0,20,0,0)),
-                  axis.title.x=element_text(margin=margin(20,0,0,0)),
-                  panel.background = element_blank())
-#legend.position = "none")
-
-
-#####  I
-
-            
-#Rsubread package: (1) build an index (E.Falciformis genome)
 
 ##################
-##Index building##
-##################
-#An index needs to be built before read mapping can be performed. 
-#buildindex creates a hash table for the reference genome, 
-#which can then be used by Subread and Subjunc aligners for read alignment:
-buildindex(basename="reference_index",reference="Efal_genome.fa")
-#Rsubread creates a hash table for indexing the reference genome
+## built an index (hash table) for read mapping
+
+buildindex(basename="/SAN/Alices_sandpit/sequencing_data_dereplicated/Efal_mtapi_reference_index",
+           reference="/SAN/Alices_sandpit/sequencing_data_dereplicated/Efal_mtapi.fasta")
+
+## buildindex(basename="/SAN/Alices_sandpit/sequencing_data_dereplicated/Efal_genome_reference_index",
+##            reference="/SAN/Alices_sandpit/sequencing_data_dereplicated/Efal_genome.fa")
 
 
-
-#Tally program on Bash (2): Deduplication of sequence fragments [Tally processes both files record-by-record and pair up records at the same offset. This requires the option --pair-by-offset.]
-#Tallying implicitly paired files
-#In this scenario two files are implicitly paired, such as is the case for unprocessed paired-end FASTQ files. Tally will process both files record-by-record and pair up records at the same offset. This requires the option --pair-by-offset.
-#tally -i out1.gz -j out2.gz -o out1.unique.gz -p out2.unique.gz --pair-by-offset
-
-#And parallel...... to be continued
-
-#Rsubread package: (3) align the dereplicated sequences to the index
-#Map paired-end reads
+#list our _dereplicated_ files (see tally in bash notes). 
 FilesR1 <- list.files(path = "/SAN/Alices_sandpit/sequencing_data_dereplicated",
-                      pattern="R1_001.fastq.unique.gz", full.names=TRUE)
+                      pattern="R1_001.fastq.unique.gz$", full.names=TRUE)
+
 FilesR2 <- list.files(path = "/SAN/Alices_sandpit/sequencing_data_dereplicated",
-                      pattern="R2_001.fastq.unique.gz", full.names=TRUE)
+                      pattern="R2_001.fastq.unique.gz$", full.names=TRUE)
 
-
-## Played around with snow, really tough, ask Totta for help with
-## parallelisation proccess
-
-## RTFHF... Read the F.. (well, fine ;-)) Help File: 
-## Rsubread::align is vectorized and parallelized via an option!
-
-## See this: 
-
-## readfile2: a character vector giving names of files that include second
-##          reads in paired-end read data. Files included in ‘readfile2’
-## A CHARACTER VECTOR!!
-
-## nthreads: numeric value giving the number of threads used for mapping.
-##           ‘1’ by default.
-
-### Create 1 alignments (20min/alignment !!)
-
-## This means 20min in total on nthreads=lenght(FileR1path)
-
-## not tested but this should be all:
-Rsubread::align(index="reference_index",
+Rsubread::align(index="/SAN/Alices_sandpit/sequencing_data_dereplicated/Efal_mtapi_reference_index",
                 readfile1=FilesR1,
                 readfile2=FilesR2,
                 type="dna",
                 maxMismatches=20,
                 indels=10,
                 nthreads=length(FilesR1))
-
-
-
-
-## This is bash parallelization. Why bother if you are using a
-## parallelized package?!!
-
-## Cf Totta things: 
-#parallel --gnu -P 5 --xapply tophat -r 200 --library-type fr-unstranded -G reference_genomes/indexes_bowtie2_good/mm10_GRCm38_eimeriaHaberkorn.gtf -o tophat_March_c/{1/.}_paired reference_genomes/indexes_bowtie2_good/index_mm10_eimeria3 {1} {2} ::: /data/Eimeria_Totta/RNAseq*/*_forw.fastq.gz ::: /data/Eimeria_Totta/RNAseq*/*_rev.fastq.gz
-
 
 ######################
 ##Mapping percentage##
@@ -140,7 +67,6 @@ dat$propMapped <- dat$propMapped*100
 =======
 Prop.mapped$Samples <- substr(Prop.mapped$Samples,60,65)
 Prop.mapped$propMapped <- Prop.mapped$PropMapped*100
->>>>>>> 941f0b576e1b127d50984523ec6cd1d8b74ea600
 
 # Histogram overlaid with kernel density curve
 Histo <- ggplot(Prop.mapped, aes(x=propMapped)) + 
@@ -166,7 +92,7 @@ fc2 <- list()
 FilesR1
 for (i in  c(1:8,10,12:14,16:19)) {
   fc2[[FilesR1[i]]] <-  featureCounts(paste("/SAN/Alices_sandpit/sequencing_data_dereplicated/Alignment_", substr(FilesR1[i],50,55), sep = ""),
-                                      annot.ext="/SAN/Alices_sandpit/sequencing_data_dereplicated/MYbaits_Eimeria_V1.single120_feature_counted.gtf",
+                                      annot.ext="/SAN/Alices_sandpit/MYbaits_Eimeria_V1.single120_feature_counted.gtf",
                                       isGTFAnnotationFile=TRUE,
                                       GTF.featureType = "sequence_feature",
                                       useMetaFeatures=FALSE,
