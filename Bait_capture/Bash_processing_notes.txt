@@ -1,9 +1,0 @@
-## Tally program on Bash (2): Deduplication of sequence fragments [Tally
-## processes both files record-by-record and pair up records at the same
-## offset. This requires the option --pair-by-offset.]  Tallying
-## implicitly paired files In this scenario two files are implicitly
-## paired, such as is the case for unprocessed paired-end FASTQ
-## files. Tally will process both files record-by-record and pair up
-## records at the same offset. This requires the option
-## --pair-by-offset.  tally -i out1.gz -j out2.gz -o out1.unique.gz -p
-## out2.unique.gz --pair-by-offset
