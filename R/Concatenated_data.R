@@ -59,6 +59,8 @@ loc.HIX.2014 <- get.HIX(
                paste(x, collapse="/")}))
 
 loc.2014 <- merge(raw.loc.2014, loc.HIX.2014, by.x="Code", by.y = 0)
+names <- names(loc.2014)
+names(loc.2014) <- c(names[-10],"HIX")
 
 ## dissection data
 dissection.2014 <- read.csv("HZ14_Mice 31-12-14_dissections.csv")
@@ -140,7 +142,6 @@ library(ggmap)
 
 map_2014 <- loc.2014
 map_2014$Year <- "2014"
-map_2014$HIX <- NA
 
 map_ludo <- ludo
 map_ludo$Year <- "compiled data"
