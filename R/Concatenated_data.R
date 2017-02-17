@@ -123,10 +123,9 @@ area <- get_map(location =
                 source = "stamen", maptype="toner-lite")
 
 ## install.packages("ggmap", type = "source")
-png("/home/alice/git_projects/Mouse_Eimeria_Databasing/output_data/Concatenated_map_feb2017.png", units = "in", width = 6,
-    height = 7, res=300)
+#png("/home/alice/git_projects/Mouse_Eimeria_Databasing/output_data/Concatenated_map_feb2017.png", units = "in", width = 6, height = 7, res=300)
 ggmap(area,  zoom = 16)+
     geom_point(data = Total_data,
                aes(Longitude, Latitude, color=HIX, pch=Year), size=4, alpha=0.6) +
     scale_color_gradient("Hybrid\nindex", high="red",low="blue")
-dev.off()                         
+#dev.off()                         

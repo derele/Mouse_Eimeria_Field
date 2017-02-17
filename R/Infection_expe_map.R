@@ -4,7 +4,6 @@ source("/home/alice/git_projects/Mouse_Eimeria_Databasing/R/Concatenated_data.R"
 MiceInfID <- c("AA_0064", "AA_0068", "AA_0070", "AA_0139", "AA_0088")
 
 formap <- dissection.2016[dissection.2016$ID_mouse %in% MiceInfID,c(4,5)]
-c
 formap <- merge(All_loc,formap)
 
 ## one general map
