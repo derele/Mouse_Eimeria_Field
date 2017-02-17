@@ -1,7 +1,7 @@
 ## Concatenate data Feb 2017
 rm(list=ls())
 
-setwd("/home/alice/git_projects/Mouse_Eimeria_Databasing/raw_data/")
+# setwd("/home/alice/git_projects/Mouse_Eimeria_Databasing/raw_data/")
 
 ######### Functions to be used:
 ## Convert GPS coordinate in decimals format
