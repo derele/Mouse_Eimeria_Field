@@ -44,11 +44,25 @@ area <- get_map(location =
 #png("Fakemap.png", units = "in", width = 8, height = 8, res=300)
 library(ggrepel)
 
+## make a table to plot the numbers of mice per location
 uniqueLoc16 <- unique(Total.matrix[c(1,10,11)])
+Names <- names(table(Total.matrix$Code))
+Numbers <- as.vector(table(Total.matrix$Code))
+DF2 <- data.frame(Names, Numbers)
+names(DF2) <- c("Code", "NumMice")
+## Add coordinates
+DF <- merge(DF2, gps.coord16) 
+data2 <- DF[!DF$NumMice %in% 0,]
+
 
 ggmap(area)+
-    geom_point(data = Total.matrix,  aes(Longitude, Latitude, color=as.factor(COCE_DNA)), size=5, alpha=0.6)+
-    scale_color_manual(values=c("red", "darkgreen"), name="Status DNA", label=c("not extracted","extracted"))+
-    geom_label_repel(data= uniqueLoc16, aes(Longitude, Latitude, label=Code),
+   geom_label_repel(data= uniqueLoc16, aes(Longitude, Latitude, label=Code),
                      arrow = arrow(length = unit(0.01, 'npc')),
-                     force = 10)
+                     force = 10)+
+    geom_point(data = Total.matrix,  aes(Longitude, Latitude,
+                                         color=as.factor(COCE_DNA),
+                                         size=6),
+               alpha=0.6)+
+    geom_text(data=data2, aes(Longitude, Latitude, label=as.character(NumMice)), size =5)+
+    scale_color_manual(values=c("red", "darkgreen"), name="Status DNA", label=c("not extracted","extracted"))
+
