@@ -1,7 +1,7 @@
 ## Concatenate data Feb 2017
 rm(list=ls())
 
-# setwd("/home/alice/git_projects/Mouse_Eimeria_Databasing/raw_data/")
+setwd("/home/alice/git_projects/Mouse_Eimeria_Databasing/")
 
 ######### Functions to be used:
 ## Convert GPS coordinate in decimals format
@@ -38,11 +38,11 @@ rbind.match.columns <- function(input1, input2) {
 
 ####################
 ## Cleaned locations
-cleaned_loc <- read.csv("/home/alice/git_projects/Mouse_Eimeria_Databasing/output_data/all_clean_localities.csv")
+cleaned_loc <- read.csv("output_data/all_clean_localities.csv")
 cleaned_loc <- cleaned_loc[-1]
 
 ## Add dereje data
-ludo <- read.csv("dureje_et_al._supplementary_table_s1.csv",
+ludo <- read.csv("raw_data/dureje_et_al._supplementary_table_s1.csv",
                  skip=1)
 ludo$Latitude <- convert.deg(ludo$Latitude)
 ludo$Longitude <- convert.deg(ludo$Longitude)
@@ -55,15 +55,15 @@ All_loc <- rbind.match.columns(cleaned_loc, ludo)
 
 #############
 ### Genotypes
-genotypes.2014 <- read.csv("HZ14_Mice 31-12-14_genotypes.csv")[-1,]
+genotypes.2014 <- read.csv("raw_data/HZ14_Mice 31-12-14_genotypes.csv")[-1,]
 X.col <- c("X332", "X347", "X65", "Tsx", "Btk",  "Syap1")
 genotypes.2014$PIN <- paste0(genotypes.2014$ID,genotypes.2014$PIN)
 
-genotypes.2015.1 <- read.csv("HZ15_Mice_genotypes.csv")
+genotypes.2015.1 <- read.csv("raw_data/HZ15_Mice_genotypes.csv")
 genotypes.2015.1$PIN <- paste0(genotypes.2015.1$ID,genotypes.2015.1$PIN)
 genotypes.2015.1$Year <- "2015"
 
-genotypes.2015.2 <- read.csv("Genotypes_Bav2015.csv")
+genotypes.2015.2 <- read.csv("raw_data/Genotypes_Bav2015.csv")
 
 ## genotypes.2016 <- to be continued...
 
@@ -99,7 +99,7 @@ All_Gen <- rbind.match.columns(Gen, ludo)
 #######
 ## To remove when genotype 2016 will arrive
 ## to use before getting the genotypes data :
-dissection.2016 <- read.csv("HZ16_Mice_18-07-16_dissections.csv")
+dissection.2016 <- read.csv("raw_data/HZ16_Mice_18-07-16_dissections.csv")
 prev.2016 <- data.frame(unique(dissection.2016$Code), "2016", NA)
 names(prev.2016) <- names(All_Gen)
 All_Gen <- rbind(All_Gen, prev.2016)
@@ -126,6 +126,6 @@ area <- get_map(location =
 #png("/home/alice/git_projects/Mouse_Eimeria_Databasing/output_data/Concatenated_map_feb2017.png", units = "in", width = 6, height = 7, res=300)
 ggmap(area,  zoom = 16)+
     geom_point(data = Total_data,
-               aes(Longitude, Latitude, color=HIX, pch=Year), size=4, alpha=0.6) +
+               aes(Longitude, Latitude, color=HIX, pch=Year), size=3, alpha=0.5) +
     scale_color_gradient("Hybrid\nindex", high="red",low="blue")
 #dev.off()                         
