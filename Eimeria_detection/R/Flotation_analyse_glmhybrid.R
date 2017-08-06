@@ -1,7 +1,4 @@
 #########################
-## Info about samples:
-## mice collected in Brandenbourg Sept 2016
-#########################
 library(ggplot2)
 library(gridExtra)
 library(reshape2)
@@ -14,15 +11,33 @@ library(MASS)
 
 #########################
 ## Import :
-data <- read.csv("../data_clean/Results_flotation_and_PCR_2016_CLEAN.csv")
+data2015 <- read.csv("../data_clean/Results_flotation_and_PCR_2015_CLEAN_temp.csv")
+data2016 <- read.csv("../data_clean/Results_flotation_and_PCR_2016_CLEAN.csv")
+
+data <- rbind(data2015, data2016)
 
 #########################
 ## Add the more recent HI :
 source("https://raw.githubusercontent.com/alicebalard/EimeriaHMHZ_various/master/HMHZ_functions.R")
-
 datafull <- merge(data, getGenDF(), by = "Mouse_ID")
 
 ## NB later! Add haplotype (A or B)
+
+## How many mice caught :
+length(unique(datafull$Mouse_ID))
+
+## Which are the duplicated samples?
+datafull[which(duplicated(datafull$Mouse_ID)),]$Mouse_ID
+
+## How many sampling sites :
+length(unique(datafull$Code))
+
+#########################
+## Calculate prevalence by sampling site :
+data.agg <- aggregate(na.omit(datafull)$OPG, by = list(na.omit(datafull)$Code), 
+                      FUN = sum, na.rm=TRUE)
+
+length(data.agg[which(data.agg$x != 0), ]$Group.1) / length(data.agg$Group.1) *100
 
 #########################
 ## Number of sites sampled :
@@ -81,17 +96,17 @@ area <- get_map(location =
                     max(datafull$Longitude + margin),
                     max(datafull$Latitude + margin)),
                 source = "stamen", maptype="toner-lite",
-                zoom = 6)
+                zoom = 7)
 
 #plot the map :
 map <- ggmap(area) +
   geom_point(data = datafull, shape = 21,
              aes(Longitude, Latitude, fill = HI, size = OPG), alpha = 0.5) + # set up the points
   scale_fill_gradient("Hybrid\nindex", high="red",low="blue") + # set up the HI colors
-  scale_size_continuous(range = c(2, 13))
+  scale_size_continuous(range = c(2, 10), name = "Oocyst per gram")
 map
 
 # Export :
-pdf("../Plot/Map2016.pdf")
+pdf("../figures/Map2015-2016_temp.pdf")
 plot(map)
 dev.off()

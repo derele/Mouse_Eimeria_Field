@@ -16,6 +16,21 @@ data2016 <- rawdata2016[-(1:46),]
 ## Observation : who performed the counting
 table(data2016$Observation)
 
+# how many mice?
+length(unique(data2016$Sample_ID))
+
+# how many mice that we still have the sample?
+datawegot <- data2016[which(!is.na(data2016$Box_No)),]
+
+# how many samples were negative for Ap5 and flotation and where discarded?
+datanull <- data2016[which(is.na(data2016$Box_No)),]
+datanull <- datanull[which(datanull$Flotation == "NEGATIVE" & datanull$PCR_AP5 == "NEGATIVE"), ]
+length(unique(datanull$Sample_ID))
+
+# these are the samples to be used in the study :
+data.final.2016 <- rbind(datawegot, datanull)
+length(unique(data.final.2016$Sample_ID))
+
 #########################
 # Selection : data POSIIVE for flotation by standard methods +
 # negative for flotation & positive for AP5 & positive for all other 3 markers :
@@ -41,11 +56,14 @@ prevalence(data2016[which(data2016$Observation == "P"),])
 prevalence(data2016)
 
 # 3. Considering only samples still there :
-prevalence(data2016[which(!is.na(data2016$Box_No)),])
+prevalence(datawegot)
 
 # 4. Detection by AP5 : (to compare)
 table(data2016$PCR_AP5)[names(table(data2016$PCR_AP5)) == "POSITIVE"]/
   sum(table(data2016$PCR_AP5))*100
+
+# 5. the sample we will use :
+prevalence(data.final.2016)
 
 #########################
 ## Improve our data :
@@ -79,18 +97,18 @@ ggplot(data = data2016 ,
   geom_point(size = 3)+
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
+## Prevalence if we consider original data :
+names(data2016)[1]<- "Mouse_ID"
+ex <- merge(data2016, getGenDF(), by = "Mouse_ID")
+data.agg <- aggregate(ex$OPG_.oocysts.ml.g_of_faeces., by = list(ex$Code), 
+                      FUN = sum, na.rm=TRUE)
+
+length(data.agg[which(data.agg$x != 0), ]$Group.1) / length(data.agg$Group.1) *100
+
 #########################
 ## Export :
-# 1. check that we have flotation for all positive samples :
-dataexport <- data2016[which(data2016$Observation == "P"),]
-
-prevalence(dataexport)
-
-table(dataexport$OPG_.oocysts.ml.g_of_faeces. != 0)[which(names(table(dataexport$OPG_.oocysts.ml.g_of_faeces. != 0)) == "TRUE")]/
-  sum(table(dataexport$OPG_.oocysts.ml.g_of_faeces.)) * 100
-
-#2. If not the same, rely on the counts will under-estimate the positive (no other choice though)
-dataexport <- data.frame(Mouse_ID = dataexport$Sample_ID,
-                         OPG = dataexport$OPG_.oocysts.ml.g_of_faeces.)
+dataexport <- data.frame(Mouse_ID = data.final.2016$Sample_ID,
+                         OPG = data.final.2016$OPG_.oocysts.ml.g_of_faeces.,
+                         Year = 2016)
 
 write.csv(x = dataexport, file = "../data_clean/Results_flotation_and_PCR_2016_CLEAN.csv", row.names = FALSE)
