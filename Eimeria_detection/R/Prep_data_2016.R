@@ -13,8 +13,24 @@ rawdata2016 <- read.csv("../data_raw/Results_flotation_and_PCR_2016.csv")
 ## Remove AA_0001 to AA_0046 that was 1 farm done before the trip :
 data2016 <- rawdata2016[-(1:46),]
 
-## Observation : who performed the counting
-table(data2016$Observation)
+## Oocyst per gram calculation :
+data2016$Raw_count_by_A_Neubauer_1bigsquare <- as.numeric(as.character(data2016$Raw_count_by_A_Neubauer_1bigsquare))
+data2016$Ooperg.A <- (data2016$Raw_count_by_A_Neubauer_1bigsquare * 10000 * data2016$Volume_mL)/data2016$Weight_feces_.g.
+
+data2016$Raw_count_by_P_Neubauer_1bigsquare <- as.numeric(as.character(data2016$Raw_count_by_P_Neubauer_1bigsquare))
+data2016$Ooperg.P <- (data2016$Raw_count_by_P_Neubauer_1bigsquare * 10000 * data2016$Volume_mL)/data2016$Weight_feces_.g.
+
+## Compare the raw counts between 3 measurers :
+ggplot(data = data2016, aes(x = Sample_ID)) +
+  geom_point(aes(y = data2016$Raw_count_by_A_Neubauer_1bigsquare), col = "pink") + 
+  geom_point(aes(y = data2016$Raw_count_by_P_Neubauer_1bigsquare), col = "blue") + 
+  geom_point(aes(y = data2016$Raw_count_by_E), col = "orange") 
+
+
+(data2016$Raw_count_by_E * data2016$Volume_mL) / data2016$Raw_count_by_A_Neubauer_1bigsquare 
+
+data2016$Raw_count_by_P_Neubauer_1bigsquare / data2016$Raw_count_by_A_Neubauer_1bigsquare 
+
 
 # how many mice?
 length(unique(data2016$Sample_ID))
