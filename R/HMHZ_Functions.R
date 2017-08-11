@@ -43,22 +43,16 @@ make.gen.DF <- function(){
   ## Cleaned locations
   cleaned_loc <- read.csv("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/output_data/all_clean_localities.csv")
   cleaned_loc <- cleaned_loc[-1]
+  cleaned_loc$Code <- gsub(pattern = "E_", replacement = "", x = cleaned_loc$Code)
   
-  ## Add dereje data (NB : No mice associated, just localities)
-  ludo <- read.csv("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/raw_data/dureje_et_al._supplementary_table_s1.csv",
-                   skip=1)
-  ludo$Latitude <- convert.deg(ludo$Latitude)
-  ludo$Longitude <- convert.deg(ludo$Longitude)
-  ludo <- ludo[!ludo$Longitude==0, ]
-  ludo <- ludo[!ludo$Latitude==0, ]
-  ludo$Loc. <- paste("Loc",ludo$Loc., sep="_")
-  names(ludo)[names(ludo)%in%"Loc."] <- "Code"
-  # Convert :
-  ludo$Latitude <- convert.deg(ludo$Latitude)
-  ludo$Longitude <- convert.deg(ludo$Longitude)
-  ludo$Year <- "review derele"
-  # All loc until 2016 :
-  All_loc <- rbind.match.columns(cleaned_loc, ludo)
+  # Add the last data received :
+  genotypes.2016.and.some.previous <- read.csv("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/raw_data/HIforEH_May2017.csv") 
+
+  # All latitude / longitude unknown should be in the file Gen.almost.tot
+  All_loc <- unique(rbind(unique(data.frame(Code = genotypes.2016.and.some.previous$Code, 
+                                            Longitude = genotypes.2016.and.some.previous$Xmap, 
+                                            Latitude = genotypes.2016.and.some.previous$Ymap)),
+                          cleaned_loc))
   
   ### Genotypes
   genotypes.2014 <- read.csv("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/raw_data/HZ14_Mice%2031-12-14_genotypes.csv")[-1,]
@@ -92,16 +86,13 @@ make.gen.DF <- function(){
   Gen14.15 <- Gen14.15[c(7, 8, 9, 11)] 
   Gen14.15$HI_NLoci <- "HI 6"
   names(Gen14.15) <- c("Mouse_ID", "Code", "Year", "HI", "HI_NLoci")
-  
-  # Add the data more complete :
-  genotypes.2016.and.some.previous <- read.csv("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/raw_data/HIforEH_May2017.csv") 
-  
+ 
   #######
   Gen.almost.tot <- data.frame(Mouse_ID = genotypes.2016.and.some.previous$PIN, Code = genotypes.2016.and.some.previous$Code,
                                Year = genotypes.2016.and.some.previous$Year, HI = genotypes.2016.and.some.previous$HI,
                                HI_NLoci = genotypes.2016.and.some.previous$HI_NLoci)
   Gen.almost.tot$Mouse_ID <- gsub(pattern = "SK", replacement = "SK_",x = Gen.almost.tot$Mouse_ID)
-  
+
   Gen.tot <- merge(Gen.almost.tot, Gen14.15, by = c("Mouse_ID", "Code", "Year"), all = TRUE)
   
   # By default :
