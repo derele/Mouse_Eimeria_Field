@@ -31,6 +31,8 @@ ggplot(data = data2016, aes(x = Sample_ID)) +
 
 data2016$Raw_count_by_P_Neubauer_1bigsquare / data2016$Raw_count_by_A_Neubauer_1bigsquare 
 
+# samples to chack by other markers :
+data2016$PCR_Results_Ap5 != data2016$Raw_count_by_A_Neubauer_1bigsquare
 
 # how many mice?
 length(unique(data2016$Sample_ID))
