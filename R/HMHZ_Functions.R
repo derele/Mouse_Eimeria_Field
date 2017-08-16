@@ -97,16 +97,17 @@ make.gen.DF <- function(){
   Gen.tot[which(!is.na(Gen.tot$HI.x)),]$HI <- Gen.tot[which(!is.na(Gen.tot$HI.x)),]$HI.x
   Gen.tot[which(!is.na(Gen.tot$HI_NLoci.x)),]$HI_NLoci <- as.character(Gen.tot[which(!is.na(Gen.tot$HI_NLoci.x)),]$HI_NLoci.x)
   
-  # Remove useless 
-  Gen.tot <- Gen.tot[-(4:7)]
-  Gen.tot <- na.omit(Gen.tot)
-  Gen.tot <- unique(Gen.tot)
-  
   # Keep best HI if one calculated with more markers
   Gen.tot$HI_NLoci <- as.numeric(gsub(pattern = "HI ", replacement = "", x = Gen.tot$HI_NLoci))
   
+  # Remove useless 
+  Gen.tot <- Gen.tot[-(4:7)]
+  
   Gen.tot <- Gen.tot[order(Gen.tot$Mouse_ID, -Gen.tot$HI), ] #sort by id and reverse of HI
   Gen.tot <- Gen.tot[!duplicated(Gen.tot$Mouse_ID), ]              # take the first row within each id
+  
+  Gen.tot <- na.omit(Gen.tot)
+  Gen.tot <- unique(Gen.tot)
   
   # Last check duplicates
   Gen.tot[which(duplicated(Gen.tot$Mouse_ID)),]
@@ -157,7 +158,7 @@ make.gen.DF <- function(){
   WemissHI$We_miss <- "HI missing"
   
   # To write out :
-  write.csv(x = rbind(Wemissloc, WemissHI), file = "../output_data/information_missing.csv", row.names = FALSE)
+  # write.csv(x = rbind(Wemissloc, WemissHI), file = "../output_data/information_missing.csv", row.names = FALSE)
   
   # Then correct :
   Gen.and.loc <- na.omit(Gen.and.loc)
