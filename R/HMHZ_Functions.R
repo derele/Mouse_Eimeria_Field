@@ -38,7 +38,7 @@ rbind.match.columns <- function(input1, input2) {
 }
 
 ## Create a genotype dataframe :
-#make.gen.DF <- function(){
+make.gen.DF <- function(){
   
   # Add the last data received :
   genotypes.2016.and.some.previous <- read.csv("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/raw_data/HIforEH_May2017.csv") 
@@ -100,16 +100,11 @@ rbind.match.columns <- function(input1, input2) {
   # Remove useless 
   Gen.tot <- Gen.tot[-(4:7)]
   Gen.tot <- na.omit(Gen.tot)
-    
-  # Manual correction
-  Gen.tot[which(Gen.tot$Code == "BEETZD"),]$Code <- "BEETZ"
-  
-  # Check duplicated 
   Gen.tot <- unique(Gen.tot)
   
   # Keep best HI if one calculated with more markers
   Gen.tot$HI_NLoci <- as.numeric(gsub(pattern = "HI ", replacement = "", x = Gen.tot$HI_NLoci))
-
+  
   Gen.tot <- Gen.tot[order(Gen.tot$Mouse_ID, -Gen.tot$HI), ] #sort by id and reverse of HI
   Gen.tot <- Gen.tot[!duplicated(Gen.tot$Mouse_ID), ]              # take the first row within each id
   
@@ -118,42 +113,61 @@ rbind.match.columns <- function(input1, input2) {
 
   # Add latitude / longitude
   
-  # Cleaned locations
-  #cleaned_loc <- read.csv("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/output_data/all_clean_localities.csv")
-  #cleaned_loc <- cleaned_loc[-1]
-  #cleaned_loc$Code <- gsub(pattern = "E_", replacement = "", x = cleaned_loc$Code)
-  
-  
   # All latitude / longitude unknown should be in the file Gen.almost.tot
-  All_loc <- unique(rbind(unique(data.frame(Code = genotypes.2016.and.some.previous$Code, 
+  Jaro_loc <- unique(rbind(unique(data.frame(Code = genotypes.2016.and.some.previous$Code, 
                                            Longitude = genotypes.2016.and.some.previous$Xmap, 
                                           Latitude = genotypes.2016.and.some.previous$Ymap))))
   
+  # Cleaned locations
+  cleaned_loc <- read.csv("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/output_data/all_clean_localities.csv")
+  cleaned_loc <- cleaned_loc[-1]
+  cleaned_loc$Code <- gsub(pattern = "E_", replacement = "", x = cleaned_loc$Code)
+  
   # Merge
+  All_loc <- merge(cleaned_loc, Jaro_loc, by = "Code", all = TRUE)
+  
+  # By default take cleaned values 
+  All_loc$Longitude <- NA
+  All_loc$Latitude <- NA
+  All_loc[which(!is.na(All_loc$Latitude.x)),]$Latitude <- All_loc[which(!is.na(All_loc$Latitude.x)),]$Latitude.x 
+  All_loc[which(!is.na(All_loc$Longitude.x)),]$Longitude <- All_loc[which(!is.na(All_loc$Longitude.x)),]$Longitude.x 
+  
+  # Otherwise take Jaroslav coordinates
+  All_loc[which(is.na(All_loc$Latitude)),]$Latitude <- All_loc[which(is.na(All_loc$Latitude)),]$Latitude.y
+  All_loc[which(is.na(All_loc$Longitude)),]$Longitude <- All_loc[which(is.na(All_loc$Longitude)),]$Longitude.y 
+  
+  # Give rank
+  All_loc$rank <- 2
+  All_loc[which(is.na(All_loc$Latitude.x)),]$rank <- 2
+  
+  # Delete duplicates based on rank
+  All_loc <- All_loc[order(All_loc$Code, -All_loc$rank), ] #sort by id and reverse of HI
+  All_loc <- All_loc[!duplicated(All_loc$Code), ]              # take the first row within each id
+  All_loc <- All_loc[-c(2:5,8)]
+  
+  # Finally, merge Gen and Loc
   Gen.and.loc <- merge(Gen.tot, All_loc, by = c("Code"), all = TRUE)
   
-  # For which code and year do we not have the coordinates 
+  # For which code and year do we not have the coordinates?
   Wemissloc <- unique(Gen.and.loc[which(is.na(Gen.and.loc$Longitude)),][c("Code", "Year")])
   Wemissloc$We_miss <- "Coordinates missing"
   
-  # For which code and year do we not have the HI 
+  # For which code and year do we not have the HI?
   WemissHI <- unique(Gen.and.loc[which(is.na(Gen.and.loc$HI)),][c("Code", "Year")])
   WemissHI$We_miss <- "HI missing"
   
   # To write out :
-  # write.csv(x = rbind(Wemissloc, WemissHI), file = "../output_data/information_missing.csv")
+  write.csv(x = rbind(Wemissloc, WemissHI), file = "../output_data/information_missing.csv", row.names = FALSE)
   
+  # Then correct :
+  Gen.and.loc <- na.omit(Gen.and.loc)
   
-  df <- Gen.fin[order(Gen.fin[,c("Mouse_ID", "WhichLoc.y")]),]
-  
-  
-  as.character(Gen.fin$Code[1:3])
+  # Last check duplicates 
+  which(duplicated(Gen.and.loc$Mouse_ID))
   
   # Print :
-  Gen.tot
+  Gen.and.loc
 }
-
-make.gen.DF()
 
 ##
 buildmap <- function(input, GenDF = GenDF, size = 2){
