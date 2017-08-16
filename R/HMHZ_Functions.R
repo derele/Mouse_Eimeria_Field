@@ -38,21 +38,23 @@ rbind.match.columns <- function(input1, input2) {
 }
 
 ## Create a genotype dataframe :
-make.gen.DF <- function(){
+#make.gen.DF <- function(){
   
   ## Cleaned locations
-  cleaned_loc <- read.csv("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/output_data/all_clean_localities.csv")
-  cleaned_loc <- cleaned_loc[-1]
-  cleaned_loc$Code <- gsub(pattern = "E_", replacement = "", x = cleaned_loc$Code)
+  #cleaned_loc <- read.csv("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/output_data/all_clean_localities.csv")
+  #cleaned_loc <- cleaned_loc[-1]
+  #cleaned_loc$Code <- gsub(pattern = "E_", replacement = "", x = cleaned_loc$Code)
+  #cleaned_loc$WhichLoc <- "cleaned"
   
   # Add the last data received :
   genotypes.2016.and.some.previous <- read.csv("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/raw_data/HIforEH_May2017.csv") 
+  genotypes.2016.and.some.previous$WhichLoc <- "jaroslavcompile"
 
-  # All latitude / longitude unknown should be in the file Gen.almost.tot
-  All_loc <- unique(rbind(unique(data.frame(Code = genotypes.2016.and.some.previous$Code, 
-                                            Longitude = genotypes.2016.and.some.previous$Xmap, 
-                                            Latitude = genotypes.2016.and.some.previous$Ymap)),
-                          cleaned_loc))
+# All latitude / longitude unknown should be in the file Gen.almost.tot
+  #All_loc <- unique(rbind(unique(data.frame(Code = genotypes.2016.and.some.previous$Code, 
+   #                                         Longitude = genotypes.2016.and.some.previous$Xmap, 
+    #                                        Latitude = genotypes.2016.and.some.previous$Ymap,
+     #                                       WhichLoc = "jaroslavcompile"))))
   
   ### Genotypes
   genotypes.2014 <- read.csv("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/raw_data/HZ14_Mice%2031-12-14_genotypes.csv")[-1,]
@@ -85,15 +87,19 @@ make.gen.DF <- function(){
   
   Gen14.15 <- Gen14.15[c(7, 8, 9, 11)] 
   Gen14.15$HI_NLoci <- "HI 6"
-  names(Gen14.15) <- c("Mouse_ID", "Code", "Year", "HI", "HI_NLoci")
+  Gen14.15$WhichLoc <- "original"
+  names(Gen14.15) <- c("Mouse_ID", "Code", "Year", "HI", "HI_NLoci", "WhichLoc")
  
   #######
   Gen.almost.tot <- data.frame(Mouse_ID = genotypes.2016.and.some.previous$PIN, Code = genotypes.2016.and.some.previous$Code,
                                Year = genotypes.2016.and.some.previous$Year, HI = genotypes.2016.and.some.previous$HI,
-                               HI_NLoci = genotypes.2016.and.some.previous$HI_NLoci)
+                               HI_NLoci = genotypes.2016.and.some.previous$HI_NLoci, WhichLoc = genotypes.2016.and.some.previous$WhichLoc)
   Gen.almost.tot$Mouse_ID <- gsub(pattern = "SK", replacement = "SK_",x = Gen.almost.tot$Mouse_ID)
 
-  Gen.tot <- merge(Gen.almost.tot, Gen14.15, by = c("Mouse_ID", "Code", "Year"), all = TRUE)
+  Gen.tot <- merge(Gen.almost.tot, Gen14.15, by = c("Mouse_ID", "Code", "Year", "WhichLoc"), all = TRUE)
+  
+##  https://stackoverflow.com/questions/25622138/conflict-resolution-when-merging-rows-in-r-data-frame
+  
   
   # By default :
   Gen.tot$HI <- Gen.tot$HI.y
@@ -104,7 +110,7 @@ make.gen.DF <- function(){
   Gen.tot[which(is.na(Gen.tot$HI)),]$HI <- Gen.tot[which(is.na(Gen.tot$HI)),]$HI.x
   
   # Final :
-  Gen.tot <- Gen.tot[c(1,2,3,8,9)]
+  Gen.tot <- Gen.tot[c(1,2,3,4,8,9)]
   
   ## remove duplicates
   Gen.tot <- unique(Gen.tot)
@@ -112,11 +118,22 @@ make.gen.DF <- function(){
   Gen.tot$HI <- round(as.numeric(as.character(Gen.tot$HI)), 2)
  
   # Add latitude / longitude
-  Gen.tot <- merge(Gen.tot, All_loc, by = "Code", all.x = TRUE)
+  Gen.fin <- merge(Gen.tot, All_loc, by = c("Code"), all = TRUE)
+  
+  
+  dup <- Gen.fin[which(duplicated(Gen.fin[c(1,2,3,5,6,7,8)])),]
+  
+  
+  df <- Gen.fin[order(Gen.fin[,c("Mouse_ID", "WhichLoc.y")]),]
+  
+  
+  as.character(Gen.fin$Code[1:3])
   
   # Print :
   Gen.tot
 }
+
+make.gen.DF()
 
 ##
 buildmap <- function(input, GenDF = GenDF, size = 2){
