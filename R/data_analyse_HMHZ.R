@@ -4,21 +4,37 @@
 # Source
 InvCont <- read.csv("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/raw_data/Inventory_contents_all.csv")
 GenandLoc <- read.csv("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/output_data/genDF_august2017.csv")
-  
-# Correct errors :
-InvCont$Transect <- gsub(pattern = " ", replacement = "", x = InvCont$Transect)
-InvCont$Code <- gsub(pattern = " ", replacement = "", x = InvCont$Code)
-InvCont$Code <- as.character(InvCont$Code)
-InvCont$Code <- gsub(pattern = "E_", replacement = "", x = InvCont$Code)
 
 # Same names
 names(InvCont)[c(1,3,4)] <- c("Year", "Code", "Mouse_ID")
 
+# Correct errors :
+InvCont$Transect <- gsub(pattern = " ", replacement = "", x = InvCont$Transect)
+InvCont$Code <- gsub(pattern = " ", replacement = "", x = InvCont$Code)
+InvCont$Mouse_ID <- gsub(pattern = " ", replacement = "", x = InvCont$Mouse_ID)
+InvCont$Code <- as.character(InvCont$Code)
+InvCont$Code <- gsub(pattern = "E_", replacement = "", x = InvCont$Code)
+
 # Merge
-FullDF <- merge(InvCont, GenandLoc, by = c("Mouse_ID", "Year", "Code"), all.x = TRUE)
+FullDF <- merge(InvCont, GenandLoc, by = c("Mouse_ID", "Year"), all.x = TRUE)
+FullDF$Code <- FullDF$Code.y
+FullDF[which(is.na(FullDF$Code)),]$Code <- FullDF[which(is.na(FullDF$Code)),]$Code.x
+FullDF <- FullDF[-c(which(names(FullDF) == "Code.x"), which(names(FullDF) == "Code.y"))]
 
 # Any missing data?
 FullDF[which(is.na(FullDF$HI)),]$Mouse_ID
+
+# Write out
+#write.csv(x = data.frame(Mouse_ID = FullDF[which(is.na(FullDF$HI)),]$Mouse_ID,
+#           Code = FullDF[which(is.na(FullDF$HI)),]$Code,
+#           Transect = FullDF[which(is.na(FullDF$HI)),]$Transect,
+#           Year = FullDF[which(is.na(FullDF$HI)),]$Year),
+#          file = "../output_data/information_missing_from_inventory_content.csv",
+#          row.names = FALSE)
+
+#########################################
+# Prevalence analyses
+
 
 
 Myprev <- function(data, HI){
