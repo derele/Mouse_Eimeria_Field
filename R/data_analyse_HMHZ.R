@@ -35,39 +35,33 @@ FullDF[which(is.na(FullDF$HI)),]$Mouse_ID
 #########################################
 # Prevalence analyses
 
+## Tested = at least 1 marker tested :
+FullDF$Tested <- FALSE
+FullDF[which(!is.na(FullDF$X12_Ap5_PCR) | !is.na(FullDF$X13_COI_PCR) | !is.na(FullDF$X13_COI_PCR)),]$Tested <- TRUE
 
+## Infected = Positive for at least 1 marker :
+FullDF$INF <- FALSE
+FullDF[which(FullDF$X12_Ap5_PCR == TRUE | FullDF$X12_18S_PCR == TRUE | FullDF$X13_COI_PCR == TRUE | FullDF$X15_ORF470_PCR == TRUE),]$INF <- TRUE
 
-Myprev <- function(data, HI){
-  ## Positive for at least 1 marker :
-  InvPos <- subset(data, X12_Ap5_PCR == TRUE | X12_18S_PCR == TRUE | X13_COI_PCR == TRUE | X15_ORF470_PCR == TRUE)
-  ## Prevalence :
-  
+##########
+## For all year, for all transects :
+myprevDF <- function(year, transect){
+  data <- subset(FullDF, FullDF$Year == year & FullDF$Transect == transect)    
+  ## Prevalence table
+  DF <- data.frame(
+    Year = unique(data$Year),
+    Transect = unique(data$Transect),
+    N_Mmd = nrow(subset(data, data$HI < 0.2)),
+    N_Mmd_inf = nrow(subset(data, data$HI < 0.2 & data$INF == TRUE)),
+    N_Hybrids = nrow(subset(data, data$HI >= 0.2 & data$HI <= 0.8)),
+    N_Hybrids_inf = nrow(subset(data, data$HI >= 0.2 & data$HI <= 0.8 & data$INF == TRUE)),
+    N_Mmm = nrow(subset(data, data$HI > 0.8)),
+    N_Mmm_inf = nrow(subset(data, data$HI > 0.8 & data$INF == TRUE))
+  )
+  DF
 }
 
-Myprev(subset(InvCont, X1_Year == 2015 & InvCont$Transect == "HZ_BR"))
-
-Mytab <- function(myyear){
-  data <- subset(InvCont, X1_Year == myyear)
-  # Info
-  N_mice_tot <- length(unique(data$X3_ID_mouse))
-  N_localities <- length(unique(data$X2_Code))
-  # For each category :
-  mysubtab <- function(HI){
-    data2 <- subset(data, )
-    
-  }
-  
-  
-  ## Positive for at least 1 marker :
-  InvPos <- subset(data, X12_Ap5_PCR == TRUE | X12_18S_PCR == TRUE | X13_COI_PCR == TRUE | X15_ORF470_PCR == TRUE)
-  
-  
-  Year = data$X1_Year
-  N_Mmd = 
-    N_Mmd_inf
-  N_Hybrids
-  N_Hybrids_inf
-  N_Mmm
-  N_Mmm_inf
-  
-  
+myprevDF(year = 2014, transect = "HZ_BR")
+myprevDF(year = 2015, transect = "HZ_BR")
+myprevDF(year = 2015, transect = "HZ_BAV")
+myprevDF(year = 2016, transect = "HZ_BR")
