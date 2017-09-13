@@ -6,6 +6,16 @@ trapping2017 <- read.csv("../raw_data/HZ17_Mice_Trap.csv")
 
 ## Some kind of table adress/mouseid/data of sampling
 
+
+# table : c(adress, code, long, lat, date)
+ 
+ # print id_mouse
+ 
+  # replace manually after check
+ 
+
+
+
 ## Extract individual coordinates from trapping
 individual_mice_trapped <- unlist(strsplit(as.character(trapping2017$Mice_IDs), " "))
 individual_mice_trapped <- gsub(pattern = " ", replacement = "", x = individual_mice_trapped)
