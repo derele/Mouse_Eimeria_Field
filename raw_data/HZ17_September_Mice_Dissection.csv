@@ -28,7 +28,7 @@ HZ_BR,Germany,Marienhof 6 15741 Bestensee,MARIE,52.2458,13.5994,AA_0262,female,N
 HZ_BR,Germany,Marienhof 6 15741 Bestensee,MARIE,52.2458,13.5994,AA_0263,female,pregnant,Mus musculus,2017,11/09/17,12/09/17,German,FALSE,27.83,83.43,80.67,0.03,NA,NA,NA,NA,NA,NA,NA,0.27,TRUE,NA,Stomach / duodenum / cecum / cecum / colon,Mastophorus / tapeworm / syphcia / trichuris / heterakis?,5,2,NA
 HZ_BR,Germany,Erkner Kinderbauernhof,ERKNKI,52.3989,13.7581,AA_0264,female,NA,Mus musculus,2017,11/09/17,12/09/17,German,FALSE,18.98,82.8,75.69,0.03,NA,NA,NA,NA,NA,NA,NA,0.19,FALSE,0,NA,NA,NA,NA,NA
 HZ_BR,Germany,Walter-rathenau strasse 14 Neu Zittenau,NA,52.384336,13.760233,AA_0265,male young,young,Mus musculus,2017,11/09/17,12/09/17,German,FALSE,8.33,63.74,63.49,0.02,NA,NA,NA,NA,NA,NA,NA,0.13,FALSE,0,NA,NA,NA,NA,NA
-HZ_BR,Germany,PFLASTERSTR.,NA,NA,NA,AA_0266,na,NA,Mus musculus,2017,11/09/17,12/09/17,Czech,NA,14.7,79.68,78.32,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,Died in cage. Small protocol (1 tube “All digestive tract”)
+HZ_BR,Germany,PFLASTERSTR.,NA,52.6788854,14.0506342,AA_0266,na,NA,Mus musculus,2017,11/09/17,12/09/17,Czech,NA,14.7,79.68,78.32,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,Died in cage. Small protocol (1 tube “All digestive tract”)
 HZ_BR,Germany,Wildpark Schorfheide,SCHORFHOF,52.921731,13.547089,AA_0267,female,NA,Mus musculus,2017,11/09/17,12/09/17,German,FALSE,16.24,79.5,84.22,0.04,NA,NA,NA,NA,NA,NA,NA,NA,FALSE,NA,NA,NA,NA,NA,NA
 HZ_BR,Germany,Dorfanger 7 15754 Heidesee,NA,52.242473,13.70713,AA_0268,male,NA,Mus musculus,2017,12/09/17,13/09/17,Czech,TRUE,17.83,82,80.27,0.0847,0.0646,0.0703,0.0238,0.145,NA,NA,NA,0.75,TRUE,2 / 12 / 9,NA,M / SY / T,NA,NA,NA
 HZ_BR,Germany,Alt-Gielsdorf 68 15345 Alt-Landsberg,GIEL68,52.6053,13.8756,AA_0269,male,NA,Mus musculus,2017,12/09/17,13/09/17,Czech,FALSE,9.62,69.25,72.22,0.03,0.0349,0.0393,0.005,NA,NA,NA,NA,0.09,FALSE,0,NA,NA,NA,NA,NA
@@ -83,14 +83,14 @@ HZ_BR,Germany,Pferdefreunde klein-schauen alte-dorfstrasse 31 15859 stokow,NA,52
 HZ_BR,Germany,"Croustillier 17, 16259 oderage",NA,52.791376,14.116181,AA_0318,female,NA,Mus musculus,2017,13/09/17,14/09/17,German,TRUE,16.05,82.77,72.63,0.04,NA,NA,NA,NA,NA,NA,NA,0.19,TRUE,14 / 68 / 19 / 1 / 8,Cecum / ce / co / co / co,Tri / sy / h spumosa / tri / sy,NA,NA,NA
 HZ_BR,Germany,dubener hauptstrasse 24,NA,51.897811,13.809616,AA_0319,female,NA,Mus musculus,2017,13/09/17,14/09/17,German,TRUE,14.2,73.41,74.28,0.02,NA,NA,NA,NA,NA,NA,NA,0.84,TRUE,9,cecum,tri,NA,NA,NA
 HZ_BR,Germany,dubener hauptstrasse 24,NA,51.897811,13.809616,AA_0320,male,NA,Mus musculus,2017,13/09/17,14/09/17,Czech,FALSE,16.37,16.37,79.23,84.3,0.0702,0.0702,0.0237,0.1369,NA,NA,NA,0.74,FALSE,NA,NA,NA,NA,NA,NA
-HZ_BR,Germany,Wrienerstrasse 6 16269 wriezen,FRANK6,NA,NA,ZZ_0001,male,NA,apodemus,NA,11/09/17,12/09/17,German,FALSE,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0.75,NA,9 / 10 / n / 3,NA,Sy / red ones / heligmosomoides polyguris / trichuris, / / SI /,NA,NA
-HZ_BR,Germany,Mühlenstrasse 23 15345 alt-landsberg wesenthal,NA,NA,NA,ZZ_0002,male,young,rattus norvegicus,NA,11/09/17,11/09/17,German,FALSE,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-HZ_BR,Germany,Kastanienweg 7 15345 Prädikow,NA,NA,NA,ZZ_0003,female,NA,bank vole,NA,11/09/17,12/09/17,German,FALSE,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1.19,NA,NA,NA,NA,NA,NA,NA
-HZ_BR,Germany,forstrasse joachimsthal 3,NA,NA,NA,ZZ_0004,female,NA,bank vole,NA,11/09/17,12/09/17,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0.83,NA,NA,NA,NA,NA,NA,NA
-HZ_BR,Germany,lanke wandlitzer strasse 16,NA,52.757551,13.523808,ZZ_0005,female,NA,apodemus flaviolis,NA,12/09/17,13/09/17,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0.05,NA,NA,NA,NA,NA,NA,NA
-HZ_BR,Germany,lanke wandlitzer strasse 16,NA,52.757551,13.523808,ZZ_0006,female,NA,feldmaus,NA,12/09/17,13/09/17,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0.22,NA,NA,NA,NA,NA,NA,NA
-HZ_BR,Germany,lanke wandlitzer strasse 16,NA,52.757551,13.523808,ZZ_0007,NA,NA,apodemus,NA,12/09/17,13/09/17,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0.11,NA,NA,NA,NA,NA,NA,NA
-HZ_BR,Germany,lanke wandlitzer strasse 16,NA,52.757551,13.523808,ZZ_0008,NA,NA,feldmaus,NA,12/09/17,13/09/17,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0.11,NA,NA,NA,NA,NA,NA,NA
-HZ_BR,Germany,lanke wandlitzer strasse 16,NA,52.757551,13.523808,ZZ_0009,NA,NA,bank vole,NA,12/09/17,13/09/17,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0.35,NA,19,cecum,sy,NA,NA,NA
-HZ_BR,Germany,lanke wandlitzer strasse 16,NA,52.757551,13.523808,ZZ_0010,NA,NA,bank vole,NA,12/09/17,13/09/17,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0.03,NA,21,cecum,sy,NA,NA,NA
+HZ_BR,Germany,Wriezenerstrasse 6 16269 wriezen,FRANK6,52.6703,14.0589,ZZ_0001,male,NA,apodemus,NA,11/09/17,12/09/17,German,FALSE,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0.75,NA,9 / 10 / n / 3,NA,Sy / red ones / heligmosomoides polyguris / trichuris, / / SI /,NA,NA
+HZ_BR,Germany,Mühlenstrasse 23 15345 alt-landsberg wesenthal,NA,52.593745,13.833525,ZZ_0002,male,young,rattus norvegicus,NA,11/09/17,11/09/17,German,FALSE,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+HZ_BR,Germany,Kastanienweg 7 15345 Prädikow,NA,52.6242788,14.0101667,ZZ_0003,female,NA,bank vole,NA,11/09/17,12/09/17,German,FALSE,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1.19,NA,NA,NA,NA,NA,NA,NA
+HZ_BR,Germany,forstrasse joachimsthal 3,NA,52.994574,13.684043,ZZ_0004,female,NA,bank vole,NA,11/09/17,12/09/17,German,FALSE,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0.83,NA,NA,NA,NA,NA,NA,NA
+HZ_BR,Germany,lanke wandlitzer strasse 16,NA,52.757551,13.523808,ZZ_0005,female,NA,apodemus flaviolis,NA,12/09/17,13/09/17,German,FALSE,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0.05,NA,NA,NA,NA,NA,NA,NA
+HZ_BR,Germany,lanke wandlitzer strasse 16,NA,52.757551,13.523808,ZZ_0006,female,NA,feldmaus,NA,12/09/17,13/09/17,German,FALSE,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0.22,NA,NA,NA,NA,NA,NA,NA
+HZ_BR,Germany,lanke wandlitzer strasse 16,NA,52.757551,13.523808,ZZ_0007,NA,NA,apodemus,NA,12/09/17,13/09/17,German,FALSE,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0.11,NA,NA,NA,NA,NA,NA,NA
+HZ_BR,Germany,lanke wandlitzer strasse 16,NA,52.757551,13.523808,ZZ_0008,NA,NA,feldmaus,NA,12/09/17,13/09/17,German,FALSE,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0.11,NA,NA,NA,NA,NA,NA,NA
+HZ_BR,Germany,lanke wandlitzer strasse 16,NA,52.757551,13.523808,ZZ_0009,NA,NA,bank vole,NA,12/09/17,13/09/17,German,FALSE,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0.35,NA,19,cecum,sy,NA,NA,NA
+HZ_BR,Germany,lanke wandlitzer strasse 16,NA,52.757551,13.523808,ZZ_0010,NA,NA,bank vole,NA,12/09/17,13/09/17,German,FALSE,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0.03,NA,21,cecum,sy,NA,NA,NA
 HZ_BR,Germany,Erste-kolonie 39,NA,51.830746,14.076701,ZZ_0011,NA,NA,apodemus,NA,12/09/17,13/09/17,German,TRUE,28.51,96.75,100.89,0.16,NA,NA,NA,NA,NA,NA,NA,0.87,NA,5,si,c. pusilla,NA,NA,NA
