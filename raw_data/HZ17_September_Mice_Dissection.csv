@@ -1,96 +1,229 @@
-Transect,State,Address,Code,Latitude,Longitude,Mouse_ID,Sex,Status,Species,Year,Capture,Dissection,Dissectors,Ectoparasites,Body_weight,Body_length,Tail_length,Spleen_mass,Left_Testis_mass,Right_Testis_mass,Left.epididymis.weight,Seminal.vesicle.weight,Left.ovarium.weight,Right.ovarium.weight,Total,Feces_weight,Worms_presence,Worms_count,Worms_location,Worms_species,Embryo_left,Embryo_right,Notes
-HZ_BR,Germany,Danewitz 22,DANE22,52.7339,13.6664,AA_0237,female,pregnant,Mus musculus,2017,10/09/17,11/09/17,Czech,FALSE,21.69,83.04,87.61,0.0303,NA,NA,NA,NA,NA,NA,NA,NA,FALSE,0,NA,NA,2,4,Error in tubes : colon wall in liq nitro is in the CEWE tube
-HZ_BR,Germany,Mittelstrasse 4 15345 Altlandsberg (Buchholz),NA,52.585905,13.789663,AA_0238,na,NA,Mus musculus,2017,10/09/17,11/09/17,German,FALSE,12.37,72.92,69.4,0.02,NA,NA,NA,NA,NA,NA,NA,NA,FALSE,0,NA,NA,NA,NA,NA
-HZ_BR,Germany,Mittelstrasse 4 15345 Altlandsberg (Buchholz),NA,52.585905,13.789663,AA_0239,male,NA,Mus musculus,2017,10/09/17,11/09/17,Czech,FALSE,13.89,76.19,79.88,0.0235,NA,NA,0.0163,0.0506,NA,NA,NA,NA,FALSE,0,NA,NA,NA,NA,NA
-HZ_BR,Germany,29/30 spitzmühlerstrasse Buchholz,BUCHH,52.5844,13.7881,AA_0240,female,NA,Mus musculus,2017,10/09/17,11/09/17,German,FALSE,10.54,69.72,67.29,0.01,NA,NA,NA,NA,NA,NA,NA,NA,FALSE,0,NA,NA,NA,NA,Only one salivary gland
-HZ_BR,Germany,Kastanienweg 7 15345 Prädikow,NA,52.6242788,14.0101667,AA_0241,female,NA,Mus musculus,2017,11/09/17,12/09/17,Czech,FALSE,13.83,74.78,77.92,0.0219,NA,NA,NA,NA,0.0026,NA,0.0075,NA,TRUE,75,NA,SY-E,NA,NA,NA
-HZ_BR,Germany,"Am Fährkrug 6, 16259 Bad Freienwalde (Oder)",NA,52.807371,14.036785,AA_0242,male,NA,Mus musculus,2017,11/09/17,12/09/17,Czech,FALSE,14.97,79.71,68.88,0.0285,0.0576,0.0519,0.0252,0.1328,NA,NA,NA,0.9,FALSE,0,NA,NA,NA,NA,NA
-HZ_BR,Germany,Kirchstrasse 2 16230 Britz,BRITZ2,52.8875,13.8119,AA_0243,male,NA,Mus musculus,2017,11/09/17,12/09/17,Czech,FALSE,11.13,70.42,70.4,0.0164,0.0592,0.0628,0.0114,0.025,NA,NA,NA,0.54,TRUE,5,NA,SY,NA,NA,NA
-HZ_BR,Germany,Marienhof 6 15741 Bestensee,MARIE,52.2458,13.5994,AA_0244,female,young,Mus musculus,2017,11/09/17,12/09/17,Czech,FALSE,10.47,69.45,76.75,0.0147,NA,NA,NA,NA,0.0023,0.0023,0.0046,NA,TRUE,26,NA,SY,NA,NA,NA
-HZ_BR,Germany,BESTE6,BESTE6,52.2225,13.6025,AA_0245,male,NA,Mus musculus,2017,11/09/17,12/09/17,Czech,FALSE,19.13,86.99,Def,0.0495,0.1027,0.1003,0.0355,0.1668,NA,NA,NA,0.34,TRUE,21,NA,SY,NA,NA,NA
-HZ_BR,Germany,BESTE6,BESTE6,52.2225,13.6025,AA_0246,female,NA,Mus musculus,2017,11/09/17,12/09/17,Czech,TRUE (collected),12.45,73.87,73.54,0.0539,NA,NA,NA,NA,0.0028,0.0037,0.0065,0.11,FALSE,NA,NA,NA,NA,NA,NA
-HZ_BR,Germany,BESTE6,BESTE6,52.2225,13.6025,AA_0247,male,NA,Mus musculus,2017,11/09/17,12/09/17,Czech,TRUE,23.58,87.94,90.55,0.0972,0.0945,0.1001,0.044,0.2147,NA,NA,NA,1.2,TRUE,10,NA,SY,NA,NA,NA
-HZ_BR,Germany,BESTE6,BESTE6,52.2225,13.6025,AA_0248,female,NA,Mus musculus,2017,11/09/17,12/09/17,Czech,FALSE,14.87,80.11,81.7,0.0331,NA,NA,NA,NA,0.0075,0.0039,0.0114,0.41,FALSE,0,NA,NA,NA,NA,NA
-HZ_BR,Germany,BESTE6,BESTE6,52.2225,13.6025,AA_0249,male,NA,Mus musculus,2017,11/09/17,12/09/17,Czech,FALSE,25.74,94.62,96.15,0.11,0.1262,0.1296,0.0382,0.2445,NA,NA,NA,0.82,FALSE,0,NA,NA,NA,NA,NA
-HZ_BR,Germany,BESTE6,BESTE6,52.2225,13.6025,AA_0250,male,NA,Mus musculus,2017,11/09/17,12/09/17,Czech,FALSE,13.03,76.88,75.31,0.031,0.0575,0.0594,0.0122,NA,NA,NA,NA,0.34,FALSE,0,NA,NA,NA,NA,NA
-HZ_BR,Germany,BESTE6,BESTE6,52.2225,13.6025,AA_0251,female,pregnant,Mus musculus,2017,11/09/17,12/09/17,Czech,FALSE,17.39,84.83,88.81,0.0477,NA,NA,NA,NA,0.0036,0.0046,0.0082,1.02,TRUE,20,NA,SY,NA,NA,NA
-HZ_BR,Germany,BESTE6,BESTE6,52.2225,13.6025,AA_0252,male,NA,Mus musculus,2017,11/09/17,12/09/17,Czech,FALSE,18.36,84.24,81,0.0316,0.0881,0.0932,0.0272,0.1176,NA,NA,NA,0.9,TRUE,7,NA,SY,NA,NA,NA
-HZ_BR,Germany,BESTE6,BESTE6,52.2225,13.6025,AA_0253,female,NA,Mus musculus,2017,11/09/17,12/09/17,Czech,FALSE,16.71,85.36,80.96,NA,NA,NA,NA,NA,NA,NA,NA,0.12,NA,NA,NA,NA,NA,NA,Died in cage. Small protocol (1 tube “All digestive tract”)
-HZ_BR,Germany,Marienhof 6 15741 Bestensee,MARIE,52.2458,13.5994,AA_0254,male,NA,Mus musculus,2017,11/09/17,12/09/17,Czech,FALSE,16.46,82.03,79.15,NA,NA,NA,NA,NA,NA,NA,NA,0.54,NA,NA,NA,NA,NA,NA,Died in cage. Small protocol (1 tube “All digestive tract”)
-HZ_BR,Germany,Marienhof 6 15741 Bestensee,MARIE,52.2458,13.5994,AA_0255,male,NA,Mus musculus,2017,11/09/17,12/09/17,Czech,FALSE,8.76,65.53,75.2,0.0127,0.0151,0.0154,NA,NA,NA,NA,NA,0.06,TRUE,40,NA,SY,NA,NA,NA
-HZ_BR,Germany,BESTE6,BESTE6,52.2225,13.6025,AA_0256,female,NA,Mus musculus,2017,11/09/17,12/09/17,German,TRUE,19.31,83.51,90.74,0.09,NA,NA,NA,NA,NA,NA,NA,0.28,TRUE,46,Stomach + SI,MAS,NA,NA,NA
-HZ_BR,Germany,BESTE6,BESTE6,52.2225,13.6025,AA_0257,male,NA,Mus musculus,2017,11/09/17,12/09/17,German,TRUE,16.84,82.62,75.34,0.03,0.0859,0.0842,0.029,NA,NA,NA,NA,0.85,FALSE,NA,NA,NA,NA,NA,NA
-HZ_BR,Germany,SCHEN8h,SCHEN8h,52.2747,13.595,AA_0258,female,NA,Mus musculus,2017,11/09/17,12/09/17,German,FALSE,13.03,77.94,77.52,0.03,NA,NA,NA,NA,NA,NA,NA,0.3,TRUE,6,cecum,SY,NA,NA,NA
-HZ_BR,Germany,BESTE6,BESTE6,52.2225,13.6025,AA_0259,female,NA,Mus musculus,2017,11/09/17,12/09/17,German,FALSE,12.85,71.94,73.96,0.05,NA,NA,NA,NA,NA,NA,NA,0.28,TRUE,1,colon,SY,NA,NA,NA
-HZ_BR,Germany,BESTE6,BESTE6,52.2225,13.6025,AA_0260,female,NA,Mus musculus,2017,11/09/17,12/09/17,German,FALSE,17.82,83.01,79.18,0.07,NA,NA,NA,NA,NA,NA,NA,0.34,TRUE,9,cecum,SY,NA,NA,NA
-HZ_BR,Germany,Marienhof 6 15741 Bestensee,MARIE,52.2458,13.5994,AA_0261,male,NA,Mus musculus,2017,11/09/17,12/09/17,German,FALSE,11.69,72,71.17,0.02,0.0221,0.0242,0.0031,NA,NA,NA,NA,0.43,TRUE,4,colon,heterakis spumosa,NA,NA,NA
-HZ_BR,Germany,Marienhof 6 15741 Bestensee,MARIE,52.2458,13.5994,AA_0262,female,NA,Mus musculus,2017,11/09/17,12/09/17,German,TRUE,21.39,87.56,83.37,0.08,NA,NA,NA,NA,NA,NA,NA,0.2,TRUE,19 / 1,Cecum / colon-cecum,SY,NA,NA,NA
-HZ_BR,Germany,Marienhof 6 15741 Bestensee,MARIE,52.2458,13.5994,AA_0263,female,pregnant,Mus musculus,2017,11/09/17,12/09/17,German,FALSE,27.83,83.43,80.67,0.03,NA,NA,NA,NA,NA,NA,NA,0.27,TRUE,NA,Stomach / duodenum / cecum / cecum / colon,Mastophorus / tapeworm / syphcia / trichuris / heterakis?,5,2,NA
-HZ_BR,Germany,Erkner Kinderbauernhof,ERKNKI,52.3989,13.7581,AA_0264,female,NA,Mus musculus,2017,11/09/17,12/09/17,German,FALSE,18.98,82.8,75.69,0.03,NA,NA,NA,NA,NA,NA,NA,0.19,FALSE,0,NA,NA,NA,NA,NA
-HZ_BR,Germany,Walter-rathenau strasse 14 Neu Zittenau,NA,52.384336,13.760233,AA_0265,male young,young,Mus musculus,2017,11/09/17,12/09/17,German,FALSE,8.33,63.74,63.49,0.02,NA,NA,NA,NA,NA,NA,NA,0.13,FALSE,0,NA,NA,NA,NA,NA
-HZ_BR,Germany,PFLASTERSTR.,NA,52.6788854,14.0506342,AA_0266,na,NA,Mus musculus,2017,11/09/17,12/09/17,Czech,NA,14.7,79.68,78.32,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,Died in cage. Small protocol (1 tube “All digestive tract”)
-HZ_BR,Germany,Wildpark Schorfheide,SCHORFHOF,52.921731,13.547089,AA_0267,female,NA,Mus musculus,2017,11/09/17,12/09/17,German,FALSE,16.24,79.5,84.22,0.04,NA,NA,NA,NA,NA,NA,NA,NA,FALSE,NA,NA,NA,NA,NA,NA
-HZ_BR,Germany,Dorfanger 7 15754 Heidesee,NA,52.242473,13.70713,AA_0268,male,NA,Mus musculus,2017,12/09/17,13/09/17,Czech,TRUE,17.83,82,80.27,0.0847,0.0646,0.0703,0.0238,0.145,NA,NA,NA,0.75,TRUE,2 / 12 / 9,NA,M / SY / T,NA,NA,NA
-HZ_BR,Germany,Alt-Gielsdorf 68 15345 Alt-Landsberg,GIEL68,52.6053,13.8756,AA_0269,male,NA,Mus musculus,2017,12/09/17,13/09/17,Czech,FALSE,9.62,69.25,72.22,0.03,0.0349,0.0393,0.005,NA,NA,NA,NA,0.09,FALSE,0,NA,NA,NA,NA,NA
-HZ_BR,Germany,Dorfanger 7 15754 Heidesee,NA,52.242473,13.70713,AA_0270,female,pregnant,Mus musculus,2017,12/09/17,13/09/17,Czech,TRUE,18.38,83.31,77.16,0.0493,NA,NA,NA,NA,NA,NA,NA,1.12,TRUE,2 / 9 / 85 ,NA,Hd / T / A,3,5,"white spot on belly. Resorbed embryos (2/3 left, 4/5 right)"
-HZ_BR,Germany,Reiterhof Böse,NA,52.896941,13.535213,AA_0271,female,NA,Mus musculus,2017,12/09/17,13/09/17,Czech,FALSE,25.42,98.5,95.6,0.0534,NA,NA,NA,NA,0.0074,0.0075,0.0149,0.28,FALSE,0,NA,NA,NA,NA,post partum?
-HZ_BR,Germany,Reiterhof Böse,NA,52.896941,13.535213,AA_0272,male,NA,Mus musculus,2017,12/09/17,13/09/17,Czech,FALSE,11.02,69.54,76.51,0.0239,0.0368,0.0375,0.0284,NA,NA,NA,NA,0.14,FALSE,0,NA,NA,NA,NA,NA
-HZ_BR,Germany,Reiterhof Böse,NA,52.896941,13.535213,AA_0273,male,NA,Mus musculus,2017,12/09/17,13/09/17,Czech,FALSE,6.55,58.02,63.87,0.0129,0.0086,0.0071,NA,NA,NA,NA,NA,0.31,FALSE,0,NA,NA,NA,NA,NA
-HZ_BR,Germany,Alt-Gielsdorf 68 15345 Alt-Landsberg,GIEL68,52.6053,13.8756,AA_0274,female pregnant,pregnant,Mus musculus,2017,12/09/17,13/09/17,Czech,TRUE,18.93,81.23,66.75,0.0723,NA,NA,NA,NA,NA,NA,NA,0.28,FALSE,0,NA,NA,0 + 1 residual,3,NA
-HZ_BR,Germany,Alt-Gielsdorf 68 15345 Alt-Landsberg,GIEL68,52.6053,13.8756,AA_0275,female,NA,Mus musculus,2017,12/09/17,13/09/17,Czech,FALSE,12.25,76.65,73.81,0.0464,0.0026,0.0026,0.0052,NA,NA,NA,NA,0.13,FALSE,0,NA,NA,NA,NA,NA
-HZ_BR,Germany,Reiterhof Böse,NA,52.896941,13.535213,AA_0276,male,NA,Mus musculus,2017,12/09/17,13/09/17,Czech,FALSE,24.1,92.89,105,0.0316,0.0925,0.0936,0.0371,0.1641,NA,NA,NA,0.21,FALSE,0,NA,NA,NA,NA,NA
-HZ_BR,Germany,Wildpark Schorfheide,SCHORFHOF,52.921731,13.547089,AA_0277,male,NA,Mus musculus,2017,12/09/17,13/09/17,Czech,FALSE,14.24,79.54,84.24,0.0203,0.0705,0.0563,0.0166,0.0638,NA,NA,NA,0.22,FALSE,0,NA,NA,NA,NA,NA
-HZ_BR,Germany,Reiterhof Böse,NA,52.896941,13.535213,AA_0278,female,young,Mus musculus,2017,12/09/17,13/09/17,Czech,FALSE,9.21,66.98,75,0.0176,NA,NA,NA,NA,0.0013,0.0011,0.0024,0.08,FALSE,0,NA,NA,NA,NA,NA
-HZ_BR,Germany,Alt-Gielsdorf 68 15345 Alt-Landsberg,GIEL68,52.6053,13.8756,AA_0279,female,NA,Mus musculus,2017,12/09/17,13/09/17,Czech,FALSE,15.43,75.78,def,0.0273,0.1122,0.11,0.0202,0.0957,NA,NA,NA,0.35,FALSE,0,NA,NA,NA,NA,NA
-HZ_BR,Germany,Alt-Gielsdorf 68 15345 Alt-Landsberg,GIEL68,52.6053,13.8756,AA_0280,female,young,Mus musculus,2017,12/09/17,13/09/17,Czech,FALSE,7.45,63.95,67.4,0.0219,NA,NA,NA,NA,NA,NA,NA,0.07,FALSE,0,NA,NA,NA,NA,NA
-HZ_BR,Germany,Wildpark Schorfheide,SCHORFHOF,52.921731,13.547089,AA_0281,male,young,Mus musculus,2017,12/09/17,13/09/17,Czech,FALSE,11.39,74.14,74.14,0.0187,0.0248,0.0265,0.0065,NA,NA,NA,NA,0.19,FALSE,0,NA,NA,NA,NA,NA
-HZ_BR,Germany,Wildpark Schorfheide,SCHORFHOF,52.921731,13.547089,AA_0282,male,NA,Mus musculus,2017,12/09/17,13/09/17,Czech,FALSE,9.57,66.58,72.23,0.0128,0.0234,0.0235,NA,NA,NA,NA,NA,0.21,FALSE,0,NA,NA,NA,NA,NA
-HZ_BR,Germany,Wildpark Schorfheide,SCHORFHOF,52.921731,13.547089,AA_0283,female,NA,Mus musculus,2017,12/09/17,13/09/17,German,FALSE,16.45,77.02,77.01,0.2,NA,NA,NA,NA,NA,NA,NA,0.19,FALSE,0,NA,NA,NA,NA,NA
-HZ_BR,Germany,Wildpark Schorfheide,SCHORFHOF,52.921731,13.547089,AA_0284,female,NA,Mus musculus,2017,12/09/17,13/09/17,German,FALSE,21.51,84.53,85.33,0.05,NA,NA,NA,NA,NA,NA,NA,0.05,FALSE,0,NA,NA,NA,NA,NA
-HZ_BR,Germany,Wildpark Schorfheide,SCHORFHOF,52.921731,13.547089,AA_0285,male,young,Mus musculus,2017,12/09/17,13/09/17,German,FALSE,10.04,66.99,70.05,0.01,NA,NA,NA,NA,NA,NA,NA,0.08,FALSE,0,NA,NA,NA,NA,NA
-HZ_BR,Germany,Kiefernweg 8 15537 Gosen-Neu Zittau,NA,52.374686,13.777103,AA_0286,na,NA,Mus musculus,2017,12/09/17,13/09/17,German,FALSE,11.87,71.15,79.27,<0.01,NA,NA,NA,NA,NA,NA,NA,0.08,FALSE,0,NA,NA,NA,NA,NA
-HZ_BR,Germany,Alt-Gielsdorf 68 15345 Alt-Landsberg,GIEL68,52.6053,13.8756,AA_0287,male,young,Mus musculus,2017,12/09/17,13/09/17,German,FALSE,7.89,65.91,60.55,0.2,NA,NA,NA,NA,NA,NA,NA,NA,FALSE,0,NA,NA,NA,NA,NA
-HZ_BR,Germany,Alt-Gielsdorf 68 15345 Alt-Landsberg,GIEL68,52.6053,13.8756,AA_0288,male,young,Mus musculus,2017,12/09/17,13/09/17,German,TRUE,7.01,62.14,60.69,0.1,NA,NA,NA,NA,NA,NA,NA,0.26,TRUE,3,cecum,SY,NA,NA,NA
-HZ_BR,Germany,Alt-Gielsdorf 68 15345 Alt-Landsberg,GIEL68,52.6053,13.8756,AA_0289,male,NA,Mus musculus,2017,12/09/17,13/09/17,German,FALSE,8.82,63.95,59.64,0.03,0.018,0.019,0.006,NA,NA,NA,NA,0.08,FALSE,0,NA,NA,NA,NA,NA
-HZ_BR,Germany,Alt-Gielsdorf 68 15345 Alt-Landsberg,GIEL68,52.6053,13.8756,AA_0290,female,NA,Mus musculus,2017,12/09/17,13/09/17,German,TRUE,15.34,82.63,73.52,0.06,NA,NA,NA,NA,NA,NA,NA,0.18,FALSE,0,NA,NA,NA,NA,NA
-HZ_BR,Germany,Wildpark Schorfheide,SCHORFHOF,52.921731,13.547089,AA_0291,NA,NA,Mus musculus,2017,12/09/17,13/09/17,German,FALSE,13.94,73.79,75.48,0.02,NA,NA,NA,NA,NA,NA,NA,0.34,FALSE,0,NA,NA,NA,NA,NA
-HZ_BR,Germany,Wildpark Schorfheide,SCHORFHOF,52.921731,13.547089,AA_0292,female,NA,Mus musculus,2017,12/09/17,13/09/17,German,FALSE,15.55,74.77,80.31,0.02,NA,NA,NA,NA,NA,NA,NA,NA,FALSE,NA,NA,NA,NA,NA,extra piece of liver in ethanol with potential cisticercous. Big mes lymph nodes
-HZ_BR,Germany,Berkenlatten,NA,53.1406,13.7586,AA_0293,na,NA,Mus musculus,2017,13/09/17,13/09/17,Czech,FALSE,13.69,74.77,74.66,NA,NA,NA,NA,NA,NA,NA,NA,na,FALSE,NA,NA,NA,NA,NA,Died in cage. Small protocol 
-HZ_BR,Germany,"Croustillier 17, 16259 oderage",NA,52.791376,14.116181,AA_0294,male,young,Mus musculus,2017,13/09/17,13/09/17,Czech,FALSE,3.96,53.98,50.98,NA,NA,NA,NA,NA,NA,NA,NA,na,FALSE,NA,NA,NA,NA,NA,Died in cage. Small protocol 
-HZ_BR,Germany,"Croustillier 17, 16259 oderage",NA,52.791376,14.116181,AA_0295,male,NA,Mus musculus,2017,13/09/17,14/09/17,Czech,FALSE,16.24,82.04,69.37,NA,NA,NA,NA,NA,NA,NA,NA,0.06,FALSE,NA,NA,NA,NA,NA,Died in cage. Small protocol 
-HZ_BR,Germany,Alt Gaul 26b 16269 Wriezen florian köhler,NA,52.738064,14.095413,AA_0296,male,NA,Mus musculus,2017,13/09/17,14/09/17,Czech,FALSE,14.62,77.35,68.87,0.0288,0.0651,0.0633,0.0156,0.0887,NA,NA,NA,0.91,FALSE,NA,NA,NA,NA,NA,NA
-HZ_BR,Germany,"Croustillier 17, 16259 oderage",NA,52.791376,14.116181,AA_0297,female,pregnant,Mus musculus,2017,13/09/17,14/09/17,Czech,FALSE,17.74,82.33,79.2,0.0316,NA,NA,NA,NA,NA,NA,NA,0.39,TRUE,96 / 17,NA,T / het s,3,3,NA
-HZ_BR,Germany,Alt Gaul 26b 16269 Wriezen florian köhler,NA,52.738064,14.095413,AA_0298,female,young,Mus musculus,2017,13/09/17,14/09/17,Czech,FALSE,9.58,69.5,70.3,0.0235,NA,NA,NA,NA,0.0015,0.0013,0.0028,0.13,TRUE,18,NA,SY,NA,NA,NA
-HZ_BR,Germany,Alt Gaul 26b 16269 Wriezen florian köhler,NA,52.738064,14.095413,AA_0299,male,NA,Mus musculus,2017,13/09/17,14/09/17,Czech,FALSE,16.97,85.87,84.22,0.048,0.0977,0.0942,0.025,0.1304,NA,NA,NA,0.45,TRUE,24 / 83 / 5,NA,Het S / T / A,NA,NA,NA
-HZ_BR,Germany,"Croustillier 17, 16259 oderage",NA,52.791376,14.116181,AA_0300,female,NA,Mus musculus,2017,13/09/17,14/09/17,Czech,FALSE,17.23,86.84,81.97,0.0684,NA,NA,NA,NA,0.0066,0.006,0.0126,0.24,TRUE,86 / 17,NA,T / het s,4,2,NA
-HZ_BR,Germany,Alt Gaul 26b 16269 Wriezen florian köhler,NA,52.738064,14.095413,AA_0301,female,post partum,Mus musculus,2017,13/09/17,14/09/17,Czech,FALSE,18.7,89.5,80.82,0.0323,NA,NA,NA,NA,0.0058,0.0064,0.0122,0.6,TRUE,49 / 200,NA,Het S / A,NA,NA,NA
-HZ_BR,Germany,Reitsport Münchehofe Minderhofer strasse,NA,52.496944,13.677066,AA_0302,male,NA,Mus musculus,2017,13/09/17,14/09/17,Czech,FALSE,17.9,84.25,96.58,0.0205,0.0789,0.082,0.0262,0.2137,NA,NA,NA,0.43,FALSE,NA,NA,NA,NA,NA,NA
-HZ_BR,Germany,Pferdefreunde klein-schauen alte-dorfstrasse 31 15859 stokow,NA,52.242982,13.867386,AA_0303,male,NA,Mus musculus,2017,13/09/17,14/09/17,Czech,FALSE,18.92,83.28,91.96,0.0528,0.0506,0.0538,0.0194,0.232,NA,NA,NA,0.04,TRUE,137,NA,SY,NA,NA,NA
-HZ_BR,Germany,Reitsport Münchehofe Minderhofer strasse,NA,52.496944,13.677066,AA_0304,female,pregnant,Mus musculus,2017,13/09/17,14/09/17,Czech,FALSE,15.58,82.08,81.92,0.0258,NA,NA,NA,NA,NA,NA,NA,0.69,TRUE,4,NA,SY,2,1,NA
-HZ_BR,Germany,Reiterhof Böse,NA,52.896941,13.535213,AA_0305,female,young,Mus musculus,2017,13/09/17,14/09/17,Czech,FALSE,7.07,57.55,66.71,0.0135,NA,NA,NA,NA,NA,NA,NA,na,FALSE,NA,NA,NA,NA,NA,NA
-HZ_BR,Germany,Pferdefreunde klein-schauen alte-dorfstrasse 31 15859 stokow,NA,52.242982,13.867386,AA_0306,male,NA,Mus musculus,2017,13/09/17,14/09/17,Czech,FALSE,12.79,73.74,82.9,0.0274,0.0322,0.0334,0.0042,NA,NA,NA,NA,0.46,TRUE,17,NA,SY,NA,NA,NA
-HZ_BR,Germany,Pferdefreunde klein-schauen alte-dorfstrasse 31 15859 stokow,NA,52.242982,13.867386,AA_0307,female,pregnant,Mus musculus,2017,13/09/17,14/09/17,Czech,FALSE,16.75,78.75,85.58,0.368,NA,NA,NA,NA,NA,NA,NA,0.56,TRUE,43,NA,SY,2,5,NA
-HZ_BR,Germany,Pferdefreunde klein-schauen alte-dorfstrasse 31 15859 stokow,NA,52.242982,13.867386,AA_0308,male,NA,Mus musculus,2017,13/09/17,14/09/17,Czech,FALSE,14.44,75.23,82.77,0.0395,0.0358,0.0424,0.0112,0.019,NA,NA,NA,0.52,TRUE,NA,NA,SY,NA,NA,white spot on belly
-HZ_BR,Germany,Pferdefreunde klein-schauen alte-dorfstrasse 31 15859 stokow,NA,52.242982,13.867386,AA_0309,female,NA,Mus musculus,2017,13/09/17,14/09/17,Czech,FALSE,15.87,83.14,89.49,0.0544,NA,NA,NA,NA,0.0049,0.004,NA,0.06,TRUE,56,NA,SY,NA,NA,NA
-HZ_BR,Germany,Alt Gaul 26b 16269 Wriezen florian köhler,NA,52.738064,14.095413,AA_0310,female,young,Mus musculus,2017,13/09/17,14/09/17,German,FALSE,7.75,60.4,56.93,0.01,NA,NA,NA,NA,NA,NA,NA,0.07,TRUE,7 / 6,Cecum / prox colon,sy,NA,NA,NA
-HZ_BR,Germany,Alt Gaul 26b 16269 Wriezen florian köhler,NA,52.738064,14.095413,AA_0311,female,NA,Mus musculus,2017,13/09/17,14/09/17,German,FALSE,14.12,77.78,73.49,0.03,NA,NA,NA,NA,NA,NA,NA,0.29,TRUE,34 / 5 / 101,Cecum / colon / colon,Sy / heterakis s / sy,NA,NA,NA
-HZ_BR,Germany,Alt Gaul 26b 16269 Wriezen florian köhler,NA,52.738064,14.095413,AA_0312,female,NA,Mus musculus,2017,13/09/17,14/09/17,German,TRUE,19.84,78.14,68.08,0.07,NA,NA,NA,NA,NA,NA,NA,0.45,TRUE,1 / 171 / 89,Cecum / cecum / colon,Tr / sy / sy,NA,NA,NA
-HZ_BR,Germany,Reitsport Münchehofe Minderhofer strasse,NA,52.496944,13.677066,AA_0313,female,pregnant,Mus musculus,2017,13/09/17,14/09/17,German,FALSE,16.43,87.56,85.8,0.02,NA,NA,NA,NA,NA,NA,NA,0.16,TRUE,3 / 2,Cecum / colon,Sy / sy,NA,NA,NA
-HZ_BR,Germany,Pferdefreunde klein-schauen alte-dorfstrasse 31 15859 stokow,NA,52.242982,13.867386,AA_0314,male,NA,Mus musculus,2017,13/09/17,14/09/17,German,FALSE,13.68,66.99,83.2,0.028,0.083,0.086,0.026,0.045,NA,NA,NA,0.12,TRUE,17,cecum,sy,NA,NA,NA
-HZ_BR,Germany,Reitsport Münchehofe Minderhofer strasse,NA,52.496944,13.677066,AA_0315,female,pregnant,Mus musculus,2017,13/09/17,14/09/17,German,FALSE,18.73,80.01,82.41,0.02,NA,NA,NA,NA,NA,NA,NA,0.79,FALSE,0,NA,NA,0,5,NA
-HZ_BR,Germany,"Croustillier 17, 16259 oderage",NA,52.791376,14.116181,AA_0316,male,NA,Mus musculus,2017,13/09/17,14/09/17,German,FALSE,10.59,69.08,62.84,0.02,NA,NA,NA,NA,NA,NA,NA,0.31,TRUE,4 / 4 / 1 / 2,Cecum / cecum / colon / colon,Hs / sy / hs / sy,NA,NA,NA
-HZ_BR,Germany,Pferdefreunde klein-schauen alte-dorfstrasse 31 15859 stokow,NA,52.242982,13.867386,AA_0317,male,NA,Mus musculus,2017,13/09/17,14/09/17,German,FALSE,17.55,82.54,84.4,0.03,0.1097,0.1111,0.0263,0.1048,NA,NA,NA,0.49,TRUE,18,cecum,sy,NA,NA,NA
-HZ_BR,Germany,"Croustillier 17, 16259 oderage",NA,52.791376,14.116181,AA_0318,female,NA,Mus musculus,2017,13/09/17,14/09/17,German,TRUE,16.05,82.77,72.63,0.04,NA,NA,NA,NA,NA,NA,NA,0.19,TRUE,14 / 68 / 19 / 1 / 8,Cecum / ce / co / co / co,Tri / sy / h spumosa / tri / sy,NA,NA,NA
-HZ_BR,Germany,dubener hauptstrasse 24,NA,51.897811,13.809616,AA_0319,female,NA,Mus musculus,2017,13/09/17,14/09/17,German,TRUE,14.2,73.41,74.28,0.02,NA,NA,NA,NA,NA,NA,NA,0.84,TRUE,9,cecum,tri,NA,NA,NA
-HZ_BR,Germany,dubener hauptstrasse 24,NA,51.897811,13.809616,AA_0320,male,NA,Mus musculus,2017,13/09/17,14/09/17,Czech,FALSE,16.37,16.37,79.23,84.3,0.0702,0.0702,0.0237,0.1369,NA,NA,NA,0.74,FALSE,NA,NA,NA,NA,NA,NA
-HZ_BR,Germany,Wriezenerstrasse 6 16269 wriezen,FRANK6,52.6703,14.0589,ZZ_0001,male,NA,apodemus,NA,11/09/17,12/09/17,German,FALSE,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0.75,NA,9 / 10 / n / 3,NA,Sy / red ones / heligmosomoides polyguris / trichuris, / / SI /,NA,NA
-HZ_BR,Germany,Mühlenstrasse 23 15345 alt-landsberg wesenthal,NA,52.593745,13.833525,ZZ_0002,male,young,rattus norvegicus,NA,11/09/17,11/09/17,German,FALSE,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-HZ_BR,Germany,Kastanienweg 7 15345 Prädikow,NA,52.6242788,14.0101667,ZZ_0003,female,NA,bank vole,NA,11/09/17,12/09/17,German,FALSE,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1.19,NA,NA,NA,NA,NA,NA,NA
-HZ_BR,Germany,forstrasse joachimsthal 3,NA,52.994574,13.684043,ZZ_0004,female,NA,bank vole,NA,11/09/17,12/09/17,German,FALSE,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0.83,NA,NA,NA,NA,NA,NA,NA
-HZ_BR,Germany,lanke wandlitzer strasse 16,NA,52.757551,13.523808,ZZ_0005,female,NA,apodemus flaviolis,NA,12/09/17,13/09/17,German,FALSE,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0.05,NA,NA,NA,NA,NA,NA,NA
-HZ_BR,Germany,lanke wandlitzer strasse 16,NA,52.757551,13.523808,ZZ_0006,female,NA,feldmaus,NA,12/09/17,13/09/17,German,FALSE,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0.22,NA,NA,NA,NA,NA,NA,NA
-HZ_BR,Germany,lanke wandlitzer strasse 16,NA,52.757551,13.523808,ZZ_0007,NA,NA,apodemus,NA,12/09/17,13/09/17,German,FALSE,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0.11,NA,NA,NA,NA,NA,NA,NA
-HZ_BR,Germany,lanke wandlitzer strasse 16,NA,52.757551,13.523808,ZZ_0008,NA,NA,feldmaus,NA,12/09/17,13/09/17,German,FALSE,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0.11,NA,NA,NA,NA,NA,NA,NA
-HZ_BR,Germany,lanke wandlitzer strasse 16,NA,52.757551,13.523808,ZZ_0009,NA,NA,bank vole,NA,12/09/17,13/09/17,German,FALSE,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0.35,NA,19,cecum,sy,NA,NA,NA
-HZ_BR,Germany,lanke wandlitzer strasse 16,NA,52.757551,13.523808,ZZ_0010,NA,NA,bank vole,NA,12/09/17,13/09/17,German,FALSE,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0.03,NA,21,cecum,sy,NA,NA,NA
-HZ_BR,Germany,Erste-kolonie 39,NA,51.830746,14.076701,ZZ_0011,NA,NA,apodemus,NA,12/09/17,13/09/17,German,TRUE,28.51,96.75,100.89,0.16,NA,NA,NA,NA,NA,NA,NA,0.87,NA,5,si,c. pusilla,NA,NA,NA
+Mouse_ID,Transect,State,Address,Code,Latitude,Longitude,Sex,Status,Species,Year,Capture,Dissection,Dissectors,Ectoparasites,Body_weight,Body_length,Tail_length,Spleen_mass,Left_Testis_mass,Right_Testis_mass,Left.epididymis.weight,Seminal.vesicle.weight,Left.ovarium.weight,Right.ovarium.weight,Total,Embryo_left,Embryo_right,Feces_weight,Worms_presence,Syphacia_cecum,Syphacia_colon,Cysticercus_tenia_teniformis_liver,Catotenia_pusilla_SI,Mastophorus_stomach+SI,Mastophorus_stomach_only,Heterakis_spumosa_colon,Tapeworm_SI,Trichuris_cecum,Aspiculuris_colon,Hymenolepis_SI,Rodentolepis_liver_digtract,Mesocoides_body_cavities,Mesocoides_lungs,Notes
+AA_0237,HZ_BR,Germany,Danewitz 22,DANE22,52.7339,13.6664,female,pregnant,Mus musculus,2017,10/09/17,11/09/17,Czech,FALSE,21.69,83.04,87.61,0.0303,NA,NA,NA,NA,NA,NA,NA,2,4,NA,FALSE,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Error in tubes : colon wall in liq nitro is in the CEWE tube
+AA_0238,HZ_BR,Germany,Mittelstrasse 4 15345 Altlandsberg (Buchholz),NA,52.585905,13.789663,na,NA,Mus musculus,2017,10/09/17,11/09/17,German,FALSE,12.37,72.92,69.4,0.02,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,FALSE,0,0,0,0,0,0,0,0,0,0,0,0,0,0,NA
+AA_0239,HZ_BR,Germany,Mittelstrasse 4 15345 Altlandsberg (Buchholz),NA,52.585905,13.789663,male,NA,Mus musculus,2017,10/09/17,11/09/17,Czech,FALSE,13.89,76.19,79.88,0.0235,NA,NA,0.0163,0.0506,NA,NA,NA,NA,NA,NA,FALSE,0,0,0,0,0,0,0,0,0,0,0,0,0,0,NA
+AA_0240,HZ_BR,Germany,29/30 spitzmühlerstrasse Buchholz,BUCHH,52.5844,13.7881,female,NA,Mus musculus,2017,10/09/17,11/09/17,German,FALSE,10.54,69.72,67.29,0.01,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,FALSE,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Only one salivary gland
+AA_0241,HZ_BR,Germany,Kastanienweg 7 15345 Prädikow,NA,52.6242788,14.0101667,female,NA,Mus musculus,2017,11/09/17,12/09/17,Czech,FALSE,13.83,74.78,77.92,0.0219,NA,NA,NA,NA,0.0026,NA,0.0075,NA,NA,NA,TRUE,75,0,0,0,0,0,0,0,0,0,0,0,0,0,NA
+AA_0242,HZ_BR,Germany,"Am Fährkrug 6, 16259 Bad Freienwalde (Oder)",NA,52.807371,14.036785,male,NA,Mus musculus,2017,11/09/17,12/09/17,Czech,FALSE,14.97,79.71,68.88,0.0285,0.0576,0.0519,0.0252,0.1328,NA,NA,NA,NA,NA,0.9,FALSE,0,0,0,0,0,0,0,0,0,0,0,0,0,0,NA
+AA_0243,HZ_BR,Germany,Kirchstrasse 2 16230 Britz,BRITZ2,52.8875,13.8119,male,NA,Mus musculus,2017,11/09/17,12/09/17,Czech,FALSE,11.13,70.42,70.4,0.0164,0.0592,0.0628,0.0114,0.025,NA,NA,NA,NA,NA,0.54,TRUE,5,0,0,0,0,0,0,0,0,0,0,0,0,0,NA
+AA_0244,HZ_BR,Germany,Marienhof 6 15741 Bestensee,MARIE,52.2458,13.5994,female,young,Mus musculus,2017,11/09/17,12/09/17,Czech,FALSE,10.47,69.45,76.75,0.0147,NA,NA,NA,NA,0.0023,0.0023,0.0046,NA,NA,NA,TRUE,26,0,0,0,0,0,0,0,0,0,0,0,0,0,NA
+AA_0245,HZ_BR,Germany,BESTE6,BESTE6,52.2225,13.6025,male,NA,Mus musculus,2017,11/09/17,12/09/17,Czech,FALSE,19.13,86.99,Def,0.0495,0.1027,0.1003,0.0355,0.1668,NA,NA,NA,NA,NA,0.34,TRUE,21,0,0,0,0,0,0,0,0,0,0,0,0,0,NA
+AA_0246,HZ_BR,Germany,BESTE6,BESTE6,52.2225,13.6025,female,NA,Mus musculus,2017,11/09/17,12/09/17,Czech,TRUE (collected),12.45,73.87,73.54,0.0539,NA,NA,NA,NA,0.0028,0.0037,0.0065,NA,NA,0.11,FALSE,0,0,0,0,0,0,0,0,0,0,0,0,0,0,NA
+AA_0247,HZ_BR,Germany,BESTE6,BESTE6,52.2225,13.6025,male,NA,Mus musculus,2017,11/09/17,12/09/17,Czech,TRUE,23.58,87.94,90.55,0.0972,0.0945,0.1001,0.044,0.2147,NA,NA,NA,NA,NA,1.2,TRUE,10,0,0,0,0,0,0,0,0,0,0,0,0,0,NA
+AA_0248,HZ_BR,Germany,BESTE6,BESTE6,52.2225,13.6025,female,NA,Mus musculus,2017,11/09/17,12/09/17,Czech,FALSE,14.87,80.11,81.7,0.0331,NA,NA,NA,NA,0.0075,0.0039,0.0114,NA,NA,0.41,FALSE,0,0,0,0,0,0,0,0,0,0,0,0,0,0,NA
+AA_0249,HZ_BR,Germany,BESTE6,BESTE6,52.2225,13.6025,male,NA,Mus musculus,2017,11/09/17,12/09/17,Czech,FALSE,25.74,94.62,96.15,0.11,0.1262,0.1296,0.0382,0.2445,NA,NA,NA,NA,NA,0.82,FALSE,0,0,0,0,0,0,0,0,0,0,0,0,0,0,NA
+AA_0250,HZ_BR,Germany,BESTE6,BESTE6,52.2225,13.6025,male,NA,Mus musculus,2017,11/09/17,12/09/17,Czech,FALSE,13.03,76.88,75.31,0.031,0.0575,0.0594,0.0122,NA,NA,NA,NA,NA,NA,0.34,FALSE,0,0,0,0,0,0,0,0,0,0,0,0,0,0,NA
+AA_0251,HZ_BR,Germany,BESTE6,BESTE6,52.2225,13.6025,female,pregnant,Mus musculus,2017,11/09/17,12/09/17,Czech,FALSE,17.39,84.83,88.81,0.0477,NA,NA,NA,NA,0.0036,0.0046,0.0082,NA,NA,1.02,TRUE,20,0,0,0,0,0,0,0,0,0,0,0,0,0,NA
+AA_0252,HZ_BR,Germany,BESTE6,BESTE6,52.2225,13.6025,male,NA,Mus musculus,2017,11/09/17,12/09/17,Czech,FALSE,18.36,84.24,81,0.0316,0.0881,0.0932,0.0272,0.1176,NA,NA,NA,NA,NA,0.9,TRUE,7,0,0,0,0,0,0,0,0,0,0,0,0,0,NA
+AA_0253,HZ_BR,Germany,BESTE6,BESTE6,52.2225,13.6025,female,NA,Mus musculus,2017,11/09/17,12/09/17,Czech,FALSE,16.71,85.36,80.96,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0.12,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Died in cage. Small protocol (1 tube “All digestive tract”)
+AA_0254,HZ_BR,Germany,Marienhof 6 15741 Bestensee,MARIE,52.2458,13.5994,male,NA,Mus musculus,2017,11/09/17,12/09/17,Czech,FALSE,16.46,82.03,79.15,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0.54,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Died in cage. Small protocol (1 tube “All digestive tract”)
+AA_0255,HZ_BR,Germany,Marienhof 6 15741 Bestensee,MARIE,52.2458,13.5994,male,NA,Mus musculus,2017,11/09/17,12/09/17,Czech,FALSE,8.76,65.53,75.2,0.0127,0.0151,0.0154,NA,NA,NA,NA,NA,NA,NA,0.06,TRUE,40,0,0,0,0,0,0,0,0,0,0,0,0,0,NA
+AA_0256,HZ_BR,Germany,BESTE6,BESTE6,52.2225,13.6025,female,NA,Mus musculus,2017,11/09/17,12/09/17,German,TRUE,19.31,83.51,90.74,0.09,NA,NA,NA,NA,NA,NA,NA,NA,NA,0.28,TRUE,0,0,0,0,46,0,0,0,0,0,0,0,0,0,NA
+AA_0257,HZ_BR,Germany,BESTE6,BESTE6,52.2225,13.6025,male,NA,Mus musculus,2017,11/09/17,12/09/17,German,TRUE,16.84,82.62,75.34,0.03,0.0859,0.0842,0.029,NA,NA,NA,NA,NA,NA,0.85,FALSE,0,0,0,0,0,0,0,0,0,0,0,0,0,0,NA
+AA_0258,HZ_BR,Germany,SCHEN8h,SCHEN8h,52.2747,13.595,female,NA,Mus musculus,2017,11/09/17,12/09/17,German,FALSE,13.03,77.94,77.52,0.03,NA,NA,NA,NA,NA,NA,NA,NA,NA,0.3,TRUE,6,0,0,0,0,0,0,0,0,0,0,0,0,0,NA
+AA_0259,HZ_BR,Germany,BESTE6,BESTE6,52.2225,13.6025,female,NA,Mus musculus,2017,11/09/17,12/09/17,German,FALSE,12.85,71.94,73.96,0.05,NA,NA,NA,NA,NA,NA,NA,NA,NA,0.28,TRUE,0,1,0,0,0,0,0,0,0,0,0,0,0,0,NA
+AA_0260,HZ_BR,Germany,BESTE6,BESTE6,52.2225,13.6025,female,NA,Mus musculus,2017,11/09/17,12/09/17,German,FALSE,17.82,83.01,79.18,0.07,NA,NA,NA,NA,NA,NA,NA,NA,NA,0.34,TRUE,9,0,0,0,0,0,0,0,0,0,0,0,0,0,NA
+AA_0261,HZ_BR,Germany,Marienhof 6 15741 Bestensee,MARIE,52.2458,13.5994,male,NA,Mus musculus,2017,11/09/17,12/09/17,German,FALSE,11.69,72,71.17,0.02,0.0221,0.0242,0.0031,NA,NA,NA,NA,NA,NA,0.43,TRUE,0,0,0,0,0,0,4,0,0,0,0,0,0,0,NA
+AA_0262,HZ_BR,Germany,Marienhof 6 15741 Bestensee,MARIE,52.2458,13.5994,female,NA,Mus musculus,2017,11/09/17,12/09/17,German,TRUE,21.39,87.56,83.37,0.08,NA,NA,NA,NA,NA,NA,NA,NA,NA,0.2,TRUE,19,1,0,0,0,0,0,0,0,0,0,0,0,0,NA
+AA_0263,HZ_BR,Germany,Marienhof 6 15741 Bestensee,MARIE,52.2458,13.5994,female,pregnant,Mus musculus,2017,11/09/17,12/09/17,German,FALSE,27.83,83.43,80.67,0.03,NA,NA,NA,NA,NA,NA,NA,5,2,0.27,TRUE,8,0,0,0,0,?,1,?,2,0,0,0,0,0,NA
+AA_0264,HZ_BR,Germany,Erkner Kinderbauernhof,ERKNKI,52.3989,13.7581,female,NA,Mus musculus,2017,11/09/17,12/09/17,German,FALSE,18.98,82.8,75.69,0.03,NA,NA,NA,NA,NA,NA,NA,NA,NA,0.19,FALSE,0,0,0,0,0,0,0,0,0,0,0,0,0,0,NA
+AA_0265,HZ_BR,Germany,Walter-rathenau strasse 14 Neu Zittenau,NA,52.384336,13.760233,male young,young,Mus musculus,2017,11/09/17,12/09/17,German,FALSE,8.33,63.74,63.49,0.02,NA,NA,NA,NA,NA,NA,NA,NA,NA,0.13,FALSE,0,0,0,0,0,0,0,0,0,0,0,0,0,0,NA
+AA_0266,HZ_BR,Germany,PFLASTERSTR.,NA,52.6788854,14.0506342,na,NA,Mus musculus,2017,11/09/17,12/09/17,Czech,NA,14.7,79.68,78.32,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Died in cage. Small protocol (1 tube “All digestive tract”)
+AA_0267,HZ_BR,Germany,Wildpark Schorfheide,SCHORFHOF,52.921731,13.547089,female,NA,Mus musculus,2017,11/09/17,12/09/17,German,FALSE,16.24,79.5,84.22,0.04,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,FALSE,0,0,0,0,0,0,0,0,0,0,0,0,0,0,NA
+AA_0268,HZ_BR,Germany,Dorfanger 7 15754 Heidesee,NA,52.242473,13.70713,male,NA,Mus musculus,2017,12/09/17,13/09/17,Czech,TRUE,17.83,82,80.27,0.0847,0.0646,0.0703,0.0238,0.145,NA,NA,NA,NA,NA,0.75,TRUE,?????????,0,0,0,0,0,0,0,0,0,0,0,0,0,NA
+AA_0269,HZ_BR,Germany,Alt-Gielsdorf 68 15345 Alt-Landsberg,GIEL68,52.6053,13.8756,male,NA,Mus musculus,2017,12/09/17,13/09/17,Czech,FALSE,9.62,69.25,72.22,0.03,0.0349,0.0393,0.005,NA,NA,NA,NA,NA,NA,0.09,FALSE,0,0,0,0,0,0,0,0,0,0,0,0,0,0,NA
+AA_0270,HZ_BR,Germany,Dorfanger 7 15754 Heidesee,NA,52.242473,13.70713,female,pregnant,Mus musculus,2017,12/09/17,13/09/17,Czech,TRUE,18.38,83.31,77.16,0.0493,NA,NA,NA,NA,NA,NA,NA,3,5,1.12,TRUE,?????????,0,0,0,0,0,0,0,0,0,0,0,0,0,"white spot on belly. Resorbed embryos (2/3 left, 4/5 right)"
+AA_0271,HZ_BR,Germany,Reiterhof Böse,NA,52.896941,13.535213,female,NA,Mus musculus,2017,12/09/17,13/09/17,Czech,FALSE,25.42,98.5,95.6,0.0534,NA,NA,NA,NA,0.0074,0.0075,0.0149,NA,NA,0.28,FALSE,0,0,0,0,0,0,0,0,0,0,0,0,0,0,post partum?
+AA_0272,HZ_BR,Germany,Reiterhof Böse,NA,52.896941,13.535213,male,NA,Mus musculus,2017,12/09/17,13/09/17,Czech,FALSE,11.02,69.54,76.51,0.0239,0.0368,0.0375,0.0284,NA,NA,NA,NA,NA,NA,0.14,FALSE,0,0,0,0,0,0,0,0,0,0,0,0,0,0,NA
+AA_0273,HZ_BR,Germany,Reiterhof Böse,NA,52.896941,13.535213,male,NA,Mus musculus,2017,12/09/17,13/09/17,Czech,FALSE,6.55,58.02,63.87,0.0129,0.0086,0.0071,NA,NA,NA,NA,NA,NA,NA,0.31,FALSE,0,0,0,0,0,0,0,0,0,0,0,0,0,0,NA
+AA_0274,HZ_BR,Germany,Alt-Gielsdorf 68 15345 Alt-Landsberg,GIEL68,52.6053,13.8756,female pregnant,pregnant,Mus musculus,2017,12/09/17,13/09/17,Czech,TRUE,18.93,81.23,66.75,0.0723,NA,NA,NA,NA,NA,NA,NA,0 + 1 residual,3,0.28,FALSE,0,0,0,0,0,0,0,0,0,0,0,0,0,0,NA
+AA_0275,HZ_BR,Germany,Alt-Gielsdorf 68 15345 Alt-Landsberg,GIEL68,52.6053,13.8756,female,NA,Mus musculus,2017,12/09/17,13/09/17,Czech,FALSE,12.25,76.65,73.81,0.0464,0.0026,0.0026,0.0052,NA,NA,NA,NA,NA,NA,0.13,FALSE,0,0,0,0,0,0,0,0,0,0,0,0,0,0,NA
+AA_0276,HZ_BR,Germany,Reiterhof Böse,NA,52.896941,13.535213,male,NA,Mus musculus,2017,12/09/17,13/09/17,Czech,FALSE,24.1,92.89,105,0.0316,0.0925,0.0936,0.0371,0.1641,NA,NA,NA,NA,NA,0.21,FALSE,0,0,0,0,0,0,0,0,0,0,0,0,0,0,NA
+AA_0277,HZ_BR,Germany,Wildpark Schorfheide,SCHORFHOF,52.921731,13.547089,male,NA,Mus musculus,2017,12/09/17,13/09/17,Czech,FALSE,14.24,79.54,84.24,0.0203,0.0705,0.0563,0.0166,0.0638,NA,NA,NA,NA,NA,0.22,FALSE,0,0,0,0,0,0,0,0,0,0,0,0,0,0,NA
+AA_0278,HZ_BR,Germany,Reiterhof Böse,NA,52.896941,13.535213,female,young,Mus musculus,2017,12/09/17,13/09/17,Czech,FALSE,9.21,66.98,75,0.0176,NA,NA,NA,NA,0.0013,0.0011,0.0024,NA,NA,0.08,FALSE,0,0,0,0,0,0,0,0,0,0,0,0,0,0,NA
+AA_0279,HZ_BR,Germany,Alt-Gielsdorf 68 15345 Alt-Landsberg,GIEL68,52.6053,13.8756,female,NA,Mus musculus,2017,12/09/17,13/09/17,Czech,FALSE,15.43,75.78,def,0.0273,0.1122,0.11,0.0202,0.0957,NA,NA,NA,NA,NA,0.35,FALSE,0,0,0,0,0,0,0,0,0,0,0,0,0,0,NA
+AA_0280,HZ_BR,Germany,Alt-Gielsdorf 68 15345 Alt-Landsberg,GIEL68,52.6053,13.8756,female,young,Mus musculus,2017,12/09/17,13/09/17,Czech,FALSE,7.45,63.95,67.4,0.0219,NA,NA,NA,NA,NA,NA,NA,NA,NA,0.07,FALSE,0,0,0,0,0,0,0,0,0,0,0,0,0,0,NA
+AA_0281,HZ_BR,Germany,Wildpark Schorfheide,SCHORFHOF,52.921731,13.547089,male,young,Mus musculus,2017,12/09/17,13/09/17,Czech,FALSE,11.39,74.14,74.14,0.0187,0.0248,0.0265,0.0065,NA,NA,NA,NA,NA,NA,0.19,FALSE,0,0,0,0,0,0,0,0,0,0,0,0,0,0,NA
+AA_0282,HZ_BR,Germany,Wildpark Schorfheide,SCHORFHOF,52.921731,13.547089,male,NA,Mus musculus,2017,12/09/17,13/09/17,Czech,FALSE,9.57,66.58,72.23,0.0128,0.0234,0.0235,NA,NA,NA,NA,NA,NA,NA,0.21,FALSE,0,0,0,0,0,0,0,0,0,0,0,0,0,0,NA
+AA_0283,HZ_BR,Germany,Wildpark Schorfheide,SCHORFHOF,52.921731,13.547089,female,NA,Mus musculus,2017,12/09/17,13/09/17,German,FALSE,16.45,77.02,77.01,0.2,NA,NA,NA,NA,NA,NA,NA,NA,NA,0.19,FALSE,0,0,0,0,0,0,0,0,0,0,0,0,0,0,NA
+AA_0284,HZ_BR,Germany,Wildpark Schorfheide,SCHORFHOF,52.921731,13.547089,female,NA,Mus musculus,2017,12/09/17,13/09/17,German,FALSE,21.51,84.53,85.33,0.05,NA,NA,NA,NA,NA,NA,NA,NA,NA,0.05,FALSE,0,0,0,0,0,0,0,0,0,0,0,0,0,0,NA
+AA_0285,HZ_BR,Germany,Wildpark Schorfheide,SCHORFHOF,52.921731,13.547089,male,young,Mus musculus,2017,12/09/17,13/09/17,German,FALSE,10.04,66.99,70.05,0.01,NA,NA,NA,NA,NA,NA,NA,NA,NA,0.08,FALSE,0,0,0,0,0,0,0,0,0,0,0,0,0,0,NA
+AA_0286,HZ_BR,Germany,Kiefernweg 8 15537 Gosen-Neu Zittau,NA,52.374686,13.777103,na,NA,Mus musculus,2017,12/09/17,13/09/17,German,FALSE,11.87,71.15,79.27,<0.01,NA,NA,NA,NA,NA,NA,NA,NA,NA,0.08,FALSE,0,0,0,0,0,0,0,0,0,0,0,0,0,0,NA
+AA_0287,HZ_BR,Germany,Alt-Gielsdorf 68 15345 Alt-Landsberg,GIEL68,52.6053,13.8756,male,young,Mus musculus,2017,12/09/17,13/09/17,German,FALSE,7.89,65.91,60.55,0.2,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,FALSE,0,0,0,0,0,0,0,0,0,0,0,0,0,0,NA
+AA_0288,HZ_BR,Germany,Alt-Gielsdorf 68 15345 Alt-Landsberg,GIEL68,52.6053,13.8756,male,young,Mus musculus,2017,12/09/17,13/09/17,German,TRUE,7.01,62.14,60.69,0.1,NA,NA,NA,NA,NA,NA,NA,NA,NA,0.26,TRUE,3,0,0,0,0,0,0,0,0,0,0,0,0,0,NA
+AA_0289,HZ_BR,Germany,Alt-Gielsdorf 68 15345 Alt-Landsberg,GIEL68,52.6053,13.8756,male,NA,Mus musculus,2017,12/09/17,13/09/17,German,FALSE,8.82,63.95,59.64,0.03,0.018,0.019,0.006,NA,NA,NA,NA,NA,NA,0.08,FALSE,0,0,0,0,0,0,0,0,0,0,0,0,0,0,NA
+AA_0290,HZ_BR,Germany,Alt-Gielsdorf 68 15345 Alt-Landsberg,GIEL68,52.6053,13.8756,female,NA,Mus musculus,2017,12/09/17,13/09/17,German,TRUE,15.34,82.63,73.52,0.06,NA,NA,NA,NA,NA,NA,NA,NA,NA,0.18,FALSE,0,0,0,0,0,0,0,0,0,0,0,0,0,0,NA
+AA_0291,HZ_BR,Germany,Wildpark Schorfheide,SCHORFHOF,52.921731,13.547089,NA,NA,Mus musculus,2017,12/09/17,13/09/17,German,FALSE,13.94,73.79,75.48,0.02,NA,NA,NA,NA,NA,NA,NA,NA,NA,0.34,FALSE,0,0,0,0,0,0,0,0,0,0,0,0,0,0,NA
+AA_0292,HZ_BR,Germany,Wildpark Schorfheide,SCHORFHOF,52.921731,13.547089,female,NA,Mus musculus,2017,12/09/17,13/09/17,German,FALSE,15.55,74.77,80.31,0.02,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,FALSE,0,0,0,0,0,0,0,0,0,0,0,0,0,0,extra piece of liver in ethanol with potential cisticercous. Big mes lymph nodes
+AA_0293,HZ_BR,Germany,Berkenlatten,NA,53.1406,13.7586,na,NA,Mus musculus,2017,13/09/17,13/09/17,Czech,FALSE,13.69,74.77,74.66,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,na,FALSE,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Died in cage. Small protocol 
+AA_0294,HZ_BR,Germany,"Croustillier 17, 16259 oderage",NA,52.791376,14.116181,male,young,Mus musculus,2017,13/09/17,13/09/17,Czech,FALSE,3.96,53.98,50.98,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,na,FALSE,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Died in cage. Small protocol 
+AA_0295,HZ_BR,Germany,"Croustillier 17, 16259 oderage",NA,52.791376,14.116181,male,NA,Mus musculus,2017,13/09/17,14/09/17,Czech,FALSE,16.24,82.04,69.37,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0.06,FALSE,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Died in cage. Small protocol 
+AA_0296,HZ_BR,Germany,Alt Gaul 26b 16269 Wriezen florian köhler,NA,52.738064,14.095413,male,NA,Mus musculus,2017,13/09/17,14/09/17,Czech,FALSE,14.62,77.35,68.87,0.0288,0.0651,0.0633,0.0156,0.0887,NA,NA,NA,NA,NA,0.91,FALSE,0,0,0,0,0,0,0,0,0,0,0,0,0,0,NA
+AA_0297,HZ_BR,Germany,"Croustillier 17, 16259 oderage",NA,52.791376,14.116181,female,pregnant,Mus musculus,2017,13/09/17,14/09/17,Czech,FALSE,17.74,82.33,79.2,0.0316,NA,NA,NA,NA,NA,NA,NA,3,3,0.39,TRUE,0,0,0,0,0,0,17,0,96 ??,0,0,0,0,0,NA
+AA_0298,HZ_BR,Germany,Alt Gaul 26b 16269 Wriezen florian köhler,NA,52.738064,14.095413,female,young,Mus musculus,2017,13/09/17,14/09/17,Czech,FALSE,9.58,69.5,70.3,0.0235,NA,NA,NA,NA,0.0015,0.0013,0.0028,NA,NA,0.13,TRUE,18,0,0,0,0,0,0,0,0,0,0,0,0,0,NA
+AA_0299,HZ_BR,Germany,Alt Gaul 26b 16269 Wriezen florian köhler,NA,52.738064,14.095413,male,NA,Mus musculus,2017,13/09/17,14/09/17,Czech,FALSE,16.97,85.87,84.22,0.048,0.0977,0.0942,0.025,0.1304,NA,NA,NA,NA,NA,0.45,TRUE,?????????,0,0,0,0,0,0,0,0,0,0,0,0,0,NA
+AA_0300,HZ_BR,Germany,"Croustillier 17, 16259 oderage",NA,52.791376,14.116181,female,NA,Mus musculus,2017,13/09/17,14/09/17,Czech,FALSE,17.23,86.84,81.97,0.0684,NA,NA,NA,NA,0.0066,0.006,0.0126,4,2,0.24,TRUE,?????????,0,0,0,0,0,0,0,0,0,0,0,0,0,NA
+AA_0301,HZ_BR,Germany,Alt Gaul 26b 16269 Wriezen florian köhler,NA,52.738064,14.095413,female,post partum,Mus musculus,2017,13/09/17,14/09/17,Czech,FALSE,18.7,89.5,80.82,0.0323,NA,NA,NA,NA,0.0058,0.0064,0.0122,NA,NA,0.6,TRUE,0,0,0,0,0,0,49,0,0,0,0,0,0,0,NA
+AA_0302,HZ_BR,Germany,Reitsport Münchehofe Minderhofer strasse,NA,52.496944,13.677066,male,NA,Mus musculus,2017,13/09/17,14/09/17,Czech,FALSE,17.9,84.25,96.58,0.0205,0.0789,0.082,0.0262,0.2137,NA,NA,NA,NA,NA,0.43,FALSE,0,0,0,0,0,0,0,0,0,0,0,0,0,0,NA
+AA_0303,HZ_BR,Germany,Pferdefreunde klein-schauen alte-dorfstrasse 31 15859 stokow,NA,52.242982,13.867386,male,NA,Mus musculus,2017,13/09/17,14/09/17,Czech,FALSE,18.92,83.28,91.96,0.0528,0.0506,0.0538,0.0194,0.232,NA,NA,NA,NA,NA,0.04,TRUE,137,0,0,0,0,0,0,0,0,0,0,0,0,0,NA
+AA_0304,HZ_BR,Germany,Reitsport Münchehofe Minderhofer strasse,NA,52.496944,13.677066,female,pregnant,Mus musculus,2017,13/09/17,14/09/17,Czech,FALSE,15.58,82.08,81.92,0.0258,NA,NA,NA,NA,NA,NA,NA,2,1,0.69,TRUE,4,0,0,0,0,0,0,0,0,0,0,0,0,0,NA
+AA_0305,HZ_BR,Germany,Reiterhof Böse,NA,52.896941,13.535213,female,young,Mus musculus,2017,13/09/17,14/09/17,Czech,FALSE,7.07,57.55,66.71,0.0135,NA,NA,NA,NA,NA,NA,NA,NA,NA,na,FALSE,0,0,0,0,0,0,0,0,0,0,0,0,0,0,NA
+AA_0306,HZ_BR,Germany,Pferdefreunde klein-schauen alte-dorfstrasse 31 15859 stokow,NA,52.242982,13.867386,male,NA,Mus musculus,2017,13/09/17,14/09/17,Czech,FALSE,12.79,73.74,82.9,0.0274,0.0322,0.0334,0.0042,NA,NA,NA,NA,NA,NA,0.46,TRUE,17,0,0,0,0,0,0,0,0,0,0,0,0,0,NA
+AA_0307,HZ_BR,Germany,Pferdefreunde klein-schauen alte-dorfstrasse 31 15859 stokow,NA,52.242982,13.867386,female,pregnant,Mus musculus,2017,13/09/17,14/09/17,Czech,FALSE,16.75,78.75,85.58,0.368,NA,NA,NA,NA,NA,NA,NA,2,5,0.56,TRUE,43,0,0,0,0,0,0,0,0,0,0,0,0,0,NA
+AA_0308,HZ_BR,Germany,Pferdefreunde klein-schauen alte-dorfstrasse 31 15859 stokow,NA,52.242982,13.867386,male,NA,Mus musculus,2017,13/09/17,14/09/17,Czech,FALSE,14.44,75.23,82.77,0.0395,0.0358,0.0424,0.0112,0.019,NA,NA,NA,NA,NA,0.52,TRUE,?????????,0,0,0,0,0,0,0,0,0,0,0,0,0,white spot on belly
+AA_0309,HZ_BR,Germany,Pferdefreunde klein-schauen alte-dorfstrasse 31 15859 stokow,NA,52.242982,13.867386,female,NA,Mus musculus,2017,13/09/17,14/09/17,Czech,FALSE,15.87,83.14,89.49,0.0544,NA,NA,NA,NA,0.0049,0.004,NA,NA,NA,0.06,TRUE,56,0,0,0,0,0,0,0,0,0,0,0,0,0,NA
+AA_0310,HZ_BR,Germany,Alt Gaul 26b 16269 Wriezen florian köhler,NA,52.738064,14.095413,female,young,Mus musculus,2017,13/09/17,14/09/17,German,FALSE,7.75,60.4,56.93,0.01,NA,NA,NA,NA,NA,NA,NA,NA,NA,0.07,TRUE,7,6,0,0,0,0,0,0,0,0,0,0,0,0,NA
+AA_0311,HZ_BR,Germany,Alt Gaul 26b 16269 Wriezen florian köhler,NA,52.738064,14.095413,female,NA,Mus musculus,2017,13/09/17,14/09/17,German,FALSE,14.12,77.78,73.49,0.03,NA,NA,NA,NA,NA,NA,NA,NA,NA,0.29,TRUE,34,101,0,0,0,0,5,0,0,0,0,0,0,0,NA
+AA_0312,HZ_BR,Germany,Alt Gaul 26b 16269 Wriezen florian köhler,NA,52.738064,14.095413,female,NA,Mus musculus,2017,13/09/17,14/09/17,German,TRUE,19.84,78.14,68.08,0.07,NA,NA,NA,NA,NA,NA,NA,NA,NA,0.45,TRUE,171,89,0,0,0,0,0,0,1,0,0,0,0,0,NA
+AA_0313,HZ_BR,Germany,Reitsport Münchehofe Minderhofer strasse,NA,52.496944,13.677066,female,pregnant,Mus musculus,2017,13/09/17,14/09/17,German,FALSE,16.43,87.56,85.8,0.02,NA,NA,NA,NA,NA,NA,NA,NA,NA,0.16,TRUE,3,2,0,0,0,0,0,0,0,0,0,0,0,0,NA
+AA_0314,HZ_BR,Germany,Pferdefreunde klein-schauen alte-dorfstrasse 31 15859 stokow,NA,52.242982,13.867386,male,NA,Mus musculus,2017,13/09/17,14/09/17,German,FALSE,13.68,66.99,83.2,0.028,0.083,0.086,0.026,0.045,NA,NA,NA,NA,NA,0.12,TRUE,17,0,0,0,0,0,0,0,0,0,0,0,0,0,NA
+AA_0315,HZ_BR,Germany,Reitsport Münchehofe Minderhofer strasse,NA,52.496944,13.677066,female,pregnant,Mus musculus,2017,13/09/17,14/09/17,German,FALSE,18.73,80.01,82.41,0.02,NA,NA,NA,NA,NA,NA,NA,0,5,0.79,FALSE,0,0,0,0,0,0,0,0,0,0,0,0,0,0,NA
+AA_0316,HZ_BR,Germany,"Croustillier 17, 16259 oderage",NA,52.791376,14.116181,male,NA,Mus musculus,2017,13/09/17,14/09/17,German,FALSE,10.59,69.08,62.84,0.02,NA,NA,NA,NA,NA,NA,NA,NA,NA,0.31,TRUE,4,2,0,0,0,0,0,0,0,0,???,0,0,0,NA
+AA_0317,HZ_BR,Germany,Pferdefreunde klein-schauen alte-dorfstrasse 31 15859 stokow,NA,52.242982,13.867386,male,NA,Mus musculus,2017,13/09/17,14/09/17,German,FALSE,17.55,82.54,84.4,0.03,0.1097,0.1111,0.0263,0.1048,NA,NA,NA,NA,NA,0.49,TRUE,18,0,0,0,0,0,0,0,0,0,0,0,0,0,NA
+AA_0318,HZ_BR,Germany,"Croustillier 17, 16259 oderage",NA,52.791376,14.116181,female,NA,Mus musculus,2017,13/09/17,14/09/17,German,TRUE,16.05,82.77,72.63,0.04,NA,NA,NA,NA,NA,NA,NA,NA,NA,0.19,TRUE,?????????,0,0,0,0,0,0,0,0,0,0,0,0,0,NA
+AA_0319,HZ_BR,Germany,dubener hauptstrasse 24,NA,51.897811,13.809616,female,NA,Mus musculus,2017,13/09/17,14/09/17,German,TRUE,14.2,73.41,74.28,0.02,NA,NA,NA,NA,NA,NA,NA,NA,NA,0.84,TRUE,0,0,0,0,0,0,0,0,9,0,0,0,0,0,NA
+AA_0320,HZ_BR,Germany,dubener hauptstrasse 24,NA,51.897811,13.809616,male,NA,Mus musculus,2017,13/09/17,14/09/17,Czech,FALSE,16.37,16.37,79.23,84.3,0.0702,0.0702,0.0237,0.1369,NA,NA,NA,NA,NA,0.74,FALSE,0,0,0,0,0,0,0,0,0,0,0,0,0,0,NA
+AA_0321,HZ_BR,Germany,Dorretenhof Gut Doretenhof 2/3,NA,53.111991,13.462134,male,BA,Mus musculus,2017,14/09/17,15/09/17,Czech,FALSE,9.42,69.59,65.19,0.0335,0.0516,0.0518,0.0139,0.0221,,,,,,0.41,TRUE,37,0,0,0,0,0,0,0,0,0,0,0,0,0,
+AA_0322,HZ_BR,Germany,Seramun Biotechniogie zentrum spreenhagener strasse 11 15754 Heijensee,NA,52.269413,13.834069,male,NA,Mus musculus,2017,14/09/17,15/09/17,Czech,FALSE,16.85,77.72,87.97,0.0291,0.0945,0.0965,0.0142,0.0436,,,,,,0.6,TRUE,1,0,0,0,0,0,0,0,0,0,0,0,0,0,
+AA_0323,HZ_BR,Germany,Dorretenhof Gut Doretenhof 2/3,NA,53.111991,13.462134,female,NA,Mus musculus,2017,14/09/17,15/09/17,Czech,FALSE,8.1,69.25,60.8,0.0137,,,,,0.001,0.0016,0.0026,,,0.75,FALSE,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+AA_0324,HZ_BR,Germany,Dorretenhof Gut Doretenhof 2/3,NA,53.111991,13.462134,female,pregnant,Mus musculus,2017,14/09/17,15/09/17,Czech,FALSE,15.54,81.92,73.32,0.024,,,,,,,,2,4,0.33,TRUE,83,0,0,0,0,0,2,0,0,0,0,0,0,0,
+AA_0325,HZ_BR,Germany,Dorfstrasse 84 Storkow,STORK84,53.049615,13.440793,male,,Mus musculus,2017,14/09/17,15/09/17,Czech,FALSE,14.71,79.52,73.51,0.0651,0.0656,0.0652,0.0137,0.0321,,,,,,0.29,TRUE,?????????,0,0,0,0,0,0,0,0,0,0,0,0,0,
+AA_0326,HZ_BR,Germany,JOACHIM3,,53.12478,13.459395,male,,Mus musculus,2017,14/09/17,15/09/17,Czech,TRUE,12.71,75.86,75.86,0.0459,0.0547,0.0564,0.013,0.0741,,,,,,0.51,TRUE,2,0,0,0,0,0,0,0,0,0,0,0,0,0,
+AA_0327,HZ_BR,Germany,Dorfstrasse 84 Storkow,STORK84,53.049615,13.440793,female,,Mus musculus,2017,14/09/17,15/09/17,Czech,FALSE,17.17,84.8,75.82,0.0416,,,,,0.0043,0.0039,0.0082,,,0.12,TRUE,0,0,0,0,0,0,0,0,0,18,0,0,1,0,
+AA_0328,HZ_BR,Germany,Dorfstrasse 84 Storkow,STORK84,53.049615,13.440793,female,young,Mus musculus,2017,14/09/17,15/09/17,Czech,FALSE,7.65,64.2,68.05,0.019,,,,,,,,,,0.05,FALSE,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+AA_0329,HZ_BR,Germany,Haus am See 23 Briesensee,NA,51.560206,14.01867,male,,Mus musculus,2017,14/09/17,15/09/17,Czech,FALSE,16.09,80.24,80.38,0.0206,0.0603,0.0618,0.0178,0.0869,,,,,,0.61,FALSE,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+AA_0330,HZ_BR,Germany,Alt-Ruhlsdorf strasse 14 15344 Straussberg,NA,52.569492,13.99056,male,,Mus musculus,2017,14/09/17,15/09/17,Czech,FALSE,15.75,82.68,77.85,0.0206,0.062,0.0641,0.0185,0.1134,,,,,,0.19,TRUE,0,0,0,0,0,0,0,0,0,4,0,0,0,0,
+AA_0331,HZ_BR,Germany,TEMP1,,53.115344,13.478184,female,,Mus musculus,2017,14/09/17,15/09/17,Czech,FALSE,16.77,80.89,75.87,0.036,,,,,0.045,0.006,0.0105,,,0.12,TRUE,214,0,0,0,1 ??,0,0,0,0,12,0,0,0,0,
+AA_0332,HZ_BR,Germany,TEMP1,,53.115344,13.478184,female,post partum (lactating),Mus musculus,2017,14/09/17,15/09/17,Czech,FALSE,16.89,82.56,76.29,0.0306,,,,,0.0032,0.0041,,,,0.4,TRUE,?????????,0,0,0,0,0,0,0,0,0,0,0,0,0,
+AA_0333,HZ_BR,Germany,TEMP1,,53.115344,13.478184,male,,Mus musculus,2017,14/09/17,15/09/17,Czech,FALSE,17.87,82.12,76.82,0.0885,0.0528,0.05,0.0185,0.0938,,,,,,0.46,TRUE,22,0,0,6,0,0,0,0,0,45,0,0,0,0,left kidney regressed
+AA_0334,HZ_BR,Germany,Hauptstrasse 58 15345 Harnedorf,,52.682556,14.007385,male,,Mus musculus,2017,14/09/17,15/09/17,Czech,FALSE,12.16,73.26,68.44,0.0209,0.0718,0.0748,0.0173,0.1107,,,,,,0.05,FALSE,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+AA_0335,HZ_BR,Germany,Waldstrasse 1,,51.974531,14.054357,female,,Mus musculus,2017,14/09/17,15/09/17,Czech,TRUE,13.65,76.7,71.65,0.0297,,,,,0.0027,0.0029,0.0056,,,0.51,TRUE,0,0,0,0,0,0,0,0,0,0,0,0,1,0,
+AA_0336,HZ_BR,Germany,TEMP1,,53.115344,13.478184,male,young,Mus musculus,2017,14/09/17,15/09/17,Czech,FALSE,5.26,55.3,53.09,0.0103,,,,,,,,,,0.08,TRUE,70,0,0,2,0,0,0,0,0,0,0,0,0,0,
+AA_0337,HZ_BR,Germany,Alte Heerstrasse 39,,52.7667,14.0817,female,post partum,Mus musculus,2017,14/09/17,15/09/17,Czech,FALSE,14.58,81.18,73.78,0.021,,,,,0.0033,0.0039,0.0072,,,0.6,TRUE,115,0,0,0,0,0,0,???,0,66,0,0,0,0,
+AA_0338,HZ_BR,Germany,Seramun Biotechniogie zentrum spreenhagener strasse 11 15754 Heijensee,NA,52.269413,13.834069,male,,Mus musculus,2017,14/09/17,15/09/17,Czech,FALSE,17.49,82.87,90.18,0.0371,0.0827,0.0852,0.0257,0.148,,,,,,0.75,TRUE,0,0,0,0,0,0,0,0,0,0,0,0,1,0,white spot on belly
+AA_0339,HZ_BR,Germany,JOACHIM3,,53.12478,13.459395,male,,Mus musculus,2017,14/09/17,15/09/17,Czech,FALSE,17.63,84.42,81.46,0.0524,0.0579,0.0617,0.0226,0.1852,,,,,,0.21,TRUE,1,0,0,0,0,0,0,0,??,136,0,0,0,0,
+AA_0340,HZ_BR,Germany,JOACHIM3,,53.12478,13.459395,female,pregnant,Mus musculus,2017,14/09/17,15/09/17,Czech,FALSE,22.19,80.3,73.83,0.0231,,,,,,,,3,2,0.13,TRUE,7,0,0,0,0,0,0,0,0,2,0,0,0,0,
+AA_0341,HZ_BR,Germany,Lychenerstrasse 28 17268 templin,NA,53.127386,13.486372,female,,Mus musculus,2017,14/09/17,15/09/17,Czech,FALSE,15.8,80.13,63.74,0.0334,,,,,0.0046,0.0039,,,,0.54,TRUE,2,0,0,0,0,0,0,0,0,7,0,0,0,0,
+AA_0342,HZ_BR,Germany,JOACHIM3,,53.12478,13.459395,female,pregnant,Mus musculus,2017,14/09/17,15/09/17,Czech,FALSE,17.21,78.79,76.52,0.036,,,,,,,,1,2,0.1,TRUE,0,0,0,0,0,0,0,0,0,67,0,0,0,0,
+AA_0343,HZ_BR,Germany,Haus am See 23 Briesensee,NA,51.560206,14.01867,female,,Mus musculus,2017,14/09/17,15/09/17,Czech,FALSE,14.79,80.06,73.72,0.0414,,,,,0.0042,0.0064,0.0106,,,0.13,FALSE,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+AA_0344,HZ_BR,Germany,Dorfstrasse 84 Storkow,STORK84,53.049615,13.440793,female,,Mus musculus,2017,14/09/17,15/09/17,German,TRUE,17.24,87.46,73.57,0.06,,,,,,,,,,0.38,TRUE,?????????,0,0,0,0,0,0,0,0,0,0,0,0,0,SG in our tank (mistake)
+AA_0345,HZ_BR,Germany,Dorfstrasse 84 Storkow,STORK84,53.049615,13.440793,male,young,Mus musculus,2017,14/09/17,15/09/17,German,FALSE,9.25,64.07,58.32,0.03,,,,,,,,,,0.09,TRUE,0,0,0,0,0,0,0,0,0,0,1,0,0,0,
+AA_0346,HZ_BR,Germany,Dorfstrasse 84 Storkow,STORK84,53.049615,13.440793,female,,Mus musculus,2017,14/09/17,15/09/17,German,FALSE,19.29,86.1,77.13,0.05,,,,,,,,,,0.73,TRUE,?????????,0,0,0,0,0,0,0,0,0,0,0,0,0,
+AA_0347,HZ_BR,Germany,Dorfstrasse 84 Storkow,STORK84,53.049615,13.440793,male,young,Mus musculus,2017,14/09/17,15/09/17,German,FALSE,6.77,64.54,59.54,0.02,,,,,,,,,,0.04,FALSE,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+AA_0348,HZ_BR,Germany,Dorfstrasse 84 Storkow,STORK84,53.049615,13.440793,male,,Mus musculus,2017,14/09/17,15/09/17,German,FALSE,17.49,77.47,67.8,0.07,,,,,,,,,,0.04,TRUE,?????????,0,0,0,0,0,0,0,0,0,0,0,0,0,
+AA_0349,HZ_BR,Germany,Dorfstrasse 84 Storkow,STORK84,53.049615,13.440793,female,,Mus musculus,2017,14/09/17,15/09/17,German,FALSE,18.27,90.95,73.72,0.03,,,,,,,,,,2 mice same cage ^!! 0.49,Ma 18 stomach / tr 43 cecum +28,?????????,0,0,0,0,0,0,0,0,0,0,0,0,0,
+AA_0350,HZ_BR,Germany,Dorfstrasse 84 Storkow,STORK84,53.049615,13.440793,male,,Mus musculus,2017,14/09/17,15/09/17,German,TRUE,17.18,80.78,71.76,0.05,0.0651,0.0662,0.0176,0.054,,,,,,0.45,Sy 23 +4 co,23,4,0,0,0,0,0,0,0,0,0,0,0,0,
+AA_0351,HZ_BR,Germany,Dorfstrasse 84 Storkow,STORK84,53.049615,13.440793,female,,Mus musculus,2017,14/09/17,15/09/17,German,FALSE,20.27,94.9,77.88,0.2,,,,,,,,,,0.14,Hymenolepsis 1 si / ma 26 +3 / sy 38 +3 / as 9,?????????,0,0,0,0,0,0,0,0,0,0,0,0,0,hepatomegalia. Necrosis on the splee. Hypertrophic mesenteric lymph nodes
+AA_0352,HZ_BR,Germany,Dorfstrasse 84 Storkow,STORK84,53.049615,13.440793,male,,Mus musculus,2017,14/09/17,15/09/17,German,TRUE,16.56,79.77,70.3,0.04,0.07,0.077,0.017,0.091,,,,,,1.24,TRUE,20,0,0,0,0,0,0,0,9,17,0,0,0,0,
+AA_0353,HZ_BR,Germany,Dorfstrasse 84 Storkow,STORK84,53.049615,13.440793,female,,Mus musculus,2017,14/09/17,15/09/17,German,FALSE,18.85,86.95,77.48,0.04,,,,,,,,,,0.58,TRUE,?????????,0,0,0,0,0,0,0,0,0,0,0,0,0,
+AA_0354,HZ_BR,Germany,Dorfstrasse 84 Storkow,STORK84,53.049615,13.440793,female,young,Mus musculus,2017,14/09/17,15/09/17,German,TRUE,7.22,61.21,59.6,0.03,,,,,,,,,,0.08,FALSE,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+AA_0355,HZ_BR,Germany,Dorfstrasse 84 Storkow,STORK84,53.049615,13.440793,female,,Mus musculus,2017,14/09/17,15/09/17,German,FALSE,20.09,85.06,79.03,0.16,,,,,,,,,,0.41,TRUE,?????????,0,0,0,0,0,0,0,0,0,1,0,0,0,
+AA_0356,HZ_BR,Germany,JOACHIM3,,53.12478,13.459395,female,young,Mus musculus,2017,14/09/17,15/09/17,German,FALSE,7.75,60.66,53.39,0.01,,,,,,,,,,0.16,FALSE,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+AA_0357,HZ_BR,Germany,Dorfstrasse 84 Storkow,STORK84,53.049615,13.440793,female,,Mus musculus,2017,14/09/17,15/09/17,German,FALSE,10.83,69.37,63.34,0.07,,,,,,,,,,NA,TRUE,?????????,0,0,0,0,0,0,0,0,0,0,0,0,0,Died in cage. Small protocol 
+AA_0358,HZ_BR,Germany,Dorfstrasse 84 Storkow,STORK84,53.049615,13.440793,female,pregnant,Mus musculus,2017,14/09/17,15/09/17,German,TRUE,26.7,89.31,73.95,0.09,,,,,,,,,,0.05,TRUE,?????????,0,0,0,0,0,0,0,0,0,0,0,0,0,
+AA_0359,HZ_BR,Germany,Lychenerstrasse 28 17268 templin,NA,53.127386,13.486372,male,young,Mus musculus,2017,14/09/17,15/09/17,German,FALSE,9.97,68.21,53.64,0.02,,,,,,,,,,0.44,FALSE,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+AA_0360,HZ_BR,Germany,Dorfstrasse 84 Storkow,STORK84,53.049615,13.440793,NA,,Mus musculus,2017,14/09/17,15/09/17,German,FALSE,10.9,70.26,68.28,0.01,,,,,,,,,,NA,FALSE,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+AA_0361,HZ_BR,Germany,Lychenerstrasse 28 17268 templin,NA,53.127386,13.486372,male,,Mus musculus,2017,15/09/17,15/09/17,Czech,FALSE,19.62,86.14,86.12,0.0601,0.0693,0.0739,0.0247,0.1498,,,,,,NA,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Died in cage. Small protocol 
+AA_0362,HZ_BR,Germany,Guhlener dorfstrasse 29 15913 Schwielochser,,52.01705,14.144171,male,,Mus musculus,2017,15/09/17,15/09/17,Czech,FALSE,15.11,82.76,78.55,NA,,,,,,,,,,,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Died in cage. Small protocol 
+AA_0363,HZ_BR,Germany,Berghof 2 15859 Rieplos (Storkow) agrarunternehmer,NA,52.276343,13.897624,male,,Mus musculus,2017,15/09/17,15/09/17,Czech,FALSE,14.29,74.15,Def,NA,,,,,,,,,,,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Died in cage. Small protocol 
+AA_0364,HZ_BR,Germany,Berghof 2 15859 Rieplos (Storkow) agrarunternehmer,NA,52.276343,13.897624,female,,Mus musculus,2017,15/09/17,15/09/17,Czech,FALSE,18.4,85.41,89.2,NA,,,,,,,,,,,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Died in cage. Small protocol 
+AA_0365,HZ_BR,Germany,,,,,,,,2017,,,,,,,,,,,,,,,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+AA_0366,HZ_BR,Germany,,,,,,,,2017,,,,,,,,,,,,,,,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+AA_0367,HZ_BR,Germany,,,,,,,,2017,,,,,,,,,,,,,,,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+AA_0368,HZ_BR,Germany,,,,,,,,2017,,,,,,,,,,,,,,,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+AA_0369,HZ_BR,Germany,,,,,,,,2017,,,,,,,,,,,,,,,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+AA_0370,HZ_BR,Germany,,,,,,,,2017,,,,,,,,,,,,,,,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+AA_0371,HZ_BR,Germany,,,,,,,,2017,,,,,,,,,,,,,,,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+AA_0372,HZ_BR,Germany,,,,,,,,2017,,,,,,,,,,,,,,,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+AA_0373,HZ_BR,Germany,,,,,,,,2017,,,,,,,,,,,,,,,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+AA_0374,HZ_BR,Germany,,,,,,,,2017,,,,,,,,,,,,,,,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+AA_0375,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+AA_0376,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+AA_0377,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+AA_0378,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+AA_0379,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+AA_0380,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+AA_0381,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+AA_0382,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+AA_0383,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+AA_0384,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+AA_0385,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+AA_0386,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+AA_0387,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+AA_0388,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+AA_0389,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+AA_0390,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+AA_0391,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+AA_0392,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+AA_0393,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+AA_0394,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+AA_0395,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+AA_0396,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+AA_0397,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+AA_0398,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+AA_0399,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+AA_0400,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+AA_0401,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+AA_0402,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+AA_0403,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+AA_0404,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+AA_0405,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+AA_0406,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+AA_0407,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+AA_0408,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+AA_0409,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+AA_0410,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+AA_0411,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+AA_0412,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+AA_0413,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+AA_0414,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+AA_0415,HZ_BR,Germany,Sawaller dorfstrasse 10 15848,NA,52.074772,14.180929,female,young,Mus musculus,2017,15/09/2017,15/09/2017,Czech,FALSE,5.83,55.62,61.56,NA,,,,,,,,,,,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Died in cage. Small protocol 
+AA_0416,HZ_BR,Germany,Beeskower strasse 6 ,NA,52.089399,14.173623,male,,Mus musculus,2017,15/09/2017,15/09/2017,Czech,FALSE,12.47,75.09,69.89,NA,,,,,,,,,,,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Died in cage. Small protocol 
+AA_0417,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+AA_0418,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+AA_0419,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+AA_0420,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+AA_0421,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+AA_0422,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+AA_0423,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+AA_0424,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+AA_0425,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+AA_0426,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+ZZ_0001,HZ_BR,Germany,Wriezenerstrasse 6 16269 wriezen,FRANK6,52.6703,14.0589,male,NA,apodemus,2017,11/09/17,12/09/17,German,FALSE,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA, / / SI /,NA,0.75,FALSE,?????????,0,0,0,0,0,0,0,0,0,0,0,0,0,NA
+ZZ_0002,HZ_BR,Germany,Mühlenstrasse 23 15345 alt-landsberg wesenthal,NA,52.593745,13.833525,male,young,rattus norvegicus,2017,11/09/17,11/09/17,German,FALSE,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,FALSE,0,0,0,0,0,0,0,0,0,0,0,0,0,0,NA
+ZZ_0003,HZ_BR,Germany,Kastanienweg 7 15345 Prädikow,NA,52.6242788,14.0101667,female,NA,bank vole,2017,11/09/17,12/09/17,German,FALSE,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1.19,FALSE,0,0,0,0,0,0,0,0,0,0,0,0,0,0,NA
+ZZ_0004,HZ_BR,Germany,forstrasse joachimsthal 3,NA,52.994574,13.684043,female,NA,bank vole,2017,11/09/17,12/09/17,German,FALSE,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0.83,FALSE,0,0,0,0,0,0,0,0,0,0,0,0,0,0,NA
+ZZ_0005,HZ_BR,Germany,lanke wandlitzer strasse 16,NA,52.757551,13.523808,female,NA,apodemus flaviolis,2017,12/09/17,13/09/17,German,FALSE,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0.05,FALSE,0,0,0,0,0,0,0,0,0,0,0,0,0,0,NA
+ZZ_0006,HZ_BR,Germany,lanke wandlitzer strasse 16,NA,52.757551,13.523808,female,NA,feldmaus,2017,12/09/17,13/09/17,German,FALSE,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0.22,FALSE,0,0,0,0,0,0,0,0,0,0,0,0,0,0,NA
+ZZ_0007,HZ_BR,Germany,lanke wandlitzer strasse 16,NA,52.757551,13.523808,NA,NA,apodemus,2017,12/09/17,13/09/17,German,FALSE,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0.11,FALSE,0,0,0,0,0,0,0,0,0,0,0,0,0,0,NA
+ZZ_0008,HZ_BR,Germany,lanke wandlitzer strasse 16,NA,52.757551,13.523808,NA,NA,feldmaus,2017,12/09/17,13/09/17,German,FALSE,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0.11,FALSE,0,0,0,0,0,0,0,0,0,0,0,0,0,0,NA
+ZZ_0009,HZ_BR,Germany,lanke wandlitzer strasse 16,NA,52.757551,13.523808,NA,NA,bank vole,2017,12/09/17,13/09/17,German,FALSE,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0.35,FALSE,19,0,0,0,0,0,0,0,0,0,0,0,0,0,NA
+ZZ_0010,HZ_BR,Germany,lanke wandlitzer strasse 16,NA,52.757551,13.523808,NA,NA,bank vole,2017,12/09/17,13/09/17,German,FALSE,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0.03,FALSE,21,0,0,0,0,0,0,0,0,0,0,0,0,0,NA
+ZZ_0011,HZ_BR,Germany,Erste-kolonie 39,NA,51.830746,14.076701,NA,NA,apodemus,2017,12/09/17,13/09/17,German,TRUE,28.51,96.75,100.89,0.16,NA,NA,NA,NA,NA,NA,NA,NA,NA,0.87,FALSE,0,0,0,5,0,0,0,0,0,0,0,0,0,0,NA
+ZZ_0012,HZ_BR,Germany,Haus am See 23 Briesensee,NA,51.560206,14.01867,male,NA,apodemus,2017,14/09/17,15/09/17,German,FALSE,,,,,,,,,,,,,,0.16,FALSE,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+ZZ_0013,HZ_BR,Germany,Haus am See 23 Briesensee,NA,51.560206,14.01867,male,young,apodemus,2017,14/09/17,15/09/17,German,TRUE,,,,,,,,,,,,,,0.42,FALSE,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+ZZ_0014,HZ_BR,Germany,GROSSV1,NA,53.005087,13.560222,male,,microtus,2017,14/09/17,15/09/17,German,FALSE,,,,,,,,,,,,,,0.14,TRUE,?????????,0,0,0,0,0,0,0,0,0,0,0,0,0,
+ZZ_0015,HZ_BR,Germany,Weesow Siedlungstrasse 14,NA,,,male,,apodemus,2017,14/09/17,15/09/17,German,FALSE,,,,,,,,,,,,,,0.37,TRUE,0,0,0,0,0,0,0,0,5,0,0,0,0,0,
+ZZ_0016,HZ_BR,Germany,Seramun Biotechniogie zentrum spreenhagener strasse 11 15754 Heijensee,NA,52.269413,13.834069,male,,apodemus,2017,14/09/17,15/09/17,German,TRUE,,,,,,,,,,,,,,0.39,FALSE,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+ZZ_0017,HZ_BR,Germany,Seramun Biotechniogie zentrum spreenhagener strasse 11 15754 Heijensee,NA,52.269413,13.834069,female,,bank vole,2017,14/09/17,15/09/17,German,FALSE,,,,,,,,,,,,,,0.76,FALSE,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+ZZ_0018,HZ_BR,Germany,Seramun Biotechniogie zentrum spreenhagener strasse 11 15754 Heijensee,NA,52.269413,13.834069,male,,apodemus,2017,14/09/17,15/09/17,German,FALSE,,,,,,,,,,,,,,0.84,FALSE,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+ZZ_0019,HZ_BR,Germany,Grünthal Biesenthaler strasse 1,,,,female,,apodemus,2017,14/09/17,15/09/17,German,TRUE,,,,,,,,,,,,,,0.13,TRUE,?????????,0,0,0,0,0,0,0,0,0,0,0,0,0,
+ZZ_0020,HZ_BR,Germany,Grünthal Biesenthaler strasse 1,,,,female,,apodemus,2017,14/09/17,15/09/17,German,TRUE,,,,,,,,,,,,,,0.55,TRUE,?????????,0,0,0,0,0,0,0,0,0,0,0,0,0,
+ZZ_0021,HZ_BR,Germany,Grünthal Biesenthaler strasse 1,,,,female,,apodemus,2017,14/09/17,15/09/17,German,FALSE,,,,,,,,,,,,,,1.48,FALSE,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+ZZ_0022,HZ_BR,Germany,FLIE8,,,,male,,microtus bank vole,2017,14/09/17,15/09/17,German,TRUE,,,,,,,,,,,,,,0.03,TRUE,?????????,0,0,0,0,0,0,0,0,0,0,0,0,0,
+ZZ_0023,HZ_BR,Germany,Grünthal Biesenthaler strasse 1,,,,male,young,apodemus,2017,14/09/17,15/09/17,German,FALSE,,,,,,,,,,,,,,0.35,TRUE,?????????,0,0,0,0,0,0,0,0,0,0,0,0,0,
+ZZ_0024,HZ_BR,Germany,Haus am See 23 Briesensee,NA,51.560206,14.01867,male,,apodemus,2017,14/09/17,15/09/17,German,TRUE,,,,,,,,,,,,,,1.06,FALSE,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+ZZ_0025,HZ_BR,Germany,GROSSV1,,53.005087,13.560222,male,,apodemus,2017,14/09/17,15/09/17,German,TRUE,,,,,,,,,,,,,,0.09,FALSE,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+ZZ_0026,HZ_BR,Germany,GROSSV1,,53.005087,13.560222,female,,apodemus,2017,14/09/17,15/09/17,German,TRUE,,,,,,,,,,,,,,0.41,FALSE,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+ZZ_0027,HZ_BR,Germany,Haus am See 23 Briesensee,NA,51.560206,14.01867,male,young,apodemus,2017,14/09/17,15/09/17,German,FALSE,,,,,,,,,,,,,,0.21,FALSE,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+ZZ_0028,HZ_BR,Germany,Weesow Siedlungstrasse 14,,,,male,,apodemus,2017,14/09/17,15/09/17,German,TRUE,,,,,,,,,,,,,,0.24,TRUE,?????????,0,0,0,0,0,0,0,0,0,0,0,0,0,
+ZZ_0029,HZ_BR,Germany,Haus am See 23 Briesensee,NA,51.560206,14.01867,male,,apodemus,2017,14/09/17,15/09/17,German,FALSE,,,,,,,,,,,,,,0.49,FALSE,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+ZZ_0030,HZ_BR,Germany,Waldstrasse 1,,51.974531,14.054357,female,,apodemus,2017,14/09/17,15/09/17,German,FALSE,,,,,,,,,,,,,,0.57,FALSE,?????????,0,0,0,0,0,0,0,0,0,0,0,0,0,
+ZZ_0031,HZ_BR,Germany,Haus am See 23 Briesensee,NA,51.560206,14.01867,male,young,apodemus,2017,14/09/17,15/09/17,German,FALSE,,,,,,,,,,,,,,0.22,FALSE,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+ZZ_0032,HZ_BR,Germany,GROSSV1,,53.005087,13.560222,NA,,apodemus,2017,14/09/17,15/09/17,German,FALSE,,,,,,,,,,,,,,0.44,FALSE,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+ZZ_0033,HZ_BR,Germany,Weesow Siedlungstrasse 14,,,,NA,,apodemus,2017,14/09/17,15/09/17,German,FALSE,,,,,,,,,,,,,,0.95,TRUE,?????????,0,0,0,0,0,0,0,0,0,0,0,0,0,
+ZZ_0034,HZ_BR,Germany,,,,,,,,2017,,,,,,,,,,,,,,,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+ZZ_0035,HZ_BR,Germany,,,,,,,,2017,,,,,,,,,,,,,,,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
