@@ -166,10 +166,11 @@ all.net <- apply(Loc_till_17, 1, function (x) {
      all.net
 })
 
-r.new <- apply(r.new, 1, paste, collapse="|")
+## r.new <- apply(r.new, 1, paste, collapse="|")
 
-r.old <- round(unique(Loc_till_17[, c("Longitude", "Latitude")]), 3)
-r.old <- apply(r.old, 1, paste, collapse="|")
+## r.old <- round(unique(Loc_till_17[, c("Longitude", "Latitude")]), 3)
+## r.old <- apply(r.old, 1, paste, collapse="|")
 
 
-table(r.new%in%r.old)
+## table(r.new%in%r.old)
+
