@@ -43,25 +43,73 @@ FullDF[which(!is.na(FullDF$X12_Ap5_PCR) | !is.na(FullDF$X13_COI_PCR) | !is.na(Fu
 FullDF$INF <- FALSE
 FullDF[which(FullDF$X12_Ap5_PCR == TRUE | FullDF$X12_18S_PCR == TRUE | FullDF$X13_COI_PCR == TRUE | FullDF$X15_ORF470_PCR == TRUE),]$INF <- TRUE
 
+# Use DF:
+useDF <- FullDF[which(FullDF$Tested %in% TRUE),]
+
 ##########
 ## For all year, for all transects :
-myprevDF <- function(year, transect){
-  data <- subset(FullDF, FullDF$Year == year & FullDF$Transect == transect)    
+myprevDF <- function(df, year, transect, threshold){
+  data <- subset(df, df$Year == year & df$Transect == transect)    
   ## Prevalence table
   DF <- data.frame(
     Year = unique(data$Year),
     Transect = unique(data$Transect),
-    N_Mmd = nrow(subset(data, data$HI < 0.2)),
-    N_Mmd_inf = nrow(subset(data, data$HI < 0.2 & data$INF == TRUE)),
-    N_Hybrids = nrow(subset(data, data$HI >= 0.2 & data$HI <= 0.8)),
-    N_Hybrids_inf = nrow(subset(data, data$HI >= 0.2 & data$HI <= 0.8 & data$INF == TRUE)),
-    N_Mmm = nrow(subset(data, data$HI > 0.8)),
-    N_Mmm_inf = nrow(subset(data, data$HI > 0.8 & data$INF == TRUE))
+    N_Mmd = nrow(subset(data, data$HI < threshold)),
+    percent_Mmd_inf = nrow(subset(data, data$HI < threshold & data$INF == TRUE)) / nrow(subset(data, data$HI < threshold)) *100,
+    N_Hybrids = nrow(subset(data, data$HI >= threshold & data$HI <= 1- threshold)),
+    percent_Hybrids_inf = nrow(subset(data, data$HI >= threshold & data$HI <= 1 - threshold & data$INF == TRUE)) / nrow(subset(data, data$HI >= threshold & data$HI <= 1- threshold))*100,
+    N_Mmm = nrow(subset(data, data$HI > 1 - threshold)),
+    percent_Mmm_inf = nrow(subset(data, data$HI > 1 - threshold & data$INF == TRUE)) / nrow(subset(data, data$HI > 1 - threshold))*100
   )
   DF
 }
 
-myprevDF(year = 2014, transect = "HZ_BR")
-myprevDF(year = 2015, transect = "HZ_BR")
-myprevDF(year = 2015, transect = "HZ_BAV")
-myprevDF(year = 2016, transect = "HZ_BR")
+A <- myprevDF(df = FullDF, year = 2015, transect = "HZ_BR", threshold = 0.1)
+B <- myprevDF(df = useDF, year = 2015, transect = "HZ_BAV", threshold = 0.1)
+C <- myprevDF(df = useDF, year = 2016, transect = "HZ_BR", threshold = 0.1)
+
+myprevDF2 <- function(df, year, threshold){
+  data <- subset(df, df$Year == year)    
+  ## Prevalence table
+  DF <- data.frame(
+    Year = unique(data$Year),
+    N_Mmd = nrow(subset(data, data$HI < threshold)),
+    percent_Mmd_inf = nrow(subset(data, data$HI < threshold & data$INF == TRUE)),
+    N_Hybrids = nrow(subset(data, data$HI >= threshold & data$HI <= 1- threshold)),
+    percent_Hybrids_inf = nrow(subset(data, data$HI >= threshold & data$HI <= 1 - threshold & data$INF == TRUE)),
+    N_Mmm = nrow(subset(data, data$HI > 1 - threshold)),
+    percent_Mmm_inf = nrow(subset(data, data$HI > 1 - threshold & data$INF == TRUE))
+  )
+  DF
+}
+myprevDF2(FullDF, 2016, 0.1)
+
+A
+B# Draw waffles :
+library(waffle)
+mywaffle <- function(letter, mytitle){
+  vals <- c(as.numeric(letter[3] - letter[4]), as.numeric(letter[4]), 
+            as.numeric(letter[5] - letter[6]), as.numeric(letter[6]),
+            as.numeric(letter[7] - letter[8]), as.numeric(letter[8]))
+  
+  val_names <- sprintf("%s (%s)", c( "Mmd uninf", "Mmd inf", "Hybrid uninf", "Hybrid inf", "Mmm uninf", "Mmm inf"),
+                       scales::percent(round(vals/sum(vals), 2)))
+  names(vals) <- val_names
+  waffle::waffle(vals, colors = c("dodgerblue4", "deepskyblue", "darkorchid4", "mediumorchid", "firebrick4", "firebrick1"),
+                 title = mytitle)
+}
+
+mywaffle(A, "Brandenburg, 2015")
+mywaffle(B, "Bavaria, 2015")
+mywaffle(C, "Brandenburg, 2016")
+
+summary(lm(formula = INF ~ Transect * Year * HI, data = useDF))
+
+## Map of the data
+source("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/R/HMHZ_Functions.R")
+
+buildmap()
+
+
+
+ 
