@@ -3,8 +3,13 @@ library(ggplot2)
 
 ## A trapping table with our new data
 Trap <- read.csv("raw_data/HZ17_Mice_Trap.csv")
+Trap$Number_mus_caught <- as.numeric(as.character(Trap$Number_mus_caught))
+Trap$Number_rodents_caught <- as.numeric(as.character(Trap$Number_rodents_caught))
 table(Trap$Number_mus_caught > 0)
 Trap$Is_mus_caught <- Trap$Number_mus_caught > 0
+
+## RM the locality whith unknown trapping success
+Trap <- Trap[!is.na(Trap$Number_mus_caught),]
 
 ## check double sampled localities 
 dup.lat <- Trap[duplicated(Trap[, c("Latitude")]), c("Latitude")]
@@ -17,6 +22,8 @@ table(Trap$Number_rodents_caught >= Trap$Number_mus_caught)
 ## A locality table (trapping only tracking positive data) for pre 2017
 Mice_till_17 <- read.csv("output_data/genDF_august2017.csv")
 
+
+## This MUST be redone as a proper LOCALITY table!!!!!
 Loc_till_17 <- ddply (Mice_till_17, .(Longitude, Latitude),
    function(x){
        cbind(Year=unique(x$Year), HI=mean(x$HI), n.mice= nrow(x))
@@ -69,7 +76,6 @@ ggplot(Trap, aes(Number_traps_set, Number_rodents_caught,
 dev.off()
 
 People <- strsplit(as.character(Trap$People), ", ?", perl=TRUE)
-
 u.People <- unique(unlist(People))
 
 People.tab <- t(sapply(u.People, function (name){
@@ -98,79 +104,30 @@ People.tab[order(People.tab$nLoc), ]
 People.tab[order(People.tab$nLocM), ]
 People.tab[order(People.tab$efficiency), ]
 
-Farm_eco <- read.csv("/home/ele/Farm_ecology.csv")
-Farm_eco$Longitude <- gsub( ",", ".", Farm_eco$Longitude)
-Farm_eco$Latitude <- gsub( ",", ".", Farm_eco$Latitude)
 
-Farm_table <- merge(Trap, Farm_eco)
-
-write.csv(Farm_table, "/home/ele/Merged_Farm.csv")
-
-apply(Farm_table[, 17:ncol(Farm_table)], 2, table)
-
-pdf("/home/ele/Getreidefeld.pdf")
-ggplot(Farm_table, aes(as.factor(Feld.Getreide.), Number_mus_caught)) +
-    geom_boxplot() + 
-    geom_jitter(width=0.2)
-dev.off()
-
-wilcox.test(Farm_table$Number_mus_caught[Farm_table$Feld.Getreide.==0],
-            Farm_table$Number_mus_caught[Farm_table$Feld.Getreide.>0])
-
-pdf("/home/ele/Bebautes_Land.pdf")
-ggplot(Farm_table, aes(as.factor(Bebautes.Land), Number_mus_caught)) +
-    geom_boxplot() + 
-    geom_jitter(width=0.2)
-dev.off()
-
-wilcox.test(Farm_table$Number_mus_caught[Farm_table$Bebautes.Land<5],
-            Farm_table$Number_mus_caught[Farm_table$Bebautes.Land>=5])
-
-pdf("/home/ele/Wald.pdf")
-ggplot(Farm_table, aes(as.factor(Wald), Number_mus_caught)) +
-    geom_boxplot() + 
-    geom_jitter(width=0.2)
-dev.off()
-
-wilcox.test(Farm_table$Number_mus_caught[Farm_table$Wald<5],
-            Farm_table$Number_mus_caught[Farm_table$Wald>=5])
-
-
-ggplot(Farm_table, aes(as.factor(Wald), Number_rodents_caught-Number_mus_caught)) +
-    geom_boxplot() + 
-    geom_jitter(width=0.2)
-
-wilcox.test(Farm_table$Number_mus_caught[Farm_table$Wald<5],
-            Farm_table$Number_mus_caught[Farm_table$Wald>=5])
-
-pdf("/home/ele/Ratten.pdf")
-ggplot(Farm_table, aes(as.factor(Ratten), Number_mus_caught)) + geom_boxplot() + geom_jitter()
-dev.off()
-
-wilcox.test(Farm_table$Number_mus_caught[Farm_table$Ratten<1],
-            Farm_table$Number_mus_caught[Farm_table$Ratten>0])
-
-is.loc.in.table <- function(Table,
-                            coordinates,
-                            granularity=0.001){
-    apply(Table, 1, function(x){
-        diff <- as.numeric(as.character(x[c("Longitude", "Latitude")])) -
-            coordinates
-        all(abs(diff) < granularity)})
+is.loc.cluster <- function(locA, locB, granularity=0.001){
+    diff <- as.numeric(as.character(locA[c("Latitude", "Longitude")])) -
+        as.numeric(as.character(locB[c("Latitude", "Longitude")]))
+    ## both east-west and north-south are closer than granularit
+    all (abs(diff) < granularity)
 }
 
+## pairwise comparison of all localities 
+pairwise.cluster.loc <- function (d){
+    loc.combis <- combn(nrow(d), 2)
+    long <- apply(loc.combis, 2, function(x)
+        is.loc.cluster(d[x[1], ], d[x[2], ]))
+    mat <- matrix(NA, nrow=nrow(d), ncol=nrow(d))
+    mat[lower.tri(mat)] <- long
+    mat <- t(mat)
+    ## setting lower triangle and diagonal zero
+    diag(mat) <- 0
+    mat[lower.tri(mat)] <- 0
+    mat
+}
 
-all.net <- apply(Loc_till_17, 1, function (x) {
-     all.net <- is.loc.in.table(Trap,
-                                x[c("Longitude", "Latitude")])
-     all.net
-})
+foo <- pairwise.cluster.loc(Trap)
 
-## r.new <- apply(r.new, 1, paste, collapse="|")
-
-## r.old <- round(unique(Loc_till_17[, c("Longitude", "Latitude")]), 3)
-## r.old <- apply(r.old, 1, paste, collapse="|")
-
-
-## table(r.new%in%r.old)
+## how many locs are sampled multiple times
+table(apply(foo, 2, sum))
 
