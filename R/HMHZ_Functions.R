@@ -23,6 +23,34 @@ get.HIX <- function (x){
     mus/(mus + dom)
 }
 
+is.loc.cluster <- function(locA, locB, granularity=0.001){
+    diff <- as.numeric(as.character(locA[c("Latitude", "Longitude")])) -
+        as.numeric(as.character(locB[c("Latitude", "Longitude")]))
+    ## both east-west and north-south are closer than granularit
+    all (abs(diff) < granularity)
+}
+
+## pairwise comparison of all localities 
+pairwise.cluster.loc <- function (d){
+    loc.combis <- combn(nrow(d), 2)
+    long <- apply(loc.combis, 2, function(x)
+        is.loc.cluster(d[x[1], ], d[x[2], ]))
+    mat <- matrix(NA, nrow=nrow(d), ncol=nrow(d))
+    mat[lower.tri(mat)] <- long
+    mat <- t(mat)
+    ## setting lower triangle and diagonal zero
+    diag(mat) <- 0
+    mat[lower.tri(mat)] <- 0
+    mat
+}
+
+foo <- pairwise.cluster.loc(Trap)
+
+## how many locs are sampled multiple times
+table(apply(foo, 2, sum))
+
+## Everyting below here is gibberish and should be rewritten ;-)
+
 ## map rows from different data.frames by their common column
 rbind.match.columns <- function(input1, input2) {
     n.input1 <- ncol(input1)

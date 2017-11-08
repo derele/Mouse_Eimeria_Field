@@ -105,29 +105,3 @@ People.tab[order(People.tab$nLocM), ]
 People.tab[order(People.tab$efficiency), ]
 
 
-is.loc.cluster <- function(locA, locB, granularity=0.001){
-    diff <- as.numeric(as.character(locA[c("Latitude", "Longitude")])) -
-        as.numeric(as.character(locB[c("Latitude", "Longitude")]))
-    ## both east-west and north-south are closer than granularit
-    all (abs(diff) < granularity)
-}
-
-## pairwise comparison of all localities 
-pairwise.cluster.loc <- function (d){
-    loc.combis <- combn(nrow(d), 2)
-    long <- apply(loc.combis, 2, function(x)
-        is.loc.cluster(d[x[1], ], d[x[2], ]))
-    mat <- matrix(NA, nrow=nrow(d), ncol=nrow(d))
-    mat[lower.tri(mat)] <- long
-    mat <- t(mat)
-    ## setting lower triangle and diagonal zero
-    diag(mat) <- 0
-    mat[lower.tri(mat)] <- 0
-    mat
-}
-
-foo <- pairwise.cluster.loc(Trap)
-
-## how many locs are sampled multiple times
-table(apply(foo, 2, sum))
-
