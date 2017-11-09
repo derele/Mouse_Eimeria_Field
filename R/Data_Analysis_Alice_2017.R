@@ -1,3 +1,76 @@
+## November 2017, Alice Balard
+library(ggplot2)
+library(ggmap)
+
+traps17 <- read.csv(file = "../raw_data/HZ17_Mice_Trap.csv")
+dissec17 <- read.csv(file = "../raw_data/HZ17_September_Mice_Dissection.csv")
+
+# Check missing coordinates
+data.frame(dissec17[is.na(dissec17$Latitude), ]$Capture, 
+           dissec17[is.na(dissec17$Latitude), ]$Mouse_ID, 
+           dissec17[is.na(dissec17$Latitude), ]$Address) 
+
+# Number of mice, N other species
+dissec17$host_type <- dissec17$Species
+dissec17$host_type <- "other rodent"
+dissec17 <- within(dissec17, host_type[Species == "Mus musculus"] <- "Mus musculus")
+
+# Function to create barplots for different variables
+mybarplot <- function(myfac, mytitle){
+  ## set the levels in order we want
+  dissec17 <- within(dissec17, 
+                     myfac <- factor(myfac, 
+                                     levels=names(sort(table(myfac), 
+                                                       decreasing=TRUE))))
+  ggplot(data = dissec17) +
+    geom_bar(width = 0.5, aes(x=factor(1), fill=myfac)) +
+    theme_classic() +
+    theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+    scale_x_discrete(name = mytitle) +
+    theme(legend.title=element_blank(), axis.text.x = element_blank())
+}
+
+mybarplot(dissec17$host_type, "Host type")
+table(dissec17$host_type)
+
+## From here, work only with MUS MUSCULUS
+dissect17MUS <- dissec17[dissec17$Species %in% "Mus musculus",]
+
+# Map from traps
+margin <- 0.3
+area <- get_map(location =
+                  c(min(dissect17MUS$Longitude - margin),
+                    min(dissect17MUS$Latitude - margin),
+                    max(dissect17MUS$Longitude + margin),
+                    max(dissect17MUS$Latitude + margin)),
+                source = "stamen", maptype="toner-lite",
+                zoom = 8)
+
+#plot the map :
+ggmap(area) +
+  geom_point(data = dissect17MUS, shape = 21, size = 4, fill = "green",
+             aes(Longitude, Latitude)) +
+  theme(legend.text=element_text(size=20)) +
+  guides(fill=guide_legend(title=""))
+  
+# How many localities sampled?
+length(unique(paste(traps17$Latitude, traps17$Longitude)))
+
+# N average of captured mice (trapping success) in failed farms/successful farms
+
+sum(na.omit(as.numeric(as.character(traps17$Number_rodents_caught))))
+sum(na.omit(as.numeric(as.character(traps17$Number_mus_caught))))
+sum(na.omit(as.numeric(as.character(traps17$Number_traps_set))))
+
+# Distribution Nmice per localities
+traps17$Number_mus_caught
+
+
+# Plot of weight (color by species)
+
+
+
+
 ## Alice Balard
 ## August 2017
 
@@ -112,4 +185,6 @@ buildmap()
 
 
 
- 
+
+
+
