@@ -1,19 +1,57 @@
 ## November 2017, Alice Balard
+source("HMHZ_Functions.R")
+
 library(ggplot2)
 library(ggmap)
+library(ggrepel)
 
+#*************************** Input data
+jardaHI14_16 <- read.csv("../raw_data/HIforEH_May2017.csv")
+cleanloc <- read.csv("../output_data/all_clean_localities.csv")
+
+## Dissections
+dissec14 <- read.csv("../raw_data/HZ14_Mice 31-12-14_dissections.csv")
+## NB: Julia has 87 from HZ_BR (all here) + 165 from HZ_CZ 10 days (here 191 in 10 days...)
+dissec15 <- read.csv("../raw_data/HZ15_Mice_Parasite.csv")
+# gen15 <- read.csv("../raw_data/Genotypes_Bav2015.csv")
+## NB: Jenny has 119 from HZ_BAV (here 276 +++ breeding) + 124 from HZ_BRA (here 152 some dissected in Studenec)
+dissec16 <- read.csv("../raw_data/HZ16_Mice_18-07-16_dissections.csv")
+dissec16 <- merge(dissec16, cleanloc, by = "Code", all.x = TRUE)
+tocomplete <- jardaHI14_16[jardaHI14_16$PIN %in% dissec16[is.na(dissec16$Latitude),"ID_mouse"],c("PIN","Xmap", "Ymap")]
+dissec16[dissec16$ID_mouse %in% tocomplete$PIN,"Latitude"] <- tocomplete$Ymap
+dissec16[dissec16$ID_mouse %in% tocomplete$PIN,"Longitude"] <- tocomplete$Xmap
+rm(tocomplete)
+dissec17ALL <- read.csv(file = "../raw_data/HZ17_September_Mice_Dissection.csv")
+dissec17 <- dissec17ALL[dissec17ALL$Species %in% "Mus musculus",]
+
+## Traps
+traps14to16 <- read.csv("../output_data/HZ14-16_localities.csv")
 traps17 <- read.csv(file = "../raw_data/HZ17_Mice_Trap.csv")
-dissec17 <- read.csv(file = "../raw_data/HZ17_September_Mice_Dissection.csv")
+#***************************
 
-# Check missing coordinates
-data.frame(dissec17[is.na(dissec17$Latitude), ]$Capture, 
-           dissec17[is.na(dissec17$Latitude), ]$Mouse_ID, 
-           dissec17[is.na(dissec17$Latitude), ]$Address) 
+# Sample size over the years: MICE and LOCALITIES
 
-# Number of mice, N other species
-dissec17$host_type <- dissec17$Species
-dissec17$host_type <- "other rodent"
-dissec17 <- within(dissec17, host_type[Species == "Mus musculus"] <- "Mus musculus")
+## Do the same for "tested for Eimeria" (cf Julia/Jenny/Phuong datasets)
+
+## Later step: define the clusters:
+## table(pairwise.cluster.loc(d = traps17))
+
+## First step: with exact same GPS coordinates:
+datacatch <- rbind(data.frame(table(paste(round(dissec14$X_Map,3), round(dissec14$Y_Map,3))), Year = 2014),
+                   data.frame(table(paste(round(dissec15$X_Map,3), round(dissec15$Y_Map,3))), Year = 2015),
+                   data.frame(table(paste(round(dissec16$Longitude,3), round(dissec16$Latitude,3))), Year = 2016),
+                   data.frame(table(paste(round(dissec17$Longitude,3), round(dissec17$Latitude,3))), Year = 2017))
+datacatch$Nloc <- 1
+
+ggplot(datacatch, aes(x = Year, y = cumsum(Freq))) +
+  geom_line(col = "darkgreen", size = 3) + 
+  theme_classic() + 
+  scale_y_continuous(name = "Cumulative sum of mice caught") 
+
+ggplot(datacatch, aes(x = Year, y = cumsum(Nloc))) +
+  geom_line(col = "darkblue", size = 3) + 
+  theme_classic() + 
+  scale_y_continuous(name = "Cumulative sum of localities sampled")
 
 # Function to create barplots for different variables
 mybarplot <- function(myfac, mytitle){
@@ -29,12 +67,7 @@ mybarplot <- function(myfac, mytitle){
     scale_x_discrete(name = mytitle) +
     theme(legend.title=element_blank(), axis.text.x = element_blank())
 }
-
-mybarplot(dissec17$host_type, "Host type")
-table(dissec17$host_type)
-
-## From here, work only with MUS MUSCULUS
-dissect17MUS <- dissec17[dissec17$Species %in% "Mus musculus",]
+mybarplot(dissec17ALL$Sex, "Sex")
 
 # Map from traps
 margin <- 0.3
@@ -53,11 +86,7 @@ ggmap(area) +
   theme(legend.text=element_text(size=20)) +
   guides(fill=guide_legend(title=""))
   
-# How many localities sampled?
-length(unique(paste(traps17$Latitude, traps17$Longitude)))
-
 # N average of captured mice (trapping success) in failed farms/successful farms
-
 sum(na.omit(as.numeric(as.character(traps17$Number_rodents_caught))))
 sum(na.omit(as.numeric(as.character(traps17$Number_mus_caught))))
 sum(na.omit(as.numeric(as.character(traps17$Number_traps_set))))
@@ -65,12 +94,10 @@ sum(na.omit(as.numeric(as.character(traps17$Number_traps_set))))
 # Distribution Nmice per localities
 traps17$Number_mus_caught
 
-
 # Plot of weight (color by species)
 
 
-
-
+############### Crap below that line
 ## Alice Balard
 ## August 2017
 
@@ -182,9 +209,3 @@ summary(lm(formula = INF ~ Transect * Year * HI, data = useDF))
 source("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/R/HMHZ_Functions.R")
 
 buildmap()
-
-
-
-
-
-
