@@ -5,12 +5,40 @@ library(ggplot2)
 library(ggmap)
 library(ggrepel)
 
-#*************************** Input data
+#*************************** Input data CLEAN ONCE FOR ALL
 jardaHI14_16 <- read.csv("../raw_data/HIforEH_May2017.csv")
-cleanloc <- read.csv("../output_data/all_clean_localities.csv")
+cleanloc <- read.csv("../output_data/all_clean_localities.csv") # delete and summarize
+
+
+
+Dissection14to17 <- data.frame(Mouse_ID = NA, Transect = NA, Latitude = NA, Longitude = NA,
+                               Sex = NA, Status = NA, Species = NA, Year = NA,
+                               Capture_date = NA, Dissection_date = NA, Ectoparasites = NA,
+Body_weight = NA, Body_length = NA, Tail_length = NA,
+
+                               [19] "Spleen_mass"                        "Left_Testis_mass"                   "Right_Testis_mass"                 
+                               [22] "Left.epididymis.weight"             "Seminal.vesicle.weight"             "Left.ovarium.weight"               
+                               [25] "Right.ovarium.weight"               "Total"                              "Embryo_left"                       
+                               [28] "Embryo_right"                       "Feces_weight"                       "Worms_presence"                    
+                               [31] "Unknown_cecum"                      "Unknown_colon"                      "Unknown_SI"                        
+                               [34] "Syphacia_cecum_colon"               "Cysticercus_tenia_teniformis_liver" "Catotenia_pusilla_SI"              
+                               [37] "Mastophorus_stomach_SI"             "Heterakis_spumosa_colon_cecum"      "Tapeworm_SI"                       
+                               [40] "Trichuris_cecum"                    "Aspiculuris_cecum"                  "Aspiculuris_colon"                 
+                               [43] "Hymenolepis_SI"                     "Rodentolepis_liver_digtract"        "Mesocoides_body_cavities"          
+                               [46] "Mesocoides_lungs"                   "Heigmosomoides_polyguis"            "H_diminita."                       
+                               [49] "Notes"  
+)
+
+names(dissec17)
 
 ## Dissections
 dissec14 <- read.csv("../raw_data/HZ14_Mice 31-12-14_dissections.csv")
+
+  
+  
+  dissec14$Transect, dissec14$State))
+
+Dissection14to17
 ## NB: Julia has 87 from HZ_BR (all here) + 165 from HZ_CZ 10 days (here 191 in 10 days...)
 dissec15 <- read.csv("../raw_data/HZ15_Mice_Parasite.csv")
 # gen15 <- read.csv("../raw_data/Genotypes_Bav2015.csv")
@@ -21,15 +49,44 @@ tocomplete <- jardaHI14_16[jardaHI14_16$PIN %in% dissec16[is.na(dissec16$Latitud
 dissec16[dissec16$ID_mouse %in% tocomplete$PIN,"Latitude"] <- tocomplete$Ymap
 dissec16[dissec16$ID_mouse %in% tocomplete$PIN,"Longitude"] <- tocomplete$Xmap
 rm(tocomplete)
+
 dissec17ALL <- read.csv(file = "../raw_data/HZ17_September_Mice_Dissection.csv")
 dissec17 <- dissec17ALL[dissec17ALL$Species %in% "Mus musculus",]
 
+names(dissec17)
+names(dissec16)
+names(dissec15)
+names(dissec14)
+
+
+
 ## Traps
-traps14to16 <- read.csv("../output_data/HZ14-16_localities.csv")
+traps14to16 <- read.csv("../output_data/HZ14-16_localities.csv")[-1] ## REALLY WRONG UNIQUE HI
 traps17 <- read.csv(file = "../raw_data/HZ17_Mice_Trap.csv")
+trapsTOT <- data.frame(Year = c(rep(2017, nrow(traps17)), traps14to16$Year),
+                       Latitude = c(traps17$Latitude, traps14to16$Latitude),
+                       Longitude = c(traps17$Longitude, traps14to16$Longitude),
+                       HI = c(rep(NA, nrow(traps17)), traps14to16$HI),
+                       Nmice = c(traps17$Number_mus_caught, traps14to16$n.mice))
 #***************************
 
-# Sample size over the years: MICE and LOCALITIES
+# Cluster localities
+pairsloc <- pairwise.cluster.loc(trapsTOT)
+
+loctime <- data.frame(table(apply(pairsloc, 2, sum)))
+loctime$Var1 <- as.numeric(as.character(loctime$Var1)) + 1 
+names(loctime) <- c("Repeatition over the years", "# localities")
+
+ggplot(loctime, aes(x = `Repeatition over the years`, y = `# localities`, fill = `# localities`)) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label=Number), position=position_dodge(width=0.9), vjust=-0.25)
+  theme_classic()
+
+
+nrow(pairsloc)
+ncol(pairsloc)
+
+# 1. Sample size over the years: MICE and LOCALITIES
 
 ## Do the same for "tested for Eimeria" (cf Julia/Jenny/Phuong datasets)
 
@@ -44,14 +101,54 @@ datacatch <- rbind(data.frame(table(paste(round(dissec14$X_Map,3), round(dissec1
 datacatch$Nloc <- 1
 
 ggplot(datacatch, aes(x = Year, y = cumsum(Freq))) +
-  geom_line(col = "darkgreen", size = 3) + 
-  theme_classic() + 
+  geom_line(col = "lightgreen", size = 3) + 
+  theme_black() + 
   scale_y_continuous(name = "Cumulative sum of mice caught") 
 
 ggplot(datacatch, aes(x = Year, y = cumsum(Nloc))) +
-  geom_line(col = "darkblue", size = 3) + 
-  theme_classic() + 
+  geom_line(col = "lightblue", size = 3) + 
+  theme_black() + 
   scale_y_continuous(name = "Cumulative sum of localities sampled")
+#***************************
+
+# 2. Trapping attempts (from 2017 on):
+sum(na.omit(as.numeric(as.character(traps17$Number_mus_caught))))
+sum(na.omit(as.numeric(as.character(traps17$Number_traps_set))))
+
+sum(na.omit(as.numeric(as.character(traps17$Number_mus_caught)))) /
+  sum(na.omit(as.numeric(as.character(traps17$Number_traps_set)))) *100
+
+# What else?
+
+#***************************
+
+# 3. Nbr mice per locality over the years?
+aggdata <- aggregate(x = trapsTOT["Nmice"],
+                     by = trapsTOT[c("Latitude", "Longitude")],
+                     FUN = sum)
+table(aggdata$Nmice)
+
+ggplot(data = data.frame(table(aggdata$Nmice)), aes(x = Var1, y = Freq)) +
+  geom_bar(stat = "identity", fill = "blue") +
+  theme_black()
+
+ggplot(data = data.frame(table(aggdata$Nmice)), aes(x = Var1, y = log10(Freq))) +
+  geom_bar(stat = "identity", fill="blue" ) +
+  theme_black()
+
+table(aggdata$Nmice)
+
+#***************************
+
+# 4. Nbr trapping success per locality over the years?
+
+#***************************
+
+# 4. Map
+
+
+
+
 
 # Function to create barplots for different variables
 mybarplot <- function(myfac, mytitle){
