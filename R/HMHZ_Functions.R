@@ -38,8 +38,8 @@ pairwise.cluster.loc <- function (d){
     mat <- matrix(NA, nrow=nrow(d), ncol=nrow(d))
     mat[lower.tri(mat)] <- long
     mat <- t(mat)
-    ## setting lower triangle and diagonal zero
-    diag(mat) <- 0
+    ## setting lower triangle 0 and diagonal 1
+    diag(mat) <- 1
     mat[lower.tri(mat)] <- 0
     mat
 }
