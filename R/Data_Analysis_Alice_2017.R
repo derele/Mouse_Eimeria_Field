@@ -1,81 +1,82 @@
 ## November 2017, Alice Balard
-source("HMHZ_Functions.R")
-
 library(ggplot2)
 library(ggmap)
 library(ggrepel)
 
-#*************************** Input data CLEAN ONCE FOR ALL
-jardaHI14_16 <- read.csv("../raw_data/HIforEH_May2017.csv")
-cleanloc <- read.csv("../output_data/all_clean_localities.csv") # delete and summarize
+source("HMHZ_Functions.R")
+
+MiceTable <- read.csv("../raw_data/MiceTable_2014to2017.csv")
+TrapTable <- read.csv("../raw_data/TrapTable_2014to2017.csv")
+
+## Let's split the localities VISITED and the localities where MICE WERE TRAPPED (before 2016)
+
+## Cluster localities : how many times each LOCALITY was sampled?
+
+# pairsloc <- pairwise.cluster.loc(trapsTOT) # errors with this model, to discuss
+# loctime <- data.frame(table(apply(pairsloc, 2, sum)))
+# loctime$Var1 <- as.numeric(as.character(loctime$Var1)) + 1 
+# names(loctime) <- c("Repeatition over the years", "# localities")
+
+measure(lon1 = 13.04390, lat1 = 51.93000, lon2 = 13.64000, lat2 = 52.71690) - measure(lon1 = 13.04, lat1 = 51.93, lon2 = 13.64, lat2 = 52.72)
+measure(lon1 = 13.6761, lat1 = 52.4978, lon2 = 13.68, lat2 = 52.50)
+
+# rounded to about 700 meters
+TrapTable$Longitude_round_large <- round(TrapTable$Longitude, 2)
+TrapTable$Latitude_round_large <- round(TrapTable$Latitude, 2)
+
+# rounded to about 20 meters
+TrapTable$Longitude_round_small <- round(TrapTable$Longitude, 3)
+TrapTable$Latitude_round_small <- round(TrapTable$Latitude, 3)
+
+nrow(unique(TrapTable[c("Latitude", "Longitude", "Year")]))
+nrow(unique(TrapTable[c("Latitude_round_small", "Longitude_round_small", "Year")]))
+nrow(unique(TrapTable[c("Latitude_round_large", "Longitude_round_large", "Year")]))
+
+## We decide to round to 700 meters, and to consider the localities as in a cluster
+countattemps <- TrapTable[c("Latitude_round_large", "Longitude_round_large", "Year")]
+countattemps$attemps <- 1  
+
+# how many time in one given year we sample twice at the same locality :
+aggdata <- aggregate(x = countattemps$attemps, by = countattemps[c("Latitude_round_large", "Longitude_round_large", "Year")], FUN = sum)
+
+# now we count only 1 trapping per year:
+countattemps <- unique(countattemps)
+
+# how many localities sampled per year? 
+table(countattemps$Year)
+data.frame(table(countattemps$Year))
+
+ggplot(data.frame(table(countattemps$Year)), aes(x = Var1, y = Freq, fill = Freq), cex = 5) +
+  geom_bar(stat = "identity", show.legend=F) +
+  geom_text(aes(label = Freq), position = position_dodge(width=0.9), vjust=-0.25, size =10) +
+  theme_classic(base_size = 18) +
+  theme(axis.title.y=element_blank(), axis.title.x=element_blank()) +
+  ggtitle(label = "Number of localities visited per year")
 
 
 
-Dissection14to17 <- data.frame(Mouse_ID = NA, Transect = NA, Latitude = NA, Longitude = NA,
-                               Sex = NA, Status = NA, Species = NA, Year = NA,
-                               Capture_date = NA, Dissection_date = NA, Ectoparasites = NA,
-Body_weight = NA, Body_length = NA, Tail_length = NA,
-
-                               [19] "Spleen_mass"                        "Left_Testis_mass"                   "Right_Testis_mass"                 
-                               [22] "Left.epididymis.weight"             "Seminal.vesicle.weight"             "Left.ovarium.weight"               
-                               [25] "Right.ovarium.weight"               "Total"                              "Embryo_left"                       
-                               [28] "Embryo_right"                       "Feces_weight"                       "Worms_presence"                    
-                               [31] "Unknown_cecum"                      "Unknown_colon"                      "Unknown_SI"                        
-                               [34] "Syphacia_cecum_colon"               "Cysticercus_tenia_teniformis_liver" "Catotenia_pusilla_SI"              
-                               [37] "Mastophorus_stomach_SI"             "Heterakis_spumosa_colon_cecum"      "Tapeworm_SI"                       
-                               [40] "Trichuris_cecum"                    "Aspiculuris_cecum"                  "Aspiculuris_colon"                 
-                               [43] "Hymenolepis_SI"                     "Rodentolepis_liver_digtract"        "Mesocoides_body_cavities"          
-                               [46] "Mesocoides_lungs"                   "Heigmosomoides_polyguis"            "H_diminita."                       
-                               [49] "Notes"  
-)
-
-names(dissec17)
-
-## Dissections
-dissec14 <- read.csv("../raw_data/HZ14_Mice 31-12-14_dissections.csv")
-
-  
-  
-  dissec14$Transect, dissec14$State))
-
-Dissection14to17
-## NB: Julia has 87 from HZ_BR (all here) + 165 from HZ_CZ 10 days (here 191 in 10 days...)
-dissec15 <- read.csv("../raw_data/HZ15_Mice_Parasite.csv")
-# gen15 <- read.csv("../raw_data/Genotypes_Bav2015.csv")
-## NB: Jenny has 119 from HZ_BAV (here 276 +++ breeding) + 124 from HZ_BRA (here 152 some dissected in Studenec)
-dissec16 <- read.csv("../raw_data/HZ16_Mice_18-07-16_dissections.csv")
-dissec16 <- merge(dissec16, cleanloc, by = "Code", all.x = TRUE)
-tocomplete <- jardaHI14_16[jardaHI14_16$PIN %in% dissec16[is.na(dissec16$Latitude),"ID_mouse"],c("PIN","Xmap", "Ymap")]
-dissec16[dissec16$ID_mouse %in% tocomplete$PIN,"Latitude"] <- tocomplete$Ymap
-dissec16[dissec16$ID_mouse %in% tocomplete$PIN,"Longitude"] <- tocomplete$Xmap
-rm(tocomplete)
-
-dissec17ALL <- read.csv(file = "../raw_data/HZ17_September_Mice_Dissection.csv")
-dissec17 <- dissec17ALL[dissec17ALL$Species %in% "Mus musculus",]
-
-names(dissec17)
-names(dissec16)
-names(dissec15)
-names(dissec14)
 
 
 
-## Traps
-traps14to16 <- read.csv("../output_data/HZ14-16_localities.csv")[-1] ## REALLY WRONG UNIQUE HI
-traps17 <- read.csv(file = "../raw_data/HZ17_Mice_Trap.csv")
-trapsTOT <- data.frame(Year = c(rep(2017, nrow(traps17)), traps14to16$Year),
-                       Latitude = c(traps17$Latitude, traps14to16$Latitude),
-                       Longitude = c(traps17$Longitude, traps14to16$Longitude),
-                       HI = c(rep(NA, nrow(traps17)), traps14to16$HI),
-                       Nmice = c(traps17$Number_mus_caught, traps14to16$n.mice))
-#***************************
 
-# Cluster localities
-pairsloc <- pairwise.cluster.loc(trapsTOT)
 
-loctime <- data.frame(table(apply(pairsloc, 2, sum)))
-loctime$Var1 <- as.numeric(as.character(loctime$Var1)) + 1 
-names(loctime) <- c("Repeatition over the years", "# localities")
+
+
+
+table(aggdata$attemps)
+
+ggplot(data = data.frame(table(aggdata$Nmice)), aes(x = Var1, y = Freq)) +
+  geom_bar(stat = "identity", fill = "blue") +
+  theme_black()
+
+ggplot(data = data.frame(table(aggdata$Nmice)), aes(x = Var1, y = log10(Freq))) +
+  geom_bar(stat = "identity", fill="blue" ) +
+  theme_black()
+
+table(aggdata$Nmice)
+
+
+
 
 ggplot(loctime, aes(x = `Repeatition over the years`, y = `# localities`, fill = `# localities`)) +
   geom_bar(stat = "identity") +
