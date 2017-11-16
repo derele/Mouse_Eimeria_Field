@@ -9,6 +9,9 @@ source("HMHZ_Functions.R")
 MiceTable <- read.csv("../raw_data/MiceTable_2014to2017.csv")
 TrapTable <- read.csv("../raw_data/TrapTable_2014to2017.csv")
 
+## Remove the Poland data
+MiceTable <- MiceTable[which(MiceTable$Longitude < 17),]
+
 ## Let's split the localities VISITED and the localities where MICE WERE TRAPPED (before 2016)
 
 # ***************************************************************
@@ -64,7 +67,7 @@ ggplot(aggdata[aggdata$Year %in% c(2016,2017),], aes(x=factor(Year)))+
   geom_bar(aes(fill = is.success), stat="count", width=0.7, color="black")+
   theme_classic(base_size = 18) +
   theme(axis.title.y=element_blank(), axis.title.x=element_blank()) +
-  ggtitle(label = "Number of localities with successful trapping per year") +
+  ggtitle(label = "Number of localities trapped") +
   theme(legend.title=element_blank()) +
   scale_fill_manual(values = c("darkgrey", "green"))
 # ***************************************************************
@@ -104,22 +107,27 @@ MiceTable$worms_count <- rowSums(MiceTable[c("Unknown_cecum","Unknown_colon",	"U
 Worms <- MiceTable[!is.na(MiceTable$worms_count),c("Latitude", "Longitude", "Year", "worms_count")]
 Worms$mice_caught <- 1
 
-Worms$Latitude <- round(Worms$Latitude,2); Worms$Longitude <- round(Worms$Longitude,2)
+# Worms$Latitude <- round(Worms$Latitude,2); Worms$Longitude <- round(Worms$Longitude,2)
 
 Worms <- aggregate(x = Worms[c("worms_count", "mice_caught")],
           by = Worms[c("Latitude", "Longitude", "Year")], FUN = sum)
 
-Worms$prevalence <- 0
+Worms$infloc <- 0
 Worms[Worms$worms_count != 0,]$prevalence <- 1
 
-ggplot(Worms, aes(x = mice_caught, y = prevalence)) +
-  geom_point(shape = 21, alpha = 0.1, fill = "brown", size = 10) +
-  geom_smooth(fill = "orange", color = "brown") +
-  coord_cartesian(xlim=c(0,20)) +
-  ggtitle(label = "Prevalence of worms infection depending on the mice density",
-          subtitle = "loess smoothing + 95%CI")+
-  theme_classic(base_size = 18) +
-  labs(x = "Mice prevalence")
+#ggplot(Worms, aes(x = mice_caught, y = prevalence)) +
+#  geom_point(shape = 21, alpha = 0.1, fill = "brown", size = 10) +
+#  geom_smooth(fill = "orange", color = "brown") +
+#  coord_cartesian(xlim=c(0,20)) +
+#  ggtitle(label = "Prevalence of worms infection depending on the mice density",
+#          subtitle = "loess smoothing + 95%CI")+
+#  theme_classic(base_size = 18) +
+#  labs(x = "Mice trapped")
+
+
+# mouse infected depending on mice density
+
+# prevalence at a locality depending on the density
 
 #***************************
 
@@ -131,11 +139,11 @@ area <- get_map(location =
                     max(na.omit(MiceTable$Longitude) + margin),
                     max(na.omit(MiceTable$Latitude) + margin)),
                 source = "stamen", maptype="toner-lite",
-                zoom = 6)
+                zoom = 7)
 
 #plot the map :
 ggmap(area) +
-  geom_point(data = MiceTable, shape = 21, size = 3,
+  geom_point(data = MiceTable, shape = 21, size = 4,
              aes(Longitude, Latitude, fill = as.factor(Year))) +
   theme(legend.text=element_text(size=20)) +
   guides(fill=guide_legend(title=""))
@@ -153,3 +161,28 @@ ggmap(area) +
 # Calculate HI per location with ratio of alleles
 
 # link eimeria and prevalence
+
+
+# weight --> age
+
+summary(MiceTable$Body_weight)
+
+
+MiceTable$subspecies[MiceTable$HI < 0.1] <- "Mmd"
+MiceTable$subspecies[MiceTable$HI >= 0.9] <- "Mmm"
+#MiceTable$subspecies[MiceTable$HI ] <- "Mmm"
+
+
+ggplot(MiceTable, aes(x = Body_weight, y = Body_length, fill = subspecies, order = order)) +
+  geom_point(col = "black", pch = 21, size = 5) +
+  geom_point(data = MiceTable[MiceTable$subspecies %in% c("Mmm", "Mmd"), ], col = "black", pch = 21, size = 5) +
+  scale_fill_manual(values = c("blue", "red", "grey")) +
+  theme_classic(base_size = 18) +
+  facet_grid(. ~ Sex)
+
+ggplot(MiceTable[MiceTable$subspecies %in% c("Mmm", "Mmd"), ], aes(x = Body_weight, y = Body_length, fill = subspecies, order = order)) +
+  geom_density2d(aes(color = subspecies), size = 2) +
+  scale_fill_manual(values = c("blue", "red", "grey")) +
+  theme_classic(base_size = 18) 
+
+# body condition index to correlate with parasite data correlate with hybrid index
