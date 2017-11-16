@@ -98,14 +98,15 @@ traps2017$Number_mus_caught <- as.numeric(as.character(traps2017$Number_mus_caug
 traps2016 <- read.csv("../raw_data/Cleaned_HMHZ_2016_All.csv")
 traps2016$Year <- 2016
 # remove garbage
-drops <- c("X","Got.the.sheet.", "location", "area", "Y_N", "MperT") ; traps2016 <- traps2016[ , !(names(traps2016) %in% drops)]
+drops <- c("X","Got.the.sheet.", "location", "area", "Y_N", "MperT") 
+traps2016 <- traps2016[ , !(names(traps2016) %in% drops)]
 
 # uniformise names
-names(traps2016) <- c("Address", "Longitude", "Latitude",  "Date_set", "Time_set", "Number_traps_set", "Date_collect", 
+names(traps2016) <- c("Address", "Latitude", "Longitude", "Date_set", "Time_set", "Number_traps_set", "Date_collect", 
     "Time_collect","Number_mus_caught", "People", "Number_rodents_caught", "Year")
   
 # before 2016, only localisations where mice where actually caught
-trapsbefore17 <- MiceTable_14to17[names(MiceTable_14to17) %in% c("Latitude", "Longitude", "Year")]
+trapsbefore17 <- MiceTable_14to17[names(MiceTable_14to17) %in% c("Longitude", "Latitude", "Year")]
 trapsbefore17 <- trapsbefore17[!trapsbefore17$Year %in% c(2017, 2016), ]
 # each line is one mouse in the dissection table
 trapsbefore17$Number_mus_caught <- 1
