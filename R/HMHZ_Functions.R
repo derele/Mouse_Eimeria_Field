@@ -33,26 +33,41 @@ get.HIX.full <- function(df){
 }
 
 ## Test if 2 localities form a cluster
-is.loc.cluster <- function(locA, locB, granularity=0.001){
-    diff <- as.numeric(as.character(locA[c("Latitude", "Longitude")])) -
-        as.numeric(as.character(locB[c("Latitude", "Longitude")]))
-    ## both east-west and north-south are closer than granularit
-    all (abs(diff) < granularity)
-}
 
 ## pairwise comparison of all localities 
-pairwise.cluster.loc <- function (d){
+pairwise.cluster.loc <- function (d, granularity=0.001){
+    is.loc.cluster <- function(locA, locB){
+        diff <- as.numeric(as.character(locA[c("Latitude", "Longitude")])) -
+            as.numeric(as.character(locB[c("Latitude", "Longitude")]))
+        ## both east-west and north-south are closer than granularity
+        all (abs(diff) < granularity)
+    }
     loc.combis <- combn(nrow(d), 2)
     long <- apply(loc.combis, 2, function(x)
         is.loc.cluster(d[x[1], ], d[x[2], ]))
     mat <- matrix(NA, nrow=nrow(d), ncol=nrow(d))
     mat[lower.tri(mat)] <- long
     mat <- t(mat)
-    ## setting lower triangle 0 and diagonal 1
+    ## making the matrix symmetrical accross the diagonal
     diag(mat) <- 1
-    mat[lower.tri(mat)] <- 0
+    mat[lower.tri(mat)] <- long
     mat
 }
+
+
+#### Problem: we need to recursivel cluster to cluster merge localites
+#### which are not directly connected by via a thrid 
+## cluster.loc <- function(d){
+##     ## a list of lists to store each elements matches
+##     clust.list <- apply(d, 1, function (x) which(x>0))
+##     easy.clust.idx <- which(unlist(lapply(clust.list, length))==1)
+##     to.clust.list<- clust.list[unlist(lapply(clust.list, length))>1]
+##     combn(to.clust.list, 2, function (x) any(x[[1]]%in%x[[2]]), simplify=FALSE)
+## }
+
+
+
+
 
 # foo <- pairwise.cluster.loc(Trap)
 
