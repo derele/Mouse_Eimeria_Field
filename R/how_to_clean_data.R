@@ -5,85 +5,161 @@
 ## MICE TABLE *****************************
 
 ## Jaroslav table genotypes 2013 --> 2016
-jarda <- read.csv("../raw_data/HIforEH_May2017.csv")
+jarda <- read.csv("../raw_data/HIforEH_May2017.csv", na.strings=c(""," ","NA"))
 
 ## Manual names uniformisation:
-names(jarda)[names(jarda) %in% c("PIN", "Xmap", "Ymap", "BW", "L", "LCd")] <- 
+names(jarda)[names(jarda) %in% c("PIN", "Xmap", "Ymap", "BW", "L", "LCd", "Dissection")] <- 
   c("Mouse_ID", "Longitude", "Latitude", "Body_weight", "Body_length", "Tail_length")
 
 jarda$Mouse_ID <- gsub(pattern = "SK", replacement = "SK_",x = jarda$Mouse_ID)
 jarda$Dissection <- paste(paste(jarda$Day, jarda$Month, sep = "/"), jarda$Year, sep = "/") # add dissection date
 
+jarda$Dissection <- as.Date(jarda$Dissection, "%d/%m/%Y") 
+jarda$Capture <- jarda$Dissection - jarda$Days.in.lab
+
+# remove useless columns
+drops <- names(jarda)[c(2:6, 13, 14, 38, 39, 43:53,59, 66:75)]
+jarda <- jarda[ , !(names(jarda) %in% drops)]
+
+# Rename homogeneously
+names(jarda)[names(jarda) %in% c("Taenia", "Hymenolepis", "Mastophorus", "Rodentolepis", "Mesocestoides", 
+                    "Trichuris", "Heterakis", "Aspiculuris", "Syphacia")] <- 
+  c("Cysticercus", "Hymenolepis", "Mastophorus_muris", "Hymenolepis_microstoma", "Mesocestoides",
+    "Trichuris_muris", "Heterakis_spumosa", "Aspiculuris_tetraptera", "Syphacia_obvelata" )
+
+micelist <- jarda$Mouse_ID
+
 ## **********************************************************
-## Which are the "forgotten" samples, with no mouse genotype?
-diss2014 <- read.csv("../raw_data/HZ14_Mice 31-12-14_dissections.csv")
+## complement data
+diss2014 <- read.csv("../raw_data/HZ14_Mice 31-12-14_dissections.csv", na.strings=c(""," ","NA"))
 names(diss2014)[names(diss2014) %in% c("PIN", "X_Map", "Y_Map", "BW", "L", "LCd")] <- 
   c("Mouse_ID", "Longitude", "Latitude", "Body_weight", "Body_length", "Tail_length")
 diss2014$Mouse_ID <- paste("SK", diss2014$Mouse_ID, sep = "_")
 
-## 2015 with genotypes
-diss2015gen <- read.csv("../raw_data/Genotypes_Bav2015.csv")
-names(diss2015gen)[names(diss2015gen) %in% c("PIN", "Xmap", "Ymap")] <- 
-  c("Mouse_ID", "Longitude", "Latitude")
-diss2015gen$Mouse_ID <-  gsub(pattern = "SK", replacement = "SK_",x = diss2015gen$Mouse_ID)
-diss2015gen$Body_weight <- NA; diss2015gen$Body_length <- NA; diss2015gen$Tail_length <- NA
+## rename with homogeneity
+names(diss2014)[34:37] <- c("Aspiculuris_tetraptera", "Syphacia_obvelata", "Trichuris_muris", "Cysticercus")
 
-## all 2015 dissections
-diss2015 <- read.csv("../raw_data/HZ15_Mice_Parasite.csv")
-names(diss2015)[names(diss2015) %in% c("PIN", "X_Map", "Y_Map", "BW", "L", "LCd")] <- 
-  c("Mouse_ID", "Longitude", "Latitude", "Body_weight", "Body_length", "Tail_length")
-diss2015$Mouse_ID <- paste("SK", diss2015$Mouse_ID, sep = "_")
+diss2014$Dissection <- as.Date(diss2014$Dissection, "%m/%d/%Y") 
+diss2014$Capture <- as.Date(diss2014$Arrival, "%m/%d/%Y")
 
-## 2015 without genotypes
-diss2015nogen <- diss2015[diss2015$Mouse_ID %in% diss2015gen$Mouse_ID == FALSE,]
+# remove useless columns
+drops <- names(diss2014)[c(2:5, 9:11,16,20:33,39)]
+diss2014 <- diss2014[ , !(names(diss2014) %in% drops)]
 
-## full 2015
-diss2015 <- merge(diss2015gen, diss2015nogen, all = TRUE)
+MiceTable <- merge(jarda, diss2014[!(diss2014$Mouse_ID %in% micelist),], all = TRUE)
+
+# how many new mice? +195
+micelist <- MiceTable$Mouse_ID
+
+## **********************************************************
+# 2015 - part 1
+diss2015.1 <- read.csv("../raw_data/Genotypes_Bav2015.csv", na.strings=c(""," ","NA"))
+diss2015.1$Mouse_ID <-  gsub(pattern = "SK", replacement = "SK_",x = diss2015.1$PIN)
+names(diss2015.1)[names(diss2015.1) %in% c("Xmap", "Ymap")] <- c("Longitude", "Latitude")
+diss2015.1 <- diss2015.1[-c(1,2)]
+
+# 2015 - part 2
+diss2015.2 <- read.csv("../raw_data/HZ15_Mice_Parasite.csv", na.strings=c(""," ","NA"))
+
+names(diss2015.2)[names(diss2015.2) %in% c("PIN", "X_Map", "Y_Map", "BW", "L", "LCd", "Aspiculuris.tetraptera",
+                                       "Syphacia.obvelata", "Trichuris.muris","Taenia.taeniformis")] <- 
+  c("Mouse_ID", "Longitude", "Latitude", "Body_weight", "Body_length", "Tail_length",
+    "Aspiculuris_tetraptera", "Syphacia_obvelata", "Trichuris_muris", "Cysticercus")
+diss2015.2$Mouse_ID <- paste("SK", diss2015.2$Mouse_ID, sep = "_")
+
+diss2015.2$Dissection <- as.Date(diss2015.2$Dissection, "%m/%d/%Y") 
+diss2015.2$Capture <- diss2015.2$Dissection - 1
+
+diss2015.2 <- diss2015.2[-c(2:5, 10:12, 16, 18, 19, 23:36,42)]
+
+# 2015 merged
+diss2015 <- merge(diss2015.1, diss2015.2, by = "Mouse_ID", all = TRUE)
+
+# clean
+diss2015$Sex <- diss2015$Sex.x
+diss2015$Sex[is.na(diss2015$Sex)] <- diss2015$Sex.y[is.na(diss2015$Sex)] 
+
+diss2015$Year <- 2015
+
+diss2015$Longitude <- diss2015$Longitude.x
+diss2015$Longitude[is.na(diss2015$Longitude)] <- diss2015$Longitude.y[is.na(diss2015$Longitude)]
+
+diss2015$Latitude <- diss2015$Latitude.x
+diss2015$Latitude[is.na(diss2015$Latitude)] <- diss2015$Latitude.y[is.na(diss2015$Latitude)]
+
+diss2015 <- diss2015[-c(2:5, 20, 24,25,26, 28, 29)]
+
+MiceTable <- merge(MiceTable, diss2015[!(diss2015$Mouse_ID %in% micelist),], all = TRUE)
+
+MiceTable <- MiceTable[MiceTable$Mouse_ID != "SK_NA",]
+
+micelist <- MiceTable$Mouse_ID
 
 ## 2016
-diss2016 <- read.csv("../raw_data/HZ16_Mice_18-07-16_dissections.csv")[-c(1:2),]
+diss2016 <- read.csv("../raw_data/HZ16_Mice_18-07-16_dissections.csv", na.strings=c(""," ","NA"))[-c(1:2),]
 names(diss2016)[names(diss2016) %in% "ID_mouse"] <- "Mouse_ID"
 diss2016$Mouse_ID <- as.character(diss2016$Mouse_ID)
+## Add worms 
+worms16 <- read.csv("../raw_data/HZ16_Worms.csv", na.strings=c(""," ","NA"))[-11]
+## rename with homogeneity
+names(worms16) <- c("Mouse_ID", "Syphacia_obvelata", "Aspiculuris_tetraptera", "Mix_Syphacia_Aspiculuris",
+                    "Heterakis_spumosa", "Mastophorus_muris", "Trichuris_muris", 
+                    "Hymenolepis_microstoma", "Catenotaenia_pusilla", "Cysticercus")
+## merge worms and dissection table 2016
+diss2016 <- merge(diss2016, worms16, all = TRUE)
+# rename for homogeneity
+names(diss2016)[names(diss2016) %in% "Ectoparasites"] <- "Flea"
 
-## All years
-MiceTable_14to16 <- merge(merge(diss2014, diss2015, all = TRUE), diss2016, all = TRUE)
+# remove useless
+diss2016 <- diss2016[-c(3:5, 11, 16:22)]
+
+diss2016$Capture <- as.Date(diss2016$Capture, "%d.%m.%Y") 
+diss2016$Dissection <- as.Date(diss2016$Dissection, "%d.%m.%Y") 
+
+# For the mice of 2016 in micelist, change the worms column in MiceTable (corrected by Jenny)
+
+wormscol1 <- c("Syphacia_obvelata", "Aspiculuris_tetraptera", "Mix_Syphacia_Aspiculuris",
+               "Heterakis_spumosa", "Mastophorus_muris", "Trichuris_muris", 
+               "Hymenolepis_microstoma", "Catenotaenia_pusilla", "Cysticercus")
+
+wormscol2 <- c("Syphacia_obvelata", "Aspiculuris_tetraptera", "Heterakis_spumosa", 
+               "Mastophorus_muris", "Trichuris_muris", "Hymenolepis_microstoma", 
+               "Cysticercus",  "Hymenolepis",  "Mesocestoides",   "Oxyurids")
+
+# extract and correct
+extract <- MiceTable[MiceTable$Mouse_ID %in% diss2016$Mouse_ID,]
+#remove worms col
+extract <- extract[ , !(names(extract) %in% wormscol2)]
+# inject correct columns
+extract <- merge(extract, diss2016[names(diss2016) %in% c("Mouse_ID",wormscol1)], by = "Mouse_ID", all = TRUE)
+
+# re-inject, corrected
+MiceTable <- merge(MiceTable[!(MiceTable$Mouse_ID %in% diss2016$Mouse_ID),], extract, all = TRUE)
 
 ## **********************************************************
-## Begin from jarda's table as a base, then complete with missing present in MiceTable_14to16
-MiceTable_14to16 <- merge(jarda, MiceTable_14to16[MiceTable_14to16$Mouse_ID %in% jarda$Mouse_ID == FALSE,], all = TRUE)
+## 2017
+diss2017 <- read.csv(file = "../raw_data/HZ17_September_Mice_Dissection.csv", na.strings=c(""," ","NA"))
+names(diss2017)[names(diss2017) == "Ectoparasites"] <- "Flea"      
 
-## **********************************************************
-## Add 2017
-Mice_17 <- read.csv(file = "../raw_data/HZ17_September_Mice_Dissection.csv")
-names(Mice_17)[names(Mice_17) == "Ectoparasites"] <- "Flea"      
+## Add worms 
+worms17 <- read.csv("../raw_data/HZ17_Worms.csv", na.strings=c(""," ","NA"))[-c(13:15)]
+
+## merge worms and dissection table 2017
+diss2017 <- merge(diss2017, worms17)
 
 # Remove address and code 
-drops <- c("Address","Code") ; Mice_17 <- Mice_17[ , !(names(Mice_17) %in% drops)]
+drops <- c("Address","Code",names(diss2017)[17:26]) ; diss2017 <- diss2017[ , !(names(diss2017) %in% drops)]
 
-# Merge 2017 and MiceTable_14to16
-MiceTable_14to17 <- merge(MiceTable_14to16, Mice_17, all = TRUE)
+diss2017$Capture <- as.Date(diss2017$Capture, "%d.%m.%Y") 
+diss2017$Dissection <- as.Date(diss2017$Dissection, "%d.%m.%Y") 
 
-# remove mistakes
-MiceTable_14to17 <- MiceTable_14to17[MiceTable_14to17$Mouse_ID != "SK_NA", ]
-
-# Check for unicity:
-which(table(MiceTable_14to17$Mouse_ID) != 1)
-## **********************************************************
-
-## We keep the following:
-#MiceTable_14to17 <- MiceTable_14to17[c("Transect", "State", "PIN", "Sex", "Xmap", "Ymap", "Year", "Month", "Day", "mtBamH", "Zfy2", "SRY1", "Y", "X332", "X347", "X65",
- #                        "Tsx", "Btk", "Syap1", "Es1C", "Gpd1C", "Idh1C", "MpiC", "NpC", "Sod1C", "Days.in.lab", "BW", "L", "LCd", "Taenia",
-  #                       "Hymenolepis", "Mastophorus", "Rodentolepis", "Mesocestoides", "Trichuris", "Heterakis", "Aspiculuris",
-   #                      "Syphacia", "Oxyurids", "Flea", "HI_NLoci", "HI")]
-
-# remove useless factors to final df
-#drops <- c("Dissectors", "Spleen_mass", "Left_Testis_mass", "Right_Testis_mass","Left.epididymis.weight", "Seminal.vesicle.weight", "Left.ovarium.weight", "Right.ovarium.weight", "Total",
- #          "Embryo_left", "Embryo_right"); Mice_14to17 <- Mice_14to17[ , !(names(Mice_14to17) %in% drops)]
+# Final merging :) :) :)
+MiceTable <- merge(MiceTable, diss2017, all = TRUE)
 
 ## Uniformisation:
-levels(MiceTable_14to17$Sex)[levels(MiceTable_14to17$Sex) %in% c("female", "male")] <- c("F", "M")
+levels(MiceTable$Sex)[levels(MiceTable$Sex) %in% c("female", "male")] <- c("F", "M")
 
-write.csv(x = MiceTable_14to17, file = "../raw_data/MiceTable_2014to2017.csv", row.names = FALSE)
+write.csv(x = MiceTable, file = "../raw_data/MiceTable_2014to2017.csv", row.names = FALSE)
 
 ## TRAPS TABLE *****************************
 
@@ -106,7 +182,7 @@ names(traps2016) <- c("Address", "Latitude", "Longitude", "Date_set", "Time_set"
     "Time_collect","Number_mus_caught", "People", "Number_rodents_caught", "Year")
   
 # before 2016, only localisations where mice where actually caught
-trapsbefore17 <- MiceTable_14to17[names(MiceTable_14to17) %in% c("Longitude", "Latitude", "Year")]
+trapsbefore17 <- MiceTable[names(MiceTable) %in% c("Longitude", "Latitude", "Year")]
 trapsbefore17 <- trapsbefore17[!trapsbefore17$Year %in% c(2017, 2016), ]
 # each line is one mouse in the dissection table
 trapsbefore17$Number_mus_caught <- 1
@@ -120,3 +196,4 @@ trapsbefore17$Number_rodents_caught <- NA; trapsbefore17$People <- NA
 TrapTable_2014to2017 <- rbind(rbind(trapsbefore17, traps2016), traps2017)
 
 write.csv(x = TrapTable_2014to2017, file = "../raw_data/TrapTable_2014to2017.csv", row.names = FALSE)
+
