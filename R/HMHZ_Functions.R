@@ -86,7 +86,7 @@ measure <- function(lon1,lat1,lon2,lat2) {
 }
 
 ## draw a map with colors depending on HI
-HI.map <- function(df, size = 2, margin = 2, zoom = 6){
+HI.map <- function(df, size = 2, margin = 2, zoom = 6, alpha = 0.5){
   # get a map
   area <- get_map(location =
                     c(min(df$Longitude - margin),
@@ -98,7 +98,7 @@ HI.map <- function(df, size = 2, margin = 2, zoom = 6){
   #plot the map :
   ggmap(area) +
     geom_point(data = df, shape = 21, size = size,
-               aes(Longitude, Latitude, fill = HI), alpha = 0.5) + # set up the points
+               aes(Longitude, Latitude, fill = HI), alpha = alpha) + # set up the points
     scale_fill_gradient("Hybrid\nindex", high="red",low="blue")   # set up the HI colors
 }                  
 
