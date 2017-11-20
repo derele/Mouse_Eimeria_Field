@@ -17,19 +17,19 @@ convert.deg <-function(c){
 }
 
 ## Calculate the hybrid index
-get.HIX <- function (x){
-    dom <- nchar(x) - nchar(gsub("d", "", x))
-    mus <- nchar(x) - nchar(gsub("m", "", x))
-    mus/(mus + dom)
+get.HI <- function (x){
+  dom <- nchar(x) - nchar(gsub("d", "", x))
+  mus <- nchar(x) - nchar(gsub("m", "", x))
+  mus/(mus + dom)
 }
 
 ## Calculate the hybrid index in a dataframe
-get.HIX.full <- function(df){
-  X.col <- c("X332", "X347", "X65", "Tsx", "Btk",  "Syap1")
+get.HI.full <- function(df, markers.col = c("X332", "X347", "X65", "Tsx", "Btk",  "Syap1")){
   ## collapse m or d alleles in 1 column
-  df$collapsed.GT <- apply(df[, X.col],1, paste, collapse = "/")
+  df$collapsed.GT <- apply(df[, markers.col],1, paste, collapse = "/")
   ## calculate hybrid index per mouse
-  df$HIX <- sapply(df$collapsed.GT, get.HIX)
+  df$HI.calculated <- sapply(df$collapsed.GT, get.HI)
+  return(df)
 }
 
 ## Test if 2 localities form a cluster
