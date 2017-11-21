@@ -199,9 +199,9 @@ ggplot(data=aggworms, aes(x=variable, y=value)) +
 # prevalence at a locality depending on the density (mice.per.trap) (only 2016, 2017)
 
 WormsDF2 <- TotalTable[c("Cysticercus", "Trichuris_muris", "Aspiculuris_tetraptera", "Syphacia_obvelata",
-                        "Mastophorus_muris", "Heterakis_spumosa", "Mesocestoides", 
-                        "Catenotaenia_pusilla", "Hymenolepis", "Oxyurids", "Mix_Syphacia_Aspiculuris",
-                        "Heligmosomoides_polygurus", "Latitude", "Longitude", "mice.per.trap")]
+                         "Mastophorus_muris", "Heterakis_spumosa", "Mesocestoides", 
+                         "Catenotaenia_pusilla", "Hymenolepis", "Oxyurids", "Mix_Syphacia_Aspiculuris",
+                         "Heligmosomoides_polygurus", "Latitude", "Longitude", "mice.per.trap")]
 
 WormsDF2 <- na.omit(melt(WormsDF2, id = c("Longitude", "Latitude", "mice.per.trap")))
 
@@ -214,7 +214,9 @@ aggworms2 <- aggregate(x = WormsDF2["prevalence"],
 ggplot(data=aggworms2, aes(x = mice.per.trap, y=prevalence, col = variable)) +
   geom_smooth(alpha = 0.1, size = 2) +
   geom_point(col = "black") +
-  theme_classic() 
+  theme_classic() +
+  facet_wrap( ~ variable, nrow = 2) +
+  theme(legend.position="none")
 
 #***************************
 ## To finish
