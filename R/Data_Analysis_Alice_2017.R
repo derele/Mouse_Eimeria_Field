@@ -62,8 +62,8 @@ names(aggdata)[names(aggdata) == "x"] <- "Number_mice_caught"
 # add a counter for the localities:
 aggdata <- as.data.table(aggdata)[, count := seq(.N), by = c("Latitude", "Longitude")][]
 
-# density of mice in 100%
-aggdata$density <- aggdata$Number_mus_caught / aggdata$Number_traps_set *100
+# mice per trap mice in 100%
+aggdata$mice.per.trap <- aggdata$Number_mus_caught / aggdata$Number_traps_set *100
 
 # so you define new and old localities:
 aggdata$is.new.loc <- "new"
@@ -121,7 +121,7 @@ install_github("ggobi/ggally")
 library(GGally)
 
 ggpairs(
-  TotalTable, which(names(TotalTable) %in% c("Year","HI", "density", "BMI")),
+  TotalTable, which(names(TotalTable) %in% c("Year","HI", "mice.per.trap", "BMI")),
   upper = list(
     continuous = wrap('cor', method = "spearman")
   ), 
@@ -130,7 +130,7 @@ ggpairs(
   )
 )
 
-ggcorr(TotalTable[(names(TotalTable) %in% c("Year", "HI", "density", "BMI"))], 
+ggcorr(TotalTable[(names(TotalTable) %in% c("Year", "HI", "mice.per.trap", "BMI"))], 
        palette = "RdBu", label = TRUE, method = c("pairwise", "spearman")) +
   ggtitle("Pairwise correlations with Spearman coefficient")
 
@@ -144,8 +144,8 @@ ggplot(TotalTable[TotalTable$Sex %in% c("M", "F"), ], aes(x = Longitude, y = Lat
   geom_density2d(aes(color = Sex), size = 1) +
   geom_point(col = "black", size = 4, pch = 21)
 
-# Host density - sex
-ggplot(TotalTable[TotalTable$Sex %in% c("M", "F"),], aes(x = density))+
+# Host density (mice.per.trap) - sex
+ggplot(TotalTable[TotalTable$Sex %in% c("M", "F"),], aes(x = mice.per.trap))+
   geom_bar(aes(fill = Sex), stat = "count", binwidth = 3, col = "white") +
   theme_classic()
 
@@ -164,13 +164,13 @@ ggplot(TotalTable[!is.na(TotalTable$subspecies),], aes(x=subspecies, y = BMI, fi
   scale_fill_manual(values = c("blue", "red")) +
   theme_classic()
 
-# Host density - hybrid index
-ggplot(TotalTable[!is.na(TotalTable$HI),], aes(x = HI, y = density))+
+# Host density (mice.per.trap) - hybrid index
+ggplot(TotalTable[!is.na(TotalTable$HI),], aes(x = HI, y = mice.per.trap))+
   geom_point(pch = 21)+
   geom_smooth(col = "red") +
   theme_classic()
 
-ggplot(TotalTable[!is.na(TotalTable$HI),], aes(x = HI, y = density))+
+ggplot(TotalTable[!is.na(TotalTable$HI),], aes(x = HI, y = mice.per.trap))+
   geom_point(pch = 21)+
   geom_smooth(col = "red", method = "lm") +
   theme_classic()
@@ -196,22 +196,22 @@ ggplot(data=aggworms, aes(x=variable, y=value)) +
   geom_text(aes(y=value, label=value), vjust=1.6, 
             color="black", size=6)
 
-# prevalence at a locality depending on the density (only 2016, 2017)
+# prevalence at a locality depending on the density (mice.per.trap) (only 2016, 2017)
 
 WormsDF2 <- TotalTable[c("Cysticercus", "Trichuris_muris", "Aspiculuris_tetraptera", "Syphacia_obvelata",
                         "Mastophorus_muris", "Heterakis_spumosa", "Mesocestoides", 
                         "Catenotaenia_pusilla", "Hymenolepis", "Oxyurids", "Mix_Syphacia_Aspiculuris",
-                        "Heligmosomoides_polygurus", "Latitude", "Longitude", "density")]
+                        "Heligmosomoides_polygurus", "Latitude", "Longitude", "mice.per.trap")]
 
-WormsDF2 <- na.omit(melt(WormsDF2, id = c("Longitude", "Latitude", "density")))
+WormsDF2 <- na.omit(melt(WormsDF2, id = c("Longitude", "Latitude", "mice.per.trap")))
 
 WormsDF2$prevalence <- 0
 WormsDF2$prevalence[WormsDF2$value > 0] <- 1
 
 aggworms2 <- aggregate(x = WormsDF2["prevalence"],
-          by = WormsDF2[c("Latitude", "Longitude", "density", "variable")], FUN = function(x){sum(x)/length(x)})
+          by = WormsDF2[c("Latitude", "Longitude", "mice.per.trap", "variable")], FUN = function(x){sum(x)/length(x)})
 
-ggplot(data=aggworms2, aes(x = density, y=prevalence, col = variable)) +
+ggplot(data=aggworms2, aes(x = mice.per.trap, y=prevalence, col = variable)) +
   geom_smooth(alpha = 0.1, size = 2) +
   geom_point(col = "black") +
   theme_classic() 
