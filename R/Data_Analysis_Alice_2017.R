@@ -218,6 +218,22 @@ ggplot(data=aggworms2, aes(x = mice.per.trap, y=prevalence, col = variable)) +
   facet_wrap( ~ variable, nrow = 2) +
   theme(legend.position="none")
 
+# worms distribution per year : how do we group?
+WormsDF3 <- TotalTable[c("Cysticercus", "Trichuris_muris", "Aspiculuris_tetraptera", "Syphacia_obvelata",
+                         "Mastophorus_muris", "Heterakis_spumosa", "Mesocestoides", 
+                         "Catenotaenia_pusilla", "Hymenolepis", "Oxyurids", "Mix_Syphacia_Aspiculuris",
+                         "Heligmosomoides_polygurus", "Mouse_ID", "Year")]
+
+WormsDF3 <- na.omit(melt(WormsDF3, id = c("Mouse_ID", "Year")))
+
+ggplot(data=WormsDF3, aes(x = variable, y=log10(value))) +
+  geom_violin(aes(fill = variable))  +
+  geom_jitter(size = 0.5, alpha = .8) +
+  theme_classic() +
+  facet_wrap( ~ Year, nrow = 2) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))+
+  theme(legend.position="none")
+
 #***************************
 ## To finish
 
