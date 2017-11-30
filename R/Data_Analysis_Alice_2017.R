@@ -116,8 +116,8 @@ ggplot(aggdata, aes(x = Number_mus_caught)) +
 # ***************************************************************
 # test potential linear correlation
 library(devtools)
-install_github("hadley/ggplot2")
-install_github("ggobi/ggally")
+# install_github("hadley/ggplot2")
+# install_github("ggobi/ggally")
 library(GGally)
 
 ggpairs(
@@ -183,7 +183,7 @@ WormsDF <- TotalTable[c("Mouse_ID", "Cysticercus", "Trichuris_muris", "Aspiculur
                         "Heligmosomoides_polygurus", "Latitude", "Longitude")]
 
 # ("Hymenolepis_microstoma", "Hymenolepis_diminiuta") to check, contains "TRUE" and "FALSE"
-
+library(reshape)
 WormsDF <- na.omit(melt(WormsDF, id = c("Mouse_ID", "Longitude", "Latitude")))
 
 aggworms <- aggregate(x = WormsDF["value"],
@@ -235,6 +235,78 @@ ggplot(data=WormsDF3, aes(x = variable, y=log10(value))) +
   theme(legend.position="none")
 
 #***************************
-## To finish
+## Eimeria
 
-# link eimeria and prevalence 
+# 2017 oocysts
+Lorenzo <- read.csv("/home/alice/Schreibtisch/git_projects/Mouse_Eimeria_Databasing/Eimeria_detection/data_clean/Results_flotation_2017_clean.csv")
+Lorenzo$oocysts_per_g <- round(rowSums(Lorenzo[6:13]) / 8 * 10000 / Lorenzo$Feces_g)
+Lorenzo <- merge(data.frame(Mouse_ID = TotalTable$Mouse_ID, BMI = TotalTable$BMI), 
+                 data.frame(Mouse_ID = Lorenzo$Mouse_ID, oocyst.per.g = Lorenzo$oocysts_per_g))
+Lorenzo$Year <- 2017
+Lorenzo$HI <- NA
+
+# 2016 oocysts
+Phuong <- read.csv("../Eimeria_detection/data_clean/Results_flotation_and_PCR_2016_CLEAN.csv")
+Phuong <- merge(data.frame(Mouse_ID = TotalTable$Mouse_ID, BMI = TotalTable$BMI, HI = TotalTable$HI.calculated), 
+                data.frame(Mouse_ID = Phuong$Mouse_ID, oocyst.per.g = Phuong$OPG))
+Phuong$Year <- 2016
+
+# both
+Oo <- rbind(Phuong, Lorenzo)
+Oo$status <- "infected"
+Oo$status[Oo$oocyst.per.g == 0] <- "non infected"
+
+ggplot(Oo, aes(x= oocyst.per.g, y = BMI, col = status, fill = status)) +
+  geom_smooth(method = "lm", na.rm = T) +
+  geom_point(na.rm = T) +
+  theme_classic()
+
+ggplot(Oo, aes(x= HI, y = BMI, col = status, fill = status, size = oocyst.per.g)) +
+  geom_smooth(na.rm = T) +
+  geom_point(na.rm = T) +
+  theme_classic()
+
+ggplot(Oo, aes(x= HI, y = oocyst.per.g, col = status, fill = status)) +
+  geom_smooth(na.rm = T) +
+  geom_point(na.rm = T) +
+  theme_classic() 
+
+
+# < 2017, either oocyst positive OR sequence available
+Victor <- read.csv("../raw_data/Inventory_contents_all.csv")
+
+Victor$Eimeria_status <- "Neg"
+# Victor$Eimeria_status[Victor$X11_Flotation == "TRUE" | Victor$X12_Ap5_PCR == "TRUE" | Victor$X12_18S_PCR == "TRUE" | 
+#                         Victor$X13_COI_PCR == "TRUE" | Victor$X15_ORF470_PCR == "TRUE" | Victor$X17_SSU_PCR == "TRUE" |
+#                         Victor$X18_LSU_PCR == "TRUE"]<- "Pos"
+
+Victor$Eimeria_status[Victor$X11_Flotation == "TRUE" | Victor$X13_18S_Seq == "TRUE" | Victor$X14_COI_Seq == "TRUE" | 
+                        Victor$X16_ORF470_Seq == "TRUE" | Victor$X18_LSU_PCR == "TRUE"]<- "Pos"
+
+EimeriaV <- data.frame(Mouse_ID = Victor$X3_ID_mouse, Eimeria_status = Victor$Eimeria_status)
+
+Lorenzo$Eimeria_status <- "Neg"
+Lorenzo$Eimeria_status[Lorenzo$oocyst.per.g > 0] <- "Pos"
+
+# All
+Eimeria <- rbind(EimeriaV, Lorenzo[c("Mouse_ID", "Eimeria_status")])
+EimeriaBMI <- na.omit(merge(data.frame(BMI = TotalTable$BMI, Mouse_ID = TotalTable$Mouse_ID, HI = TotalTable$HI.calculated), Eimeria, all = T))
+
+ggplot(EimeriaBMI, aes(x = HI, y = BMI, col = Eimeria_status)) + #, color = Eimeria_status, fill = Eimeria_status)) +
+  geom_point(size = 5) +
+  geom_smooth(alpha= 0.2) +
+  geom_smooth(alpha= 0.2, aes(col = Eimeria_status)) +
+  theme_classic()
+
+## 
+EimeriaWL <- na.omit(merge(data.frame(Weight = TotalTable$Body_weight, 
+                                      Mouse_ID = TotalTable$Mouse_ID, 
+                                      Length = TotalTable$Body_length), Eimeria, all = T))
+
+ggplot(EimeriaWL, aes(x = Weight, y = Length, color = Eimeria_status, fill = Eimeria_status)) +
+#  geom_density2d() +
+  geom_point() +
+  geom_smooth()+ 
+  theme_classic() 
+  
+
