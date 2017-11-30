@@ -148,7 +148,7 @@ worms17 <- read.csv("../raw_data/HZ17_Worms.csv", na.strings=c(""," ","NA"))[-c(
 diss2017 <- merge(diss2017, worms17)
 
 # Remove address and code 
-drops <- c("Address","Code",names(diss2017)[17:26]) ; diss2017 <- diss2017[ , !(names(diss2017) %in% drops)]
+drops <- c("Address","Code",names(diss2017)[19:26]) ; diss2017 <- diss2017[ , !(names(diss2017) %in% drops)]
 
 diss2017$Capture <- as.Date(diss2017$Capture, "%d.%m.%Y") 
 diss2017$Dissection <- as.Date(diss2017$Dissection, "%d.%m.%Y") 
