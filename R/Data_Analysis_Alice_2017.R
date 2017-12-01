@@ -116,8 +116,7 @@ ggplot(aggdata, aes(x = Number_mus_caught)) +
 # ***************************************************************
 # test potential linear correlation
 library(devtools)
-# install_github("hadley/ggplot2")
-# install_github("ggobi/ggally")
+install_github("ggobi/ggally")
 library(GGally)
 
 ggpairs(
@@ -238,7 +237,7 @@ ggplot(data=WormsDF3, aes(x = variable, y=log10(value))) +
 ## Eimeria
 
 # 2017 oocysts
-Lorenzo <- read.csv("/home/alice/Schreibtisch/git_projects/Mouse_Eimeria_Databasing/Eimeria_detection/data_clean/Results_flotation_2017_clean.csv")
+Lorenzo <- read.csv("../Eimeria_detection/data_clean/Results_flotation_2017_clean.csv")
 Lorenzo$oocysts_per_g <- round(rowSums(Lorenzo[6:13]) / 8 * 10000 / Lorenzo$Feces_g)
 Lorenzo <- merge(data.frame(Mouse_ID = TotalTable$Mouse_ID, BMI = TotalTable$BMI), 
                  data.frame(Mouse_ID = Lorenzo$Mouse_ID, oocyst.per.g = Lorenzo$oocysts_per_g))
@@ -256,37 +255,101 @@ Oo <- rbind(Phuong, Lorenzo)
 Oo$status <- "infected"
 Oo$status[Oo$oocyst.per.g == 0] <- "non infected"
 
-ggplot(Oo, aes(x= oocyst.per.g, y = BMI, col = status, fill = status)) +
-  geom_smooth(method = "lm", na.rm = T) +
-  geom_point(na.rm = T) +
-  theme_classic()
-
-ggplot(Oo, aes(x= HI, y = BMI, col = status, fill = status, size = oocyst.per.g)) +
-  geom_smooth(na.rm = T) +
-  geom_point(na.rm = T) +
-  theme_classic()
-
-ggplot(Oo, aes(x= HI, y = oocyst.per.g, col = status, fill = status)) +
-  geom_smooth(na.rm = T) +
-  geom_point(na.rm = T) +
-  theme_classic() 
-
-
 # < 2017, either oocyst positive OR sequence available
 Victor <- read.csv("../raw_data/Inventory_contents_all.csv")
 
 Victor$Eimeria_status <- "Neg"
-# Victor$Eimeria_status[Victor$X11_Flotation == "TRUE" | Victor$X12_Ap5_PCR == "TRUE" | Victor$X12_18S_PCR == "TRUE" | 
-#                         Victor$X13_COI_PCR == "TRUE" | Victor$X15_ORF470_PCR == "TRUE" | Victor$X17_SSU_PCR == "TRUE" |
-#                         Victor$X18_LSU_PCR == "TRUE"]<- "Pos"
+# Victor$Eimeria_status[Victor$X11_Flotation == "TRUE" | 
+#                         Victor$X12_Ap5_PCR == "TRUE" | 
+#                         Victor$X12_18S_PCR == "TRUE" | 
+#                         Victor$X13_COI_PCR == "TRUE" | 
+#                         Victor$X15_ORF470_PCR == "TRUE" | 
+#                         Victor$X17_SSU_PCR == "TRUE" |
+#                         Victor$X18_LSU_PCR == "TRUE"] <- "Pos"
 
-Victor$Eimeria_status[Victor$X11_Flotation == "TRUE" | Victor$X13_18S_Seq == "TRUE" | Victor$X14_COI_Seq == "TRUE" | 
-                        Victor$X16_ORF470_Seq == "TRUE" | Victor$X18_LSU_PCR == "TRUE"]<- "Pos"
+Victor$Eimeria_status[Victor$X11_Flotation == "TRUE" | 
+                        Victor$X13_18S_Seq == "TRUE" | 
+                        Victor$X14_COI_Seq == "TRUE" | 
+                        Victor$X16_ORF470_Seq == "TRUE" | 
+                        Victor$X18_LSU_PCR == "TRUE"]<- "Pos"
 
-EimeriaV <- data.frame(Mouse_ID = Victor$X3_ID_mouse, Eimeria_status = Victor$Eimeria_status)
+EimeriaV <- data.frame(Mouse_ID = Victor$X3_ID_mouse,
+                       PCR_status = Victor$Eimeria_status,
+                       Year = Victor$X1_Year)
 
-Lorenzo$Eimeria_status <- "Neg"
-Lorenzo$Eimeria_status[Lorenzo$oocyst.per.g > 0] <- "Pos"
+# All together
+Eimeria_tot <- merge(EimeriaV, Oo, all = T)
+
+Eimeria_tot <- Eimeria_tot[-grep(Eimeria_tot$Mouse_ID[
+  which(duplicated(Eimeria_tot$Mouse_ID))], Eimeria_tot$Mouse_ID),]
+# manual correction
+Eimeria_tot <- rbind(Eimeria_tot,
+                     c("AA_0094", 2016, "Pos", 0.64149, 0.04, 130000))
+# check
+which(duplicated(Eimeria_tot$Mouse_ID))
+
+Eimeria_tot <- merge(data.frame(BMI = TotalTable$BMI,
+                                Mouse_ID = TotalTable$Mouse_ID,
+                                HI = TotalTable$HI.calculated), 
+                     Eimeria_tot, all = T)
+
+Eimeria_tot$Eimeria_status[
+  Eimeria_tot$PCR_status == "Pos" | Eimeria_tot$status == "infected"] <- "Inf"
+
+Eimeria_tot$Eimeria_status[
+  Eimeria_tot$PCR_status == "Neg" | Eimeria_tot$status == "non infected"] <- 
+  "non inf"
+
+# n individuals tested :
+length(na.omit(Eimeria_tot$Eimeria_status))
+
+# ****************
+ggplot(Oo, aes(x = status, y = BMI)) +
+  #  geom_jitter() +
+  geom_violin(aes(fill = status)) +
+  geom_boxplot(width = 0.1) +
+  theme_classic()
+
+wilcox.test(BMI ~ status, data = Oo) 
+
+# ****
+df <- na.omit(
+  Eimeria_tot[!is.na(Eimeria_tot$Eimeria_status),c("BMI", "Eimeria_status")])
+
+df$BMI <- as.numeric(df$BMI)
+
+ggplot(df, aes(x = Eimeria_status, y = BMI)) +
+  geom_violin(aes(fill = Eimeria_status)) +
+  geom_boxplot(width = 0.1) +
+  geom_jitter(pch = 21, aes(col = Eimeria_status)) +
+  #  scale_color_manual(values = c("red", "aliceblue")) +
+  theme_classic()
+
+wilcox.test(BMI ~ Eimeria_status, data = df) 
+
+ggplot(Oo, aes(x = HI, y = oocyst.per.g)) +
+  geom_point() +
+  geom_smooth() +
+  scale_y_log10() +
+  theme_classic()
+
+## 
+df <- na.omit(
+Eimeria_tot[!is.na(Eimeria_tot$Eimeria_status),c("HI", "Eimeria_status")])
+
+df$HI <- as.numeric(df$HI)
+
+df$sp <- "hybrid"
+df$sp[df$HI <= 0.2] <- "Mmd"
+df$sp[df$HI >= 0.8] <- "Mmm"
+
+table(df$sp, df$Eimeria_status)
+
+
+
+
+# ****************
+
 
 # All
 Eimeria <- rbind(EimeriaV, Lorenzo[c("Mouse_ID", "Eimeria_status")])
