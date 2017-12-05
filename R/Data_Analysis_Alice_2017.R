@@ -163,6 +163,9 @@ ggplot(TotalTable[!is.na(TotalTable$subspecies),], aes(x=subspecies, y = BMI, fi
   scale_fill_manual(values = c("blue", "red")) +
   theme_classic()
 
+summary(glm(TotalTable$BMI ~ TotalTable$subspecies))
+### Mmm a bit smaller than Mmd, but p ~ 0.4, not super significant...
+
 # Host density (mice.per.trap) - hybrid index
 ggplot(TotalTable[!is.na(TotalTable$HI),], aes(x = HI, y = mice.per.trap))+
   geom_point(pch = 21)+
@@ -173,6 +176,8 @@ ggplot(TotalTable[!is.na(TotalTable$HI),], aes(x = HI, y = mice.per.trap))+
   geom_point(pch = 21)+
   geom_smooth(col = "red", method = "lm") +
   theme_classic()
+
+## Mmd side next to Berlin, so less big farms?
 
 # ***************************************************************
 # Parasites
@@ -344,32 +349,3 @@ df$sp[df$HI <= 0.2] <- "Mmd"
 df$sp[df$HI >= 0.8] <- "Mmm"
 
 table(df$sp, df$Eimeria_status)
-
-
-
-
-# ****************
-
-
-# All
-Eimeria <- rbind(EimeriaV, Lorenzo[c("Mouse_ID", "Eimeria_status")])
-EimeriaBMI <- na.omit(merge(data.frame(BMI = TotalTable$BMI, Mouse_ID = TotalTable$Mouse_ID, HI = TotalTable$HI.calculated), Eimeria, all = T))
-
-ggplot(EimeriaBMI, aes(x = HI, y = BMI, col = Eimeria_status)) + #, color = Eimeria_status, fill = Eimeria_status)) +
-  geom_point(size = 5) +
-  geom_smooth(alpha= 0.2) +
-  geom_smooth(alpha= 0.2, aes(col = Eimeria_status)) +
-  theme_classic()
-
-## 
-EimeriaWL <- na.omit(merge(data.frame(Weight = TotalTable$Body_weight, 
-                                      Mouse_ID = TotalTable$Mouse_ID, 
-                                      Length = TotalTable$Body_length), Eimeria, all = T))
-
-ggplot(EimeriaWL, aes(x = Weight, y = Length, color = Eimeria_status, fill = Eimeria_status)) +
-#  geom_density2d() +
-  geom_point() +
-  geom_smooth()+ 
-  theme_classic() 
-  
-
