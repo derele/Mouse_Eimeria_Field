@@ -49,63 +49,35 @@ ggplot(eimeria_summary_df, aes(x = year, y = log10(OPG + 0.01),
   theme_classic() +
   theme(axis.title.x = element_blank())
 
-##### SCALE THE DATA : we take 2017 as reference and center our 4 groups on it.
-eimeria_summary_df$OPG_scaled <- NA
+######## Other idea: Correct with a multiplicative factor between the 2 methods
 
-mycenter <- mean(eimeria_summary_df[eimeria_summary_df$year == 2017 & 
-                                      eimeria_summary_df$OPG != 0, "OPG" ])
+# 2 different methods for the counting:
+G1 <- eimeria_summary_df$OPG[eimeria_summary_df$counter == "Enas" &
+                               eimeria_summary_df$OPG != 0]
+G2 <- eimeria_summary_df$OPG[eimeria_summary_df$counter != "Enas" &
+                               eimeria_summary_df$OPG != 0]
 
-# Center on 0 then add the mean of log10(mycenter)
+mult.factor <- mean(G2) / mean(G1)
 
-# Group 1 : Enas, 2015
-eimeria_summary_df$OPG_scaled[eimeria_summary_df$counter == "Enas" &
-                                eimeria_summary_df$year == 2015 &
-                                eimeria_summary_df$OPG != 0] <-
-  10^(scale(log10(eimeria_summary_df$OPG[eimeria_summary_df$counter == "Enas" &
-                                           eimeria_summary_df$year == 2015 &
-                                           eimeria_summary_df$OPG != 0]), 
-            center = TRUE, scale = FALSE) + 
-        mean(log10(mycenter)))
+# new correction with this factor
+eimeria_summary_df$OPG_scaled[eimeria_summary_df$counter != "Enas"] <-
+  eimeria_summary_df$OPG[eimeria_summary_df$counter != "Enas"] 
 
-# Group 2 : Enas, 2016
-eimeria_summary_df$OPG_scaled[eimeria_summary_df$counter == "Enas" &
-                                eimeria_summary_df$year == 2016 &
-                                eimeria_summary_df$OPG != 0] <-
-  10^(scale(log10(eimeria_summary_df$OPG[eimeria_summary_df$counter == "Enas" &
-                                           eimeria_summary_df$year == 2016 &
-                                           eimeria_summary_df$OPG != 0]), 
-            center = TRUE, scale = FALSE) + 
-        mean(log10(mycenter)))
+eimeria_summary_df$OPG_scaled[eimeria_summary_df$counter == "Enas"] <-
+  eimeria_summary_df$OPG[eimeria_summary_df$counter == "Enas"] *
+  mult.factor
 
-# Group 3 : Phuong
-eimeria_summary_df$OPG_scaled[eimeria_summary_df$counter == "Phuong" &
-                                eimeria_summary_df$OPG != 0] <-
-  10^(scale(log10(eimeria_summary_df$OPG[eimeria_summary_df$counter == "Phuong" &
-                                           eimeria_summary_df$OPG != 0]), 
-            center = TRUE, scale = FALSE) + 
-        mean(log10(mycenter)))
-
-# Group 4 : Lorenzo (stay unchanged)
-eimeria_summary_df$OPG_scaled[eimeria_summary_df$counter == "Lorenzo" &
-                                eimeria_summary_df$OPG != 0] <-
-  eimeria_summary_df$OPG[eimeria_summary_df$counter == "Lorenzo" &
-                                eimeria_summary_df$OPG != 0]
-
-# And the NA go back to be 0
-eimeria_summary_df$OPG_scaled[is.na(eimeria_summary_df$OPG_scaled)] <- 0
-
-# And round
+# round
 eimeria_summary_df$OPG_scaled <- round(eimeria_summary_df$OPG_scaled)
+
+# check now the sd
+sd(eimeria_summary_df$OPG_scaled[eimeria_summary_df$counter == "Enas"])
+sd(eimeria_summary_df$OPG_scaled[eimeria_summary_df$counter != "Enas"])
+
+# close to each other :)
 
 ##### and plot again!! 
 ggplot(eimeria_summary_df, aes(x = year, y = OPG_scaled, 
-                               fill = counter)) +
-  geom_jitter(size = 4, pch = 21, alpha = .8) +
-  theme_classic() +
-  theme(axis.title.x = element_blank())
-
-# log transformed
-ggplot(eimeria_summary_df, aes(x = year, y = log10(OPG_scaled + 0.01), 
                                fill = counter)) +
   geom_jitter(size = 4, pch = 21, alpha = .8) +
   theme_classic() +
