@@ -95,6 +95,8 @@ eimeria_summary_df$OPG_scaled[eimeria_summary_df$counter == "Lorenzo" &
 eimeria_summary_df$OPG_scaled[is.na(eimeria_summary_df$OPG_scaled)] <- 0
 
 # And round
+eimeria_summary_df$OPG_scaled <- round(eimeria_summary_df$OPG_scaled)
+
 ##### and plot again!! 
 ggplot(eimeria_summary_df, aes(x = year, y = OPG_scaled, 
                                fill = counter)) +
@@ -108,3 +110,8 @@ ggplot(eimeria_summary_df, aes(x = year, y = log10(OPG_scaled + 0.01),
   geom_jitter(size = 4, pch = 21, alpha = .8) +
   theme_classic() +
   theme(axis.title.x = element_blank())
+
+## Export corrected data
+write.csv(x = eimeria_summary_df, 
+          file = paste0("../raw_data/Eimeria_detection/Total_oocysts_counts_", Sys.Date(), ".csv"),
+          row.names = F)
