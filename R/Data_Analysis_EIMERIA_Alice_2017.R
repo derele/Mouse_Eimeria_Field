@@ -1,8 +1,11 @@
+## Load data from oocysts counting 
 enas2015 <- read.csv("../raw_data/Eimeria_detection/Eimeria_oocysts_2015_Enas.csv")
 lorenzo2015 <- read.csv("../raw_data/Eimeria_detection/Eimeria_oocysts_2015_Lorenzo.csv")
 enas2016 <- read.csv("../raw_data/Eimeria_detection/Eimeria_oocysts_2016_part1_Enas.csv")
 phuong2016 <- read.csv("../raw_data/Eimeria_detection/Eimeria_oocysts_2016_part2_Phuong.csv")
 lorenzo2017 <- read.csv("../raw_data/Eimeria_detection/Eimeria_oocysts_2017_Lorenzo.csv")
+
+options(scipen = 999)
 
 eimeria_summary_df <- rbind(
   data.frame(Mouse_ID = enas2015$Mouse_ID,
@@ -31,10 +34,116 @@ eimeria_summary_df <- rbind(
              counter =lorenzo2017$counter,
              year = lorenzo2017$year))
 
+# clean
 eimeria_summary_df$year <- factor(eimeria_summary_df$year)
-
-# remove NA in OPG
 eimeria_summary_df <- eimeria_summary_df[!is.na(eimeria_summary_df$OPG),]
+
+# merge
+a <- merge(data.frame(Mouse_ID = enas2015$Mouse_ID,
+                      OPG.enas = enas2015$OPG,
+                      year = enas2015$year),
+           data.frame(Mouse_ID = lorenzo2015$Mouse_ID,
+                      OPG.lorenzo = lorenzo2015$OPG,
+                      year = lorenzo2015$year),
+           by = c("Mouse_ID", "year"), all = TRUE)
+
+a <- merge(a, data.frame(Mouse_ID = enas2016$Mouse_ID, 
+                         OPG.enas = enas2016$OPG_if_0.4g, 
+                         year = enas2016$year),
+           by = c("Mouse_ID", "year", "OPG.enas"), all = TRUE)
+
+a <- merge(a, data.frame(Mouse_ID = phuong2016$Mouse_ID, 
+                         OPG.phuong = phuong2016$OPG_if_0.4g, 
+                         year = phuong2016$year),
+           by = c("Mouse_ID", "year"), all = TRUE)
+
+a <- merge(a, data.frame(Mouse_ID = lorenzo2017$Mouse_ID, 
+                         OPG.lorenzo = lorenzo2017$OPG,
+                         year = lorenzo2017$year),
+           by = c("Mouse_ID", "year", "OPG.lorenzo"), all = TRUE)
+
+oocyst_summary_df <- a
+
+## Load data from PCR
+PCRdata <- read.csv("../raw_data/Inventory_contents_all.csv")
+
+a <- PCRdata[c("X3_ID_mouse", "X13_18S_Seq", "X14_COI_Seq", "X16_ORF470_Seq")]
+a[is.na(a)] <- 0
+
+a$PCRpos <- "positive"
+a$PCRpos[which(rowSums(a[2:4]) == 0)] <- "negative"
+
+PCR_summary_df <- a
+names(PCR_summary_df)[names(PCR_summary_df) == "X3_ID_mouse"] <- "Mouse_ID"
+
+## merge all info (oocysts counting + PCR)
+eimeria_detect <- merge(x = oocyst_summary_df, y = PCR_summary_df, 
+                        by = "Mouse_ID", all = TRUE)
+
+# calculate prevalence of different methods
+prev <- function(x){table(x)[2]/sum(table(x))*100}
+
+by(data = eimeria_detect$PCRpos, 
+   INDICES = eimeria_detect$year,
+   FUN = prev)
+
+by(data = eimeria_detect$OPG.lorenzo > 0, 
+   INDICES = eimeria_detect$year,
+   FUN = prev)
+
+by(data = eimeria_detect$OPG.enas > 0, 
+   INDICES = eimeria_detect$year,
+   FUN = prev)
+
+by(data = eimeria_detect$OPG.phuong > 0, 
+   INDICES = eimeria_detect$year,
+   FUN = prev)
+
+# detect false positive for different counter, PCR as reference
+FP <- function(c){
+  length(na.omit(eimeria_detect[c > 0 & 
+                                  eimeria_detect$PCRpos == "negative",
+                                "Mouse_ID"])) /
+    length(na.omit(eimeria_detect[!is.na(c) & 
+                                    eimeria_detect$PCRpos == "negative",
+                                  "Mouse_ID"])) * 100
+}
+
+# detect false negative for different counter, PCR as reference
+FN <- function(c){
+  length(na.omit(eimeria_detect[c == 0 & 
+                                  eimeria_detect$PCRpos == "positive",
+                                "Mouse_ID"])) /
+    length(na.omit(eimeria_detect[!is.na(c) & 
+                                    eimeria_detect$PCRpos == "positive",
+                                  "Mouse_ID"])) * 100
+}
+
+# detect true results for different counter, PCR as reference
+TR <- function(c){
+  length(na.omit(eimeria_detect[(c == 0 & 
+                                   eimeria_detect$PCRpos == "negative") |
+                                  (c > 0 & 
+                                     eimeria_detect$PCRpos == "positive"),
+                                "Mouse_ID"])) /
+    length(na.omit(eimeria_detect[!is.na(c), "Mouse_ID"])) * 100
+}
+
+data.frame(counter = c("enas", "phuong", "lorenzo"),
+           true.result = c(TR(eimeria_detect$OPG.enas),
+                           TR(eimeria_detect$OPG.phuong),
+                           TR(eimeria_detect$OPG.lorenzo)),
+           false.positive = c(FP(eimeria_detect$OPG.enas),
+                           FP(eimeria_detect$OPG.phuong),
+                           FP(eimeria_detect$OPG.lorenzo)),
+           false.negative = c(FN(eimeria_detect$OPG.enas),
+                           FN(eimeria_detect$OPG.phuong),
+                           FN(eimeria_detect$OPG.lorenzo)))
+
+
+
+
+
 
 by(data = eimeria_summary_df$OPG, 
    INDICES = eimeria_summary_df$count,
