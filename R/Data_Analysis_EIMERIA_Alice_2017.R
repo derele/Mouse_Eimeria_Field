@@ -38,6 +38,9 @@ eimeria_summary_df <- rbind(
 eimeria_summary_df$year <- factor(eimeria_summary_df$year)
 eimeria_summary_df <- eimeria_summary_df[!is.na(eimeria_summary_df$OPG),]
 
+# write out
+write.csv(x = eimeria_summary_df, file = "../raw_data/Eimeria_detection/ALL_Eimeria_oocysts_2015_2016_2017.csv")
+
 # merge
 a <- merge(data.frame(Mouse_ID = enas2015$Mouse_ID,
                       OPG.enas = enas2015$OPG,
