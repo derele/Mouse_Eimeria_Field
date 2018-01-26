@@ -4,44 +4,11 @@ lorenzo2015 <- read.csv("../raw_data/Eimeria_detection/Eimeria_oocysts_2015_Lore
 enas2016 <- read.csv("../raw_data/Eimeria_detection/Eimeria_oocysts_2016_part1_Enas.csv")
 phuong2016 <- read.csv("../raw_data/Eimeria_detection/Eimeria_oocysts_2016_part2_Phuong.csv")
 lorenzo2017 <- read.csv("../raw_data/Eimeria_detection/Eimeria_oocysts_2017_Lorenzo.csv")
+alice <- read.csv("../raw_data/Eimeria_detection/Alice_newdilution_oocysts_counts_jan2018.csv")
+alice <- na.omit(alice)
+alice$alice$Year
 
 options(scipen = 999)
-
-eimeria_summary_df <- rbind(
-  data.frame(Mouse_ID = enas2015$Mouse_ID,
-             N_oocysts_in_feces = enas2015$oocysts_in_feces,
-             OPG = enas2015$OPG,
-             counter = enas2015$count, 
-             year = enas2015$year),
-  data.frame(Mouse_ID = lorenzo2015$Mouse_ID,
-             N_oocysts_in_feces = lorenzo2015$oocysts_in_feces,
-             OPG = lorenzo2015$OPG,
-             counter = lorenzo2015$counter, 
-             year = lorenzo2015$year),
-  data.frame(Mouse_ID = enas2016$Mouse_ID, 
-             N_oocysts_in_feces = enas2016$oocysts_in_feces,
-             OPG = enas2016$OPG_if_0.4g, 
-             counter =enas2016$count,
-             year = enas2016$year),
-  data.frame(Mouse_ID = phuong2016$Mouse_ID, 
-             N_oocysts_in_feces = phuong2016$oocysts_in_feces,
-             OPG = phuong2016$OPG_if_0.4g, 
-             counter =phuong2016$count,
-             year = phuong2016$year),
-  data.frame(Mouse_ID = lorenzo2017$Mouse_ID, 
-             N_oocysts_in_feces = lorenzo2017$oocysts_in_feces,
-             OPG = lorenzo2017$OPG, 
-             counter =lorenzo2017$counter,
-             year = lorenzo2017$year))
-
-# clean
-eimeria_summary_df$year <- factor(eimeria_summary_df$year)
-eimeria_summary_df <- eimeria_summary_df[!is.na(eimeria_summary_df$OPG),]
-
-# write out
-write.csv(x = eimeria_summary_df, 
-          file = "../raw_data/Eimeria_detection/ALL_Eimeria_oocysts_2015_2016_2017.csv", 
-          row.names = F)
 
 # merge
 a <- merge(data.frame(Mouse_ID = enas2015$Mouse_ID,
@@ -67,70 +34,121 @@ a <- merge(a, data.frame(Mouse_ID = lorenzo2017$Mouse_ID,
                          year = lorenzo2017$year),
            by = c("Mouse_ID", "year", "OPG.lorenzo"), all = TRUE)
 
+a <- merge(a, data.frame(Mouse_ID = alice$Mouse_ID, 
+                         OPG.alice = alice$OPG,
+                         year = alice$year),
+           by = c("Mouse_ID", "year"), all = TRUE)
+
 oocyst_summary_df <- a
+# correct name mistake!!
+oocyst_summary_df$Mouse_ID <- gsub(" ", "", as.character(oocyst_summary_df$Mouse_ID))
 
 ## Load data from PCR
-PCRdata <- read.csv("../raw_data/Inventory_contents_all.csv")
+PCRdata <- read.csv("../raw_data/Eimeria_detection/Inventory_contents_all.csv")
+# correct name mistake!!
+PCRdata$X3_ID_mouse <- gsub(" ", "", as.character(PCRdata$X3_ID_mouse))
 
-a <- PCRdata[c("X3_ID_mouse", "X13_18S_Seq", "X14_COI_Seq", "X16_ORF470_Seq")]
-a[is.na(a)] <- 0
+a <- PCRdata[c("X12_Ap5_PCR","X3_ID_mouse", "X13_18S_Seq", "X14_COI_Seq", "X16_ORF470_Seq")]
 
-a$PCRpos <- "positive"
-a$PCRpos[which(rowSums(a[2:4]) == 0)] <- "negative"
+# Positive if 3 markers obtain sequences
+a$PCRpos3markers <- "positive"
+a$PCRpos3markers[which(
+  rowSums(
+    a[c("X13_18S_Seq", "X14_COI_Seq", "X16_ORF470_Seq")], 
+    na.rm = T) == 0)] <- "negative"
+a$PCRpos3markers[which(is.na(a$X13_18S_Seq) & 
+                         is.na(a$X14_COI_Seq) & 
+                         is.na(a$X16_ORF470_Seq))] <- NA
 
-PCR_summary_df <- a
+
+PCR_summary_df <- a[!is.na(a$PCRpos3markers),]
 names(PCR_summary_df)[names(PCR_summary_df) == "X3_ID_mouse"] <- "Mouse_ID"
 
 ## merge all info (oocysts counting + PCR)
 eimeria_detect <- merge(x = oocyst_summary_df, y = PCR_summary_df, 
                         by = "Mouse_ID", all = TRUE)
 
-# calculate prevalence of different methods
-prev <- function(x){table(x)[2]/sum(table(x))*100}
-
-by(data = eimeria_detect$PCRpos, 
-   INDICES = eimeria_detect$year,
-   FUN = prev)
-
-by(data = eimeria_detect$OPG.lorenzo > 0, 
-   INDICES = eimeria_detect$year,
-   FUN = prev)
-
-by(data = eimeria_detect$OPG.enas > 0, 
-   INDICES = eimeria_detect$year,
-   FUN = prev)
-
-by(data = eimeria_detect$OPG.phuong > 0, 
-   INDICES = eimeria_detect$year,
-   FUN = prev)
-
 # venn diagram
 # source("http://www.bioconductor.org/biocLite.R")
 # biocLite("limma")
 library(limma)
 
-par(mfrow=c(2,2))
-
 c1 <- cbind(lorenzo = eimeria_detect$OPG.lorenzo > 0,
             enas = eimeria_detect$OPG.enas > 0,
-            PCR = eimeria_detect$PCRpos == "positive")
+            alice = eimeria_detect$OPG.alice > 0,
+            PCR = eimeria_detect$PCRpos3markers == "positive")
 
 a <- vennCounts(c1)
 a
-vennDiagram(a)
+vennDiagram(a, circle.col = 1:4, lwd = 3)
 
-## Lorenzo vs PCR
 c2 <- cbind(lorenzo = eimeria_detect$OPG.lorenzo > 0,
-            PCR = eimeria_detect$PCRpos == "positive")
+            alice = eimeria_detect$OPG.alice > 0,
+            PCR = eimeria_detect$PCRpos3markers == "positive")
 
 a <- vennCounts(c2)
 a
-vennDiagram(a)
+vennDiagram(a, circle.col = 1:4, lwd = 3)
 
-## Enas vs PCR
-c3 <- cbind(enas = eimeria_detect$OPG.enas > 0,
-            PCR = eimeria_detect$PCRpos == "positive")
+############# Which samples to test? #############
 
-a <- vennCounts(c3)
-a
-vennDiagram(a)
+# Oocysts counting found positive // PCR negative or not done:
+eimeria2015 <- eimeria_detect[eimeria_detect$year == 2015,]
+
+A <- eimeria2015[
+  which(eimeria2015$PCRpos3markers == "negative" &
+          (eimeria2015$OPG.alice != 0 | 
+             eimeria2015$OPG.lorenzo != 0 |
+             eimeria2015$OPG.enas != 0)),]
+
+B <- eimeria2015[
+  which(is.na(eimeria2015$PCRpos3markers) &
+          (eimeria2015$OPG.alice != 0 | 
+             eimeria2015$OPG.lorenzo != 0 |
+             eimeria2015$OPG.enas != 0)),]
+
+# Oocysts counting found negative // PCR positive or not done :
+C <- eimeria2015[
+  which(eimeria2015$PCRpos3markers == "positive" &
+          (eimeria2015$OPG.alice == 0 | 
+             eimeria2015$OPG.lorenzo == 0 |
+             eimeria2015$OPG.enas == 0)),]
+
+D <- eimeria2015[
+  which(is.na(eimeria2015$PCRpos3markers) &
+          (eimeria2015$OPG.alice == 0 | 
+             eimeria2015$OPG.lorenzo == 0 |
+             eimeria2015$OPG.enas == 0)),]
+
+# No ocysts counting // PCR positive :
+E <- eimeria2015[
+  which(eimeria2015$PCRpos3markers == "positive" &
+          (is.na(eimeria2015$OPG.alice == 0) | 
+             is.na(eimeria2015$OPG.lorenzo == 0) |
+             is.na(eimeria2015$OPG.enas == 0))),]
+
+rbind(A, B,C, D,E)
+
+write.csv(rbind(A, B,C, D,E), file = "../raw_data/Eimeria_detection/samples_to_test_temp.csv", row.names = F)
+
+############# Comparison Lorenzo vs Alice counts #############
+mydata <- na.omit(data.frame(L = eimeria_detect$OPG.lorenzo, 
+                           A = eimeria_detect$OPG.alice,
+                           mouse = eimeria_detect$Mouse_ID))
+cor(mydata$L, mydata$A)
+
+# http://www.sthda.com/english/wiki/correlation-test-between-two-variables-in-r
+
+library("ggpubr")
+ggscatter(mydata, x = "L", y = "A", 
+          add = "reg.line", conf.int = TRUE, 
+          cor.coef = TRUE, cor.method = "pearson",
+          xlab = "lorenzo", ylab = "alice", size = 3)
+
+library(reshape)
+mydata <- melt(mydata, id = "mouse")
+
+library(ggplot2)
+ggplot(mydata, aes(x = mouse, y = value, col = variable)) +
+  geom_point() +
+  theme_classic()
