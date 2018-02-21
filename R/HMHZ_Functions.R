@@ -139,3 +139,21 @@ howManyDecimals <- function(x) {
     return(0)
   }
 }
+
+# After merging 2 data frames, usefull function!
+fillGapsAfterMerge <- function(df){
+previous <- names(df)[grep("\\.x", names(df))]
+new <- gsub("\\.x", "\\.y", previous)
+toKeep <- gsub("\\.x", "", previous)
+for (i in 1:length(previous)) {
+  df[previous[i]][is.na(df[previous[i]])] <-
+    df[new[i]][is.na(df[previous[i]])]
+}
+# Back to old names
+names(df)[names(df) %in% previous] <-
+  gsub("\\.x", "", names(df)[names(df) %in% previous])
+# Remove double
+drops <- names(df)[grep("\\.y", names(df))]
+df <- df[!names(df) %in% drops]
+return(df)
+}
