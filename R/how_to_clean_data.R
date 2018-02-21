@@ -2,12 +2,15 @@
 source("HMHZ_Functions.R")
 library(data.table)
 library(ggmap)
+library(reshape)
 ## ************* ## NB : correct worms with Jenny!!
 
 ## MICE TABLE *****************************
-## Jaroslav table genotypes 2013 --> 2017
-HIJardaTable <- read.csv("../raw_data/EmanuelData.csv", na.strings=c(""," ","NA"), stringsAsFactors = FALSE)
+## Jaroslav table genotypes 2014 --> 2017
+HIJardaTable <- read.csv("../raw_data/EmanuelData.csv", 
+                         na.strings=c(""," ","NA"), stringsAsFactors = FALSE)
 HIJardaTable <- HIJardaTable[!names(HIJardaTable) == "X"]
+HIJardaTable <- HIJardaTable[!HIJardaTable$Year %in% c(2010, 2011),]
 
 ## Manual names uniformisation:
 setnames(HIJardaTable,
@@ -19,20 +22,34 @@ HIJardaTable$Mouse_ID <- gsub(pattern = "SK", replacement = "SK_",x = HIJardaTab
 # Let's remove the embryos (sadly, no interest for our parasitic studies...)
 HIJardaTable <- HIJardaTable[sapply(HIJardaTable$Mouse_ID, nchar) <= 7,]
 
-# A first map to be happy about the hard work :)
-HI.map(HIJardaTable)
-
 # How many samples from Brandenburg do we have the HI for per year?
 table(HIJardaTable$Year)
 
 # CHECK DUPLICATE
 HIJardaTable$Mouse_ID[duplicated(HIJardaTable$Mouse_ID)]
 
-# Complement data with extra HI calculated 
+# Complement data with previous tables 
 # 2014 : no extra HI; 2015 : extra HIs :)
+diss2014 <- read.csv("../raw_data/HZ14_Mice 31-12-14_dissections.csv",
+                     na.strings=c(""," ","NA"), stringsAsFactors = FALSE)
+
+# Homogenize : Mouse_ID, lat, lon, worms
+diss2014$Mouse_ID <- paste0(diss2014$ID, "_", diss2014$PIN)
+setnames(diss2014,
+         old = c("X_Map", "Y_Map", 
+                 "Aspiculuris.tetraptera", "Syphacia.obvelata",
+                 "Trichuris.muris", "Taenia.taeniformis"), 
+         new = c("Longitude", "Latitude",
+                 "Aspiculuris_tetraptera", "Syphacia_obvelata",
+                 "Trichuris_muris", "Taenia_taeniformis"))
+# Merge & complete
+mergedMiceTable <- merge(HIJardaTable, diss2014,  
+                         by = c("Mouse_ID"), all = T)
+mergedMiceTable <- fillGapsAfterMerge(mergedMiceTable)
 
 ## 2015 part 1
-diss2015.1 <- read.csv("../raw_data/Genotypes_Bav2015.csv", na.strings=c(""," ","NA"), stringsAsFactors = FALSE)
+diss2015.1 <- read.csv("../raw_data/Genotypes_Bav2015.csv", 
+                       na.strings=c(""," ","NA"), stringsAsFactors = FALSE)
 
 # Manual names uniformisation
 setnames(diss2015.1,
@@ -40,13 +57,14 @@ setnames(diss2015.1,
          new = c("Mouse_ID", "Longitude", "Latitude"))
 diss2015.1$Mouse_ID <-  gsub(pattern = "SK", replacement = "SK_", x = diss2015.1$Mouse_ID)
 
-# Add extra mice to full miceTable
-extraMice <- diss2015.1$Mouse_ID[!diss2015.1$Mouse_ID %in% HIJardaTable$Mouse_ID]
-miceTable <- merge(HIJardaTable, diss2015.1[diss2015.1$Mouse_ID %in% extraMice,], all = T)
-miceTable$Mouse_ID[duplicated(miceTable$Mouse_ID)]
+# Merge & complete
+mergedMiceTable <- merge(mergedMiceTable, diss2015.1,  
+                         by = c("Mouse_ID"), all = T)
+mergedMiceTable <- fillGapsAfterMerge(mergedMiceTable)
 
 ## 2015 part 2
-diss2015.2 <- read.csv("../raw_data/HZ15_Mice_Parasite.csv", na.strings=c(""," ","NA"), stringsAsFactors = FALSE)
+diss2015.2 <- read.csv("../raw_data/HZ15_Mice_Parasite.csv", 
+                       na.strings=c(""," ","NA"), stringsAsFactors = FALSE)
 
 # remove transported mice
 diss2015.2 <- diss2015.2[!is.na(diss2015.2$PIN),]
@@ -54,64 +72,53 @@ diss2015.2 <- diss2015.2[!is.na(diss2015.2$PIN),]
 # Manual names uniformisation
 setnames(diss2015.2,
          old = c("X", "PIN", "X_Map", "Y_Map", "BW", "L", "LCd", 
-                 "Code", "State", "Locality", "Sex",
-                 "Aspiculuris.tetraptera", "Syphacia.obvelata", "Trichuris.muris","Taenia.taeniformis"),
+                 "Aspiculuris.tetraptera", "Syphacia.obvelata", 
+                 "Trichuris.muris","Taenia.taeniformis"),
          new = c("Notes", "Mouse_ID", "Longitude.extra", "Latitude.extra", "Body_weight", "Body_length", "Tail_length", 
-                 "Code2015", "State2015", "Locality2015", "Sex2015",
-                 "Aspiculuris_tetraptera", "Syphacia_obvelata", "Trichuris_muris", "Cysticercus"))
+                 "Aspiculuris_tetraptera", "Syphacia_obvelata", 
+                 "Trichuris_muris", "Taenia_taeniformis"))
 diss2015.2$Mouse_ID <- paste0(diss2015.2$ID, "_", diss2015.2$Mouse_ID)
 
-# Fill up transect info from HZ_BAV in miceTable
-miceWithoutTransect <- miceTable$Mouse_ID[is.na(miceTable$Transect)]
-miceWithTransectHZ_BAV <- diss2015.2$Mouse_ID[diss2015.2$Mouse_ID %in% miceWithoutTransect]
-miceTable$Transect[miceTable$Mouse_ID %in% miceWithTransectHZ_BAV] <- "HZ_BAV"
+# Merge & complete
+mergedMiceTable <- merge(mergedMiceTable, diss2015.2,  
+                         by = c("Mouse_ID"), all = T)
+mergedMiceTable <- fillGapsAfterMerge(mergedMiceTable)
 
 # some have their transect lost... TODO LATER
-miceTable$Mouse_ID[is.na(miceTable$Transect)]
-
-# Add extra dissection info to full miceTable
-extraInfoDissection <- diss2015.2[diss2015.2$Mouse_ID %in% miceTable$Mouse_ID,]
-
-miceTable <- merge(miceTable, extraInfoDissection, all = T)
-
-# Fill if Lat/lon missing, from 2015 added DF
-miceTable$Latitude[is.na(miceTable$Latitude)] <- miceTable$Latitude.extra[is.na(miceTable$Latitude)]
-miceTable$Longitude[is.na(miceTable$Longitude)] <- miceTable$Longitude.extra[is.na(miceTable$Longitude)]
+mergedMiceTable$Mouse_ID[is.na(mergedMiceTable$Transect)]
 
 ###################### 2016
-diss2016 <- read.csv("../raw_data/HZ16_Mice_18-07-16_dissections.csv", na.strings=c(""," ","NA"))[-c(1:2),]
+diss2016 <- read.csv("../raw_data/HZ16_Mice_18-07-16_dissections.csv", 
+                     na.strings=c(""," ","NA"), stringsAsFactors = F)[-c(1:2),]
 names(diss2016)[names(diss2016) %in% "ID_mouse"] <- "Mouse_ID"
 diss2016$Mouse_ID <- as.character(diss2016$Mouse_ID)
 
 ## Add worms 
-worms16 <- read.csv("../raw_data/HZ16_Worms.csv", na.strings=c(""," ","NA"))[-11]
+worms16 <- read.csv("../raw_data/HZ16_Worms.csv", 
+                    na.strings=c(""," ","NA"), stringsAsFactors = F)[-11]
 ## rename with homogeneity
 names(worms16) <- c("Mouse_ID", "Syphacia_obvelata", "Aspiculuris_tetraptera", "Mix_Syphacia_Aspiculuris",
                     "Heterakis_spumosa", "Mastophorus_muris", "Trichuris_muris", 
                     "Hymenolepis_microstoma", "Catenotaenia_pusilla", "Cysticercus")
-
-worms16$Oxyurids <- rowSums(worms16[c("Aspiculuris_tetraptera",
-                                      "Syphacia_obvelata", 
-                                      "Mix_Syphacia_Aspiculuris")])
 
 ## merge worms and dissection table 2016
 diss2016 <- merge(diss2016, worms16, all = TRUE)
 
 # rename for homogeneity
 names(diss2016)[names(diss2016) %in% "Ectoparasites"] <- "Flea"
-
 diss2016$Capture <- as.Date(diss2016$Capture, "%d.%m.%Y") 
 diss2016$Dissection <- as.Date(diss2016$Dissection, "%d.%m.%Y") 
 
 # merge
-NewmiceTable <- merge(miceTable, diss2016, 
+mergedMiceTable <- merge(mergedMiceTable, diss2016, 
                       by = c("Mouse_ID"), all = T)
 
-NewmiceTable <- fillGapsAfterMerge(NewmiceTable)
+mergedMiceTable <- fillGapsAfterMerge(mergedMiceTable)
 
 ## **********************************************************
 ## 2017
-diss2017 <- read.csv(file = "../raw_data/HZ17_September_Mice_Dissection.csv", na.strings=c(""," ","NA"), stringsAsFactors = F)
+diss2017 <- read.csv(file = "../raw_data/HZ17_September_Mice_Dissection.csv",
+                     na.strings=c(""," ","NA"), stringsAsFactors = F)
 
 # correction excel bullshit
 diss2017$Feces_weight <- as.numeric(as.character(diss2017$Feces_weight))
@@ -122,73 +129,74 @@ diss2017$Feces_weight[diss2017$Feces_weight > 100 & !is.na(diss2017$Feces_weight
 names(diss2017)[names(diss2017) == "Ectoparasites"] <- "Flea"      
 
 ## Add worms 
-worms17 <- read.csv2("../raw_data/HZ17_September_Mice_Dissection_Jen_final.csv")
+worms17 <- read.csv2("../raw_data/HZ17_September_Mice_Dissection_Jen_final.csv",
+                     stringsAsFactors = F)
 
 names(worms17)[names(worms17) %in% "Mesocestoides"] <- "Taenia_martis"
 
-## merge worms and dissection table 2017
-diss2017 <- merge(diss2017, worms17[names(worms17) %in% c("Mouse_ID", "Hymenolepis_microstoma", "Hymenolepis_diminiuta",
-                                                          "Catenotaenia_pusilla", "Cysticercus", "Taenia_martis", "Mastophorus_muris",
-                                                          "Trichuris_muris","Heterakis_spumosa", "Syphacia_obvelata", "Aspiculuris_tetraptera",
-                                                          "Heligmosomoides_polygurus")])
-
-# Remove useless columns
-drops <- c("State", "Address","Code", "Dissectors", "Spleen_mass", "Left_Testis_mass" ,"Right_Testis_mass", "Left.epididymis.weight",
-           "Seminal.vesicle.weight", "Left.ovarium.weight", "Right.ovarium.weight", "Total", "Embryo_left", "Embryo_right")   
-
-diss2017 <- diss2017[ , !(names(diss2017) %in% drops)]
-
-diss2017$Oxyurids <- rowSums(diss2017[c("Syphacia_obvelata", "Aspiculuris_tetraptera")])
-
-# check
-which(duplicated(diss2017$Mouse_ID))
+## merge worms and dissection table 2016
+diss2017 <- merge(diss2017, worms17, 
+                  by = "Mouse_ID", all = TRUE)
+diss2017 <- fillGapsAfterMerge(diss2017)
 
 # merge
-MiceTable <- merge(NewmiceTable, diss2017, 
+mergedMiceTable <- merge(mergedMiceTable, diss2017, 
                       by = c("Mouse_ID"), all = T)
 
-MiceTable <- fillGapsAfterMerge(MiceTable)
+mergedMiceTable <- fillGapsAfterMerge(mergedMiceTable)
 
-## Uniformisation:
-levels(MiceTable$Sex)[levels(MiceTable$Sex) %in% c("female", "male")] <- c("F", "M")
-
-# Proper names
-names(MiceTable)[names(MiceTable) %in% "Oxyurids"] <- "Oxyuridea"
-names(MiceTable)[names(MiceTable) %in% "Mesocestoides"] <- "Mesocestoides_sp."
-names(MiceTable)[names(MiceTable) %in% "Cysticercus"] <- "Taenia_taeniformis"
+## Uniformisation
+mergedMiceTable$Sex[grep("female*.", mergedMiceTable$Sex)] <- "F"
+mergedMiceTable$Sex[grep("male*.", mergedMiceTable$Sex)] <- "M"
 
 # Remove if no HI
-MiceTable <- MiceTable[!is.na(MiceTable$HI),]
+mergedMiceTable <- mergedMiceTable[!is.na(mergedMiceTable$HI),]
 
-# Final plot!
-HI.map(MiceTable)
+############ Worms ############
+## in WATWM dataset : Hymenolepis, Taenia, Rodentolepis, Mesocestoides,
+## Calodium, Mastophorus, Trichuris, Heterakis, Aspiculuris+Syphacia
 
+# Hymenolepis
+mergedMiceTable$Hymenolepis <- rowSums(
+  mergedMiceTable[c("Hymenolepis_microstoma", "Hymenolepis_diminiuta")], 
+  na.rm = T)
+mergedMiceTable$Hymenolepis[with(mergedMiceTable, 
+                                 is.na(mergedMiceTable["Hymenolepis_microstoma"]) &  
+                                   is.na(mergedMiceTable["Hymenolepis_diminiuta"]))] <- NA
 
+# Taenia
+mergedMiceTable$Taenia <- rowSums(
+  mergedMiceTable[c("Taenia_martis", "Taenia_taeniformis", 
+                    "Catenotaenia_pusilla", "Cysticercus")], 
+  na.rm = T)
+mergedMiceTable$Hymenolepis[with(mergedMiceTable, 
+                                 is.na(mergedMiceTable["Taenia_martis"]) &  
+                                   is.na(mergedMiceTable["Taenia_taeniformis"]) &
+                                   is.na(mergedMiceTable["Catenotaenia_pusilla"]) &
+                                   is.na(mergedMiceTable["Cysticercus"]))] <- NA
 
+# Aspiculuris_Syphacia
+mergedMiceTable$Aspiculuris_Syphacia <- rowSums(
+  mergedMiceTable[c("Syphacia_obvelata", "Aspiculuris_tetraptera", "Mix_Syphacia_Aspiculuris")], 
+  na.rm = T)
+mergedMiceTable$Aspiculuris_Syphacia[with(mergedMiceTable, 
+                                 is.na(mergedMiceTable["Syphacia_obvelata"]) &  
+                                   is.na(mergedMiceTable["Aspiculuris_tetraptera"]) &
+                                   is.na(mergedMiceTable["Mix_Syphacia_Aspiculuris"]))] <- NA
 
+# Trichuris
+mergedMiceTable$Trichuris <- mergedMiceTable$Trichuris_muris
 
+# Heterakis
+mergedMiceTable$Heterakis <- mergedMiceTable$Heterakis_spumosa
 
+# Mastophorus
+mergedMiceTable$Mastophorus <- mergedMiceTable$Mastophorus_muris
 
-
-
-
-
-############ CLEAN
-## Groups
-MiceTable$Hymenolepis[is.na(MiceTable$Hymenolepis)] <- 
-  MiceTable$Hymenolepis_microstoma[is.na(MiceTable$Hymenolepis)] +
-  MiceTable$Hymenolepis_diminiuta[is.na(MiceTable$Hymenolepis)] +
-  MiceTable$Hymenolepis_diminiuta[is.na(MiceTable$Hymenolepis)]
-
-MiceTable$Tapeworms <- 
-  rowSums(MiceTable[c("Taenia_martis", "Taenia_taeniformis",
-                    "Mesocestoides_sp.","Catenotaenia_pusilla",
-                    "Hymenolepis")], na.rm = T)
-
-## Big groups WATWM = Tapeworms, Whipworms (t.muris), oxyuridae, m.muris
-WormsDF <- MiceTable[c("Mouse_ID", "Year", "Tapeworms",
-                       "Trichuris_muris", "Oxyuridea", "Mastophorus_muris")]
-
+## Dataframe to plot worms
+WormsDF <- mergedMiceTable[c("Mouse_ID", "Year", 
+                             "Hymenolepis", "Taenia", "Aspiculuris_Syphacia", 
+                             "Trichuris", "Heterakis", "Mastophorus")]
 library(reshape)
 WormsDF <- melt(WormsDF, id = c("Mouse_ID", "Year"))
 
@@ -202,7 +210,7 @@ ggplot(data=WormsDF, aes(x = variable, y=log10(value))) +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))+
   theme(legend.position="none")
 
-write.csv(x = MiceTable, file = "../raw_data/MiceTable_2014to2017.csv", row.names = FALSE)
+write.csv(x = mergedMiceTable, file = "../raw_data/MiceTable_2014to2017.csv", row.names = FALSE)
 
 ## TRAPS TABLE *****************************
 
