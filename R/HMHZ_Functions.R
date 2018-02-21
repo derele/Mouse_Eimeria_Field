@@ -86,7 +86,7 @@ measure <- function(lon1,lat1,lon2,lat2) {
 }
 
 ## draw a map with colors depending on HI
-HI.map <- function(df, size = 2, margin = 2, zoom = 6, alpha = 0.5){
+HI.map <- function(df, size = 3, margin = 2, zoom = 7, alpha = 0.5){
   # get a map
   area <- get_map(location =
                     c(min(df$Longitude - margin),
@@ -129,4 +129,31 @@ myBioutifulHaplo <- function(myfasta, dfwithHI){
   plot(net, size = attr(net, "freq"), pie = ind.hap, fast = TRUE, scale.ratio = 0.5, 
        cex = 1, bg = mycols)
   legend(-40, 40, colnames(ind.hap), fill = mycols, pch=19, ncol=2, cex = 0.6)
+}
+
+# Count decimals for any number (used for comparing e.g. Latitudes between them)
+howManyDecimals <- function(x) {
+  if ((x %% 1) != 0) {
+    nchar(strsplit(sub('0+$', '', as.character(x)), ".", fixed=TRUE)[[1]][[2]])
+  } else {
+    return(0)
+  }
+}
+
+# After merging 2 data frames, usefull function!
+fillGapsAfterMerge <- function(df){
+previous <- names(df)[grep("\\.x", names(df))]
+new <- gsub("\\.x", "\\.y", previous)
+toKeep <- gsub("\\.x", "", previous)
+for (i in 1:length(previous)) {
+  df[previous[i]][is.na(df[previous[i]])] <-
+    df[new[i]][is.na(df[previous[i]])]
+}
+# Back to old names
+names(df)[names(df) %in% previous] <-
+  gsub("\\.x", "", names(df)[names(df) %in% previous])
+# Remove double
+drops <- names(df)[grep("\\.y", names(df))]
+df <- df[!names(df) %in% drops]
+return(df)
 }
