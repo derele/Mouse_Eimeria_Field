@@ -86,7 +86,7 @@ measure <- function(lon1,lat1,lon2,lat2) {
 }
 
 ## draw a map with colors depending on HI
-HI.map <- function(df, size = 2, margin = 2, zoom = 6, alpha = 0.5){
+HI.map <- function(df, size = 3, margin = 2, zoom = 7, alpha = 0.5){
   # get a map
   area <- get_map(location =
                     c(min(df$Longitude - margin),
