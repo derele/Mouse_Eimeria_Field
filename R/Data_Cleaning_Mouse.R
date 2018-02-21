@@ -207,7 +207,51 @@ ggplot(data=WormsDF, aes(x = variable, y=log10(value))) +
   geom_jitter(size = 0.5, width = .2, alpha = .8) +
   theme_classic() +
   facet_wrap( ~ Year, nrow = 2) +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1))+
+  theme(text = element_text(size = 15),
+        axis.text = element_text(angle = 45, hjust = 1))+
   theme(legend.position="none")
 
+mergedMiceTable$Longitude <- as.numeric(mergedMiceTable$Longitude)
+mergedMiceTable$Latitude <- as.numeric(mergedMiceTable$Latitude)
+
 write.csv(x = mergedMiceTable, file = "../raw_data/MiceTable_2014to2017.csv", row.names = FALSE)
+
+## plot for following over the years
+HI.map(df = mergedMiceTable[mergedMiceTable$Year == 2017,], margin = .2)
+HI.map(df = mergedMiceTable, margin = .2)
+
+df <- data.frame(HI = mergedMiceTable$HI, year = as.factor(mergedMiceTable$Year))
+
+ggplot(data = df, 
+       aes(x = year, y = HI, color = HI))+
+  geom_violin() +
+  geom_jitter() +
+  scale_color_gradient("Hybrid\nindex", high="red",low="blue") +
+  theme_bw()
+
+ggplot(data = mergedMiceTable, 
+       aes(x = HI, y = log10(Trichuris), color = HI))+
+  geom_jitter() +
+  geom_smooth() +
+  theme(text = element_text(size = 15)) +
+  scale_color_gradient("Hybrid\nindex", high="red",low="blue") +
+  theme_bw()
+
+ggplot(data = mergedMiceTable, 
+       aes(x = HI, y = log10(Aspiculuris_Syphacia), color = HI))+
+  geom_jitter() +
+  geom_smooth() +
+  theme(text = element_text(size = 20)) +
+  scale_color_gradient("Hybrid\nindex", high="red",low="blue") +
+  theme_bw()
+
+Lorenzo <- read.csv("../raw_data/Eimeria_detection/Eimeria_oocysts_2017_Lorenzo.csv")
+LorenzoFull <- merge(Lorenzo, mergedMiceTable, by = "Mouse_ID")
+
+ggplot(data = LorenzoFull, 
+       aes(x = HI, y = log10(OPG), color = HI))+
+  geom_jitter() +
+  geom_smooth() +
+  theme(text = element_text(size = 20)) +
+  scale_color_gradient("Hybrid\nindex", high="red",low="blue") +
+  theme_bw()
