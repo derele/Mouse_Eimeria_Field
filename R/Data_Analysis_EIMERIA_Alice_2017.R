@@ -6,7 +6,6 @@ phuong2016 <- read.csv("../raw_data/Eimeria_detection/Eimeria_oocysts_2016_part2
 lorenzo2017 <- read.csv("../raw_data/Eimeria_detection/Eimeria_oocysts_2017_Lorenzo.csv")
 alice <- read.csv("../raw_data/Eimeria_detection/Alice_newdilution_oocysts_counts_jan2018.csv")
 alice <- na.omit(alice)
-alice$alice$Year
 
 options(scipen = 999)
 
@@ -67,6 +66,11 @@ names(PCR_summary_df)[names(PCR_summary_df) == "X3_ID_mouse"] <- "Mouse_ID"
 ## merge all info (oocysts counting + PCR)
 eimeria_detect <- merge(x = oocyst_summary_df, y = PCR_summary_df, 
                         by = "Mouse_ID", all = TRUE)
+
+# write out : TO IMPROVE AFTER COUNTING FINAL!!! + qPCR!!!
+write.csv(x = eimeria_detect, 
+          file = "../raw_data/Eimeria_detection/Summary_eimeria.csv", 
+          row.names = F)
 
 # venn diagram
 # source("http://www.bioconductor.org/biocLite.R")
@@ -143,12 +147,8 @@ library("ggpubr")
 ggscatter(mydata, x = "L", y = "A", 
           add = "reg.line", conf.int = TRUE, 
           cor.coef = TRUE, cor.method = "pearson",
-          xlab = "lorenzo", ylab = "alice", size = 3)
-
-library(reshape)
-mydata <- melt(mydata, id = "mouse")
-
-library(ggplot2)
-ggplot(mydata, aes(x = mouse, y = value, col = variable)) +
-  geom_point() +
-  theme_classic()
+          xlab = "lorenzo", ylab = "alice", size = 3)+
+  geom_abline(intercept = 0, slope = 1, color = "grey") +
+  coord_equal(ratio=1) +
+  theme_linedraw()
+  

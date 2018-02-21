@@ -7,13 +7,11 @@ source("HMHZ_Functions.R")
 
 MiceTable <- read.csv("../raw_data/MiceTable_2014to2017.csv")
 TrapTable <- read.csv("../raw_data/TrapTable_2014to2017.csv")
+Eimeria <- read.csv("../raw_data/Eimeria_detection/Summary_eimeria.csv")
 
-## Remove the Poland data
-MiceTable <- MiceTable[which(MiceTable$Longitude < 17),]
-
+################### Data cleaning : mice table ###################
 ## Remove the non Mus musculus (until further notice)
 MiceTable$Species[is.na(MiceTable$Species)] <- "Mus musculus"
-
 MiceTable <- MiceTable[which(MiceTable$Species == "Mus musculus"),]
 
 # Check calculation of ALL HI
@@ -25,6 +23,35 @@ MiceTable <- get.HI.full(df = MiceTable, markers.col = markers)
 # to bear in mind : jarda seems to have calculated HI on different sets of markers
 table(MiceTable$HI == MiceTable$HI.calculated)
 
+# Correction of x 1000 error
+MiceTable$Body_weight[!is.na(MiceTable$Body_weight) & 
+                        MiceTable$Body_weight > 100] <- 
+  MiceTable$Body_weight[!is.na(MiceTable$Body_weight) & 
+                        MiceTable$Body_weight > 100] / 1000
+
+# Body condition index as log body mass/log body length (Hayes et al. 2014)
+MiceTable$BCI <- log(MiceTable$Body_weight) / log(MiceTable$Body_length)
+
+# Add Eimeria infection status
+MiceTable <- merge(Eimeria[c("Mouse_ID", "PCRpos3markers")], MiceTable, all = T)
+
+################### Data cleaning : trapping table ###################
+
+
+
+
+################### Data analysis ###################
+
+####### --> BCI vs HI ? 
+ggplot(MiceTable[!is.na(MiceTable$PCRpos3markers),], 
+       aes(x = HI.calculated, y = BCI, 
+           col = PCRpos3markers, fill = PCRpos3markers)) +
+  geom_smooth(alpha = 0.2) +
+  geom_point(size = 3) 
+
+summary(glm(MiceTable$BCI ~ MiceTable$PCRpos3markers + MiceTable$HI.calculated))
+
+################### To clean again... ###################
 # HI per locality
 agglocHI <- aggregate(x = MiceTable[c("collapsed.GT")],
           by = MiceTable[c("Latitude", "Longitude")], FUN = paste, sep = "/" )
@@ -78,10 +105,6 @@ TotalTable <- merge(MiceTable, aggdata, all = TRUE)
 TotalTable <- TotalTable[TotalTable$Longitude < 17,]
 # ***************************************************************
 
-# body mass index as log body mass/log body length (Hayes et al. 2014)
-TotalTable$BMI <- log(TotalTable$Body_weight) / log(TotalTable$Body_length)
-
-# ***************************************************************
 
 # how many localities (new and old) sampled per year? 
 
@@ -237,115 +260,3 @@ ggplot(data=WormsDF3, aes(x = variable, y=log10(value))) +
   facet_wrap( ~ Year, nrow = 2) +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))+
   theme(legend.position="none")
-
-#***************************
-## Eimeria
-
-# 2017 oocysts
-Lorenzo <- read.csv("../Eimeria_detection/data_clean/Results_flotation_2017_clean.csv")
-Lorenzo$oocysts_per_g <- round(rowSums(Lorenzo[6:13]) / 8 * 10000 / Lorenzo$Feces_g)
-Lorenzo <- merge(data.frame(Mouse_ID = TotalTable$Mouse_ID, BMI = TotalTable$BMI), 
-                 data.frame(Mouse_ID = Lorenzo$Mouse_ID, oocyst.per.g = Lorenzo$oocysts_per_g))
-Lorenzo$Year <- 2017
-Lorenzo$HI <- NA
-
-# 2016 oocysts
-Phuong <- read.csv("../Eimeria_detection/data_clean/Results_flotation_and_PCR_2016_CLEAN.csv")
-Phuong <- merge(data.frame(Mouse_ID = TotalTable$Mouse_ID, BMI = TotalTable$BMI, HI = TotalTable$HI.calculated), 
-                data.frame(Mouse_ID = Phuong$Mouse_ID, oocyst.per.g = Phuong$OPG))
-Phuong$Year <- 2016
-
-# both
-Oo <- rbind(Phuong, Lorenzo)
-Oo$status <- "infected"
-Oo$status[Oo$oocyst.per.g == 0] <- "non infected"
-
-# < 2017, either oocyst positive OR sequence available
-Victor <- read.csv("../raw_data/Inventory_contents_all.csv")
-
-Victor$Eimeria_status <- "Neg"
-# Victor$Eimeria_status[Victor$X11_Flotation == "TRUE" | 
-#                         Victor$X12_Ap5_PCR == "TRUE" | 
-#                         Victor$X12_18S_PCR == "TRUE" | 
-#                         Victor$X13_COI_PCR == "TRUE" | 
-#                         Victor$X15_ORF470_PCR == "TRUE" | 
-#                         Victor$X17_SSU_PCR == "TRUE" |
-#                         Victor$X18_LSU_PCR == "TRUE"] <- "Pos"
-
-Victor$Eimeria_status[Victor$X11_Flotation == "TRUE" | 
-                        Victor$X13_18S_Seq == "TRUE" | 
-                        Victor$X14_COI_Seq == "TRUE" | 
-                        Victor$X16_ORF470_Seq == "TRUE" | 
-                        Victor$X18_LSU_PCR == "TRUE"]<- "Pos"
-
-EimeriaV <- data.frame(Mouse_ID = Victor$X3_ID_mouse,
-                       PCR_status = Victor$Eimeria_status,
-                       Year = Victor$X1_Year)
-
-# All together
-Eimeria_tot <- merge(EimeriaV, Oo, all = T)
-
-Eimeria_tot <- Eimeria_tot[-grep(Eimeria_tot$Mouse_ID[
-  which(duplicated(Eimeria_tot$Mouse_ID))], Eimeria_tot$Mouse_ID),]
-# manual correction
-Eimeria_tot <- rbind(Eimeria_tot,
-                     c("AA_0094", 2016, "Pos", 0.64149, 0.04, 130000))
-# check
-which(duplicated(Eimeria_tot$Mouse_ID))
-
-Eimeria_tot <- merge(data.frame(BMI = TotalTable$BMI,
-                                Mouse_ID = TotalTable$Mouse_ID,
-                                HI = TotalTable$HI.calculated), 
-                     Eimeria_tot, all = T)
-
-Eimeria_tot$Eimeria_status[
-  Eimeria_tot$PCR_status == "Pos" | Eimeria_tot$status == "infected"] <- "Inf"
-
-Eimeria_tot$Eimeria_status[
-  Eimeria_tot$PCR_status == "Neg" | Eimeria_tot$status == "non infected"] <- 
-  "non inf"
-
-# n individuals tested :
-length(na.omit(Eimeria_tot$Eimeria_status))
-
-# ****************
-ggplot(Oo, aes(x = status, y = BMI)) +
-  #  geom_jitter() +
-  geom_violin(aes(fill = status)) +
-  geom_boxplot(width = 0.1) +
-  theme_classic()
-
-wilcox.test(BMI ~ status, data = Oo) 
-
-# ****
-df <- na.omit(
-  Eimeria_tot[!is.na(Eimeria_tot$Eimeria_status),c("BMI", "Eimeria_status")])
-
-df$BMI <- as.numeric(df$BMI)
-
-ggplot(df, aes(x = Eimeria_status, y = BMI)) +
-  geom_violin(aes(fill = Eimeria_status)) +
-  geom_boxplot(width = 0.1) +
-  geom_jitter(pch = 21, aes(col = Eimeria_status)) +
-  #  scale_color_manual(values = c("red", "aliceblue")) +
-  theme_classic()
-
-wilcox.test(BMI ~ Eimeria_status, data = df) 
-
-ggplot(Oo, aes(x = HI, y = oocyst.per.g)) +
-  geom_point() +
-  geom_smooth() +
-  scale_y_log10() +
-  theme_classic()
-
-## 
-df <- na.omit(
-Eimeria_tot[!is.na(Eimeria_tot$Eimeria_status),c("HI", "Eimeria_status")])
-
-df$HI <- as.numeric(df$HI)
-
-df$sp <- "hybrid"
-df$sp[df$HI <= 0.2] <- "Mmd"
-df$sp[df$HI >= 0.8] <- "Mmm"
-
-table(df$sp, df$Eimeria_status)
