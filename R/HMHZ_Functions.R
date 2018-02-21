@@ -130,3 +130,12 @@ myBioutifulHaplo <- function(myfasta, dfwithHI){
        cex = 1, bg = mycols)
   legend(-40, 40, colnames(ind.hap), fill = mycols, pch=19, ncol=2, cex = 0.6)
 }
+
+# Count decimals for any number (used for comparing e.g. Latitudes between them)
+howManyDecimals <- function(x) {
+  if ((x %% 1) != 0) {
+    nchar(strsplit(sub('0+$', '', as.character(x)), ".", fixed=TRUE)[[1]][[2]])
+  } else {
+    return(0)
+  }
+}
