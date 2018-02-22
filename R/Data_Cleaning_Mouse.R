@@ -251,8 +251,6 @@ table(mergedMiceTable$Year, mergedMiceTable$Transect)
 
 write.csv(x = mergedMiceTable, file = "../raw_data/MiceTable_2014to2017.csv", row.names = FALSE)
 
-table()
-
 ## plot for following over the years
 HI.map(df = mergedMiceTable[mergedMiceTable$Year == 2017,], margin = .2)
 HI.map(df = mergedMiceTable, margin = .2)
@@ -266,9 +264,34 @@ ggplot(data = df,
   scale_color_gradient("Hybrid\nindex", high="red",low="blue") +
   theme_bw()
 
+## Distribution of HI just for BR transect
+dfBR <- mergedMiceTable[mergedMiceTable$Transect == "HZ_BR",]
+df <- data.frame(HI = dfBR$HI, year = as.factor(dfBR$Year))
+
+ggplot(data = df, 
+       aes(x = year, y = HI, color = HI))+
+  geom_violin() +
+  geom_jitter() +
+  scale_color_gradient("Hybrid\nindex", high="red",low="blue") +
+  theme_bw()
+
+# Worms distribution over HI
+mergedMiceTable$ALLWORMS <- rowSums(
+  mergedMiceTable[c("Mastophorus", "Heterakis", "Trichuris", "Aspiculuris_Syphacia",
+                    "Taenia", "Hymenolepis")], 
+  na.rm = T)
+
+ggplot(data = mergedMiceTable, 
+       aes(x = HI, y = log10(ALLWORMS), color = HI))+
+  geom_jitter(aes(shape = as.factor(Year)), size = 3) +
+  geom_smooth() +
+  theme(text = element_text(size = 15)) +
+  scale_color_gradient("Hybrid\nindex", high="red",low="blue") +
+  theme_bw()
+
 ggplot(data = mergedMiceTable, 
        aes(x = HI, y = log10(Trichuris), color = HI))+
-  geom_jitter() +
+  geom_jitter(aes(shape = as.factor(Year)), size = 3) +
   geom_smooth() +
   theme(text = element_text(size = 15)) +
   scale_color_gradient("Hybrid\nindex", high="red",low="blue") +
@@ -276,7 +299,7 @@ ggplot(data = mergedMiceTable,
 
 ggplot(data = mergedMiceTable, 
        aes(x = HI, y = log10(Aspiculuris_Syphacia), color = HI))+
-  geom_jitter() +
+  geom_jitter(aes(shape = as.factor(Year)), size = 3) +
   geom_smooth() +
   theme(text = element_text(size = 20)) +
   scale_color_gradient("Hybrid\nindex", high="red",low="blue") +
