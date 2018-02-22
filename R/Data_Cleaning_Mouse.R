@@ -28,20 +28,33 @@ table(HIJardaTable$Year)
 # CHECK DUPLICATE
 HIJardaTable$Mouse_ID[duplicated(HIJardaTable$Mouse_ID)]
 
-# Complement data with previous tables 
-# 2014 : no extra HI; 2015 : extra HIs :)
-diss2014 <- read.csv("../raw_data/HZ14_Mice 31-12-14_dissections.csv",
+# Complement data with previous tables (2014, 2015) 
+diss2014.1 <- read.csv("../raw_data/HZ14_Mice 31-12-14_dissections.csv",
                      na.strings=c(""," ","NA"), stringsAsFactors = FALSE)
 
 # Homogenize : Mouse_ID, lat, lon, worms
-diss2014$Mouse_ID <- paste0(diss2014$ID, "_", diss2014$PIN)
-setnames(diss2014,
+diss2014.1$Mouse_ID <- paste0(diss2014.1$ID, "_", diss2014.1$PIN)
+setnames(diss2014.1,
          old = c("X_Map", "Y_Map", 
                  "Aspiculuris.tetraptera", "Syphacia.obvelata",
                  "Trichuris.muris", "Taenia.taeniformis"), 
          new = c("Longitude", "Latitude",
                  "Aspiculuris_tetraptera", "Syphacia_obvelata",
                  "Trichuris_muris", "Taenia_taeniformis"))
+
+# Genotypes 2014
+diss2014.2 <- read.csv("../raw_data/HZ14_Mice 31-12-14_genotypes.csv")
+diss2014.2$Mouse_ID <- paste0(diss2014.2$ID, "_", diss2014.2$PIN)
+
+# Calculta HIs
+diss2014.2 <- get.HI.full(diss2014.2)
+setnames(diss2014.2, old = "HI.calculated", new = "HI")
+
+# Merge & complete
+diss2014 <- merge(diss2014.1, diss2014.2,  
+                         by = c("Mouse_ID"), all = T)
+diss2014 <- fillGapsAfterMerge(diss2014)
+
 # Merge & complete
 mergedMiceTable <- merge(HIJardaTable, diss2014,  
                          by = c("Mouse_ID"), all = T)
@@ -197,7 +210,6 @@ mergedMiceTable$Mastophorus <- mergedMiceTable$Mastophorus_muris
 WormsDF <- mergedMiceTable[c("Mouse_ID", "Year", 
                              "Hymenolepis", "Taenia", "Aspiculuris_Syphacia", 
                              "Trichuris", "Heterakis", "Mastophorus")]
-library(reshape)
 WormsDF <- melt(WormsDF, id = c("Mouse_ID", "Year"))
 
 WormsDF$value <- as.numeric(as.character(WormsDF$value))
@@ -210,11 +222,36 @@ ggplot(data=WormsDF, aes(x = variable, y=log10(value))) +
   theme(text = element_text(size = 15),
         axis.text = element_text(angle = 45, hjust = 1))+
   theme(legend.position="none")
+## TODO 2014 and 2015 worms, not correct!!
 
+# Compare to WATWM data!
+WATWM <- read.csv("https://raw.githubusercontent.com/alicebalard/Parasite_Load/refactor/examples/Reproduction_WATWM/EvolutionFinalData.csv")
+WormsWATWMDF <- melt(WATWM, id = c("Individual_mouse", "Latitude", "Longtitude",
+                                   "Sex", "HI"))
+
+WormsWATWMDF$value <- as.numeric(as.character(WormsWATWMDF$value))
+
+ggplot(data = WormsWATWMDF, aes(x = variable, y=log10(value))) +
+  geom_violin(aes(fill = variable))  +
+  geom_jitter(size = 0.5, width = .2, alpha = .8) +
+  theme_classic() +
+  theme(text = element_text(size = 15),
+        axis.text = element_text(angle = 45, hjust = 1))+
+  theme(legend.position="none")
+
+# Final cleaning, and save!
 mergedMiceTable$Longitude <- as.numeric(mergedMiceTable$Longitude)
 mergedMiceTable$Latitude <- as.numeric(mergedMiceTable$Latitude)
 
+# Remove far East samples
+mergedMiceTable <- mergedMiceTable[mergedMiceTable$Longitude < 18,]
+
+# How many samples from Brandenburg do we have the HI for per year?
+table(mergedMiceTable$Year, mergedMiceTable$Transect)
+
 write.csv(x = mergedMiceTable, file = "../raw_data/MiceTable_2014to2017.csv", row.names = FALSE)
+
+table()
 
 ## plot for following over the years
 HI.map(df = mergedMiceTable[mergedMiceTable$Year == 2017,], margin = .2)
@@ -255,3 +292,4 @@ ggplot(data = LorenzoFull,
   theme(text = element_text(size = 20)) +
   scale_color_gradient("Hybrid\nindex", high="red",low="blue") +
   theme_bw()
+
