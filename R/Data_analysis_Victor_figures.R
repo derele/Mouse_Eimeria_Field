@@ -16,6 +16,8 @@ library(RColorBrewer)
 library(Biostrings)
 library(IRanges)
 library(XVector)
+library("ggplot2")
+
 
 # load HMHZ functions
 source("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/R/HMHZ_Functions.R")
@@ -119,15 +121,13 @@ Haplo.map(df = DB_Results,  margin = .2)
 
 ##Violin plot
 
-library("ggplot2")
-
 ggplot(na.omit(Total.DB), aes(x = Haplogroup, y = HI)) + 
   geom_violin(aes(fill = Haplogroup), alpha = 0.7) + 
   scale_fill_manual(values = c("#FF3300","#66CC00", "#FFCC00"))+ geom_jitter(width = 0.1) + 
   labs(title="Distribution of Eimeria haplogroups according to host genotype",x="Haplogroup", y = "HI") + theme_bw() + 
   theme(plot.title = element_text(size=24, face = "bold"), axis.text= element_text(size = 16), axis.title=element_text(size=18,face="bold"))
 
-ggplot(na.omit(merge.data), aes(x = Transect, y = HI)) + 
+ggplot(na.omit(Total.DB), aes(x = Transect, y = HI)) + 
   geom_violin(aes(fill = Transect), alpha = 0.7) + 
   scale_fill_manual(values = c("#FF3300","#66CC00", "#FFCC00"))+ geom_jitter(width = 0.1) + 
   labs(title="Distribution of HI according to transect",x="Transect", y = "HI") + theme_bw()
@@ -138,59 +138,74 @@ ggplot(na.omit(merge.data), aes(x = Transect, y = HI)) +
 
 #####################################################################################
 
-source("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/R/HMHZ_Functions.R")
-
 #let's cheat, I have to git that back after:
 
 # Function creating haplotypes:
 
-##With ORF
-VicAlign <- "/home/victor/Dokumente/Sequences/Samples_2014_2015/Haplotype_network/ORF470_Haplotype_300817.fasta"
-VicAlign2 <- "/home/victor/Dokumente/Sequences/Samples_2014_2015/Haplotype_network/ORF470_Haplotype_300817.2.fasta"
-## ORF (E. falciformis/E. vermiformis/E. separata as references)
-VicAlign6 <- "/home/victor/Dokumente/Sequences/Samples_2014_2015/Haplotype_network/ORF470_Haplotype_310817.fasta"
+##With ORF (Without any reference sequence)
+VicAlign <- "/home/victor/Dokumente/Sequences/Samples_2017/Haplotype_network/ORF470_Haplotype_230218.fasta"
 
 ##With 18S
-VicAlign3 <- "/home/victor/Dokumente/Sequences/Samples_2014_2015/Haplotype_network/18S_Haplotype_300817.2.fasta"
-## 18S (E. falciformis/E. vermiformis/E. ferrisi/E. separata as references)
-VicAlign7 <- "/home/victor/Dokumente/Sequences/Samples_2014_2015/Haplotype_network/n18S_Haplotype_310817.2.fasta"
+VicAlign2 <- "/home/victor/Dokumente/Sequences/Samples_2017/Haplotype_network/18S_Haplotype_230218.fasta"
 
 ##With COI
-VicAlign4 <- "/home/victor/Dokumente/Sequences/Samples_2014_2015/Haplotype_network/COI_Haplotype_300817.2.fasta"
-VicAlign8 <- "/home/victor/Dokumente/Sequences/Samples_2014_2015/Haplotype_network/COI_Haplotype_310817.fasta"
+VicAlign3 <- "/home/victor/Dokumente/Sequences/Samples_2017/Haplotype_network/COI_Haplotype_230218.fasta"
 
 ##Concatenated Haplotype
-VicAlign5 <- "/home/victor/Dokumente/Sequences/Samples_2014_2015/Haplotype_network/Concatenated_haplotype_300817.fasta"
-VicAlign9 <- "/home/victor/Dokumente/Sequences/Samples_2014_2015/Haplotype_network/Concatenated_Haplotype_310817.fasta"
-VicAlign10 <- "/home/victor/Dokumente/Sequences/Samples_2014_2015/Haplotype_network/Concatenated_Haplotype_060917.fasta"
-VicAlign11 <- "/home/victor/Dokumente/Sequences/Samples_2014_2015/Haplotype_network/Concatenated_Haplotype_060917.2.fasta"
+VicAlign4 <- "/home/victor/Dokumente/Sequences/Samples_2017/Haplotype_network/Concatenated_Haplotype_230218.fasta"
+
+##########
+#Previous versions 
+
+## ORF (E. falciformis/E. vermiformis/E. separata as references)
+#VicAlign5 <- "/home/victor/Dokumente/Sequences/Samples_2014_2015/Haplotype_network/ORF470_Haplotype_310817.fasta"
+
+## 18S (E. falciformis/E. vermiformis/E. ferrisi/E. separata as references)
+#VicAlign7 <- "/home/victor/Dokumente/Sequences/Samples_2014_2015/Haplotype_network/n18S_Haplotype_310817.2.fasta"
+
+## COI (E. falciformis/E. vermiformis/E. ferrisi/E. separata as references)
+#VicAlign8 <- "/home/victor/Dokumente/Sequences/Samples_2014_2015/Haplotype_network/COI_Haplotype_310817.fasta"
+
+##Concatenated Haplotype
+#VicAlign5 <- "/home/victor/Dokumente/Sequences/Samples_2014_2015/Haplotype_network/Concatenated_haplotype_300817.fasta"
+#VicAlign9 <- "/home/victor/Dokumente/Sequences/Samples_2014_2015/Haplotype_network/Concatenated_Haplotype_310817.fasta"
+#VicAlign10 <- "/home/victor/Dokumente/Sequences/Samples_2014_2015/Haplotype_network/Concatenated_Haplotype_060917.fasta"
+
+##Concatenated Madrid Apicowplexa
+#VicAlign11 <- "/home/victor/Dokumente/Sequences/Samples_2014_2015/Haplotype_network/Concatenated_Haplotype_060917.2.fasta"
+
+##################
 
 ##ORF
 d <- ape::read.dna(VicAlign, format = "fasta")
-d <- ape::read.dna(VicAlign2, format = "fasta")
-d <- ape::read.dna(VicAlign6, format = "fasta")
+
 ##18S  
-d <-ape::read.dna(VicAlign3, format = "fasta")
-d <-ape::read.dna(VicAlign7, format = "fasta")
+d <-ape::read.dna(VicAlign2, format = "fasta")
+
 ##COI
-d <- ape::read.dna(VicAlign4, format = "fasta")
-d <- ape::read.dna(VicAlign8, format = "fasta")
+d <- ape::read.dna(VicAlign3, format = "fasta")
 
 ##Concatenated
-d <- ape::read.dna(VicAlign5, format = "fasta")
-d <- ape::read.dna(VicAlign9, format = "fasta")
-d <- ape::read.dna(VicAlign10, format = "fasta")
-d <- ape::read.dna(VicAlign11, format = "fasta")
+d <- ape::read.dna(VicAlign4, format = "fasta")
+
+#d <- ape::read.dna(VicAlign5, format = "fasta")
+#d <- ape::read.dna(VicAlign9, format = "fasta")
+#d <- ape::read.dna(VicAlign10, format = "fasta")
+# Apicoxplexa version d <- ape::read.dna(VicAlign11, format = "fasta")
 
 ## Turn the row names into corresponding HI :
+
 seqnames <- data.frame(Mouse_ID = labels(d))
 seqnames
 matchname <- merge(seqnames, filt.data, by = "Mouse_ID", all.x = TRUE, sort = FALSE)
 matchname
 matchname$HI <- round(matchname$HI, 2)
 matchname
-# Give ref names for ref sequences
-matchname[grep("E_", matchname$Mouse_ID), ]$HI <- as.character(matchname[grep("E_", matchname$Mouse_ID), ]$Mouse_ID)
+
+
+# Give ref names for ref sequences (Just in case Reference sequences are)
+#matchname[grep("E_", matchname$Mouse_ID), ]$HI <- as.character(matchname[grep("E_", matchname$Mouse_ID), ]$Mouse_ID)
+
 # Give name for NA data
 matchname[which(is.na(matchname$HI)),]$HI <- "unknow_yet"
 matchname
@@ -215,9 +230,10 @@ ind.hap<-with(
 
 ## Set colors:
 ##Change the number of colors acording to the number of ref sequences + Unknown 
-mycols <- c(colorRampPalette(c("blue", "red"))(ncol(ind.hap) - 6),  "green", "darkgreen", "darkorange", "yellow", "hotpink",  "grey")
+
+mycols <- c(colorRampPalette(c("blue", "red"))(ncol(ind.hap) - 1), "grey") # "green", "darkgreen", "darkorange", "yellow", "hotpink",  "grey")
 
 plot(net, size = attr(net, "freq"), pie = ind.hap, fast = TRUE, scale.ratio = 1, 
      cex = 1, bg = mycols) 
-legend(15, -10, colnames(ind.hap), fill = mycols, pch=3, ncol=2, cex = 0.6) #+ scale_color_gradient("Hybrid\nindex", high="red",low="blue")
+legend(55, -60, colnames(ind.hap), fill = mycols, pch=3, ncol=2, cex = 0.6) #+ scale_color_gradient("Hybrid\nindex", high="red",low="blue")
 #}
