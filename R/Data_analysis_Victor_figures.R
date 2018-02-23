@@ -1,6 +1,6 @@
 ##Data Analysis and figures 
 ##Venn-diagram colon content sequences
-##Making a data base with all samples 2014 - 2016
+##Making a data base with all samples 2014 - 2017
 
 # load packages
 library("VennDiagram")
@@ -8,6 +8,14 @@ library(grid)
 library(gridExtra)
 library(ggmap)
 library(ggrepel)
+library(RCurl)
+library(ggmap)
+library(pegas)
+library(msa)
+library(RColorBrewer)
+library(Biostrings)
+library(IRanges)
+library(XVector)
 
 # load HMHZ functions
 source("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/R/HMHZ_Functions.R")
@@ -127,16 +135,6 @@ ggplot(na.omit(merge.data), aes(x = Transect, y = HI)) +
 ##Haplotype network 
 
 ## Written on the 30th August 2017 by Alice Balard/Victor Hugo Jarquin
-
-# Libraries:
-library(RCurl)
-library(ggmap)
-library(pegas)
-library(msa)
-library(RColorBrewer)
-library(Biostrings)
-library(IRanges)
-library(XVector)
 
 #####################################################################################
 
