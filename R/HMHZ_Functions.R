@@ -65,10 +65,6 @@ pairwise.cluster.loc <- function (d, granularity=0.001){
 ##     combn(to.clust.list, 2, function (x) any(x[[1]]%in%x[[2]]), simplify=FALSE)
 ## }
 
-
-
-
-
 # foo <- pairwise.cluster.loc(Trap)
 
 ## how many locs are sampled multiple times
@@ -101,6 +97,25 @@ HI.map <- function(df, size = 3, margin = 2, zoom = 7, alpha = 0.5){
                aes(Longitude, Latitude, fill = HI), alpha = alpha) + # set up the points
     scale_fill_gradient("Hybrid\nindex", high="red",low="blue")   # set up the HI colors
 }                  
+
+Haplo.map <- function(df, breaks = c("A", "B", "C", "CA", "CB"),
+                      values = c("#FF3300","#66CC00", "#FFCC00", "grey", "black"),
+                      size = 3, margin = 2, zoom = 7, alpha = 0.5){
+  # get a map
+  area <- get_map(location =
+                    c(min(df$Longitude - margin),
+                      min(df$Latitude - margin),
+                      max(df$Longitude + margin),
+                      max(df$Latitude + margin)),
+                  source = "stamen", maptype="toner-lite",
+                  zoom = zoom)
+  #plot the map :
+  ggmap(area) +
+    geom_point(data = df,
+               aes(x = Longitude, y = Latitude, colour = Haplogroup), size = 3,  alpha = 0.7 ) + 
+    scale_color_manual(breaks = breaks,
+                       values = values)
+}
 
 ## Function creating haplotypes:
 myBioutifulHaplo <- function(myfasta, dfwithHI){
