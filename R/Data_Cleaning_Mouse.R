@@ -258,7 +258,7 @@ mergedMiceTable$Body_weight[mergedMiceTable$Body_weight >= 200 & !is.na(mergedMi
 mergedMiceTable$Body_weight[mergedMiceTable$Body_weight >= 200 & !is.na(mergedMiceTable$Body_weight)] / 1000
 
 # Body condition index as log body mass/log body length (Hayes et al. 2014)
-miceTable$BCI <- log(miceTable$Body_weight) / log(miceTable$Body_length)
+mergedMiceTable$BCI <- log(mergedMiceTable$Body_weight) / log(mergedMiceTable$Body_length)
 
 ########## Write out ##########
 write.csv(x = mergedMiceTable, file = "../raw_data/MiceTable_2014to2017.csv", row.names = FALSE)
