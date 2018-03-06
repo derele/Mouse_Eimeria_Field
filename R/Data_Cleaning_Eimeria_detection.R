@@ -51,15 +51,17 @@ PCRdata$X3_ID_mouse <- gsub(" ", "", as.character(PCRdata$X3_ID_mouse))
 a <- PCRdata[c("X12_Ap5_PCR","X3_ID_mouse", "X13_18S_Seq", "X14_COI_Seq", "X16_ORF470_Seq")]
 
 # Positive if 3 markers obtain sequences
-a$PCRpos3markers <- "positive"
-a$PCRpos3markers[which(
-  rowSums(
-    a[c("X13_18S_Seq", "X14_COI_Seq", "X16_ORF470_Seq")], 
-    na.rm = T) == 0)] <- "negative"
-a$PCRpos3markers[which(is.na(a$X13_18S_Seq) & 
-                         is.na(a$X14_COI_Seq) & 
-                         is.na(a$X16_ORF470_Seq))] <- NA
+a$PCRpos3markers <- NA
 
+a$PCRpos3markers[
+  c(a$X13_18S_Seq %in% "positive" & 
+      a$X14_COI_Seq %in% "positive" & 
+      a$X16_ORF470_Seq %in% "positive")] <- "positive"
+
+a$PCRpos3markers[
+  c(a$X13_18S_Seq %in% "negative" | 
+      a$X14_COI_Seq %in% "negative" | 
+      a$X16_ORF470_Seq %in% "negative")] <- "negative"
 
 PCR_summary_df <- a[!is.na(a$PCRpos3markers),]
 names(PCR_summary_df)[names(PCR_summary_df) == "X3_ID_mouse"] <- "Mouse_ID"
@@ -69,8 +71,6 @@ eimeria_detect <- merge(x = oocyst_summary_df, y = PCR_summary_df,
                         by = "Mouse_ID", all = TRUE)
 
 eimeria_detect <-  eimeria_detect[eimeria_detect$Mouse_ID != "",]
-
-
 
 eimeria_detect$IsEimeriaPositiveFlotation <- NA
 
@@ -84,7 +84,6 @@ eimeria_detect$IsEimeriaPositiveFlotation[which(eimeria_detect$OPG.lorenzo == 0 
 
 eimeria_detect <- eimeria_detect[names(eimeria_detect) %in% c("Mouse_ID", "year", "PCRpos3markers", "IsEimeriaPositiveFlotation")]
 
-
 eimeria_detect <- eimeria_detect[complete.cases(eimeria_detect$PCRpos3markers) | 
                                    complete.cases(eimeria_detect$IsEimeriaPositiveFlotation),]
 
@@ -96,19 +95,6 @@ eimeria_detect$EimeriaDetected[eimeria_detect$PCRpos3markers == "positive" |
 write.csv(x = eimeria_detect, 
           file = "../raw_data/Eimeria_detection/Summary_eimeria.csv", 
           row.names = F)
-
-################# Compare BMI / HI ################# 
-miceTable <- read.csv("../raw_data/MiceTable_2014to2017.csv")
-
-# Body condition index as log body mass/log body length (Hayes et al. 2014)
-miceTable$BCI <- log(miceTable$Body_weight) / log(miceTable$Body_length)
-
-miceTable <- merge(miceTable, eimeria_detect)
-
-ggplot(miceTable, aes(x = HI, y = BCI)) +
-  geom_point()
-
-miceTable[miceTable$BCI > 1,]
 
 ################# Compare between operators #################
 # venn diagram
