@@ -9,6 +9,7 @@ alice <- na.omit(alice)
 
 options(scipen = 999)
 
+########## Compare between techniques ##########
 # merge
 a <- merge(data.frame(Mouse_ID = enas2015$Mouse_ID,
                       OPG.enas = enas2015$OPG,
@@ -67,11 +68,49 @@ names(PCR_summary_df)[names(PCR_summary_df) == "X3_ID_mouse"] <- "Mouse_ID"
 eimeria_detect <- merge(x = oocyst_summary_df, y = PCR_summary_df, 
                         by = "Mouse_ID", all = TRUE)
 
+eimeria_detect <-  eimeria_detect[eimeria_detect$Mouse_ID != "",]
+
+
+
+eimeria_detect$IsEimeriaPositiveFlotation <- NA
+
+eimeria_detect$IsEimeriaPositiveFlotation[which(eimeria_detect$OPG.lorenzo > 0 | 
+                                                  eimeria_detect$OPG.phuong > 0 | 
+                                                  eimeria_detect$OPG.alice > 0)] <- "positive"
+
+eimeria_detect$IsEimeriaPositiveFlotation[which(eimeria_detect$OPG.lorenzo == 0 | 
+                                                  eimeria_detect$OPG.phuong == 0 | 
+                                                  eimeria_detect$OPG.alice == 0)] <- "negative"
+
+eimeria_detect <- eimeria_detect[names(eimeria_detect) %in% c("Mouse_ID", "year", "PCRpos3markers", "IsEimeriaPositiveFlotation")]
+
+
+eimeria_detect <- eimeria_detect[complete.cases(eimeria_detect$PCRpos3markers) | 
+                                   complete.cases(eimeria_detect$IsEimeriaPositiveFlotation),]
+
+eimeria_detect$EimeriaDetected <- FALSE
+eimeria_detect$EimeriaDetected[eimeria_detect$PCRpos3markers == "positive" | 
+                                 eimeria_detect$IsEimeriaPositiveFlotation == "positive"] <- TRUE
+
 # write out : TO IMPROVE AFTER COUNTING FINAL!!! + qPCR!!!
 write.csv(x = eimeria_detect, 
           file = "../raw_data/Eimeria_detection/Summary_eimeria.csv", 
           row.names = F)
 
+################# Compare BMI / HI ################# 
+miceTable <- read.csv("../raw_data/MiceTable_2014to2017.csv")
+
+# Body condition index as log body mass/log body length (Hayes et al. 2014)
+miceTable$BCI <- log(miceTable$Body_weight) / log(miceTable$Body_length)
+
+miceTable <- merge(miceTable, eimeria_detect)
+
+ggplot(miceTable, aes(x = HI, y = BCI)) +
+  geom_point()
+
+miceTable[miceTable$BCI > 1,]
+
+################# Compare between operators #################
 # venn diagram
 # source("http://www.bioconductor.org/biocLite.R")
 # biocLite("limma")
