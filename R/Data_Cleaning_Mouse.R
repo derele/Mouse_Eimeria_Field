@@ -225,19 +225,19 @@ ggplot(data=WormsDF, aes(x = variable, y=log10(value))) +
 ## TODO 2014 and 2015 worms, not correct!!
 
 # Compare to WATWM data!
-WATWM <- read.csv("https://raw.githubusercontent.com/alicebalard/Parasite_Load/refactor/examples/Reproduction_WATWM/EvolutionFinalData.csv")
-WormsWATWMDF <- melt(WATWM, id = c("Individual_mouse", "Latitude", "Longtitude",
-                                   "Sex", "HI"))
-
-WormsWATWMDF$value <- as.numeric(as.character(WormsWATWMDF$value))
-
-ggplot(data = WormsWATWMDF, aes(x = variable, y=log10(value))) +
-  geom_violin(aes(fill = variable))  +
-  geom_jitter(size = 0.5, width = .2, alpha = .8) +
-  theme_classic() +
-  theme(text = element_text(size = 15),
-        axis.text = element_text(angle = 45, hjust = 1))+
-  theme(legend.position="none")
+# WATWM <- read.csv("https://raw.githubusercontent.com/alicebalard/Parasite_Load/refactor/examples/Reproduction_WATWM/EvolutionFinalData.csv")
+# WormsWATWMDF <- melt(WATWM, id = c("Individual_mouse", "Latitude", "Longtitude",
+#                                    "Sex", "HI"))
+# 
+# WormsWATWMDF$value <- as.numeric(as.character(WormsWATWMDF$value))
+# 
+# ggplot(data = WormsWATWMDF, aes(x = variable, y=log10(value))) +
+#   geom_violin(aes(fill = variable))  +
+#   geom_jitter(size = 0.5, width = .2, alpha = .8) +
+#   theme_classic() +
+#   theme(text = element_text(size = 15),
+#         axis.text = element_text(angle = 45, hjust = 1))+
+#   theme(legend.position="none")
 
 # Final cleaning, and save!
 mergedMiceTable$Longitude <- as.numeric(mergedMiceTable$Longitude)
@@ -249,70 +249,82 @@ mergedMiceTable <- mergedMiceTable[mergedMiceTable$Longitude < 18,]
 # How many samples from Brandenburg do we have the HI for per year?
 table(mergedMiceTable$Year, mergedMiceTable$Transect)
 
+# correct body length/weight
+mergedMiceTable$Body_length <- as.numeric(mergedMiceTable$Body_length)
+
+mergedMiceTable$Body_weight <- as.numeric(mergedMiceTable$Body_weight)
+# Manual correction
+mergedMiceTable$Body_weight[mergedMiceTable$Body_weight >= 200 & !is.na(mergedMiceTable$Body_weight)]  <- 
+mergedMiceTable$Body_weight[mergedMiceTable$Body_weight >= 200 & !is.na(mergedMiceTable$Body_weight)] / 1000
+
+# Body condition index as log body mass/log body length (Hayes et al. 2014)
+miceTable$BCI <- log(miceTable$Body_weight) / log(miceTable$Body_length)
+
+########## Write out ##########
 write.csv(x = mergedMiceTable, file = "../raw_data/MiceTable_2014to2017.csv", row.names = FALSE)
 
-## plot for following over the years
-HI.map(df = mergedMiceTable[mergedMiceTable$Year == 2017,], margin = .2)
-HI.map(df = mergedMiceTable, margin = .2)
-
-df <- data.frame(HI = mergedMiceTable$HI, year = as.factor(mergedMiceTable$Year))
-
-ggplot(data = df, 
-       aes(x = year, y = HI, color = HI))+
-  geom_violin() +
-  geom_jitter() +
-  scale_color_gradient("Hybrid\nindex", high="red",low="blue") +
-  theme_bw()
-
-## Distribution of HI just for BR transect
-dfBR <- mergedMiceTable[mergedMiceTable$Transect == "HZ_BR",]
-df <- data.frame(HI = dfBR$HI, year = as.factor(dfBR$Year))
-
-ggplot(data = df, 
-       aes(x = year, y = HI, color = HI))+
-  geom_violin() +
-  geom_jitter() +
-  scale_color_gradient("Hybrid\nindex", high="red",low="blue") +
-  theme_bw()
-
-# Worms distribution over HI
-mergedMiceTable$ALLWORMS <- rowSums(
-  mergedMiceTable[c("Mastophorus", "Heterakis", "Trichuris", "Aspiculuris_Syphacia",
-                    "Taenia", "Hymenolepis")], 
-  na.rm = T)
-
-ggplot(data = mergedMiceTable, 
-       aes(x = HI, y = log10(ALLWORMS), color = HI))+
-  geom_jitter(aes(shape = as.factor(Year)), size = 3) +
-  geom_smooth() +
-  theme(text = element_text(size = 15)) +
-  scale_color_gradient("Hybrid\nindex", high="red",low="blue") +
-  theme_bw()
-
-ggplot(data = mergedMiceTable, 
-       aes(x = HI, y = log10(Trichuris), color = HI))+
-  geom_jitter(aes(shape = as.factor(Year)), size = 3) +
-  geom_smooth() +
-  theme(text = element_text(size = 15)) +
-  scale_color_gradient("Hybrid\nindex", high="red",low="blue") +
-  theme_bw()
-
-ggplot(data = mergedMiceTable, 
-       aes(x = HI, y = log10(Aspiculuris_Syphacia), color = HI))+
-  geom_jitter(aes(shape = as.factor(Year)), size = 3) +
-  geom_smooth() +
-  theme(text = element_text(size = 20)) +
-  scale_color_gradient("Hybrid\nindex", high="red",low="blue") +
-  theme_bw()
-
-Lorenzo <- read.csv("../raw_data/Eimeria_detection/Eimeria_oocysts_2017_Lorenzo.csv")
-LorenzoFull <- merge(Lorenzo, mergedMiceTable, by = "Mouse_ID")
-
-ggplot(data = LorenzoFull, 
-       aes(x = HI, y = log10(OPG), color = HI))+
-  geom_jitter() +
-  geom_smooth() +
-  theme(text = element_text(size = 20)) +
-  scale_color_gradient("Hybrid\nindex", high="red",low="blue") +
-  theme_bw()
-
+# ## plot for following over the years
+# HI.map(df = mergedMiceTable[mergedMiceTable$Year == 2017,], margin = .2)
+# HI.map(df = mergedMiceTable, margin = .2)
+# 
+# df <- data.frame(HI = mergedMiceTable$HI, year = as.factor(mergedMiceTable$Year))
+# 
+# ggplot(data = df, 
+#        aes(x = year, y = HI, color = HI))+
+#   geom_violin() +
+#   geom_jitter() +
+#   scale_color_gradient("Hybrid\nindex", high="red",low="blue") +
+#   theme_bw()
+# 
+# ## Distribution of HI just for BR transect
+# dfBR <- mergedMiceTable[mergedMiceTable$Transect == "HZ_BR",]
+# df <- data.frame(HI = dfBR$HI, year = as.factor(dfBR$Year))
+# 
+# ggplot(data = df, 
+#        aes(x = year, y = HI, color = HI))+
+#   geom_violin() +
+#   geom_jitter() +
+#   scale_color_gradient("Hybrid\nindex", high="red",low="blue") +
+#   theme_bw()
+# 
+# # Worms distribution over HI
+# mergedMiceTable$ALLWORMS <- rowSums(
+#   mergedMiceTable[c("Mastophorus", "Heterakis", "Trichuris", "Aspiculuris_Syphacia",
+#                     "Taenia", "Hymenolepis")], 
+#   na.rm = T)
+# 
+# ggplot(data = mergedMiceTable, 
+#        aes(x = HI, y = log10(ALLWORMS), color = HI))+
+#   geom_jitter(aes(shape = as.factor(Year)), size = 3) +
+#   geom_smooth() +
+#   theme(text = element_text(size = 15)) +
+#   scale_color_gradient("Hybrid\nindex", high="red",low="blue") +
+#   theme_bw()
+# 
+# ggplot(data = mergedMiceTable, 
+#        aes(x = HI, y = log10(Trichuris), color = HI))+
+#   geom_jitter(aes(shape = as.factor(Year)), size = 3) +
+#   geom_smooth() +
+#   theme(text = element_text(size = 15)) +
+#   scale_color_gradient("Hybrid\nindex", high="red",low="blue") +
+#   theme_bw()
+# 
+# ggplot(data = mergedMiceTable, 
+#        aes(x = HI, y = log10(Aspiculuris_Syphacia), color = HI))+
+#   geom_jitter(aes(shape = as.factor(Year)), size = 3) +
+#   geom_smooth() +
+#   theme(text = element_text(size = 20)) +
+#   scale_color_gradient("Hybrid\nindex", high="red",low="blue") +
+#   theme_bw()
+# 
+# Lorenzo <- read.csv("../raw_data/Eimeria_detection/Eimeria_oocysts_2017_Lorenzo.csv")
+# LorenzoFull <- merge(Lorenzo, mergedMiceTable, by = "Mouse_ID")
+# 
+# ggplot(data = LorenzoFull, 
+#        aes(x = HI, y = log10(OPG), color = HI))+
+#   geom_jitter() +
+#   geom_smooth() +
+#   theme(text = element_text(size = 20)) +
+#   scale_color_gradient("Hybrid\nindex", high="red",low="blue") +
+#   theme_bw()
+# 
