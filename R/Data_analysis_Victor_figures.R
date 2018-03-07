@@ -95,6 +95,9 @@ Total.DB <- merge(filt.data, haplo , by="Mouse_ID")
 
 Haplo.map(Total.DB, margin = .3)
 
+
+HI.map(Total.DB)
+
 ##Map for all samples (Victor manually created table all mice included)
 
 ##Set working directory 
@@ -132,6 +135,12 @@ ggplot(na.omit(Total.DB), aes(x = Transect, y = HI)) +
   scale_fill_manual(values = c("#FF3300","#66CC00", "#FFCC00"))+ geom_jitter(width = 0.1) + 
   labs(title="Distribution of HI according to transect",x="Transect", y = "HI") + theme_bw()
 
+##Files for host species
+setwd("/home/victor/Dokumente/Sequences/Samples_2017")
+
+# Load haplogroups
+host <- read.csv("Hosts.csv")
+
 ##Haplotype network 
 
 ## Written on the 30th August 2017 by Alice Balard/Victor Hugo Jarquin
@@ -151,8 +160,14 @@ VicAlign2 <- "/home/victor/Dokumente/Sequences/Samples_2017/Haplotype_network/18
 ##With COI
 VicAlign3 <- "/home/victor/Dokumente/Sequences/Samples_2017/Haplotype_network/COI_Haplotype_230218.fasta"
 
+##COI_rodents
+VicAlign8 <- "/home/victor/Dokumente/Sequences/Samples_2017/COI/COI_Rodent_Haplo_020318.fasta"
+
 ##Concatenated Haplotype
 VicAlign4 <- "/home/victor/Dokumente/Sequences/Samples_2017/Haplotype_network/Concatenated_Haplotype_230218.fasta"
+VicAlign5 <- "/home/victor/Dokumente/Sequences/Samples_2017/Haplotype_network/Concatenated_Haplotype_260218.fasta"
+VicAlign6 <- "/home/victor/Dokumente/Sequences/Samples_2017/Haplotype_network/Concatenated_COI_ORF_270218.fasta"
+VicAlign7 <- "/home/victor/Dokumente/Sequences/Samples_2017/Haplotype_network/Concatenated_18S_ORF_270218.fasta"
 
 ##########
 #Previous versions 
@@ -184,9 +199,12 @@ d <-ape::read.dna(VicAlign2, format = "fasta")
 
 ##COI
 d <- ape::read.dna(VicAlign3, format = "fasta")
-
+d <- ape::read.dna(VicAlign8, format = "fasta")
 ##Concatenated
 d <- ape::read.dna(VicAlign4, format = "fasta")
+d <- ape::read.dna(VicAlign5, format = "fasta")
+d <- ape::read.dna(VicAlign6, format = "fasta")
+d <- ape::read.dna(VicAlign7, format = "fasta")
 
 #d <- ape::read.dna(VicAlign5, format = "fasta")
 #d <- ape::read.dna(VicAlign9, format = "fasta")
@@ -202,6 +220,18 @@ matchname
 matchname$HI <- round(matchname$HI, 2)
 matchname
 
+## Turn the row names into corresponding Haplotype assignment 
+seqnames <- data.frame(Mouse_ID = labels(d))
+seqnames
+matchname <- merge(seqnames, haplo, by = "Mouse_ID", all.x = TRUE, sort = FALSE)
+matchname
+
+## Turn the row names into corresponding host_species :
+
+seqnames <- data.frame(Seq_ID = labels(d))
+seqnames
+matchname <- merge(seqnames, host, by = "Seq_ID", all.x = TRUE, sort = FALSE)
+matchname
 
 # Give ref names for ref sequences (Just in case Reference sequences are)
 #matchname[grep("E_", matchname$Mouse_ID), ]$HI <- as.character(matchname[grep("E_", matchname$Mouse_ID), ]$Mouse_ID)
@@ -214,6 +244,14 @@ match <- merge(seqnames, matchname, by = "Mouse_ID", sort = FALSE)
 match
 ## Change name of the sequence by corresponding HI :
 rownames(d) <- match$HI
+
+## Change name of the sequences by corresponding Haplogroup: 
+rownames(d) <- match$Haplogroup
+
+## Change name of the sequences by corresponding Host_species: 
+rownames(d) <- matchname$Host_species
+
+## Run haplotype analysis 
 
 e <- dist.dna(d)
 
@@ -237,3 +275,24 @@ plot(net, size = attr(net, "freq"), pie = ind.hap, fast = TRUE, scale.ratio = 1,
      cex = 1, bg = mycols) 
 legend(55, -60, colnames(ind.hap), fill = mycols, pch=3, ncol=2, cex = 0.6) #+ scale_color_gradient("Hybrid\nindex", high="red",low="blue")
 #}
+
+
+## Colors haplotype 
+
+mycols <- c("#FF3300","#66CC00", "#FFCC00") # "green", "darkgreen", "darkorange", "yellow", "hotpink",  "grey")
+
+plot(net, size = attr(net, "freq"), pie = ind.hap, fast = TRUE, scale.ratio = 1, 
+     cex = 1, bg = mycols) 
+legend(55, -60, colnames(ind.hap), fill = mycols, pch=3, ncol=2, cex = 0.6) #+ scale_color_gradient("Hybrid\nindex", high="red",low="blue")
+#}
+
+
+## Colors host_species 
+
+mycols <- c("palegreen","limegreen", "seagreen", "violet", "salmon2", "red", "springgreen", "blue", "wheat", "yellow") # "green", "darkgreen", "darkorange", "yellow", "hotpink",  "grey")
+
+plot(net, size = attr(net, "freq"), pie = ind.hap, fast = TRUE, scale.ratio = 1, 
+     cex = 1, bg = mycols) 
+legend(-120, 20, colnames(ind.hap), fill = mycols, pch=3, ncol=2, cex = 0.6) #+ scale_color_gradient("Hybrid\nindex", high="red",low="blue")
+#}
+
