@@ -1,10 +1,17 @@
-mouse2016 <- read.csv("../raw_data/HZ16_Mice_18-07-16_dissections.csv") 
+# mouse2016 <- read.csv("../raw_data/HZ16_Mice_18-07-16_dissections.csv") 
 mouse2017 <- read.csv("../raw_data/HZ17_September_Mice_Dissection.csv")
 alldata <- read.csv("../raw_data/MiceTable_2014to2017.csv")
 mouse2015 <- alldata[alldata$Year == 2015,]
 
+miceCountedOo <- read.csv("../raw_data/Eimeria_detection/Alice_newdilution_oocysts_counts_jan2018.csv")
+myMice <- miceCountedOo$Mouse_ID[!is.na(miceCountedOo$OPG)]
+
+# Select only counted
+mouse2015 <- mouse2015[mouse2015$Mouse_ID %in% myMice,]
+mouse2017 <- mouse2017[mouse2017$Mouse_ID %in% myMice,]
+
 # no young
-mouse2016ID <- mouse2016[-grep("young", mouse2016$Sex),"ID_mouse"]
+# mouse2016ID <- mouse2016[-grep("young", mouse2016$Sex),"ID_mouse"]
 mouse2017ID <- mouse2017[-grep("young", mouse2017$Status), "Mouse_ID"]
 # no info for that for 2015...
 mouse2015ID <- mouse2015$Mouse_ID
@@ -22,7 +29,13 @@ pickMice <- function(IDs, alldata) {
 }
 
 micePicked2015 <- pickMice(mouse2015ID, alldata)
-micePicked2016 <- pickMice(mouse2016ID, alldata)
+# micePicked2016 <- pickMice(mouse2016ID, alldata)
 micePicked2017 <- pickMice(mouse2017ID, alldata)
 
-myData <- rbind(micePicked2015, micePicked2016, micePicked2017)
+myData <- rbind(micePicked2015, micePicked2017)
+
+# Add OPG info
+myData <- merge(myData, data.frame(Mouse_ID = miceCountedOo$Mouse_ID, 
+                                   OPG = miceCountedOo$OPG))
+
+write.csv(myData, "../raw_data/Eimeria_detection/Partial_mice_usable_for_model.csv", row.names = F)
