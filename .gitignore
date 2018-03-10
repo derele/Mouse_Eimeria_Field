@@ -1,68 +1,22 @@
-# History files
-.Rhistory
-.Rapp.history
-
-# Session Data files
-.RData
-
-# Example code in package build process
-*-Ex.R
-
-# RStudio files
-.Rproj.user/
-
-# produced vignettes
-vignettes/*.html
-vignettes/*.pdf
-
+# History files,
+.Rhistory,
+.Rapp.history,
+,
+# Session Data files,
+.RData,
+,
+# Example code in package build process,
+*-Ex.R,
+,
+# RStudio files,
+.Rproj.user/,
+,
+# produced vignettes,
+vignettes/*.html,
+vignettes/*.pdf,
+,
 # OAuth2 token, see https://github.com/hadley/httr/releases/tag/v0.3
-.httr-oauth
-
-# backups
-R/*.R~
-
-# figures
-figures/*
-*/figures/*
-/Databasing/R/database_import.R~
-/Databasing/R/database_import_functions.R~
-/Databasing/R/geo_functions.R~
-/Bait_capture/reference_index.log
-/Bait_capture/Alignment_2672Si.featureCounts
-/Bait_capture/Alignment_2807Di.featureCounts
-/Bait_capture/Alignment_2807Do.featureCounts
-/Bait_capture/Alignment_2807Si.featureCounts
-/Bait_capture/Alignment_2808Do.featureCounts
-/Bait_capture/Alignment_2808Si.featureCounts
-/Bait_capture/Alignment_2809Di.featureCounts
-/Bait_capture/Alignment_2809Do.featureCounts
-/Bait_capture/Alignment_2811Do.featureCounts
-/Bait_capture/Alignment_2812Si.featureCounts
-/Bait_capture/Alignment_2848Si.featureCounts
-/Bait_capture/Alignment_2919Di.featureCounts
-/Bait_capture/Alignment_2TRAnn.featureCounts
-/Bait_capture/Alignment_95Anna.featureCounts
-/Bait_capture/Alignment_Undete.featureCounts
-/Bait_capture/Alignment_f9Anna.featureCounts
-/Bait_capture/PropDataFrame.pdf
-/Bait_capture/PropMapped.pdf
-/Bait_capture/R/Alignment_2672Si.featureCounts
-/Bait_capture/R/Alignment_2807Di.featureCounts
-/Bait_capture/R/Alignment_2807Do.featureCounts
-/Bait_capture/R/Alignment_2807Si.featureCounts
-/Bait_capture/R/Alignment_2808Do.featureCounts
-/Bait_capture/R/Alignment_2808Si.featureCounts
-/Bait_capture/R/Alignment_2809Di.featureCounts
-/Bait_capture/R/Alignment_2809Do.featureCounts
-/Bait_capture/R/Alignment_2811Do.featureCounts
-/Bait_capture/R/Alignment_2812Si.featureCounts
-/Bait_capture/R/Alignment_2848Si.featureCounts
-/Bait_capture/R/Alignment_2919Di.featureCounts
-/Bait_capture/R/Alignment_2TRAnn.featureCounts
-/Bait_capture/R/Alignment_95Anna.featureCounts
-/Bait_capture/R/Alignment_Undete.featureCounts
-/Bait_capture/R/Alignment_f9Anna.featureCounts
-/Bait_capture/R/PropDataFrame.pdf
-/Bait_capture/R/PropMapped.pdf
-/Bait_capture/R/reference_index.log
-*~lock*
+.httr-oauth,
+,
+# backups,
+R/*.R~,
