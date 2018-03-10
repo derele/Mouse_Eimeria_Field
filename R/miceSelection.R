@@ -39,3 +39,21 @@ myData <- merge(myData, data.frame(Mouse_ID = miceCountedOo$Mouse_ID,
                                    OPG = miceCountedOo$OPG))
 
 write.csv(myData, "../raw_data/Eimeria_detection/Partial_mice_usable_for_model.csv", row.names = F)
+
+## First plot because I can
+library(ggplot2)
+ggplot(myData, aes(x = HI, y = log10(OPG + 1), 
+                   col = as.factor(Sex), fill = as.factor(Sex))) +
+  geom_point(size = 3) +
+  geom_smooth() +
+  theme_bw()
+
+# N farms sampled?
+length(unique(myData$location))
+
+# N mice sampled?
+length(myData$Mouse_ID)
+
+# How many of each sex?
+table(myData$Sex)
+
