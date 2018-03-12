@@ -38,22 +38,31 @@ myData <- rbind(micePicked2015, micePicked2017)
 myData <- merge(myData, data.frame(Mouse_ID = miceCountedOo$Mouse_ID, 
                                    OPG = miceCountedOo$OPG))
 
+# To compare with all
+myDataAllInfo <- merge(alldata, data.frame(Mouse_ID = miceCountedOo$Mouse_ID, 
+                                           OPG = miceCountedOo$OPG))
+myDataAllInfo$location <- paste(round(myDataAllInfo$Longitude,4), round(myDataAllInfo$Latitude, 4))
+
 write.csv(myData, "../raw_data/Eimeria_detection/Partial_mice_usable_for_model.csv", row.names = F)
+write.csv(myDataAllInfo, "../raw_data/Eimeria_detection/ALL_mice_usable_for_model.csv", row.names = F)
 
-## First plot because I can
-library(ggplot2)
-ggplot(myData, aes(x = HI, y = log10(OPG + 1), 
+## Plot and count mice
+plotAndInfo <- function(data){
+  print("N farms sampled?")
+  print(length(unique(data$location)))
+  
+  print("N mice sampled?")
+  print(length(data$Mouse_ID))
+  
+  print("How many of each sex?")
+  print(table(data$Sex))
+  
+  ggplot(data, aes(x = HI, y = log10(OPG + 1), 
                    col = as.factor(Sex), fill = as.factor(Sex))) +
-  geom_point(size = 3) +
-  geom_smooth() +
-  theme_bw()
+    geom_point(size = 3) +
+    geom_smooth() +
+    theme_bw()
+}
 
-# N farms sampled?
-length(unique(myData$location))
-
-# N mice sampled?
-length(myData$Mouse_ID)
-
-# How many of each sex?
-table(myData$Sex)
-
+plotAndInfo(myData)
+plotAndInfo(myDataAllInfo)
