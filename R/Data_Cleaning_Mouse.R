@@ -6,7 +6,7 @@ library(reshape)
 ## ************* ## NB : correct worms with Jenny!!
 
 ## MICE TABLE *****************************
-## Jaroslav table genotypes 2014 --> 2017
+## Jaroslav table genotypes 2014 --> 2017 BEWARE IT LACKS SAMPLES !!!!!
 HIJardaTable <- read.csv("../raw_data/EmanuelData.csv", 
                          na.strings=c(""," ","NA"), stringsAsFactors = FALSE)
 HIJardaTable <- HIJardaTable[!names(HIJardaTable) == "X"]
@@ -162,8 +162,38 @@ mergedMiceTable <- fillGapsAfterMerge(mergedMiceTable)
 mergedMiceTable$Sex[grep("female*.", mergedMiceTable$Sex)] <- "F"
 mergedMiceTable$Sex[grep("male*.", mergedMiceTable$Sex)] <- "M"
 
-# Remove if no HI
-mergedMiceTable <- mergedMiceTable[!is.na(mergedMiceTable$HI),]
+# Add old HI from previous jarda table
+oldJarda <- read.csv("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/raw_data/HIforEH_May2017.csv")
+
+# Uniformize IDs
+oldJarda$Mouse_ID <- oldJarda$PIN
+oldJarda$Mouse_ID <- gsub(pattern = "SK", replacement = "SK_",x = oldJarda$PIN)
+
+# Add ommited samples
+toadd <- oldJarda[!oldJarda$Mouse_ID %in% mergedMiceTable$Mouse_ID,]
+
+# Add samples without HI in mergedmicetable but with one in oldJarda
+
+missing <- mergedMiceTable$Mouse_ID[is.na(mergedMiceTable$HI)]
+
+toadd <- rbind(toadd, oldJarda[oldJarda$Mouse_ID %in% missing,])
+
+# setnames and merge
+setnames(toadd,
+         old = c("Xmap", "Ymap", "BW", "L", "LCd", 
+                 "Aspiculuris", "Syphacia", 
+                 "Trichuris","Taenia"),
+         new = c("Longitude", "Latitude", "Body_weight", "Body_length", "Tail_length", 
+                 "Aspiculuris_tetraptera", "Syphacia_obvelata", 
+                 "Trichuris_muris", "Taenia_taeniformis"))
+
+vecNames <- names(mergedMiceTable)[!names(mergedMiceTable) %in% names(toadd)]
+
+toadd[vecNames] <- NA
+
+toadd <- toadd[names(toadd) %in% names(mergedMiceTable)]
+
+mergedMiceTable <- rbind(toadd, mergedMiceTable)
 
 ############ Worms ############
 ## in WATWM dataset : Hymenolepis, Taenia, Rodentolepis, Mesocestoides,
@@ -224,21 +254,6 @@ ggplot(data=WormsDF, aes(x = variable, y=log10(value))) +
   theme(legend.position="none")
 ## TODO 2014 and 2015 worms, not correct!!
 
-# Compare to WATWM data!
-# WATWM <- read.csv("https://raw.githubusercontent.com/alicebalard/Parasite_Load/refactor/examples/Reproduction_WATWM/EvolutionFinalData.csv")
-# WormsWATWMDF <- melt(WATWM, id = c("Individual_mouse", "Latitude", "Longtitude",
-#                                    "Sex", "HI"))
-# 
-# WormsWATWMDF$value <- as.numeric(as.character(WormsWATWMDF$value))
-# 
-# ggplot(data = WormsWATWMDF, aes(x = variable, y=log10(value))) +
-#   geom_violin(aes(fill = variable))  +
-#   geom_jitter(size = 0.5, width = .2, alpha = .8) +
-#   theme_classic() +
-#   theme(text = element_text(size = 15),
-#         axis.text = element_text(angle = 45, hjust = 1))+
-#   theme(legend.position="none")
-
 # Final cleaning, and save!
 mergedMiceTable$Longitude <- as.numeric(mergedMiceTable$Longitude)
 mergedMiceTable$Latitude <- as.numeric(mergedMiceTable$Latitude)
@@ -262,69 +277,3 @@ mergedMiceTable$BCI <- log(mergedMiceTable$Body_weight) / log(mergedMiceTable$Bo
 
 ########## Write out ##########
 write.csv(x = mergedMiceTable, file = "../raw_data/MiceTable_2014to2017.csv", row.names = FALSE)
-
-# ## plot for following over the years
-# HI.map(df = mergedMiceTable[mergedMiceTable$Year == 2017,], margin = .2)
-# HI.map(df = mergedMiceTable, margin = .2)
-# 
-# df <- data.frame(HI = mergedMiceTable$HI, year = as.factor(mergedMiceTable$Year))
-# 
-# ggplot(data = df, 
-#        aes(x = year, y = HI, color = HI))+
-#   geom_violin() +
-#   geom_jitter() +
-#   scale_color_gradient("Hybrid\nindex", high="red",low="blue") +
-#   theme_bw()
-# 
-# ## Distribution of HI just for BR transect
-# dfBR <- mergedMiceTable[mergedMiceTable$Transect == "HZ_BR",]
-# df <- data.frame(HI = dfBR$HI, year = as.factor(dfBR$Year))
-# 
-# ggplot(data = df, 
-#        aes(x = year, y = HI, color = HI))+
-#   geom_violin() +
-#   geom_jitter() +
-#   scale_color_gradient("Hybrid\nindex", high="red",low="blue") +
-#   theme_bw()
-# 
-# # Worms distribution over HI
-# mergedMiceTable$ALLWORMS <- rowSums(
-#   mergedMiceTable[c("Mastophorus", "Heterakis", "Trichuris", "Aspiculuris_Syphacia",
-#                     "Taenia", "Hymenolepis")], 
-#   na.rm = T)
-# 
-# ggplot(data = mergedMiceTable, 
-#        aes(x = HI, y = log10(ALLWORMS), color = HI))+
-#   geom_jitter(aes(shape = as.factor(Year)), size = 3) +
-#   geom_smooth() +
-#   theme(text = element_text(size = 15)) +
-#   scale_color_gradient("Hybrid\nindex", high="red",low="blue") +
-#   theme_bw()
-# 
-# ggplot(data = mergedMiceTable, 
-#        aes(x = HI, y = log10(Trichuris), color = HI))+
-#   geom_jitter(aes(shape = as.factor(Year)), size = 3) +
-#   geom_smooth() +
-#   theme(text = element_text(size = 15)) +
-#   scale_color_gradient("Hybrid\nindex", high="red",low="blue") +
-#   theme_bw()
-# 
-# ggplot(data = mergedMiceTable, 
-#        aes(x = HI, y = log10(Aspiculuris_Syphacia), color = HI))+
-#   geom_jitter(aes(shape = as.factor(Year)), size = 3) +
-#   geom_smooth() +
-#   theme(text = element_text(size = 20)) +
-#   scale_color_gradient("Hybrid\nindex", high="red",low="blue") +
-#   theme_bw()
-# 
-# Lorenzo <- read.csv("../raw_data/Eimeria_detection/Eimeria_oocysts_2017_Lorenzo.csv")
-# LorenzoFull <- merge(Lorenzo, mergedMiceTable, by = "Mouse_ID")
-# 
-# ggplot(data = LorenzoFull, 
-#        aes(x = HI, y = log10(OPG), color = HI))+
-#   geom_jitter() +
-#   geom_smooth() +
-#   theme(text = element_text(size = 20)) +
-#   scale_color_gradient("Hybrid\nindex", high="red",low="blue") +
-#   theme_bw()
-# 
