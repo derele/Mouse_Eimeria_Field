@@ -1,3 +1,5 @@
+library(ggplot2)
+
 # mouse2016 <- read.csv("../raw_data/HZ16_Mice_18-07-16_dissections.csv") 
 mouse2017 <- read.csv("../raw_data/HZ17_September_Mice_Dissection.csv")
 alldata <- read.csv("../raw_data/MiceTable_2014to2017.csv")
