@@ -1,7 +1,7 @@
 ##Julia Analysis Flotation vs PCR
 
-# Set Local folder where is the file of interest, only for Julia's computer ;)
-setwd("/home/victor/Dokumente/Git_projects/Mouse_Eimeria_Databasing/raw_data/Eimeria_detection/") ##You need to change it!
+# Set folder where is the file of interest
+setwd("../raw_data/Eimeria_detection/")
 
 # read the file and give it a name 
 pcr.data <- read.csv("Inventory_contents_all.csv")
@@ -21,6 +21,6 @@ table(results.2017$Flot, useNA = "always")
 
 finalData <- subset(x = results.2017,
                     subset = (results.2017$Flot %in% c("positive", "negative")) & !is.na(results.2017$Ap5))
-                                         )
+                                         
 length(which(finalData$Ap5 %in% "positive" &
                c(finalData$n18S_Seq == "positive" | finalData$COI_Seq == "positive" | finalData$ORF470_Seq == "positive")))
