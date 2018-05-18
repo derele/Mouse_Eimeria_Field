@@ -350,3 +350,25 @@ FMFtheta12(COI)
 #(fuzzy-set based method,slightly modified from Zhang et al. 2012). The calculation was done for all species
 #in the reference dataset.
 
+###Regresion Model 
+##Aim: Explain how likely is to amplify one of the 3 markers due to the fact of being assigned to an especific Eimeria species
+
+setwd("/home/victor/Dokumente/Sequences/Samples_2017/")
+haplo<- read.csv("Haplogroups_14_17.csv")
+haplo<- haplo[haplo$Haplogroup%in%c("A", "B", "C"),]
+haplo$Haplogroup <- as.factor(as.character(haplo$Haplogroup))
+table(haplo$Haplogroup)
+
+
+logReg18S <- glm(X13_18S_Seq%in%"positive"~Haplogroup, family="binomial", data=haplo)
+summary(logReg18S)
+
+logRegCOI <- glm(X14_COI_Seq%in%"positive"~Haplogroup, family="binomial", data=haplo)
+summary(logRegCOI)
+
+
+logRegORF <- glm(X16_ORF470_Seq%in%"positive"~Haplogroup, family="binomial", data=haplo)
+summary(logRegORF)
+
+## post hoc test
+
