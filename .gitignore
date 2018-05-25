@@ -22,3 +22,7 @@ vignettes/*.pdf,
 R/*.R~,
 ,
 .Rhistory,
+
+raw_data/Eimeria_detection/\.Rhistory
+
+R/\.Rhistory
