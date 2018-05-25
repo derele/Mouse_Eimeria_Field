@@ -28,6 +28,17 @@ ggplot(myData) +
              pch = 21, alpha = .5, size = 3) +
   theme_bw()
 
+# just positive
+ggplot(myData[myData$OPG>0,]) +
+  geom_point(aes(x = HI, y = OPG, fill = as.factor(year)),
+             pch = 21, alpha = .5, size = 3) +
+  theme_bw()
+
+ggplot(myData[myData$OPG>0,]) +
+  geom_point(aes(x = HI, y = log10(OPG)+1, fill = as.factor(year)),
+             pch = 21, alpha = .5, size = 3) +
+  theme_bw()
+
 # Prevalence / year
 prevTable <- as.data.frame.matrix(table(myData$OPG > 0, myData$year))
 prevTable[3,] <- round(prevTable[2,] / colSums(prevTable) *100,2)
@@ -53,3 +64,9 @@ ggplot(myData[myData$OPG>0,], aes(x = HI))+
   geom_density(color = "darkblue", fill = "lightblue") +
   theme_bw()
 #same type
+
+
+# density of hybrids
+ggplot(myData, aes(x = HI)) +
+  geom_histogram() +
+  theme_bw()
