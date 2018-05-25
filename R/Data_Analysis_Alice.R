@@ -1,10 +1,79 @@
-## November 2017, Alice Balard
+## Analysis of field data 
+## Alice Balard
+## 2018
 library(ggplot2)
 library(ggmap)
 library(data.table)
-
+library(plyr)
 source("HMHZ_Functions.R")
 
+# to externalise
+getPrevalenceTable <- function(myTable){
+  prevTable <- as.data.frame.matrix(myTable)
+  prevTable[3,] <- round(prevTable[2,] / colSums(prevTable) *100, 2)
+  rownames(prevTable)[3] <- "prevalence(%)"
+  return(prevTable)
+}
+
+#################### Load data ####################
+# General data
+miceTable <- read.csv("../raw_data/MiceTable_2014to2017.csv")
+
+## Load data from oocysts counting 
+data2015 <- read.csv("../raw_data/Eimeria_detection/FINAL2015Oocysts.csv")
+data2016 <- read.csv("../raw_data/Eimeria_detection/FINAL2016Oocysts.csv")
+data2017 <- read.csv("../raw_data/Eimeria_detection/FINAL2017Oocysts.csv")
+
+myData <- rbind(data2015, data2016, data2017)
+
+# add HI, GPS coordinates, BCI (and all)
+myData <- merge(miceTable, myData, by = "Mouse_ID")
+# add farm
+myData$farm <- paste0(myData$Longitude, myData$Latitude)
+
+#################### General stats on sampling ####################
+
+# mean and 95% ci of N of mice caught / farm (assuming normal distribution)
+mean(by(myData, myData["farm"], nrow))
+qnorm(0.975)*sd(by(myData, myData["farm"], nrow))/sqrt(nrow(myData))
+
+# Density curve : do we catch mice all along the HMHZ?
+ggplot(myData, aes(x = HI))+
+  geom_density(color = "darkblue", fill = "lightblue") +
+  theme_bw()
+
+# density of hybrids
+ggplot(myData, aes(x = HI)) +
+  geom_histogram() +
+  theme_bw()
+
+#################### Eimeria prevalence: OPG ####################
+# Remove mice without OPG
+myData$OPG <- as.numeric(as.character(myData$OPG))
+myData <- myData[!is.na(myData$OPG),]
+
+# plot
+ggplot(myData) +
+  geom_point(aes(x = HI, y = log10(OPG)+1, fill = as.factor(year)),
+             pch = 21, alpha = .5, size = 3) +
+  theme_bw()
+
+# Prevalence / year with OPG
+getPrevalenceTable(table(myData$OPG > 0, myData$year)) # prevalence per year increases (method likely...)
+
+# Evolution of prevalence / year / farm
+prevFarmYear <- ddply(myData,  .(farm, year), function(x){
+  return(c(prev = sum(x$OPG > 0) / length(x$OPG) * 100, 
+           N = length(x$OPG)))})
+
+nrow(prevFarmYear) # 134 farms sampled over 3 years
+sum(prevFarmYear$N) # 372 mice
+mean(prevFarmYear$prev) # average prevalence per farm: 14.9%
+
+### TO CLEAN AFTER THIS POINT
+
+
+## November 2017, Alice Balard
 MiceTable <- read.csv("../raw_data/MiceTable_2014to2017.csv")
 TrapTable <- read.csv("../raw_data/TrapTable_2014to2017.csv")
 Eimeria <- read.csv("../raw_data/Eimeria_detection/Summary_eimeria.csv")
