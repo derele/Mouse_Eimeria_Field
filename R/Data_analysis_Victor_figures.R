@@ -17,7 +17,7 @@ library(Biostrings)
 library(IRanges)
 library(XVector)
 library("ggplot2")
-
+library("BarcodingR")
 
 # load HMHZ functions
 source("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/R/HMHZ_Functions.R")
@@ -85,6 +85,9 @@ haplo <- read.csv("Haplogroups_14_17.csv")
 haplo <- haplo[-c(1:3,5:10)]
 colnames(haplo) <- c("Mouse_ID", "Haplogroup")
 haplo$Mouse_ID <- gsub(pattern = " ", replacement = "", x = haplo$Mouse_ID)
+length(which(haplo$Haplogroup == "A"))
+length(which(haplo$Haplogroup == "B"))
+length(which(haplo$Haplogroup == "C"))
 
 # Replace extra spaces
 filt.data$Mouse_ID <- gsub(pattern = " ", replacement = "", x = filt.data$Mouse_ID)
@@ -137,10 +140,10 @@ ggplot(na.omit(Total.DB), aes(x = Transect, y = HI)) +
 
 ##Files for host species
 setwd("/home/victor/Dokumente/Sequences/Samples_2017")
-
-# Load haplogroups
+setwd("/home/victor/Dokumente/Sequences/Samples_2017/ORF470")
+# Load host
 host <- read.csv("Hosts.csv")
-
+host <- read.csv("ORF470/Host_ORF.csv")
 ##Haplotype network 
 
 ## Written on the 30th August 2017 by Alice Balard/Victor Hugo Jarquin
@@ -153,12 +156,14 @@ host <- read.csv("Hosts.csv")
 
 ##With ORF (Without any reference sequence)
 VicAlign <- "/home/victor/Dokumente/Sequences/Samples_2017/Haplotype_network/ORF470_Haplotype_230218.fasta"
-
+VicAlign <- "/home/victor/Dokumente/Sequences/Samples_2017/ORF470/ORF470_190418_Haplo_2.fasta"
+VicAlign <- "ORF470/Concatenated_COI_ORF_Haplo.fasta"
 ##With 18S
 VicAlign2 <- "/home/victor/Dokumente/Sequences/Samples_2017/Haplotype_network/18S_Haplotype_230218.fasta"
 
 ##With COI
 VicAlign3 <- "/home/victor/Dokumente/Sequences/Samples_2017/Haplotype_network/COI_Haplotype_230218.fasta"
+
 
 ##COI_rodents
 VicAlign8 <- "/home/victor/Dokumente/Sequences/Samples_2017/COI/COI_Rodent_Haplo_020318.fasta"
@@ -269,30 +274,101 @@ ind.hap<-with(
 ## Set colors:
 ##Change the number of colors acording to the number of ref sequences + Unknown 
 
-mycols <- c(colorRampPalette(c("blue", "red"))(ncol(ind.hap) - 1), "grey") # "green", "darkgreen", "darkorange", "yellow", "hotpink",  "grey")
+#mycols <- c(colorRampPalette(c("blue", "red"))(ncol(ind.hap) - 1), "grey") # "green", "darkgreen", "darkorange", "yellow", "hotpink",  "grey")
 
-plot(net, size = attr(net, "freq"), pie = ind.hap, fast = TRUE, scale.ratio = 1, 
-     cex = 1, bg = mycols) 
-legend(55, -60, colnames(ind.hap), fill = mycols, pch=3, ncol=2, cex = 0.6) #+ scale_color_gradient("Hybrid\nindex", high="red",low="blue")
+
+## Colors host_species 
+
+mycols <- c("#91ED97","#03BA0F", "#015B07", "#B0038D", "#F02009", "#F78667", "#F86E06", "#1703F9", "#F8E1AB", "#F0E807", "#F781F3") # "green", "darkgreen", "darkorange", "yellow", "hotpink",  "grey")
+
+# if you want to have the number of sequences in each circle:
+attr(net, "labels") <- attr(net, "freq")
+
+plot(net, size = .6*sqrt(attr(net, "freq")), pie = ind.hap, fast = T, scale.ratio = .75, 
+     cex = 1, bg = mycols, lwd = 1, show.mutation = 2) 
+legend(0, -10, colnames(ind.hap), fill = mycols, pch=NA, ncol=2, cex = .8) #+ scale_color_gradient("Hybrid\nindex", high="red",low="blue")
+
+
+##ORF Haplo
+
+##ORF Haplo colors
+mycols <- c("#91ED97", "#015B07", "#CEA585", "#B0038D", "#1703F9","#F8573A", "#F0E807") 
+
+
+plot(net, size = .7*sqrt(attr(net, "freq")), pie = ind.hap, scale.ratio = .7, 
+     cex = 1, bg = mycols, show.mutation = 1) 
+legend(-0, 25, colnames(ind.hap), fill = mycols, pch=NA, ncol=2, cex = 0.8)
+
+
+##COI+ORF Haplo
+mycols <- c("#91ED97", "#015B07", "#B0038D", "#1703F9", "#F0E807") 
+attr(net, "labels") <- attr(net, "freq")
+
+plot(net, size = .7*sqrt(attr(net, "freq")), pie = ind.hap, fast = TRUE, scale.ratio = 10, 
+     cex = 1, bg = mycols, show.mutation = 1) 
+legend(-0, -25, colnames(ind.hap), fill = mycols, pch=NA, ncol=2, cex = 0.8)
+
+
+#+ scale_color_gradient("Hybrid\nindex", high="red",low="blue")
 #}
 
+# the size of the circles are proportinal to the number of sequences present in each haplotype (square root transformed)
 
 ## Colors haplotype 
 
-mycols <- c("#FF3300","#66CC00", "#FFCC00") # "green", "darkgreen", "darkorange", "yellow", "hotpink",  "grey")
+#mycols <- c("#FF3300","#66CC00", "#FFCC00") # "green", "darkgreen", "darkorange", "yellow", "hotpink",  "grey")
 
-plot(net, size = attr(net, "freq"), pie = ind.hap, fast = TRUE, scale.ratio = 1, 
-     cex = 1, bg = mycols) 
-legend(55, -60, colnames(ind.hap), fill = mycols, pch=3, ncol=2, cex = 0.6) #+ scale_color_gradient("Hybrid\nindex", high="red",low="blue")
+#plot(net, size = attr(net, "freq"), pie = ind.hap, fast = TRUE, scale.ratio = 1, 
+#     cex = 1, bg = mycols) 
+#legend(55, -60, colnames(ind.hap), fill = mycols, pch=3, ncol=2, cex = 0.6) #+ scale_color_gradient("Hybrid\nindex", high="red",low="blue")
 #}
 
 
 ## Colors host_species 
 
-mycols <- c("palegreen","limegreen", "seagreen", "violet", "salmon2", "red", "springgreen", "blue", "wheat", "yellow") # "green", "darkgreen", "darkorange", "yellow", "hotpink",  "grey")
+#mycols <- c("palegreen","limegreen", "seagreen", "violet", "salmon2", "red", "springgreen", "blue", "wheat", "yellow") # "green", "darkgreen", "darkorange", "yellow", "hotpink",  "grey")
 
-plot(net, size = attr(net, "freq"), pie = ind.hap, fast = TRUE, scale.ratio = 1, 
-     cex = 1, bg = mycols) 
-legend(-120, 20, colnames(ind.hap), fill = mycols, pch=3, ncol=2, cex = 0.6) #+ scale_color_gradient("Hybrid\nindex", high="red",low="blue")
+#plot(net, size = attr(net, "freq"), pie = ind.hap, fast = TRUE, scale.ratio = 1, 
+    # cex = 1, bg = mycols) 
+#legend(-120, 20, colnames(ind.hap), fill = mycols, pch=3, ncol=2, cex = 0.6) #+ scale_color_gradient("Hybrid\nindex", high="red",low="blue")
 #}
+
+
+##Barcode gap analysis 
+
+COI <- ape::read.dna(VicAlign8, format = "fasta")
+
+
+barcoding.gap(COI, dist="raw")
+barcoding.gap(COI, dist="euclidean")
+barcoding.gap(COI, dist="K80")
+
+FMFtheta12(COI)
+
+#Calculation intraspecific variation (sd) of the potential species theta1, and mean interspecific distance
+#(here, the mean distance between the potential species and its nearest neighbor theta2) 
+#(fuzzy-set based method,slightly modified from Zhang et al. 2012). The calculation was done for all species
+#in the reference dataset.
+
+###Regresion Model 
+##Aim: Explain how likely is to amplify one of the 3 markers due to the fact of being assigned to an especific Eimeria species
+
+setwd("/home/victor/Dokumente/Sequences/Samples_2017/")
+haplo<- read.csv("Haplogroups_14_17.csv")
+haplo<- haplo[haplo$Haplogroup%in%c("A", "B", "C"),]
+haplo$Haplogroup <- as.factor(as.character(haplo$Haplogroup))
+table(haplo$Haplogroup)
+
+
+logReg18S <- glm(X13_18S_Seq%in%"positive"~Haplogroup, family="binomial", data=haplo)
+summary(logReg18S)
+
+logRegCOI <- glm(X14_COI_Seq%in%"positive"~Haplogroup, family="binomial", data=haplo)
+summary(logRegCOI)
+
+
+logRegORF <- glm(X16_ORF470_Seq%in%"positive"~Haplogroup, family="binomial", data=haplo)
+summary(logRegORF)
+
+## post hoc test
 
