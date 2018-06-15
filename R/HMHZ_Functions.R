@@ -172,3 +172,18 @@ drops <- names(df)[grep("\\.y", names(df))]
 df <- df[!names(df) %in% drops]
 return(df)
 }
+
+##### For the flotation data analysis
+calculateOPG <- function(x){
+  x$mean_neubauer = rowMeans(x[names(x) %in% paste0("N_oocysts_sq", 1:8)], na.rm = T)
+  x$mean_neubauer * 10000 
+  x$OPG = x$mean_neubauer * 10000 * x$PBS_dil_in_mL / x$Feces_g
+  return(x)
+}
+
+getPrevalenceTable <- function(myTable){
+  prevTable <- as.data.frame.matrix(myTable)
+  prevTable[3,] <- round(prevTable[2,] / colSums(prevTable) *100, 2)
+  rownames(prevTable)[3] <- "prevalence(%)"
+  return(prevTable)
+}

@@ -1,30 +1,7 @@
 ## Analysis of field data 
 ## Alice Balard
 ## 2018
-library(ggplot2)
-library(ggmap)
-library(data.table)
-library(plyr)
-source("HMHZ_Functions.R")
-
-# to externalise
-getPrevalenceTable <- function(myTable){
-  prevTable <- as.data.frame.matrix(myTable)
-  prevTable[3,] <- round(prevTable[2,] / colSums(prevTable) *100, 2)
-  rownames(prevTable)[3] <- "prevalence(%)"
-  return(prevTable)
-}
-
-#################### Load data ####################
-# General data
-miceTable <- read.csv("../raw_data/MiceTable_2014to2017.csv")
-
-## Load data from oocysts counting 
-data2015 <- read.csv("../raw_data/Eimeria_detection/FINAL2015Oocysts.csv")
-data2016 <- read.csv("../raw_data/Eimeria_detection/FINAL2016Oocysts.csv")
-data2017 <- read.csv("../raw_data/Eimeria_detection/FINAL2017Oocysts.csv")
-
-myData <- rbind(data2015, data2016, data2017)
+source("Data_Preparation_Alice.R")
 
 # add HI, GPS coordinates, BCI (and all)
 myData <- merge(miceTable, myData, by = "Mouse_ID")
