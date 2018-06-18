@@ -82,14 +82,15 @@ measure <- function(lon1,lat1,lon2,lat2) {
 }
 
 ## draw a map with colors depending on HI
-HI.map <- function(df, size = 3, margin = 2, zoom = 7, alpha = 0.5){
+HI.map <- function(df, size = 3, margin = 2, zoom = 7, alpha = 0.5, 
+                   source = "stamen", maptype = "toner-lite"){
   # get a map
   area <- get_map(location =
                     c(min(df$Longitude - margin),
                       min(df$Latitude - margin),
                       max(df$Longitude + margin),
                       max(df$Latitude + margin)),
-                  source = "stamen", maptype="toner-lite",
+                  source = source, maptype= maptype,
                   zoom = zoom)
   #plot the map :
   ggmap(area) +

@@ -1,0 +1,97 @@
+---
+title: "Report: Hybrid vigor in response to Eimeria in the HMHZ"
+author: "Alice"
+date: "`r format(Sys.time(), '%d %B %Y')`"
+output:
+  pdf_document:
+    toc: yes
+    toc_depth: '4'
+    fig_caption: yes        
+    includes:  
+      in_header: preamble-latex.tex
+  word_document:
+    toc: yes
+    toc_depth: 4
+    fig_caption: yes        
+    includes:  
+      in_header: preamble-latex.tex
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+source("../R/Data_Preparation_Alice.R")
+```
+
+# General informations on HMHZ
+
+* `r sum(prevFarmYear$N)` mice were captured over three years and had fecal samples processed, from `r nrow(prevFarmYear)` farms. 
+
+* From these mice, *(tbc : N had colon content and intestinal tissues collected for PCR and qPCR detection)* 
+
+* `r round(mean(by(myData, myData["farm"], nrow)), 2)` mice were caught on average by farm (95% ci : `r round(qnorm(0.975)*sd(by(myData, myData["farm"], nrow))/sqrt(nrow(myData)), 2)`)
+
+* **Hybrid indexes** were calculated as ratio of M.m.d/M.m.m alleles (between `r minHINloci` and `r maxHINloci`, on average `r meanHINloci` loci)
+
+```{r plotDensHI, echo=FALSE, warning=FALSE, fig.width=5,fig.height=3,fig.cap="\\label{fig:plot1}Number of animals caught along the hybrid index "}
+plotDensHI <- ggplot(myData, aes(x = HI)) +
+  geom_histogram(binwidth = 0.05, col = "black", fill = "lightblue") +
+  theme_bw()
+plotDensHI
+```
+
+```{r map}
+
+```
+
+The average *Eimeria* prevalence per farm based on oocysts flotation is `r round(mean(prevFarmYear$prev), 2 )`. We observed, based on this technique,  a variation between years (Table 1).
+
+```{r tabPrev, echo=FALSE, results='asis'}
+library(knitr)
+kable(prevalenceFlotation, caption = "Prevalence of Eimeria based on OPG per year")
+```
+
+## Improving Eimeria oocysts detection
+
+`r N1` new samples were detected while diluting by 0.1mL PBS instead of 1mL before counting in Neubauer chamber.
+
+Adjusted R-squared = `r round(adjrsq, 2)` represents the amount of variation in y explained by x. 
+
+*https://www.r-bloggers.com/correlation-and-linear-regression/ (for Lorenzo)*
+
+```{r plot1, echo=FALSE, warning=FALSE, fig.width=5,fig.height=3,fig.cap="\\label{fig:plot1}Comparison of OPG depending on dilution level. Red line represents linear relationship between both axis, dotted line represents "}
+plot1
+```
+
+## Missing data (to complete with Victor)
+
+Some mice do not have an hybrid index yet: `r missingHIMice`
+
+## Comparison oocysts flotation, PCR, qPCR 
+
+tbc...
+
+# Testing hybrid vigor along HMHZ
+
+## Oocyst shedding proxy
+
+First approximation:
+
+```{r plotSmoothOPG, echo=FALSE, warning=FALSE, fig.width=6, fig.height=4, fig.cap="\\label{fig:plotSmoothOPG}OPG along HI, colored per year. Blue line represent a smooth function (method = loess)"}
+plotSmoothOPG
+```
+
+Statistical model (dvp...)
+
+## qPCR proxy
+
+tbc
+
+## BCI proxy
+
+First approximation:
+
+```{r plotBCI, echo=FALSE, warning=FALSE, fig.width=6, fig.height=4, fig.cap="\\label{fig:plotSmoothOPG}BCI along HI, colored per level of OPG"}
+plotBCI
+```
+
+
