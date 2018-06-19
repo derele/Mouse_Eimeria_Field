@@ -39,8 +39,8 @@ plotDensHI <- ggplot(myData, aes(x = HI)) +
 plotDensHI
 ```
 
-```{r map}
-
+```{r map, echo=FALSE, warning=FALSE, fig.width = 6, fig.height = 4, fig.cap="\\label{fig:map}Samples map. Each point correspond to one location, a less pronounced transparency indicating more animals sampled at this location. Hybrid index is represented by a gradient from blue (M.m.d) to red (M.m.m)"}
+mapHMHZ
 ```
 
 The average *Eimeria* prevalence per farm based on oocysts flotation is `r round(mean(prevFarmYear$prev), 2 )`. We observed, based on this technique,  a variation between years (Table 1).
@@ -58,7 +58,7 @@ Adjusted R-squared = `r round(adjrsq, 2)` represents the amount of variation in 
 
 *https://www.r-bloggers.com/correlation-and-linear-regression/ (for Lorenzo)*
 
-```{r plot1, echo=FALSE, warning=FALSE, fig.width=5,fig.height=3,fig.cap="\\label{fig:plot1}Comparison of OPG depending on dilution level. Red line represents linear relationship between both axis, dotted line represents "}
+```{r plot1, echo=FALSE, warning=FALSE,  fig.width=5,fig.height=3,fig.cap="\\label{fig:plot1}Comparison of OPG depending on dilution level. Red line represents linear relationship between both axis, dotted line represents "}
 plot1
 ```
 
@@ -66,9 +66,29 @@ plot1
 
 Some mice do not have an hybrid index yet: `r missingHIMice`
 
+## PCR
+
+*PCR.positive* means that AP5 was positive AND another marker gave a sequence
+
+```{r}
+getPrevalenceTable(table(myData$Ap5_PCR, myData$year))
+
+getPrevalenceTable(table(myData$PCR.positive, myData$year))
+```
+
+## qPCR
+
+```{r}
+getPrevalenceTable(table(myData$qPCRstatus, myData$year))
+```
+
 ## Comparison oocysts flotation, PCR, qPCR 
 
-tbc...
+```{r}
+#getPrevalenceTable(table(myData$qPCRstatus, myData$year))
+```
+
+
 
 # Testing hybrid vigor along HMHZ
 

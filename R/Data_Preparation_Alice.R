@@ -5,6 +5,9 @@ library(ggplot2)
 library(ggmap)
 library(data.table)
 library(plyr)
+library("VennDiagram")
+library(grid)
+library(gridExtra)
 source("HMHZ_Functions.R")
 
 #################### Load data ####################
@@ -22,34 +25,6 @@ miceTable$Latitude[miceTable$Latitude > 100 & !is.na(miceTable$Latitude)] <-
 # miceTable$Latitude <- round(miceTable$Latitude, 2)
 # miceTable$Longitude <- round(miceTable$Longitude, 2)
 
-# Create map of samples
-# HI.map(df = miceTable, size = 4, alpha = 1, margin = 0.2) 
-# 
-# HI.map <- function(df, size = 3, margin = 2, zoom = 7, alpha = 0.5, 
-#                    source = "stamen", maptype = "toner-lite"){
-# #   # get a map
-# margin = 0.2
-# zoom = 7
-# df = miceTable
-# https://github.com/dkahle/ggmap/issues/107
-# area <- get_map(
-#                 source = "stamen", maptype = "toner-lite", zoom = 10)
-# 
-# 
-# get_stamenmap(bbox = 
-#                 c(min(df$Longitude[!is.na(df$Longitude)] - margin),
-#                   min(df$Latitude[!is.na(df$Latitude)] - margin),
-#                   max(df$Longitude[!is.na(df$Longitude)] + margin),
-#                   max(df$Latitude[!is.na(df$Latitude)] + margin)), 
-#               maptype = "terrain")
-# 
-# #plot the map :
-#   ggmap(area) +
-#     geom_point(data = df, shape = 21, size = size,
-#                aes(Longitude, Latitude, fill = HI), alpha = alpha) + # set up the points
-#     scale_fill_gradient("Hybrid\nindex", high="red",low="blue")   # set up the HI colors
-# }  
-
 # Body weight correction of x 1000 error
 miceTable$Body_weight[!is.na(miceTable$Body_weight) &
                         miceTable$Body_weight > 100] <-
@@ -59,49 +34,62 @@ miceTable$Body_weight[!is.na(miceTable$Body_weight) &
 # Body condition index as log body mass/log body length (Hayes et al. 2014)
 miceTable$BCI <- log(miceTable$Body_weight) / log(miceTable$Body_length)
 
-## Load data from oocysts counting 
-fullDF <- read.csv("../raw_data/Eimeria_detection/FINALOocysts2015to2017.csv")
-fullDF <- fullDF[!is.na(fullDF$OPG),]
+# add farm (TODO better localisation)
+miceTable$farm <- paste0(miceTable$Longitude, miceTable$Latitude)
 
-## Lorenzo count (in 1mL dilution) for comparison
-LorenzoDF <- read.csv("../raw_data/Eimeria_detection/Eimeria_oocysts_2015&2017_Lorenzo.csv")
-LorenzoDF <- LorenzoDF[!is.na(LorenzoDF$OPG),]
+##################### Eimeria detection oocysts flotation ####################
+source("../R/functions/addFlotationResults.R")
+myData <- addFlotationResults(miceTable)$newDF
 
-### Plot comparative Alice (dilution 0.1mL for most samples) and Lorenzo (dilution 1mL)
-compData <- merge(fullDF, LorenzoDF, by = "Mouse_ID", all = T)
-
-# How many samples new were detected by decreasing the dilution?
-N1 <- sum(compData$OPG.x > 0 & compData$OPG.y == 0, na.rm = T)
-N1
-
-plot1 <- ggplot(compData, aes(x = OPG.x, y = OPG.y)) +
-  geom_point(alpha = .5, size = 4) +
-  coord_equal(ratio=1) +
-  xlab("counted in 0.1ml") + 
-  ylab("counted in 1ml") + 
-  geom_smooth(method = "lm", se = FALSE, col = "red") +
-  geom_abline(intercept = 0, slope = 1, linetype = 3) +
-  scale_y_log10() + 
-  scale_x_log10() +
-  theme_bw()
-plot1
-
-adjrsq <- summary(lm(formula = compData$OPG.x ~ compData$OPG.y))$adj.r.squared
-
-prevalenceFlotation <- getPrevalenceTable(myTable = table(fullDF$OPG > 0, fullDF$year))
-prevalenceFlotation
-
-# Add HI, GPS coordinates, BCI (and all)
-myData <- merge(miceTable, fullDF, by = "Mouse_ID")
-
-# Add Eimeria infection status TO BE DISCUSSED !!!
-# myData <- merge(Eimeria[c("Mouse_ID", "PCRpos3markers")], MiceTable, all = T)
-
+# KEEP ONLY ONES WE FLOTATED!!
+myData <- myData[!is.na(myData$OPG),]
 # MICE NOT FOUND IN miceTable: "SK_3174"
 missingHIMice <- c("SK_3174", as.character(myData$Mouse_ID)[is.na(myData$HI)])
 
-# add farm (TODO better localisation)
-myData$farm <- paste0(myData$Longitude, myData$Latitude)
+prevalenceFlotation <- getPrevalenceTable(myTable = table(myData$OPG > 0,
+                                                          myData$year))
+prevalenceFlotation
+
+# Create map of samples
+mapHMHZ <- HI.map(df = myData, size = 2, alpha = .3, margin = 0.2, zoom = 8) 
+mapHMHZ
+
+# How many new samples were found given the new dilution (0.1mL)
+N1 <- comparisonFlot(myData)$N1
+N1
+
+# What is the adjusted R square between these 2 dilutions
+adjrsq <- comparisonFlot(myData)$adjrsq
+adjrsq
+
+# Plot the comparison
+plot1 <- plotCompData(myData)
+plot1
+
+# plot OPG that we keep
+plotSmoothOPG <- ggplot(myData[myData$OPG >0,], aes(x = HI, y = OPG+1)) +
+  geom_point(aes(fill = as.factor(year)), pch = 21, alpha = .8, size = 4) +
+  geom_smooth(se=F) +
+  scale_y_log10() +
+  theme_bw() +
+  theme(legend.position="top") +
+  theme(legend.title = element_blank())
+plotSmoothOPG
+
+##################### Eimeria detection PCR ####################
+source("../R/functions/addPCRresults.R")
+myData <- addPCRresults(myData)
+
+getPrevalenceTable(table(myData$Ap5_PCR, myData$year))
+
+getPrevalenceTable(table(myData$PCR.positive, myData$year))
+
+#################### Eimeria detection qPCR ####################
+source("../R/functions/addqPCRresults.R")
+myData <- addqPCRresults(myData)
+
+# the full values are in myData$delta_ct_MminusE
+getPrevalenceTable(table(myData$qPCRstatus, myData$year))
 
 #################### General stats on sampling ####################
 
@@ -125,22 +113,33 @@ minHINloci = min(as.numeric(substr(myData$HI_NLoci, 4,6)), na.rm = T)
 maxHINloci = max(as.numeric(substr(myData$HI_NLoci, 4,6)), na.rm = T)
 meanHINloci = round(mean(as.numeric(substr(myData$HI_NLoci, 4,6)), na.rm = T))
 
-#################### Eimeria detection OPG ####################
-# plot
-plotSmoothOPG <- ggplot(myData[myData$OPG >0,], aes(x = HI, y = OPG+1)) +
-  geom_point(aes(fill = as.factor(year)), pch = 21, alpha = .8, size = 4) +
-  geom_smooth(se=F) +
-  scale_y_log10() +
-  theme_bw() +
-  theme(legend.position="top") +
-  theme(legend.title = element_blank())
-plotSmoothOPG
-
-##################### Eimeria detection PCR ####################
-
-# Eimeria <- read.csv("../raw_data/Eimeria_detection/Summary_eimeria.csv")
-
-#################### Eimeria detection qPCR ####################
+######### Compare our methods of detection
+##Venn diagram 
+# 
+# ##Plot
+# grid.newpage()
+# draw.triple.venn(area1 = nrow(subset(finalData, n18S_Seq == "positive")), 
+#                  area2 = nrow(subset(finalData, COI_Seq == "positive")), 
+#                  area3 = nrow(subset(finalData, ORF470_Seq == "positive")), 
+#                  n12 = nrow(subset(finalData, n18S_Seq == "positive"&COI_Seq== "positive")), 
+#                  n23 = nrow(subset(finalData, COI_Seq== "positive"&ORF470_Seq =="positive")), 
+#                  n13 = nrow(subset(finalData, n18S_Seq == "positive"&ORF470_Seq == "positive")), 
+#                  n123 = nrow(subset(finalData, n18S_Seq == "positive"&ORF470_Seq == "positive"&COI_Seq=="positive")),
+#                  category = c("18S", "COI", "ORF470"), 
+#                  lty = rep(1,3), col = c("dodgerblue4", "firebrick3", "darkgreen"), lwd = rep(2,3),
+#                  fill = c("dodgerblue4", "firebrick3", "darkgreen"), alpha = c(0.3, 0.3, 0.3), cex =2, cat.cex = 2.5, cat.default.pos = 'outer', 
+#                  cat.col = c("dodgerblue4", "firebrick3", "darkgreen"))
+# 
+# #Plot
+# grid.newpage()
+# draw.pairwise.venn(area1= length(which(finalData$Ap5 %in% "positive")), area2= length(which(finalData$Flot %in% "positive")), cross.area = length(which(finalData$Flot %in% "positive" & finalData$Ap5 %in% "positive")))
+# 
+# 
+# #grid.newpage()
+# #draw.pairwise.venn(22, 20, 11, category = c("Dog People", "Cat People"), lty = rep("blank", 
+# #                                                                                  2), fill = c("light blue", "pink"), alpha = rep(0.5, 2), cat.pos = c(0, 
+# #                                                                                                                                                        0), cat.dist = rep(0.025, 2), scaled = FALSE)
+# #https://rstudio-pubs-static.s3.amazonaws.com/13301_6641d73cfac741a59c0a851feb99e98b.html
 
 #################### BCI by HI and OPG #################### 
 plotBCI <- ggplot(myData, aes(x = HI, y = BCI, fill = myData$OPG + 1)) +
