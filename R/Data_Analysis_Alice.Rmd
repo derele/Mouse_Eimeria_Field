@@ -58,7 +58,7 @@ Adjusted R-squared = `r round(adjrsq, 2)` represents the amount of variation in 
 
 *https://www.r-bloggers.com/correlation-and-linear-regression/ (for Lorenzo)*
 
-```{r plot1, echo=FALSE, warning=FALSE,  fig.width=5,fig.height=3,fig.cap="\\label{fig:plot1}Comparison of OPG depending on dilution level. Red line represents linear relationship between both axis, dotted line represents "}
+```{r plot1, echo=FALSE, warning=FALSE,  fig.width=5,fig.height=3,fig.cap="\\label{fig:plot1}Comparison of OPG depending on dilution level. Red line represents linear relationship between both axis, dotted line represents the function y = x"}
 plot1
 ```
 
@@ -68,27 +68,31 @@ Some mice do not have an hybrid index yet: `r missingHIMice`
 
 ## PCR
 
+```{r, echo=FALSE, results='asis'}
+library(knitr)
+kable(getPrevalenceTable(table(myData$Ap5_PCR, myData$year)), 
+      caption = "Prevalence of Eimeria based on positive AP5 PCR, per year")
+```
+
 *PCR.positive* means that AP5 was positive AND another marker gave a sequence
 
-```{r}
-getPrevalenceTable(table(myData$Ap5_PCR, myData$year))
-
-getPrevalenceTable(table(myData$PCR.positive, myData$year))
+```{r, echo=FALSE, results='asis'}
+library(knitr)
+kable(getPrevalenceTable(table(myData$PCR.positive, myData$year)),
+      caption = "Prevalence of Eimeria based on positive AP5 PCR AND the obtention of a sequence of another marker (COI, 18S or ORF470), per year")
 ```
 
 ## qPCR
 
-```{r}
-getPrevalenceTable(table(myData$qPCRstatus, myData$year))
+```{r, echo=FALSE, results='asis'}
+library(knitr)
+kable(getPrevalenceTable(table(myData$qPCRstatus, myData$year)),
+      caption = "Prevalence of Eimeria based on positive qPCR, per year")
 ```
 
 ## Comparison oocysts flotation, PCR, qPCR 
 
-```{r}
-#getPrevalenceTable(table(myData$qPCRstatus, myData$year))
-```
-
-
+*Plot a venn diagram here*
 
 # Testing hybrid vigor along HMHZ
 
