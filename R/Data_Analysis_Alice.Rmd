@@ -22,13 +22,31 @@ knitr::opts_chunk$set(echo = TRUE)
 source("../R/Data_Preparation_Alice.R")
 ```
 
+# To be fixed before all
+
+* Some information regarding latitude and longitude are missing for the following mice:
+
+`r latLongMissing`
+
+* We still miss info (HI) on the following mice (ask Jarda):
+
+`r miceInfoNeeded` 
+
 # General informations on HMHZ
 
-* `r sum(prevFarmYear$N)` mice were captured over three years and had fecal samples processed, from `r nrow(prevFarmYear)` farms. 
+```{r map, echo=FALSE, warning=FALSE, fig.width = 6, fig.height = 4, fig.cap="\\label{fig:map} Map of the mice with OPG, PCR or qPCR status, caught in the Brandenburg-MVP transect in 2015, 2016 and 2017. Each point corresponds to one location, a less pronounced transparency indicating more animals sampled at this location. Hybrid index is represented by a gradient from blue (M.m.d) to red (M.m.m)"}
+mapHMHZ
+```
 
-* From these mice, *(tbc : N had colon content and intestinal tissues collected for PCR and qPCR detection)* 
+* `r Nmice` mice were captured over three years, from `r Nfarm` farms
 
-* `r round(mean(by(myData, myData["farm"], nrow)), 2)` mice were caught on average by farm (95% ci : `r round(qnorm(0.975)*sd(by(myData, myData["farm"], nrow))/sqrt(nrow(myData)), 2)`)
+* From these mice:
+
+* `r noo` mice had Eimeria detected by feces flotation,
+* `r npcr` mice had Eimeria detected by colon content PCR (cf paper Victor),
+* `r nqPCR` mice had Eimeria detected by qPCR on intestinal tissues
+
+* On average, `r round(MEAN,2)` mice were caught per farm (95% CI `r round(CI,2)`)
 
 * **Hybrid indexes** were calculated as ratio of M.m.d/M.m.m alleles (between `r minHINloci` and `r maxHINloci`, on average `r meanHINloci` loci)
 
@@ -39,15 +57,21 @@ plotDensHI <- ggplot(myData, aes(x = HI)) +
 plotDensHI
 ```
 
-```{r map, echo=FALSE, warning=FALSE, fig.width = 6, fig.height = 4, fig.cap="\\label{fig:map}Samples map. Each point correspond to one location, a less pronounced transparency indicating more animals sampled at this location. Hybrid index is represented by a gradient from blue (M.m.d) to red (M.m.m)"}
-mapHMHZ
+# Comparison of prevalences based on detection method
+
+```{r tabPrevOO, echo=FALSE, results='asis'}
+library(knitr)
+kable(prevalenceFlotation, caption = "Prevalence of Eimeria per year, based on oocyst flotation")
 ```
 
-The average *Eimeria* prevalence per farm based on oocysts flotation is `r round(mean(prevFarmYear$prev), 2 )`. We observed, based on this technique,  a variation between years (Table 1).
-
-```{r tabPrev, echo=FALSE, results='asis'}
+```{r tabPrevPCR, echo=FALSE, results='asis'}
 library(knitr)
-kable(prevalenceFlotation, caption = "Prevalence of Eimeria based on OPG per year")
+kable(prevalencePCR, caption = "Prevalence of Eimeria per year, based on PCR detection and oocysts flotation. A mouse was considered infected by Eimeria if it had a positive oocyst count in its feces, or if one of the 3 markers (COI, 18S or ORF470) gave a sequence")
+```
+
+```{r tabPrevqPCR, echo=FALSE, results='asis'}
+library(knitr)
+kable(prevalenceqPCR, caption = "Prevalence of Eimeria per year, based on qPCR")
 ```
 
 ## Improving Eimeria oocysts detection
@@ -62,37 +86,16 @@ Adjusted R-squared = `r round(adjrsq, 2)` represents the amount of variation in 
 plot1
 ```
 
-## Missing data (to complete with Victor)
-
-Some mice do not have an hybrid index yet: `r missingHIMice`
-
-## PCR
-
-```{r, echo=FALSE, results='asis'}
-library(knitr)
-kable(getPrevalenceTable(table(myData$Ap5_PCR, myData$year)), 
-      caption = "Prevalence of Eimeria based on positive AP5 PCR, per year")
-```
-
-*PCR.positive* means that AP5 was positive AND another marker gave a sequence
-
-```{r, echo=FALSE, results='asis'}
-library(knitr)
-kable(tabpcr,
-      caption = "Prevalence of Eimeria based on the obtention of a sequence of a marker (COI, 18S or ORF470), per year")
-```
-
-## qPCR
-
-```{r, echo=FALSE, results='asis'}
-library(knitr)
-kable(tabqpcr,
-      caption = "Prevalence of Eimeria based on positive qPCR, per year")
-```
-
 ## Comparison oocysts flotation, PCR, qPCR 
 
-*Plot a venn diagram here*
+```{r venn1, echo=FALSE, warning=FALSE, message=FALSE, fig.width=5,fig.height=3,fig.cap="\\label{fig:venn1}Comparison of detection: PCR vs flotation"}
+myVennDiagram2(completeData1)
+```
+
+```{r venn2, echo=FALSE, warning=FALSE, message=FALSE, fig.width=5,fig.height=3,fig.cap="\\label{fig:venn1}Comparison of detection: PCR vs flotation vs qPCŔ"}
+myVennDiagram3(completeData)
+```
+
 
 # Testing hybrid vigor along HMHZ
 
