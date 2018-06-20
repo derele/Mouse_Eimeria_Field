@@ -41,17 +41,20 @@ miceTable$farm <- paste0(miceTable$Longitude, miceTable$Latitude)
 source("../R/functions/addFlotationResults.R")
 myData <- addFlotationResults(miceTable)$newDF
 
-# KEEP ONLY ONES WE FLOTATED!!
-myData <- myData[!is.na(myData$OPG),]
 # MICE NOT FOUND IN miceTable: "SK_3174"
-missingHIMice <- c("SK_3174", as.character(myData$Mouse_ID)[is.na(myData$HI)])
+missingHIMice <- c(as.character(myData$Mouse_ID[
+  !myData$Mouse_ID %in% intersect(miceTable$Mouse_ID, myData$Mouse_ID)]),
+  as.character(myData$Mouse_ID)[is.na(myData$HI)])
 
 prevalenceFlotation <- getPrevalenceTable(myTable = table(myData$OPG > 0,
                                                           myData$year))
 prevalenceFlotation
 
+# # KEEP ONLY ONES WE FLOTATED!!
+datatomap <- myData[!is.na(myData$OPG) & !is.na(myData$Longitude) & !is.na(myData$Latitude),]
+
 # Create map of samples
-mapHMHZ <- HI.map(df = myData, size = 2, alpha = .3, margin = 0.2, zoom = 8) 
+mapHMHZ <- HI.map(df = datatomap, size = 2, alpha = .3, margin = 0.2, zoom = 8) 
 mapHMHZ
 
 # How many new samples were found given the new dilution (0.1mL)
@@ -82,14 +85,15 @@ myData <- addPCRresults(myData)
 
 getPrevalenceTable(table(myData$Ap5_PCR, myData$year))
 
-getPrevalenceTable(table(myData$PCR.positive, myData$year))
+tabpcr <- getPrevalenceTable(table(myData$PCRstatus, myData$year))
+tabpcr
 
 #################### Eimeria detection qPCR ####################
 source("../R/functions/addqPCRresults.R")
 myData <- addqPCRresults(myData)
 
 # the full values are in myData$delta_ct_MminusE
-getPrevalenceTable(table(myData$qPCRstatus, myData$year))
+tabqpcr <- getPrevalenceTable(table(myData$qPCRstatus, myData$year))
 
 #################### General stats on sampling ####################
 
@@ -115,31 +119,32 @@ meanHINloci = round(mean(as.numeric(substr(myData$HI_NLoci, 4,6)), na.rm = T))
 
 ######### Compare our methods of detection
 ##Venn diagram 
-# 
-# ##Plot
-# grid.newpage()
-# draw.triple.venn(area1 = nrow(subset(finalData, n18S_Seq == "positive")), 
-#                  area2 = nrow(subset(finalData, COI_Seq == "positive")), 
-#                  area3 = nrow(subset(finalData, ORF470_Seq == "positive")), 
-#                  n12 = nrow(subset(finalData, n18S_Seq == "positive"&COI_Seq== "positive")), 
-#                  n23 = nrow(subset(finalData, COI_Seq== "positive"&ORF470_Seq =="positive")), 
-#                  n13 = nrow(subset(finalData, n18S_Seq == "positive"&ORF470_Seq == "positive")), 
-#                  n123 = nrow(subset(finalData, n18S_Seq == "positive"&ORF470_Seq == "positive"&COI_Seq=="positive")),
-#                  category = c("18S", "COI", "ORF470"), 
-#                  lty = rep(1,3), col = c("dodgerblue4", "firebrick3", "darkgreen"), lwd = rep(2,3),
-#                  fill = c("dodgerblue4", "firebrick3", "darkgreen"), alpha = c(0.3, 0.3, 0.3), cex =2, cat.cex = 2.5, cat.default.pos = 'outer', 
-#                  cat.col = c("dodgerblue4", "firebrick3", "darkgreen"))
-# 
-# #Plot
-# grid.newpage()
-# draw.pairwise.venn(area1= length(which(finalData$Ap5 %in% "positive")), area2= length(which(finalData$Flot %in% "positive")), cross.area = length(which(finalData$Flot %in% "positive" & finalData$Ap5 %in% "positive")))
-# 
-# 
-# #grid.newpage()
-# #draw.pairwise.venn(22, 20, 11, category = c("Dog People", "Cat People"), lty = rep("blank", 
-# #                                                                                  2), fill = c("light blue", "pink"), alpha = rep(0.5, 2), cat.pos = c(0, 
-# #                                                                                                                                                        0), cat.dist = rep(0.025, 2), scaled = FALSE)
-# #https://rstudio-pubs-static.s3.amazonaws.com/13301_6641d73cfac741a59c0a851feb99e98b.html
+
+# first, compare PCR and oocysts
+completeData1 <- myData[!is.na(myData$OPG) &
+                         !is.na(myData$PCRstatus),]
+        
+myVennDiagram <- function(data){      
+  area1 = nrow(subset(completeData1, PCRstatus == "positive"))
+  area2 = nrow(subset(completeData1, OPG > 0))
+  ## areas of 2-group overlap
+  cross.area = nrow(subset(completeData1, PCRstatus == "positive" & OPG > 0))
+  
+  grid.newpage()
+  draw.pairwise.venn(area1 = area1, 
+                     area2 = area2, 
+                     cross.area = cross.area, 
+                     category = c("PCR", "OPG"),
+                     fill = c("blue", "red"), 
+                     alpha = .5, lwd = 0)
+}
+
+myVennDiagram(completeData1)
+
+# to compare, keep only samples tested for the 3 methods
+completeData <- myData[!is.na(myData$OPG) &
+                         !is.na(myData$PCRstatus) &
+                         !is.na(myData$delta_ct_MminusE),]
 
 #################### BCI by HI and OPG #################### 
 plotBCI <- ggplot(myData, aes(x = HI, y = BCI, fill = myData$OPG + 1)) +
