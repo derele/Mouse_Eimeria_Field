@@ -6,6 +6,7 @@ addPCRresults <- function(aDataFrame){
   names(PCRdf) <- gsub(toremove, "", names(PCRdf))
   
   names(PCRdf)[names(PCRdf)%in%"ID_mouse"] <- "Mouse_ID"
+  names(PCRdf)[names(PCRdf)%in%"Year"] <- "year"
   
   PCRdf$Mouse_ID = gsub(" ", "", PCRdf$Mouse_ID) # fix the extra space
   

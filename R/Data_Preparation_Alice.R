@@ -37,9 +37,17 @@ miceTable$BCI <- log(miceTable$Body_weight) / log(miceTable$Body_length)
 # add farm (TODO better localisation)
 miceTable$farm <- paste0(miceTable$Longitude, miceTable$Latitude)
 
+## remove empty rows
+miceTable <- miceTable[!is.na(miceTable$Mouse_ID),]
+
 ##################### Eimeria detection oocysts flotation ####################
 source("../R/functions/addFlotationResults.R")
 myData <- addFlotationResults(miceTable)$newDF
+
+# correct year
+myData$year[is.na(myData$year)] <- myData$Year[is.na(myData$year)]
+myData <- subset(myData, select = -c(Year))
+myData$Mouse_ID[is.na(myData$year)] # check, must be null
 
 # MICE NOT FOUND IN miceTable: "SK_3174"
 missingHIMice <- c(as.character(myData$Mouse_ID[
@@ -83,10 +91,25 @@ plotSmoothOPG
 source("../R/functions/addPCRresults.R")
 myData <- addPCRresults(myData)
 
-getPrevalenceTable(table(myData$Ap5_PCR, myData$year))
+# correct year
+myData$year <- myData$year.x
+myData$year[is.na(myData$year)] <- myData$year.y[is.na(myData$year)]
+myData <- subset(myData, select = -c(year.x, year.y))
+myData$Mouse_ID[is.na(myData$year)] # check, must be null
 
-tabpcr <- getPrevalenceTable(table(myData$PCRstatus, myData$year))
-tabpcr
+# JUST with Ap5
+# getPrevalenceTable(table(myData$Ap5_PCR, myData$year))
+
+# Flotation positive OR PCR positive (= full Eimeria status)
+# Set to NA
+myData$EimeriaStatus <- NA
+# Negative if one test is
+myData$EimeriaStatus[myData$PCRstatus == "negative" | myData$OPG <= 0] <- "negative"
+# But overwrite positive if one of the test is :)
+myData$EimeriaStatus[myData$PCRstatus == "positive" | myData$OPG > 0] <- "positive"
+
+tabTot <- getPrevalenceTable(table(myData$EimeriaStatus, myData$year))
+tabTot
 
 #################### Eimeria detection qPCR ####################
 source("../R/functions/addqPCRresults.R")
