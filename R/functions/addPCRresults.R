@@ -1,25 +1,31 @@
 addPCRresults <- function(aDataFrame){
   PCRdf <- read.csv("../raw_data/Eimeria_detection/Inventory_contents_all.csv")
+  
   #correct wrong names
   toremove <- paste0(paste0("X",1:30, "_"), collapse = "|")
   names(PCRdf) <- gsub(toremove, "", names(PCRdf))
   
   names(PCRdf)[names(PCRdf)%in%"ID_mouse"] <- "Mouse_ID"
   
-  # number of TRUE Ap5 positive (+ another marker sequenced successfully)
-  PCRdf$oneSeqPositive <- PCRdf$`18S_Seq` == "positive" | 
-    PCRdf$COI_Seq == "positive" | 
-    PCRdf$ORF470_Seq == "positive"
+  PCRdf$Mouse_ID = gsub(" ", "", PCRdf$Mouse_ID) # fix the extra space
   
-  # positive with Ap5 and at least 1 sequence
-  PCRdf$PCR.positive <-
-    PCRdf$Ap5_PCR %in% "positive" & PCRdf$oneSeqPositive %in% TRUE
+  # by default, I enter PCRstatus as negative, then overwrite
+  PCRdf$PCRstatus = "negative"
   
-  # not tested yet
-  PCRdf$PCR.positive[is.na(PCRdf$Ap5_PCR)] <- NA
+  # PCR positive = one of the 3 other markers than AP5 sequenced 
+  # (Ap5 was used for detection only, the other markers for confirmation)
+  PCRdf$PCRstatus[PCRdf$`18S_Seq` == "positive" | 
+                    PCRdf$COI_Seq == "positive" | 
+                    PCRdf$ORF470_Seq == "positive"] <- "positive"
+  
+  # PCRstatus is NA if everything is NA
+  PCRdf$PCRstatus[is.na(PCRdf$Ap5_PCR) & 
+                    is.na(PCRdf$`18S_Seq`) &
+                    is.na(PCRdf$COI_Seq) &
+                    is.na(PCRdf$ORF470_Seq)] <- NA
   
   # merge with actual df
-  aDataFrame <- merge(aDataFrame, PCRdf, all.x = T)
+  aDataFrame <- merge(aDataFrame, PCRdf, by = "Mouse_ID", all.x = T)
   
   return(aDataFrame)
 }
