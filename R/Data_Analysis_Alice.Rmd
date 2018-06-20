@@ -78,15 +78,15 @@ kable(getPrevalenceTable(table(myData$Ap5_PCR, myData$year)),
 
 ```{r, echo=FALSE, results='asis'}
 library(knitr)
-kable(getPrevalenceTable(table(myData$PCR.positive, myData$year)),
-      caption = "Prevalence of Eimeria based on positive AP5 PCR AND the obtention of a sequence of another marker (COI, 18S or ORF470), per year")
+kable(tabpcr,
+      caption = "Prevalence of Eimeria based on the obtention of a sequence of a marker (COI, 18S or ORF470), per year")
 ```
 
 ## qPCR
 
 ```{r, echo=FALSE, results='asis'}
 library(knitr)
-kable(getPrevalenceTable(table(myData$qPCRstatus, myData$year)),
+kable(tabqpcr,
       caption = "Prevalence of Eimeria based on positive qPCR, per year")
 ```
 
