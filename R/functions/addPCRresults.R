@@ -25,7 +25,7 @@ addPCRresults <- function(aDataFrame){
                     is.na(PCRdf$ORF470_Seq)] <- NA
   
   # merge with actual df
-  aDataFrame <- merge(aDataFrame, PCRdf, by = "Mouse_ID", all.x = T)
+  aDataFrame <- merge(aDataFrame, PCRdf, by = "Mouse_ID", all = T)
   
   return(aDataFrame)
 }

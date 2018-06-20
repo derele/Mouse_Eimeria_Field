@@ -51,7 +51,7 @@ addqPCRresults <- function(aDataFrame){
   qpcrData$delta_ct_MminusE <- qpcrData$delta_ct_MminusE + 6
 
   # merge
-  aDataFrame <- merge(aDataFrame, qpcrData, all.x = T)
+  aDataFrame <- merge(aDataFrame, qpcrData, all = T)
   
   return(aDataFrame)
 }

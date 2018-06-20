@@ -1,6 +1,7 @@
 addFlotationResults <- function(aDataFrame){
   ## Load data from oocysts counting 
   flotDF <- read.csv("../raw_data/Eimeria_detection/FINALOocysts2015to2017.csv")
+  flotDF$OPG <- as.numeric(as.character(flotDF$OPG))
   flotDF <- flotDF[!is.na(flotDF$OPG),]
   
   ## Lorenzo count (in 1mL dilution) for comparison
@@ -10,12 +11,8 @@ addFlotationResults <- function(aDataFrame){
   ### Plot comparative Alice (dilution 0.1mL for most samples) and Lorenzo (dilution 1mL)
   compData <- merge(flotDF, LorenzoDF, by = "Mouse_ID", all = T)
   
-  # set correct flotation status
-  flotDF$Flotation <- "negative"
-  flotDF$Flotation[aDataFrame$OPG > 0] <- "positive"
-  
   # merge with current data
-  aDataFrame = merge(aDataFrame, flotDF, all.x = T)
+  aDataFrame = merge(aDataFrame, flotDF, all = T)
   
   return(list(compData = compData,
               newDF = aDataFrame))
