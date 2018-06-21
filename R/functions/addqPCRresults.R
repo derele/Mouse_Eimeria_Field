@@ -48,10 +48,10 @@ addqPCRresults <- function(aDataFrame){
   qpcrData$delta_ct_MminusE[is.na(qpcrData$delta_ct_MminusE)] <- -6
   
   # To pass positive I add 6 to all
-  qpcrData$delta_ct_MminusE <- qpcrData$delta_ct_MminusE + 6
+  # qpcrData$delta_ct_MminusE <- qpcrData$delta_ct_MminusE + 6
 
   # merge
-  aDataFrame <- merge(aDataFrame, qpcrData, all = T)
+  aDataFrame <- merge(aDataFrame, qpcrData, by = "Mouse_ID", all = T)
   
   return(aDataFrame)
 }

@@ -177,11 +177,16 @@ prevalenceFlotation <- getPrevalenceTable(table(myDataStudyAlice$OPG > 0, myData
 prevalencePCR <- getPrevalenceTable(table(myDataStudyAlice$PCRstatus, myDataStudyAlice$year))
 prevalenceqPCR <- getPrevalenceTable(table(myDataStudyAlice$qPCRstatus, myDataStudyAlice$year))
 
-######### Compare our methods of detection
+######### Compare our methods of detection ######### 
 noo <- table(!is.na(myDataStudyAlice$OPG))[2]
 npcr <- table(!is.na(myDataStudyAlice$PCRstatus))[2]
 nqPCR <- table(!is.na(myDataStudyAlice$qPCRstatus))[2]
 
+# Positive for qPCR but nothing else?
+myDataStudyAlice[which(myDataStudyAlice$qPCRstatus == "positive" & 
+                            !is.na(myDataStudyAlice$qPCRstatus) &
+                            myDataStudyAlice$PCRstatus == "negative" &
+                            myDataStudyAlice$OPG == 0), ]
 ##Venn diagram 
 
 # first, compare PCR and oocysts
@@ -207,6 +212,31 @@ myVennDiagram2 <- function(data){
 }
 
 myVennDiagram2(completeData1)
+
+# Compare qPCR results and OPG
+ggplot(myDataStudyAlice[!is.na(myDataStudyAlice$qPCRstatus),],
+       aes(x = delta_ct_MminusE, y = OPG)) +
+  geom_point(aes(fill = qPCRsummary),
+             alpha = .5, size = 4, pch = 21) +
+  geom_smooth(method = "lm", se = FALSE, col = "red") +
+  theme_bw()
+
+plotcompOPGqPCR <- ggplot(myDataStudyAlice[!is.na(myDataStudyAlice$delta_ct_MminusE) &
+                                             myDataStudyAlice$OPG > 0 &
+                                             myDataStudyAlice$delta_ct_MminusE > -6,],
+                          aes(x = delta_ct_MminusE, y = OPG)) +
+  geom_point(aes(fill = qPCRsummary),
+             alpha = .5, size = 4, pch = 21) +
+  geom_smooth(method = "lm", se = FALSE, col = "red") +
+  scale_y_log10() +
+  theme_bw()
+
+data1 <- myDataStudyAlice[!is.na(myDataStudyAlice$delta_ct_MminusE) &
+                            !is.na(myDataStudyAlice$OPG), ]
+summary(lm(data1$OPG ~ data1$delta_ct_MminusE))
+
+data2 <- data1[data1$OPG > 0 & data1$delta_ct_MminusE > -6 , ]
+summary(lm(data2$OPG ~ data2$delta_ct_MminusE))
 
 # to compare, keep only samples tested for the 3 methods
 completeData <- myDataStudyAlice[!is.na(myDataStudyAlice$OPG) &
