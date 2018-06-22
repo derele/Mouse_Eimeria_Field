@@ -147,7 +147,8 @@ latLongMissing <- myDataStudyAlice$Mouse_ID[
 
 # keep only North Germany
 myDataStudyAlice <- myDataStudyAlice[!is.na(myDataStudyAlice$Latitude) &
-                                       myDataStudyAlice$Latitude > 51, ]
+                                       myDataStudyAlice$Latitude > 51 &
+                                       myDataStudyAlice$Longitude < 17, ]
 
 # Total
 Nmice <- nrow(myDataStudyAlice)
