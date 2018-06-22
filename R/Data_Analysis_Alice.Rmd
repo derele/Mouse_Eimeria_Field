@@ -92,6 +92,11 @@ plot1
 myVennDiagram2(completeData1)
 ```
 
+```{r compOPGqPCR, echo=FALSE, warning=FALSE, message=FALSE, fig.width=5,fig.height=3,fig.cap="\\label{fig:venn1}Comparison of positive values of OPG and qPCR for year 2016"}
+plotcompOPGqPCR
+```
+
+
 ```{r venn2, echo=FALSE, warning=FALSE, message=FALSE, fig.width=5,fig.height=3,fig.cap="\\label{fig:venn1}Comparison of detection: PCR vs flotation vs qPCŔ"}
 myVennDiagram3(completeData)
 ```
