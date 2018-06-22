@@ -12,6 +12,9 @@ HIJardaTable <- read.csv("../raw_data/EmanuelData.csv",
 HIJardaTable <- HIJardaTable[!names(HIJardaTable) == "X"]
 HIJardaTable <- HIJardaTable[!HIJardaTable$Year %in% c(2010, 2011),]
 
+# Check if all rows are NA and delete these rows
+which(!rowSums(!is.na(HIJardaTable)))  
+
 ## Manual names uniformisation:
 setnames(HIJardaTable,
          old = c("PIN", "X_Longit", "Y_Latit"), 
@@ -21,6 +24,9 @@ HIJardaTable$Mouse_ID <- gsub(pattern = "SK", replacement = "SK_",x = HIJardaTab
 
 # Let's remove the embryos (sadly, no interest for our parasitic studies...)
 HIJardaTable <- HIJardaTable[sapply(HIJardaTable$Mouse_ID, nchar) <= 7,]
+
+# Check if all rows are NA and delete these rows
+which(!rowSums(!is.na(HIJardaTable)))  
 
 # How many samples from Brandenburg do we have the HI for per year?
 table(HIJardaTable$Year)
@@ -59,6 +65,9 @@ diss2014 <- fillGapsAfterMerge(diss2014)
 mergedMiceTable <- merge(HIJardaTable, diss2014,  
                          by = c("Mouse_ID"), all = T)
 mergedMiceTable <- fillGapsAfterMerge(mergedMiceTable)
+
+# Check if all rows are NA and delete these rows
+which(!rowSums(!is.na(mergedMiceTable)))  
 
 ## 2015 part 1
 diss2015.1 <- read.csv("../raw_data/Genotypes_Bav2015.csv", 
@@ -100,6 +109,9 @@ mergedMiceTable <- fillGapsAfterMerge(mergedMiceTable)
 # some have their transect lost... TODO LATER
 mergedMiceTable$Mouse_ID[is.na(mergedMiceTable$Transect)]
 
+# Check if all rows are NA and delete these rows
+which(!rowSums(!is.na(mergedMiceTable)))  
+
 ###################### 2016
 diss2016 <- read.csv("../raw_data/HZ16_Mice_18-07-16_dissections.csv", 
                      na.strings=c(""," ","NA"), stringsAsFactors = F)[-c(1:2),]
@@ -126,7 +138,13 @@ diss2016$Dissection <- as.Date(diss2016$Dissection, "%d.%m.%Y")
 mergedMiceTable <- merge(mergedMiceTable, diss2016, 
                       by = c("Mouse_ID"), all = T)
 
+# Check if all rows are NA and delete these rows
+which(!rowSums(!is.na(mergedMiceTable)))  
+
 mergedMiceTable <- fillGapsAfterMerge(mergedMiceTable)
+
+# Check if all rows are NA and delete these rows
+which(!rowSums(!is.na(mergedMiceTable)))  
 
 ## **********************************************************
 ## 2017
@@ -156,7 +174,13 @@ diss2017 <- fillGapsAfterMerge(diss2017)
 mergedMiceTable <- merge(mergedMiceTable, diss2017, 
                       by = c("Mouse_ID"), all = T)
 
+# Check if all rows are NA and delete these rows
+which(!rowSums(!is.na(mergedMiceTable)))  
+
 mergedMiceTable <- fillGapsAfterMerge(mergedMiceTable)
+
+# Check if all rows are NA and delete these rows
+which(!rowSums(!is.na(mergedMiceTable)))  
 
 ## Uniformisation
 mergedMiceTable$Sex[grep("female*.", mergedMiceTable$Sex)] <- "F"
@@ -173,7 +197,6 @@ oldJarda$Mouse_ID <- gsub(pattern = "SK", replacement = "SK_",x = oldJarda$PIN)
 toadd <- oldJarda[!oldJarda$Mouse_ID %in% mergedMiceTable$Mouse_ID,]
 
 # Add samples without HI in mergedmicetable but with one in oldJarda
-
 missing <- mergedMiceTable$Mouse_ID[is.na(mergedMiceTable$HI)]
 
 toadd <- rbind(toadd, oldJarda[oldJarda$Mouse_ID %in% missing,])
@@ -194,6 +217,9 @@ toadd[vecNames] <- NA
 toadd <- toadd[names(toadd) %in% names(mergedMiceTable)]
 
 mergedMiceTable <- rbind(toadd, mergedMiceTable)
+
+# Check if all rows are NA and delete these rows
+which(!rowSums(!is.na(mergedMiceTable)))  
 
 ############ Worms ############
 ## in WATWM dataset : Hymenolepis, Taenia, Rodentolepis, Mesocestoides,
@@ -258,8 +284,22 @@ ggplot(data=WormsDF, aes(x = variable, y=log10(value))) +
 mergedMiceTable$Longitude <- as.numeric(mergedMiceTable$Longitude)
 mergedMiceTable$Latitude <- as.numeric(mergedMiceTable$Latitude)
 
-# Remove far East samples
-mergedMiceTable <- mergedMiceTable[mergedMiceTable$Longitude < 18,]
+# Check if all rows are NA and delete these rows
+which(!rowSums(!is.na(mergedMiceTable)))  
+
+## Remove useless mice:
+
+# wildpark Schorfheide (not needed, test)
+wsh <- c(paste0("AA_000", 1:9), paste0("AA_00", 10:46))
+# apodemus caught in 2016
+apd <- c("A_0001", "A_0002", "A_0003")
+# useless info
+useless <- c(wsh, apd)
+
+mergedMiceTable <- mergedMiceTable[!(mergedMiceTable$Mouse_ID %in% useless),]
+
+# Check if all rows are NA and delete these rows
+which(!rowSums(!is.na(mergedMiceTable)))  
 
 # How many samples from Brandenburg do we have the HI for per year?
 table(mergedMiceTable$Year, mergedMiceTable$Transect)
@@ -268,12 +308,26 @@ table(mergedMiceTable$Year, mergedMiceTable$Transect)
 mergedMiceTable$Body_length <- as.numeric(mergedMiceTable$Body_length)
 
 mergedMiceTable$Body_weight <- as.numeric(mergedMiceTable$Body_weight)
+
+# Check if all rows are NA and delete these rows
+which(!rowSums(!is.na(mergedMiceTable)))  
+
 # Manual correction
 mergedMiceTable$Body_weight[mergedMiceTable$Body_weight >= 200 & !is.na(mergedMiceTable$Body_weight)]  <- 
 mergedMiceTable$Body_weight[mergedMiceTable$Body_weight >= 200 & !is.na(mergedMiceTable$Body_weight)] / 1000
 
 # Body condition index as log body mass/log body length (Hayes et al. 2014)
 mergedMiceTable$BCI <- log(mergedMiceTable$Body_weight) / log(mergedMiceTable$Body_length)
+
+# Correct wrong HI (>1)
+range(mergedMiceTable$HI, na.rm = T)
+
+# Correct wrong Long/Lat
+range(mergedMiceTable$Latitude, na.rm = T)
+range(mergedMiceTable$Longitude, na.rm = T)
+
+# Check if all rows are NA and delete these rows
+which(!rowSums(!is.na(mergedMiceTable)))  
 
 ########## Write out ##########
 write.csv(x = mergedMiceTable, file = "../raw_data/MiceTable_2014to2017.csv", row.names = FALSE)
