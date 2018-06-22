@@ -8,11 +8,12 @@ library(plyr)
 library("VennDiagram")
 library(grid)
 library(gridExtra)
-source("HMHZ_Functions.R")
+source("functions/HMHZ_Functions.R")
+source("functions/makeMiceTable.R")
 
 #################### Load data ####################
 # General data
-miceTable <- read.csv("../raw_data/MiceTable_2014to2017.csv")
+miceTable <- makeMiceTable("../../Data_important/")
 
 # Correct HI error
 miceTable$HI[miceTable$HI > 1 & !is.na(miceTable$HI)] <- 

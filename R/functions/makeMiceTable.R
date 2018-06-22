@@ -1,9 +1,9 @@
-getMiceTable <- function(pathToMyData){ 
+makeMiceTable <- function(pathToMyData){
   #### NB: all data are locally kept in a folder Data_important
   #### TO BE DEFINED HERE
   
   ## How to clean input data? To update every year...
-  source("HMHZ_Functions.R")
+  source("functions/HMHZ_Functions.R")
   library(data.table)
   library(ggmap)
   library(reshape)
