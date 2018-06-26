@@ -66,13 +66,20 @@ kable(prevalenceFlotation, caption = "Prevalence of Eimeria per year, based on o
 
 ```{r tabPrevPCR, echo=FALSE, results='asis'}
 library(knitr)
-kable(prevalencePCR, caption = "Prevalence of Eimeria per year, based on PCR detection and oocysts flotation. A mouse was considered infected by Eimeria if it had a positive oocyst count in its feces, or if one of the 3 markers (COI, 18S or ORF470) gave a sequence")
+kable(prevalencePCR, caption = "Prevalence of Eimeria per year, based on PCR detection. A mouse was considered infected by Eimeria ifone of the 3 markers (COI, 18S or ORF470) gave a sequence")
 ```
 
 ```{r tabPrevqPCR, echo=FALSE, results='asis'}
 library(knitr)
 kable(prevalenceqPCR, caption = "Prevalence of Eimeria per year, based on qPCR")
 ```
+
+```{r tabPrevtot, echo=FALSE, results='asis'}
+library(knitr)
+kable(prevalenceTot, caption = "Prevalence of Eimeria per year, based on PCR detection. A mouse was considered infected by Eimeria ifone of the 3 markers (COI, 18S or ORF470) gave a sequence, OR if it had a positive count of oocysts in its feces, OR if it was qPCR positive")
+```
+ERROR TO FIX THERE
+
 
 ## Improving Eimeria oocysts detection
 
@@ -125,5 +132,15 @@ First approximation:
 ```{r plotBCI, echo=FALSE, warning=FALSE, fig.width=6, fig.height=4, fig.cap="\\label{fig:plotSmoothOPG}BCI along HI, colored per level of OPG"}
 plotBCI
 ```
+
+# Bonus part: genotyping of mice case/control
+
+Discussed with Stuart:
+
+* Test distributions 0 or counts. Test all vs only infected ("intensity") distribution. We should be able to fit the distribution of infected on all. Zeros are data. Stochastic move.
+* Separation of the zero class. balanced design case/control ~ 400 +/-70infectés SNPchip. 
+* H0: no differences are observed
+* Separate <0.5 and >0.5 to see the species effect
+- timing : WHEN (for my thesis?)
 
 

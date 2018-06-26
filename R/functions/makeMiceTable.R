@@ -1,4 +1,5 @@
 makeMiceTable <- function(pathToMyData){
+  
   #### NB: all data are locally kept in a folder Data_important
   #### TO BE DEFINED HERE
   
@@ -150,6 +151,19 @@ makeMiceTable <- function(pathToMyData){
   # Check if all rows are NA and delete these rows
   which(!rowSums(!is.na(mergedMiceTable)))  
   
+  # add missing latitude/longitude
+  loc2016 <- read.csv(paste0(pathToMyData, "Cleaned_HMHZ_2016_All.csv" ))
+  loc2016 <- loc2016[names(loc2016) %in% c( "location", "GPS.coordinates.long", "GPS.coordinates.lat")]
+  names(loc2016) <- c("Code", "longitude", "latitude")
+  
+  mergedMiceTable <- merge(mergedMiceTable, loc2016, by = "Code", all.x = TRUE)
+  
+  mergedMiceTable$Longitude[is.na(mergedMiceTable$Longitude)] = 
+    mergedMiceTable$longitude[is.na(mergedMiceTable$Longitude)]
+  
+  mergedMiceTable$Latitude[is.na(mergedMiceTable$Latitude)] = 
+    mergedMiceTable$latitude[is.na(mergedMiceTable$Latitude)]
+  
   ## **********************************************************
   ## 2017
   diss2017 <- read.csv(paste0(pathToMyData, "HZ17_September_Mice_Dissection.csv"),
@@ -220,7 +234,9 @@ makeMiceTable <- function(pathToMyData){
   
   toadd <- toadd[names(toadd) %in% names(mergedMiceTable)]
   
-  mergedMiceTable <- rbind(toadd, mergedMiceTable)
+  mergedMiceTable$Tail_length <- as.numeric(mergedMiceTable$Tail_length)
+  
+  mergedMiceTable <- rbind(mergedMiceTable, toadd)
   
   # Check if all rows are NA and delete these rows
   which(!rowSums(!is.na(mergedMiceTable)))  
@@ -314,27 +330,38 @@ makeMiceTable <- function(pathToMyData){
   which(!rowSums(!is.na(mergedMiceTable)))  
   
   # Manual correction
-  mergedMiceTable$Body_weight[mergedMiceTable$Body_weight >= 200 & !is.na(mergedMiceTable$Body_weight)]  <- 
-    mergedMiceTable$Body_weight[mergedMiceTable$Body_weight >= 200 & !is.na(mergedMiceTable$Body_weight)] / 1000
+  mergedMiceTable$Body_weight[!is.na(mergedMiceTable$Body_weight) &
+                                mergedMiceTable$Body_weight > 100] <-
+    mergedMiceTable$Body_weight[!is.na(mergedMiceTable$Body_weight) &
+                                  mergedMiceTable$Body_weight > 100] / 1000
+  
+  
+  mergedMiceTable$Body_length[which(mergedMiceTable$Body_length < 20)] <- 
+    mergedMiceTable$Body_length[which(mergedMiceTable$Body_length < 20)] * 10
   
   # Body condition index as log body mass/log body length (Hayes et al. 2014)
   mergedMiceTable$BCI <- log(mergedMiceTable$Body_weight) / log(mergedMiceTable$Body_length)
   
   # Correct wrong HI (>1)
-  range(mergedMiceTable$HI, na.rm = T)
+  mergedMiceTable$HI[mergedMiceTable$HI > 1 & !is.na(mergedMiceTable$HI)] <- 
+    mergedMiceTable$HI[mergedMiceTable$HI > 1 & !is.na(mergedMiceTable$HI)]/1000
   
   # Correct wrong Long/Lat
-  range(mergedMiceTable$Latitude, na.rm = T)
-  range(mergedMiceTable$Longitude, na.rm = T)
+  mergedMiceTable$Longitude[mergedMiceTable$Longitude > 100 & !is.na(mergedMiceTable$Longitude)] <- 
+    mergedMiceTable$Longitude[mergedMiceTable$Longitude > 100 & !is.na(mergedMiceTable$Longitude)] / 1000
   
-  # Check if all rows are NA and delete these rows
-  which(!rowSums(!is.na(mergedMiceTable)))  
+  mergedMiceTable$Latitude[mergedMiceTable$Latitude > 100 & !is.na(mergedMiceTable$Latitude)] <- 
+    mergedMiceTable$Latitude[mergedMiceTable$Latitude > 100 & !is.na(mergedMiceTable$Latitude)] / 1000
   
-  ########## Write out ##########
-  # How many samples from Brandenburg do we have the HI for per year?
-  table(mergedMiceTable$Year, mergedMiceTable$Transect)
+  # add farm (TODO better localisation)
+  mergedMiceTable$farm <- paste0(mergedMiceTable$Longitude, mergedMiceTable$Latitude)
   
-  MiceTable_2014to2017 <- mergedMiceTable
+  # Cluster by localities: rounded to about 700 meters ???...
+  # mergedMiceTable$Latitude <- round(mergedMiceTable$Latitude, 2)
+  # mergedMiceTable$Longitude <- round(mergedMiceTable$Longitude, 2)
+  
+  ## remove empty rows
+  MiceTable_2014to2017 <- mergedMiceTable[!is.na(mergedMiceTable$Mouse_ID),]
   
   return(MiceTable_2014to2017)
 }

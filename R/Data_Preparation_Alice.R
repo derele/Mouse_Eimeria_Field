@@ -15,39 +15,15 @@ source("functions/makeMiceTable.R")
 # General data
 miceTable <- makeMiceTable("../../Data_important/")
 
-# Correct HI error
-miceTable$HI[miceTable$HI > 1 & !is.na(miceTable$HI)] <- 
-  miceTable$HI[miceTable$HI > 1 & !is.na(miceTable$HI)]/1000
-
-# Correct Lat/Lon errors
-miceTable$Longitude[miceTable$Longitude > 100 & !is.na(miceTable$Longitude)] <- 
-  miceTable$Longitude[miceTable$Longitude > 100 & !is.na(miceTable$Longitude)] / 1000
-
-miceTable$Latitude[miceTable$Latitude > 100 & !is.na(miceTable$Latitude)] <- 
-  miceTable$Latitude[miceTable$Latitude > 100 & !is.na(miceTable$Latitude)] / 1000
-
-# Cluster by localities: rounded to about 700 meters ???...
-# miceTable$Latitude <- round(miceTable$Latitude, 2)
-# miceTable$Longitude <- round(miceTable$Longitude, 2)
-
-# Body weight correction of x 1000 error
-miceTable$Body_weight[!is.na(miceTable$Body_weight) &
-                        miceTable$Body_weight > 100] <-
-  miceTable$Body_weight[!is.na(miceTable$Body_weight) &
-                          miceTable$Body_weight > 100] / 1000
-
-# Body condition index as log body mass/log body length (Hayes et al. 2014)
-miceTable$BCI <- log(miceTable$Body_weight) / log(miceTable$Body_length)
-
-# add farm (TODO better localisation)
-miceTable$farm <- paste0(miceTable$Longitude, miceTable$Latitude)
-
-## remove empty rows
-miceTable <- miceTable[!is.na(miceTable$Mouse_ID),]
+# Remove other rodents
+myData <- miceTable[!miceTable$Species %in% "Pet mus musculus",]
+myData <- myData[-grep("ZZ", myData$Mouse_ID),]
 
 ##################### Eimeria detection oocysts flotation ####################
 source("../R/functions/addFlotationResults.R")
-myData <- addFlotationResults(miceTable)$newDF
+myData <- addFlotationResults(myData)$newDF
+myData <- myData[!myData$Species %in% "Pet mus musculus",]
+grep("ZZ", myData$Mouse_ID)
 
 # correct year
 myData$year[is.na(myData$year)] <- myData$Year[is.na(myData$year)]
@@ -83,6 +59,8 @@ plotSmoothOPG
 ##################### Eimeria detection PCR ####################
 source("../R/functions/addPCRresults.R")
 myData <- addPCRresults(myData)
+myData <- myData[!myData$Species %in% "Pet mus musculus",]
+grep("ZZ", myData$Mouse_ID)
 
 # correct year
 myData$year <- myData$year.x
@@ -108,6 +86,9 @@ myData$EimeriaStatus[myData$PCRstatus == "positive" | myData$OPG > 0] <- "positi
 source("../R/functions/addqPCRresults.R")
 myData <- addqPCRresults(myData)
 
+myData <- myData[!myData$Species %in% "Pet mus musculus",]
+grep("ZZ", myData$Mouse_ID)
+
 # # the full values are in myData$delta_ct_MminusE
 # tabqpcr <- getPrevalenceTable(table(myData$qPCRstatus, myData$year))
 # tabqpcr
@@ -125,12 +106,8 @@ apd <- c("A_0001", "A_0002", "A_0003")
 # useless info
 useless <- c(wsh, apd)
 
-# 2. these mice were not in the initial data from jarda
-notfound <- myData$Mouse_ID[!myData$Mouse_ID %in% miceTable$Mouse_ID]
-
-# 3. total mice missing
-miceInfoNeeded <- unique(as.character(notfound), as.character(missingHIMice))[
-  !unique(as.character(notfound), as.character(missingHIMice)) %in% useless]
+# 2. total mice missing
+miceInfoNeeded <- missingHIMice[!missingHIMice %in% useless]
 
 #################### General stats on sampling ####################
 
@@ -175,9 +152,25 @@ maxHINloci = max(as.numeric(substr(myDataStudyAlice$HI_NLoci, 4,6)), na.rm = T)
 meanHINloci = round(mean(as.numeric(substr(myDataStudyAlice$HI_NLoci, 4,6)), na.rm = T))
 
 #Prevalence compared
-prevalenceFlotation <- getPrevalenceTable(table(myDataStudyAlice$OPG > 0, myDataStudyAlice$year))
-prevalencePCR <- getPrevalenceTable(table(myDataStudyAlice$PCRstatus, myDataStudyAlice$year))
-prevalenceqPCR <- getPrevalenceTable(table(myDataStudyAlice$qPCRstatus, myDataStudyAlice$year))
+prevalenceFlotation <- getPrevalenceTable(table(myDataStudyAlice$OPG > 0, 
+                                                myDataStudyAlice$year))
+prevalencePCR <- getPrevalenceTable(table(myDataStudyAlice$PCRstatus, 
+                                          myDataStudyAlice$year))
+prevalenceqPCR <- getPrevalenceTable(table(myDataStudyAlice$qPCRstatus, 
+                                           myDataStudyAlice$year))
+
+myDataStudyAlice$allDetectionMethod <- NA
+myDataStudyAlice$allDetectionMethod[myDataStudyAlice$OPG >0 |
+                            myDataStudyAlice$PCRstatus == "positive" |
+                            myDataStudyAlice$qPCRstatus == "positive"] <- "positive"
+myDataStudyAlice$allDetectionMethod[myDataStudyAlice$OPG == 0 &
+                            myDataStudyAlice$PCRstatus == "negative" &
+                            myDataStudyAlice$qPCRstatus == "negative"] <- "negative"
+
+prevalenceTot <- getPrevalenceTable(table(myDataStudyAlice$allDetectionMethod,
+                                            myDataStudyAlice$year ))
+
+
 
 ######### Compare our methods of detection ######### 
 noo <- table(!is.na(myDataStudyAlice$OPG))[2]
@@ -281,3 +274,10 @@ plotBCI <- ggplot(myData, aes(x = HI, y = BCI, fill = myData$OPG + 1)) +
   theme_bw()
 
 summary(lm(myData$BCI ~ myData$OPG + myData$HI))
+
+#### Bonus: mice SNP chip
+# infectedMice
+
+length(which(myData$OPG > 0 & !is.na(myData$HI)))
+
+
