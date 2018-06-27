@@ -32,10 +32,6 @@ myData$year[is.na(myData$year)] <- myData$Year[is.na(myData$year)]
 myData <- subset(myData, select = -c(Year))
 myData$Mouse_ID[is.na(myData$year)] # check, must be null
 
-# prevalenceFlotation <- getPrevalenceTable(myTable = table(myData$OPG > 0,
-#                                                           myData$year))
-# prevalenceFlotation
-
 # How many new samples were found given the new dilution (0.1mL)
 N1 <- comparisonFlot(myData)$N1
 N1
@@ -71,20 +67,6 @@ myData$year[is.na(myData$year)] <- myData$year.y[is.na(myData$year)]
 myData <- subset(myData, select = -c(year.x, year.y))
 myData$Mouse_ID[is.na(myData$year)] # check, must be null
 
-# JUST with Ap5
-# getPrevalenceTable(table(myData$Ap5_PCR, myData$year))
-
-# Flotation positive OR PCR positive (= full Eimeria status)
-# Set to NA
-myData$EimeriaStatus <- NA
-# Negative if one test is
-myData$EimeriaStatus[myData$PCRstatus == "negative" | myData$OPG <= 0] <- "negative"
-# But overwrite positive if one of the test is :)
-myData$EimeriaStatus[myData$PCRstatus == "positive" | myData$OPG > 0] <- "positive"
-
-# tabTot <- getPrevalenceTable(table(myData$EimeriaStatus, myData$year))
-# tabTot
-
 #################### Eimeria detection qPCR ####################
 source("../R/functions/addqPCRresults.R")
 myData <- addqPCRresults(myData)
@@ -92,11 +74,14 @@ myData <- addqPCRresults(myData)
 # Remove other rodents
 myData <- myData[!myData$Mouse_ID %in% otherRodentsID,]
 
-# # the full values are in myData$delta_ct_MminusE
-# tabqpcr <- getPrevalenceTable(table(myData$qPCRstatus, myData$year))
-# tabqpcr
+#################### General stats on sampling ####################
 
-########### TO CORRECT ########### 
+# Keep mice with OPG, PCR or qPCR status
+myDataStudyAlice <- myData[!myData$Mouse_ID %in% useless & # no wilpark schofheide
+                             (!is.na(myData$OPG) | 
+                                !is.na(myData$PCRstatus) |
+                                !is.na(myData$qPCRstatus)),] # have one of these status
+
 ## Which mice are not found?
 
 # 1. no HI given for these mice
@@ -111,14 +96,10 @@ useless <- c(wsh, apd)
 
 # 2. total mice missing
 miceInfoNeeded <- missingHIMice[!missingHIMice %in% useless]
+miceInfoNeeded
 
-#################### General stats on sampling ####################
 
-# Keep mice with OPG, PCR or qPCR status, from the Brandenburg-MVP transect
-myDataStudyAlice <- myData[!myData$Mouse_ID %in% useless & # no wilpark schofheide
-                             (!is.na(myData$OPG) | 
-                                !is.na(myData$PCRstatus) |
-                                !is.na(myData$qPCRstatus)),] # have one of these status
+
 
 # latitude or longitude missing for mice:
 latLongMissing <- myDataStudyAlice$Mouse_ID[
