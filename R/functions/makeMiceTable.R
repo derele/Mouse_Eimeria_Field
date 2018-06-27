@@ -54,7 +54,8 @@ makeMiceTable <- function(pathToMyData){
                    "Trichuris_muris", "Taenia_taeniformis"))
   
   # Genotypes 2014
-  diss2014.2 <- read.csv(paste0(pathToMyData, "HZ14_Mice 31-12-14_genotypes.csv"))
+  diss2014.2 <- read.csv(paste0(pathToMyData, "HZ14_Mice 31-12-14_genotypes.csv"),
+                         stringsAsFactors=F)
   diss2014.2$Mouse_ID <- paste0(diss2014.2$ID, "_", diss2014.2$PIN)
   
   # Calculta HIs
@@ -151,8 +152,9 @@ makeMiceTable <- function(pathToMyData){
   # Check if all rows are NA and delete these rows
   which(!rowSums(!is.na(mergedMiceTable)))  
   
-  # add missing latitude/longitude
-  loc2016 <- read.csv(paste0(pathToMyData, "Cleaned_HMHZ_2016_All.csv" ))
+  # add missing or wrong latitude/longitude
+  loc2016 <- read.csv(paste0(pathToMyData, "Cleaned_HMHZ_2016_All.csv" ),
+                      stringsAsFactors=F)
   loc2016 <- loc2016[names(loc2016) %in% c( "location", "GPS.coordinates.long", "GPS.coordinates.lat")]
   names(loc2016) <- c("Code", "longitude", "latitude")
   
