@@ -28,9 +28,8 @@ myData <- addFlotationResults(myData)$newDF
 myData <- myData[!myData$Mouse_ID %in% otherRodentsID,]
 
 # correct year
-myData$year[is.na(myData$year)] <- myData$Year[is.na(myData$year)]
-myData <- subset(myData, select = -c(Year))
-myData$Mouse_ID[is.na(myData$year)] # check, must be null
+myData$Year[is.na(myData$Year)] <- myData$year[is.na(myData$Year)]
+myData <- subset(myData, select = -c(year))
 
 # How many new samples were found given the new dilution (0.1mL)
 N1 <- comparisonFlot(myData)$N1
@@ -46,7 +45,7 @@ plot1
 
 # plot OPG that we keep
 plotSmoothOPG <- ggplot(myData[myData$OPG >0,], aes(x = HI, y = OPG+1)) +
-  geom_point(aes(fill = as.factor(year)), pch = 21, alpha = .8, size = 4) +
+  geom_point(aes(fill = as.factor(Year)), pch = 21, alpha = .8, size = 4) +
   geom_smooth(se=F) +
   scale_y_log10() +
   theme_bw() +
@@ -62,10 +61,8 @@ myData <- addPCRresults(myData)
 myData <- myData[!myData$Mouse_ID %in% otherRodentsID,]
 
 # correct year
-myData$year <- myData$year.x
-myData$year[is.na(myData$year)] <- myData$year.y[is.na(myData$year)]
-myData <- subset(myData, select = -c(year.x, year.y))
-myData$Mouse_ID[is.na(myData$year)] # check, must be null
+myData$Year[is.na(myData$Year)] <- myData$year[is.na(myData$Year)]
+myData <- subset(myData, select = -c(year))
 
 #################### Eimeria detection qPCR ####################
 source("../R/functions/addqPCRresults.R")
@@ -75,17 +72,7 @@ myData <- addqPCRresults(myData)
 myData <- myData[!myData$Mouse_ID %in% otherRodentsID,]
 
 #################### General stats on sampling ####################
-
-# Keep mice with OPG, PCR or qPCR status
-myDataStudyAlice <- myData[!myData$Mouse_ID %in% useless & # no wilpark schofheide
-                             (!is.na(myData$OPG) | 
-                                !is.na(myData$PCRstatus) |
-                                !is.na(myData$qPCRstatus)),] # have one of these status
-
-## Which mice are not found?
-
-# 1. no HI given for these mice
-missingHIMice <- myData$Mouse_ID[is.na(myData$HI)]
+## Remove useless mice:
 
 # wildpark Schorfheide (not needed, test)
 wsh <- c(paste0("AA_000", 1:9), paste0("AA_00", 10:46))
@@ -94,12 +81,14 @@ apd <- c("A_0001", "A_0002", "A_0003")
 # useless info
 useless <- c(wsh, apd)
 
-# 2. total mice missing
-miceInfoNeeded <- missingHIMice[!missingHIMice %in% useless]
-miceInfoNeeded
+# Keep mice with OPG, PCR or qPCR status
+myDataStudyAlice <- myData[!myData$Mouse_ID %in% useless & # no wilpark schofheide
+                             (!is.na(myData$OPG) | 
+                                !is.na(myData$PCRstatus) |
+                                !is.na(myData$qPCRstatus)),] # have one of these status
 
-
-
+## Which mice are not found (no HI given for these mice)?
+miceInfoNeeded <- myData$Mouse_ID[is.na(myData$HI)]
 
 # latitude or longitude missing for mice:
 latLongMissing <- myDataStudyAlice$Mouse_ID[
@@ -137,11 +126,11 @@ meanHINloci = round(mean(as.numeric(substr(myDataStudyAlice$HI_NLoci, 4,6)), na.
 
 #Prevalence compared
 prevalenceFlotation <- getPrevalenceTable(table(myDataStudyAlice$OPG > 0, 
-                                                myDataStudyAlice$year))
+                                                myDataStudyAlice$Year))
 prevalencePCR <- getPrevalenceTable(table(myDataStudyAlice$PCRstatus, 
-                                          myDataStudyAlice$year))
+                                          myDataStudyAlice$Year))
 prevalenceqPCR <- getPrevalenceTable(table(myDataStudyAlice$qPCRstatus, 
-                                           myDataStudyAlice$year))
+                                           myDataStudyAlice$Year))
 
 myDataStudyAlice$allDetectionMethod <- NA
 myDataStudyAlice$allDetectionMethod[myDataStudyAlice$OPG >0 |
@@ -152,7 +141,7 @@ myDataStudyAlice$allDetectionMethod[myDataStudyAlice$OPG == 0 &
                             myDataStudyAlice$qPCRstatus == "negative"] <- "negative"
 
 prevalenceTot <- getPrevalenceTable(table(myDataStudyAlice$allDetectionMethod,
-                                            myDataStudyAlice$year ))
+                                            myDataStudyAlice$Year ))
 
 
 
