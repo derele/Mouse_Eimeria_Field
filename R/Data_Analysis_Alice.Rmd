@@ -76,10 +76,8 @@ kable(prevalenceqPCR, caption = "Prevalence of Eimeria per year, based on qPCR")
 
 ```{r tabPrevtot, echo=FALSE, results='asis'}
 library(knitr)
-kable(prevalenceTot, caption = "Prevalence of Eimeria per year, based on PCR detection. A mouse was considered infected by Eimeria ifone of the 3 markers (COI, 18S or ORF470) gave a sequence, OR if it had a positive count of oocysts in its feces, OR if it was qPCR positive")
+kable(prevalenceTot, caption = "Prevalence of Eimeria per year, based on all detections methods. A mouse was considered infected by Eimeria if one of the 3 markers (COI, 18S or ORF470) gave a sequence, OR if it had a positive count of oocysts in its feces, OR if it was qPCR positive")
 ```
-ERROR TO FIX THERE
-
 
 ## Improving Eimeria oocysts detection
 
@@ -134,6 +132,12 @@ plotBCI
 ```
 
 # Bonus part: genotyping of mice case/control
+
+* `r N_OPGPositive` out of `r totalOPG` are positive for flotation and have an hybrid index.
+
+* `r N_qPCRPositive` out of `r totalqPCR` are positive for qPCR and have an hybrid index.
+
+* `r N_QuantitativePositive` out of `r totalQuantitative` are positive for either flotation or qPCR, and have an hybrid index.
 
 Discussed with Stuart:
 
