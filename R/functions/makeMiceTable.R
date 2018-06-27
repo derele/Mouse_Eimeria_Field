@@ -439,5 +439,9 @@ makeMiceTable <- function(pathToMyData){
   
   mergedMiceTable = fillGapsAfterMerge(mergedMiceTable)
   
+  # correct year manually
+  mergedMiceTable$Year[
+    mergedMiceTable$Mouse_ID %in% c("SK_2903", "SK_2904")] <- 2014
+  
   return(mergedMiceTable)
 }
