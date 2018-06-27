@@ -253,13 +253,13 @@ summary(lm(myData$BCI ~ myData$OPG + myData$HI))
 myDataHI <- myData[!is.na(myData$HI),]
 
 # positive for flotation and have an hybrid index
-N_OPGPositive <- myDataHI[myDataHI$OPG > 0,]
-totalOPG <- N_OPGPositive <- myDataHI[!is.na(myDataHI$OPG),]
+N_OPGPositive <- nrow(myDataHI[myDataHI$OPG > 0,])
+totalOPG <- nrow(N_OPGPositive <- myDataHI[!is.na(myDataHI$OPG),])
 
 # positive for flotation and have an hybrid index
-N_qPCRPositive <- myDataHI[myDataHI$qPCRstatus == "positive", ]
-totalqPCR <- myDataHI[!is.na(myDataHI$qPCRstatus),]
+N_qPCRPositive <- nrow(myDataHI[myDataHI$qPCRstatus == "positive", ])
+totalqPCR <- nrow(myDataHI[!is.na(myDataHI$qPCRstatus),])
 
 # positive for flotation and have an hybrid index
-N_QuantitativePositive <- myDataHI[myDataHI$OPG > 0 | myDataHI$qPCRstatus == "positive",]
-totalQuantitative <- myDataHI[!is.na(myDataHI$OPG) | !is.na(myDataHI$qPCRstatus),]
+N_QuantitativePositive <- nrow(myDataHI[myDataHI$OPG > 0 | myDataHI$qPCRstatus == "positive",])
+totalQuantitative <- nrow(myDataHI[!is.na(myDataHI$OPG) | !is.na(myDataHI$qPCRstatus),])
