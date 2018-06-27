@@ -160,11 +160,30 @@ makeMiceTable <- function(pathToMyData){
   
   mergedMiceTable <- merge(mergedMiceTable, loc2016, by = "Code", all.x = TRUE)
   
+  # 1. empty lon/lat
   mergedMiceTable$Longitude[is.na(mergedMiceTable$Longitude)] = 
     mergedMiceTable$longitude[is.na(mergedMiceTable$Longitude)]
   
   mergedMiceTable$Latitude[is.na(mergedMiceTable$Latitude)] = 
     mergedMiceTable$latitude[is.na(mergedMiceTable$Latitude)]
+  
+  # 2. wrong lon/lat
+  mergedMiceTable$Latitude[!is.na(mergedMiceTable$Latitude) &
+                             !is.na(mergedMiceTable$latitude) &
+                             mergedMiceTable$Latitude != mergedMiceTable$latitude] =
+    mergedMiceTable$latitude[!is.na(mergedMiceTable$Latitude) &
+                               !is.na(mergedMiceTable$latitude) &
+                               mergedMiceTable$Latitude != mergedMiceTable$latitude]
+  
+  
+  mergedMiceTable$Longitude[!is.na(mergedMiceTable$Longitude) &
+                              !is.na(mergedMiceTable$longitude) &
+                              mergedMiceTable$Longitude != mergedMiceTable$longitude] =
+    mergedMiceTable$longitude[!is.na(mergedMiceTable$Longitude) &
+                                !is.na(mergedMiceTable$longitude) &
+                                mergedMiceTable$Longitude != mergedMiceTable$longitude]
+  # 3. delete duplicated rows
+  mergedMiceTable <- unique(mergedMiceTable)
   
   ## **********************************************************
   ## 2017
@@ -207,7 +226,8 @@ makeMiceTable <- function(pathToMyData){
   mergedMiceTable$Sex[grep("male*.", mergedMiceTable$Sex)] <- "M"
   
   # Add old HI from previous jarda table
-  oldJarda <- read.csv(paste0(pathToMyData, "HIforEH_May2017.csv"))
+  oldJarda <- read.csv(paste0(pathToMyData, "HIforEH_May2017.csv"),
+                       stringsAsFactors=F)
   
   # Uniformize IDs
   oldJarda$Mouse_ID <- oldJarda$PIN
@@ -221,24 +241,35 @@ makeMiceTable <- function(pathToMyData){
   
   toadd <- rbind(toadd, oldJarda[oldJarda$Mouse_ID %in% missing,])
   
+  # mergedMiceTable[mergedMiceTable$Mouse_ID %in% missing 
+  #                 & is.na(mergedMiceTable$Longitude) &
+  #                   mergedMiceTable$Mouse_ID %in% toadd$Mouse_ID,]
+  
   # setnames and merge
   setnames(toadd,
-           old = c("Xmap", "Ymap", "BW", "L", "LCd", 
+           old = c("BW", "L", "LCd", 
                    "Aspiculuris", "Syphacia", 
                    "Trichuris","Taenia"),
-           new = c("Longitude", "Latitude", "Body_weight", "Body_length", "Tail_length", 
+           new = c("Body_weight", "Body_length", "Tail_length", 
                    "Aspiculuris_tetraptera", "Syphacia_obvelata", 
                    "Trichuris_muris", "Taenia_taeniformis"))
   
-  vecNames <- names(mergedMiceTable)[!names(mergedMiceTable) %in% names(toadd)]
+  toadd = toadd[names(toadd)%in%c("REGion", "mtBamH", "Zfy2", "SRY1", "Y", "X332", "X347",
+                                  "X65", "Tsx", "Btk", "Syap1", "Es1", "Gpd1", "Idh1",
+                                  "Mpi", "Np", "Sod1", "Es1C", "Gpd1C", "Idh1C", "MpiC", "NpC",
+                                  "Sod1C", "HI_NLoci", "HI", "Mouse_ID")]
   
-  toadd[vecNames] <- NA
+  mergedMiceTable = merge(mergedMiceTable, toadd, by = "Mouse_ID", all = T)
   
-  toadd <- toadd[names(toadd) %in% names(mergedMiceTable)]
+  mergedMiceTable = fillGapsAfterMerge(mergedMiceTable)
   
+  # correct error tail length
   mergedMiceTable$Tail_length <- as.numeric(mergedMiceTable$Tail_length)
   
-  mergedMiceTable <- rbind(mergedMiceTable, toadd)
+  # delete duplicated rows
+  mergedMiceTable <- unique(mergedMiceTable)
+  
+  duplicated = mergedMiceTable$Mouse_ID[duplicated(mergedMiceTable$Mouse_ID)]
   
   # Check if all rows are NA and delete these rows
   which(!rowSums(!is.na(mergedMiceTable)))  
@@ -337,7 +368,6 @@ makeMiceTable <- function(pathToMyData){
     mergedMiceTable$Body_weight[!is.na(mergedMiceTable$Body_weight) &
                                   mergedMiceTable$Body_weight > 100] / 1000
   
-  
   mergedMiceTable$Body_length[which(mergedMiceTable$Body_length < 20)] <- 
     mergedMiceTable$Body_length[which(mergedMiceTable$Body_length < 20)] * 10
   
@@ -348,12 +378,32 @@ makeMiceTable <- function(pathToMyData){
   mergedMiceTable$HI[mergedMiceTable$HI > 1 & !is.na(mergedMiceTable$HI)] <- 
     mergedMiceTable$HI[mergedMiceTable$HI > 1 & !is.na(mergedMiceTable$HI)]/1000
   
-  # Correct wrong Long/Lat
-  mergedMiceTable$Longitude[mergedMiceTable$Longitude > 100 & !is.na(mergedMiceTable$Longitude)] <- 
-    mergedMiceTable$Longitude[mergedMiceTable$Longitude > 100 & !is.na(mergedMiceTable$Longitude)] / 1000
+  # Correct wrong Long/Lat: 1. wrong multiplicative factor
+  mergedMiceTable$Longitude[mergedMiceTable$Longitude > 100 &
+                              !is.na(mergedMiceTable$Longitude)] <- 
+    mergedMiceTable$Longitude[mergedMiceTable$Longitude > 100 &
+                                !is.na(mergedMiceTable$Longitude)] / 1000
   
-  mergedMiceTable$Latitude[mergedMiceTable$Latitude > 100 & !is.na(mergedMiceTable$Latitude)] <- 
-    mergedMiceTable$Latitude[mergedMiceTable$Latitude > 100 & !is.na(mergedMiceTable$Latitude)] / 1000
+  mergedMiceTable$Latitude[mergedMiceTable$Latitude > 100 & 
+                             !is.na(mergedMiceTable$Latitude)] <- 
+    mergedMiceTable$Latitude[mergedMiceTable$Latitude > 100 & 
+                               !is.na(mergedMiceTable$Latitude)] / 1000
+  
+  # Correct wrong Long/Lat: 2. wrong lat/lon inversion
+  mergedMiceTable$Longitude.temp <- mergedMiceTable$Longitude
+  
+  mergedMiceTable$Longitude[!is.na(mergedMiceTable$Longitude) &
+                              mergedMiceTable$Longitude >= 30] =
+    mergedMiceTable$Latitude[!is.na(mergedMiceTable$Longitude) &
+                               mergedMiceTable$Longitude >= 30]
+  
+  mergedMiceTable$Latitude[!is.na(mergedMiceTable$Latitude) &
+                             mergedMiceTable$Latitude <= 20] =
+    mergedMiceTable$Longitude.temp[!is.na(mergedMiceTable$Latitude) &
+                                     mergedMiceTable$Latitude <= 20]
+  
+  mergedMiceTable = 
+    mergedMiceTable[ , -which(names(mergedMiceTable) %in% c("Longitude.temp"))]
   
   # add farm (TODO better localisation)
   mergedMiceTable$farm <- paste0(mergedMiceTable$Longitude, mergedMiceTable$Latitude)
@@ -363,7 +413,31 @@ makeMiceTable <- function(pathToMyData){
   # mergedMiceTable$Longitude <- round(mergedMiceTable$Longitude, 2)
   
   ## remove empty rows
-  MiceTable_2014to2017 <- mergedMiceTable[!is.na(mergedMiceTable$Mouse_ID),]
+  mergedMiceTable <- mergedMiceTable[!is.na(mergedMiceTable$Mouse_ID),]
   
-  return(MiceTable_2014to2017)
+  ## remove duplicated rows
+  mergedMiceTable <- unique(mergedMiceTable)
+  
+  ## Correct duplicated mice by hand
+  duplicated = mergedMiceTable$Mouse_ID[duplicated(mergedMiceTable$Mouse_ID)]
+  
+  ## 26 June 2018, add Jarda new csv
+  missingMice = mergedMiceTable$Mouse_ID[is.na(mergedMiceTable$HI)]
+  
+  newCsv = read.csv(paste0(pathToMyData, "EmanuelData_26061018.csv"),
+                    stringsAsFactors=F)
+  newCsv$PIN = gsub("SK", "SK_", newCsv$PIN)
+  
+  ## Correct previous mistakes before merging for Latitude, Longitude, Transect, Sex, Code
+  names(newCsv)[names(newCsv) %in% c("PIN", "X_Longit", "Y_Latit")] = 
+    c("Mouse_ID", "Longitude", "Latitude")
+  
+  dataToAdd = newCsv[!newCsv$Mouse_ID %in% mergedMiceTable$Mouse_ID |
+                       newCsv$Mouse_ID %in% missingMice,]
+  
+  mergedMiceTable =  merge(mergedMiceTable, dataToAdd, by = "Mouse_ID", all = T)
+  
+  mergedMiceTable = fillGapsAfterMerge(mergedMiceTable)
+  
+  return(mergedMiceTable)
 }
