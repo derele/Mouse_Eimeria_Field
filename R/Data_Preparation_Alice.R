@@ -16,14 +16,16 @@ source("functions/makeMiceTable.R")
 miceTable <- makeMiceTable("../../Data_important/")
 
 # Remove other rodents
-myData <- miceTable[!miceTable$Species %in% "Pet mus musculus",]
-myData <- myData[-grep("ZZ", myData$Mouse_ID),]
+otherRodentsID <- c(miceTable$Mouse_ID[miceTable$Species %in% "Pet mus musculus"],
+                    miceTable$Mouse_ID[grep("ZZ", miceTable$Mouse_ID)])
+myData <- miceTable[!miceTable$Mouse_ID %in% otherRodentsID,]
 
 ##################### Eimeria detection oocysts flotation ####################
 source("../R/functions/addFlotationResults.R")
 myData <- addFlotationResults(myData)$newDF
-myData <- myData[!myData$Species %in% "Pet mus musculus",]
-grep("ZZ", myData$Mouse_ID)
+
+# Remove other rodents
+myData <- myData[!myData$Mouse_ID %in% otherRodentsID,]
 
 # correct year
 myData$year[is.na(myData$year)] <- myData$Year[is.na(myData$year)]
@@ -59,8 +61,9 @@ plotSmoothOPG
 ##################### Eimeria detection PCR ####################
 source("../R/functions/addPCRresults.R")
 myData <- addPCRresults(myData)
-myData <- myData[!myData$Species %in% "Pet mus musculus",]
-grep("ZZ", myData$Mouse_ID)
+
+# Remove other rodents
+myData <- myData[!myData$Mouse_ID %in% otherRodentsID,]
 
 # correct year
 myData$year <- myData$year.x
@@ -86,8 +89,8 @@ myData$EimeriaStatus[myData$PCRstatus == "positive" | myData$OPG > 0] <- "positi
 source("../R/functions/addqPCRresults.R")
 myData <- addqPCRresults(myData)
 
-myData <- myData[!myData$Species %in% "Pet mus musculus",]
-grep("ZZ", myData$Mouse_ID)
+# Remove other rodents
+myData <- myData[!myData$Mouse_ID %in% otherRodentsID,]
 
 # # the full values are in myData$delta_ct_MminusE
 # tabqpcr <- getPrevalenceTable(table(myData$qPCRstatus, myData$year))
