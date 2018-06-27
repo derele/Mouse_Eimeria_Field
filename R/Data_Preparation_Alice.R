@@ -82,7 +82,7 @@ apd <- c("A_0001", "A_0002", "A_0003")
 useless <- c(wsh, apd)
 
 # Keep mice with OPG, PCR or qPCR status
-myDataStudyAlice <- myData[!myData$Mouse_ID %in% useless & # no wilpark schofheide
+myData <- myData[!myData$Mouse_ID %in% useless & # no wilpark schofheide
                              (!is.na(myData$OPG) | 
                                 !is.na(myData$PCRstatus) |
                                 !is.na(myData$qPCRstatus)),] # have one of these status
@@ -91,75 +91,75 @@ myDataStudyAlice <- myData[!myData$Mouse_ID %in% useless & # no wilpark schofhei
 miceInfoNeeded <- myData$Mouse_ID[is.na(myData$HI)]
 
 # latitude or longitude missing for mice:
-latLongMissing <- myDataStudyAlice$Mouse_ID[
-  is.na(myDataStudyAlice$Latitude) |
-    is.na(myDataStudyAlice$Longitude)]
+latLongMissing <- myData$Mouse_ID[
+  is.na(myData$Latitude) |
+    is.na(myData$Longitude)]
 
 # keep only North Germany
-myDataStudyAlice <- myDataStudyAlice[!is.na(myDataStudyAlice$Latitude) &
-                                       myDataStudyAlice$Latitude > 51 &
-                                       myDataStudyAlice$Longitude < 17, ]
+myData <- myData[!is.na(myData$Latitude) &
+                                       myData$Latitude > 51 &
+                                       myData$Longitude < 17, ]
 
 # Total
-Nmice <- nrow(myDataStudyAlice)
-Nfarm <- length(unique(myDataStudyAlice$farm))
+Nmice <- nrow(myData)
+Nfarm <- length(unique(myData$farm))
 
 # Create map of samples
-mapHMHZ <- HI.map(df = myDataStudyAlice, size = 2, alpha = .3, margin = 0.2, zoom = 8) 
+mapHMHZ <- HI.map(df = myData, size = 2, alpha = .3, margin = 0.2, zoom = 8) 
 mapHMHZ
 
 # mean and 95% ci of N of mice caught / farm (assuming normal distribution)
-MEAN <- mean(by(myDataStudyAlice, myDataStudyAlice["farm"], nrow))
-CI <- qnorm(0.975)*sd(by(myDataStudyAlice, myDataStudyAlice["farm"], nrow))/
-  sqrt(nrow(myDataStudyAlice))
+MEAN <- mean(by(myData, myData["farm"], nrow))
+CI <- qnorm(0.975)*sd(by(myData, myData["farm"], nrow))/
+  sqrt(nrow(myData))
 
 # density of hybrids
-plotDensHI <- ggplot(myDataStudyAlice, aes(x = HI)) +
+plotDensHI <- ggplot(myData, aes(x = HI)) +
   geom_histogram(binwidth = 0.05, col = "black", fill = "lightblue") +
   theme_bw()
 plotDensHI
 
 # Hybrid index calculation:
-minHINloci = min(as.numeric(substr(myDataStudyAlice$HI_NLoci, 4,6)), na.rm = T)
-maxHINloci = max(as.numeric(substr(myDataStudyAlice$HI_NLoci, 4,6)), na.rm = T)
-meanHINloci = round(mean(as.numeric(substr(myDataStudyAlice$HI_NLoci, 4,6)), na.rm = T))
+minHINloci = min(as.numeric(substr(myData$HI_NLoci, 4,6)), na.rm = T)
+maxHINloci = max(as.numeric(substr(myData$HI_NLoci, 4,6)), na.rm = T)
+meanHINloci = round(mean(as.numeric(substr(myData$HI_NLoci, 4,6)), na.rm = T))
 
 #Prevalence compared
-prevalenceFlotation <- getPrevalenceTable(table(myDataStudyAlice$OPG > 0, 
-                                                myDataStudyAlice$Year))
-prevalencePCR <- getPrevalenceTable(table(myDataStudyAlice$PCRstatus, 
-                                          myDataStudyAlice$Year))
-prevalenceqPCR <- getPrevalenceTable(table(myDataStudyAlice$qPCRstatus, 
-                                           myDataStudyAlice$Year))
+prevalenceFlotation <- getPrevalenceTable(table(myData$OPG > 0, 
+                                                myData$Year))
+prevalencePCR <- getPrevalenceTable(table(myData$PCRstatus, 
+                                          myData$Year))
+prevalenceqPCR <- getPrevalenceTable(table(myData$qPCRstatus, 
+                                           myData$Year))
 
-myDataStudyAlice$allDetectionMethod <- NA
-myDataStudyAlice$allDetectionMethod[myDataStudyAlice$OPG >0 |
-                            myDataStudyAlice$PCRstatus == "positive" |
-                            myDataStudyAlice$qPCRstatus == "positive"] <- "positive"
-myDataStudyAlice$allDetectionMethod[myDataStudyAlice$OPG == 0 &
-                            myDataStudyAlice$PCRstatus == "negative" &
-                            myDataStudyAlice$qPCRstatus == "negative"] <- "negative"
+myData$allDetectionMethod <- NA
+myData$allDetectionMethod[myData$OPG >0 |
+                            myData$PCRstatus == "positive" |
+                            myData$qPCRstatus == "positive"] <- "positive"
+myData$allDetectionMethod[myData$OPG == 0 &
+                            myData$PCRstatus == "negative" &
+                            myData$qPCRstatus == "negative"] <- "negative"
 
-prevalenceTot <- getPrevalenceTable(table(myDataStudyAlice$allDetectionMethod,
-                                            myDataStudyAlice$Year ))
+prevalenceTot <- getPrevalenceTable(table(myData$allDetectionMethod,
+                                            myData$Year ))
 
 
 
 ######### Compare our methods of detection ######### 
-noo <- table(!is.na(myDataStudyAlice$OPG))[2]
-npcr <- table(!is.na(myDataStudyAlice$PCRstatus))[2]
-nqPCR <- table(!is.na(myDataStudyAlice$qPCRstatus))[2]
+noo <- table(!is.na(myData$OPG))[2]
+npcr <- table(!is.na(myData$PCRstatus))[2]
+nqPCR <- table(!is.na(myData$qPCRstatus))[2]
 
 # Positive for qPCR but nothing else?
-myDataStudyAlice[which(myDataStudyAlice$qPCRstatus == "positive" & 
-                            !is.na(myDataStudyAlice$qPCRstatus) &
-                            myDataStudyAlice$PCRstatus == "negative" &
-                            myDataStudyAlice$OPG == 0), ]
+myData[which(myData$qPCRstatus == "positive" & 
+                            !is.na(myData$qPCRstatus) &
+                            myData$PCRstatus == "negative" &
+                            myData$OPG == 0), ]
 ##Venn diagram 
 
 # first, compare PCR and oocysts
-completeData1 <- myDataStudyAlice[!is.na(myDataStudyAlice$OPG) &
-                                    !is.na(myDataStudyAlice$PCRstatus),]
+completeData1 <- myData[!is.na(myData$OPG) &
+                                    !is.na(myData$PCRstatus),]
 
 myVennDiagram2 <- function(data){      
   area1 = nrow(subset(data, PCRstatus == "positive"))
@@ -182,16 +182,16 @@ myVennDiagram2 <- function(data){
 myVennDiagram2(completeData1)
 
 # Compare qPCR results and OPG
-ggplot(myDataStudyAlice[!is.na(myDataStudyAlice$qPCRstatus),],
+ggplot(myData[!is.na(myData$qPCRstatus),],
        aes(x = delta_ct_MminusE, y = OPG)) +
   geom_point(aes(fill = qPCRsummary),
              alpha = .5, size = 4, pch = 21) +
   geom_smooth(method = "lm", se = FALSE, col = "red") +
   theme_bw()
 
-plotcompOPGqPCR <- ggplot(myDataStudyAlice[!is.na(myDataStudyAlice$delta_ct_MminusE) &
-                                             myDataStudyAlice$OPG > 0 &
-                                             myDataStudyAlice$delta_ct_MminusE > -6,],
+plotcompOPGqPCR <- ggplot(myData[!is.na(myData$delta_ct_MminusE) &
+                                             myData$OPG > 0 &
+                                             myData$delta_ct_MminusE > -6,],
                           aes(x = delta_ct_MminusE, y = OPG)) +
   geom_point(aes(fill = qPCRsummary),
              alpha = .5, size = 4, pch = 21) +
@@ -199,17 +199,17 @@ plotcompOPGqPCR <- ggplot(myDataStudyAlice[!is.na(myDataStudyAlice$delta_ct_Mmin
   scale_y_log10() +
   theme_bw()
 
-data1 <- myDataStudyAlice[!is.na(myDataStudyAlice$delta_ct_MminusE) &
-                            !is.na(myDataStudyAlice$OPG), ]
+data1 <- myData[!is.na(myData$delta_ct_MminusE) &
+                            !is.na(myData$OPG), ]
 summary(lm(data1$OPG ~ data1$delta_ct_MminusE))
 
 data2 <- data1[data1$OPG > 0 & data1$delta_ct_MminusE > -6 , ]
 summary(lm(data2$OPG ~ data2$delta_ct_MminusE))
 
 # to compare, keep only samples tested for the 3 methods
-completeData <- myDataStudyAlice[!is.na(myDataStudyAlice$OPG) &
-                                   !is.na(myDataStudyAlice$PCRstatus) &
-                                   !is.na(myDataStudyAlice$qPCRstatus),]
+completeData <- myData[!is.na(myData$OPG) &
+                                   !is.na(myData$PCRstatus) &
+                                   !is.na(myData$qPCRstatus),]
 
 myVennDiagram3 <- function(data){      
   area1 = nrow(subset(data, PCRstatus == "positive"))
@@ -250,7 +250,16 @@ summary(lm(myData$BCI ~ myData$OPG + myData$HI))
 
 #### Bonus: mice SNP chip
 # infectedMice
+myDataHI <- myData[!is.na(myData$HI),]
 
-length(which(myData$OPG > 0 & !is.na(myData$HI)))
+# positive for flotation and have an hybrid index
+N_OPGPositive <- myDataHI[myDataHI$OPG > 0,]
+totalOPG <- N_OPGPositive <- myDataHI[!is.na(myDataHI$OPG),]
 
+# positive for flotation and have an hybrid index
+N_qPCRPositive <- myDataHI[myDataHI$qPCRstatus == "positive", ]
+totalqPCR <- myDataHI[!is.na(myDataHI$qPCRstatus),]
 
+# positive for flotation and have an hybrid index
+N_QuantitativePositive <- myDataHI[myDataHI$OPG > 0 | myDataHI$qPCRstatus == "positive",]
+totalQuantitative <- myDataHI[!is.na(myDataHI$OPG) | !is.na(myDataHI$qPCRstatus),]
