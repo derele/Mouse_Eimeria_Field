@@ -253,13 +253,23 @@ summary(lm(myData$BCI ~ myData$OPG + myData$HI))
 myDataHI <- myData[!is.na(myData$HI),]
 
 # positive for flotation and have an hybrid index
-N_OPGPositive <- nrow(myDataHI[myDataHI$OPG > 0,])
-totalOPG <- nrow(N_OPGPositive <- myDataHI[!is.na(myDataHI$OPG),])
+N_OPGPositive <- nrow(myDataHI[myDataHI$OPG > 0 & 
+                                 !is.na(myDataHI$OPG),])
+totalOPG <- nrow(myDataHI[!is.na(myDataHI$OPG),])
 
 # positive for flotation and have an hybrid index
-N_qPCRPositive <- nrow(myDataHI[myDataHI$qPCRstatus == "positive", ])
+N_qPCRPositive <- nrow(myDataHI[myDataHI$qPCRstatus == "positive" &
+                                  !is.na(myDataHI$qPCRstatus), ])
 totalqPCR <- nrow(myDataHI[!is.na(myDataHI$qPCRstatus),])
 
 # positive for flotation and have an hybrid index
-N_QuantitativePositive <- nrow(myDataHI[myDataHI$OPG > 0 | myDataHI$qPCRstatus == "positive",])
-totalQuantitative <- nrow(myDataHI[!is.na(myDataHI$OPG) | !is.na(myDataHI$qPCRstatus),])
+N_QuantitativePositive <- nrow(myDataHI[(myDataHI$OPG > 0 | 
+                                           myDataHI$qPCRstatus == "positive") &
+                                          (!is.na(myDataHI$qPCRstatus) |
+                                          !is.na(myDataHI$OPG)),])
+totalQuantitative <- nrow(myDataHI[!is.na(myDataHI$OPG) | 
+                                     !is.na(myDataHI$qPCRstatus),])
+# 
+# * `r N_QuantitativePositive` out of `r totalQuantitative` are positive for either flotation or qPCR, and have an hybrid index.
+
+# to fix here!!

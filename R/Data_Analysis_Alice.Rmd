@@ -135,15 +135,17 @@ plotBCI
 
 * `r N_OPGPositive` out of `r totalOPG` are positive for flotation and have an hybrid index.
 
+
 * `r N_qPCRPositive` out of `r totalqPCR` are positive for qPCR and have an hybrid index.
 
-* `r N_QuantitativePositive` out of `r totalQuantitative` are positive for either flotation or qPCR, and have an hybrid index.
+
 
 Discussed with Stuart:
-
-* Test distributions 0 or counts. Test all vs only infected ("intensity") distribution. We should be able to fit the distribution of infected on all. Zeros are data. Stochastic move.
+  
+  * Test distributions 0 or counts. Test all vs only infected ("intensity") distribution. We should be able to fit the distribution of infected on all. Zeros are data. Stochastic move.
 * Separation of the zero class. balanced design case/control ~ 400 +/-70infectés SNPchip. 
 * H0: no differences are observed
 * Separate <0.5 and >0.5 to see the species effect
 - timing : WHEN (for my thesis?)
+
 
