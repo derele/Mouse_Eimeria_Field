@@ -1,0 +1,107 @@
+Pos,Name,"Ct SYBR","Ct Mean SYBR","Ct Dev. SYBR","Amount SYBR [Copies]","Amount Mean SYBR","Amount Dev. SYBR","Target SYBR"
+A1,CEWE_AA_0283,27.65,26.92,0.71,1,,,mouse
+A2,CEWE_AA_0283,26.87,26.92,0.71,1,,,mouse
+A3,CEWE_AA_0283,26.23,26.92,0.71,1,,,mouse
+A4,CEWE_AA_0283,,,,1,,,eimeria
+A5,CEWE_AA_0283,,,,1,,,eimeria
+A6,CEWE_AA_0283,39.19,,,1,,,eimeria
+A7,ILWE_AA_0283,20.61,20.46,0.15,1,,,mouse
+A8,ILWE_AA_0283,20.31,20.46,0.15,1,,,mouse
+A9,ILWE_AA_0283,20.47,20.46,0.15,1,,,mouse
+A10,ILWE_AA_0283,,,,1,,,eimeria
+A11,ILWE_AA_0283,,,,1,,,eimeria
+A12,ILWE_AA_0283,36.38,,,1,,,eimeria
+B1,CEWE_AA_0284,20.54,20.52,0.18,1,,,mouse
+B2,CEWE_AA_0284,20.33,20.52,0.18,1,,,mouse
+B3,CEWE_AA_0284,20.7,20.52,0.18,1,,,mouse
+B4,CEWE_AA_0284,,,,1,,,eimeria
+B5,CEWE_AA_0284,,,,1,,,eimeria
+B6,CEWE_AA_0284,35.83,,,1,,,eimeria
+B7,ILWE_AA_0284,20.93,20.8,0.2,1,,,mouse
+B8,ILWE_AA_0284,20.9,20.8,0.2,1,,,mouse
+B9,ILWE_AA_0284,20.57,20.8,0.2,1,,,mouse
+B10,ILWE_AA_0284,,,,1,,,eimeria
+B11,ILWE_AA_0284,,,,1,,,eimeria
+B12,ILWE_AA_0284,35.75,,,1,,,eimeria
+C1,CEWE_AA_0285,21.02,20.51,0.5,1,,,mouse
+C2,CEWE_AA_0285,20.49,20.51,0.5,1,,,mouse
+C3,CEWE_AA_0285,20.03,20.51,0.5,1,,,mouse
+C4,CEWE_AA_0285,,,,1,,,eimeria
+C5,CEWE_AA_0285,,,,1,,,eimeria
+C6,CEWE_AA_0285,34.42,,,1,,,eimeria
+C7,ILWE_AA_0285,19.07,19.99,0.88,1,,,mouse
+C8,ILWE_AA_0285,20.08,19.99,0.88,1,,,mouse
+C9,ILWE_AA_0285,20.82,19.99,0.88,1,,,mouse
+C10,ILWE_AA_0285,,,,1,,,eimeria
+C11,ILWE_AA_0285,,,,1,,,eimeria
+C12,ILWE_AA_0285,35.61,,,1,,,eimeria
+D1,CEWE_AA_0286,20.28,20.56,0.33,1,,,mouse
+D2,CEWE_AA_0286,20.47,20.56,0.33,1,,,mouse
+D3,CEWE_AA_0286,20.93,20.56,0.33,1,,,mouse
+D4,CEWE_AA_0286,36.18,34.66,1.81,1,,,eimeria
+D5,CEWE_AA_0286,35.15,34.66,1.81,1,,,eimeria
+D6,CEWE_AA_0286,32.65,34.66,1.81,1,,,eimeria
+D7,ILWE_AA_0286,23.98,24.11,0.11,1,,,mouse
+D8,ILWE_AA_0286,24.13,24.11,0.11,1,,,mouse
+D9,ILWE_AA_0286,24.21,24.11,0.11,1,,,mouse
+D10,ILWE_AA_0286,,,,1,,,eimeria
+D11,ILWE_AA_0286,,,,1,,,eimeria
+D12,ILWE_AA_0286,36.95,,,1,,,eimeria
+E1,CEWE_AA_0287,22.28,22.1,0.16,1,,,mouse
+E2,CEWE_AA_0287,22.03,22.1,0.16,1,,,mouse
+E3,CEWE_AA_0287,21.98,22.1,0.16,1,,,mouse
+E4,CEWE_AA_0287,,,,1,,,eimeria
+E5,CEWE_AA_0287,,,,1,,,eimeria
+E6,CEWE_AA_0287,34.23,,,1,,,eimeria
+E7,ILWE_AA_0287,22.52,22.49,0.09,1,,,mouse
+E8,ILWE_AA_0287,22.55,22.49,0.09,1,,,mouse
+E9,ILWE_AA_0287,22.39,22.49,0.09,1,,,mouse
+E10,ILWE_AA_0287,,,,1,,,eimeria
+E11,ILWE_AA_0287,,,,1,,,eimeria
+E12,ILWE_AA_0287,37.04,,,1,,,eimeria
+F1,CEWE_AA_0289,19.85,19.8,0.4,1,,,mouse
+F2,CEWE_AA_0289,19.39,19.8,0.4,1,,,mouse
+F3,CEWE_AA_0289,20.17,19.8,0.4,1,,,mouse
+F4,CEWE_AA_0289,31.26,32.83,2.2,1,,,eimeria
+F5,CEWE_AA_0289,35.34,32.83,2.2,1,,,eimeria
+F6,CEWE_AA_0289,31.87,32.83,2.2,1,,,eimeria
+F7,ILWE_AA_0289,20.53,20.6,0.07,1,,,mouse
+F8,ILWE_AA_0289,20.59,20.6,0.07,1,,,mouse
+F9,ILWE_AA_0289,20.67,20.6,0.07,1,,,mouse
+F10,ILWE_AA_0289,,,,1,,,eimeria
+F11,ILWE_AA_0289,,,,1,,,eimeria
+F12,ILWE_AA_0289,33.5,,,1,,,eimeria
+G1,CEWE_AA_0290,19.99,20.44,0.4,1,,,mouse
+G2,CEWE_AA_0290,20.6,20.44,0.4,1,,,mouse
+G3,CEWE_AA_0290,20.73,20.44,0.4,1,,,mouse
+G4,CEWE_AA_0290,35.73,34.83,1.41,1,,,eimeria
+G5,CEWE_AA_0290,35.56,34.83,1.41,1,,,eimeria
+G6,CEWE_AA_0290,33.21,34.83,1.41,1,,,eimeria
+G7,ILWE_AA_0290,21.18,21.07,0.11,1,,,mouse
+G8,ILWE_AA_0290,21.07,21.07,0.11,1,,,mouse
+G9,ILWE_AA_0290,20.96,21.07,0.11,1,,,mouse
+G10,ILWE_AA_0290,,35.45,3.43,1,,,eimeria
+G11,ILWE_AA_0290,37.88,35.45,3.43,1,,,eimeria
+G12,ILWE_AA_0290,33.03,35.45,3.43,1,,,eimeria
+H1,NTC,-,,,-,,,mouse
+H2,NTC,-,,,-,,,mouse
+H3,NTC,-,,,-,,,mouse
+H4,NTC,-,,,-,,,eimeria
+H5,NTC,-,,,-,,,eimeria
+H6,NTC,-,,,-,,,eimeria
+H7,water,36.84,,,-,,,mouse
+H8,water,-,,,-,,,mouse
+H9,water,-,,,-,,,mouse
+H10,water,-,,,-,,,eimeria
+H11,water,-,,,-,,,eimeria
+H12,water,-,,,-,,,eimeria
+,,,,,,,,
+"Analysis Parameters",,,,,,,,
+"Type of Application",Quantification,,,,,,,
+Dye(s),SYBR,,,,,,,
+"Inverted Data",OFF,,,,,,,
+"Threshold setting",Noiseband,,,,,,,
+"Threshold level",326,,,,,,,
+"Baseline setting",Automatic,,,,,,,
+"Baseline range (from cycle no. ... to)",n/a,,,,,,,
+"Drift Correction",OFF,,,,,,,

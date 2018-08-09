@@ -1,0 +1,107 @@
+Pos,Name,"Ct SYBR","Ct Mean SYBR","Ct Dev. SYBR","Amount SYBR [Copies]","Amount Mean SYBR","Amount Dev. SYBR","Target SYBR"
+A1,CEWE_AA_0260,24.53,23.86,0.69,1,,,mouse
+A2,CEWE_AA_0260,23.88,23.86,0.69,1,,,mouse
+A3,CEWE_AA_0260,23.15,23.86,0.69,1,,,mouse
+A4,CEWE_AA_0260,31.09,31.03,0.1,1,,,eimeria
+A5,CEWE_AA_0260,30.91,31.03,0.1,1,,,eimeria
+A6,CEWE_AA_0260,31.09,31.03,0.1,1,,,eimeria
+A7,ILWE_AA_0260,21.36,21.28,0.13,1,,,mouse
+A8,ILWE_AA_0260,21.13,21.28,0.13,1,,,mouse
+A9,ILWE_AA_0260,21.35,21.28,0.13,1,,,mouse
+A10,ILWE_AA_0260,34.63,33.37,1.15,1,,,eimeria
+A11,ILWE_AA_0260,32.37,33.37,1.15,1,,,eimeria
+A12,ILWE_AA_0260,33.09,33.37,1.15,1,,,eimeria
+B1,CEWE_AA_0261,20.46,20.32,0.18,1,,,mouse
+B2,CEWE_AA_0261,20.37,20.32,0.18,1,,,mouse
+B3,CEWE_AA_0261,20.12,20.32,0.18,1,,,mouse
+B4,CEWE_AA_0261,24.63,24.53,0.1,1,,,eimeria
+B5,CEWE_AA_0261,24.52,24.53,0.1,1,,,eimeria
+B6,CEWE_AA_0261,24.44,24.53,0.1,1,,,eimeria
+B7,ILWE_AA_0261,25.52,25.34,0.32,1,,,mouse
+B8,ILWE_AA_0261,25.54,25.34,0.32,1,,,mouse
+B9,ILWE_AA_0261,24.97,25.34,0.32,1,,,mouse
+B10,ILWE_AA_0261,35.86,35.89,0.76,1,,,eimeria
+B11,ILWE_AA_0261,36.67,35.89,0.76,1,,,eimeria
+B12,ILWE_AA_0261,35.15,35.89,0.76,1,,,eimeria
+C1,CEWE_AA_0262,21.45,20.91,0.47,1,,,mouse
+C2,CEWE_AA_0262,20.74,20.91,0.47,1,,,mouse
+C3,CEWE_AA_0262,20.55,20.91,0.47,1,,,mouse
+C4,CEWE_AA_0262,32.64,32.94,0.3,1,,,eimeria
+C5,CEWE_AA_0262,33.23,32.94,0.3,1,,,eimeria
+C6,CEWE_AA_0262,32.95,32.94,0.3,1,,,eimeria
+C7,ILWE_AA_0262,20.78,20.96,0.16,1,,,mouse
+C8,ILWE_AA_0262,21.04,20.96,0.16,1,,,mouse
+C9,ILWE_AA_0262,21.05,20.96,0.16,1,,,mouse
+C10,ILWE_AA_0262,31.37,31.59,0.36,1,,,eimeria
+C11,ILWE_AA_0262,31.39,31.59,0.36,1,,,eimeria
+C12,ILWE_AA_0262,32.01,31.59,0.36,1,,,eimeria
+D1,CEWE_AA_0263,20.27,19.89,0.34,1,,,mouse
+D2,CEWE_AA_0263,19.76,19.89,0.34,1,,,mouse
+D3,CEWE_AA_0263,19.64,19.89,0.34,1,,,mouse
+D4,CEWE_AA_0263,28.88,28.59,0.31,1,,,eimeria
+D5,CEWE_AA_0263,28.26,28.59,0.31,1,,,eimeria
+D6,CEWE_AA_0263,28.61,28.59,0.31,1,,,eimeria
+D7,ILWE_AA_0263,22.77,22.88,0.09,1,,,mouse
+D8,ILWE_AA_0263,22.92,22.88,0.09,1,,,mouse
+D9,ILWE_AA_0263,22.94,22.88,0.09,1,,,mouse
+D10,ILWE_AA_0263,34.19,33.84,0.36,1,,,eimeria
+D11,ILWE_AA_0263,33.47,33.84,0.36,1,,,eimeria
+D12,ILWE_AA_0263,33.88,33.84,0.36,1,,,eimeria
+E1,CEWE_AA_0264,20.29,20.41,0.18,1,,,mouse
+E2,CEWE_AA_0264,20.32,20.41,0.18,1,,,mouse
+E3,CEWE_AA_0264,20.62,20.41,0.18,1,,,mouse
+E4,CEWE_AA_0264,34.1,32.6,1.4,1,,,eimeria
+E5,CEWE_AA_0264,32.38,32.6,1.4,1,,,eimeria
+E6,CEWE_AA_0264,31.33,32.6,1.4,1,,,eimeria
+E7,ILWE_AA_0264,22.8,22.83,0.11,1,,,mouse
+E8,ILWE_AA_0264,22.96,22.83,0.11,1,,,mouse
+E9,ILWE_AA_0264,22.73,22.83,0.11,1,,,mouse
+E10,ILWE_AA_0264,32.28,32.6,0.28,1,,,eimeria
+E11,ILWE_AA_0264,32.81,32.6,0.28,1,,,eimeria
+E12,ILWE_AA_0264,32.71,32.6,0.28,1,,,eimeria
+F1,CEWE_AA_0265,23.55,22.96,0.52,1,,,mouse
+F2,CEWE_AA_0265,22.82,22.96,0.52,1,,,mouse
+F3,CEWE_AA_0265,22.53,22.96,0.52,1,,,mouse
+F4,CEWE_AA_0265,36.13,35.09,0.91,1,,,eimeria
+F5,CEWE_AA_0265,34.54,35.09,0.91,1,,,eimeria
+F6,CEWE_AA_0265,34.59,35.09,0.91,1,,,eimeria
+F7,ILWE_AA_0265,20.24,20.31,0.13,1,,,mouse
+F8,ILWE_AA_0265,20.23,20.31,0.13,1,,,mouse
+F9,ILWE_AA_0265,20.46,20.31,0.13,1,,,mouse
+F10,ILWE_AA_0265,31.52,31.35,0.33,1,,,eimeria
+F11,ILWE_AA_0265,31.56,31.35,0.33,1,,,eimeria
+F12,ILWE_AA_0265,30.98,31.35,0.33,1,,,eimeria
+G1,CEWE_AA_0267,21.18,20.9,0.25,1,,,mouse
+G2,CEWE_AA_0267,20.69,20.9,0.25,1,,,mouse
+G3,CEWE_AA_0267,20.82,20.9,0.25,1,,,mouse
+G4,CEWE_AA_0267,34.88,32.95,1.72,1,,,eimeria
+G5,CEWE_AA_0267,32.42,32.95,1.72,1,,,eimeria
+G6,CEWE_AA_0267,31.56,32.95,1.72,1,,,eimeria
+G7,ILWE_AA_0267,19.58,19.74,0.23,1,,,mouse
+G8,ILWE_AA_0267,19.63,19.74,0.23,1,,,mouse
+G9,ILWE_AA_0267,20,19.74,0.23,1,,,mouse
+G10,ILWE_AA_0267,32.62,32.21,1.55,1,,,eimeria
+G11,ILWE_AA_0267,33.52,32.21,1.55,1,,,eimeria
+G12,ILWE_AA_0267,30.5,32.21,1.55,1,,,eimeria
+H1,NTC,-,,,-,,,mouse
+H2,NTC,-,,,-,,,mouse
+H3,NTC,-,,,-,,,mouse
+H4,NTC,-,,,-,,,eimeria
+H5,NTC,-,,,-,,,eimeria
+H6,NTC,-,,,-,,,eimeria
+H7,water,-,,,-,,,mouse
+H8,water,36.35,,,-,,,mouse
+H9,water,-,,,-,,,mouse
+H10,water,-,,,-,,,eimeria
+H11,water,-,,,-,,,eimeria
+H12,water,-,,,-,,,eimeria
+,,,,,,,,
+"Analysis Parameters",,,,,,,,
+"Type of Application",Quantification,,,,,,,
+Dye(s),SYBR,,,,,,,
+"Inverted Data",OFF,,,,,,,
+"Threshold setting",Noiseband,,,,,,,
+"Threshold level",269,,,,,,,
+"Baseline setting",Automatic,,,,,,,
+"Baseline range (from cycle no. ... to)",n/a,,,,,,,
+"Drift Correction",OFF,,,,,,,

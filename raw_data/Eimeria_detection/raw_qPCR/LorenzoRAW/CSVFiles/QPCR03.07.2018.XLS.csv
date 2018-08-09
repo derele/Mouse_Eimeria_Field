@@ -1,0 +1,59 @@
+Pos,Name,"Ct SYBR","Ct Mean SYBR","Ct Dev. SYBR","Amount SYBR [Copies]","Amount Mean SYBR","Amount Dev. SYBR","Target SYBR"
+A1,CEWE_AA_0467,22.14,22.36,0.89,1,,,mouse
+A2,CEWE_AA_0467,23.35,22.36,0.89,1,,,mouse
+A3,CEWE_AA_0467,21.6,22.36,0.89,1,,,mouse
+A4,CEWE_AA_0467,35.82,34.39,1.96,1,,,eimeria
+A5,CEWE_AA_0467,35.19,34.39,1.96,1,,,eimeria
+A6,CEWE_AA_0467,32.17,34.39,1.96,1,,,eimeria
+B1,ILWE_AA_0470,22.14,22.39,0.37,1,,,mouse
+B2,ILWE_AA_0470,22.21,22.39,0.37,1,,,mouse
+B3,ILWE_AA_0470,22.82,22.39,0.37,1,,,mouse
+B4,ILWE_AA_0470,32.13,32.95,0.77,1,,,eimeria
+B5,ILWE_AA_0470,33.66,32.95,0.77,1,,,eimeria
+B6,ILWE_AA_0470,33.04,32.95,0.77,1,,,eimeria
+C1,ILWE_AA_0436,22.06,23.74,2.44,1,,,mouse
+C2,ILWE_AA_0436,26.53,23.74,2.44,1,,,mouse
+C3,ILWE_AA_0436,22.62,23.74,2.44,1,,,mouse
+C4,ILWE_AA_0436,24.48,24.46,0.06,1,,,eimeria
+C5,ILWE_AA_0436,24.51,24.46,0.06,1,,,eimeria
+C6,ILWE_AA_0436,24.39,24.46,0.06,1,,,eimeria
+D1,ILWE_AA_0396,23.94,23.93,0.04,1,,,mouse
+D2,ILWE_AA_0396,23.96,23.93,0.04,1,,,mouse
+D3,ILWE_AA_0396,23.88,23.93,0.04,1,,,mouse
+D4,ILWE_AA_0396,32.81,34.13,1.21,1,,,eimeria
+D5,ILWE_AA_0396,34.4,34.13,1.21,1,,,eimeria
+D6,ILWE_AA_0396,35.2,34.13,1.21,1,,,eimeria
+E1,ILWE_AA_0389,23.42,24.33,1.39,1,,,mouse
+E2,ILWE_AA_0389,23.64,24.33,1.39,1,,,mouse
+E3,ILWE_AA_0389,25.94,24.33,1.39,1,,,mouse
+E4,ILWE_AA_0389,32.27,32.24,0.95,1,,,eimeria
+E5,ILWE_AA_0389,33.18,32.24,0.95,1,,,eimeria
+E6,ILWE_AA_0389,31.28,32.24,0.95,1,,,eimeria
+F1,CEWE_AA_0389,20.06,20.1,0.61,1,,,mouse
+F2,CEWE_AA_0389,20.72,20.1,0.61,1,,,mouse
+F3,CEWE_AA_0389,19.51,20.1,0.61,1,,,mouse
+F4,CEWE_AA_0389,32.67,32.87,0.7,1,,,eimeria
+F5,CEWE_AA_0389,32.29,32.87,0.7,1,,,eimeria
+F6,CEWE_AA_0389,33.65,32.87,0.7,1,,,eimeria
+G1,CEWE_AA_0343,19.71,20,0.5,1,,,mouse
+G2,CEWE_AA_0343,19.71,20,0.5,1,,,mouse
+G3,CEWE_AA_0343,20.58,20,0.5,1,,,mouse
+G4,CEWE_AA_0343,9.99,23.58,11.8,1,,,eimeria
+G5,CEWE_AA_0343,29.4,23.58,11.8,1,,,eimeria
+G6,CEWE_AA_0343,31.34,23.58,11.8,1,,,eimeria
+H1,NTC,-,,,-,,,mouse
+H2,NTC,-,,,-,,,mouse
+H3,NTC,-,,,-,,,mouse
+H4,NTC,-,,,-,,,eimeria
+H5,NTC,-,,,-,,,eimeria
+H6,NTC,-,,,-,,,eimeria
+,,,,,,,,
+"Analysis Parameters",,,,,,,,
+"Type of Application",Quantification,,,,,,,
+Dye(s),SYBR,,,,,,,
+"Inverted Data",OFF,,,,,,,
+"Threshold setting",Noiseband,,,,,,,
+"Threshold level",374,,,,,,,
+"Baseline setting",Automatic,,,,,,,
+"Baseline range (from cycle no. ... to)",n/a,,,,,,,
+"Drift Correction",OFF,,,,,,,
