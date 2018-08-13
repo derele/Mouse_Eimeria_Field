@@ -533,18 +533,6 @@ Threshold level,246,,,,,,, , QPCR03.05.2018_complete.csv
 Baseline setting,Automatic,,,,,,, , QPCR03.05.2018_complete.csv
 Baseline range (from cycle no. ... to),n/a,,,,,,, , QPCR03.05.2018_complete.csv
 Drift Correction,OFF,,,,,,, , QPCR03.05.2018_complete.csv
-Pos,Name,"Ct SYBR","Ct Mean SYBR","Ct Dev. SYBR","Amount SYBR [Copies]","Amount Mean SYBR","Amount Dev. SYBR","Target SYBR" , QPCR03.05.2018.XLS.csv
-D10,ILWE_AA_0256,33.75,33.37,0.84,1,,,eimeria , QPCR03.05.2018.XLS.csv
-,,,,,,,, , QPCR03.05.2018.XLS.csv
-"Analysis Parameters",,,,,,,, , QPCR03.05.2018.XLS.csv
-"Type of Application",Quantification,,,,,,, , QPCR03.05.2018.XLS.csv
-Dye(s),SYBR,,,,,,, , QPCR03.05.2018.XLS.csv
-"Inverted Data",OFF,,,,,,, , QPCR03.05.2018.XLS.csv
-"Threshold setting",Noiseband,,,,,,, , QPCR03.05.2018.XLS.csv
-"Threshold level",246,,,,,,, , QPCR03.05.2018.XLS.csv
-"Baseline setting",Automatic,,,,,,, , QPCR03.05.2018.XLS.csv
-"Baseline range (from cycle no. ... to)",n/a,,,,,,, , QPCR03.05.2018.XLS.csv
-"Drift Correction",OFF,,,,,,, , QPCR03.05.2018.XLS.csv
 Pos,Name,"Ct SYBR","Ct Mean SYBR","Ct Dev. SYBR","Amount SYBR [Copies]","Amount Mean SYBR","Amount Dev. SYBR","Target SYBR" , QPCR03.07.2018.XLS.csv
 A1,CEWE_AA_0467,22.14,22.36,0.89,1,,,mouse , QPCR03.07.2018.XLS.csv
 A2,CEWE_AA_0467,23.35,22.36,0.89,1,,,mouse , QPCR03.07.2018.XLS.csv

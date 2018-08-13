@@ -1,125 +1,97 @@
-lolo <- read.csv("../LorenzoRAW/CSVFiles/TotalLorenzo.csv", stringsAsFactors = F,
+rawData <- read.csv("../LorenzoRAW/CSVFiles/TotalLorenzo.csv", stringsAsFactors = F,
                  na.strings = c("NA", "", " ", "-"))
 
+##### Clean data #####
 # Column file name
-names(lolo)[names(lolo) == "QPCR01.06.2018.XLS.csv"] <- "fileName"
-lolo[,names(lolo) %in% c("fileName", "Target.SYBR")] <- 
-  gsub(" ", "", lolo[,names(lolo) %in% c("fileName", "Target.SYBR")] )
+names(rawData)[names(rawData) == "QPCR01.06.2018.XLS.csv"] <- "fileName"
 
-# Remove samples with no Ct value
-lolo <- lolo[!is.na(lolo$Ct.SYBR),]
+# Annoying spaces
+rawData[,names(rawData)  == "fileName"] <- gsub(" ", "", rawData[,names(rawData) == "fileName"])
+rawData[,names(rawData)  == "Target.SYBR"] <- gsub(" ", "", rawData[,names(rawData) == "Target.SYBR"])
 
 # Remove inside headers
-lolo <- lolo[lolo$Name != "Name",]
+rawData <- rawData[rawData$Name != "Name",]
+
+# Remove samples with no Ct value
+rawData <- rawData[!is.na(rawData$Ct.SYBR),]
+
+# Remove samples with no mean Ct (means that only one sample worked)
+rawData <- rawData[!is.na(rawData$Ct.Mean.SYBR),]
 
 # Remove controls (were used before)
-lolo <- lolo[!lolo$Name %in% c("water", "NTC"),]
+rawData <- rawData[!rawData$Name %in% c("water", "NTC"),]
 
 # manual correction
-lolo$Name[lolo$Name == "359"] <- "ILWE_AA_0359"
-lolo$Name[lolo$Name == "ILWE_AA_242"] <- "ILWE_AA_0242"
-lolo$Name[lolo$Name == "ILWE_AA_0,48"] <- "ILWE_AA_0348"
-lolo$Name[lolo$Name == "ILWE_AA_0134"] <- "ILWE_AA_0379"
+rawData$Name[rawData$Name == "359"] <- "ILWE_AA_0359"
+rawData$Name[rawData$Name == "ILWE_AA_242"] <- "ILWE_AA_0242"
+rawData$Name[rawData$Name == "ILWE_AA_0,48"] <- "ILWE_AA_0348"
+rawData$Name[rawData$Name == "ILWE_AA_0134"] <- "ILWE_AA_0379"
+# likely manual mistake
+rawData[rawData$Pos %in% c("B4", "B5", "B6") & 
+       rawData$fileName == "QPCR14.06.2018.XLS.csv", "Name"] <- "CEWE_AA_0424"
 
-lolo[lolo$Pos %in% c("B4", "B5", "B6") & 
-       lolo$fileName == "QPCR14.06.2018.XLS.csv", "Name"] <- "CEWE_AA_0424"
+# Add full name of sample (tissue + mouseID + eimeriaOrmouse primers + plate)
+rawData$fullName <- paste0(rawData$Name, "_", rawData$Target.SYBR, "_",  rawData$fileName)
 
-levels(lolo$fileName)
 # Add tissue and EH_ID
-x <-strsplit(as.character(lolo$Name), "_", 1)
+x <- strsplit(as.character(rawData$Name), "_", 1)
 
-lolo$tissue <- sapply( x, "[", 1)
+rawData$tissue <- sapply( x, "[", 1)
 
-lolo$EH_ID <- paste0("AA_", sapply( x, "[", 3))
+rawData$EH_ID <- paste0("AA_", sapply( x, "[", 3))
 
-table(lolo$fileName) #QPCR03.05.2018.XLS.csv not complete!!! cf key usb Victor gave me
+##### Select correct data #####
 
-# Count triplicates
-library(plyr)
-summary <- plyr::count(lolo[, c("EH_ID", "tissue", "Target.SYBR", "fileName")])
+# Choose what to do when several attempts (choose based on sd or date?)
+# in case of repeated samples, take the first one that worked (sd < 3)
+# "Checking the files (not all), Lorenzo made new attempts when the variability 
+# among replicates was too high (Sd >3) maybe would be nice to include the Sd 
+# value for each sample as a criteria for selection of the data... 
+# He replicate complete plates, so in most of the cases he include samples even 
+# when in the previous attempt they had a good result"
 
-toCheck <- plyr::count(lolo[, c("EH_ID", "tissue", "Target.SYBR")])
+mergedData[duplicated(mergedData[c("EH_ID", "tissue", "Target.SYBR.x")]),
+           c("EH_ID", "tissue", "Target.SYBR.x")]
 
-# find the samples with too many repeats and look manually
-tooManyRepeats <- toCheck[toCheck$freq > 3,]
-
-alorsOnmerge <- merge(tooManyRepeats, lolo, all.x = T)
-
-alorsOnmerge <- alorsOnmerge[c("EH_ID", "tissue", "Target.SYBR", "fileName")]
-
-alorsOnmerge2 <- unique(alorsOnmerge)
-
-write.csv(alorsOnmerge2, "files to check", row.names = F)
-
-# in which files?
-unique(alorsOnmerge2$fileName)
-
-################ After Correction #####################
-okRepeats <- toCheck[toCheck$freq <= 3,]
-incompleteData <- merge(lolo, okRepeats)
-
-# Remove triplicates (MeanCt was calculated by the program)
-myDF <- incompleteData[c("Target.SYBR", "tissue", "EH_ID", "Ct.Mean.SYBR")]
-myDF <- unique(myDF)
-
-# remove attempts with no mean (< 2 success. See if we take that or < 3myDF
-myDF <- myDF[!is.na(myDF$Ct.Mean.SYBR),]
-
-# check
-table(data.frame(table(myDF$EH_ID, myDF$tissue, myDF$Target.SYBR))["Freq"] )
-
-# Calculate deltaCt (Eimeria - Mouse)
-for (i in 1:nrow(myDF)){
-  if (myDF$Target.SYBR[i] == "mouse"){
-    myDF$Ct.Mean.SYBR.Mus[i] <- myDF$Ct.Mean.SYBR[i]
-  } else {
-    myDF$Ct.Mean.SYBR.Eimeria[i] <- myDF$Ct.Mean.SYBR[i]
-  }
-}
-
-
-as.character(myDF$Target.SYBR)
-
-##################### clean
-
-table(lolo$EH_ID, lolo$tissue, lolo$Target.SYBR)
-
-length(unique(lolo$EH_ID, lolo$tissue, lolo$Target.SYBR))
-length(unique(lolo$EH_ID))
-
-
-table(lolo$EH_ID, lolo$fileName)
+######### TODOOOOOOOOOOOO
 
 
 
-lolo$Ct.Mean.SYBR <- as.numeric(as.character(lolo$Ct.Mean.SYBR))
+# How many values per plate per fullname? (should be 3 max)
+keepOnlyTriplicates <- rawData %>%
+  group_by(fullName)%>%
+  count()
 
+paste0("Problem with ", pull(keepOnlyTriplicates[keepOnlyTriplicates$n > 3,c("fullName")]))
+
+rawData <- rawData[!rawData$fullName %in%
+                     pull(
+                       keepOnlyTriplicates[keepOnlyTriplicates$n > 3,
+                                           c("fullName")]),]
+
+# Keep one value per plate per fullName (so per triplicate)
+sumData <- rawData[!duplicated(rawData[c("fullName")]),]
+
+## Calculate deltaCt per plate
+# library(dplyr)
+
+sumDataMouse <- sumData[sumData$Target.SYBR == "mouse",]
+sumDataEimeria <- sumData[sumData$Target.SYBR == "eimeria",]
+
+mergedData <- merge(sumDataEimeria, sumDataMouse, by = c("EH_ID", "fileName", "tissue"))
+
+mergedData$deltaCt <- as.numeric(mergedData$Ct.Mean.SYBR.x) - as.numeric(mergedData$Ct.Mean.SYBR.y)
 
 library(ggplot2)
-ggplot(lolo, aes(x = lolo$EH_ID, y = lolo$Ct.Mean.SYBR)) +
-  geom_point(aes(col = lolo$Target.SYBR))
+ggplot(mergedData, aes(x = mergedData$EH_ID, y = mergedData$deltaCt)) +
+  geom_point(aes(col = mergedData$tissue))
 
-table(lolo$EH_ID, lolo$tissue, lolo$Target.SYBR)
+# What is positive? cf mert
 
-write.csv(lolo, file = "/home/alice/Schreibtisch/git_projects/Mouse_Eimeria_Databasing/raw_data/Eimeria_detection/raw_qPCR/lorenzo2017.csv", row.names = F)
+# Add HI to see and pray
+source("../../../../R/functions/makeMiceTable.R")
+makeMiceTable("../../../../../Data_important/")
 
-library(dplyr)
 
-newLolo <- lolo %>% 
-  group_by(Name, Target.SYBR, Ct.Mean.SYBR) %>% 
-  mutate(Ct.SYBR_Rep1 = Ct.SYBR[1],
-         Ct.SYBR_Rep2 = Ct.SYBR[2],
-         Ct.SYBR_Rep3 = Ct.SYBR[3]) %>%
-  data.frame()
-
-newLolo <- newLolo[
-  as.numeric(
-    row.names(
-      unique(newLolo[c("Name", "Target.SYBR", "Ct.Mean.SYBR")]))),]
-
-newLolo <- newLolo[!names(newLolo) %in% "Ct.SYBR"]
-
-table(newLolo$EH_ID, newLolo$tissue, newLolo$Target.SYBR)
-
-table(lolo$EH_ID, lolo$tissue, lolo$Target.SYBR)
-
+miceTable <- makeMiceTable("../../Data_important/")
+makeMiceTable
