@@ -146,4 +146,19 @@ ggplot(finalPos, aes(x = finalPos$tissue, y = finalPos$deltaCt)) +
   geom_jitter(aes(col = finalPos$tissue), size = 3) +
   theme_bw()
 
-write.csv(finalPos, "../qPCR_2017.csv", row.names = F)
+# write.csv(finalPos, "../qPCR_2017.csv", row.names = F)
+
+finalPos$year <- 2017
+
+source("../../../R/functions/")
+myFinal <- addPCRresults(finalPos, pathtodata = "../Inventory_contents_all.csv")
+myFinal <- addFlotationResults(myFinal, pathtofinalOO = "../FINALOocysts2015to2017.csv",
+                               pathtolorenzodf = "../Eimeria_oocysts_2015&2017_Lorenzo.csv")$new
+
+myFinal <- addqPCRresults(myFinal, pathtoqPCR2016 = "../qPCR_2016.csv", pathtoqPCR2017 = "../qPCR_2017.csv")
+
+merge(myFinal)
+
+ggplot(myFinal, aes(y = myFinal$delta_ct_cewe, x = log10(OPG+1))) +
+  geom_point(aes(col = PCRstatus), size = 4) +
+  facet_grid(.~as.factor(year))
