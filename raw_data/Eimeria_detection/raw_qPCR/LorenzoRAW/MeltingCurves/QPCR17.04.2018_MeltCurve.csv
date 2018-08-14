@@ -1,4 +1,4 @@
-Pos,Name,"No. Tm SYBR","Tm x (Â°C) SYBR","Tm y (Â°C) SYBR","Mean SYBR","Dev. SYBR"
+Pos,Name,No. Tm SYBR,Tm x (°C) SYBR,Tm y (°C) SYBR,Mean SYBR,Dev. SYBR
 A1,CEWE_AA_0250,0,,,,
 A2,CEWE_AA_0250,0,,,,
 A3,CEWE_AA_0250,0,,,,
@@ -72,7 +72,7 @@ H10,water,0,,,,
 H11,water,0,,,,
 H12,water,0,,,,
 ,,,,,,
-"Analysis Parameters",,,,,,
-"Type of Application","Melting Curve",,,,,
+Analysis Parameters,,,,,,
+Type of Application,Melting Curve,,,,,
 Dye(s),SYBR,,,,,
-"Inverted Data",OFF,,,,,
+Inverted Data,OFF,,,,,

@@ -1,2 +1,3 @@
 alice@client110:~/Schreibtisch/Students/Lorenzo/Lorenzo/meltingCurves$ awk '{print $0,",",FILENAME}' *csv >> MeltingCurvesLorenzo.csv
 
+Warning!! change manually the bad caracters in headers !!
