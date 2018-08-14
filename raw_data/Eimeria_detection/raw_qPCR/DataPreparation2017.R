@@ -1,56 +1,55 @@
-rawData <- read.csv("./LorenzoRAW/CSVFiles/TotalLorenzo.csv", stringsAsFactors = F,
+# import data
+rawData0 <- read.csv("./LorenzoRAW/CSVFiles/TotalLorenzo.csv", stringsAsFactors = F,
                  na.strings = c("NA", "", " ", "-"))
 
 ##### Clean data #####
 # Column file name
-names(rawData)[names(rawData) == "QPCR01.06.2018.XLS.csv"] <- "fileName"
+names(rawData0)[names(rawData0) == "QPCR01.06.2018.XLS.csv"] <- "fileName"
 
 # Annoying spaces
-rawData[,names(rawData)  == "fileName"] <- gsub(" ", "", rawData[,names(rawData) == "fileName"])
-rawData[,names(rawData)  == "Target.SYBR"] <- gsub(" ", "", rawData[,names(rawData) == "Target.SYBR"])
+rawData0[,names(rawData0)  == "fileName"] <- gsub(" ", "", rawData0[,names(rawData0) == "fileName"])
+rawData0[,names(rawData0)  == "Target.SYBR"] <- gsub(" ", "", rawData0[,names(rawData0) == "Target.SYBR"])
 
 # Remove inside headers
-rawData <- rawData[rawData$Name != "Name",]
+rawData0 <- rawData0[rawData0$Name != "Name",]
 
 # Remove samples with no Ct value
-rawData <- rawData[!is.na(rawData$Ct.SYBR),]
+rawData0 <- rawData0[!is.na(rawData0$Ct.SYBR),]
 
 # Remove samples with no mean Ct (means that only one sample worked)
-rawData <- rawData[!is.na(rawData$Ct.Mean.SYBR),]
+rawData0 <- rawData0[!is.na(rawData0$Ct.Mean.SYBR),]
 
 # Remove controls (were used before)
-rawData <- rawData[!rawData$Name %in% c("water", "NTC"),]
+rawData0 <- rawData0[!rawData0$Name %in% c("water", "NTC"),]
 
 # manual correction
-rawData$Name[rawData$Name == "359"] <- "ILWE_AA_0359"
-rawData$Name[rawData$Name == "ILWE_AA_242"] <- "ILWE_AA_0242"
-rawData$Name[rawData$Name == "ILWE_AA_0,48"] <- "ILWE_AA_0348"
-rawData$Name[rawData$Name == "ILWE_AA_0134"] <- "ILWE_AA_0379"
+rawData0$Name[rawData0$Name == "359"] <- "ILWE_AA_0359"
+rawData0$Name[rawData0$Name == "ILWE_AA_242"] <- "ILWE_AA_0242"
+rawData0$Name[rawData0$Name == "ILWE_AA_0,48"] <- "ILWE_AA_0348"
+rawData0$Name[rawData0$Name == "ILWE_AA_0134"] <- "ILWE_AA_0379"
+rawData0$fileName[rawData0$fileName == "QPCR03.05.2018_complete.csv"] <- "QPCR03.05.2018.XLS.csv"  
+
 # likely manual mistake
-rawData[rawData$Pos %in% c("B4", "B5", "B6") & 
-       rawData$fileName == "QPCR14.06.2018.XLS.csv", "Name"] <- "CEWE_AA_0424"
+rawData0[rawData0$Pos %in% c("B4", "B5", "B6") & 
+       rawData0$fileName == "QPCR14.06.2018.XLS.csv", "Name"] <- "CEWE_AA_0424"
 
 # Add full name of sample (tissue + mouseID + eimeriaOrmouse primers + plate)
-rawData$fullName <- paste0(rawData$Name, "_", rawData$Target.SYBR, "_",  rawData$fileName)
+rawData0$fullName <- paste0(rawData0$Name, "_", rawData0$Target.SYBR, "_",  rawData0$fileName)
 
 # Add tissue and Mouse_ID
-x <- strsplit(as.character(rawData$Name), "_", 1)
-
-rawData$tissue <- sapply( x, "[", 1)
-
-rawData$Mouse_ID <- paste0("AA_", sapply( x, "[", 3))
+x <- strsplit(as.character(rawData0$Name), "_", 1)
+rawData0$tissue <- sapply( x, "[", 1)
+rawData0$Mouse_ID <- paste0("AA_", sapply( x, "[", 3))
 
 ## Add melting curves infos
 
-rawMeltData <- read.csv("./LorenzoRAW/MeltingCurves/MeltingCurvesLorenzo.csv", stringsAsFactors = F,
+rawMeltData <- read.csv("./LorenzoRAW/MeltingCurves/MeltingCurvesLorenzo.csv",
                         na.strings = c("NA", "", " ", "-"))
 
-# Column file name
-names(rawMeltData)[names(rawMeltData) == "QPCRmc06.04.2018.XLS.csv"] <- "fileName"
+names(rawMeltData)[names(rawMeltData) == "QPCR01.06.2018_MeltCurve.csv"] <- "fileName"
 
 # Annoying spaces
 rawMeltData[,names(rawMeltData)  == "fileName"] <- gsub(" ", "", rawMeltData[,names(rawMeltData) == "fileName"])
-rawMeltData[,names(rawMeltData)  == "Target.SYBR"] <- gsub(" ", "", rawMeltData[,names(rawMeltData) == "Target.SYBR"])
 
 # Remove inside headers
 rawMeltData <- rawMeltData[rawMeltData$Name != "Name",]
@@ -59,10 +58,19 @@ rawMeltData <- rawMeltData[rawMeltData$Name != "Name",]
 rawMeltData <- rawMeltData[!is.na(rawMeltData$No..Tm.SYBR),]
 
 # Correct fileName to match previous files
-rawMeltData$fileName <- gsub("QPCRmc", "QPCR", rawMeltData$fileName)
+rawMeltData$fileName <- gsub("_MeltCurve", ".XLS", rawMeltData$fileName)
 
-rawData <- merge(rawData, rawMeltData[c("fileName", "Name", "Pos", "No..Tm.SYBR")],
+rawData <- merge(rawData0, rawMeltData[c("fileName", "Name", "Pos", "No..Tm.SYBR")],
       by = c("fileName", "Name", "Pos"))
+
+# Manual check of the samples without melting curve
+checkmanually <- rawData0[!rawData0$fileName %in% rawData$fileName,]
+unique(checkmanually$fileName)
+
+# No melt curves for:
+# QPCR04.04.2018.XLS.csv but redonne twice later
+# QPCR30.05.2018.XLS.csv --> check manually the look of the curves. Keep for later
+# QPCR311-317.XLS.csv --> check manually the look of the curves. Keep for later
 
 # Separate here positive and negative data
 negativeData <- rawData[rawData$No..Tm.SYBR == "0",]
@@ -133,11 +141,9 @@ finalDF <- rbind(finalPos, finalNeg)
 finalDF$deltaCt
 
 library(ggplot2)
-ggplot(finalDF, aes(x = finalDF$Mouse_ID, y = finalDF$deltaCt)) +
-  geom_point(aes(col = finalDF$isPos, pch = finalDF$tissue), size = 3) +
+ggplot(finalPos, aes(x = finalPos$tissue, y = finalPos$deltaCt)) +
+  geom_violin() +
+  geom_jitter(aes(col = finalPos$tissue), size = 3) +
   theme_bw()
-
-###### Calculation of LOD (mean + 2 standard deviations of the negative controls) #####
-mean(finalNeg$deltaCt) + 2 * sd(finalNeg$deltaCt)
 
 write.csv(finalPos, "../qPCR_2017.csv", row.names = F)
