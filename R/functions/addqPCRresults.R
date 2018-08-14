@@ -1,4 +1,4 @@
-addqPCRresults <- function(aDataFrame){
+# addqPCRresults <- function(aDataFrame){
   ## Import data 2016
   qpcrData <- read.csv("../raw_data/Eimeria_detection/qPCR_2016.csv")
   names(qpcrData)[1] <- "Mouse_ID"
@@ -55,3 +55,7 @@ addqPCRresults <- function(aDataFrame){
   
   return(aDataFrame)
 }
+
+
+
+/home/alice/Desktop/git/Mouse_Eimeria_Databasing/raw_data/Eimeria_detection/raw_qPCR/LorenzoRAW/DataPreparation.R
