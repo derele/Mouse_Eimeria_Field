@@ -1,7 +1,38 @@
-# addqPCRresults <- function(aDataFrame){
+addqPCRresults <- function(aDataFrame, 
+                           pathtoqPCR2016 = "../raw_data/Eimeria_detection/qPCR_2016.csv", 
+                           pathtoqPCR2017 = "../raw_data/Eimeria_detection/qPCR_2017.csv"){
+
   ## Import data 2016
-  qpcrData <- read.csv("../raw_data/Eimeria_detection/qPCR_2016.csv")
-  names(qpcrData)[1] <- "Mouse_ID"
+  qpcrData2016 <- read.csv(pathtoqPCR2016)
+  names(qpcrData2016)[1] <- "Mouse_ID"
+  
+  ## Import data 2017
+  qpcrData2017 <- read.csv(pathtoqPCR2017)
+  
+  ## merge all years
+  qpcrData2016
+  
+  qpcrData2017Clean <- qpcrData2017["Mouse_ID"]
+  
+  # Add CEWE
+  qpcrData2017Clean <- merge(qpcrData2017Clean, 
+                             qpcrData2017[qpcrData2017$tissue == "CEWE", c("Mouse_ID", "deltaCt")],
+                             all.x = T)
+  names(qpcrData2017Clean)[names(qpcrData2017Clean) == "deltaCt"] <- "delta_ct_cewe"
+  
+  # Add ILWE
+  qpcrData2017Clean <- merge(qpcrData2017Clean, 
+                             qpcrData2017[qpcrData2017$tissue == "ILWE", c("Mouse_ID", "deltaCt")],
+                             all.x = T)
+  names(qpcrData2017Clean)[names(qpcrData2017Clean) == "deltaCt"] <- "delta_ct_ilwe"
+  
+  # Add observer
+  qpcrData2017Clean$observer_qpcr <- "Lorenzo"
+  
+  # Merge both years
+  qpcrData <- rbind(qpcrData2016, qpcrData2017Clean)
+  
+  #####
   
   # Did Enas calculate the other way around? 
   qpcrData$delta_ct_cewe[qpcrData$observer_qpcr == "Enas"] <- 
@@ -55,7 +86,3 @@
   
   return(aDataFrame)
 }
-
-
-
-/home/alice/Desktop/git/Mouse_Eimeria_Databasing/raw_data/Eimeria_detection/raw_qPCR/LorenzoRAW/DataPreparation.R

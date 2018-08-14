@@ -1,11 +1,13 @@
-addFlotationResults <- function(aDataFrame){
+addFlotationResults <- function(aDataFrame,
+                                pathtofinalOO = "../raw_data/Eimeria_detection/FINALOocysts2015to2017.csv",
+                                pathtolorenzodf = "../raw_data/Eimeria_detection/Eimeria_oocysts_2015&2017_Lorenzo.csv"){
   ## Load data from oocysts counting 
-  flotDF <- read.csv("../raw_data/Eimeria_detection/FINALOocysts2015to2017.csv")
+  flotDF <- read.csv(pathtofinalOO)
   flotDF$OPG <- as.numeric(as.character(flotDF$OPG))
   flotDF <- flotDF[!is.na(flotDF$OPG),]
   
   ## Lorenzo count (in 1mL dilution) for comparison
-  LorenzoDF <- read.csv("../raw_data/Eimeria_detection/Eimeria_oocysts_2015&2017_Lorenzo.csv")
+  LorenzoDF <- read.csv(pathtolorenzodf)
   LorenzoDF <- LorenzoDF[!is.na(LorenzoDF$OPG),]
   
   ### Plot comparative Alice (dilution 0.1mL for most samples) and Lorenzo (dilution 1mL)

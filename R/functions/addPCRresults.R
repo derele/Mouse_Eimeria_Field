@@ -1,5 +1,5 @@
-addPCRresults <- function(aDataFrame){
-  PCRdf <- read.csv("../raw_data/Eimeria_detection/Inventory_contents_all.csv")
+addPCRresults <- function(aDataFrame, pathtodata = "../raw_data/Eimeria_detection/Inventory_contents_all.csv"){
+  PCRdf <- read.csv(pathtodata)
   
   #correct wrong names
   toremove <- paste0(paste0("X",1:30, "_"), collapse = "|")
