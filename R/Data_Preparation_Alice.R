@@ -53,6 +53,16 @@ plotSmoothOPG <- ggplot(myData[myData$OPG >0,], aes(x = HI, y = OPG+1)) +
   theme(legend.title = element_blank())
 plotSmoothOPG
 
+plotSmoothOPGall <- ggplot(myData[myData$Year %in% 2015:2017,], 
+                           aes(x = HI, y = OPG+1)) +
+  geom_point(aes(fill = Year), pch = 21, alpha = .8, size = 4) +
+  geom_smooth(col = "black") +
+  scale_y_log10() +
+  theme_bw() +
+  theme(legend.position="top") +
+  theme(legend.title = element_blank())
+plotSmoothOPGall
+
 ##################### Eimeria detection PCR ####################
 source("../R/functions/addPCRresults.R")
 myData <- addPCRresults(myData)
@@ -66,10 +76,23 @@ myData <- subset(myData, select = -c(year))
 
 #################### Eimeria detection qPCR ####################
 source("../R/functions/addqPCRresults.R")
-myData <- addqPCRresults(myData)
+myData <- addqPCRresults(myData, 
+                         pathtoqPCR2016 = "../raw_data/Eimeria_detection/qPCR_2016.csv",
+                         pathtoqPCR2017 = "../raw_data/Eimeria_detection/qPCR_2017.csv")
 
 # Remove other rodents
 myData <- myData[!myData$Mouse_ID %in% otherRodentsID,]
+
+# plot qPCR
+plotSmoothqPCR <- ggplot(myData[myData$delta_ct_cewe < 6,], aes(x = HI)) +
+  geom_point(aes(y = -delta_ct_cewe, fill = as.factor(Year)), pch = 21, alpha = .8, size = 4) +
+  geom_smooth(aes(y = -delta_ct_cewe))+#, col = as.factor(Year))) +
+  theme_bw() +
+  theme(legend.position="top") +
+  theme(legend.title = element_blank())
+plotSmoothqPCR
+
+# Fit the model!! the smooth is not adapted
 
 #################### General stats on sampling ####################
 ## Remove useless mice:
