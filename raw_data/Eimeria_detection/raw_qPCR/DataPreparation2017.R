@@ -1,45 +1,46 @@
 # import data
-rawData0 <- read.csv("./LorenzoRAW/CSVFiles/TotalLorenzo.csv", stringsAsFactors = F,
+rawData <- read.csv("./LorenzoRAW/CSVFiles/TotalLorenzo.csv", stringsAsFactors = F,
                  na.strings = c("NA", "", " ", "-"))
 
 ##### Clean data #####
 # Column file name
-names(rawData0)[names(rawData0) == "QPCR01.06.2018.XLS.csv"] <- "fileName"
+names(rawData)[names(rawData) == "QPCR01.06.2018.XLS.csv"] <- "fileName"
 
 # Annoying spaces
-rawData0[,names(rawData0)  == "fileName"] <- gsub(" ", "", rawData0[,names(rawData0) == "fileName"])
-rawData0[,names(rawData0)  == "Target.SYBR"] <- gsub(" ", "", rawData0[,names(rawData0) == "Target.SYBR"])
+rawData[,names(rawData)  == "fileName"] <- gsub(" ", "", rawData[,names(rawData) == "fileName"])
+rawData[,names(rawData)  == "Target.SYBR"] <- gsub(" ", "", rawData[,names(rawData) == "Target.SYBR"])
 
 # Remove inside headers
-rawData0 <- rawData0[rawData0$Name != "Name",]
+rawData <- rawData[rawData$Name != "Name",]
 
 # Remove samples with no Ct value
-rawData0 <- rawData0[!is.na(rawData0$Ct.SYBR),]
+rawData <- rawData[!is.na(rawData$Ct.SYBR),]
 
 # Remove samples with no mean Ct (means that only one sample worked)
-rawData0 <- rawData0[!is.na(rawData0$Ct.Mean.SYBR),]
+rawData <- rawData[!is.na(rawData$Ct.Mean.SYBR),]
 
 # Remove controls (were used before)
-rawData0 <- rawData0[!rawData0$Name %in% c("water", "NTC"),]
+rawData <- rawData[!rawData$Name %in% c("water", "NTC"),]
 
 # manual correction
-rawData0$Name[rawData0$Name == "359"] <- "ILWE_AA_0359"
-rawData0$Name[rawData0$Name == "ILWE_AA_242"] <- "ILWE_AA_0242"
-rawData0$Name[rawData0$Name == "ILWE_AA_0,48"] <- "ILWE_AA_0348"
-rawData0$Name[rawData0$Name == "ILWE_AA_0134"] <- "ILWE_AA_0379"
-rawData0$fileName[rawData0$fileName == "QPCR03.05.2018_complete.csv"] <- "QPCR03.05.2018.XLS.csv"  
+rawData$Name[rawData$Name == "359"] <- "ILWE_AA_0359"
+rawData$Name[rawData$Name == "ILWE_AA_242"] <- "ILWE_AA_0242"
+rawData$Name[rawData$Name == "ILWE_AA_0,48"] <- "ILWE_AA_0348"
+rawData$Name[rawData$Name == "ILWE_AA_0134"] <- "ILWE_AA_0379"
+rawData$fileName[rawData$fileName == "QPCR03.05.2018_complete.csv"] <- "QPCR03.05.2018.XLS.csv"  
 
 # likely manual mistake
-rawData0[rawData0$Pos %in% c("B4", "B5", "B6") & 
-       rawData0$fileName == "QPCR14.06.2018.XLS.csv", "Name"] <- "CEWE_AA_0424"
+rawData[rawData$Pos %in% c("B4", "B5", "B6") & 
+       rawData$fileName == "QPCR14.06.2018.XLS.csv", "Name"] <- "CEWE_AA_0424"
 
 # Add full name of sample (tissue + mouseID + eimeriaOrmouse primers + plate)
-rawData0$fullName <- paste0(rawData0$Name, "_", rawData0$Target.SYBR, "_",  rawData0$fileName)
+rawData$fullName <- paste0(rawData$Name, "_", rawData$Target.SYBR, "_",  rawData$fileName)
 
 # Add tissue and Mouse_ID
-x <- strsplit(as.character(rawData0$Name), "_", 1)
-rawData0$tissue <- sapply( x, "[", 1)
-rawData0$Mouse_ID <- paste0("AA_", sapply( x, "[", 3))
+x <- strsplit(as.character(rawData$Name), "_", 1)
+rawData$tissue <- sapply( x, "[", 1)
+rawData$Mouse_ID <- paste0("AA_", sapply( x, "[", 3))
+rm(x)
 
 ## Add melting curves infos when available
 rawMeltData <- read.csv("./LorenzoRAW/MeltingCurves/MeltingCurvesLorenzo.csv",
@@ -59,135 +60,162 @@ rawMeltData <- rawMeltData[!is.na(rawMeltData$No..Tm.SYBR),]
 # Correct fileName to match previous files
 rawMeltData$fileName <- gsub("_MeltCurve", ".XLS", rawMeltData$fileName)
 
-rawData <- merge(rawData0, 
+rawData <- merge(rawData, 
                  rawMeltData[c("fileName", "Name", "Pos", "No..Tm.SYBR")],
       by = c("fileName", "Name", "Pos"), all.x = T)
 
+rm(rawMeltData)
+
+##### End cleaning ##### 
+
+## heatmap to follow
+library(ggplot2)
+
+myTiles <- function(df){
+  dat_long <- data.frame(tissue_target = paste(rawData$tissue, rawData$Target.SYBR), 
+                         variable = rawData$Mouse_ID,
+                         value = 0)
+  
+  dat_long <- unique(dat_long)
+  dat_long[paste(dat_long$tissue_target, dat_long$variable) %in% 
+             paste(df$tissue, df$Target.SYBR, df$Mouse_ID), "value"] <- 1
+  
+  # discrete vs continuous
+  dat_long$value <- factor(dat_long$value)
+  
+  gg <- ggplot(dat_long)
+  # fill + legend, gray border
+  gg <- gg + geom_tile(aes(x = variable, y = tissue_target, fill = value), color="#7f7f7f")
+  # custom fill colors
+  gg <- gg + scale_fill_manual(values=c("grey", "green"))
+  # squares
+  gg <- gg + coord_equal()
+  # no labels
+  gg <- gg + labs(x=NULL, y=NULL)
+  # remove some chart junk
+  gg <- gg + theme_bw() + theme(panel.grid=element_blank(),
+                                panel.border=element_blank(),
+                                axis.text.x = element_text(angle = 45, hjust = 1, size=5) )
+  return(table(dat_long$tissue_target, dat_long$value))
+  gg
+}
+
+myTiles(rawData)
+
 # Separate here failed and ok data
-failedData <- rawData[is.na(rawData$No..Tm.SYBR) | 
-                        rawData$No..Tm.SYBR == 0,]
 OKData <- rawData[!is.na(rawData$No..Tm.SYBR) &
                           rawData$No..Tm.SYBR != 0,]
+myTiles(OKData)
 
 # First,let's check OKData
 ## Which samples are complete (mouse+eimeria triplicate, low sd)
 
-### 1. which ones are triplicates?
+# CEWE_AA_0410_mouse_QPCR07.06.2018part2.XLS.csv 5 occurences, remove
+OKData <- OKData[OKData$fullName != "CEWE_AA_0410_mouse_QPCR07.06.2018part2.XLS.csv",]
+myTiles(OKData)
+
+### 1. which ones are triplicates? remove the others
 # triplicate = same file, same name, same target, same mean
 
-library(dply)
+library(dplyr)
 
-df <- OKData
+sumOKData <- OKData %>% 
+  group_by(fullName) %>% 
+  summarise(count = n()) %>% 
+  data.frame()
 
-df %>% 
-  group_by(Target.SYBR, fileName, Name, Ct.Mean.SYBR) %>% 
-  group_size() 
+OKData <- OKData[!OKData$fullName %in% 
+                   sumOKData[sumOKData$count != 3, ]$fullName, ]
+myTiles(OKData)
 
+# 2. how are the sd? keep < 3
+OKData <- OKData[OKData$Ct.Dev..SYBR <= 3 ,]
+myTiles(OKData)
 
+# 3. remove duplicates on different plates (based on sd?)
+OKData$nameTarget <- paste(OKData$Name, OKData$Target.SYBR)
 
-# How many samples dowe have now in rawData?
-unique(paste(rawData$Name, rawData$Target.SYBR))
+sumOKData <- OKData %>% 
+  group_by(nameTarget) %>% 
+  summarise(isDup = length(nameTarget)) %>% 
+  data.frame()
 
-# Manual check of the samples without melting curve
-checkmanually <- rawData0[!rawData0$fileName %in% rawData$fileName,]
-unique(checkmanually$fileName)
+myTiles(OKData)
 
-# For those non verified, check sd values
-hist(as.numeric(as.character(checkmanually$Ct.Dev..SYBR)),breaks = 100)
-checkmanually[checkmanually$Ct.Dev..SYBR>2,]
+# 4. Eventually, mouse AND eimeria on the same plate otherwise remove
+OKData$fileNameName <- paste(OKData$fileName, OKData$Name)
+
+sumOKData <- OKData %>% 
+  group_by(fileNameName) %>% 
+  summarise(isBoth = length(unique(Target.SYBR))) %>% 
+  data.frame()
+
+OKData <- OKData[OKData$fileNameName %in% sumOKData$fileNameName[sumOKData$isBoth == 2],]
+
+myTiles(OKData)
 
 # No melt curves for:
 # QPCR04.04.2018.XLS.csv but redonne twice later
 # QPCR30.05.2018.XLS.csv --> check manually the look of the curves. Keep for later
 # QPCR311-317.XLS.csv --> check manually the look of the curves. Keep for later
 
+##### Calculate delta ct #####
 
-
-##### Select correct data and calculate delta ct #####
-
-selectQPCRfun <- function(df){
-  # How many values per plate per fullname? (should be 3 max)
-  library(dplyr)
-  keepOnlyTriplicates <- df %>%
-    group_by(fullName)%>%
-    count()
-  
-  paste0("Problem with ", pull(keepOnlyTriplicates[keepOnlyTriplicates$n > 3,c("fullName")]))
-  
-  df <- df[!df$fullName %in%
-             pull(
-               keepOnlyTriplicates[keepOnlyTriplicates$n > 3,
-                                   c("fullName")]),]
-  
+calculateDeltqCt <- function(df){
   # Keep one value per plate per fullName (so per triplicate)
-  sumData <- df[!duplicated(df[c("fullName")]),]
-  
-  # Choose what to do when several plates (choose based on sd or date?)
-  # in case of repeated samples, take the first one that worked (sd < 3)
-  # "Checking the files (not all), Lorenzo made new attempts when the variability 
-  # among replicates was too high (Sd >3) maybe would be nice to include the Sd 
-  # value for each sample as a criteria for selection of the data... 
-  # He replicate complete plates, so in most of the cases he include samples even 
-  # when in the previous attempt they had a good result"
-  
-  sumData$IdTargetTissue <- paste(sumData$Mouse_ID, sumData$Target.SYBR, sumData$tissue)
-  
-  duplicatedData <- unique(sumData$IdTargetTissue[duplicated(sumData$IdTargetTissue)])
-  
-  # Split in 2 to work only on duplicated DF     
-  myData1 <- sumData[!sumData$IdTargetTissue %in% duplicatedData, ]
-  myData2 <- sumData[sumData$IdTargetTissue %in% duplicatedData, ]
-  
-  # keep the lower sd for each sample "IdTargetTissue"
-  myData3 <- data.frame()
-  for (i in unique(myData2$IdTargetTissue)){
-    sub <- myData2[myData2$IdTargetTissue == i,]
-    myData3 <- rbind(myData3, sub[sub$Ct.Dev..SYBR %in% min(sub$Ct.Dev..SYBR),])
-  }
-  
-  # Unique values here:  
-  sumData <- rbind(myData1, myData3)
+  df <- df[!duplicated(df[c("fullName")]),]
   
   ## Calculate deltaCt per plate
-  sumDataMouse <- sumData[sumData$Target.SYBR == "mouse",]
-  sumDataEimeria <- sumData[sumData$Target.SYBR == "eimeria",]
+  sumDataMouse <- df[df$Target.SYBR == "mouse",]
+  sumDataEimeria <- df[df$Target.SYBR == "eimeria",]
   
-  mergedData <- merge(sumDataEimeria, sumDataMouse, by = c("Mouse_ID", "fileName", "tissue"))
+  mergedData <- merge(sumDataEimeria, sumDataMouse, 
+                      by = c("Mouse_ID", "fileName", "tissue"))
   
   mergedData$deltaCt <- as.numeric(mergedData$Ct.Mean.SYBR.x) - as.numeric(mergedData$Ct.Mean.SYBR.y)
-  
   return(mergedData)
 }
 
-finalPos <- selectQPCRfun(positiveData)
-finalPos$isPos <- "positive"
-finalNeg <- selectQPCRfun(negativeData)
-finalNeg$isPos <- "negative"
-
-finalDF <- rbind(finalPos, finalNeg)
+finalData <- calculateDeltqCt(OKData)
 
 library(ggplot2)
-ggplot(finalPos, aes(x = finalPos$tissue, y = finalPos$deltaCt)) +
+ggplot(finalData, aes(x = finalData$tissue, y = finalData$deltaCt)) +
   geom_violin() +
-  geom_jitter(aes(col = finalPos$tissue), size = 3) +
+  geom_jitter(aes(col = finalData$tissue), size = 3) +
   theme_bw()
 
-ggplot(finalPos, aes(x = finalPos$deltaCt)) +
+ggplot(finalData, aes(x = finalData$deltaCt)) +
   geom_histogram(aes(y=..density..), bins = 40) + 
   geom_density(aes(y=..density..)) +
-  # geom_jitter(aes(col = finalPos$tissue), size = 3) +
   theme_bw()
 
-finalPos[finalPos$deltaCt >20,]
-# write.csv(finalPos, "../qPCR_2017.csv", row.names = F)
+finalData$year <- 2017
 
-finalPos$year <- 2017
+finalDataClean <- finalData["Mouse_ID"]
+# Add CEWE
+finalDataClean <- merge(finalDataClean,
+                        finalData[finalData$tissue == "CEWE", c("Mouse_ID", "deltaCt")],
+                           all.x = T)
+names(finalDataClean)[names(finalDataClean) == "deltaCt"] <- "delta_ct_cewe"
 
+# Add ILWE
+finalDataClean <- merge(finalDataClean,
+                           finalData[finalData$tissue == "ILWE", c("Mouse_ID", "deltaCt")],
+                           all.x = T)
+names(finalDataClean)[names(finalDataClean) == "deltaCt"] <- "delta_ct_ilwe"
+
+# Add observer
+finalDataClean$observer_qpcr <- "Lorenzo"
+
+# Write out
+write.csv(finalData, "../qPCR_2017.csv", row.names = F)
+
+###########
 source("../../../R/functions/addPCRresults.R")
 source("../../../R/functions/addqPCRresults.R")
 source("../../../R/functions/addFlotationResults.R")
 
-myFinal <- addPCRresults(finalPos, pathtodata = "../Inventory_contents_all.csv")
+myFinal <- addPCRresults(finalData, pathtodata = "../Inventory_contents_all.csv")
 myFinal <- addFlotationResults(myFinal, pathtofinalOO = "../FINALOocysts2015to2017.csv",
                                pathtolorenzodf = "../Eimeria_oocysts_2015&2017_Lorenzo.csv")$new
 
@@ -197,8 +225,7 @@ myFinal$year[is.na(myFinal$year)] <- myFinal$year.x[is.na(myFinal$year)]
 myFinal$year[is.na(myFinal$year)] <- myFinal$year.y[is.na(myFinal$year)]
 myFinal$year <- as.factor(myFinal$year)
 
-
-lm(OPG ~ delta_ct_cewe, myFinal)
+summary(lm(OPG ~ delta_ct_cewe, myFinal))
 
 ggplot(myFinal, aes(y = myFinal$delta_ct_ilwe, x = OPG)) +
   geom_point(aes(col = year), size = 4) +
@@ -207,7 +234,8 @@ ggplot(myFinal, aes(y = myFinal$delta_ct_ilwe, x = OPG)) +
 # Plot 1 detection methods compared
 ggplot(myFinal, aes(x = PCRstatus, y = OPG + 1)) +
   scale_y_log10() +
-  geom_boxplot()+
+  # geom_boxplot()+
+  geom_violin() +
   geom_jitter(aes(col = year), width = .1, size = 2, alpha = .5) +
   theme_bw()
 
@@ -225,7 +253,7 @@ ggplot(myFinal, aes(x = OPG > 0, y = delta_ct_cewe)) +
   theme_bw()
 
 ggplot(myFinal, aes(x = myFinal$PCRstatus, y = delta_ct_cewe)) +
-  geom_violin()+
+  geom_boxplot()+
   geom_point(aes(col = year), size = 2, alpha = .5) +
   theme_bw()
 
@@ -236,15 +264,6 @@ ggplot(myFinal, aes(x = myFinal$FlotOrPcr, y = delta_ct_cewe)) +
   geom_violin()+
   geom_point(aes(col = year), size = 2, alpha = .5) +
   geom_hline(yintercept = 6) +
-  theme_bw()
-
-# Check the ct values
-ggplot(myFinal, 
-       aes(x = myFinal$FlotOrPcr,
-           y = as.numeric(as.character(myFinal$Ct.Mean.SYBR.y)) -
-             as.numeric(as.character(myFinal$Ct.Mean.SYBR.x)))) +
-  geom_violin()+
-  geom_point(aes(col = year), size = 2, alpha = .5) +
   theme_bw()
 
 ## Which samples have no qPCR?

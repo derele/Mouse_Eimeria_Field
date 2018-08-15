@@ -10,6 +10,15 @@ library(grid)
 library(gridExtra)
 source("functions/HMHZ_Functions.R")
 source("functions/makeMiceTable.R")
+## Load data from oocysts counting 
+flotDF <- read.csv("../raw_data/Eimeria_detection/FINALOocysts2015to2017.csv")
+LorenzoDF <- read.csv("../raw_data/Eimeria_detection/Eimeria_oocysts_2015&2017_Lorenzo.csv")
+## Import PCR data
+PCRdf <- read.csv("../raw_data/Eimeria_detection/Inventory_contents_all.csv")
+## Import qPCR data
+qpcrData2016 <- read.csv("../raw_data/Eimeria_detection/qPCR_2016.csv")
+names(qpcrData2016)[1] <- "Mouse_ID"
+qpcrData2017 <- read.csv("../raw_data/Eimeria_detection/qPCR_2017.csv")
 
 #################### Load data ####################
 # General data
@@ -21,8 +30,36 @@ otherRodentsID <- c(miceTable$Mouse_ID[miceTable$Species %in% "Pet mus musculus"
 myData <- miceTable[!miceTable$Mouse_ID %in% otherRodentsID,]
 
 ##################### Eimeria detection oocysts flotation ####################
-source("../R/functions/addFlotationResults.R")
-myData <- addFlotationResults(myData)$newDF
+flotDF$OPG <- as.numeric(as.character(flotDF$OPG))
+flotDF <- flotDF[!is.na(flotDF$OPG),]
+
+## Lorenzo count (in 1mL dilution) for comparison
+LorenzoDF <- LorenzoDF[!is.na(LorenzoDF$OPG),]
+
+### Plot comparative Alice (dilution 0.1mL for most samples) and Lorenzo (dilution 1mL)
+compData <- merge(flotDF, LorenzoDF, by = "Mouse_ID", all = T)
+
+# merge with current data
+myData <- merge(myData, flotDF, all = T)
+
+### Comparison 2 methods of flotation
+# How many samples new were detected by decreasing the dilution?
+N1 <- sum(compData$OPG.x > 0 & compData$OPG.y == 0, na.rm = T)
+
+adjrsq <- summary(lm(compData$OPG.x ~ compData$OPG.y))$adj.r.squared
+
+plot1 <- ggplot(
+  compData, aes(x = OPG.x+1, y = OPG.y+1)) +
+  geom_point(alpha = .5, size = 4) +
+  coord_equal(ratio=1) +
+  xlab("OPG + 1 counted in 0.1ml") + 
+  ylab("OPG + 1 counted in 1ml") + 
+  geom_smooth(method = "lm", se = FALSE, col = "red") +
+  geom_abline(intercept = 0, slope = 1, linetype = 3) +
+  scale_y_log10() + 
+  scale_x_log10() +
+  theme_bw()
+plot1
 
 # Remove other rodents
 myData <- myData[!myData$Mouse_ID %in% otherRodentsID,]
@@ -30,18 +67,6 @@ myData <- myData[!myData$Mouse_ID %in% otherRodentsID,]
 # correct year
 myData$Year[is.na(myData$Year)] <- myData$year[is.na(myData$Year)]
 myData <- subset(myData, select = -c(year))
-
-# How many new samples were found given the new dilution (0.1mL)
-N1 <- comparisonFlot(myData)$N1
-N1
-
-# What is the adjusted R square between these 2 dilutions
-adjrsq <- comparisonFlot(myData)$adjrsq
-adjrsq
-
-# Plot the comparison
-plot1 <- plotCompData(myData)
-plot1
 
 # plot OPG that we keep
 plotSmoothOPG <- ggplot(myData[myData$OPG >0,], aes(x = HI, y = OPG+1)) +
@@ -53,35 +78,108 @@ plotSmoothOPG <- ggplot(myData[myData$OPG >0,], aes(x = HI, y = OPG+1)) +
   theme(legend.title = element_blank())
 plotSmoothOPG
 
-plotSmoothOPGall <- ggplot(myData[myData$Year %in% 2015:2017,], 
-                           aes(x = HI, y = OPG+1)) +
-  geom_point(aes(fill = Year), pch = 21, alpha = .8, size = 4) +
-  geom_smooth(col = "black") +
-  scale_y_log10() +
-  theme_bw() +
-  theme(legend.position="top") +
-  theme(legend.title = element_blank())
-plotSmoothOPGall
-
 ##################### Eimeria detection PCR ####################
-source("../R/functions/addPCRresults.R")
-myData <- addPCRresults(myData)
+
+#correct wrong names
+toremove <- paste0(paste0("X",1:30, "_"), collapse = "|")
+names(PCRdf) <- gsub(toremove, "", names(PCRdf))
+names(PCRdf)[names(PCRdf)%in%"ID_mouse"] <- "Mouse_ID"
+names(PCRdf)[names(PCRdf)%in%"Year"] <- "yearpcr"
+  
+PCRdf$Mouse_ID = gsub(" ", "", PCRdf$Mouse_ID) # fix the extra space
+
+# by default, I enter PCRstatus as negative, then overwrite
+PCRdf$PCRstatus = "negative"
+  
+# PCR positive = one of the 3 other markers than AP5 sequenced 
+# (Ap5 was used for detection only, the other markers for confirmation)
+PCRdf$PCRstatus[PCRdf$`18S_Seq` == "positive" | 
+                  PCRdf$COI_Seq == "positive" | 
+                  PCRdf$ORF470_Seq == "positive"] <- "positive"
+
+# PCRstatus is NA if everything is NA
+PCRdf$PCRstatus[is.na(PCRdf$Ap5_PCR) & 
+                  is.na(PCRdf$`18S_Seq`) &
+                  is.na(PCRdf$COI_Seq) &
+                  is.na(PCRdf$ORF470_Seq)] <- NA
+
+# merge with actual df
+myData <- merge(myData, PCRdf, all = T)
 
 # Remove other rodents
 myData <- myData[!myData$Mouse_ID %in% otherRodentsID,]
 
 # correct year
-myData$Year[is.na(myData$Year)] <- myData$year[is.na(myData$Year)]
-myData <- subset(myData, select = -c(year))
+myData$Year[is.na(myData$Year)] <- myData$yearpcr[is.na(myData$Year)]
+myData <- subset(myData, select = -c(yearpcr))
 
 #################### Eimeria detection qPCR ####################
-source("../R/functions/addqPCRresults.R")
+
+  
+  # Merge both years
+  qpcrData <- rbind(qpcrData2016, qpcrData2017Clean)
+  
+  #####
+  
+  # Did Enas calculate the other way around? 
+  qpcrData$delta_ct_cewe[qpcrData$observer_qpcr == "Enas"] <- 
+    - qpcrData$delta_ct_cewe[qpcrData$observer_qpcr == "Enas"]
+  
+  qpcrData$delta_ct_ilwe[qpcrData$observer_qpcr == "Enas"] <- 
+    - qpcrData$delta_ct_ilwe[qpcrData$observer_qpcr == "Enas"]
+  
+  # deltaCT = ct eimeria - ct mouse. If high infection, low deltaCT
+  # -deltaCT = ct mouse - ct eimeria
+  qpcrData$qPCRsummary[qpcrData$delta_ct_cewe > 6 & qpcrData$delta_ct_ilwe > 6] <- "non infected"
+  qpcrData$qPCRsummary[qpcrData$delta_ct_cewe < 6 & qpcrData$delta_ct_ilwe > 6] <- "infected cecum"
+  qpcrData$qPCRsummary[qpcrData$delta_ct_cewe > 6 & qpcrData$delta_ct_ilwe < 6] <- "infected ileum"
+  
+  qpcrData$qPCRsummary[
+    qpcrData$delta_ct_cewe < 6 & 
+      qpcrData$delta_ct_ilwe < 6 & 
+      qpcrData$delta_ct_cewe < qpcrData$delta_ct_ilwe] <- "cecum stronger"
+  qpcrData$qPCRsummary[
+    qpcrData$delta_ct_cewe < 6 & 
+      qpcrData$delta_ct_ilwe < 6 & 
+      qpcrData$delta_ct_cewe > qpcrData$delta_ct_ilwe] <- "ileum stronger"
+  
+  # Infected or not?
+  qpcrData$qPCRstatus <- "positive"
+  qpcrData$qPCRstatus[is.na(qpcrData$qPCRsummary)] <- NA
+  qpcrData$qPCRstatus[qpcrData$qPCRsummary %in% "non infected"] <- "negative"
+  
+  # and keep the infected segment value OR the higher value 
+  qpcrData$delta_ct[
+    qpcrData$qPCRsummary %in% c("infected cecum", "cecum stronger")] <- 
+    qpcrData$delta_ct_cewe[
+      qpcrData$qPCRsummary %in% c("infected cecum", "cecum stronger")] 
+  
+  qpcrData$delta_ct[
+    qpcrData$qPCRsummary %in% c("infected ileum", "ileum stronger")] <- 
+    qpcrData$delta_ct_ilwe[
+      qpcrData$qPCRsummary %in% c("infected ileum", "ileum stronger")] 
+  
+  # Turn around
+  qpcrData$delta_ct_MminusE <- - qpcrData$delta_ct
+  
+  # Set floor values
+  qpcrData$delta_ct_MminusE[is.na(qpcrData$delta_ct_MminusE)] <- -6
+  
+  # To pass positive I add 6 to all
+  # qpcrData$delta_ct_MminusE <- qpcrData$delta_ct_MminusE + 6
+  
+  # merge
+  aDataFrame <- merge(aDataFrame, qpcrData, by = "Mouse_ID", all = T)
+  
+  return(aDataFrame)
+}
+
+
 myData <- addqPCRresults(myData, 
                          pathtoqPCR2016 = "../raw_data/Eimeria_detection/qPCR_2016.csv",
                          pathtoqPCR2017 = "../raw_data/Eimeria_detection/qPCR_2017.csv")
 
-# Remove other rodents
-myData <- myData[!myData$Mouse_ID %in% otherRodentsID,]
+
 
 # plot qPCR
 plotSmoothqPCR <- ggplot(myData[myData$delta_ct_cewe < 6,], aes(x = HI)) +
