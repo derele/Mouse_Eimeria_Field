@@ -78,6 +78,8 @@ plotSmoothOPG <- ggplot(myData[myData$OPG >0,], aes(x = HI, y = OPG+1)) +
   theme(legend.title = element_blank())
 plotSmoothOPG
 
+################### END Eimeria detection oocysts flotation ##################
+
 ##################### Eimeria detection PCR ####################
 
 #correct wrong names
@@ -113,71 +115,86 @@ myData <- myData[!myData$Mouse_ID %in% otherRodentsID,]
 myData$Year[is.na(myData$Year)] <- myData$yearpcr[is.na(myData$Year)]
 myData <- subset(myData, select = -c(yearpcr))
 
+################## END Eimeria detection PCR #################
+
 #################### Eimeria detection qPCR ####################
 
-  
-  # Merge both years
-  qpcrData <- rbind(qpcrData2016, qpcrData2017Clean)
-  
-  #####
-  
-  # Did Enas calculate the other way around? 
-  qpcrData$delta_ct_cewe[qpcrData$observer_qpcr == "Enas"] <- 
-    - qpcrData$delta_ct_cewe[qpcrData$observer_qpcr == "Enas"]
-  
-  qpcrData$delta_ct_ilwe[qpcrData$observer_qpcr == "Enas"] <- 
-    - qpcrData$delta_ct_ilwe[qpcrData$observer_qpcr == "Enas"]
-  
-  # deltaCT = ct eimeria - ct mouse. If high infection, low deltaCT
-  # -deltaCT = ct mouse - ct eimeria
-  qpcrData$qPCRsummary[qpcrData$delta_ct_cewe > 6 & qpcrData$delta_ct_ilwe > 6] <- "non infected"
-  qpcrData$qPCRsummary[qpcrData$delta_ct_cewe < 6 & qpcrData$delta_ct_ilwe > 6] <- "infected cecum"
-  qpcrData$qPCRsummary[qpcrData$delta_ct_cewe > 6 & qpcrData$delta_ct_ilwe < 6] <- "infected ileum"
-  
-  qpcrData$qPCRsummary[
-    qpcrData$delta_ct_cewe < 6 & 
-      qpcrData$delta_ct_ilwe < 6 & 
-      qpcrData$delta_ct_cewe < qpcrData$delta_ct_ilwe] <- "cecum stronger"
-  qpcrData$qPCRsummary[
-    qpcrData$delta_ct_cewe < 6 & 
-      qpcrData$delta_ct_ilwe < 6 & 
-      qpcrData$delta_ct_cewe > qpcrData$delta_ct_ilwe] <- "ileum stronger"
-  
-  # Infected or not?
-  qpcrData$qPCRstatus <- "positive"
-  qpcrData$qPCRstatus[is.na(qpcrData$qPCRsummary)] <- NA
-  qpcrData$qPCRstatus[qpcrData$qPCRsummary %in% "non infected"] <- "negative"
-  
-  # and keep the infected segment value OR the higher value 
-  qpcrData$delta_ct[
-    qpcrData$qPCRsummary %in% c("infected cecum", "cecum stronger")] <- 
-    qpcrData$delta_ct_cewe[
-      qpcrData$qPCRsummary %in% c("infected cecum", "cecum stronger")] 
-  
-  qpcrData$delta_ct[
-    qpcrData$qPCRsummary %in% c("infected ileum", "ileum stronger")] <- 
-    qpcrData$delta_ct_ilwe[
-      qpcrData$qPCRsummary %in% c("infected ileum", "ileum stronger")] 
-  
-  # Turn around
-  qpcrData$delta_ct_MminusE <- - qpcrData$delta_ct
-  
-  # Set floor values
-  qpcrData$delta_ct_MminusE[is.na(qpcrData$delta_ct_MminusE)] <- -6
-  
-  # To pass positive I add 6 to all
-  # qpcrData$delta_ct_MminusE <- qpcrData$delta_ct_MminusE + 6
-  
-  # merge
-  aDataFrame <- merge(aDataFrame, qpcrData, by = "Mouse_ID", all = T)
-  
-  return(aDataFrame)
-}
+# Correct qPCR2017 before merging
+qpcrData2017Clean <- qpcrData2017["Mouse_ID"]
+
+# Add CEWE
+qpcrData2017Clean <- merge(qpcrData2017Clean,
+                           qpcrData2017[qpcrData2017$tissue == "CEWE", c("Mouse_ID", "deltaCt")],
+                           all.x = T)
+names(qpcrData2017Clean)[names(qpcrData2017Clean) == "deltaCt"] <- "delta_ct_cewe"
+
+# Add ILWE
+qpcrData2017Clean <- merge(qpcrData2017Clean,
+                           qpcrData2017[qpcrData2017$tissue == "ILWE", c("Mouse_ID", "deltaCt")],
+                           all.x = T)
+names(qpcrData2017Clean)[names(qpcrData2017Clean) == "deltaCt"] <- "delta_ct_ilwe"
+
+# Add observer
+qpcrData2017Clean$observer_qpcr <- "Lorenzo"
+
+# Merge both years
+qpcrData <- rbind(qpcrData2016, qpcrData2017Clean)
+
+# Did Enas calculate the other way around???? 
+qpcrData$delta_ct_cewe[qpcrData$observer_qpcr == "Enas"] <- 
+  - qpcrData$delta_ct_cewe[qpcrData$observer_qpcr == "Enas"]
+
+qpcrData$delta_ct_ilwe[qpcrData$observer_qpcr == "Enas"] <- 
+  - qpcrData$delta_ct_ilwe[qpcrData$observer_qpcr == "Enas"]
+
+# deltaCT = ct eimeria - ct mouse. If high infection, low deltaCT
+# -deltaCT = ct mouse - ct eimeria
+qpcrData$qPCRsummary[qpcrData$delta_ct_cewe > 6 & qpcrData$delta_ct_ilwe > 6] <- "non infected"
+qpcrData$qPCRsummary[qpcrData$delta_ct_cewe < 6 & qpcrData$delta_ct_ilwe > 6] <- "infected cecum"
+qpcrData$qPCRsummary[qpcrData$delta_ct_cewe > 6 & qpcrData$delta_ct_ilwe < 6] <- "infected ileum"
+
+qpcrData$qPCRsummary[
+  qpcrData$delta_ct_cewe < 6 & 
+    qpcrData$delta_ct_ilwe < 6 & 
+    qpcrData$delta_ct_cewe < qpcrData$delta_ct_ilwe] <- "cecum stronger"
+qpcrData$qPCRsummary[
+  qpcrData$delta_ct_cewe < 6 & 
+    qpcrData$delta_ct_ilwe < 6 & 
+    qpcrData$delta_ct_cewe > qpcrData$delta_ct_ilwe] <- "ileum stronger"
+
+# Infected or not?
+qpcrData$qPCRstatus <- "positive"
+qpcrData$qPCRstatus[is.na(qpcrData$qPCRsummary)] <- NA
+qpcrData$qPCRstatus[qpcrData$qPCRsummary %in% "non infected"] <- "negative"
+
+# and keep the infected segment value OR the higher value 
+qpcrData$delta_ct[
+  qpcrData$qPCRsummary %in% c("infected cecum", "cecum stronger")] <- 
+  qpcrData$delta_ct_cewe[
+    qpcrData$qPCRsummary %in% c("infected cecum", "cecum stronger")] 
+
+qpcrData$delta_ct[
+  qpcrData$qPCRsummary %in% c("infected ileum", "ileum stronger")] <- 
+  qpcrData$delta_ct_ilwe[
+    qpcrData$qPCRsummary %in% c("infected ileum", "ileum stronger")] 
+
+# Turn around
+qpcrData$delta_ct_MminusE <- - qpcrData$delta_ct
+
+# Set floor values
+qpcrData$delta_ct_MminusE[is.na(qpcrData$delta_ct_MminusE)] <- -6
+
+# To pass positive I add 6 to all
+# qpcrData$delta_ct_MminusE <- qpcrData$delta_ct_MminusE + 6
+
+# merge
+myData2 <- merge(myData, qpcrData, by = "Mouse_ID", all = T)
 
 
-myData <- addqPCRresults(myData, 
-                         pathtoqPCR2016 = "../raw_data/Eimeria_detection/qPCR_2016.csv",
-                         pathtoqPCR2017 = "../raw_data/Eimeria_detection/qPCR_2017.csv")
+
+
+
+
 
 
 
@@ -394,3 +411,74 @@ totalQuantitative <- nrow(myDataHI[!is.na(myDataHI$OPG) |
 # * `r N_QuantitativePositive` out of `r totalQuantitative` are positive for either flotation or qPCR, and have an hybrid index.
 
 # to fix here!!
+
+
+
+###########
+source("../../../R/functions/addPCRresults.R")
+source("../../../R/functions/addqPCRresults.R")
+source("../../../R/functions/addFlotationResults.R")
+
+myFinal <- addPCRresults(finalData, pathtodata = "../Inventory_contents_all.csv")
+myFinal <- addFlotationResults(myFinal, pathtofinalOO = "../FINALOocysts2015to2017.csv",
+                               pathtolorenzodf = "../Eimeria_oocysts_2015&2017_Lorenzo.csv")$new
+
+myFinal <- addqPCRresults(myFinal, pathtoqPCR2016 = "../qPCR_2016.csv", pathtoqPCR2017 = "../qPCR_2017.csv")
+
+myFinal$year[is.na(myFinal$year)] <- myFinal$year.x[is.na(myFinal$year)]
+myFinal$year[is.na(myFinal$year)] <- myFinal$year.y[is.na(myFinal$year)]
+myFinal$year <- as.factor(myFinal$year)
+
+summary(lm(OPG ~ delta_ct_cewe, myFinal))
+
+ggplot(myFinal, aes(y = myFinal$delta_ct_ilwe, x = OPG+1)) +
+  scale_x_log10() +
+  geom_point(aes(col = year), size = 4) +
+  geom_smooth(method = "lm")
+
+ggplot(myFinal, aes(y = myFinal$delta_ct_cewe, x = OPG+1)) +
+  scale_x_log10() +
+  geom_point(aes(col = year), size = 4) +
+  geom_smooth(method = "lm") 
+
+# Plot 1 detection methods compared
+ggplot(myFinal, aes(x = PCRstatus, y = OPG + 1)) +
+  scale_y_log10() +
+  # geom_boxplot()+
+  geom_violin() +
+  geom_jitter(aes(col = year), width = .1, size = 2, alpha = .5) +
+  theme_bw()
+
+# Plot 2 detection methods compared
+ggplot(myFinal, aes(x = qPCRstatus, y = OPG + 1)) +
+  scale_y_log10() +
+  geom_boxplot()+
+  geom_jitter(aes(col = year), width = .1, size = 2, alpha = .5) +
+  theme_bw()
+
+# How to set up a limit of detection for qPCR
+ggplot(myFinal, aes(x = OPG > 0, y = delta_ct_cewe)) +
+  geom_boxplot()+
+  geom_point(aes(col = year), size = 2, alpha = .5) +
+  theme_bw()
+
+ggplot(myFinal, aes(x = myFinal$PCRstatus, y = delta_ct_cewe)) +
+  geom_boxplot()+
+  geom_point(aes(col = year), size = 2, alpha = .5) +
+  theme_bw()
+
+myFinal$FlotOrPcr <- "negative"
+myFinal$FlotOrPcr[myFinal$OPG > 0 | myFinal$PCRstatus == "positive"] <- "positive"
+
+ggplot(myFinal, aes(x = myFinal$FlotOrPcr, y = delta_ct_cewe)) +
+  geom_violin()+
+  geom_point(aes(col = year), size = 2, alpha = .5) +
+  geom_hline(yintercept = 6) +
+  theme_bw()
+
+## Which samples have no qPCR?
+# 2017
+myFinal$Mouse_ID[!is.na(myFinal$delta_ct_cewe)]
+which(duplicated(myFinal$Mouse_ID))
+
+
