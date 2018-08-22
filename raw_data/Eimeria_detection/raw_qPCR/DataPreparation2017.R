@@ -140,27 +140,12 @@ OKData <- OKData[OKData$Ct.Dev..SYBR <= 3 ,]
 myTiles(OKData)
 
 # 3. Keep plates where at least Mouse primers worked (our amplification control)
-OKData[!is.na(OKData$Target.SYBR) & OKData$Target.SYBR == "mouse" & is.na(OKData$Ct.Mean.SYBR),]
-myTiles(OKData)
-
 mouseData <- OKData[OKData$Target.SYBR %in% "mouse" & OKData$No..Tm.SYBR %in% 1,]
 eimeriaData <- OKData[OKData$Target.SYBR %in% "eimeria",]
 
-toKeep
+OKData <- rbind(mouseData, eimeriaData)
 
-mouseData
-
-# 4. Eventually, remove duplicates on different plates (based on sd)
-OKData$nameTarget <- paste(OKData$Name, OKData$Target.SYBR)
-
-sumOKData <- OKData %>% 
-  group_by(nameTarget) %>% 
-  summarise(isDup = length(nameTarget)) %>% 
-  data.frame()
-
-myTiles(OKData)
-
-##### Calculate delta ct #####
+# 4. Calculate delta ct
 
 calculateDeltaCt <- function(df){
   # Keep one value per plate per fullName (so per triplicate)
@@ -171,13 +156,90 @@ calculateDeltaCt <- function(df){
   sumDataEimeria <- df[df$Target.SYBR %in% "eimeria",]
   
   mergedData <- merge(sumDataEimeria, sumDataMouse, 
-                      by = c("Mouse_ID", "fileName", "tissue"))
+                      by = c("Mouse_ID", "fileName", "tissue", "Name"))
   
-  # mergedData$deltaCt <- as.numeric(mergedData$Ct.Mean.SYBR.x) - as.numeric(mergedData$Ct.Mean.SYBR.y)
+  mergedData$deltaCt <- as.numeric(mergedData$Ct.Mean.SYBR.x) - as.numeric(mergedData$Ct.Mean.SYBR.y)
   return(mergedData)
 }
 
-finalData <- calculateDeltaCt(OKData)
+OKData <- calculateDeltaCt(OKData)
+
+# 5. Eventually, remove duplicates on different plates (based on sd)
+sumOKData <- OKData %>% 
+  group_by(Name) %>% 
+  summarise(isDup = length(Name)) %>% 
+  data.frame()
+
+haveDuplicates <- OKData[OKData$Name %in% sumOKData$Name[sumOKData$isDup > 1],]
+
+# Test: when several replicates, are they all going in the same direction (deltact > 6 or <6 for all)? 
+
+testContradcition <- haveDuplicates %>% 
+  group_by(Name) %>% 
+  mutate(isContradictorybetweenDuplicates = length(table(deltaCt > 6))) %>% 
+  data.frame()
+table(testContradcition$isContradictorybetweenDuplicates) 
+# hum, 29 tries contradictory. Check manually.
+
+ggplot(haveDuplicates, aes(No..Tm.SYBR.x, deltaCt)) +
+  geom_boxplot() +
+  geom_point() +
+  theme_bw() +
+  scale_y_continuous(breaks = 0:20)
+haveDuplicates$Mouse_ID
+
+
+#### -> here i am lost
+testContradcition$isContradictorybetweenDuplicates # perfect, always in the same sense :)
+
+# we want to keep the replicate that minimize both sd
+
+test <- toCheck[toCheck$Name == toCheck$Name[1],]
+
+# per group
+keepBestPerSample <- function(x){
+  X = x[x$Ct.Dev..SYBR.x == min(x$Ct.Dev..SYBR.x),] # mouse minimal sd
+  Y = x[x$Ct.Dev..SYBR.y == min(x$Ct.Dev..SYBR.y),] # eimeria minimal sd
+  if(X$fileName == Y$fileName){
+    unique <- rbind(unique, X)
+  } else {
+    unique <- rbind(unique, X, Y)
+  }
+  return(unique)
+}
+
+i = unique(toCheck$Name)[1]
+x = toCheck[toCheck$Name %in% i,]
+
+keepBestPerSample(x)
+
+unique <- data.frame()
+
+for (i in unique(toCheck$Name)){
+  x = toCheck[toCheck$Name %in% i,]
+  print(x)
+  # unique = rbind(unique, keepBestPerSample(x))
+}
+
+
+
+
+
+by(data = toCheck, INDICES = toCheck$Name, function(x){keepBestPerSample(x)})
+
+onEssaye <- toCheck %>% 
+  group_by(Name) %>% 
+  mutate(isContradictorybetweenDuplicates = length(table(test$deltaCt > 6))) %>% 
+  data.frame()
+lapply(min, toCheck$Ct.Dev..SYBR.x, toCheck$Ct.Dev..SYBR.y, min)
+
+myTiles(OKData)
+
+# Is Tm in Eimeria (=there should be DNA) linked to deltaCt...?
+ggplot(finalData, aes(x = finalData$No..Tm.SYBR.x, y = deltaCt)) +
+  geom_boxplot() +
+  geom_jitter() +
+  theme_bw()
 
 library(ggplot2)
 ggplot(finalData, aes(x = finalData$tissue, y = finalData$deltaCt)) +
