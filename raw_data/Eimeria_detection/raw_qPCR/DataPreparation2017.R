@@ -41,7 +41,7 @@ rawMeltData[rawMeltData$fileName %in% "QPCR13.06.2018correct.XLS.csv" &
               rawMeltData$Pos %in% paste0("F", 7:12), "Name"] <- "CEWE_AA_0367"
 
 rawData <- merge(rawData, 
-                 rawMeltData[c("fileName", "Name", "Pos", "No..Tm.SYBR")],
+                 rawMeltData[c("fileName", "Name", "Pos", "No..Tm.SYBR", "Tm.x..SYBR")],
                  by = c("fileName", "Name", "Pos"), all = T)
 
 # Remove controls
@@ -114,11 +114,6 @@ myTiles <- function(df){
 
 myTiles(rawData)
 
-# Separate here failed and ok data
-# OKData <- rawData[!is.na(rawData$No..Tm.SYBR) &
-#                           rawData$No..Tm.SYBR != 0,]
-# myTiles(OKData)
-
 ##### Clean data #####
 ## 1. Which samples are complete (mouse+eimeria triplicate, low sd)
 # triplicate = same file, same name, same target, same mean
@@ -134,136 +129,118 @@ OKData <- rawData[!rawData$fullName %in%
                    sumOKData[sumOKData$count < 3 , ]$fullName, ]
 myTiles(OKData)
 
-# 2. how are the sd? keep < 3
+# 2. Let's have a look at our melting curve information...
+ggplot(OKData, aes(as.numeric(as.character(Tm.x..SYBR)), col = Target.SYBR)) +
+  geom_histogram(fill = NA, binwidth = .1) +
+  geom_vline(xintercept = 76.3)+
+  facet_grid(.~Target.SYBR) +
+  theme_bw()
+
+# based on these plots, I would take 10-50 Tm for eimeria positive, and 50 to 80 for mouse positive
+OKData$meltingcurveStatus[OKData$Target.SYBR %in% "eimeria"] <- "NOeimeriaDNA"
+OKData$meltingcurveStatus[
+  as.numeric(as.character(OKData$Tm.x..SYBR)) < 76.3 & 
+    OKData$Target.SYBR %in% "eimeria"] <- "eimeriaDNA"
+OKData$meltingcurveStatus[OKData$Target.SYBR %in% "mouse"] <- "NOmouseDNA"
+OKData$meltingcurveStatus[
+  as.numeric(as.character(OKData$Tm.x..SYBR)) > 76.3 & 
+    OKData$Target.SYBR %in% "mouse"] <- "mouseDNA"
+OKData$meltingcurveStatus[OKData$fileName %in% "QPCR30.05.2018.XLS.csv"] <- "missingInfo"
+
+# 3. how are the sd? keep < 3
 badSd <- OKData[!is.na(OKData$Ct.Dev..SYBR) & OKData$Ct.Dev..SYBR > 3 ,]
 OKData <- OKData[OKData$Ct.Dev..SYBR <= 3 ,]
 myTiles(OKData)
 
-# 3. Keep plates where at least Mouse primers worked (our amplification control)
-mouseData <- OKData[OKData$Target.SYBR %in% "mouse" & OKData$No..Tm.SYBR %in% 1,]
-eimeriaData <- OKData[OKData$Target.SYBR %in% "eimeria",]
+# 4. Remove mice DNA if not present 3 times
+checkOKData <- OKData[OKData$Target.SYBR %in% "mouse",] %>%
+  group_by(fullName) %>%
+  summarize(mouseMeltingCurveStatus = length(table(meltingcurveStatus)),
+            isMousePositive = meltingcurveStatus[1]) %>%
+  data.frame()
 
-OKData <- rbind(mouseData, eimeriaData)
+toremove <- checkOKData$fullName[checkOKData$mouseMeltingCurveStatus %in% 2 | 
+  checkOKData$isMousePositive %in% "NOmouseDNA"]
+
+OKData <- OKData[!OKData$fullName %in% toremove,]
+
+myTiles(OKData)
+
+# 5. Remove also if Emeria DNA is sometimes here, sometimes not. Should be 3 positive or 3 negative!!
+checkOKData <- OKData[OKData$Target.SYBR %in% "eimeria",] %>% 
+  group_by(fullName) %>% 
+  summarize(eimeriaMeltingCurveStatus = length(table(meltingcurveStatus))) %>% 
+  data.frame()
+
+OKData <- OKData[!OKData$fullName %in% checkOKData$fullName[checkOKData$eimeriaMeltingCurveStatus > 1],]
+
+myTiles(OKData)
 
 # 4. Calculate delta ct
-
 calculateDeltaCt <- function(df){
-  # Keep one value per plate per fullName (so per triplicate)
-  df <- df[!duplicated(df[c("fullName")]),]
-  
+  # remove individual values for position and Ct, so that we avoid useless repeats (we care about Ct Sd and Mean)
+  df <- df[names(df)[!names(df) %in% c("Ct.SYBR", "Pos", "Tm.x..SYBR")]]
   ## Calculate deltaCt per plate
   sumDataMouse <- df[df$Target.SYBR %in% "mouse",]
   sumDataEimeria <- df[df$Target.SYBR %in% "eimeria",]
-  
-  mergedData <- merge(sumDataEimeria, sumDataMouse, 
+  mergedData <- merge(sumDataEimeria, sumDataMouse,
                       by = c("Mouse_ID", "fileName", "tissue", "Name"))
-  
-  mergedData$deltaCt <- as.numeric(mergedData$Ct.Mean.SYBR.x) - as.numeric(mergedData$Ct.Mean.SYBR.y)
+  mergedData <- unique(mergedData)
+  mergedData$deltaCt <- as.numeric(as.character(mergedData$Ct.Mean.SYBR.x)) - 
+    as.numeric(as.character(mergedData$Ct.Mean.SYBR.y))
   return(mergedData)
 }
 
 OKData <- calculateDeltaCt(OKData)
-
-# 5. Eventually, remove duplicates on different plates (based on sd)
-sumOKData <- OKData %>% 
-  group_by(Name) %>% 
-  summarise(isDup = length(Name)) %>% 
-  data.frame()
-
-haveDuplicates <- OKData[OKData$Name %in% sumOKData$Name[sumOKData$isDup > 1],]
-
-# Test: when several replicates, are they all going in the same direction (deltact > 6 or <6 for all)? 
-
-testContradcition <- haveDuplicates %>% 
-  group_by(Name) %>% 
-  mutate(isContradictorybetweenDuplicates = length(table(deltaCt > 6))) %>% 
-  data.frame()
-table(testContradcition$isContradictorybetweenDuplicates) 
-# hum, 29 tries contradictory. Check manually.
-
-ggplot(haveDuplicates, aes(No..Tm.SYBR.x, deltaCt)) +
-  geom_boxplot() +
-  geom_point() +
-  theme_bw() +
-  scale_y_continuous(breaks = 0:20)
-haveDuplicates$Mouse_ID
-
-
-#### -> here i am lost
-testContradcition$isContradictorybetweenDuplicates # perfect, always in the same sense :)
-
-# we want to keep the replicate that minimize both sd
-
-test <- toCheck[toCheck$Name == toCheck$Name[1],]
-
-# per group
-keepBestPerSample <- function(x){
-  X = x[x$Ct.Dev..SYBR.x == min(x$Ct.Dev..SYBR.x),] # mouse minimal sd
-  Y = x[x$Ct.Dev..SYBR.y == min(x$Ct.Dev..SYBR.y),] # eimeria minimal sd
-  if(X$fileName == Y$fileName){
-    unique <- rbind(unique, X)
-  } else {
-    unique <- rbind(unique, X, Y)
-  }
-  return(unique)
+myTiles2 <- function(df){
+  dat_long <- data.frame(tissue = rawData$tissue, 
+                         Mouse_ID = rawData$Mouse_ID,
+                         value = 0)
+  
+  dat_long <- unique(dat_long)
+  dat_long[paste(dat_long$tissue, dat_long$Mouse_ID) %in% 
+             paste(df$tissue, df$Mouse_ID), "value"] <- 1
+  
+  # discrete vs continuous
+  dat_long$value <- factor(dat_long$value)
+  
+  gg <- ggplot(dat_long)
+  # fill + legend, gray border
+  gg <- gg + geom_tile(aes(x = Mouse_ID, y = tissue, fill = value),
+                       color="#7f7f7f")
+  # custom fill colors
+  gg <- gg + scale_fill_manual(values=c("grey", "green"))
+  # no labels
+  gg <- gg + labs(x=NULL, y=NULL)
+  # remove some chart junk
+  gg <- gg + theme_bw() + theme(panel.grid=element_blank(),
+                                panel.border=element_blank(),
+                                axis.text.x = element_text(angle = 45, hjust = 1, size=3) )
+  return(list(gg, table(dat_long$tissue, dat_long$value)))
 }
 
-i = unique(toCheck$Name)[1]
-x = toCheck[toCheck$Name %in% i,]
+myTiles2(OKData)
 
-keepBestPerSample(x)
-
-unique <- data.frame()
-
-for (i in unique(toCheck$Name)){
-  x = toCheck[toCheck$Name %in% i,]
-  print(x)
-  # unique = rbind(unique, keepBestPerSample(x))
-}
-
-
-
-
-
-by(data = toCheck, INDICES = toCheck$Name, function(x){keepBestPerSample(x)})
-
-onEssaye <- toCheck %>% 
-  group_by(Name) %>% 
-  mutate(isContradictorybetweenDuplicates = length(table(test$deltaCt > 6))) %>% 
-  data.frame()
-lapply(min, toCheck$Ct.Dev..SYBR.x, toCheck$Ct.Dev..SYBR.y, min)
-
-myTiles(OKData)
-
-# Is Tm in Eimeria (=there should be DNA) linked to deltaCt...?
-ggplot(finalData, aes(x = finalData$No..Tm.SYBR.x, y = deltaCt)) +
+## AND PLOT
+ggplot(OKData, aes(meltingcurveStatus.x, deltaCt)) +
   geom_boxplot() +
   geom_jitter() +
-  theme_bw()
+  theme_bw() +
+  geom_hline(yintercept = 6, col = "red")
 
-library(ggplot2)
-ggplot(finalData, aes(x = finalData$tissue, y = finalData$deltaCt)) +
-  geom_violin() +
-  geom_jitter(aes(col = finalData$tissue), size = 3) +
-  theme_bw()
+## And save
+OKData$year <- 2017
 
-ggplot(finalData, aes(x = finalData$deltaCt)) +
-  geom_histogram(aes(y=..density..), bins = 40) + 
-  geom_density(aes(y=..density..)) +
-  theme_bw()
-
-finalData$year <- 2017
-
-finalDataClean <- finalData["Mouse_ID"]
+finalDataClean <- OKData["Mouse_ID"]
 # Add CEWE
 finalDataClean <- merge(finalDataClean,
-                        finalData[finalData$tissue %in% "CEWE", c("Mouse_ID", "deltaCt")],
+                        OKData[OKData$tissue %in% "CEWE", c("Mouse_ID", "deltaCt")],
                            all.x = T)
 names(finalDataClean)[names(finalDataClean) %in% "deltaCt"] <- "delta_ct_cewe"
 
 # Add ILWE
 finalDataClean <- merge(finalDataClean,
-                           finalData[finalData$tissue %in% "ILWE", c("Mouse_ID", "deltaCt")],
+                        OKData[OKData$tissue %in% "ILWE", c("Mouse_ID", "deltaCt")],
                            all.x = T)
 names(finalDataClean)[names(finalDataClean) %in% "deltaCt"] <- "delta_ct_ilwe"
 
@@ -271,35 +248,35 @@ names(finalDataClean)[names(finalDataClean) %in% "deltaCt"] <- "delta_ct_ilwe"
 finalDataClean$observer_qpcr <- "Lorenzo"
 
 # Write out
-write.csv(finalData, "../qPCR_2017.csv", row.names = F)
+write.csv(finalDataClean, "../qPCR_2017.csv", row.names = F)
 
 # ###########
 # source("../../../R/functions/addPCRresults.R")
 # source("../../../R/functions/addqPCRresults.R")
 # source("../../../R/functions/addFlotationResults.R")
-# 
+#
 # myFinal <- addPCRresults(finalData, pathtodata = "../Inventory_contents_all.csv")
 # myFinal <- addFlotationResults(myFinal, pathtofinalOO = "../FINALOocysts2015to2017.csv",
 #                                pathtolorenzodf = "../Eimeria_oocysts_2015&2017_Lorenzo.csv")$new
-# 
+#
 # myFinal <- addqPCRresults(myFinal, pathtoqPCR2016 = "../qPCR_2016.csv", pathtoqPCR2017 = "../qPCR_2017.csv")
-# 
+#
 # myFinal$year[is.na(myFinal$year)] <- myFinal$year.x[is.na(myFinal$year)]
 # myFinal$year[is.na(myFinal$year)] <- myFinal$year.y[is.na(myFinal$year)]
 # myFinal$year <- as.factor(myFinal$year)
-# 
+#
 # summary(lm(OPG ~ delta_ct_cewe, myFinal))
-# 
+#
 # ggplot(myFinal, aes(y = myFinal$delta_ct_ilwe, x = OPG+1)) +
 #   scale_x_log10() +
 #   geom_point(aes(col = year), size = 4) +
 #   geom_smooth(method = "lm")
-# 
+#
 # ggplot(myFinal, aes(y = myFinal$delta_ct_cewe, x = OPG+1)) +
 #   scale_x_log10() +
 #   geom_point(aes(col = year), size = 4) +
-#   geom_smooth(method = "lm") 
-# 
+#   geom_smooth(method = "lm")
+#
 # # Plot 1 detection methods compared
 # ggplot(myFinal, aes(x = PCRstatus, y = OPG + 1)) +
 #   scale_y_log10() +
@@ -307,37 +284,37 @@ write.csv(finalData, "../qPCR_2017.csv", row.names = F)
 #   geom_violin() +
 #   geom_jitter(aes(col = year), width = .1, size = 2, alpha = .5) +
 #   theme_bw()
-# 
+#
 # # Plot 2 detection methods compared
 # ggplot(myFinal, aes(x = qPCRstatus, y = OPG + 1)) +
 #   scale_y_log10() +
 #   geom_boxplot()+
 #   geom_jitter(aes(col = year), width = .1, size = 2, alpha = .5) +
 #   theme_bw()
-# 
+#
 # # How to set up a limit of detection for qPCR
 # ggplot(myFinal, aes(x = OPG > 0, y = delta_ct_cewe)) +
 #   geom_boxplot()+
 #   geom_point(aes(col = year), size = 2, alpha = .5) +
 #   theme_bw()
-# 
+#
 # ggplot(myFinal, aes(x = myFinal$PCRstatus, y = delta_ct_cewe)) +
 #   geom_boxplot()+
 #   geom_point(aes(col = year), size = 2, alpha = .5) +
 #   theme_bw()
-# 
+#
 # myFinal$FlotOrPcr <- "negative"
 # myFinal$FlotOrPcr[myFinal$OPG > 0 | myFinal$PCRstatus %in% "positive"] <- "positive"
-# 
+#
 # ggplot(myFinal, aes(x = myFinal$FlotOrPcr, y = delta_ct_cewe)) +
 #   geom_violin()+
 #   geom_point(aes(col = year), size = 2, alpha = .5) +
 #   geom_hline(yintercept = 6) +
 #   theme_bw()
-# 
+#
 # ## Which samples have no qPCR?
 # # 2017
 # myFinal$Mouse_ID[!is.na(myFinal$delta_ct_cewe)]
 # which(duplicated(myFinal$Mouse_ID))
-# 
+#
 
