@@ -33,7 +33,7 @@ rawMeltData[,names(rawMeltData)  %in% "fileName"] <- gsub(" ", "", rawMeltData[,
 # Remove inside headers
 rawMeltData <- rawMeltData[rawMeltData$Name != "Name",]
 
-# Remove samples with no nbr of Tm value
+# Remove samples with no nbr of Tm value (extra lines)
 rawMeltData <- rawMeltData[!is.na(rawMeltData$No..Tm.SYBR),]
 
 # Correct fileName to match previous files
@@ -70,15 +70,15 @@ rawData[rawData$fileName %in% "QPCR07.06.2018part2.XLS.csv" &
           rawData$Pos %in% paste0("C", 4:12),"Name"] <- gsub("0410", "0409",
                                                              rawData[rawData$fileName %in% "QPCR07.06.2018part2.XLS.csv" &
                                                                        rawData$Pos %in% paste0("C", 4:12),"Name"])
+rawData[rawData$Name %in% "CEWE_AA_0330#", "Name"] <- "CEWE_AA_0330"
+rawData[rawData$Name %in% "CEWE_AA_0410" & rawData$Pos %in% c(paste0("D", 7:12)),"Name"] <- "ILWE_AA_0410"
+
 # likely manual mistake
 rawData[rawData$Pos %in% c("B4", "B5", "B6") &
           rawData$fileName %in% "QPCR14.06.2018.XLS.csv", "Name"] <- "CEWE_AA_0424"
 
-# Remove samples with no Ct value
-rawData <- rawData[!is.na(rawData$Ct.SYBR),]
-
-# Remove samples with no mean Ct (means that only one sample worked)
-rawData <- rawData[!is.na(rawData$Ct.Mean.SYBR),]
+# Remove samples with no delta Ct value for mice (means that only one sample worked)
+rawData <- rawData[-which(is.na(rawData$Ct.Mean.SYBR) & rawData$Target.SYBR == "mouse"),]
 
 # Add full name of sample (tissue + mouseID + eimeriaOrmouse primers + plate)
 rawData$fullName <- paste0(rawData$Name, "_", rawData$Target.SYBR, "_",  rawData$fileName)
@@ -90,38 +90,7 @@ rawData$Mouse_ID <- paste0("AA_", sapply( x, "[", 3))
 rm(x)
 
 ##### End cleaning ##### 
-
-## heatmap to follow
-library(ggplot2)
-
-myTiles <- function(df){
-  dat_long <- data.frame(tissue_target = paste(rawData$tissue, rawData$Target.SYBR), 
-                         variable = rawData$Mouse_ID,
-                         value = 0)
-  
-  dat_long <- unique(dat_long)
-  dat_long[paste(dat_long$tissue_target, dat_long$variable) %in% 
-             paste(df$tissue, df$Target.SYBR, df$Mouse_ID), "value"] <- 1
-  
-  # discrete vs continuous
-  dat_long$value <- factor(dat_long$value)
-  
-  gg <- ggplot(dat_long)
-  # fill + legend, gray border
-  gg <- gg + geom_tile(aes(x = variable, y = tissue_target, fill = value),
-                       color="#7f7f7f")
-  # custom fill colors
-  gg <- gg + scale_fill_manual(values=c("grey", "green"))
-  # no labels
-  gg <- gg + labs(x=NULL, y=NULL)
-  # remove some chart junk
-  gg <- gg + theme_bw() + theme(panel.grid=element_blank(),
-                                panel.border=element_blank(),
-                                axis.text.x = element_text(angle = 45, hjust = 1, size=3) )
-  return(list(gg, table(dat_long$tissue_target, dat_long$value)))
-}
-
-myTiles(rawData)
+allSamples <- unique(rawData$Name)
 
 ### 1. which ones are at least duplicates? remove the others
 # triplicate = same file, same name, same target, same mean
@@ -135,77 +104,87 @@ sumOKData <- rawData %>%
 
 OKData <- rawData[!rawData$fullName %in% 
                    sumOKData[sumOKData$count < 3, ]$fullName, ]
-myTiles(OKData)
 
-# 2. how are the sd? keep < 3
-OKData <- OKData[OKData$Ct.Dev..SYBR <= 3 ,]
-myTiles(OKData)
-
-# 3. If mice Tm = 0 for mice, remove sample
-OKData <- OKData[-which(OKData$No..Tm.SYBR !=1 & OKData$Target.SYBR == "mouse"),]
-myTiles(OKData)
+# 2. all samples with no CtMean from Eimeria (but with CtMean from mouse, cleaned before) are NEGATIVE
+OKData <- OKData %>%
+  group_by(fullName) %>%
+  mutate(status = if_else(is.na(Ct.Mean.SYBR), "negative", "pending"))%>% 
+  data.frame()
 
 ##### Calculate delta ct #####
 calculateDeltaCt <- function(df){
   # Keep one value per plate per fullName (so per triplicate)
   df <- df[!duplicated(df[c("fullName")]),]
-  
   ## Calculate deltaCt per plate
   sumDataMouse <- df[df$Target.SYBR %in% "mouse",]
   sumDataEimeria <- df[df$Target.SYBR %in% "eimeria",]
   
   mergedData <- merge(sumDataEimeria, sumDataMouse, 
-                      by = c("Mouse_ID", "fileName", "tissue"))
+                      by = c("Mouse_ID", "fileName", "tissue"), all = T)
   
-  mergedData$deltaCt <- as.numeric(mergedData$Ct.Mean.SYBR.x) - as.numeric(mergedData$Ct.Mean.SYBR.y)
+  mergedData$deltaCtMminusE <- NA
+  
+  mergedData$deltaCtMminusE[!is.na(as.numeric(mergedData$Ct.Mean.SYBR.y)) &
+                              !is.na(as.numeric(mergedData$Ct.Mean.SYBR.x))] <- 
+    as.numeric(mergedData$Ct.Mean.SYBR.y[!is.na(as.numeric(mergedData$Ct.Mean.SYBR.y)) &
+                                           !is.na(as.numeric(mergedData$Ct.Mean.SYBR.x))]) - 
+    as.numeric(mergedData$Ct.Mean.SYBR.x[!is.na(as.numeric(mergedData$Ct.Mean.SYBR.y)) &
+                                           !is.na(as.numeric(mergedData$Ct.Mean.SYBR.x))])
   return(mergedData)
 }
 
 OKData <- calculateDeltaCt(OKData)
 
+hist(OKData$deltaCtMminusE, breaks = 100) # keep all above -6 :D
+
+OKData$status <- "negative"
+OKData$status[OKData$deltaCtMminusE >= -6] <- "positive"
+
+positiveData <- OKData[OKData$status %in% "positive",]
+
 ## Average technical replicates
-finalData <- OKData %>% 
-  group_by(Name.x) %>% 
-  summarise(meanDeltaCt = mean(deltaCt),
-            sdDeltaCt = sd(deltaCt),
-            nreplicate = length(deltaCt),
-            minDeltaCt = min(deltaCt),
-            maxDeltaCt = max(deltaCt)) %>% 
+finalData <- positiveData %>% 
+  group_by(Name.x) %>%   
+  summarise(count = n(), 
+            deltaCt_MminusE = mean(deltaCtMminusE),
+            sdDelta = sd(deltaCtMminusE)) %>% 
   data.frame()
 
+positiveSample <- finalData$Name.x
 
+# Prevalence 2017
+length(positiveSample) / length(allSamples) *100
 
-library(ggplot2)
-ggplot(finalData, aes(x = finalData$tissue, y = finalData$deltaCt)) +
-  geom_violin() +
-  geom_jitter(aes(col = finalData$tissue), size = 3) +
-  theme_bw()
-
-ggplot(finalData, aes(x = finalData$deltaCt)) +
-  geom_histogram(aes(y=..density..), bins = 40) + 
-  geom_density(aes(y=..density..)) +
-  theme_bw()
+# Final DF
+x <- strsplit(as.character(finalData$Name.x), "_", 1)
+finalData <- data.frame(Name = finalData$Name.x,
+                        deltaCt_MminusE = finalData$deltaCt_MminusE,
+                        tissue = sapply( x, "[", 1),
+                        Mouse_ID = paste0("AA_", sapply( x, "[", 3)))
+rm(x)
 
 finalData$year <- 2017
 
 finalDataClean <- finalData["Mouse_ID"]
 # Add CEWE
 finalDataClean <- merge(finalDataClean,
-                        finalData[finalData$tissue %in% "CEWE", c("Mouse_ID", "deltaCt")],
+                        finalData[finalData$tissue %in% "CEWE", c("Mouse_ID", "deltaCt_MminusE")],
                            all.x = T)
-names(finalDataClean)[names(finalDataClean) %in% "deltaCt"] <- "delta_ct_cewe"
+names(finalDataClean)[names(finalDataClean) %in% "deltaCt_MminusE"] <- "delta_ct_cewe_MminusE"
 
 # Add ILWE
 finalDataClean <- merge(finalDataClean,
-                           finalData[finalData$tissue %in% "ILWE", c("Mouse_ID", "deltaCt")],
+                           finalData[finalData$tissue %in% "ILWE", c("Mouse_ID", "deltaCt_MminusE")],
                            all.x = T)
-names(finalDataClean)[names(finalDataClean) %in% "deltaCt"] <- "delta_ct_ilwe"
+names(finalDataClean)[names(finalDataClean) %in% "deltaCt_MminusE"] <- "delta_ct_ilwe_MminusE"
+
+finalDataClean <- unique(finalDataClean)
 
 # Add observer
 finalDataClean$observer_qpcr <- "Lorenzo"
 
 # Write out
-write.csv(finalData, "../qPCR_2017.csv", row.names = F)
+write.csv(finalDataClean, "../qPCR_2017.csv", row.names = F)
 
 # ###########
 # source("../../../R/functions/addPCRresults.R")
