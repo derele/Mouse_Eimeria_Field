@@ -1,3 +1,7 @@
+# Back to empty
+rm(rawData)
+rm(rawMeltData)
+
 # import data
 rawData <- read.csv("./LorenzoRAW/CSVFiles/TotalLorenzo.csv", stringsAsFactors = F,
                  na.strings = c("NA", "", " ", "-"))
@@ -41,7 +45,7 @@ rawMeltData[rawMeltData$fileName %in% "QPCR13.06.2018correct.XLS.csv" &
               rawMeltData$Pos %in% paste0("F", 7:12), "Name"] <- "CEWE_AA_0367"
 
 rawData <- merge(rawData, 
-                 rawMeltData[c("fileName", "Name", "Pos", "No..Tm.SYBR")],
+                 rawMeltData[c("fileName", "Name", "Pos", "No..Tm.SYBR", "Tm.x..SYBR")],
                  by = c("fileName", "Name", "Pos"), all = T)
 
 # Remove controls
@@ -70,55 +74,11 @@ rawData[rawData$fileName %in% "QPCR07.06.2018part2.XLS.csv" &
 rawData[rawData$Pos %in% c("B4", "B5", "B6") &
           rawData$fileName %in% "QPCR14.06.2018.XLS.csv", "Name"] <- "CEWE_AA_0424"
 
-# # Remove samples with no Ct value
-# rawData <- rawData[!is.na(rawData$Ct.SYBR),]
-# 
-# # Remove samples with no mean Ct (means that only one sample worked)
-# rawData <- rawData[!is.na(rawData$Ct.Mean.SYBR),]
-# 
+# Remove samples with no Ct value
+rawData <- rawData[!is.na(rawData$Ct.SYBR),]
 
-
-
-
-
-
-
-
-rawData[rawData$fileName %in% "QPCR13.06.2018correct.XLS.csv" &
-          rawData$Pos %in% paste0("F", 7:12), "Name"] 
-
-rawData[rawData$Name %in% "ILWE_AA_0242",]
-
-
-
-nrow(rawData[rawData$fileName %in% "QPCR09.04.2018.XLS.csv",]) # Should be 60 per plate after merging if correct!
-
-myDFcheck <- data.frame(fileName = NA,
-                        rawDataPresent = NA,
-                        rawMeltPresent = NA)
-
-
-
-for (i in rawData$fileName){
-  myDFcheck <- rbind(myDFcheck, data.frame(fileName = i,
-                                           rawDataPresent = is.na(rawData$Target.SYBR[rawData$fileName %in% i]),
-                                           rawMeltPresent = is.na(rawData$No..Tm.SYBR[rawData$fileName %in% i])))
-}
-
-myDFcheck <- unique(myDFcheck)
-
-# rawDataBEFORECHANGES[rawDataBEFORECHANGES$fileName %in% "QPCR09.04.2018.XLS.csv",]
-
-
-
-
-
-
-# Which MeltData not attributed
-rm(rawMeltData)
-
-
-
+# Remove samples with no mean Ct (means that only one sample worked)
+rawData <- rawData[!is.na(rawData$Ct.Mean.SYBR),]
 
 # Add full name of sample (tissue + mouseID + eimeriaOrmouse primers + plate)
 rawData$fullName <- paste0(rawData$Name, "_", rawData$Target.SYBR, "_",  rawData$fileName)
@@ -128,7 +88,6 @@ x <- strsplit(as.character(rawData$Name), "_", 1)
 rawData$tissue <- sapply( x, "[", 1)
 rawData$Mouse_ID <- paste0("AA_", sapply( x, "[", 3))
 rm(x)
-
 
 ##### End cleaning ##### 
 
@@ -164,27 +123,17 @@ myTiles <- function(df){
 
 myTiles(rawData)
 
-# Separate here failed and ok data
-# OKData <- rawData[!is.na(rawData$No..Tm.SYBR) &
-#                           rawData$No..Tm.SYBR != 0,]
-# myTiles(OKData)
-
-# First,let's check OKData
-## Which samples are complete (mouse+eimeria triplicate, low sd)
-
-
-
 ### 1. which ones are at least duplicates? remove the others
 # triplicate = same file, same name, same target, same mean
 
 library(dplyr)
 
-sumOKData <- OKData %>% 
+sumOKData <- rawData %>% 
   group_by(fullName) %>% 
   summarise(count = n()) %>% 
   data.frame()
 
-OKData <- OKData[!OKData$fullName %in% 
+OKData <- rawData[!rawData$fullName %in% 
                    sumOKData[sumOKData$count < 3, ]$fullName, ]
 myTiles(OKData)
 
@@ -192,38 +141,12 @@ myTiles(OKData)
 OKData <- OKData[OKData$Ct.Dev..SYBR <= 3 ,]
 myTiles(OKData)
 
-# 3. If mice Tm = 0, remove sample
-
-# 3. Mouse AND eimeria  !!!!!!OR just Mouse !!!!!! on the same plate otherwise remove
-OKData$fileNameName <- paste(OKData$fileName, OKData$Name)
-
-sumOKData <- OKData %>% 
-  group_by(fileNameName) %>% 
-  summarise(isBoth = length(unique(Target.SYBR))) %>% 
-  data.frame()
-
-OKData <- OKData[OKData$fileNameName %in% sumOKData$fileNameName[sumOKData$isBoth %in% 2],]
-
+# 3. If mice Tm = 0 for mice, remove sample
+OKData <- OKData[-which(OKData$No..Tm.SYBR !=1 & OKData$Target.SYBR == "mouse"),]
 myTiles(OKData)
-
-# 4. Eventually, remove duplicates on different plates (based on sd)
-OKData$nameTarget <- paste(OKData$Name, OKData$Target.SYBR)
-
-sumOKData <- OKData %>% 
-  group_by(nameTarget) %>% 
-  summarise(isDup = length(nameTarget)) %>% 
-  data.frame()
-
-myTiles(OKData)
-# No melt curves for:
-# QPCR04.04.2018.XLS.csv but redonne twice later
-# QPCR30.05.2018.XLS.csv --> check manually the look of the curves. Keep for later
-# QPCR311-317.XLS.csv --> check manually the look of the curves. Keep for later
-
 
 ##### Calculate delta ct #####
-
-calculateDeltqCt <- function(df){
+calculateDeltaCt <- function(df){
   # Keep one value per plate per fullName (so per triplicate)
   df <- df[!duplicated(df[c("fullName")]),]
   
@@ -238,7 +161,19 @@ calculateDeltqCt <- function(df){
   return(mergedData)
 }
 
-finalData <- calculateDeltqCt(OKData)
+OKData <- calculateDeltaCt(OKData)
+
+## Average technical replicates
+finalData <- OKData %>% 
+  group_by(Name.x) %>% 
+  summarise(meanDeltaCt = mean(deltaCt),
+            sdDeltaCt = sd(deltaCt),
+            nreplicate = length(deltaCt),
+            minDeltaCt = min(deltaCt),
+            maxDeltaCt = max(deltaCt)) %>% 
+  data.frame()
+
+
 
 library(ggplot2)
 ggplot(finalData, aes(x = finalData$tissue, y = finalData$deltaCt)) +
@@ -339,4 +274,8 @@ write.csv(finalData, "../qPCR_2017.csv", row.names = F)
 # myFinal$Mouse_ID[!is.na(myFinal$delta_ct_cewe)]
 # which(duplicated(myFinal$Mouse_ID))
 # 
+
+
+
+
 
