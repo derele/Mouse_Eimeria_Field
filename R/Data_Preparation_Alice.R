@@ -115,80 +115,77 @@ myData <- subset(myData, select = -c(yearpcr))
 
 #################### Eimeria detection qPCR ####################
 
-  
-  # Merge both years
-  qpcrData <- rbind(qpcrData2016, qpcrData2017Clean)
-  
-  #####
-  
-  # Did Enas calculate the other way around? 
-  qpcrData$delta_ct_cewe[qpcrData$observer_qpcr == "Enas"] <- 
-    - qpcrData$delta_ct_cewe[qpcrData$observer_qpcr == "Enas"]
-  
-  qpcrData$delta_ct_ilwe[qpcrData$observer_qpcr == "Enas"] <- 
-    - qpcrData$delta_ct_ilwe[qpcrData$observer_qpcr == "Enas"]
-  
-  # deltaCT = ct eimeria - ct mouse. If high infection, low deltaCT
-  # -deltaCT = ct mouse - ct eimeria
-  qpcrData$qPCRsummary[qpcrData$delta_ct_cewe > 6 & qpcrData$delta_ct_ilwe > 6] <- "non infected"
-  qpcrData$qPCRsummary[qpcrData$delta_ct_cewe < 6 & qpcrData$delta_ct_ilwe > 6] <- "infected cecum"
-  qpcrData$qPCRsummary[qpcrData$delta_ct_cewe > 6 & qpcrData$delta_ct_ilwe < 6] <- "infected ileum"
-  
-  qpcrData$qPCRsummary[
-    qpcrData$delta_ct_cewe < 6 & 
-      qpcrData$delta_ct_ilwe < 6 & 
-      qpcrData$delta_ct_cewe < qpcrData$delta_ct_ilwe] <- "cecum stronger"
-  qpcrData$qPCRsummary[
-    qpcrData$delta_ct_cewe < 6 & 
-      qpcrData$delta_ct_ilwe < 6 & 
-      qpcrData$delta_ct_cewe > qpcrData$delta_ct_ilwe] <- "ileum stronger"
-  
-  # Infected or not?
-  qpcrData$qPCRstatus <- "positive"
-  qpcrData$qPCRstatus[is.na(qpcrData$qPCRsummary)] <- NA
-  qpcrData$qPCRstatus[qpcrData$qPCRsummary %in% "non infected"] <- "negative"
-  
-  # and keep the infected segment value OR the higher value 
-  qpcrData$delta_ct[
-    qpcrData$qPCRsummary %in% c("infected cecum", "cecum stronger")] <- 
-    qpcrData$delta_ct_cewe[
-      qpcrData$qPCRsummary %in% c("infected cecum", "cecum stronger")] 
-  
-  qpcrData$delta_ct[
-    qpcrData$qPCRsummary %in% c("infected ileum", "ileum stronger")] <- 
-    qpcrData$delta_ct_ilwe[
-      qpcrData$qPCRsummary %in% c("infected ileum", "ileum stronger")] 
-  
-  # Turn around
-  qpcrData$delta_ct_MminusE <- - qpcrData$delta_ct
-  
-  # Set floor values
-  qpcrData$delta_ct_MminusE[is.na(qpcrData$delta_ct_MminusE)] <- -6
-  
-  # To pass positive I add 6 to all
-  # qpcrData$delta_ct_MminusE <- qpcrData$delta_ct_MminusE + 6
-  
-  # merge
-  aDataFrame <- merge(aDataFrame, qpcrData, by = "Mouse_ID", all = T)
-  
-  return(aDataFrame)
-}
+qpcrData <- qpcrData2016[qpcrData2016$observer_qpcr == "Mert",]
 
+  # # Merge both years
+  # # qpcrData <- rbind(qpcrData2016, qpcrData2017Clean)
+  # 
+  # #####
+  # 
+  # # Did Enas calculate the other way around? 
+  # qpcrData$delta_ct_cewe[qpcrData$observer_qpcr == "Enas"] <- 
+  #   - qpcrData$delta_ct_cewe[qpcrData$observer_qpcr == "Enas"]
+  # 
+  # qpcrData$delta_ct_ilwe[qpcrData$observer_qpcr == "Enas"] <- 
+  #   - qpcrData$delta_ct_ilwe[qpcrData$observer_qpcr == "Enas"]
+  
+# deltaCT = ct eimeria - ct mouse. If high infection, low deltaCT
+# -deltaCT = ct mouse - ct eimeria
+qpcrData$qPCRsummary[qpcrData$delta_ct_cewe > 6 & qpcrData$delta_ct_ilwe > 6] <- "non infected"
+qpcrData$qPCRsummary[qpcrData$delta_ct_cewe < 6 & qpcrData$delta_ct_ilwe > 6] <- "infected cecum"
+qpcrData$qPCRsummary[qpcrData$delta_ct_cewe > 6 & qpcrData$delta_ct_ilwe < 6] <- "infected ileum"
 
-myData <- addqPCRresults(myData, 
-                         pathtoqPCR2016 = "../raw_data/Eimeria_detection/qPCR_2016.csv",
-                         pathtoqPCR2017 = "../raw_data/Eimeria_detection/qPCR_2017.csv")
+qpcrData$qPCRsummary[
+  qpcrData$delta_ct_cewe < 6 & 
+    qpcrData$delta_ct_ilwe < 6 & 
+    qpcrData$delta_ct_cewe < qpcrData$delta_ct_ilwe] <- "cecum stronger"
+qpcrData$qPCRsummary[
+  qpcrData$delta_ct_cewe < 6 & 
+    qpcrData$delta_ct_ilwe < 6 & 
+    qpcrData$delta_ct_cewe > qpcrData$delta_ct_ilwe] <- "ileum stronger"
 
+# Infected or not?
+qpcrData$qPCRstatus <- "positive"
+qpcrData$qPCRstatus[is.na(qpcrData$qPCRsummary)] <- NA
+qpcrData$qPCRstatus[qpcrData$qPCRsummary %in% "non infected"] <- "negative"
 
+# and keep the infected segment value OR the higher value 
+qpcrData$delta_ct[
+  qpcrData$qPCRsummary %in% c("infected cecum", "cecum stronger")] <- 
+  qpcrData$delta_ct_cewe[
+    qpcrData$qPCRsummary %in% c("infected cecum", "cecum stronger")] 
 
+qpcrData$delta_ct[
+  qpcrData$qPCRsummary %in% c("infected ileum", "ileum stronger")] <- 
+  qpcrData$delta_ct_ilwe[
+    qpcrData$qPCRsummary %in% c("infected ileum", "ileum stronger")] 
+
+# Turn around
+qpcrData$delta_ct_MminusE <- - qpcrData$delta_ct
+
+# Set floor values
+qpcrData$delta_ct_MminusE[is.na(qpcrData$delta_ct_MminusE)] <- -6
+
+# merge
+myData <- merge(myData, qpcrData, by = "Mouse_ID", all = T)
+  
 # plot qPCR
-plotSmoothqPCR <- ggplot(myData[myData$delta_ct_cewe < 6,], aes(x = HI)) +
-  geom_point(aes(y = -delta_ct_cewe, fill = as.factor(Year)), pch = 21, alpha = .8, size = 4) +
-  geom_smooth(aes(y = -delta_ct_cewe))+#, col = as.factor(Year))) +
+plotSmoothqPCR <- ggplot(myData[myData$delta_ct_MminusE > - 6,], aes(x = HI)) +
+  geom_point(aes(y = delta_ct_MminusE, fill = qPCRsummary), pch = 21, alpha = .8, size = 4) +
+  geom_smooth(aes(y = delta_ct_MminusE))+#, col = as.factor(Year))) +
   theme_bw() +
   theme(legend.position="top") +
-  theme(legend.title = element_blank())
+  theme(legend.title = element_blank()) 
+  # facet_grid(Year ~.)
 plotSmoothqPCR
+
+# Remark of Justyna Wolinska: some individuals here HAVE qPCR value, but no oocyst count?? Plot
+
+ggplot(myData, aes(x = HI, y = delta_ct_MminusE, col = OPG > 0)) +
+  geom_point(size = 3) + 
+  geom_hline(yintercept = -6) +
+  theme_bw()
+
 
 # Fit the model!! the smooth is not adapted
 

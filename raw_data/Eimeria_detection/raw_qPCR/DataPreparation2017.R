@@ -6,7 +6,7 @@ rm(rawMeltData)
 rawData <- read.csv("./LorenzoRAW/CSVFiles/TotalLorenzo.csv", stringsAsFactors = F,
                  na.strings = c("NA", "", " ", "-"))
 
-##### Clean data #####
+##### Prepare data #####
 # Column file name
 names(rawData)[names(rawData) %in% "QPCR01.06.2018.XLS.csv"] <- "fileName"
 
@@ -64,6 +64,7 @@ rawData <- rawData[!is.na(rawData$fileName),]
 # manual corrections on sample names
 rawData$Name[rawData$Name %in% "359"] <- "ILWE_AA_0359"
 rawData$Name[rawData$Name %in% "ILWE_AA_242"] <- "ILWE_AA_0242"
+rawData$Name[rawData$Name %in% "CEWE_AA_0330#"] <- "CEWE_AA_0330"
 rawData$Name[rawData$Name %in% "ILWE_AA_0,48"] <- "ILWE_AA_0348"
 rawData$Name[rawData$Name %in% "ILWE_AA_0134"] <- "ILWE_AA_0379"
 rawData[rawData$fileName %in% "QPCR07.06.2018part2.XLS.csv" &
@@ -88,6 +89,7 @@ x <- strsplit(as.character(rawData$Name), "_", 1)
 rawData$tissue <- sapply( x, "[", 1)
 rawData$Mouse_ID <- paste0("AA_", sapply( x, "[", 3))
 rm(x)
+##### END Prepare data #####
 
 ##### End cleaning ##### 
 allSamples <- unique(rawData$Name)
@@ -118,6 +120,21 @@ calculateDeltaCt <- function(df){
   ## Calculate deltaCt per plate
   sumDataMouse <- df[df$Target.SYBR %in% "mouse",]
   sumDataEimeria <- df[df$Target.SYBR %in% "eimeria",]
+  mergedData <- merge(sumDataEimeria, sumDataMouse,
+                      by = c("Mouse_ID", "fileName", "tissue", "Name"))
+  mergedData <- unique(mergedData)
+  mergedData$deltaCt <- as.numeric(as.character(mergedData$Ct.Mean.SYBR.y)) - 
+    as.numeric(as.character(mergedData$Ct.Mean.SYBR.x)) # DeltaCt EIMERIA minus MOUSE
+  return(mergedData)
+}
+
+OKData <- calculateDeltaCt(OKData)
+BadData <- calculateDeltaCt(badSd)
+
+myTiles2 <- function(df){
+  dat_long <- data.frame(tissue = rawData$tissue, 
+                         Mouse_ID = rawData$Mouse_ID,
+                         value = 0)
   
   mergedData <- merge(sumDataEimeria, sumDataMouse, 
                       by = c("Mouse_ID", "fileName", "tissue"), all = T)
@@ -165,7 +182,10 @@ rm(x)
 
 finalData$year <- 2017
 
-finalDataClean <- finalData["Mouse_ID"]
+## And save
+OKData$year <- 2017
+
+finalDataClean <- OKData["Mouse_ID"]
 # Add CEWE
 finalDataClean <- merge(finalDataClean,
                         finalData[finalData$tissue %in% "CEWE", c("Mouse_ID", "deltaCt_MminusE")],
@@ -193,29 +213,29 @@ write.csv(finalDataClean, "../qPCR_2017.csv", row.names = F)
 # source("../../../R/functions/addPCRresults.R")
 # source("../../../R/functions/addqPCRresults.R")
 # source("../../../R/functions/addFlotationResults.R")
-# 
+#
 # myFinal <- addPCRresults(finalData, pathtodata = "../Inventory_contents_all.csv")
 # myFinal <- addFlotationResults(myFinal, pathtofinalOO = "../FINALOocysts2015to2017.csv",
 #                                pathtolorenzodf = "../Eimeria_oocysts_2015&2017_Lorenzo.csv")$new
-# 
+#
 # myFinal <- addqPCRresults(myFinal, pathtoqPCR2016 = "../qPCR_2016.csv", pathtoqPCR2017 = "../qPCR_2017.csv")
-# 
+#
 # myFinal$year[is.na(myFinal$year)] <- myFinal$year.x[is.na(myFinal$year)]
 # myFinal$year[is.na(myFinal$year)] <- myFinal$year.y[is.na(myFinal$year)]
 # myFinal$year <- as.factor(myFinal$year)
-# 
+#
 # summary(lm(OPG ~ delta_ct_cewe, myFinal))
-# 
+#
 # ggplot(myFinal, aes(y = myFinal$delta_ct_ilwe, x = OPG+1)) +
 #   scale_x_log10() +
 #   geom_point(aes(col = year), size = 4) +
 #   geom_smooth(method = "lm")
-# 
+#
 # ggplot(myFinal, aes(y = myFinal$delta_ct_cewe, x = OPG+1)) +
 #   scale_x_log10() +
 #   geom_point(aes(col = year), size = 4) +
-#   geom_smooth(method = "lm") 
-# 
+#   geom_smooth(method = "lm")
+#
 # # Plot 1 detection methods compared
 # ggplot(myFinal, aes(x = PCRstatus, y = OPG + 1)) +
 #   scale_y_log10() +
@@ -223,39 +243,39 @@ write.csv(finalDataClean, "../qPCR_2017.csv", row.names = F)
 #   geom_violin() +
 #   geom_jitter(aes(col = year), width = .1, size = 2, alpha = .5) +
 #   theme_bw()
-# 
+#
 # # Plot 2 detection methods compared
 # ggplot(myFinal, aes(x = qPCRstatus, y = OPG + 1)) +
 #   scale_y_log10() +
 #   geom_boxplot()+
 #   geom_jitter(aes(col = year), width = .1, size = 2, alpha = .5) +
 #   theme_bw()
-# 
+#
 # # How to set up a limit of detection for qPCR
 # ggplot(myFinal, aes(x = OPG > 0, y = delta_ct_cewe)) +
 #   geom_boxplot()+
 #   geom_point(aes(col = year), size = 2, alpha = .5) +
 #   theme_bw()
-# 
+#
 # ggplot(myFinal, aes(x = myFinal$PCRstatus, y = delta_ct_cewe)) +
 #   geom_boxplot()+
 #   geom_point(aes(col = year), size = 2, alpha = .5) +
 #   theme_bw()
-# 
+#
 # myFinal$FlotOrPcr <- "negative"
 # myFinal$FlotOrPcr[myFinal$OPG > 0 | myFinal$PCRstatus %in% "positive"] <- "positive"
-# 
+#
 # ggplot(myFinal, aes(x = myFinal$FlotOrPcr, y = delta_ct_cewe)) +
 #   geom_violin()+
 #   geom_point(aes(col = year), size = 2, alpha = .5) +
 #   geom_hline(yintercept = 6) +
 #   theme_bw()
-# 
+#
 # ## Which samples have no qPCR?
 # # 2017
 # myFinal$Mouse_ID[!is.na(myFinal$delta_ct_cewe)]
 # which(duplicated(myFinal$Mouse_ID))
-# 
+#
 
 
 
