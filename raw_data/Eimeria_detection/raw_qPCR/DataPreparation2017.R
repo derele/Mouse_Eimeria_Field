@@ -138,7 +138,7 @@ OKData <- calculateDeltaCt(OKData)
 hist(OKData$deltaCtMminusE, breaks = 100) # keep all above -6 :D
 
 OKData$status <- "negative"
-OKData$status[OKData$deltaCtMminusE >= -6] <- "positive"
+OKData$status[OKData$deltaCtMminusE > -6] <- "positive"
 
 positiveData <- OKData[OKData$status %in% "positive",]
 
@@ -182,6 +182,9 @@ finalDataClean <- unique(finalDataClean)
 
 # Add observer
 finalDataClean$observer_qpcr <- "Lorenzo"
+
+# Add year
+finalDataClean$Year <- 2017
 
 # Write out
 write.csv(finalDataClean, "../qPCR_2017.csv", row.names = F)
