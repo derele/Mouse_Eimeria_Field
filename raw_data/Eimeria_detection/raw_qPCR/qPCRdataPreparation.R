@@ -79,18 +79,61 @@ qpcr2016_Mert$delta_ct_ilwe_MminusE <- - qpcr2016_Mert$delta_ct_ilwe
 # output final
 qpcr2016_final_Mert <- myqPCRformat(qpcr2016_Mert)
 
-## Add Tabea's values!
-qpcr2016_Tabea <- read.csv("TabeaRaw_2016/Eimeria_qPCR_Tissue_220818.csv")
-qpcr2016_MELT_Tabea <- read.csv("TabeaRaw_2016/Eimeria_qPCR_Tissue_220818_Melting.csv")
+## Add Victor's values!
+qpcr2016_Victor <- read.csv("VictorRaw_2016/Eimeria_qPCR_Tissue_220818.csv")
+qpcr2016_MELT_Victor <- read.csv("VictorRaw_2016/Eimeria_qPCR_Tissue_220818_Melting.csv")
 
 # Correct name
-qpcr2016_Tabea[qpcr2016_Tabea$Name %in% "ILWE_AA_140", "Name"] <- "ILWE_AA_0140"
+qpcr2016_Victor[qpcr2016_Victor$Name %in% "ILWE_AA_140", "Name"] <- "ILWE_AA_0140"
+
+# Merge by Name and Pos
+qpcr2016_Victor <- merge(qpcr2016_Victor, qpcr2016_MELT_Victor, by = c("Name", "Pos"))
+
+# Remove useless lines
+qpcr2016_Victor <- qpcr2016_Victor[!is.na(qpcr2016_Victor$Ct.Mean.SYBR) & !qpcr2016_Victor$Name %in% "NTC_Mouse", ]
+
+# Add tissue and Mouse_ID
+x <- strsplit(as.character(qpcr2016_Victor$Name), "_", 1)
+qpcr2016_Victor$tissue <- sapply( x, "[", 1)
+qpcr2016_Victor$Mouse_ID <- paste0("AA_", sapply( x, "[", 3))
+rm(x)
+
+# Calculate deltact
+qpcr2016_Victor <- calculateDeltaCt(qpcr2016_Victor, 
+                                   mergeBy = c("Mouse_ID", "tissue", "Name"))
+
+qpcr2016_Victor <- unique(qpcr2016_Victor[c("Mouse_ID", "tissue", "deltaCt_MminusE")])
+
+# Pre-formate
+tempCEWE <- qpcr2016_Victor[qpcr2016_Victor$tissue == "CEWE",]
+names(tempCEWE)[names(tempCEWE) %in% "deltaCt_MminusE"] <- "delta_ct_cewe_MminusE"
+
+tempILWE <- qpcr2016_Victor[qpcr2016_Victor$tissue == "ILWE",]
+names(tempILWE)[names(tempILWE) %in% "deltaCt_MminusE"] <- "delta_ct_ilwe_MminusE"
+
+qpcr2016_Victor <- merge(tempCEWE, tempILWE, by = c("Mouse_ID"), all = T)
+
+qpcr2016_Victor$year <- 2016
+qpcr2016_Victor$observer_qpcr <- "Victor"
+
+# output final
+qpcr2016_final_Victor <- myqPCRformat(qpcr2016_Victor)
+
+## Add Tabea's values!
+qpcr2016_Tabea <- read.csv("TabeaRaw_2016/Other_Rodents_120718_3.csv")
+qpcr2016_MELT_Tabea <- read.csv("TabeaRaw_2016/Other_Rodents_120718_Melting_3.csv")
+
+# keep mus only
+qpcr2016_Tabea <- qpcr2016_Tabea[grep("AA_", qpcr2016_Tabea$Name),]
+qpcr2016_MELT_Tabea <- qpcr2016_MELT_Tabea[grep("AA_", qpcr2016_MELT_Tabea$Name),]
 
 # Merge by Name and Pos
 qpcr2016_Tabea <- merge(qpcr2016_Tabea, qpcr2016_MELT_Tabea, by = c("Name", "Pos"))
 
-# Remove useless lines
-qpcr2016_Tabea <- qpcr2016_Tabea[!is.na(qpcr2016_Tabea$Ct.Mean.SYBR) & !qpcr2016_Tabea$Name %in% "NTC_Mouse", ]
+# replace with correct naming CeWe and Ilwe
+qpcr2016_Tabea$Name <- gsub("CeWe ","CEWE_", qpcr2016_Tabea$Name)
+qpcr2016_Tabea$Name <- gsub("ILWe ","ILWE_", qpcr2016_Tabea$Name)
+qpcr2016_Tabea$Name <- gsub("IlWe ","ILWE_", qpcr2016_Tabea$Name)
 
 # Add tissue and Mouse_ID
 x <- strsplit(as.character(qpcr2016_Tabea$Name), "_", 1)
@@ -100,7 +143,7 @@ rm(x)
 
 # Calculate deltact
 qpcr2016_Tabea <- calculateDeltaCt(qpcr2016_Tabea, 
-                                   mergeBy = c("Mouse_ID", "tissue", "Name"))
+                                    mergeBy = c("Mouse_ID", "tissue", "Name"))
 
 qpcr2016_Tabea <- unique(qpcr2016_Tabea[c("Mouse_ID", "tissue", "deltaCt_MminusE")])
 
@@ -279,7 +322,58 @@ qpcr2017_final_Lorenzo$year <- 2017
 qpcr2017_final_Lorenzo <- myqPCRformat(qpcr2017_final_Lorenzo)
 
 ############ bind full dataset
-qpcrData_2016_2017 <- rbind(qpcr2016_final_Enas, qpcr2016_final_Mert, qpcr2016_final_Tabea, qpcr2017_final_Lorenzo)
+qpcrData_2016_2017 <- rbind(
+  qpcr2016_final_Enas, 
+  qpcr2016_final_Mert, 
+  qpcr2016_final_Victor, 
+  qpcr2016_final_Tabea,
+  qpcr2017_final_Lorenzo)
+
+# Correct spaces in names
+qpcrData_2016_2017$Mouse_ID <- gsub(" ", "", qpcrData_2016_2017$Mouse_ID)
+
+# Remove duplicates by taking the more recent/reproductible results
+doubledSamples <- qpcrData_2016_2017[qpcrData_2016_2017$Mouse_ID %in% 
+                                       qpcrData_2016_2017[
+                                         duplicated(qpcrData_2016_2017$Mouse_ID), 
+                                         "Mouse_ID"], ]
+# AA_0064 Tabea
+# AA_0066 Tabea
+# AA_0070 Victor&Tabea
+# AA_0088 Victor&Mert
+# AA_0100 Mert
+# AA_0139 Mert
+toKeep <- rbind(
+  doubledSamples[doubledSamples$Mouse_ID %in% "AA_0064" & doubledSamples$observer %in% "Tabea",],
+  doubledSamples[doubledSamples$Mouse_ID %in% "AA_0066" & doubledSamples$observer %in% "Tabea",],
+  doubledSamples[doubledSamples$Mouse_ID %in% "AA_0100" & doubledSamples$observer %in% "Mert",],
+  doubledSamples[doubledSamples$Mouse_ID %in% "AA_0139" & doubledSamples$observer %in% "Mert",])
+
+# ileum stronger
+AA_0070 <- cbind(
+  doubledSamples[doubledSamples$Mouse_ID %in% "AA_0070" & doubledSamples$observer %in% "Victor", 
+                 c("Mouse_ID", "delta_ct_MminusE", "delta_ct_ilwe_MminusE", "qPCRstatus")], 
+  delta_ct_cewe_MminusE = doubledSamples[doubledSamples$Mouse_ID %in% "AA_0070" & doubledSamples$observer %in% "Tabea", 
+                 c("delta_ct_cewe_MminusE")])
+AA_0070$qPCRsummary <- "ileum stronger"
+AA_0070$year <- 2016
+AA_0070$observer <- "Tabea&Victor"
+
+# ileum stronger
+AA_0088 <- cbind(
+  doubledSamples[doubledSamples$Mouse_ID %in% "AA_0088" & doubledSamples$observer %in% "Victor", 
+                 c("Mouse_ID", "delta_ct_ilwe_MminusE", "qPCRstatus")], 
+  doubledSamples[doubledSamples$Mouse_ID %in% "AA_0088" & doubledSamples$observer %in% "Mert", 
+                                         c("delta_ct_MminusE", "delta_ct_cewe_MminusE")])
+AA_0088$qPCRsummary <- "cecum stronger"
+AA_0088$year <- 2016
+AA_0088$observer <- "Mert&Victor"
+
+goodOnes <- rbind(toKeep, AA_0070, AA_0088)
+
+# And finally correct
+qpcrData_2016_2017 <- qpcrData_2016_2017[-which(qpcrData_2016_2017$Mouse_ID %in% doubledSamples$Mouse_ID),]
+qpcrData_2016_2017 <- rbind(qpcrData_2016_2017, goodOnes)
 
 # a little plot to be happy
 library(ggplot2)
@@ -290,4 +384,4 @@ ggplot(qpcrData_2016_2017, aes(x = Mouse_ID, y = delta_ct_MminusE,
   theme_bw()
 
 # Write out
-# write.csv(finalDataClean, "../qPCR_2017.csv", row.names = F)
+write.csv(qpcrData_2016_2017, "../FINALqPCR_2016_2017.csv", row.names = F)
