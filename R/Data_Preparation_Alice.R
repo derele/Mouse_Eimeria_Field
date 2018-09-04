@@ -16,13 +16,14 @@ LorenzoDF <- read.csv("../raw_data/Eimeria_detection/Eimeria_oocysts_2015&2017_L
 ## Import PCR data
 PCRdf <- read.csv("../raw_data/Eimeria_detection/Inventory_contents_all.csv")
 ## Import qPCR data
-qpcrData2016 <- read.csv("../raw_data/Eimeria_detection/qPCR_2016.csv")
-names(qpcrData2016)[1] <- "Mouse_ID"
-qpcrData2017 <- read.csv("../raw_data/Eimeria_detection/qPCR_2017.csv")
+qpcrData <- read.csv("../raw_data/Eimeria_detection/FINALqPCR_2016_2017.csv")
 
 #################### Load data ####################
 # General data
 miceTable <- makeMiceTable("../../Data_important/")
+
+# Manual error!! to correct on the mice table script
+miceTable[miceTable$Mouse_ID %in% c("AA_0451", "AA_0452"), "Year"] <- 2017
 
 # Remove other rodents
 otherRodentsID <- c(miceTable$Mouse_ID[miceTable$Species %in% "Pet mus musculus"],
@@ -69,17 +70,18 @@ myData$Year[is.na(myData$Year)] <- myData$year[is.na(myData$Year)]
 myData <- subset(myData, select = -c(year))
 
 # plot OPG that we keep
-plotSmoothOPG <- ggplot(myData[myData$OPG >0,], aes(x = HI, y = OPG+1)) +
+plotSmoothOPG <- ggplot(myData[!is.na(myData$OPG) &
+                               myData$OPG >0,], aes(x = HI, y = OPG+1)) +
   geom_point(aes(fill = as.factor(Year)), pch = 21, alpha = .8, size = 4) +
   geom_smooth(se=F) +
   scale_y_log10() +
   theme_bw() +
   theme(legend.position="top") +
-  theme(legend.title = element_blank())
+  theme(legend.title = element_blank()) +
+  facet_grid(. ~ Year)
 plotSmoothOPG
 
 ##################### Eimeria detection PCR ####################
-
 #correct wrong names
 toremove <- paste0(paste0("X",1:30, "_"), collapse = "|")
 names(PCRdf) <- gsub(toremove, "", names(PCRdf))
@@ -102,9 +104,16 @@ PCRdf$PCRstatus[is.na(PCRdf$Ap5_PCR) &
                   is.na(PCRdf$`18S_Seq`) &
                   is.na(PCRdf$COI_Seq) &
                   is.na(PCRdf$ORF470_Seq)] <- NA
-
+table(duplicated(myData$Mouse_ID))
 # merge with actual df
-myData <- merge(myData, PCRdf, all = T)
+myData2 <- merge(myData, PCRdf, by = c("Mouse_ID"), all = T)
+# Keep code and transect from original data
+myData2$Code <- myData2$Code.x
+myData2$Transect <- myData2$Transect.x
+
+myData <- myData2
+rm(myData2)
+table(duplicated(myData$Mouse_ID))
 
 # Remove other rodents
 myData <- myData[!myData$Mouse_ID %in% otherRodentsID,]
@@ -115,77 +124,31 @@ myData <- subset(myData, select = -c(yearpcr))
 
 #################### Eimeria detection qPCR ####################
 
-qpcrData <- qpcrData2016[qpcrData2016$observer_qpcr == "Mert",]
-
-  # # Merge both years
-  # # qpcrData <- rbind(qpcrData2016, qpcrData2017Clean)
-  # 
-  # #####
-  # 
-  # # Did Enas calculate the other way around? 
-  # qpcrData$delta_ct_cewe[qpcrData$observer_qpcr == "Enas"] <- 
-  #   - qpcrData$delta_ct_cewe[qpcrData$observer_qpcr == "Enas"]
-  # 
-  # qpcrData$delta_ct_ilwe[qpcrData$observer_qpcr == "Enas"] <- 
-  #   - qpcrData$delta_ct_ilwe[qpcrData$observer_qpcr == "Enas"]
-  
-# deltaCT = ct eimeria - ct mouse. If high infection, low deltaCT
-# -deltaCT = ct mouse - ct eimeria
-qpcrData$qPCRsummary[qpcrData$delta_ct_cewe > 6 & qpcrData$delta_ct_ilwe > 6] <- "non infected"
-qpcrData$qPCRsummary[qpcrData$delta_ct_cewe < 6 & qpcrData$delta_ct_ilwe > 6] <- "infected cecum"
-qpcrData$qPCRsummary[qpcrData$delta_ct_cewe > 6 & qpcrData$delta_ct_ilwe < 6] <- "infected ileum"
-
-qpcrData$qPCRsummary[
-  qpcrData$delta_ct_cewe < 6 & 
-    qpcrData$delta_ct_ilwe < 6 & 
-    qpcrData$delta_ct_cewe < qpcrData$delta_ct_ilwe] <- "cecum stronger"
-qpcrData$qPCRsummary[
-  qpcrData$delta_ct_cewe < 6 & 
-    qpcrData$delta_ct_ilwe < 6 & 
-    qpcrData$delta_ct_cewe > qpcrData$delta_ct_ilwe] <- "ileum stronger"
-
-# Infected or not?
-qpcrData$qPCRstatus <- "positive"
-qpcrData$qPCRstatus[is.na(qpcrData$qPCRsummary)] <- NA
-qpcrData$qPCRstatus[qpcrData$qPCRsummary %in% "non infected"] <- "negative"
-
-# and keep the infected segment value OR the higher value 
-qpcrData$delta_ct[
-  qpcrData$qPCRsummary %in% c("infected cecum", "cecum stronger")] <- 
-  qpcrData$delta_ct_cewe[
-    qpcrData$qPCRsummary %in% c("infected cecum", "cecum stronger")] 
-
-qpcrData$delta_ct[
-  qpcrData$qPCRsummary %in% c("infected ileum", "ileum stronger")] <- 
-  qpcrData$delta_ct_ilwe[
-    qpcrData$qPCRsummary %in% c("infected ileum", "ileum stronger")] 
-
-# Turn around
-qpcrData$delta_ct_MminusE <- - qpcrData$delta_ct
-
-# Set floor values
-qpcrData$delta_ct_MminusE[is.na(qpcrData$delta_ct_MminusE)] <- -6
-
 # merge
 myData <- merge(myData, qpcrData, by = "Mouse_ID", all = T)
-  
+
 # plot qPCR
-plotSmoothqPCR <- ggplot(myData[myData$delta_ct_MminusE > - 6,], aes(x = HI)) +
+plotSmoothqPCR <- ggplot(myData[!is.na(myData$delta_ct_MminusE) & 
+                                  myData$delta_ct_MminusE > - 6,],
+                         aes(x = HI)) +
   geom_point(aes(y = delta_ct_MminusE, fill = qPCRsummary), pch = 21, alpha = .8, size = 4) +
   geom_smooth(aes(y = delta_ct_MminusE))+#, col = as.factor(Year))) +
   theme_bw() +
   theme(legend.position="top") +
-  theme(legend.title = element_blank()) 
-  # facet_grid(Year ~.)
+  theme(legend.title = element_blank()) +
+  facet_grid(. ~ Year)
 plotSmoothqPCR
 
 # Remark of Justyna Wolinska: some individuals here HAVE qPCR value, but no oocyst count?? Plot
 
-ggplot(myData, aes(x = HI, y = delta_ct_MminusE, col = OPG > 0)) +
-  geom_point(size = 3) + 
+ggplot(myData[myData$Year %in% c(2016, 2017),], 
+       aes(x = HI, y = delta_ct_MminusE, col = OPG > 0)) +
+  geom_point(size = 5) + 
   geom_hline(yintercept = -6) +
+  facet_grid(.~Year) +
   theme_bw()
 
+# Todo later: test if points for HI ~ 0.5 are dead ends...
 
 # Fit the model!! the smooth is not adapted
 
@@ -217,7 +180,7 @@ latLongMissing <- myData$Mouse_ID[
 myData <- myData[!is.na(myData$Latitude) &
                                        myData$Latitude > 51 &
                                        myData$Longitude < 17, ]
-
+table(duplicated(myData$Mouse_ID))
 # Total
 Nmice <- nrow(myData)
 Nfarm <- length(unique(myData$farm))
@@ -258,10 +221,9 @@ myData$allDetectionMethod[myData$OPG == 0 &
                             myData$PCRstatus == "negative" &
                             myData$qPCRstatus == "negative"] <- "negative"
 
-prevalenceTot <- getPrevalenceTable(table(myData$allDetectionMethod,
-                                            myData$Year ))
-
-
+## ERROR HERE
+# prevalenceTot <- getPrevalenceTable(table(myData$allDetectionMethod,
+#                                             myData$Year ))
 
 ######### Compare our methods of detection ######### 
 noo <- table(!is.na(myData$OPG))[2]
@@ -316,6 +278,7 @@ plotcompOPGqPCR <- ggplot(myData[!is.na(myData$delta_ct_MminusE) &
   geom_smooth(method = "lm", se = FALSE, col = "red") +
   scale_y_log10() +
   theme_bw()
+plotcompOPGqPCR
 
 data1 <- myData[!is.na(myData$delta_ct_MminusE) &
                             !is.na(myData$OPG), ]

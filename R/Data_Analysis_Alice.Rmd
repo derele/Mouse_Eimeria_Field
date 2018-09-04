@@ -75,8 +75,8 @@ kable(prevalenceqPCR, caption = "Prevalence of Eimeria per year, based on qPCR")
 ```
 
 ```{r tabPrevtot, echo=FALSE, results='asis'}
-library(knitr)
-kable(prevalenceTot, caption = "Prevalence of Eimeria per year, based on all detections methods. A mouse was considered infected by Eimeria if one of the 3 markers (COI, 18S or ORF470) gave a sequence, OR if it had a positive count of oocysts in its feces, OR if it was qPCR positive")
+# library(knitr)
+# kable(prevalenceTot, caption = "Prevalence of Eimeria per year, based on all detections methods. A mouse was considered infected by Eimeria if one of the 3 markers (COI, 18S or ORF470) gave a sequence, OR if it had a positive count of oocysts in its feces, OR if it was qPCR positive")
 ```
 
 ## Improving Eimeria oocysts detection
