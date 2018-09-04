@@ -1,6 +1,152 @@
-# Back to empty
-rm(rawData)
-rm(rawMeltData)
+###### 2016 ######
+qpcrData <- read.csv("../qPCR_2016.csv")
+
+# Did Enas calculate the other way around?
+qpcrData$delta_ct_cewe[qpcrData$observer_qpcr == "Enas"] <-
+  - qpcrData$delta_ct_cewe[qpcrData$observer_qpcr == "Enas"]
+
+qpcrData$delta_ct_ilwe[qpcrData$observer_qpcr == "Enas"] <-
+  - qpcrData$delta_ct_ilwe[qpcrData$observer_qpcr == "Enas"]
+
+# Here deltaCT = ct eimeria - ct mouse. If high infection, low deltaCT
+# -deltaCT = ct mouse - ct eimeria
+qpcrData$qPCRsummary[qpcrData$delta_ct_cewe > 6 & qpcrData$delta_ct_ilwe > 6] <- "non infected"
+qpcrData$qPCRsummary[qpcrData$delta_ct_cewe < 6 & qpcrData$delta_ct_ilwe > 6] <- "infected cecum"
+qpcrData$qPCRsummary[qpcrData$delta_ct_cewe > 6 & qpcrData$delta_ct_ilwe < 6] <- "infected ileum"
+
+qpcrData$qPCRsummary[
+  qpcrData$delta_ct_cewe < 6 & 
+    qpcrData$delta_ct_ilwe < 6 & 
+    qpcrData$delta_ct_cewe < qpcrData$delta_ct_ilwe] <- "cecum stronger"
+qpcrData$qPCRsummary[
+  qpcrData$delta_ct_cewe < 6 & 
+    qpcrData$delta_ct_ilwe < 6 & 
+    qpcrData$delta_ct_cewe > qpcrData$delta_ct_ilwe] <- "ileum stronger"
+
+# Infected or not?
+qpcrData$qPCRstatus <- "positive"
+qpcrData$qPCRstatus[is.na(qpcrData$qPCRsummary)] <- NA
+qpcrData$qPCRstatus[qpcrData$qPCRsummary %in% "non infected"] <- "negative"
+
+# and keep the infected segment value OR the higher value 
+qpcrData$delta_ct[
+  qpcrData$qPCRsummary %in% c("infected cecum", "cecum stronger")] <- 
+  qpcrData$delta_ct_cewe[
+    qpcrData$qPCRsummary %in% c("infected cecum", "cecum stronger")] 
+
+qpcrData$delta_ct[
+  qpcrData$qPCRsummary %in% c("infected ileum", "ileum stronger")] <- 
+  qpcrData$delta_ct_ilwe[
+    qpcrData$qPCRsummary %in% c("infected ileum", "ileum stronger")] 
+
+# Turn around
+qpcrData$delta_ct_MminusE <- - qpcrData$delta_ct
+
+# Set floor values
+qpcrData$delta_ct_MminusE[is.na(qpcrData$delta_ct_MminusE)] <- -6
+
+## Add Tabea's values!
+rawData <- read.csv("TabeaRaw/Eimeria_qPCR_Tissue_220818.csv")
+
+# Correct name
+rawData[rawData$Name %in% "ILWE_AA_140", "Name"] <- "ILWE_AA_0140"
+
+rawMeltData <- read.csv("TabeaRaw/Eimeria_qPCR_Tissue_220818_Melting.csv")
+
+# Merge by Name and Pos
+mergedDF <- merge(rawData, rawMeltData, by = c("Name", "Pos"))
+
+# Remove useless lines
+mergedDF <- mergedDF[!is.na(mergedDF$Ct.Mean.SYBR) & !mergedDF$Name %in% "NTC_Mouse", ]
+
+# Add tissue and Mouse_ID
+x <- strsplit(as.character(mergedDF$Name), "_", 1)
+mergedDF$tissue <- sapply( x, "[", 1)
+mergedDF$Mouse_ID <- paste0("AA_", sapply( x, "[", 3))
+rm(x)
+
+# calculate deltaCtMminusE
+calculateDeltaCt <- function(df){
+  sumDataMouse <- df[df$Target.SYBR %in% "mouse",]
+  sumDataEimeria <- df[df$Target.SYBR %in% "eimeria",]
+  mergedData <- merge(sumDataEimeria, sumDataMouse,
+                      by = c("Mouse_ID", "tissue", "Name"))
+  mergedData <- unique(mergedData)
+  mergedData$deltaCt_MminusE <- as.numeric(as.character(mergedData$Ct.Mean.SYBR.y)) - 
+    as.numeric(as.character(mergedData$Ct.Mean.SYBR.x)) # DeltaCt MOUSE minus EIMERIA
+  return(mergedData)
+}
+
+mergedDF <- calculateDeltaCt(mergedDF)
+
+mergedDF <- unique(mergedDF[c("Mouse_ID", "tissue", "deltaCt_MminusE")])
+
+mergedDF$year <- 2016
+mergedDF$observer_qPCR <- "Tabea"
+
+finalDataClean <- mergedDF["Mouse_ID"]
+
+# Add CEWE
+finalDataClean <- merge(finalDataClean,
+                        mergedDF[mergedDF$tissue %in% "CEWE", c("Mouse_ID", "deltaCt_MminusE")],
+                        all.x = T)
+names(finalDataClean)[names(finalDataClean) %in% "deltaCt_MminusE"] <- "delta_ct_cewe_MminusE"
+
+# Add ILWE
+finalDataClean <- merge(finalDataClean,
+                        finalData[finalData$tissue %in% "ILWE", c("Mouse_ID", "deltaCt_MminusE")],
+                        all.x = T)
+names(finalDataClean)[names(finalDataClean) %in% "deltaCt_MminusE"] <- "delta_ct_ilwe_MminusE"
+
+finalDataClean <- unique(finalDataClean)
+
+# Add observer
+finalDataClean$observer_qpcr <- "Lorenzo"
+
+# Add year
+finalDataClean$Year <- 2017
+
+
+
+
+## TO TURN AROUND!!
+# Here deltaCT = ct eimeria - ct mouse. If high infection, low deltaCT
+# -deltaCT = ct mouse - ct eimeria
+qpcrData$qPCRsummary[qpcrData$delta_ct_cewe > 6 & qpcrData$delta_ct_ilwe > 6] <- "non infected"
+qpcrData$qPCRsummary[qpcrData$delta_ct_cewe < 6 & qpcrData$delta_ct_ilwe > 6] <- "infected cecum"
+qpcrData$qPCRsummary[qpcrData$delta_ct_cewe > 6 & qpcrData$delta_ct_ilwe < 6] <- "infected ileum"
+
+qpcrData$qPCRsummary[
+  qpcrData$delta_ct_cewe < 6 & 
+    qpcrData$delta_ct_ilwe < 6 & 
+    qpcrData$delta_ct_cewe < qpcrData$delta_ct_ilwe] <- "cecum stronger"
+qpcrData$qPCRsummary[
+  qpcrData$delta_ct_cewe < 6 & 
+    qpcrData$delta_ct_ilwe < 6 & 
+    qpcrData$delta_ct_cewe > qpcrData$delta_ct_ilwe] <- "ileum stronger"
+
+# Infected or not?
+qpcrData$qPCRstatus <- "positive"
+qpcrData$qPCRstatus[is.na(qpcrData$qPCRsummary)] <- NA
+qpcrData$qPCRstatus[qpcrData$qPCRsummary %in% "non infected"] <- "negative"
+
+# and keep the infected segment value OR the higher value 
+qpcrData$delta_ct[
+  qpcrData$qPCRsummary %in% c("infected cecum", "cecum stronger")] <- 
+  qpcrData$delta_ct_cewe[
+    qpcrData$qPCRsummary %in% c("infected cecum", "cecum stronger")] 
+
+qpcrData$delta_ct[
+  qpcrData$qPCRsummary %in% c("infected ileum", "ileum stronger")] <- 
+  qpcrData$delta_ct_ilwe[
+    qpcrData$qPCRsummary %in% c("infected ileum", "ileum stronger")] 
+
+
+
+
+
+
+###### 2017 ######
 
 # import data
 rawData <- read.csv("./LorenzoRAW/CSVFiles/TotalLorenzo.csv", stringsAsFactors = F,
@@ -72,14 +218,13 @@ rawData[rawData$fileName %in% "QPCR07.06.2018part2.XLS.csv" &
                                                              rawData[rawData$fileName %in% "QPCR07.06.2018part2.XLS.csv" &
                                                                        rawData$Pos %in% paste0("C", 4:12),"Name"])
 rawData[rawData$Name %in% "CEWE_AA_0330#", "Name"] <- "CEWE_AA_0330"
+rawData[rawData$Name %in% "CEWE_AA_0436*", "Name"] <- "CEWE_AA_0436"
+ 
 rawData[rawData$Name %in% "CEWE_AA_0410" & rawData$Pos %in% c(paste0("D", 7:12)),"Name"] <- "ILWE_AA_0410"
 
 # likely manual mistake
 rawData[rawData$Pos %in% c("B4", "B5", "B6") &
           rawData$fileName %in% "QPCR14.06.2018.XLS.csv", "Name"] <- "CEWE_AA_0424"
-
-# Remove samples with no delta Ct value for mice (means that only one sample worked)
-rawData <- rawData[-which(is.na(rawData$Ct.Mean.SYBR) & rawData$Target.SYBR == "mouse"),]
 
 # Add full name of sample (tissue + mouseID + eimeriaOrmouse primers + plate)
 rawData$fullName <- paste0(rawData$Name, "_", rawData$Target.SYBR, "_",  rawData$fileName)
@@ -92,10 +237,18 @@ rm(x)
 ##### END Prepare data #####
 
 ##### End cleaning ##### 
-allSamples <- unique(rawData$Name)
+allSamples <- unique(data.frame(Mouse_ID = rawData$Mouse_ID,
+                         tissue = rawData$tissue))
 
 ### 1. which ones are at least duplicates? remove the others
 # triplicate = same file, same name, same target, same mean
+
+# Remove samples with no delta Ct value for mice (means that only one sample worked)
+failedDNA <- unique(data.frame(Mouse_ID = rawData[which(is.na(rawData$Ct.Mean.SYBR) & rawData$Target.SYBR == "mouse"), "Mouse_ID"],
+                               tissue = rawData[which(is.na(rawData$Ct.Mean.SYBR) & rawData$Target.SYBR == "mouse"), "tissue"],
+                               status = "failed"))
+
+rawData <- rawData[-which(is.na(rawData$Ct.Mean.SYBR) & rawData$Target.SYBR == "mouse"),]
 
 library(dplyr)
 
@@ -113,6 +266,10 @@ OKData <- OKData %>%
   mutate(status = if_else(is.na(Ct.Mean.SYBR), "negative", "pending"))%>% 
   data.frame()
 
+negative <- unique(data.frame(Mouse_ID = OKData[OKData$status == "negative", "Mouse_ID"],
+                              tissue = OKData[OKData$status == "negative", "tissue"],
+                              status = "negative"))
+
 ##### Calculate delta ct #####
 calculateDeltaCt <- function(df){
   # Keep one value per plate per fullName (so per triplicate)
@@ -123,30 +280,8 @@ calculateDeltaCt <- function(df){
   mergedData <- merge(sumDataEimeria, sumDataMouse,
                       by = c("Mouse_ID", "fileName", "tissue", "Name"))
   mergedData <- unique(mergedData)
-  mergedData$deltaCt <- as.numeric(as.character(mergedData$Ct.Mean.SYBR.y)) - 
-    as.numeric(as.character(mergedData$Ct.Mean.SYBR.x)) # DeltaCt EIMERIA minus MOUSE
-  return(mergedData)
-}
-
-OKData <- calculateDeltaCt(OKData)
-BadData <- calculateDeltaCt(badSd)
-
-myTiles2 <- function(df){
-  dat_long <- data.frame(tissue = rawData$tissue, 
-                         Mouse_ID = rawData$Mouse_ID,
-                         value = 0)
-  
-  mergedData <- merge(sumDataEimeria, sumDataMouse, 
-                      by = c("Mouse_ID", "fileName", "tissue"), all = T)
-  
-  mergedData$deltaCtMminusE <- NA
-  
-  mergedData$deltaCtMminusE[!is.na(as.numeric(mergedData$Ct.Mean.SYBR.y)) &
-                              !is.na(as.numeric(mergedData$Ct.Mean.SYBR.x))] <- 
-    as.numeric(mergedData$Ct.Mean.SYBR.y[!is.na(as.numeric(mergedData$Ct.Mean.SYBR.y)) &
-                                           !is.na(as.numeric(mergedData$Ct.Mean.SYBR.x))]) - 
-    as.numeric(mergedData$Ct.Mean.SYBR.x[!is.na(as.numeric(mergedData$Ct.Mean.SYBR.y)) &
-                                           !is.na(as.numeric(mergedData$Ct.Mean.SYBR.x))])
+  mergedData$deltaCtMminusE <- as.numeric(as.character(mergedData$Ct.Mean.SYBR.y)) - 
+    as.numeric(as.character(mergedData$Ct.Mean.SYBR.x)) # DeltaCt MOUSE minus EIMERIA
   return(mergedData)
 }
 
@@ -154,27 +289,31 @@ OKData <- calculateDeltaCt(OKData)
 
 hist(OKData$deltaCtMminusE, breaks = 100) # keep all above -6 :D
 
-OKData$status <- "negative"
-OKData$status[OKData$deltaCtMminusE > -6] <- "positive"
+negative2 <- data.frame(Mouse_ID = OKData[OKData$deltaCtMminusE <= -6, "Mouse_ID"],
+                        tissue = OKData[OKData$deltaCtMminusE <= -6, "tissue"],
+                        status = "negative")
+                        
 
-positiveData <- OKData[OKData$status %in% "positive",]
+positiveData <- OKData[OKData$deltaCtMminusE > -6,]
+
+positiveSamples <- unique(data.frame(Mouse_ID = positiveData["Mouse_ID"],
+                                    tissue = positiveData["tissue"],
+                                    status = "positive"))
+
+# Prevalence 2017
+nrow(positiveSamples) / nrow(allSamples) *100
 
 ## Average technical replicates
 finalData <- positiveData %>% 
-  group_by(Name.x) %>%   
+  group_by(Name) %>%   
   summarise(count = n(), 
             deltaCt_MminusE = mean(deltaCtMminusE),
             sdDelta = sd(deltaCtMminusE)) %>% 
   data.frame()
 
-positiveSample <- finalData$Name.x
-
-# Prevalence 2017
-length(positiveSample) / length(allSamples) *100
-
 # Final DF
-x <- strsplit(as.character(finalData$Name.x), "_", 1)
-finalData <- data.frame(Name = finalData$Name.x,
+x <- strsplit(as.character(finalData$Name), "_", 1)
+finalData <- data.frame(Name = finalData$Name,
                         deltaCt_MminusE = finalData$deltaCt_MminusE,
                         tissue = sapply( x, "[", 1),
                         Mouse_ID = paste0("AA_", sapply( x, "[", 3)))
@@ -182,10 +321,8 @@ rm(x)
 
 finalData$year <- 2017
 
-## And save
-OKData$year <- 2017
+finalDataClean <- finalData["Mouse_ID"]
 
-finalDataClean <- OKData["Mouse_ID"]
 # Add CEWE
 finalDataClean <- merge(finalDataClean,
                         finalData[finalData$tissue %in% "CEWE", c("Mouse_ID", "deltaCt_MminusE")],
@@ -205,79 +342,7 @@ finalDataClean$observer_qpcr <- "Lorenzo"
 
 # Add year
 finalDataClean$Year <- 2017
+finalDataClean <- finalDataClean[-which(finalDataClean$Mouse_ID %in% "AA_NA"),]
 
 # Write out
 write.csv(finalDataClean, "../qPCR_2017.csv", row.names = F)
-
-# ###########
-# source("../../../R/functions/addPCRresults.R")
-# source("../../../R/functions/addqPCRresults.R")
-# source("../../../R/functions/addFlotationResults.R")
-#
-# myFinal <- addPCRresults(finalData, pathtodata = "../Inventory_contents_all.csv")
-# myFinal <- addFlotationResults(myFinal, pathtofinalOO = "../FINALOocysts2015to2017.csv",
-#                                pathtolorenzodf = "../Eimeria_oocysts_2015&2017_Lorenzo.csv")$new
-#
-# myFinal <- addqPCRresults(myFinal, pathtoqPCR2016 = "../qPCR_2016.csv", pathtoqPCR2017 = "../qPCR_2017.csv")
-#
-# myFinal$year[is.na(myFinal$year)] <- myFinal$year.x[is.na(myFinal$year)]
-# myFinal$year[is.na(myFinal$year)] <- myFinal$year.y[is.na(myFinal$year)]
-# myFinal$year <- as.factor(myFinal$year)
-#
-# summary(lm(OPG ~ delta_ct_cewe, myFinal))
-#
-# ggplot(myFinal, aes(y = myFinal$delta_ct_ilwe, x = OPG+1)) +
-#   scale_x_log10() +
-#   geom_point(aes(col = year), size = 4) +
-#   geom_smooth(method = "lm")
-#
-# ggplot(myFinal, aes(y = myFinal$delta_ct_cewe, x = OPG+1)) +
-#   scale_x_log10() +
-#   geom_point(aes(col = year), size = 4) +
-#   geom_smooth(method = "lm")
-#
-# # Plot 1 detection methods compared
-# ggplot(myFinal, aes(x = PCRstatus, y = OPG + 1)) +
-#   scale_y_log10() +
-#   # geom_boxplot()+
-#   geom_violin() +
-#   geom_jitter(aes(col = year), width = .1, size = 2, alpha = .5) +
-#   theme_bw()
-#
-# # Plot 2 detection methods compared
-# ggplot(myFinal, aes(x = qPCRstatus, y = OPG + 1)) +
-#   scale_y_log10() +
-#   geom_boxplot()+
-#   geom_jitter(aes(col = year), width = .1, size = 2, alpha = .5) +
-#   theme_bw()
-#
-# # How to set up a limit of detection for qPCR
-# ggplot(myFinal, aes(x = OPG > 0, y = delta_ct_cewe)) +
-#   geom_boxplot()+
-#   geom_point(aes(col = year), size = 2, alpha = .5) +
-#   theme_bw()
-#
-# ggplot(myFinal, aes(x = myFinal$PCRstatus, y = delta_ct_cewe)) +
-#   geom_boxplot()+
-#   geom_point(aes(col = year), size = 2, alpha = .5) +
-#   theme_bw()
-#
-# myFinal$FlotOrPcr <- "negative"
-# myFinal$FlotOrPcr[myFinal$OPG > 0 | myFinal$PCRstatus %in% "positive"] <- "positive"
-#
-# ggplot(myFinal, aes(x = myFinal$FlotOrPcr, y = delta_ct_cewe)) +
-#   geom_violin()+
-#   geom_point(aes(col = year), size = 2, alpha = .5) +
-#   geom_hline(yintercept = 6) +
-#   theme_bw()
-#
-# ## Which samples have no qPCR?
-# # 2017
-# myFinal$Mouse_ID[!is.na(myFinal$delta_ct_cewe)]
-# which(duplicated(myFinal$Mouse_ID))
-#
-
-
-
-
-
