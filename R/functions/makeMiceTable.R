@@ -443,7 +443,7 @@ makeMiceTable <- function(pathToMyData){
   mergedMiceTable$Year[
     mergedMiceTable$Mouse_ID %in% c("SK_2903", "SK_2904")] <- 2014
   mergedMiceTable$Year[
-    mergedMiceTable$Mouse_ID %in% c("AA_0451", "AA_0452")] <- 2017
+    mergedMiceTable$Mouse_ID %in% c("AA_0330", "AA_0450", "AA_0451", "AA_0452")] <- 2017
   
   return(mergedMiceTable)
 }

@@ -47,8 +47,6 @@ miceTable <- makeMiceTable("../../Data_important/")
 otherRodentsID <- c(miceTable$Mouse_ID[miceTable$Species %in% "Pet mus musculus"],
                     miceTable$Mouse_ID[grep("ZZ", miceTable$Mouse_ID)])
 myData <- miceTable[!miceTable$Mouse_ID %in% otherRodentsID,]
-myData$Year[myData$Mouse_ID == "AA_0330"] <- 2017
-myData$Year[myData$Mouse_ID == "AA_0450"] <- 2017
 ```
 
 # Eimeria detection oocysts flotation
