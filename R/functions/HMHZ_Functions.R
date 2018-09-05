@@ -184,7 +184,9 @@ calculateOPG <- function(x){
 
 getPrevalenceTable <- function(myTable){
   prevTable <- as.data.frame.matrix(myTable)
-  prevTable[3,] <- round(prevTable[2,] / colSums(prevTable) *100, 2)
-  rownames(prevTable)[3] <- "prevalence(%)"
+  prevTable[3,] <- prevTable[1,] + prevTable[2,]
+  rownames(prevTable)[3] <- "total"
+  prevTable[4,] <- round(prevTable[2,] / prevTable[3, ] *100, 2)
+  rownames(prevTable)[4] <- "prevalence(%)"
   return(prevTable)
 }
