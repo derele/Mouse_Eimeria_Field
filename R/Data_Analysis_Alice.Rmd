@@ -19,7 +19,6 @@ output:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-# source("../R/Data_Preparation_Alice.R")
 
 library(ggplot2)
 library(ggmap)
@@ -436,6 +435,10 @@ summary(lm(myData$BCI ~ myData$OPG + myData$HI))
 ```
 
 # Testing hybrid vigor along HMHZ
+
+```{r, echo = FALSE}
+write.csv(myData, "../../Data_important/FinalFullDF_flotationPcrqPCR.csv", row.names = F)
+```
 
 ## Oocyst shedding 
 
