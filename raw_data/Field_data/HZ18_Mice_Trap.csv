@@ -1,3 +1,12 @@
 Area,Address,Latitude,Longitude,Date_set,Time_set,Number_traps_set,Date_collect,Time_collect,Number_rodents_caught,Number_mus_caught,People
-south,"Bahnhofstraße 21, 16321 Rüdnitz EXAMPLE TO REMOVE",52.7169444,13.64,09/09/17,11:30:00,14,10/09/17,11:30:00,0,0,"Alice, Yasmin, Saskia, Anna"
-west,kjcdbdcj,10,10,11/09/18,,,,,,,
+XN,Brodowiner Dorfstrasse 88,52.9148,13.9621,10/09/18,16:55,16,11/09/18,11:30:00,2,2,N/A
+XN,"Wergener Dorfstrasse 1, 16230",52.9148,13.9624,10/09/18,16:50,9,11/09/18,10:40:00 AM,1,1,N/A
+XN,"Pelitz 3, 16230",52.9095,13.9932,10/09/18,17:20,22,11/09/18,11:20:00 AM,1,1,N/A
+XN,"Macherslust 3-5, ",52.8484,13.8462,10/09/18,16:00,27,11/09/18,10:16:00 AM,0,0,N/A
+XN,"Ladersdorfe strasse, 25, 16245 ",52.9333,14.0435,10/09/18,18:00,18,11/09/18,11:45:00 AM,0,0,N/A
+XN,"Oderberger strasse 18, 16248",52.9162,14.1100,10/09/18,18:20,16,11/09/18,12:00:00 PM,1,0,N/A
+XN,"Hohersaatener strasse 8,",52.8716,14.1425,10/09/18,18:46,14,11/09/18,01:00:00 PM,0,0,N/A
+XN,"Hohersaatener strasse 4, 16259",52.8716,14.1425,10/09/18,19:00,14,11/09/18,01:05:00 PM,0,0,N/A
+XN,"Corinastrasse 18, ",52.8515,13.9155,10/09/18,12:35,41,11/09/18,09:21:00 AM,0,0,N/A
+Y,"Karlswerter Weg, 13167",52.8100,13.9200,10/09/18,16:50,25,11/09/18,10:21:00 AM,0,0,N/A
+Y,"Alte Heerstrasse 39, 16259",52.7700,14.0800,10/09/18,17:50,28,11/09/18,10:57:00 AM,0,0,N/A
