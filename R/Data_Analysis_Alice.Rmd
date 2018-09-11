@@ -19,7 +19,6 @@ output:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-# source("../R/Data_Preparation_Alice.R")
 
 library(ggplot2)
 library(ggmap)
@@ -47,8 +46,6 @@ miceTable <- makeMiceTable("../../Data_important/")
 otherRodentsID <- c(miceTable$Mouse_ID[miceTable$Species %in% "Pet mus musculus"],
                     miceTable$Mouse_ID[grep("ZZ", miceTable$Mouse_ID)])
 myData <- miceTable[!miceTable$Mouse_ID %in% otherRodentsID,]
-myData$Year[myData$Mouse_ID == "AA_0330"] <- 2017
-myData$Year[myData$Mouse_ID == "AA_0450"] <- 2017
 ```
 
 # Eimeria detection oocysts flotation
@@ -438,6 +435,10 @@ summary(lm(myData$BCI ~ myData$OPG + myData$HI))
 ```
 
 # Testing hybrid vigor along HMHZ
+
+```{r, echo = FALSE}
+write.csv(myData, "../../Data_important/FinalFullDF_flotationPcrqPCR.csv", row.names = F)
+```
 
 ## Oocyst shedding 
 
