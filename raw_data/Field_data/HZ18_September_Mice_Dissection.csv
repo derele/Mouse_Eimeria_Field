@@ -1,0 +1,2 @@
+Mouse_ID,Transect,State,Address,Code,Latitude,Longitude,Sex,Status,Species,Year,Capture,Dissection,Dissectors,Ectoparasites,Body_weight,Body_length,Tail_length,Spleen_mass,Left_Testis_mass,Right_Testis_mass,Left.epididymis.weight,Seminal.vesicle.weight,Left.ovarium.weight,Right.ovarium.weight,Total,Embryo_left,Embryo_right,Feces_weight
+AA_0237,HZ_BR,Germany,Danewitz 22 EXAMPLE MICE TO REMOVE,DANE22,52.7339,13.6664,female,pregnant,Mus musculus,2017,10/09/17,11/09/17,Czech,FALSE,21.69,83.04,87.61,0.0303,NA,NA,NA,NA,NA,NA,NA,2,4,NA

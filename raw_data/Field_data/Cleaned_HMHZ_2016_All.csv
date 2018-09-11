@@ -1,0 +1,149 @@
+"","Got.the.sheet.","location","Adress","GPS.coordinates.long","GPS.coordinates.lat","trapping_date","trapping_time","number_of_traps","collection_date","collection_time","number_of_mice","collection_team","comment..by.catch..etc.","area","Y_N","MperT"
+"14","","E_HOHE","Hohenwutzener chaussee 3, hohenwutzen",52.83667,14.0997,"22.09.2016","16h30",15,"23.09.2016","10h10",3,"Gregor-Pedro","2 spitzmaus","C","Mm",0.2
+"15","no","HOPPE1","Münchehofer Straße 1, Hoppegarten",52.497666,13.676085,"22.09.2016","12h00",24,"23.09.2016","12h00",4,"Fiona- Irina","","D","Mm",0.166666666666667
+"16","no","E_ZIND","Zindorf",52.50186,13.928061,"22.09.2016","15h00",24,"23.09.2016","11h20",4,"Fiona- Irina","","D","Mm",0.166666666666667
+"18","","E_KRE7","Kreuzbrucher Str 7 , Kreuzbruch (Kreuz7)",52.8402,13.4291,"22.09.2016","16h14",14,"23.09.2016","13h20",0,"Paula-Naomi-Jenny","Apodemus","B","None",0
+"19","","E_KRE2","Kreuzbrucher Str. 2, Kreuzbruch (Kreuz2)",52.8367,13.4118,"22.09.2016","16h30",16,"23.09.2016","12h15",0,"Paula-Naomi-Jenny","one dead Apodemus","B","None",0
+"20","no","Hammer2","Mittelstr 1, Hammer",52.88,13.4392,"22.09.2016","15h44",11,"23.09.2016","10h04",0,"Paula-Naomi-Jenny","","B","None",0
+"21","","E_MILC","Große Trift, Hammer (Milchkuhhof) ",52.8778,13.4473,"22.09.2016","15h10",30,"23.09.2016","10h15",0,"Paula-Naomi-Jenny","","B","None",0
+"22","","E_PAPP","Pappelweg 8c; 16775 Löwenberg",52.90833,13.3066,"22.09.2016","13h00",10,"23.09.2016","15h30",3,"Thomas-Jana-Lisa-Kati","domesticus","A","Mm",0.3
+"26","","SCHEN8h","an den eiskuten 8, 15749 Mittenwalde",52.273117,13.599425,"22.09.2016","12h50",31,"23.09.2016","11h30",2,"Nadine-Nicole-Sascha","","E","Mm",0.0645161290322581
+"27","no","E_WOLZ","Wolziger hautpstrasse 24, Wolzig",52.267513,13.840138,"22.09.2016","14h00",7,"23.09.2016","17h05",1,"Nadine-Nicole-Sascha","","E","Mm",0.142857142857143
+"28","","E_HKUN","Herr Kunitz",52.24886,13.978059,"22.09.2016","17h00",22,"23.09.2016","17h40",0,"Nadine-Nicole-Sascha","9 feldmaus","E","None",0
+"29","","E_FREI","Freiherr-von-loeben strasse 2, 15749 Mittenwalde (Lamahof)",52.281,13.595,"22.09.2016","12h30",17,"23.09.2016","10h45",0,"Nadine-Nicole-Sascha","","E","None",0
+"30","","E_BERL","Berliner strasse 14, 15754 friedersdorf (klein tier und zuchbedarf egon hertel)",52.291317,13.765197,"22.09.2016","13h40",10,"23.09.2016","16h44",0,"Nadine-Nicole-Sascha","","E","None",0
+"31","","E_MARI","Marienhof 5, 15741 bestensee",52.246817,13.600134,"22.09.2016","13h55",10,"23.09.2016","12h19",0,"Nadine-Nicole-Sascha","","E","None",0
+"32","","E_PFER","western salon pferdepension, ines Roggisch",52.265571,13.9973386,"22.09.2016","17h30",10,"23.09.2016","18h20",0,"Nadine-Nicole-Sascha","","E","None",0
+"33","","E_APFE","Apfelallee 7, Kruge",52.75719,13.877991,"23.09.2016","13h00",11,"24.09.2016","13h00",0,"Gregor-Pedro","4 Spitzmäuse","C","None",0
+"34","","E_GRUN","Schönholzerstr. 8 , Grüntal",52.7463,13.730395,"23.09.2016","16h45",13,"24.09.2016","11h00",0,"Gregor-Pedro","2 Spitzmäuse","C","None",0
+"35","","E_KRUG","Weidenweg 18, 16259 Kruge",52.757041,13.887276,"23.09.2016","12h30",6,"24.09.2016","8h00",0,"Gregor-Pedro","1 spitzmaus ","C","None",0
+"36","","E_BREY","Eberswalderstr. 2, Breydin- Trampe",52.780079,13.837148,"23.09.2016","15h20",6,"24.09.2016","09h00",0,"Gregor-Pedro","","C","None",0
+"37","","E_KLOB","Lindenstr. 5, Klobbicke",52.7595889,13.8024416667,"23.09.2016","15h45",6,"24.09.2016","09h15",0,"Gregor-Pedro","1 Wühlmaus","C","None",0
+"38","","E_LIEB","Dorfallee 39, 16559 Liebenthal",52.9161,13.4638,"23.09.2016","11h00",16,"24.09.2016","12h30",9,"Paula-Naomi","2 dead Mus musculus","B","Mm",0.5625
+"39","","E_KLAN","Klandorfer Str. 60, Marienwerder",52.8421,13.5998,"23.09.2016","16h55",5,"24.09.2016","11h25",1,"Paula-Naomi","","B","Mm",0.2
+"40","","E_RUHL","Dorfstr. 63, Ruhlsdorf",52.8254,13.558,"23.09.2016","16h05",7,"24.09.2016","11h00",0,"Paula-Naomi","","B","None",0
+"41","","E_PREN","Prendener Dorfstr. 39, Prenden",52.7904,13.5516,"23.09.2016","15h40",10,"24.09.2016","10h20",0,"Paula-Naomi","","B","None",0
+"42","","E_STOL","Dorfstr. 62, Stolzenhagen",52.7805,13.4417,"23.09.2016","14h10",6,"24.09.2016","10h00",0,"Paula-Naomi","","B","None",0
+"43","","E_KLOS","Hauptstr. 49, Klosterfelde",52.7918,13.48,"23.09.2016","14h45",11,"24.09.2016","09h30",0,"Paula-Naomi","","B","None",0
+"44","","HOPPE1","Münchehofer Straße 1, Hoppegarten",52.497666,13.676085,"23.09.2016","13h00",15,"24.09.2016","13h30",6,"Fiona- Irina","","D","Mm",0.4
+"45","","E_KAGE","Kageler Weg 14, Lichtenow",52.478733,13.903849,"23.09.2016","11h50",17,"24.09.2016","15h50",0,"Fiona- Irina","","D","None",0
+"46","","E_MITS","Mitschurinstr. 1, Rehfelde",52.518554,13.898133,"23.09.2016","15h45",16,"24.09.2016","15h10",0,"Fiona- Irina","","D","None",0
+"54","","E_MIL1","Mildenberger Str. 1, Mildenberg",52.9935,13.30472,"23.09.2016","",28,"24.09.2016","",4,"Thomas-Jana-Lisa-Kati","4 + eine entlaufene","A","Mm",0.142857142857143
+"55","","E_GRAB","Dorfanger 7, 15754 Gräbendorf",52.242122,13.707342,"23.09.2016","16h30",12,"24.09.2016","16h40",1,"Nadine-Nicole-Sascha","","E","Mm",0.0833333333333333
+"56","","E_WOLZ","Wolziger hautpstrasse 24, Wolzig",52.267513,13.840138,"23.09.2016","17h30",8,"24.09.2016","17h00",7,"Nadine-Nicole-Sascha","","E","Mm",0.875
+"57","","E_GALL","Siedlung 19, 15749 Gallun",52.243685,13.560048,"23.09.2016","12h47",12,"24.09.2016","11h30",0,"Nadine-Nicole-Sascha","1 Brandmaus","E","None",0
+"58","","E_AMTO","Am Tonsee 4, Mittenwalde",52.21563,13.58843,"23.09.2016","13h40",25,"24.09.2016","12h50",2,"Nadine-Nicole-Sascha","","E","Mm",0.08
+"60","","DANE22","Dorfstr. 22, Danewitz",52.733898,13.666418,"24.09.2016","15h50",20,"25.09.2016","12h15",0,"Gregor-Pedro","2 Spitzmäuse","C","None",0
+"61","","RUDN21","Bahnhofstr. 21, Bernau (Rüdnitz)",52.716944,13.64,"24.09.2016","15h15",10,"25.09.2016","11h45",2,"Gregor-Pedro","","C","Mm",0.2
+"62","","","Bergstr. 4B, Bernau (Rüdnitz)",52.714056,13.644722,"24.09.2016","15h00",10,"25.09.2016","11h30",0,"Gregor-Pedro","","C","None",0
+"63","","","Kastanienstr. 27, Tempelfelde",52.71158,13.722576,"24.09.2016","13h20",10,"25.09.2016","11h00",0,"Gregor-Pedro","1 Spitzmaus","C","None",0
+"64","","","Lindenstr. 22, Klobbicke",52.759589,13.802443,"24.09.2016","10h00",9,"25.09.2016","10h15",0,"Gregor-Pedro","","C","None",0
+"65","","","Lindenstr. 5, Klobbicke",52.45388,13.482913,"24.09.2016","15h45",5,"25.09.2016","9h15",0,"Gregor-Pedro","","C","None",0
+"66","","","Löhmer dorfstr. 24, Werneuchen",52.633745,13.683618,"24.09.2016","11h10",32,"25.09.2016","14h20",0,"Fiona- Irina","","D","None",0
+"67","","","Wegendorfer Weg 1, Werneuchen",52.600233,13.698956,"24.09.2016","10h30",20,"25.09.2016","15h10",0,"Fiona- Irina","","D","None",0
+"68","","","Hauptstr. 26, spreenhagen",52.34145,13.875585,"24.09.2016","17h00",11,"25.09.2016","10h30",0,"Fiona- Irina","1 Brandmaus+ 1 spitzmaus","D","None",0
+"69","","E_ZEH8","Zehdenicker Str 8, 16247 Joachimsthal",52.9784,13.7336,"24.09.2016","16h30",28,"25.09.2016","12h00",13,"Paula-Naomi","","B","Mm",0.464285714285714
+"70","","","Mittelstr. 5, 16244 Eichhorst",52.890269,13.636433,"24.09.2016","14h30",19,"25.09.2016","08h30",0,"Paula-Naomi","2 Spitzmäuse","B","None",0
+"71","","","Schulstr. 10, 16244 Eichhorst",52.89051,13.63666,"24.09.2016","15h10",13,"25.09.2016","9h00",0,"Paula-Naomi","1 Spitzmaus","B","None",0
+"72","","E_MU14","Mühlengasse 14, 16348 Wandlitz (Prenden)",52.78755,13.55461,"22.09.2016","10h45",24,"23.09.2016","7h45",2,"Paula-Naomi","","B","Mm",0.0833333333333333
+"73","","E_GRAB","Dorfanger 7, 15754 Gräbendorf",52.242122,13.707342,"24.09.2016","16h20",14,"25.09.2016","14h20",1,"Nadine-Nicole-Sascha","2 dead Mus musculus","E","Mm",0.0714285714285714
+"74","","","Pferdeoase, Märkisch Buchholz",52.106315,13.763339,"24.09.2016","15h15",10,"25.09.2016","9h30",0,"Nadine-Nicole-Sascha","","E","None",0
+"76","","E_MIL1","Mildenberger Str. 1, Mildenberg",52.9935,13.30472,"24.09.2016","10h00",16,"25.09.2016","10h15",6,"Thomas-Jana-Lisa-Kati","","A","Mm",0.375
+"77","","","Badinger Dorferstr. 40, Badingen",53.00027,13.251838,"24.09.2016","13h30",10,"25.09.2016","10h45",0,"Thomas-Jana-Lisa-Kati","","A","None",0
+"78","","","Granseer Str 45, Großwoltersdorf",53.072079,13.090672,"24.09.2016","14h30",11,"25.09.2016","11h45",0,"Thomas-Jana-Lisa-Kati","","A","None",0
+"79","","","IGB",53.14144,13.029748,"24.09.2016","15h30",10,"25.09.2016","13h15",0,"Thomas-Jana-Lisa-Kati","","A","None",0
+"80","","","Bornmühlenstr., Fürstenberg",53.172124,13.14741,"24.09.2016","17h30",19,"25.09.2016","14h00",0,"Thomas-Jana-Lisa-Kati","","A","None",0
+"81","","E_GRAF","Siedlung 11, Gräfendorf",51.909612,13.1949,"24.09.2016","14h54",25,"25.09.2016","16h20",1,"Emanuel-Victor","","F","Mm",0.04
+"82","","","Rosenthal 62",51.863059,13.462218,"24.09.2016","16h40",8,"25.09.2016","11h45",0,"Emanuel-Victor","","F","None",0
+"83","","E_RO38","15936 Rosenthal 38",51.862758,13.463558,"24.09.2016","16h00",13,"25.09.2016","11h15",3,"Emanuel-Victor","d1 died in the lab","F","Mm",0.230769230769231
+"84","","","15936 Rosenthal 10",51.86995,13.460798,"24.09.2016","16h30",6,"25.09.2016","11h06",0,"Emanuel-Victor","","F","None",0
+"85","","","Körbitz 11",51.895026,13.113572,"24.09.2016","13h45",15,"25.09.2016","12h35",0,"Emanuel-Victor","","F","None",0
+"86","","E_GR17","14913 Grüna 17",52.031213,13.082355,"24.09.2016","11h36",15,"25.09.2016","13h00",1,"Emanuel-Victor","","F","Mm",0.0666666666666667
+"87","","","14913 Grüna 10",52.030218,13.084008,"24.09.2016","11h00",14,"25.09.2016","15h00",0,"Emanuel-Victor","","F","None",0
+"88","","","Oehna 59",51.929931,13.04327,"24.09.2016","12h40",6,"25.09.2016","15h20",0,"Emanuel-Victor","","F","None",0
+"89","","E_OE62","Oehna 62",51.929943,13.043982,"24.09.2016","13h00",8,"25.09.2016","15h30",1,"Emanuel-Victor","","F","Mm",0.125
+"90","","E_KIR1","Kirchstr. 1, Groß Ziethen",52.95691,13.89739,"25.09.2016","14h30",5,"26.09.2016","10h00",5,"Gregor-Pedro","","C","Mm",1
+"91","","","Serwester Dorfstr. 72, Serwest",52.929032,13.924824,"25.09.2016","15h15",11,"26.09.2016","9h30",0,"Gregor-Pedro","","C","None",0
+"92","","","Groß Fredenwalde 29, 17268 Gerswalde",53.12959,13.79691,"25.09.2016","15h45",16,"26.09.2016","10h20",0,"Paula-Naomi","2 Spitzmäuse, 2 Apodemus","B","None",0
+"93","","","Klein Fredenwalde ",53.12783,13.76991,"22.09.2016","15h00",13,"26.09.2016","10h45",0,"Paula-Naomi","1 Apodemus","B","None",0
+"94","","","Glambecker Str. 23, Parlow",53.02505,13.76791,"25.09.2016","11h00",17,"26.09.2016","09h00",0,"Paula-Naomi","","B","None",0
+"95","","","Glambecker Str. 22, Parlow",53.02507,13.766596,"25.09.2016","10h30",19,"26.09.2016","8h50",0,"Paula-Naomi","1 Spitzmaus","B","None",0
+"96","","","Templiner Str. 18D, 17268 Temmen-Ringenwalde",53.06147,13.71264,"25.09.2016","16h00",15,"26.09.2016","09h50",0,"Paula-Naomi","2 Spitzmäuse, 2 Apodemus","B","None",0
+"97","","E_KI13","Kirchstr.13, Tuchen",52.754538,13.787479,"25.09.2016","10h20",10,"26.09.2016","17h00",3,"Gregor-Pedro","1 Spitzmaus","C","Mm",0.3
+"98","","","Dorfstr. 9, 16230 Breydin-Trampe",52.776694,13.837111,"23.09.2016","14h25",21,"24.09.2016","8h30",0,"Gregor-Pedro","2 Spitzmäuse","C","None",0
+"99","","","Neulüdersdorf 9, Neulüdersdorf",53.038544,13.186732,"25.09.2016","09h30",10,"26.09.2016","12h00",0,"Thomas-Jana-Lisa-Kati","2Spitz","A","None",0
+"100","","","Granseeer Str. . Großwoltersdorf",53.065466,13.10663,"25.09.2016","12h15",16,"26.09.2016","12h45",0,"Thomas-Jana-Lisa-Kati","1Spitz","A","None",0
+"101","","","Wendefeld, Wendefeld",53.034708,13.16023,"25.09.2016","16h00",10,"26.09.2016","12h00",0,"Thomas-Jana-Lisa-Kati","","A","None",0
+"102","","E_ALTE","Altedorfstr.  Altlüdersdorf",53.038544,13.186732,"25.09.2016","16h30",21,"26.09.2016","11h50",1,"Thomas-Jana-Lisa-Kati","","A","Mm",0.0476190476190476
+"103","","E_RIB8","Ribbecker Dorfstr. 8, Ribbeck",53.032128,13.256764,"25.09.2016","17h00",14,"26.09.2016","11h00",2,"Thomas-Jana-Lisa-Kati","+1tote","A","Mm",0.142857142857143
+"104","","old","Pferdeoase, Märkisch Buchholz",52.106315,13.763339,"25.09.2016","9h30",18,"26.09.2016","11h45",0,"Nadine-Nicole-Sascha","1 Wühlmaus, 1 Mus musculus tot","E","None",0
+"105","","E_GUTS","Micheal Nier, Gutsmannstr. 41, 15755",52.130086,13.608102,"25.09.2016","10h20",14,"26.09.2016","11h50",1,"Nadine-Nicole-Sascha","3 Brandmäuse, 1 Mus musculus tot","E","Mm",0.0714285714285714
+"106","","old","Eisenbahnerstrasse 9, Märkisch Buchholz, Volkmann",52.10668,13.75148,"25.09.2016","15h10",10,"26.09.2016","14h00",0,"Nadine-Nicole-Sascha","","E","None",0
+"107","","","Eichenhof, Eichenweg34, Löpten",52.1462,13.67908,"25.09.2016","15h30",21,"26.09.2016","16h30",0,"Nadine-Nicole-Sascha","1 Spitzmaus","E","None",0
+"108","","E_EGS7","Egsdorferstr. 7, 15749",52.15826,13.58764,"25.06.2016","16h00",9,"26.09.2016","15h00",5,"Nadine-Nicole-Sascha","","E","Mm",0.555555555555556
+"109","","","Schiffmühle 29, 16259",52.80912,14.05693,"25.06.2016","16h40",10,"26.09.2016","18h20",0,"Nadine-Nicole-Sascha","","E","None",0
+"110","","","Gartenstr. 2, Heckelberg",52.738159,13.837288,"26.09.2016","14h15",8,"27.09.2016","15h30",0,"Gregor-Pedro","1 Spitzmaus","C","None",0
+"111","","","Brunower Straße 1, 16259 Höhenland- Steinbeck",52.71788,13.907177,"26.09.2016","15h00",9,"27.09.2016","10h10",0,"Gregor-Pedro","","C","None",0
+"112","","E_LUD","Lüdersdorfer Dorfstraße 8, Wriezen – Lüdersdorf",52.699579,14.082995,"26.09.2016","16h00",8,"27.09.2016","14h45",1,"Gregor-Pedro","","C","Mm",0.125
+"113","","E_WRI6","Wriezener Straße 6, Frankenfelde",52.669965,14.058403,"26.09.2016","16h35",10,"27.09.2016","14h05",1,"Gregor-Pedro","1 Brandmaus, 1 Wühlmaus","C","Mm",0.1
+"114","","","Wriezener Straße 7, Frankenfelde",52.670084,14.05844,"26.09.2016","16h30",10,"27.09.2016","14h00",0,"Gregor-Pedro","","C","None",0
+"115","","","Dorfstr. 52, Brodowin",52.915588,13.956417,"26.09.2016","11h00",20,"27.09.2016","9h20",0,"Gregor-Pedro","","C","None",0
+"116","","","Dorfstr. 31, Niederfinow",52.840734,13.899922,"26.09.2016","13h15",10,"27.09.2016","8h45",0,"Gregor-Pedro","1 Wühlmaus","C","None",0
+"117","","","Dorfstrasse 15, Ringenwalde",53.0575,13.718,"26.09.2016","11h30",3,"27.09.2016","14h00",0,"Paula-Naomi","","B","None",0
+"118","","","Ringenwalderstrasse 31, ",53.0334,13.7112,"26.09.2016","12h30",22,"27.09.2016","10h00",0,"Paula-Naomi","1 Brandmaus, 2 Spitzmause, 1 Wühlmaus","B","None",0
+"119","","E_WILM","Wilmine 5, 17268 Gerswalde",53.116421,13.772821,"26.09.2016","16h15",6,"27.09.2016","11h00",3,"Paula-Naomi","","B","Mm",0.5
+"120","","","Dorfstrasse 34a, Ringenwalde",53.0575,13.7212,"26.09.2016","11h52",3,"27.09.2016","12h15",0,"Paula-Naomi","","B","None",0
+"121","","E_ANDE","An der Schäferei 10, 15518, Steinhöfel",52.430311,14.043857,"26.09.2016","18h00",30,"27.09.2016","12h00",1,"Fiona- Irina","","D","Mm",0.0333333333333333
+"122","","","Max-Schmelingstr. 31, 15374, Hoppegarten",52.489685,14.018114,"26.09.2016","11h20",8,"27.09.2016","11h00",0,"Fiona- Irina","1 Spitzmaus","D","None",0
+"123","","","Hirsegarten 6d, 15528, Speenhagen",52.33122,13.886509,"26.09.2016","12h00",25,"26.09.2016","16h00",0,"Fiona- Irina","1 Spitzmaus, 1 Wühlmaus","D","None",0
+"124","","","Hirsegarten 5, Spreenhagen",52.335667,13.884526,"26.09.2016","11h20",30,"26.09.2016","16h20",0,"Fiona- Irina","","D","None",0
+"125","","","Hauptstr. 34, Sprenhagen",52.340229,13.875007,"26.09.2016","10h40",22,"26.09.2016","12h00",0,"Fiona- Irina","","D","None",0
+"126","","E_STE1","Steinhöfelerstr. 1, 15518, Steinhöfel Buchholz",52.421551,14.127122,"26.09.2016","14h20",30,"27.09.2016","13h00",1,"Fiona- Irina","","D","Mm",0.0333333333333333
+"130","","E_DU19","Dubenerhauptstr. 19, 15926",51.897811,13.809616,"27.09.2016","10h40",27,"28.09.2016","11h00",13,"Emanuel-Nicole-Phuong","1 M.m entwischt ","F","Mm",0.481481481481481
+"131","","E_LUCK","Freiimfelde 1 15926 Luckau/ Duben",51.885597,13.787119,"27.09.2016","11h10",24,"28.09.2016","11h30",2,"Emanuel-Nicole-Phuong","","F","Mm",0.0833333333333333
+"132","","E_HIND","Hindenbergerdorfstr. 31 03222",51.853542,13.847336,"27.09.2016","14h30",28,"28.09.2016","12h00",13,"Emanuel-Nicole-Phuong ","3 junge M.m tot","F","Mm",0.464285714285714
+"133","","","Uckeroergutshof 3, 15926 Luckau",51.854556,13.614258,"27.09.2016","13h15",13,"28.09.2016","13h30",0,"Emanuel-Nicole-Phuong","","F","None",0
+"134","","E_DORW","Dorfweg. 21, 15936 Dahme",51.848838,13.534375,"27.09.2016","12h00",23,"28.09.2016","14h00",3,"Emanuel-Nicole-Phuong","2 Spitzmäuse (1 tot)","F","Mm",0.130434782608696
+"135","","","Heckelbergerstr. 6, 16259 Brunow",52.731077,13.867283,"27.09.2016","15h50",5,"28.09.2016","14h40",0,"Gregor-Pedro","","C","None",0
+"136","","","Serwester Dorfstr. 56, Serwest",52.933813,13.991718,"27.09.2016","10h00",8,"28.09.2016","12h00",0,"Gregor-Pedro","","C","None",0
+"137","","","Felchower Straße 15a, Crussow",53.005224,14.080622,"27.09.2016","11h45",5,"28.09.2016","10h00",0,"Gregor-Pedro","","C","None",0
+"138","","E_MU14","Mühlengasse 14, 16348 Wandlitz (Prenden)",52.78755,13.55461,"22.09.2016","10h45",24,"27.09.2016","14h00",1,"Victor-Sascha-Naomi","","B","Mm",0.0416666666666667
+"139","","E_GERS","Böckenberg 31, 17268 Gerswalde",53.13322,13.755,"27.09.2016","15h00",30,"28.09.2016","15h15",2,"Paula-Naomi-Sascha","+1 Wühlmaus","B","Mm",0.0666666666666667
+"140","","","Templiner Str. 22, Temmen-Ringenwalde",53.0602,13.7145,"26.09.2016","13h00",17,"28.09.2016","14h30",0,"Paula-Naomi-Sascha","","B","None",0
+"141","","","Poratz 18",53.0629,13.7926,"26.09.2016","15h30",8,"28.09.2016","13h45",0,"Paula-Naomi-Sascha","","B","None",0
+"142","","","Lindenallee 3A, 17268 Temmen-Ringenwalde",53.098183,13.7527,"27.09.2016","11h45",30,"28.09.2016","13h15",0,"Paula-Naomi-Sascha","","B","None",0
+"143","","STEG1","Fredenwalder Weg 1, Stegelitz",53.126703,13.843372,"27.09.2016","15h30",11,"28.09.2016","13h00",1,"Paula-Naomi-Sascha","+3 Spitzmäuse","B","Mm",0.0909090909090909
+"144","","","Werbelliner Dorfstraße 27, Werbellin",52.890079,13.7027,"27.09.2016","16h15",13,"28.09.2016","12h00",0,"Paula-Naomi-Sascha","","B","None",0
+"145","","ZEHL21","Wensickendorfer Str.21A, Zehlendorf",52.775155,13.387899,"27.09.2016","17h15",26,"28.09.2016","17h30",0,"Paula-Naomi-Sascha","+3 Spitzmäuse","B","None",0
+"146","","","Granseer Str. 58, Großwoltersdorf",53.070217,13.09432,"26.09.2016","13h00",11,"27.09.2016","16h20",0,"Thomas-Jana-Lisa-Kati","","A","None",0
+"147","","","Eichenweg, Strasen",53.207467,12.998334,"26.09.2016","15h30",11,"27.09.2016","13h30",0,"Thomas-Jana-Lisa-Kati","","A","None",0
+"148","","","Pälitzhof 1,17255 Wustrow",53.203156,12.9707638,"26.09.2016","16h00",3,"27.09.2016","13h40",0,"Thomas-Jana-Lisa-Kati","","A","None",0
+"149","","","Pälitzhof 3, Wustrow",53.203156,12.9707638,"26.09.2016","16h15",16,"27.09.2016","13h45",0,"Thomas-Jana-Lisa-Kati","","A","None",0
+"150","","","Bornmülenstraße, Fürstenberg",53.172124,13.147471,"24.09.2016","17h30",19,"25.09.2016","14h",0,"Thomas-Jana-Lisa-Kati","","A","None",0
+"151","","E_NE20","Neulüdersdorf 20, Neulüdersdorf",53.050558,13.172672,"26.09.2016","12h30",10,"28.09.2016","17h30",1,"Thomas-Jana-Lisa-Kati","Fallen am 27.09 neu gesetzt","A","Mm",0.1
+"152","","","Rheinberger Str., Fürstenberg",53.170048,13.126998,"27.09.2016","16h00",16,"28.09.2016","14h30",0,"Thomas-Jana-Lisa-Kati","1 Spitzmaus, 1Waldmaus","A","None",0
+"153","","","Granseer Str. 1, Großwoltersdorf",53.06548,13.106627,"27.09.2016","16h30",13,"28.09.2016","17h15",0,"Thomas-Jana-Lisa-Kati","2 Spitzmäuse","A","None",0
+"154","","E_ZOOT","Dorfstr. 16, Zootzen",53.151642,13.213816,"27.09.2016","12h00",19,"28.09.2016","13h45",4,"Thomas-Jana-Lisa-Kati","7 Feldmäuse","A","Mm",0.210526315789474
+"155","","","Zur Flake 4, Strasen",53.211841,12.993232,"27.09.2016","15h00",19,"28.09.2016","16h30",0,"Thomas-Jana-Lisa-Kati","","A","None",0
+"156","","E_DOB1","Poststr. 1, Dobberzin",53.019926,14.035729,"28.09.2016","11h00",10,"29.09.2016","10h00",2,"Gregor-Pedro","1 Spitzmaus","C","Mm",0.2
+"157","","DOBB8","Poststr. 8, Dobberzin",53.020251,14.035471,"28.09.2016","10h30",10,"29.09.2016","10h05",5,"Gregor-Pedro","","C","Mm",0.5
+"158","","STERNF2","Kastanienallee 2, 16278 Angermünde - Sternfelde",53.00394,13.97029,"28.09.2016","12h00",15,"29.09.2016","11h00",1,"Gregor-Pedro","1 Spitzmaus","C","Mm",0.0666666666666667
+"159","","","Kirchstr. 5, 16230 Amtbritz- Chorin",52.886437,13.815899,"28.09.2016","14h00",8,"29.09.2016","11h45",0,"Gregor-Pedro","","C","None",0
+"160","","","Alihmbsmühle 4, 17268",53.07628,13.62279,"28.09.2016","16h15",12,"29.09.2016","13h10",0,"Victor-Sascha-Naomi","","B","None",0
+"161","","","Neudorf 2, 16348 Wandlitz",52.79819,13.516796,"28.09.2016","10h30",19,"29.09.2016","11h00",0,"Victor-Sascha-Naomi","","B","None",0
+"162","","","Wandlitzerstrasse 16, Lanke",52.758042,13.523066,"28.09.2016","11h45",12,"29.09.2016","11h30",0,"Victor-Sascha-Naomi","","B","None",0
+"163","","LETS38","Wriezenerstr. 38 Wilhermsauer Loose",52.650566,14.321733,"28.09.2016","17h00",20,"29.09.2016","15h00",1,"Gregor-Pedro","","C","Mm",0.05
+"164","","E_MA20","Mahlerstr. 20, Wriezen",52.733087,14.125579,"28.09.2016","16h00",20,"29.09.2016","16h00",6,"Gregor-Pedro","","C","Mm",0.3
+"165","","E_ST18","Storkower Str 18, Storkow",53.04789,13.445741,"28.09.2016","11h30",5,"29.09.2016","12h00",3,"Thomas-Jana-Lisa-Kati","","A","Mm",0.6
+"166","","E_AMR1","Am Röddelinsee1, 17268 Templin",53.094694,13.449635,"28.09.2016","12h15",21,"29.09.2016","13h00",2,"Thomas-Jana-Lisa-Kati","Eigentlich 8, aber von Hofleuten frei gelassen","A","Mm",0.0952380952380952
+"167","","","Hauptstr. 12, Densow",53.1449,13.377,"28.09.2016","13h00",4,"29.09.2016","13h00",0,"Thomas-Jana-Lisa-Kati","","A","None",0
+"168","","","Altthymer Dorfstr. 3, Bartselhof",53.2314,13.164,"28.09.2016","15h30",10,"29.09.2016","15h00",0,"Thomas-Jana-Lisa-Kati","","A","None",0
+"169","","E_AD23","Altthymer Dorfstr. 23, Altthymen",53.239927,13.164659,"28.09.2016","16h45",22,"29.09.2016","15h20",7,"Thomas-Jana-Lisa-Kati","","A","Mm",0.318181818181818
+"170","","","Müggelseedamm 31a, Berlin",52.448977,13.647899,"27.09.2016","15h00",10,"28.09.2016","16h00",0,"Nadine-Irina","1 Spitzmaus tot","D","None",0
+"171","","","Lindenstraße 19, Alt Madlitz",52.384948,14.279504,"27.09.2016","16h00",30,"28.09.2016","12h45",0,"Nadine-Irina","1 Spitzmaus tot","D","None",0
+"172","","","Eberswalderstr. 158A, Müncheberg",52.525605,14.094352,"27.09.2016","9h30",25,"28.09.2016","9h30",0,"Nadine-Irina"," 1 Spitzmaus, 1 Wühlmaus, 1 Brandmaus","D","None",0
+"173","","","Trempelberger Weg 3, Steinhöfel Oder-Spree",52.46718,14.181204,"28.09.2016","14h30",22,"29.09.2016","9h30",0,"Nadine-Irina","","D","None",0
+"174","","MADL11","Mühlenstr.12, Briesen",52.379044,14.30442,"28.09.2016","12h30",24,"29.09.2016","10h30",0,"Nadine-Irina","","D","None",0
+"175","","E_MO12","Molkenberger Str. 12, Fürstenwalde/Spree",52.3846215,14.062102,"28.09.2016","15h30",36,"29.09.2016","12h00",2,"Nadine-Irina","","D","Mm",0.0555555555555556
+"176","","","Peterlinenweg, Kreuzung B5-L384, Falkenhagen",52.408109,14.2972631,"28.09.2016","13h30",5,"29.09.2016","14h30",0,"Nadine-Irina","","D","None",0
+"177","","","Neue Zittauer Str. ?, Erkner",52.403302,13.749045,"28.09.2016","17h30",24,"29.09.2016","16h00",0,"Nadine-Irina","5 Spitzmäuse davon 3 tot","D","None",0
