@@ -69,67 +69,90 @@ AA_0590,HZ_BR,Germany,"Beeskower str. 24, 15848",52.2130,14.0923,13/09/18,14/09/
 AA_0591,HZ_BR,Germany,"Beeskower str. 24, 15848",52.2130,14.0923,13/09/18,14/09/18,male,juvenile,Mus musculus,2018,TRUE,6.96,62,62,0.01,NA,NA,NA,NA,NA,NA,0.24,0,0,0,0,0,0,0,0,0
 AA_0592,HZ_BR,Germany,"Wernbergstrasse, 16248",52.9455,14.1010,13/09/18,14/09/18,female,adult,Mus musculus,2018,TRUE,13.93,75,79,0.03,NA,NA,NA,NA,NA,NA,0.74,0,0,0,0,0,0,0,0,0
 AA_0593,HZ_BR,Germany,"Gabow 67, 16259",52.8170,14.0745,13/09/18,14/09/18,female,pregnant,Mus musculus,2018,TRUE,15.08,79,89,0.03,NA,NA,NA,NA,4,1,0.64,0,0,0,0,0,0,0,0,4
-AA_0594,,,Felchower str. 15,53.0059,14.0801,14/09/18,15/09/18,male,adult,,,FALSE,18.08,79.3,86.5,0.0239,0.0676,0.0663,0.0234,0.1826,NA,NA,0.36,1,1,0,0,0,0,0,0,0
-AA_0595,,,Felchower str. 15,53.0059,14.0801,,,male,adult,,,FALSE,11.88,75.2,71.2,0.0224,0.0518,0.0533,0.0109,0.0097,NA,NA,0.35,0,0,0,0,0,0,0,0,0
-AA_0596,,,Gellmersdorfer str. 15,52.9906,14.0741,,,male,adult,,,TRUE,16.94,81,81.1,0.0331,0.0673,0.0644,0.0221,0.16,NA,NA,0.52,0,0,0,0,0,0,0,0,0
-AA_0597,,,Felchower str. 15,53.0059,14.0801,,,female,adult,,,FALSE,18.11,87.7,82.5,0.049,NA,NA,NA,NA,NA,NA,0.33,10,0,0,0,0,0,0,0,0
-AA_0598,,,Felchower str. 15,53.0059,14.0801,,,male,adult,,,FALSE,11.21,72.2,74.3,0.0229,0.0493,0.0513,0.0134,0.0193,NA,NA,0.71,0,0,0,0,0,0,0,0,0
-AA_0599,,,Semliner str. 1,52.6306,12.4558,,,male,adult,,,FALSE,9.85,67,74.5,0.0135,0.027,0.025,0.0101,0.0097,NA,NA,0.16,0,0,0,0,0,0,0,0,0
-AA_0600,,,Semliner str. 1,52.6306,12.4558,,,female,adult,,,FALSE,15.11,76.9,83.3,0.0265,NA,NA,NA,NA,NA,NA,0.42,0,0,0,0,0,0,0,0,0
-AA_0601,,,Chauseestr. 1,53.0989,13.9631,,,male,adult,,,TRUE,16.87,80.3,75.3,0.0292,0.0911,0.0939,0.0234,0.1358,NA,NA,0.24,0,0,0,0,0,0,0,0,0
-AA_0602,,,Granseer str. 65,53.0689,13.0992,,,male,adult,,,TRUE,14.75,74.5,81.9,0.064,0.0571,0.0575,0.0204,0.1115,NA,NA,0.36,0,15,0,0,0,0,0,4,0
-AA_0603,,,Semliner str. 1,52.6306,12.4558,,,female,pregnant,,,FALSE,18.75,84,85.6,0.047,NA,NA,NA,NA,0,3,0.41,0,0,0,0,0,0,0,0,0
-AA_0604,,,Gusower feldweg 5,52.2584,13.7311,,,male,adult,,,FALSE,18.82,79.9,81.8,0.0225,0.0847,0.0843,0.0237,0.1334,NA,NA,0.33,0,0,0,0,0,0,0,0,0
-AA_0605,,,Felchower str. 15,53.0059,14.0801,,,male,adult,,,FALSE,16.28,82,73.3,0.0264,0.0762,0.0766,0.0225,0.0926,NA,NA,0.51,5,0,0,0,0,0,0,0,0
-AA_0606,,,Felchower str. 15,53.0059,14.0801,,,female,adult,,,FALSE,21.41,86.8,36.3,0.0402,NA,NA,NA,NA,NA,NA,0.36,0,0,0,0,0,0,0,0,0
-AA_0607,,,Gellmersdorfer str. 15,52.9906,14.0741,,,male,adult,,,TRUE,14.65,79.5,70.7,0.0331,0.0575,0.0615,0.0171,0.1088,NA,NA,0.48,0,0,0,0,,0,0,0,0
-AA_0608,,,Gellmersdorfer str. 15,52.9906,14.0741,,,male,adult,,,TRUE,16.46,81,75.2,0.42,0.0729,0.0745,0.0201,0.092,NA,NA,0.4,0,0,0,0,0,0,0,0,0
-AA_0609,,,Gusower feldweg 5,52.2584,13.7311,,,female,adult,,,FALSE,20.82,85,83,0.05,NA,NA,NA,NA,NA,NA,0.39,0,1,0,0,0,0,0,0,0
-AA_0610,,,Felchower str. 15,53.0059,14.0801,,,female,juvenile,,,FALSE,7.86,64,64,0.02,NA,NA,NA,NA,NA,NA,0.28,0,0,0,0,0,0,0,0,0
-AA_0611,,,Felchower str. 15,53.0059,14.0801,,,female,juvenile,,,FALSE,6.65,62,52,0.01,NA,NA,NA,NA,NA,NA,0.25,0,38,0,0,0,0,0,0,0
-AA_0612,,,Felchower str. 15,53.0059,14.0801,,,female,juvenile,,,TRUE,10.41,72,71,0.01,NA,NA,NA,NA,NA,NA,0.28,0,0,0,0,0,0,0,0,0
-AA_0613,,,Semliner str. 1,52.6306,12.4558,,,female,adult,,,FALSE,17.59,81,81,0.03,NA,NA,NA,NA,NA,NA,0.65,0,0,0,0,0,0,0,0,0
-AA_0614,,,Semliner str. 1,52.6306,12.4558,,,female,pregnant,,,FALSE,24.66,90,80,0.06,NA,NA,NA,NA,2,2,0.34,0,0,0,0,0,0,0,0,0
-AA_0615,,,Semliner str. 1,52.6306,12.4558,,,female,adult,,,FALSE,17.7,90,84,0.04,NA,NA,NA,NA,NA,NA,0.33,0,0,0,0,0,0,0,0,0
-AA_0616,,,Gusower feldweg 5,52.2584,13.7311,,,female,pregnant,,,FALSE,20,85,74,0.04,NA,NA,NA,NA,NA,NA,0.42,0,0,0,0,0,0,0,0,0
-AA_0617,,,Felchower str. 15,53.0059,14.0801,,,female,adult,,,FALSE,18.42,87,79,0.02,NA,NA,NA,NA,NA,NA,0.69,0,34,0,0,0,0,0,0,0
-AA_0618,,,Gusower feldweg 5,52.2584,13.7311,,,female,adult,,,FALSE,20.65,87,76,0.04,NA,NA,NA,NA,NA,NA,0.68,0,0,0,0,0,0,0,0,0
-AA_0619,,,Gusower feldweg 5,52.2584,13.7311,,,female,pregnant,,,FALSE,24.89,85,79,0.04,NA,NA,NA,NA,5,3,0.83,0,0,0,0,0,0,0,0,0
-AA_0620,,,Gusower feldweg 5,52.2584,13.7311,,,female,juvenile,,,FALSE,9.14,63,60,0.01,NA,NA,NA,NA,NA,NA,0.32,0,0,0,0,0,0,0,0,0
-AA_0621,,,"Am stadtberg 2, 16278",52.9765,14.0667,,,female,juvenile,,,FALSE,9.44,77,57,0.01,NA,NA,NA,NA,NA,NA,0.08,0,0,0,0,0,0,0,0,0
-AA_0622,,,"Dorfstrasse 2, 16359",52.7369,13.6605,,,female,juvenile,,,FALSE,12.89,70,65,0.06,NA,NA,NA,NA,NA,NA,1.3,0,26,0,0,0,0,0,0,0
-AA_0623,,,"Dorfstrasse 2, 16359",52.7369,13.6605,,,male,juvenile,,,TRUE,11.63,69,60,0.02,NA,NA,NA,NA,NA,NA,1.07,0,0,0,0,0,0,0,0,0
-AA_0624,,,Semliner str. 1,52.6306,12.4558,,,male,juvenile,,,FALSE,11.93,70,72,0.04,NA,NA,NA,NA,NA,NA,0.68,0,0,0,0,0,0,0,0,0
-AA_0625,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-AA_0626,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-AA_0627,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-AA_0628,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-AA_0629,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-AA_0630,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-AA_0631,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-AA_0632,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-AA_0633,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-AA_0634,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-AA_0635,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-AA_0636,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-AA_0637,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-AA_0638,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-AA_0639,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-AA_0640,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-AA_0641,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-AA_0642,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-AA_0643,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-AA_0644,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-AA_0645,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-AA_0646,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-AA_0647,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-AA_0648,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-AA_0649,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-AA_0650,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-AA_0651,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-AA_0652,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-AA_0653,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-AA_0654,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-AA_0655,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-AA_0656,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-AA_0657,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+AA_0594,HZ_BR,Germany,Felchower str. 15,53.0059,14.0801,14/09/18,15/09/18,male,adult,Mus musculus,2018,FALSE,18.08,79.3,86.5,0.0239,0.0676,0.0663,0.0234,0.1826,NA,NA,0.36,1,1,0,0,0,0,0,0,0
+AA_0595,HZ_BR,Germany,Felchower str. 15,53.0059,14.0801,14/09/18,15/09/18,male,adult,Mus musculus,2018,FALSE,11.88,75.2,71.2,0.0224,0.0518,0.0533,0.0109,0.0097,NA,NA,0.35,0,0,0,0,0,0,0,0,0
+AA_0596,HZ_BR,Germany,Gellmersdorfer str. 15,52.9906,14.0741,14/09/18,15/09/18,male,adult,Mus musculus,2018,TRUE,16.94,81,81.1,0.0331,0.0673,0.0644,0.0221,0.16,NA,NA,0.52,0,0,0,0,0,0,0,0,0
+AA_0597,HZ_BR,Germany,Felchower str. 15,53.0059,14.0801,14/09/18,15/09/18,female,adult,Mus musculus,2018,FALSE,18.11,87.7,82.5,0.049,NA,NA,NA,NA,NA,NA,0.33,10,0,0,0,0,0,0,0,0
+AA_0598,HZ_BR,Germany,Felchower str. 15,53.0059,14.0801,14/09/18,15/09/18,male,adult,Mus musculus,2018,FALSE,11.21,72.2,74.3,0.0229,0.0493,0.0513,0.0134,0.0193,NA,NA,0.71,0,0,0,0,0,0,0,0,0
+AA_0599,HZ_BR,Germany,Semliner str. 1,52.6306,12.4558,14/09/18,15/09/18,male,adult,Mus musculus,2018,FALSE,9.85,67,74.5,0.0135,0.027,0.025,0.0101,0.0097,NA,NA,0.16,0,0,0,0,0,0,0,0,0
+AA_0600,HZ_BR,Germany,Semliner str. 1,52.6306,12.4558,14/09/18,15/09/18,female,adult,Mus musculus,2018,FALSE,15.11,76.9,83.3,0.0265,NA,NA,NA,NA,NA,NA,0.42,0,0,0,0,0,0,0,0,0
+AA_0601,HZ_BR,Germany,Chauseestr. 1,53.0989,13.9631,14/09/18,15/09/18,male,adult,Mus musculus,2018,TRUE,16.87,80.3,75.3,0.0292,0.0911,0.0939,0.0234,0.1358,NA,NA,0.24,0,0,0,0,0,0,0,0,0
+AA_0602,HZ_BR,Germany,Granseer str. 65,53.0689,13.0992,14/09/18,15/09/18,male,adult,Mus musculus,2018,TRUE,14.75,74.5,81.9,0.064,0.0571,0.0575,0.0204,0.1115,NA,NA,0.36,0,15,0,0,0,0,0,4,0
+AA_0603,HZ_BR,Germany,Semliner str. 1,52.6306,12.4558,14/09/18,15/09/18,female,pregnant,Mus musculus,2018,FALSE,18.75,84,85.6,0.047,NA,NA,NA,NA,0,3,0.41,0,0,0,0,0,0,0,0,0
+AA_0604,HZ_BR,Germany,Gusower feldweg 5,52.2584,13.7311,14/09/18,15/09/18,male,adult,Mus musculus,2018,FALSE,18.82,79.9,81.8,0.0225,0.0847,0.0843,0.0237,0.1334,NA,NA,0.33,0,0,0,0,0,0,0,0,0
+AA_0605,HZ_BR,Germany,Felchower str. 15,53.0059,14.0801,14/09/18,15/09/18,male,adult,Mus musculus,2018,FALSE,16.28,82,73.3,0.0264,0.0762,0.0766,0.0225,0.0926,NA,NA,0.51,5,0,0,0,0,0,0,0,0
+AA_0606,HZ_BR,Germany,Felchower str. 15,53.0059,14.0801,14/09/18,15/09/18,female,adult,Mus musculus,2018,FALSE,21.41,86.8,36.3,0.0402,NA,NA,NA,NA,NA,NA,0.36,0,0,0,0,0,0,0,0,0
+AA_0607,HZ_BR,Germany,Gellmersdorfer str. 15,52.9906,14.0741,14/09/18,15/09/18,male,adult,Mus musculus,2018,TRUE,14.65,79.5,70.7,0.0331,0.0575,0.0615,0.0171,0.1088,NA,NA,0.48,0,0,0,0,,0,0,0,0
+AA_0608,HZ_BR,Germany,Gellmersdorfer str. 15,52.9906,14.0741,14/09/18,15/09/18,male,adult,Mus musculus,2018,TRUE,16.46,81,75.2,0.42,0.0729,0.0745,0.0201,0.092,NA,NA,0.4,0,0,0,0,0,0,0,0,0
+AA_0609,HZ_BR,Germany,Gusower feldweg 5,52.2584,13.7311,14/09/18,15/09/18,female,adult,Mus musculus,2018,FALSE,20.82,85,83,0.05,NA,NA,NA,NA,NA,NA,0.39,0,1,0,0,0,0,0,0,0
+AA_0610,HZ_BR,Germany,Felchower str. 15,53.0059,14.0801,14/09/18,15/09/18,female,juvenile,Mus musculus,2018,FALSE,7.86,64,64,0.02,NA,NA,NA,NA,NA,NA,0.28,0,0,0,0,0,0,0,0,0
+AA_0611,HZ_BR,Germany,Felchower str. 15,53.0059,14.0801,14/09/18,15/09/18,female,juvenile,Mus musculus,2018,FALSE,6.65,62,52,0.01,NA,NA,NA,NA,NA,NA,0.25,0,38,0,0,0,0,0,0,0
+AA_0612,HZ_BR,Germany,Felchower str. 15,53.0059,14.0801,14/09/18,15/09/18,female,juvenile,Mus musculus,2018,TRUE,10.41,72,71,0.01,NA,NA,NA,NA,NA,NA,0.28,0,0,0,0,0,0,0,0,0
+AA_0613,HZ_BR,Germany,Semliner str. 1,52.6306,12.4558,14/09/18,15/09/18,female,adult,Mus musculus,2018,FALSE,17.59,81,81,0.03,NA,NA,NA,NA,NA,NA,0.65,0,0,0,0,0,0,0,0,0
+AA_0614,HZ_BR,Germany,Semliner str. 1,52.6306,12.4558,14/09/18,15/09/18,female,pregnant,Mus musculus,2018,FALSE,24.66,90,80,0.06,NA,NA,NA,NA,2,2,0.34,0,0,0,0,0,0,0,0,0
+AA_0615,HZ_BR,Germany,Semliner str. 1,52.6306,12.4558,14/09/18,15/09/18,female,adult,Mus musculus,2018,FALSE,17.7,90,84,0.04,NA,NA,NA,NA,NA,NA,0.33,0,0,0,0,0,0,0,0,0
+AA_0616,HZ_BR,Germany,Gusower feldweg 5,52.2584,13.7311,14/09/18,15/09/18,female,pregnant,Mus musculus,2018,FALSE,20,85,74,0.04,NA,NA,NA,NA,NA,NA,0.42,0,0,0,0,0,0,0,0,0
+AA_0617,HZ_BR,Germany,Felchower str. 15,53.0059,14.0801,14/09/18,15/09/18,female,adult,Mus musculus,2018,FALSE,18.42,87,79,0.02,NA,NA,NA,NA,NA,NA,0.69,0,34,0,0,0,0,0,0,0
+AA_0618,HZ_BR,Germany,Gusower feldweg 5,52.2584,13.7311,14/09/18,15/09/18,female,adult,Mus musculus,2018,FALSE,20.65,87,76,0.04,NA,NA,NA,NA,NA,NA,0.68,0,0,0,0,0,0,0,0,0
+AA_0619,HZ_BR,Germany,Gusower feldweg 5,52.2584,13.7311,14/09/18,15/09/18,female,pregnant,Mus musculus,2018,FALSE,24.89,85,79,0.04,NA,NA,NA,NA,5,3,0.83,0,0,0,0,0,0,0,0,0
+AA_0620,HZ_BR,Germany,Gusower feldweg 5,52.2584,13.7311,14/09/18,15/09/18,female,juvenile,Mus musculus,2018,FALSE,9.14,63,60,0.01,NA,NA,NA,NA,NA,NA,0.32,0,0,0,0,0,0,0,0,0
+AA_0621,HZ_BR,Germany,"Am stadtberg 2, 16278",52.9765,14.0667,14/09/18,15/09/18,female,juvenile,Mus musculus,2018,FALSE,9.44,77,57,0.01,NA,NA,NA,NA,NA,NA,0.08,0,0,0,0,0,0,0,0,0
+AA_0622,HZ_BR,Germany,"Dorfstrasse 2, 16359",52.7369,13.6605,14/09/18,15/09/18,female,juvenile,Mus musculus,2018,FALSE,12.89,70,65,0.06,NA,NA,NA,NA,NA,NA,1.3,0,26,0,0,0,0,0,0,0
+AA_0623,HZ_BR,Germany,"Dorfstrasse 2, 16359",52.7369,13.6605,14/09/18,15/09/18,male,juvenile,Mus musculus,2018,TRUE,11.63,69,60,0.02,NA,NA,NA,NA,NA,NA,1.07,0,0,0,0,0,0,0,0,0
+AA_0624,HZ_BR,Germany,Semliner str. 1,52.6306,12.4558,14/09/18,15/09/18,male,juvenile,Mus musculus,2018,FALSE,11.93,70,72,0.04,NA,NA,NA,NA,NA,NA,0.68,0,0,0,0,0,0,0,0,0
+AA_0625,HZ_BR,Germany,Landiner str. 1,53.0705,14.0939,15/09/18,16/09/18,male,adult,Mus musculus,2018,TRUE,13.6,71.8,75.6,0.0412,0.0567,0.059,0.0158,0.0233,NA,NA,0.14,7,60,0,0,0,0,0,0,0
+AA_0626,HZ_BR,Germany,Landiner str. 1,53.0705,14.0939,15/09/18,16/09/18,male,adult,Mus musculus,2018,FALSE,16.44,77.1,73.7,0.0594,0.0654,0.033,0.0208,0.1147,NA,NA,0.47,83,0,0,0,0,0,0,0,0
+AA_0627,HZ_BR,Germany,Landiner str. 1,53.0705,14.0939,15/09/18,16/09/18,female,adult,Mus musculus,2018,TRUE,9.45,66.2,68.5,0.0458,NA,NA,NA,NA,NA,NA,0.31,3,4,0,0,0,0,0,0,0
+AA_0628,HZ_BR,Germany,Landiner str. 1,53.0705,14.0939,15/09/18,16/09/18,female,adult,Mus musculus,2018,TRUE,14.23,77.1,72.8,0.0427,NA,NA,NA,NA,NA,NA,0.29,28,10,0,0,0,0,0,0,0
+AA_0629,HZ_BR,Germany,Landiner str. 1,53.0705,14.0939,15/09/18,16/09/18,male,adult,Mus musculus,2018,TRUE,12.17,71.2,67.5,0.0301,0.0529,0.0542,0.0173,0.1141,NA,NA,0.29,41,35,0,0,0,0,0,0,0
+AA_0630,HZ_BR,Germany,"Hauptstr. 7, 16278",53.0785,14.1413,15/09/18,16/09/18,male,adult,Mus musculus,2018,TRUE,16.8,76.5,70.3,0.0573,0.079,0.076,0.0162,0.0961,NA,NA,0.56,0,2,0,0,0,0,0,0,0
+AA_0631,HZ_BR,Germany,"Hauptstr. 7, 16278",53.0785,14.1413,15/09/18,16/09/18,male,adult,Mus musculus,2018,TRUE,15.69,80.2,79.7,0.0309,0.078,0.0827,0.02,0.1131,NA,NA,0.33,0,10,0,0,0,0,0,0,1
+AA_0632,HZ_BR,Germany,Landiner str. 1,53.0705,14.0939,15/09/18,16/09/18,female,adult,Mus musculus,2018,FALSE,13.91,74.2,77.2,0.0444,NA,NA,NA,NA,NA,NA,NA,0,0,0,0,0,0,0,0,0
+AA_0633,HZ_BR,Germany,"Hauptstr. 7, 16278",53.0785,14.1413,15/09/18,16/09/18,female,adult,Mus musculus,2018,TRUE,18.49,87.6,82.9,0.0599,NA,NA,NA,NA,NA,NA,0.18,1,231,0,0,0,0,0,0,10
+AA_0634,HZ_BR,Germany,"Hauptstr. 7, 16278",53.0785,14.1413,15/09/18,16/09/18,male,adult,Mus musculus,2018,TRUE,17.45,84.1,77.3,0.0446,0.1112,0.1089,0.0261,0.1649,NA,NA,NA,0,1,0,0,0,0,0,0,0
+AA_0635,HZ_BR,Germany,"Hauptstr. 7, 16278",53.0785,14.1413,15/09/18,16/09/18,male,adult,Mus musculus,2018,TRUE,10.04,66.6,68.6,0.0293,0.0294,0.0306,0.0054,0.0019,NA,NA,0.24,0,68,0,0,0,0,0,0,0
+AA_0636,HZ_BR,Germany,"Hauptstr. 7, 16278",53.0785,14.1413,15/09/18,16/09/18,male,juvenile,Mus musculus,2018,TRUE,11.15,70,67.5,0.04,0.0272,0.0274,NA,NA,NA,NA,0.21,0,9,0,0,0,0,0,0,0
+AA_0637,HZ_BR,Germany,"Hauptstr. 7, 16278",53.0785,14.1413,15/09/18,16/09/18,female,pregnant,Mus musculus,2018,TRUE,18.11,80.6,77,0.054,NA,NA,NA,NA,2,3,0.09,0,0,0,0,0,0,0,0,0
+AA_0638,HZ_BR,Germany,"Hauptstr. 7, 16278",53.0785,14.1413,15/09/18,16/09/18,female,adult,Mus musculus,2018,TRUE,16.02,79.3,74.4,0.0499,NA,NA,NA,NA,NA,NA,0.14,0,0,0,0,0,0,0,0,0
+AA_0639,HZ_BR,Germany,"Hauptstr. 16, 16798",53.1515,13.2145,15/09/18,16/09/18,male,adult,Mus musculus,2018,FALSE,25.15,90.4,84,0.1058,0.0786,0.0785,0.0277,0.1233,NA,NA,0.8,398,0,0,0,0,0,2,0,0
+AA_0640,HZ_BR,Germany,"Hauptstr. 16, 16798",53.1515,13.2145,15/09/18,16/09/18,male,adult,Mus musculus,2018,TRUE,19.56,85.4,NA,0.044,0.0657,0.0717,0.0206,0.1335,NA,NA,0.43,9,0,0,0,0,0,0,0,0
+AA_0641,HZ_BR,Germany,"Hauptstr. 16, 16798",53.1515,13.2145,15/09/18,16/09/18,male,adult,Mus musculus,2018,TRUE,19.11,82.1,81.3,0.0524,0.0759,0.0758,0.0194,0.1039,NA,NA,0.39,50,2,0,0,0,0,0,0,0
+AA_0642,HZ_BR,Germany,"Hauptstr. 7, 16278",53.0785,14.1413,15/09/18,16/09/18,female,juvenile,Mus musculus,2018,TRUE,5.9,51.6,55,0.0108,NA,NA,NA,NA,NA,NA,0.31,0,16,0,0,0,0,0,0,0
+AA_0643,HZ_BR,Germany,"Hauptstr. 7, 16278",53.0785,14.1413,15/09/18,16/09/18,female,adult,Mus musculus,2018,TRUE,12.88,68.7,69.5,0.035,NA,NA,NA,NA,NA,NA,0.44,0,26,0,0,0,0,0,0,0
+AA_0644,HZ_BR,Germany,"Hauptstr. 7, 16278",53.0785,14.1413,15/09/18,16/09/18,female,pregnant,Mus musculus,2018,TRUE,18.85,81.2,76.2,0.0397,NA,NA,NA,NA,2,0,0.48,0,0,0,0,0,0,0,0,0
+AA_0645,HZ_BR,Germany,"Hauptstr. 7, 16278",53.0785,14.1413,15/09/18,16/09/18,female,juvenile,Mus musculus,2018,FALSE,8.23,65.8,62.3,0.0306,NA,NA,NA,NA,NA,NA,0.07,0,30,0,0,0,0,0,0,0
+AA_0646,HZ_BR,Germany,Landiner str. 1,53.0705,14.0939,15/09/18,16/09/18,male,juvenile,Mus musculus,2018,TRUE,9.67,69.3,62.2,0.0216,0.042,0.0461,0.0078,0.0045,NA,NA,0.23,25,0,0,0,0,0,0,0,0
+AA_0647,HZ_BR,Germany,"Hauptstr. 16, 16798",53.1515,13.2145,15/09/18,16/09/18,female,pregnant,Mus musculus,2018,TRUE,20.95,80,82,0.04,NA,NA,NA,NA,2,5,0.47,152,0,0,0,0,0,0,0,0
+AA_0648,HZ_BR,Germany,"Hauptstr. 16, 16798",53.1515,13.2145,15/09/18,16/09/18,female,pregnant,Mus musculus,2018,TRUE,23.15,84,70,0.16,NA,NA,NA,NA,3,0,0.27,19,5,0,0,0,0,7,0,0
+AA_0649,HZ_BR,Germany,"Hauptstr. 16, 16798",53.1515,13.2145,15/09/18,16/09/18,male,juvenile,Mus musculus,2018,TRUE,12.09,68,63,0.03,NA,NA,NA,NA,NA,NA,0.93,0,4,0,0,0,0,0,0,0
+AA_0650,HZ_BR,Germany,"Hauptstr. 16, 16798",53.1515,13.2145,15/09/18,16/09/18,female,juvenile,Mus musculus,2018,FALSE,15.58,75,87,0.03,NA,NA,NA,NA,NA,NA,0.26,3,0,0,0,0,0,0,0,0
+AA_0651,HZ_BR,Germany,"Hauptstr. 16, 16798",53.1515,13.2145,15/09/18,16/09/18,female,pregnant,Mus musculus,2018,FALSE,16.07,71,72,0.05,NA,NA,NA,NA,1,5,0.19,0,0,0,0,0,0,0,0,0
+AA_0652,HZ_BR,Germany,"Hauptstr. 16, 16798",53.1515,13.2145,15/09/18,16/09/18,female,adult,Mus musculus,2018,TRUE,16.28,74,66,0.03,NA,NA,NA,NA,NA,NA,0.15,0,0,0,0,0,0,4,0,0
+AA_0653,HZ_BR,Germany,"Hauptstr. 16, 16798",53.1515,13.2145,15/09/18,16/09/18,male,juvenile,Mus musculus,2018,FALSE,8.84,62,63,0.01,NA,NA,NA,NA,NA,NA,0.24,0,0,0,0,0,0,0,0,0
+AA_0654,HZ_BR,Germany,"Hauptstr. 16, 16798",53.1515,13.2145,15/09/18,16/09/18,female,pregnant,Mus musculus,2018,TRUE,24.65,85,77,0.07,NA,NA,NA,NA,2,1,0.53,15,0,0,0,0,0,0,0,0
+AA_0655,HZ_BR,Germany,"Hauptstr. 16, 16798",53.1515,13.2145,15/09/18,16/09/18,female,pregnant,Mus musculus,2018,TRUE,20.61,83,77,0.04,NA,NA,NA,NA,2,4,0.75,4,46,0,0,0,0,0,0,0
+AA_0656,HZ_BR,Germany,"Hauptstr. 16, 16798",53.1515,13.2145,15/09/18,16/09/18,female,adult,Mus musculus,2018,FALSE,17.29,83,76,0.05,NA,NA,NA,NA,NA,NA,0.2,133,0,0,0,0,0,0,0,0
+AA_0657,HZ_BR,Germany,"Hauptstr. 16, 16798",53.1515,13.2145,15/09/18,16/09/18,female,adult,Mus musculus,2018,FALSE,16.89,81,64,0.07,NA,NA,NA,NA,NA,NA,0.23,0,0,0,0,0,0,1,0,0
+AA_0658,HZ_BR,Germany,"Hauptstr. 16, 16798",53.1515,13.2145,15/09/18,16/09/18,female,adult,Mus musculus,2018,FALSE,17.95,83,71,0.04,NA,NA,NA,NA,NA,NA,0.41,113,0,0,0,0,0,0,0,0
+AA_0659,HZ_BR,Germany,"Hauptstr. 16, 16798",53.1515,13.2145,15/09/18,16/09/18,female,pregnant,Mus musculus,2018,FALSE,26.27,92,78,0.08,NA,NA,NA,NA,1,NA,0.36,31,0,0,0,0,0,0,0,0
+AA_0660,HZ_BR,Germany,"Hauptstr. 7, 16278",53.0785,14.1413,15/09/18,16/09/18,female,adult,Mus musculus,2018,TRUE,21.21,89,76,0.08,NA,NA,NA,NA,NA,NA,0.3,0,2,0,0,0,0,0,0,1
+AA_0661,HZ_BR,Germany,"Hauptstr. 7, 16278",53.0785,14.1413,15/09/18,16/09/18,female,adult,Mus musculus,2018,TRUE,11.57,71,66,0.03,NA,NA,NA,NA,NA,NA,0.13,0,0,0,0,0,0,0,0,0
+AA_0662,HZ_BR,Germany,"Hauptstr. 7, 16278",53.0785,14.1413,15/09/18,16/09/18,male,juvenile,Mus musculus,2018,TRUE,6.92,60,54,0.01,NA,NA,NA,NA,NA,NA,0.17,0,0,0,0,0,0,0,0,0
+AA_0663,HZ_BR,Germany,"Hauptstr. 7, 16278",53.0785,14.1413,15/09/18,16/09/18,female,pregnant,Mus musculus,2018,TRUE,20.69,84,67,0.07,NA,NA,NA,NA,4,2,0.39,0,0,0,0,0,0,0,0,0
+AA_0664,HZ_BR,Germany,"Hauptstr. 7, 16278",53.0785,14.1413,15/09/18,16/09/18,female,juvenile,Mus musculus,2018,TRUE,7.47,60,55,0.01,NA,NA,NA,NA,NA,NA,0.35,0,5,0,0,0,0,0,0,0
+AA_0665,HZ_BR,Germany,"Hauptstr. 7, 16278",53.0785,14.1413,15/09/18,16/09/18,female,juvenile,Mus musculus,2018,TRUE,7.62,57,52,0.02,NA,NA,NA,NA,NA,NA,0.21,0,4,0,0,0,0,0,0,0
+AA_0666,HZ_BR,Germany,"Hauptstr. 7, 16278",53.0785,14.1413,15/09/18,16/09/18,female,juvenile,Mus musculus,2018,TRUE,12.21,73,66,0.03,NA,NA,NA,NA,NA,NA,0.48,0,0,0,0,0,0,0,0,0
+AA_0667,HZ_BR,Germany,Landiner str. 1,53.0705,14.0939,15/09/18,16/09/18,female,adult,Mus musculus,2018,FALSE,15.2,79,65,0.04,NA,NA,NA,NA,NA,NA,0.69,54,0,0,0,0,0,0,0,0
+AA_0668,HZ_BR,Germany,Landiner str. 1,53.0705,14.0939,15/09/18,16/09/18,female,adult,Mus musculus,2018,FALSE,14.11,72,67,0.04,NA,NA,NA,NA,NA,NA,0.35,4,9,0,0,0,0,0,0,0
+AA_0669,HZ_BR,Germany,"Buchholzer str. 7, 16230",52.9328,13.9106,16/09/18,17/09/18,female,juvenile,Mus musculus,2018,FALSE,8.82,67,62,0.01,NA,NA,NA,NA,NA,NA,0.3,0,0,0,0,0,1,0,0,0
+AA_0670,HZ_BR,Germany,Sukower str. 8,53.5516,11.5091,16/09/18,17/09/18,male,juvenile,Mus musculus,2018,TRUE,8.87,62.2,67.6,0.0125,0.0387,0.0391,0.0057,0.0058,NA,NA,0.26,0,0,0,0,0,0,0,0,0
+AA_0671,HZ_BR,Germany,Alte Dorfstr. 3,53.6228,11.3333,16/09/18,17/09/18,female,pregnant,Mus musculus,2018,TRUE,21.25,82.9,83.5,0.06,NA,NA,NA,NA,4,4,0.44,0,0,0,0,0,0,0,0,0
+AA_0672,HZ_BR,Germany,"Dorfstr. 2, 16359",52.7369,13.6605,12/09/18,17/09/18,male,juvenile,Mus musculus,2018,FALSE,10.24,58.6,60.8,0.03,NA,NA,NA,NA,NA,NA,0.36,0,0,0,0,0,0,0,0,0
+AA_0673,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+AA_0674,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+AA_0675,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+AA_0676,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+AA_0677,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+AA_0678,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+AA_0679,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+AA_0680,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
