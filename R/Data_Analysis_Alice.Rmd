@@ -9,6 +9,7 @@ output:
     fig_caption: yes        
     includes:  
       in_header: preamble-latex.tex
+    keep_tex: yes
   word_document:
     toc: yes
     toc_depth: 4
@@ -37,6 +38,7 @@ LorenzoDF <- read.csv("../raw_data/Eimeria_detection/Eimeria_oocysts_2015&2017_L
 PCRdf <- read.csv("../raw_data/Eimeria_detection/Inventory_contents_all.csv")
 ## Import qPCR data
 qpcrData <- read.csv("../raw_data/Eimeria_detection/FINALqPCR_2016_2017.csv")
+qpcrData <- qpcrData[!is.na(qpcrData$delta_ct_ilwe_MminusE) & !is.na(qpcrData$delta_ct_cewe_MminusE),]
 
 #################### Load data ####################
 # General data
@@ -94,6 +96,8 @@ Adjusted R-squared = `r round(adjrsq, 2)` represents the amount of variation in 
 
 ## OPG that we keep
 
+Number of Mus musculus caught with OPG values: `r nrow(myData[!is.na(myData$OPG),])`
+
 ```{r oocystssmooth, echo=FALSE, warning=FALSE}
 ggplot(myData[!is.na(myData$OPG) &
                                myData$OPG >0,], aes(x = HI, y = OPG+1)) +
@@ -104,6 +108,7 @@ ggplot(myData[!is.na(myData$OPG) &
   theme(legend.position="top") +
   theme(legend.title = element_blank()) +
   facet_grid(. ~ Year)
+
 ```
 
 # Eimeria detection PCR
@@ -161,7 +166,11 @@ ggplot(myData[!is.na(myData$PCRstatus),], aes(y = HI, x = PCRstatus)) +
   ggtitle("Violin plots on PCR data")
 ```
 
+PCR positive = one of the 3 markers 18S, COI or ORF470) gave a sequence. Number of Mus musculus caught with PCR performed: `r nrow(myData[!is.na(myData$PCRstatus),])`
+
 # Eimeria detection qPCR 
+
+We keep only the values for mice having been tested for BOTH ileum and cecum!
 
 ```{r qpcr, echo= FALSE}
 # merge
@@ -189,9 +198,9 @@ ggplot(myData[myData$Year %in% c(2016, 2017),], aes(x = HI, y = delta_ct_MminusE
 # Todo later: test if points for HI ~ 0.5 are dead ends...
 ```
 
-# General stats on sampling 
+Number of Mus musculus caught with qPCR performed: `r nrow(myData[!is.na(myData$delta_ct_MminusE),])`
 
-We keep mice with OPG, PCR or qPCR status, in North Germany.
+# General stats on sampling 
 
 ```{r generalstats, echo = FALSE, message=FALSE}
 ## Remove useless mice:
@@ -241,6 +250,13 @@ noo <- table(!is.na(myData$OPG))[2]
 npcr <- table(!is.na(myData$PCRstatus))[2]
 nqPCR <- table(!is.na(myData$qPCRstatus))[2]
 ```
+
+We keep mice with OPG, PCR or qPCR status, in North Germany.
+
+* Number of Mus musculus caught with OPG counted: `r nrow(myData[!is.na(myData$OPG),])`
+* Number of Mus musculus caught with qPCR performed: `r nrow(myData[!is.na(myData$delta_ct_MminusE),])`
+* Number of Mus musculus caught with either OPG counted or qPCR performed: `r nrow(myData[!is.na(myData$delta_ct_MminusE) | !is.na(myData$OPG),])`
+* Number of Mus musculus caught with OPG counted AND qPCR performed: `r nrow(myData[!is.na(myData$delta_ct_MminusE) & !is.na(myData$OPG),])`
 
 * Some information regarding latitude and longitude are missing for the following mice:
 
@@ -350,27 +366,41 @@ myVennDiagram2(completeData1)
 
 ## OPG-qPCR
 
+```{r opgpcrVenn, echo=FALSE, warning=FALSE}
+# first, compare PCR and oocysts
+completeDataopgqpcr <- myData[!is.na(myData$OPG) &
+                          !is.na(myData$delta_ct_MminusE),]
+
+myVennDiagram3 <- function(data){      
+  area1 = nrow(subset(data, delta_ct_MminusE > -6))
+  area2 = nrow(subset(data, OPG > 0))
+  ## areas of 2-group overlap
+  cross.area = nrow(subset(data, delta_ct_MminusE > -6 & OPG > 0))
+  grid.newpage()
+  draw.pairwise.venn(area1 = area1, 
+                     area2 = area2, 
+                     cross.area = cross.area, 
+                     category = c("qPCR", "OPG"),
+                     col = "transparent", 
+                     fill = c("grey","green"),
+                     alpha = 0.50,                  
+                     cex = 1.5, cat.cex = 1.5, fontfamily = "serif", fontface = "bold",
+                     cat.col = c("grey","green"),
+                     cat.fontfamily = "serif")
+}
+
+myVennDiagram3(completeDataopgqpcr)
+```
+
 ```{r opgqpcr, echo=FALSE, warning=FALSE}
-ggplot(myData[!is.na(myData$qPCRstatus),],
+ggplot(myData[!is.na(myData$delta_ct_MminusE),],
        aes(x = delta_ct_MminusE, y = OPG)) +
   geom_point(aes(fill = qPCRsummary),
              alpha = .5, size = 4, pch = 21) +
   geom_smooth(method = "lm", se = FALSE, col = "red") +
   theme_bw()  +
-  facet_grid(. ~ Year) +
-  ggtitle("Compare qPCR results and OPG")
-
-ggplot(myData[!is.na(myData$delta_ct_MminusE) &
-                myData$OPG > 0 &
-                myData$delta_ct_MminusE > -6,],
-       aes(x = delta_ct_MminusE, y = OPG)) +
-  geom_point(aes(fill = qPCRsummary),
-             alpha = .5, size = 4, pch = 21) +
-  geom_smooth(method = "lm", se = FALSE, col = "red") +
   scale_y_log10() +
-  theme_bw() +
-  facet_grid(. ~ Year) +
-  ggtitle("Comparison of positive values of OPG and qPCR")
+  ggtitle("Compare qPCR results and OPG")
 
 data1 <- myData[!is.na(myData$delta_ct_MminusE) &
                             !is.na(myData$OPG), ]

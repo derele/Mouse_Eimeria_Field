@@ -1,6 +1,7 @@
 ### Prepare and homogenize qPCR data.
 ### Alice Balard
 ### So far, 2016 and 2017 samples
+library(dplyr)
 
 ## Function to calculate deltaCtMminusE
 calculateDeltaCt <- function(df, mergeBy){
@@ -273,7 +274,8 @@ qpcr2017_Lorenzo <- qpcr2017_Lorenzo %>%
 # 3. Calculate one delta ct per triplicate
 qpcr2017_Lorenzo <- qpcr2017_Lorenzo[!duplicated(qpcr2017_Lorenzo[c("fullName")]),]
 
-qpcr2017_Lorenzo <- calculateDeltaCt(qpcr2017_Lorenzo, mergeBy = c("Mouse_ID", "tissue", "Name", "fileName"))
+qpcr2017_Lorenzo <- calculateDeltaCt(qpcr2017_Lorenzo, 
+                                     mergeBy = c("Mouse_ID", "tissue", "Name", "fileName"))
 
 ## Average technical replicates
 qpcr2017_Lorenzo <- qpcr2017_Lorenzo %>% 
@@ -384,4 +386,4 @@ ggplot(qpcrData_2016_2017, aes(x = Mouse_ID, y = delta_ct_MminusE,
   theme_bw()
 
 # Write out
-write.csv(qpcrData_2016_2017, "../FINALqPCR_2016_2017.csv", row.names = F)
+# write.csv(qpcrData_2016_2017, "../FINALqPCR_2016_2017.csv", row.names = F)
