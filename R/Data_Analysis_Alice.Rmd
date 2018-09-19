@@ -467,7 +467,7 @@ summary(lm(myData$BCI ~ myData$OPG + myData$HI))
 # Testing hybrid vigor along HMHZ
 
 ```{r, echo = FALSE}
-write.csv(myData, "../../Data_important/FinalFullDF_flotationPcrqPCR.csv", row.names = F)
+write.csv(myData, "../FinalFullDF_flotationPcrqPCR.csv", row.names = F)
 ```
 
 ## Oocyst shedding 
