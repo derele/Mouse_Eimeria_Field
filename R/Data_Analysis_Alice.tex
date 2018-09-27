@@ -273,8 +273,8 @@ prevalence(\%) & 30.26 & 9.84 & 12.05 & 21.53\tabularnewline
 & 2014 & 2015 & 2016 & 2017\tabularnewline
 \midrule
 \endhead
-negative & 0 & 0 & 134.00 & 167.00\tabularnewline
-positive & 0 & 0 & 30.00 & 40.00\tabularnewline
+FALSE & 0 & 0 & 134.00 & 167.00\tabularnewline
+TRUE & 0 & 0 & 30.00 & 40.00\tabularnewline
 total & 0 & 0 & 164.00 & 207.00\tabularnewline
 prevalence(\%) & NaN & NaN & 18.29 & 19.32\tabularnewline
 \bottomrule
@@ -340,27 +340,6 @@ prevalence(\%) & 30.26 & 13.93 & 26.95 & 32.76\tabularnewline
 ## F-statistic: 6.361 on 1 and 341 DF,  p-value: 0.01212
 \end{verbatim}
 
-\begin{verbatim}
-## 
-## Call:
-## lm(formula = data2$OPG ~ data2$delta_ct_MminusE)
-## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -113390  -74723  -43934   25984  532310 
-## 
-## Coefficients:
-##                        Estimate Std. Error t value Pr(>|t|)  
-## (Intercept)               42561      25634   1.660    0.106  
-## data2$delta_ct_MminusE   -15978       9075  -1.761    0.087 .
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Residual standard error: 128200 on 35 degrees of freedom
-## Multiple R-squared:  0.08136,    Adjusted R-squared:  0.05512 
-## F-statistic:   3.1 on 1 and 35 DF,  p-value: 0.08703
-\end{verbatim}
-
 \subsection{OPG-qPCR-PCR}\label{opg-qpcr-pcr}
 
 \begin{figure}[htbp]
@@ -406,17 +385,379 @@ qPCŔ}
 \section{Testing hybrid vigor along
 HMHZ}\label{testing-hybrid-vigor-along-hmhz}
 
-\subsection{Oocyst shedding}\label{oocyst-shedding}
+\section{PART II for comparison: qPCR detection threshold =
+-3.75}\label{part-ii-for-comparison-qpcr-detection-threshold--3.75}
 
-Statistical model (dvp\ldots{})
+\begin{verbatim}
+## Warning in makeMiceTable("../../Data_important/"): NAs introduced by
+## coercion
 
-\subsection{qPCR proxy}\label{qpcr-proxy}
+## Warning in makeMiceTable("../../Data_important/"): NAs introduced by
+## coercion
+\end{verbatim}
 
-tbc
+\section{Eimeria detection oocysts
+flotation}\label{eimeria-detection-oocysts-flotation-1}
 
-\subsection{BCI proxy}\label{bci-proxy}
+\subsection{Improving Eimeria oocysts
+detection}\label{improving-eimeria-oocysts-detection-1}
 
-tbc
+\includegraphics{Data_Analysis_Alice_files/figure-latex/oocystsDetec_3.75-1.pdf}
+
+22 new samples were detected while diluting by 0.1mL PBS instead of 1mL
+before counting in Neubauer chamber.
+
+Adjusted R-squared = 0.81 represents the amount of variation in y
+explained by x.
+
+\subsection{OPG that we keep}\label{opg-that-we-keep-1}
+
+Number of Mus musculus caught with OPG values: 486
+
+\begin{verbatim}
+## `geom_smooth()` using method = 'loess'
+\end{verbatim}
+
+\includegraphics{Data_Analysis_Alice_files/figure-latex/oocystssmooth_3.75-1.pdf}
+
+\section{Eimeria detection PCR}\label{eimeria-detection-pcr-1}
+
+PCR positive = one of the 3 other markers than AP5 sequenced (Ap5 was
+used for detection only, the other markers for confirmation)
+
+\includegraphics{Data_Analysis_Alice_files/figure-latex/pcr_3.75-1.pdf}
+
+PCR positive = one of the 3 markers 18S, COI or ORF470) gave a sequence.
+Number of Mus musculus caught with PCR performed: 962
+
+\section{Eimeria detection qPCR}\label{eimeria-detection-qpcr-1}
+
+We keep only the values for mice having been tested for BOTH ileum and
+cecum!
+
+\begin{verbatim}
+## `geom_smooth()` using method = 'loess'
+\end{verbatim}
+
+\includegraphics{Data_Analysis_Alice_files/figure-latex/qpcr_3.75-1.pdf}
+
+\begin{verbatim}
+## Warning: Removed 168 rows containing missing values (geom_point).
+\end{verbatim}
+
+\includegraphics{Data_Analysis_Alice_files/figure-latex/qpcr_3.75-2.pdf}
+
+Number of Mus musculus caught with qPCR performed: 371
+
+\section{General stats on sampling}\label{general-stats-on-sampling-1}
+
+\begin{verbatim}
+## Warning in file.remove(index[[url]]): cannot remove file
+## '470a3353e013428057316f09bebc2634.rds', reason 'No such file or directory'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in file.remove(index[[url]]): cannot remove file
+## '38fbfc523793116165689a0313c890a2.rds', reason 'No such file or directory'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in file.remove(index[[url]]): cannot remove file
+## '77d569e91de72d296943f667074aa269.rds', reason 'No such file or directory'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in file.remove(index[[url]]): cannot remove file
+## '022b99a7810e5f121831862b7ae5585c.rds', reason 'No such file or directory'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in file.remove(index[[url]]): cannot remove file
+## '304d0f0a73e271eaf822f46811766f2c.rds', reason 'No such file or directory'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in file.remove(index[[url]]): cannot remove file
+## '0334f529ea54c1d0ccf1cd725091cad0.rds', reason 'No such file or directory'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in file.remove(index[[url]]): cannot remove file
+## '64129c1d3ac5deae5e8ed253206b774d.rds', reason 'No such file or directory'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in file.remove(index[[url]]): cannot remove file
+## '72f10416ae8d9fb0622179a5c939c1ff.rds', reason 'No such file or directory'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in file.remove(index[[url]]): cannot remove file
+## '226174bf385d58f14a113ec142144b62.rds', reason 'No such file or directory'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in file.remove(index[[url]]): cannot remove file
+## '3b753e162cfb58b4a26adc1d5b6851ec.rds', reason 'No such file or directory'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in file.remove(index[[url]]): cannot remove file
+## '22009ff43e754b87b1de5c26c172be48.rds', reason 'No such file or directory'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in file.remove(index[[url]]): cannot remove file
+## 'b7c4544b894e579df026e737678920d9.rds', reason 'No such file or directory'
+\end{verbatim}
+
+\includegraphics{Data_Analysis_Alice_files/figure-latex/generalstats_3.75-1.pdf}
+
+We keep mice with OPG, PCR or qPCR status, in North Germany.
+
+\begin{itemize}
+\item
+  Number of Mus musculus caught with OPG counted: 485
+\item
+  Number of Mus musculus caught with qPCR performed: 371
+\item
+  Number of Mus musculus caught with either OPG counted or qPCR
+  performed: 513
+\item
+  Number of Mus musculus caught with OPG counted AND qPCR performed: 343
+\item
+  Some information regarding latitude and longitude are missing for the
+  following mice:
+\end{itemize}
+
+SK\_3174
+
+\begin{itemize}
+\tightlist
+\item
+  We still miss info (HI) on the following mice (ask Jarda):
+\end{itemize}
+
+AA\_0411, AA\_0412, AA\_0420, SK\_2668, SK\_2669, SK\_2671, SK\_2674,
+SK\_2675, SK\_2676, SK\_2677, SK\_2678, SK\_2681, SK\_2682, SK\_2684,
+SK\_2685, SK\_2687, SK\_2688, SK\_2690, SK\_2692, SK\_2693, SK\_2695,
+SK\_2696, SK\_2699, SK\_2700, SK\_2701, SK\_2702, SK\_2703, SK\_2704,
+SK\_2705, SK\_2710, SK\_2713, SK\_2715, SK\_2724, SK\_2727, SK\_2729,
+SK\_2733, SK\_2734, SK\_2736, SK\_2737, SK\_2738, SK\_2739, SK\_2745,
+SK\_2750, SK\_2751, SK\_2752, SK\_2754, SK\_2755, SK\_2756, SK\_2758,
+SK\_2759, SK\_2760, SK\_2761, SK\_2775, SK\_2778, SK\_2780, SK\_2782,
+SK\_2789, SK\_2792, SK\_2793, SK\_2794, SK\_2795, SK\_2798, SK\_2799,
+SK\_2800, SK\_2801, SK\_2802, SK\_2803, SK\_2804, SK\_2805, SK\_3174
+
+\section{General informations on
+HMHZ}\label{general-informations-on-hmhz-1}
+
+\begin{itemize}
+\item
+  655 mice were captured over three years, from 157 farms
+\item
+  From these mice:
+\item
+  485 mice had Eimeria detected by feces flotation,
+\item
+  652 mice had Eimeria detected by colon content PCR (cf paper Victor),
+\item
+  371 mice had Eimeria detected by qPCR on intestinal tissues
+\item
+  On average, 4.04 mice were caught per farm (95\% CI 0.34)
+\item
+  \textbf{Hybrid indexes} were calculated as ratio of M.m.d/M.m.m
+  alleles (between 4 and 14, on average 13 loci)
+\end{itemize}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics{Data_Analysis_Alice_files/figure-latex/plotDensHI_3.75-1.pdf}
+\caption{\label{fig:plot1}Number of animals caught along the hybrid
+index}
+\end{figure}
+
+\section{Prevalence of our 3 different
+methods}\label{prevalence-of-our-3-different-methods-1}
+
+\subsection{Prevalence tables}\label{prevalence-tables-1}
+
+\begin{longtable}[]{@{}lrrrr@{}}
+\caption{Prevalence of Eimeria per year, based on oocyst
+flotation}\tabularnewline
+\toprule
+& 2014 & 2015 & 2016 & 2017\tabularnewline
+\midrule
+\endfirsthead
+\toprule
+& 2014 & 2015 & 2016 & 2017\tabularnewline
+\midrule
+\endhead
+FALSE & 0 & 92.0 & 126.00 & 167.00\tabularnewline
+TRUE & 0 & 10.0 & 25.00 & 65.00\tabularnewline
+total & 0 & 102.0 & 151.00 & 232.00\tabularnewline
+prevalence(\%) & NaN & 9.8 & 16.56 & 28.02\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{longtable}[]{@{}lrrrr@{}}
+\caption{Prevalence of Eimeria per year, based on PCR detection. A mouse
+was considered infected by Eimeria ifone of the 3 markers (COI, 18S or
+ORF470) gave a sequence}\tabularnewline
+\toprule
+& 2014 & 2015 & 2016 & 2017\tabularnewline
+\midrule
+\endfirsthead
+\toprule
+& 2014 & 2015 & 2016 & 2017\tabularnewline
+\midrule
+\endhead
+negative & 53.00 & 110.00 & 146.00 & 226.00\tabularnewline
+positive & 23.00 & 12.00 & 20.00 & 62.00\tabularnewline
+total & 76.00 & 122.00 & 166.00 & 288.00\tabularnewline
+prevalence(\%) & 30.26 & 9.84 & 12.05 & 21.53\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{longtable}[]{@{}lrrrr@{}}
+\caption{Prevalence of Eimeria per year, based on qPCR}\tabularnewline
+\toprule
+& 2014 & 2015 & 2016 & 2017\tabularnewline
+\midrule
+\endfirsthead
+\toprule
+& 2014 & 2015 & 2016 & 2017\tabularnewline
+\midrule
+\endhead
+FALSE & 0 & 0 & 138.00 & 177.00\tabularnewline
+TRUE & 0 & 0 & 26.00 & 30.00\tabularnewline
+total & 0 & 0 & 164.00 & 207.00\tabularnewline
+prevalence(\%) & NaN & NaN & 15.85 & 14.49\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{longtable}[]{@{}lrrrr@{}}
+\caption{Prevalence of Eimeria per year, based on all detections
+methods. A mouse was considered infected by Eimeria if one of the 3
+markers (COI, 18S or ORF470) gave a sequence, OR if it had a positive
+count of oocysts in its feces, OR if it was qPCR
+positive}\tabularnewline
+\toprule
+& 2014 & 2015 & 2016 & 2017\tabularnewline
+\midrule
+\endfirsthead
+\toprule
+& 2014 & 2015 & 2016 & 2017\tabularnewline
+\midrule
+\endhead
+negative & 53.00 & 105.00 & 124.00 & 198.00\tabularnewline
+positive & 23.00 & 17.00 & 43.00 & 92.00\tabularnewline
+total & 76.00 & 122.00 & 167.00 & 290.00\tabularnewline
+prevalence(\%) & 30.26 & 13.93 & 25.75 & 31.72\tabularnewline
+\bottomrule
+\end{longtable}
+
+\subsection{OPG-PCR}\label{opg-pcr-1}
+
+\includegraphics{Data_Analysis_Alice_files/figure-latex/opgpcr_3.75-1.pdf}
+\includegraphics{Data_Analysis_Alice_files/figure-latex/opgpcr_3.75-2.pdf}
+
+\subsection{OPG-qPCR}\label{opg-qpcr-1}
+
+\includegraphics{Data_Analysis_Alice_files/figure-latex/opgpcrVenn_3.75-1.pdf}
+
+\begin{verbatim}
+## (polygon[GRID.polygon.1869], polygon[GRID.polygon.1870], polygon[GRID.polygon.1871], polygon[GRID.polygon.1872], text[GRID.text.1873], text[GRID.text.1874], text[GRID.text.1875], text[GRID.text.1876], text[GRID.text.1877])
+\end{verbatim}
+
+\includegraphics{Data_Analysis_Alice_files/figure-latex/opgqpcr_3.75-1.pdf}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = data1$OPG ~ data1$delta_ct_MminusE)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -32526  -8357  -8357  -8357 600298 
+## 
+## Coefficients:
+##                        Estimate Std. Error t value Pr(>|t|)  
+## (Intercept)               18692       7645   2.445    0.015 *
+## data1$delta_ct_MminusE     2756       2110   1.306    0.192  
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 49480 on 341 degrees of freedom
+## Multiple R-squared:  0.004979,   Adjusted R-squared:  0.002061 
+## F-statistic: 1.706 on 1 and 341 DF,  p-value: 0.1924
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = data2$OPG ~ data2$delta_ct_MminusE)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -114277  -62907  -46511   15482  522445 
+## 
+## Coefficients:
+##                        Estimate Std. Error t value Pr(>|t|)  
+## (Intercept)               43894      26591   1.651   0.1092  
+## data2$delta_ct_MminusE   -19601      10955  -1.789   0.0837 .
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 132800 on 30 degrees of freedom
+## Multiple R-squared:  0.09642,    Adjusted R-squared:  0.0663 
+## F-statistic: 3.201 on 1 and 30 DF,  p-value: 0.08368
+\end{verbatim}
+
+\subsection{OPG-qPCR-PCR}\label{opg-qpcr-pcr-1}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics{Data_Analysis_Alice_files/figure-latex/venn2_3.75-1.pdf}
+\caption{\label{fig:venn1}Comparison of detection: PCR vs flotation vs
+qPCR}
+\end{figure}
+
+\begin{verbatim}
+## (polygon[GRID.polygon.1955], polygon[GRID.polygon.1956], polygon[GRID.polygon.1957], polygon[GRID.polygon.1958], polygon[GRID.polygon.1959], polygon[GRID.polygon.1960], text[GRID.text.1961], text[GRID.text.1962], text[GRID.text.1963], text[GRID.text.1964], text[GRID.text.1965], text[GRID.text.1966], text[GRID.text.1967], text[GRID.text.1968], text[GRID.text.1969], text[GRID.text.1970])
+\end{verbatim}
+
+\section{BCI}\label{bci-1}
+
+\subsection{BCI vs OPG}\label{bci-vs-opg-1}
+
+\includegraphics{Data_Analysis_Alice_files/figure-latex/BCI_3.75-1.pdf}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = myData$BCI ~ myData$OPG + myData$HI)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -0.20165 -0.02542  0.01057  0.03494  0.13137 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)  6.304e-01  4.424e-03 142.490  < 2e-16 ***
+## myData$OPG  -2.061e-07  5.449e-08  -3.782 0.000176 ***
+## myData$HI   -1.760e-02  6.779e-03  -2.596 0.009710 ** 
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.05359 on 476 degrees of freedom
+##   (176 observations deleted due to missingness)
+## Multiple R-squared:  0.04528,    Adjusted R-squared:  0.04127 
+## F-statistic: 11.29 on 2 and 476 DF,  p-value: 1.625e-05
+\end{verbatim}
+
+\section{Testing hybrid vigor along
+HMHZ}\label{testing-hybrid-vigor-along-hmhz-1}
 
 \section{Bonus part: genotyping of mice
 case/control}\label{bonus-part-genotyping-of-mice-casecontrol}
@@ -425,7 +766,7 @@ case/control}\label{bonus-part-genotyping-of-mice-casecontrol}
 \item
   100 out of 483 are positive for flotation and have an hybrid index.
 \item
-  70 out of 369 are positive for qPCR and have an hybrid index.
+  56 out of 369 are positive for qPCR and have an hybrid index.
 \end{itemize}
 
 Discussed with Stuart:
