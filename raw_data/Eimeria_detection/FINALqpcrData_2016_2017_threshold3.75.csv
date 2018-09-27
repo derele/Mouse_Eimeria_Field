@@ -186,11 +186,11 @@
 "AA_0265",-3.75,-11.04,-12.13,"non infected","negative","Lorenzo",2017
 "AA_0267",-3.75,-12.47,-12.575,"non infected","negative","Lorenzo",2017
 "AA_0268",-3.75,-12.38,-7.48,"non infected","negative","Lorenzo",2017
-"AA_0269",3.75,3.75,-12.74,"infected ileum","positive","Lorenzo",2017
+"AA_0269",-3.75,-3.75,-12.74,"non infected","negative","Lorenzo",2017
 "AA_0270",-3.75,-19.31,-12.53,"non infected","negative","Lorenzo",2017
 "AA_0271",-3.75,-14.21,-12.26,"non infected","negative","Lorenzo",2017
 "AA_0272",-3.75,-13.8,-13.64,"non infected","negative","Lorenzo",2017
-"AA_0273",3.75,-12.08,3.75,"infected cecum","positive","Lorenzo",2017
+"AA_0273",-3.75,-12.08,-3.75,"non infected","negative","Lorenzo",2017
 "AA_0274",-3.75,-15.48,-11.23,"non infected","negative","Lorenzo",2017
 "AA_0275",-3.75,-12.02,-14.61,"non infected","negative","Lorenzo",2017
 "AA_0276",-3.75,-12.9733333333333,-12.7,"non infected","negative","Lorenzo",2017
@@ -200,20 +200,20 @@
 "AA_0280",-3.75,-12.4,-12.4033333333333,"non infected","negative","Lorenzo",2017
 "AA_0281",-3.75,-15.1166666666667,-10.6166666666667,"non infected","negative","Lorenzo",2017
 "AA_0282",-3.75,-12.9666666666667,-11.33,"non infected","negative","Lorenzo",2017
-"AA_0283",-3.75,3.75,3.75,NA,NA,"Lorenzo",2017
-"AA_0284",-3.75,3.75,3.75,NA,NA,"Lorenzo",2017
-"AA_0285",-3.75,3.75,3.75,NA,NA,"Lorenzo",2017
-"AA_0286",3.75,3.75,-14.1,"infected ileum","positive","Lorenzo",2017
-"AA_0287",-3.75,3.75,3.75,NA,NA,"Lorenzo",2017
+"AA_0283",-3.75,-3.75,-3.75,"non infected","negative","Lorenzo",2017
+"AA_0284",-3.75,-3.75,-3.75,"non infected","negative","Lorenzo",2017
+"AA_0285",-3.75,-3.75,-3.75,"non infected","negative","Lorenzo",2017
+"AA_0286",-3.75,-3.75,-14.1,"non infected","negative","Lorenzo",2017
+"AA_0287",-3.75,-3.75,-3.75,"non infected","negative","Lorenzo",2017
 "AA_0288",-3.75,-11.42,-13.59,"non infected","negative","Lorenzo",2017
-"AA_0289",3.75,3.75,-12.3433333333333,"infected ileum","positive","Lorenzo",2017
+"AA_0289",-3.75,-3.75,-12.3433333333333,"non infected","negative","Lorenzo",2017
 "AA_0290",-3.75,-14.38,-15.91,"non infected","negative","Lorenzo",2017
-"AA_0291",3.75,3.75,-12.8,"infected ileum","positive","Lorenzo",2017
-"AA_0292",3.75,3.75,-12.81,"infected ileum","positive","Lorenzo",2017
+"AA_0291",-3.75,-3.75,-12.8,"non infected","negative","Lorenzo",2017
+"AA_0292",-3.75,-3.75,-12.81,"non infected","negative","Lorenzo",2017
 "AA_0294",-3.75,-12.95,NA,"non infected ileum [cecum.NA]","positive","Lorenzo",2017
 "AA_0296",-3.435,-11.82,-3.435,"infected cecum","positive","Lorenzo",2017
 "AA_0297",-3.75,-11.84,NA,"non infected ileum [cecum.NA]","positive","Lorenzo",2017
-"AA_0298",3.75,3.75,-4.73,"infected ileum","positive","Lorenzo",2017
+"AA_0298",-3.75,-3.75,-4.73,"non infected","negative","Lorenzo",2017
 "AA_0299",-3.75,-12.96,-11.1,"non infected","negative","Lorenzo",2017
 "AA_0300",-3.75,-11.95,-11.46,"non infected","negative","Lorenzo",2017
 "AA_0301",-3.73666666666667,-12.72,-3.73666666666667,"infected cecum","positive","Lorenzo",2017
@@ -233,14 +233,14 @@
 "AA_0315",-3.75,-14.8,-14.33,"non infected","negative","Lorenzo",2017
 "AA_0316",-3.06,-6.59,-3.06,"infected cecum","positive","Lorenzo",2017
 "AA_0317",-3.75,-14.21,-6.98,"non infected","negative","Lorenzo",2017
-"AA_0318",-3.75,3.75,3.75,NA,NA,"Lorenzo",2017
+"AA_0318",-3.75,-3.75,-3.75,"non infected","negative","Lorenzo",2017
 "AA_0319",-3.75,NA,-7.82,"non infected cecum [ileum.NA]","positive","Lorenzo",2017
 "AA_0320",-3.75,NA,-11.29,"non infected cecum [ileum.NA]","positive","Lorenzo",2017
 "AA_0321",-3.75,-10.05,-8.73,"non infected","negative","Lorenzo",2017
 "AA_0322",-3.75,-13.34,-12.66,"non infected","negative","Lorenzo",2017
 "AA_0323",-3.605,-17.93,-3.605,"infected cecum","positive","Lorenzo",2017
 "AA_0324",-3.75,-14.35,-10.99,"non infected","negative","Lorenzo",2017
-"AA_0325",3.75,3.75,-6.98,"infected ileum","positive","Lorenzo",2017
+"AA_0325",-3.75,-3.75,-6.98,"non infected","negative","Lorenzo",2017
 "AA_0326",-3.75,-12.97,-10.93,"non infected","negative","Lorenzo",2017
 "AA_0327",-3.75,-13.78,-13.61,"non infected","negative","Lorenzo",2017
 "AA_0328",-3.75,-12.17,-7.13,"non infected","negative","Lorenzo",2017
@@ -250,7 +250,7 @@
 "AA_0332",-3.75,NA,-9.93,"non infected cecum [ileum.NA]","positive","Lorenzo",2017
 "AA_0333",-3.75,-14.67,-12.48,"non infected","negative","Lorenzo",2017
 "AA_0334",-3.75,NA,-10.985,"non infected cecum [ileum.NA]","positive","Lorenzo",2017
-"AA_0335",3.75,3.75,-11.02,"infected ileum","positive","Lorenzo",2017
+"AA_0335",-3.75,-3.75,-11.02,"non infected","negative","Lorenzo",2017
 "AA_0336",-3.75,-11.31,NA,"non infected ileum [cecum.NA]","positive","Lorenzo",2017
 "AA_0337",-3.75,-13.03,-13.45,"non infected","negative","Lorenzo",2017
 "AA_0338",-3.75,-12.45,-15.57,"non infected","negative","Lorenzo",2017
@@ -285,9 +285,9 @@
 "AA_0371",-3.75,-12.52,-11.91,"non infected","negative","Lorenzo",2017
 "AA_0372",-3.75,-12.96,-11.46,"non infected","negative","Lorenzo",2017
 "AA_0373",-3.75,-13.83,-5.15,"non infected","negative","Lorenzo",2017
-"AA_0374",3.75,3.75,-6.88,"infected ileum","positive","Lorenzo",2017
-"AA_0375",3.75,3.75,-12.34,"infected ileum","positive","Lorenzo",2017
-"AA_0376",3.75,3.75,-10.3,"infected ileum","positive","Lorenzo",2017
+"AA_0374",-3.75,-3.75,-6.88,"non infected","negative","Lorenzo",2017
+"AA_0375",-3.75,-3.75,-12.34,"non infected","negative","Lorenzo",2017
+"AA_0376",-3.75,-3.75,-10.3,"non infected","negative","Lorenzo",2017
 "AA_0377",-3.75,-11.21,-12.145,"non infected","negative","Lorenzo",2017
 "AA_0378",-3.75,-12.96,-13.6,"non infected","negative","Lorenzo",2017
 "AA_0379",-3.75,-11.625,-8.84,"non infected","negative","Lorenzo",2017
@@ -299,7 +299,7 @@
 "AA_0387",-3.75,-15.19,-14.01,"non infected","negative","Lorenzo",2017
 "AA_0388",-3.75,-13.2133333333333,-10.33,"non infected","negative","Lorenzo",2017
 "AA_0389",-3.75,-11.99,-10.2766666666667,"non infected","negative","Lorenzo",2017
-"AA_0390",3.75,3.75,-7.77,"infected ileum","positive","Lorenzo",2017
+"AA_0390",-3.75,-3.75,-7.77,"non infected","negative","Lorenzo",2017
 "AA_0391",-3.75,-12.33,-9.64,"non infected","negative","Lorenzo",2017
 "AA_0392",-3.75,-12.15,-10.32,"non infected","negative","Lorenzo",2017
 "AA_0393",-3.75,-11.76,-14.115,"non infected","negative","Lorenzo",2017
@@ -341,15 +341,15 @@
 "AA_0437",-3.75,-12.08,-12.24,"non infected","negative","Lorenzo",2017
 "AA_0438",-3.75,-13.41,-10.39,"non infected","negative","Lorenzo",2017
 "AA_0439",-3.75,-11.89,NA,"non infected ileum [cecum.NA]","positive","Lorenzo",2017
-"AA_0440",3.75,-12.61,3.75,"infected cecum","positive","Lorenzo",2017
-"AA_0441",3.75,3.75,-5.68,"infected ileum","positive","Lorenzo",2017
+"AA_0440",-3.75,-12.61,-3.75,"non infected","negative","Lorenzo",2017
+"AA_0441",-3.75,-3.75,-5.68,"non infected","negative","Lorenzo",2017
 "AA_0442",-3.75,-12.59,-11.57,"non infected","negative","Lorenzo",2017
 "AA_0443",-3.75,-11.89,-10.46,"non infected","negative","Lorenzo",2017
 "AA_0444",-3.75,-15.55,-11.52,"non infected","negative","Lorenzo",2017
 "AA_0445",-3.17,-12.69,-3.17,"infected cecum","positive","Lorenzo",2017
 "AA_0446",-3.53,-10.6,-3.53,"infected cecum","positive","Lorenzo",2017
 "AA_0447",-3.75,NA,-12.66,"non infected cecum [ileum.NA]","positive","Lorenzo",2017
-"AA_0448",3.75,-12.94,3.75,"infected cecum","positive","Lorenzo",2017
+"AA_0448",-3.75,-12.94,-3.75,"non infected","negative","Lorenzo",2017
 "AA_0449",-3.75,-13.21,-14.24,"non infected","negative","Lorenzo",2017
 "AA_0450",-3.75,-12.78,-10.92,"non infected","negative","Lorenzo",2017
 "AA_0451",5.02,5.02,-12.11,"infected ileum","positive","Lorenzo",2017
@@ -361,7 +361,7 @@
 "AA_0457",-3.75,-10.18,-12.03,"non infected","negative","Lorenzo",2017
 "AA_0458",0.350000000000001,-8.82,0.350000000000001,"infected cecum","positive","Lorenzo",2017
 "AA_0459",-3.75,-12.09,-12.02,"non infected","negative","Lorenzo",2017
-"AA_0460",3.75,-10.3,3.75,"infected cecum","positive","Lorenzo",2017
+"AA_0460",-3.75,-10.3,-3.75,"non infected","negative","Lorenzo",2017
 "AA_0461",-3.75,-12.97,-11.04,"non infected","negative","Lorenzo",2017
 "AA_0462",-3.75,-11.11,-10.12,"non infected","negative","Lorenzo",2017
 "AA_0463",-3.75,-12.25,-12.52,"non infected","negative","Lorenzo",2017
@@ -370,7 +370,7 @@
 "AA_0467",-3.75,-12.92,-12.03,"non infected","negative","Lorenzo",2017
 "AA_0468",-3.75,-12.5,NA,"non infected ileum [cecum.NA]","positive","Lorenzo",2017
 "AA_0469",-3.75,-5.54,-5,"non infected","negative","Lorenzo",2017
-"AA_0470",3.75,-11.54,3.75,"infected cecum","positive","Lorenzo",2017
+"AA_0470",-3.75,-11.54,-3.75,"non infected","negative","Lorenzo",2017
 "AA_0471",-3.75,-15.31,-11.02,"non infected","negative","Lorenzo",2017
 "AA_0489",-3.75,-13.59,-10.04,"non infected","negative","Lorenzo",2017
 "AA_0490",-3.75,-9.48,-10.34,"non infected","negative","Lorenzo",2017
@@ -381,11 +381,11 @@
 "AA_0506",-3.75,NA,-14.29,"non infected cecum [ileum.NA]","positive","Lorenzo",2017
 "AA_0511",-3.75,-12.94,NA,"non infected ileum [cecum.NA]","positive","Lorenzo",2017
 "AA_0512",-3.75,-11.58,NA,"non infected ileum [cecum.NA]","positive","Lorenzo",2017
-"AA_0514",3.75,3.75,-15.5,"infected ileum","positive","Lorenzo",2017
+"AA_0514",-3.75,-3.75,-15.5,"non infected","negative","Lorenzo",2017
 "AA_0515",-3.75,-13.4,-13.43,"non infected","negative","Lorenzo",2017
 "AA_0517",-3.75,-13.96,NA,"non infected ileum [cecum.NA]","positive","Lorenzo",2017
 "AA_0518",-3.75,-11,NA,"non infected ileum [cecum.NA]","positive","Lorenzo",2017
-"AA_0519",3.75,3.75,NA,"infected ileum [cecum.NA]","positive","Lorenzo",2017
+"AA_0519",-3.75,-3.75,NA,"non infected ileum [cecum.NA]","positive","Lorenzo",2017
 "AA_0520",-3.75,-14.47,-13.11,"non infected","negative","Lorenzo",2017
 "AA_0521",-3.75,-15.88,-11.95,"non infected","negative","Lorenzo",2017
 "AA_0522",-3.75,-13.8,-10.68,"non infected","negative","Lorenzo",2017
