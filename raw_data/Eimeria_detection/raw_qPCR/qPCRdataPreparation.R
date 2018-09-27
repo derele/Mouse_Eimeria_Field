@@ -289,7 +289,7 @@ prepareQpcr <- function(THRESHOLD){
     data.frame()
   
   # If NA, means that there was no Eimeria Ct -> negative. Set as THRESHOLD
-  qpcr2017_Lorenzo$deltaCt_MminusE[is.na(qpcr2017_Lorenzo$deltaCt_MminusE)] <- THRESHOLD
+  qpcr2017_Lorenzo$deltaCt_MminusE[is.na(qpcr2017_Lorenzo$deltaCt_MminusE)] <- - THRESHOLD
   
   # Final DF
   x <- strsplit(as.character(qpcr2017_Lorenzo$Name), "_", 1)
@@ -396,5 +396,5 @@ qpcrData_2016_2017_threshold5 <- prepareQpcr(5)
 qpcrData_2016_2017_threshold3.75 <- prepareQpcr(3.75)
 
 # Write out
-# write.csv(qpcrData_2016_2017_threshold5, "../FINALqpcrData_2016_2017_threshold5.csv", row.names = F)
-# write.csv(qpcrData_2016_2017_threshold3.75, "../FINALqpcrData_2016_2017_threshold3.75.csv", row.names = F)
+write.csv(qpcrData_2016_2017_threshold5, "../FINALqpcrData_2016_2017_threshold5.csv", row.names = F)
+write.csv(qpcrData_2016_2017_threshold3.75, "../FINALqpcrData_2016_2017_threshold3.75.csv", row.names = F)
