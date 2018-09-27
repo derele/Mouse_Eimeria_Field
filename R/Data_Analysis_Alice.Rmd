@@ -31,13 +31,23 @@ library(gridExtra)
 library(knitr)
 source("functions/HMHZ_Functions.R")
 source("functions/makeMiceTable.R")
+
+# Define threshold for qPCR data (cf Enas & Victor papers)
+THRESHOLD <- 5 # choice of sensitivity
+# THRESHOLD <- 3.75 # choice of specificity
+
 ## Load data from oocysts counting 
 flotDF <- read.csv("../raw_data/Eimeria_detection/FINALOocysts2015to2017.csv")
 LorenzoDF <- read.csv("../raw_data/Eimeria_detection/Eimeria_oocysts_2015&2017_Lorenzo.csv")
 ## Import PCR data
 PCRdf <- read.csv("../raw_data/Eimeria_detection/Inventory_contents_all.csv")
 ## Import qPCR data
-qpcrData <- read.csv("../raw_data/Eimeria_detection/FINALqPCR_2016_2017.csv")
+if (THRESHOLD == 5){
+  qpcrData <- read.csv("../raw_data/Eimeria_detection/FINALqpcrData_2016_2017_threshold5.csv")
+} else {
+  qpcrData <- read.csv("../raw_data/Eimeria_detection/FINALqpcrData_2016_2017_threshold3.75.csv")
+}
+
 qpcrData <- qpcrData[!is.na(qpcrData$delta_ct_ilwe_MminusE) & !is.na(qpcrData$delta_ct_cewe_MminusE),]
 
 #################### Load data ####################
@@ -178,7 +188,7 @@ myData <- merge(myData, qpcrData, by = "Mouse_ID", all = T)
 
 # plot qPCR
 ggplot(myData[!is.na(myData$delta_ct_MminusE) & 
-                                  myData$delta_ct_MminusE > - 6,],
+                                  myData$delta_ct_MminusE > - THRESHOLD,],
                          aes(x = HI)) +
   geom_point(aes(y = delta_ct_MminusE, fill = qPCRsummary), pch = 21, alpha = .8, size = 4) +
   geom_smooth(aes(y = delta_ct_MminusE))+#, col = as.factor(Year))) +
@@ -186,11 +196,11 @@ ggplot(myData[!is.na(myData$delta_ct_MminusE) &
   theme(legend.position="top") +
   theme(legend.title = element_blank()) +
   facet_grid(. ~ Year) +
-  ggtitle("Smooth on qPCR data (positive only (> -6)")
+  ggtitle(paste0("Smooth on qPCR data (positive only (> -", THRESHOLD, ")"))
 
 ggplot(myData[myData$Year %in% c(2016, 2017),], aes(x = HI, y = delta_ct_MminusE, col = OPG > 0)) +
   geom_point(size = 5) + 
-  geom_hline(yintercept = -6) +
+  geom_hline(yintercept = -THRESHOLD) +
   facet_grid(.~Year) +
   theme_bw() +
   ggtitle("Remark of J. Wolinska: some individuals here HAVE qPCR value, but no oocyst count?")
@@ -372,10 +382,10 @@ completeDataopgqpcr <- myData[!is.na(myData$OPG) &
                           !is.na(myData$delta_ct_MminusE),]
 
 myVennDiagram3 <- function(data){      
-  area1 = nrow(subset(data, delta_ct_MminusE > -6))
+  area1 = nrow(subset(data, delta_ct_MminusE > -THRESHOLD))
   area2 = nrow(subset(data, OPG > 0))
   ## areas of 2-group overlap
-  cross.area = nrow(subset(data, delta_ct_MminusE > -6 & OPG > 0))
+  cross.area = nrow(subset(data, delta_ct_MminusE > -THRESHOLD & OPG > 0))
   grid.newpage()
   draw.pairwise.venn(area1 = area1, 
                      area2 = area2, 
@@ -406,7 +416,7 @@ data1 <- myData[!is.na(myData$delta_ct_MminusE) &
                             !is.na(myData$OPG), ]
 summary(lm(data1$OPG ~ data1$delta_ct_MminusE))
 
-data2 <- data1[data1$OPG > 0 & data1$delta_ct_MminusE > -6 , ]
+data2 <- data1[data1$OPG > 0 & data1$delta_ct_MminusE > -THRESHOLD , ]
 summary(lm(data2$OPG ~ data2$delta_ct_MminusE))
 ```
 
@@ -467,7 +477,7 @@ summary(lm(myData$BCI ~ myData$OPG + myData$HI))
 # Testing hybrid vigor along HMHZ
 
 ```{r, echo = FALSE}
-write.csv(myData, "../FinalFullDF_flotationPcrqPCR.csv", row.names = F)
+write.csv(myData, paste0("../FinalFullDF_flotationPcrqPCR_Threshold_", THRESHOLD, ".csv"), row.names = F)
 ```
 
 ## Oocyst shedding 

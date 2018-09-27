@@ -82,7 +82,7 @@
   \postauthor{\par}
   \predate{\centering\large\emph}
   \postdate{\par}
-  \date{19 September 2018}
+  \date{27 September 2018}
 
 \usepackage{float} 
 \let\origfigure\figure 
@@ -273,10 +273,10 @@ prevalence(\%) & 30.26 & 9.84 & 12.05 & 21.53\tabularnewline
 & 2014 & 2015 & 2016 & 2017\tabularnewline
 \midrule
 \endhead
-negative & 0 & 0 & 131.00 & 160.00\tabularnewline
-positive & 0 & 0 & 33.00 & 47.00\tabularnewline
+negative & 0 & 0 & 134.00 & 167.00\tabularnewline
+positive & 0 & 0 & 30.00 & 40.00\tabularnewline
 total & 0 & 0 & 164.00 & 207.00\tabularnewline
-prevalence(\%) & NaN & NaN & 20.12 & 22.71\tabularnewline
+prevalence(\%) & NaN & NaN & 18.29 & 19.32\tabularnewline
 \bottomrule
 \end{longtable}
 
@@ -294,10 +294,10 @@ positive}\tabularnewline
 & 2014 & 2015 & 2016 & 2017\tabularnewline
 \midrule
 \endhead
-negative & 53.00 & 105.00 & 119.00 & 193.00\tabularnewline
-positive & 23.00 & 17.00 & 48.00 & 97.00\tabularnewline
+negative & 53.00 & 105.00 & 122.00 & 195.00\tabularnewline
+positive & 23.00 & 17.00 & 45.00 & 95.00\tabularnewline
 total & 76.00 & 122.00 & 167.00 & 290.00\tabularnewline
-prevalence(\%) & 30.26 & 13.93 & 28.74 & 33.45\tabularnewline
+prevalence(\%) & 30.26 & 13.93 & 26.95 & 32.76\tabularnewline
 \bottomrule
 \end{longtable}
 
@@ -326,18 +326,18 @@ prevalence(\%) & 30.26 & 13.93 & 28.74 & 33.45\tabularnewline
 ## 
 ## Residuals:
 ##    Min     1Q Median     3Q    Max 
-## -57721  -5929  -5929  -5929 589440 
+## -49104  -7092  -7092  -7092 594318 
 ## 
 ## Coefficients:
 ##                        Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)               34128       7818   4.365 1.68e-05 ***
-## data1$delta_ct_MminusE     4700       1395   3.368 0.000843 ***
+## (Intercept)               28056       7882   3.559 0.000425 ***
+## data1$delta_ct_MminusE     4193       1662   2.522 0.012119 *  
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 48800 on 341 degrees of freedom
-## Multiple R-squared:  0.0322, Adjusted R-squared:  0.02936 
-## F-statistic: 11.35 on 1 and 341 DF,  p-value: 0.0008429
+## Residual standard error: 49140 on 341 degrees of freedom
+## Multiple R-squared:  0.01831,    Adjusted R-squared:  0.01543 
+## F-statistic: 6.361 on 1 and 341 DF,  p-value: 0.01212
 \end{verbatim}
 
 \begin{verbatim}
@@ -347,18 +347,18 @@ prevalence(\%) & 30.26 & 13.93 & 28.74 & 33.45\tabularnewline
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -102183  -67339  -39204    6991  542133 
+## -113390  -74723  -43934   25984  532310 
 ## 
 ## Coefficients:
 ##                        Estimate Std. Error t value Pr(>|t|)  
-## (Intercept)               43423      25002   1.737   0.0903 .
-## data2$delta_ct_MminusE   -11441       7946  -1.440   0.1579  
+## (Intercept)               42561      25634   1.660    0.106  
+## data2$delta_ct_MminusE   -15978       9075  -1.761    0.087 .
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 125100 on 39 degrees of freedom
-## Multiple R-squared:  0.05048,    Adjusted R-squared:  0.02613 
-## F-statistic: 2.073 on 1 and 39 DF,  p-value: 0.1579
+## Residual standard error: 128200 on 35 degrees of freedom
+## Multiple R-squared:  0.08136,    Adjusted R-squared:  0.05512 
+## F-statistic:   3.1 on 1 and 35 DF,  p-value: 0.08703
 \end{verbatim}
 
 \subsection{OPG-qPCR-PCR}\label{opg-qpcr-pcr}
@@ -425,7 +425,7 @@ case/control}\label{bonus-part-genotyping-of-mice-casecontrol}
 \item
   100 out of 483 are positive for flotation and have an hybrid index.
 \item
-  80 out of 369 are positive for qPCR and have an hybrid index.
+  70 out of 369 are positive for qPCR and have an hybrid index.
 \end{itemize}
 
 Discussed with Stuart:
