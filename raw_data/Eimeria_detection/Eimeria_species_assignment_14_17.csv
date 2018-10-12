@@ -1,0 +1,1232 @@
+Year ,Transect ,Code ,Mouse_ID,n18S_Seq,COI_Seq,ORF470_Seq,Species
+2014,HZ_CZ ,NEB3 ,SK_2651,negative,negative,negative,Negative
+2014,HZ_CZ ,NEB3 ,SK_2652,negative,negative,negative,Negative
+2014,HZ_CZ ,CHOT1 ,SK_2653,negative,negative,negative,Negative
+2014,HZ_CZ ,CHOT1 ,SK_2654,negative,negative,negative,Negative
+2014,HZ_CZ ,CHOT1 ,SK_2655,negative,negative,negative,Negative
+2014,HZ_CZ ,KVET3 ,SK_2656,negative,negative,negative,Negative
+2014,HZ_CZ ,KVET3 ,SK_2657,negative,negative,negative,Negative
+2014,HZ_CZ ,KVET3 ,SK_2658,negative,negative,negative,Negative
+2014,HZ_CZ ,KAC2 ,SK_2659,negative,positive,positive,E_ferrisi
+2014,HZ_CZ ,KAC2 ,SK_2660,negative,negative,negative,Negative
+2014,HZ_CZ ,KAC2 ,SK_2661,negative,positive,negative,E_ferrisi
+2014,HZ_CZ ,KAC2 ,SK_2662,negative,negative,negative,Negative
+2014,HZ_CZ ,VRB7 ,SK_2663,positive,positive,positive,E_ferrisi
+2014,HZ_CZ ,VRB7 ,SK_2664,positive,positive,negative,E_ferrisi
+2014,HZ_CZ ,VRB7 ,SK_2665,negative,positive,negative,E_ferrisi
+2014,HZ_CZ ,KOZL ,SK_2666,positive,positive,positive,E_ferrisi
+2014,HZ_CZ ,KOZL ,SK_2667,negative,negative,negative,Negative
+2014,HZ_CZ ,KOZL ,SK_2668,positive,positive,positive,E_ferrisi
+2014,HZ_CZ ,KOZL ,SK_2669,negative,negative,negative,Negative
+2014,HZ_CZ ,BUS2 ,SK_2670,negative,negative,negative,Negative
+2014,HZ_CZ ,PRPR ,SK_2671,negative,negative,negative,Negative
+2014,HZ_CZ ,NEPO1 ,SK_2672,positive,positive,positive,E_vermiformis
+2014,HZ_CZ ,STR2 ,SK_2673,negative,negative,negative,Negative
+2014,HZ_CZ ,STR2 ,SK_2674,negative,negative,negative,Negative
+2014,HZ_CZ ,STR2 ,SK_2675,negative,negative,negative,Negative
+2014,HZ_CZ ,UNWE ,SK_2676,negative,negative,negative,Negative
+2014,HZ_CZ ,UNWE ,SK_2677,negative,negative,negative,Negative
+2014,HZ_CZ ,KVET3 ,SK_2678,negative,negative,negative,Negative
+2014,HZ_CZ ,NEPO1 ,SK_2679,negative,negative,negative,Negative
+2014,HZ_CZ ,OBIL2 ,SK_2680,negative,negative,negative,Negative
+2014,HZ_CZ ,NEPO1 ,SK_2681,negative,negative,negative,Negative
+2014,HZ_CZ ,BUS2 ,SK_2682,negative,negative,negative,Negative
+2014,HZ_CZ ,ODR26 ,SK_2683,negative,negative,negative,Negative
+2014,HZ_CZ ,BUS2 ,SK_2684,positive,positive,positive,E_ferrisi
+2014,HZ_CZ ,BUS2 ,SK_2685,negative,negative,negative,Negative
+2014,HZ_CZ ,VRBI4 ,SK_2686,negative,negative,negative,Negative
+2014,HZ_CZ ,KUBL1 ,SK_2687,negative,negative,negative,Negative
+2014,HZ_CZ ,BUS2 ,SK_2688,negative,positive,negative,E_ferrisi
+2014,HZ_CZ ,STR2 ,SK_2689,negative,negative,negative,Negative
+2014,HZ_CZ ,VRBI4 ,SK_2690,negative,negative,negative,Negative
+2014,HZ_CZ ,ODR26 ,SK_2691,positive,negative,positive,E_ferrisi
+2014,HZ_CZ ,CHOT1 ,SK_2692,negative,negative,negative,Negative
+2014,HZ_CZ ,KOZL ,SK_2693,positive,positive,positive,E_ferrisi
+2014,HZ_CZ ,JIND31 ,SK_2694,negative,negative,negative,Negative
+2014,HZ_CZ ,VRBI4 ,SK_2695,positive,positive,positive,E_ferrisi
+2014,HZ_CZ ,KUBL1 ,SK_2696,negative,negative,negative,Negative
+2014,HZ_CZ ,NEB3 ,SK_2697,negative,negative,negative,Negative
+2014,HZ_CZ ,DODV ,SK_2698,negative,negative,negative,Negative
+2014,HZ_CZ ,DODV ,SK_2699,negative,negative,negative,Negative
+2014,HZ_CZ ,PAST ,SK_2700,negative,negative,negative,Negative
+2014,HZ_CZ ,VER15 ,SK_2701,negative,negative,negative,Negative
+2014,HZ_CZ ,PAST ,SK_2702,negative,negative,negative,Negative
+2014,HZ_CZ ,VER15 ,SK_2703,negative,negative,negative,Negative
+2014,HZ_CZ ,TYN4 ,SK_2704,negative,negative,negative,Negative
+2014,HZ_CZ ,PAST ,SK_2705,negative,negative,negative,Negative
+2014,HZ_CZ ,NEB64 ,SK_2706,negative,negative,negative,Negative
+2014,HZ_CZ ,NEB64 ,SK_2707,negative,negative,negative,Negative
+2014,HZ_CZ ,NEB64 ,SK_2708,negative,negative,negative,Negative
+2014,HZ_CZ ,NEB64 ,SK_2709,negative,negative,negative,Negative
+2014,HZ_CZ ,KOZL ,SK_2710,negative,negative,negative,Negative
+2014,HZ_CZ ,DODV ,SK_2711,negative,negative,negative,Negative
+2014,HZ_CZ ,NVCH1 ,SK_2712,negative,negative,negative,Negative
+2014,HZ_CZ ,DODV ,SK_2713,negative,negative,negative,Negative
+2014,HZ_CZ ,NVCH1 ,SK_2714,negative,negative,negative,Negative
+2014,HZ_CZ ,NVCH1 ,SK_2715,negative,negative,negative,Negative
+2014,HZ_CZ ,KRIZS ,SK_2716,negative,negative,negative,Negative
+2014,HZ_CZ ,HUR3 ,SK_2717,negative,negative,negative,Negative
+2014,HZ_CZ ,JIND31 ,SK_2718,negative,negative,negative,Negative
+2014,HZ_CZ ,NVCH1 ,SK_2719,negative,negative,negative,Negative
+2014,HZ_CZ ,WOZW1 ,SK_2720,negative,negative,negative,Negative
+2014,HZ_CZ ,ODM4 ,SK_2721,negative,negative,negative,Negative
+2014,HZ_CZ ,ODM4 ,SK_2722,negative,negative,negative,Negative
+2014,HZ_CZ ,WOZW1 ,SK_2723,negative,negative,negative,Negative
+2014,HZ_CZ ,ZIST ,SK_2724,negative,negative,negative,Negative
+2014,HZ_CZ ,HUR3 ,SK_2725,negative,negative,negative,Negative
+2014,HZ_CZ ,ZIST ,SK_2726,negative,negative,negative,Negative
+2014,HZ_CZ ,TYN4 ,SK_2727,negative,negative,negative,Negative
+2014,HZ_CZ ,PRE11 ,SK_2728,negative,negative,negative,Negative
+2014,HZ_CZ ,TYN4 ,SK_2729,negative,negative,negative,Negative
+2014,HZ_CZ ,PRE11 ,SK_2730,negative,negative,negative,Negative
+2014,HZ_CZ ,KRASIK ,SK_2731,negative,negative,negative,Negative
+2014,HZ_CZ ,KRASIK ,SK_2732,negative,negative,negative,Negative
+2014,HZ_CZ ,KRASIK ,SK_2733,negative,negative,negative,Negative
+2014,HZ_CZ ,PAST ,SK_2734,negative,negative,negative,Negative
+2014,HZ_CZ ,JIND31 ,SK_2735,negative,negative,negative,Negative
+2014,HZ_CZ ,PRE11 ,SK_2736,negative,negative,negative,Negative
+2014,HZ_CZ ,VER15 ,SK_2737,negative,negative,negative,Negative
+2014,HZ_CZ ,VER15 ,SK_2738,negative,negative,negative,Negative
+2014,HZ_CZ ,KRASIK ,SK_2739,negative,negative,negative,Negative
+2014,HZ_CZ ,HUR3 ,SK_2740,negative,negative,negative,Negative
+2014,HZ_CZ ,BLAZI ,SK_2741,negative,negative,negative,Negative
+2014,HZ_CZ ,SEYB ,SK_2742,negative,negative,negative,Negative
+2014,HZ_CZ ,SEYB ,SK_2743,negative,negative,negative,Negative
+2014,HZ_CZ ,BLAZI ,SK_2744,negative,negative,negative,Negative
+2014,HZ_CZ ,BEZ2 ,SK_2745,negative,negative,negative,Negative
+2014,HZ_CZ ,HUR3 ,SK_2746,negative,negative,negative,Negative
+2014,HZ_CZ ,HUR3 ,SK_2747,negative,negative,negative,Negative
+2014,HZ_CZ ,MUNR ,SK_2748,negative,negative,negative,Negative
+2014,HZ_CZ ,MUNR ,SK_2749,negative,negative,negative,Negative
+2014,HZ_CZ ,KRIZ60 ,SK_2750,negative,negative,negative,Negative
+2014,HZ_CZ ,BLAZI ,SK_2751,negative,negative,negative,Negative
+2014,HZ_CZ ,ODM4 ,SK_2752,negative,negative,negative,Negative
+2014,HZ_CZ ,ODM4 ,SK_2753,negative,negative,negative,Negative
+2014,HZ_CZ ,BLAZI ,SK_2754,negative,negative,negative,Negative
+2014,HZ_CZ ,BEZ2 ,SK_2755,negative,negative,negative,Negative
+2014,HZ_CZ ,PAST ,SK_2756,negative,negative,negative,Negative
+2014,HZ_CZ ,MUNR ,SK_2757,negative,negative,negative,Negative
+2014,HZ_CZ ,BEZ2 ,SK_2758,negative,negative,negative,Negative
+2014,HZ_CZ ,ROSE ,SK_2759,negative,negative,negative,Negative
+2014,HZ_CZ ,BEZ1 ,SK_2760,negative,negative,negative,Negative
+2014,HZ_CZ ,BEZ1 ,SK_2761,negative,negative,negative,Negative
+2014,HZ_CZ ,NEBFP ,SK_2762,negative,negative,negative,Negative
+2014,HZ_CZ ,MUNR ,SK_2763,negative,negative,negative,Negative
+2014,HZ_CZ ,KRIZ1 ,SK_2764,negative,negative,negative,Negative
+2014,HZ_CZ ,KRIZ1 ,SK_2765,negative,negative,negative,Negative
+2014,HZ_CZ ,KRIZ1 ,SK_2766,negative,negative,negative,Negative
+2014,HZ_CZ ,KRIZ1 ,SK_2767,negative,negative,negative,Negative
+2014,HZ_CZ ,SEYB ,SK_2768,negative,negative,negative,Negative
+2014,HZ_CZ ,SEYB ,SK_2769,negative,negative,negative,Negative
+2014,HZ_CZ ,SABIH ,SK_2770,negative,negative,negative,Negative
+2014,HZ_CZ ,SABIH ,SK_2771,negative,negative,negative,Negative
+2014,HZ_CZ ,HOHBG1 ,SK_2772,negative,negative,negative,Negative
+2014,HZ_CZ ,HOHBG1 ,SK_2773,negative,negative,negative,Negative
+2014,HZ_CZ ,SABI86 ,SK_2774,negative,negative,negative,Negative
+2014,HZ_CZ ,PAST ,SK_2775,negative,negative,negative,Negative
+2014,HZ_CZ ,WOHL ,SK_2776,negative,negative,negative,Negative
+2014,HZ_CZ ,SABI86 ,SK_2777,negative,negative,negative,Negative
+2014,HZ_CZ ,PAST ,SK_2778,negative,positive,positive,E_vermiformis
+2014,HZ_CZ ,JOSE ,SK_2779,negative,negative,negative,Negative
+2014,HZ_CZ ,JOSE ,SK_2780,negative,negative,negative,Negative
+2014,HZ_CZ ,KRIZ1 ,SK_2781,negative,negative,negative,Negative
+2014,HZ_CZ ,ODM4 ,SK_2782,negative,negative,negative,Negative
+2014,HZ_CZ ,LOUZ ,SK_2783,negative,negative,negative,Negative
+2014,HZ_CZ ,LOUZ ,SK_2784,negative,negative,negative,Negative
+2014,HZ_CZ ,LOUZ ,SK_2785,negative,negative,negative,Negative
+2014,HZ_CZ ,LOUZ ,SK_2786,negative,negative,negative,Negative
+2014,HZ_CZ ,SABI86 ,SK_2787,negative,negative,negative,Negative
+2014,HZ_CZ ,CHL1 ,SK_2788,negative,negative,negative,Negative
+2014,HZ_CZ ,MAIE9 ,SK_2789,positive,positive,positive,E_ferrisi
+2014,NA,CHL161 ,SK_2790,negative,negative,negative,Negative
+2014,NA,CHL161 ,SK_2791,negative,negative,negative,Negative
+2014,HZ_CZ ,CHL161 ,SK_2792,negative,negative,negative,Negative
+2014,HZ_CZ ,CHL1 ,SK_2793,negative,negative,negative,Negative
+2014,HZ_CZ ,CHL161 ,SK_2794,negative,negative,negative,Negative
+2014,HZ_CZ ,MIL64 ,SK_2795,negative,negative,negative,Negative
+2014,HZ_CZ ,MIL64 ,SK_2796,positive,positive,positive,E_ferrisi
+2014,HZ_CZ ,MIL64 ,SK_2797,negative,negative,negative,Negative
+2014,HZ_CZ ,MIL64 ,SK_2798,negative,positive,positive,E_ferrisi
+2014,HZ_CZ ,BUS2 ,SK_2799,negative,negative,negative,Negative
+2014,HZ_CZ ,BUS2 ,SK_2800,negative,negative,negative,Negative
+2014,HZ_CZ ,BUS2 ,SK_2801,negative,negative,negative,Negative
+2014,HZ_CZ ,BUS2 ,SK_2802,negative,negative,negative,Negative
+2014,HZ_CZ ,STR2 ,SK_2803,negative,negative,negative,Negative
+2014,HZ_CZ ,STR2 ,SK_2804,negative,negative,negative,Negative
+2014,HZ_CZ ,STR2 ,SK_2805,negative,negative,negative,Negative
+2014,HZ_BR ,ZEHL1 ,SK_2806,negative,negative,negative,Negative
+2014,HZ_BR ,ZEHL1 ,SK_2807,positive,positive,positive,E_ferrisi
+2014,HZ_BR ,ZEHL1 ,SK_2808,positive,positive,negative,E_falciformis
+2014,HZ_BR ,ZEHL1 ,SK_2809,positive,positive,positive,E_falciformis
+2014,HZ_BR ,ZEHL1 ,SK_2810,positive,positive,negative,E_ferrisi
+2014,HZ_BR ,ZEHL1 ,SK_2811,positive,positive,negative,E_ferrisi
+2014,HZ_BR ,ZEHL1 ,SK_2812,positive,positive,negative,E_ferrisi
+2014,HZ_BR ,LIEB38 ,SK_2813,negative,negative,negative,Negative
+2014,HZ_BR ,LIEB38 ,SK_2814,negative,negative,negative,Negative
+2014,HZ_BR ,LIEB38 ,SK_2815,negative,positive,positive,E_ferrisi
+2014,HZ_BR ,LIEB38 ,SK_2816,negative,negative,negative,Negative
+2014,HZ_BR ,BRUNN3 ,SK_2817,negative,negative,negative,Negative
+2014,HZ_BR ,BRUNN3 ,SK_2818,negative,negative,negative,Negative
+2014,HZ_BR ,BRUNN3 ,SK_2819,negative,negative,negative,Negative
+2014,HZ_BR ,LIET21 ,SK_2820,negative,negative,negative,Negative
+2014,HZ_BR ,PAUS ,SK_2821,negative,negative,negative,Negative
+2014,HZ_BR ,PAUS ,SK_2822,positive,positive,negative,E_falciformis
+2014,HZ_BR ,PAUS ,SK_2823,positive,positive,positive,E_falciformis
+2014,HZ_BR ,PAUS ,SK_2824,positive,positive,positive,E_falciformis
+2014,HZ_BR ,PAUS ,SK_2825,positive,positive,negative,E_falciformis
+2014,HZ_BR ,STAFF ,SK_2826,negative,negative,negative,Negative
+2014,HZ_BR ,DANE22 ,SK_2827,positive,positive,negative,E_ferrisi
+2014,HZ_BR ,TEMP8c ,SK_2828,negative,negative,negative,Negative
+2014,HZ_BR ,DANE22 ,SK_2829,positive,positive,positive,E_ferrisi
+2014,HZ_BR ,DANE22 ,SK_2830,negative,negative,negative,Negative
+2014,HZ_BR ,DANE22 ,SK_2831,positive,positive,negative,E_ferrisi
+2014,HZ_BR ,NEUG21 ,SK_2832,negative,negative,negative,Negative
+2014,HZ_BR ,NEUG21 ,SK_2833,negative,negative,negative,Negative
+2014,HZ_BR ,NEUG21 ,SK_2834,negative,negative,negative,Negative
+2014,HZ_BR ,HAMM ,SK_2835,negative,negative,negative,Negative
+2014,HZ_BR ,BEETZ ,SK_2836,negative,negative,negative,Negative
+2014,HZ_BR ,BEETZ ,SK_2837,negative,negative,negative,Negative
+2014,HZ_BR ,BEETZ ,SK_2838,negative,negative,negative,Negative
+2014,HZ_BR ,FRFE11 ,SK_2839,negative,negative,negative,Negative
+2014,HZ_BR ,FRFE11 ,SK_2840,negative,negative,negative,Negative
+2014,HZ_BR ,FRFE11 ,SK_2841,negative,negative,negative,Negative
+2014,HZ_BR ,FRFE11 ,SK_2842,negative,negative,negative,Negative
+2014,HZ_BR ,FRFE11 ,SK_2843,negative,negative,negative,Negative
+2014,HZ_BR ,DANE22 ,SK_2844,negative,negative,negative,Negative
+2014,HZ_BR ,NEUR14 ,SK_2845,negative,negative,negative,Negative
+2014,HZ_BR ,NEUR14 ,SK_2846,negative,negative,negative,Negative
+2014,HZ_BR ,DANE22 ,SK_2847,positive,negative,negative,E_ferrisi
+2014,HZ_BR ,DANE22 ,SK_2848,positive,positive,positive,E_ferrisi
+2014,HZ_BR ,NEUR14 ,SK_2849,negative,negative,negative,Negative
+2014,HZ_BR ,ZACK20 ,SK_2850,negative,negative,negative,Negative
+2014,HZ_CZ ,KVET3 ,SK_2851,negative,negative,negative,Negative
+2014,HZ_CZ ,KAC2 ,SK_2852,negative,negative,negative,Negative
+2014,HZ_CZ ,CHOT1 ,SK_2853,negative,negative,negative,Negative
+2014,HZ_CZ ,CHOT1 ,SK_2854,negative,negative,negative,Negative
+2014,HZ_CZ ,KAC2 ,SK_2855,negative,negative,negative,Negative
+2014,HZ_CZ ,VRB7 ,SK_2856,negative,negative,negative,Negative
+2014,HZ_CZ ,VRB7 ,SK_2857,negative,negative,negative,Negative
+2014,HZ_CZ ,NEPO1 ,SK_2858,negative,negative,negative,Negative
+2014,HZ_CZ ,NEB3 ,SK_2859,negative,negative,negative,Negative
+2014,HZ_CZ ,NEB3 ,SK_2860,negative,negative,negative,Negative
+2014,HZ_CZ ,NEB3 ,SK_2861,negative,negative,negative,Negative
+2014,HZ_CZ ,NEPO1 ,SK_2862,negative,negative,negative,Negative
+2014,HZ_CZ ,VRBI4 ,SK_2863,negative,negative,negative,Negative
+2014,HZ_CZ ,KVET3 ,SK_2864,negative,negative,negative,Negative
+2014,HZ_CZ ,DODV ,SK_2865,negative,negative,negative,Negative
+2014,HZ_CZ ,DODV ,SK_2866,negative,negative,negative,Negative
+2014,HZ_CZ ,JIND5 ,SK_2867,negative,negative,negative,Negative
+2014,HZ_CZ ,CHOT1 ,SK_2868,negative,negative,negative,Negative
+2014,HZ_CZ ,VER15 ,SK_2869,negative,negative,negative,Negative
+2014,HZ_CZ ,DODV ,SK_2870,negative,negative,negative,Negative
+2014,HZ_CZ ,BLAZI ,SK_2871,negative,negative,negative,Negative
+2014,HZ_CZ ,NEBFP ,SK_2872,negative,negative,negative,Negative
+2014,HZ_CZ ,BLAZI ,SK_2873,negative,negative,negative,Negative
+2014,HZ_CZ ,BEZ1 ,SK_2874,negative,negative,negative,Negative
+2014,HZ_CZ ,BEZ1 ,SK_2875,negative,negative,negative,Negative
+2014,HZ_CZ ,SEYB ,SK_2876,negative,negative,negative,Negative
+2014,HZ_CZ ,SEYB ,SK_2877,negative,negative,negative,Negative
+2014,HZ_CZ ,LOUZ ,SK_2878,negative,negative,negative,Negative
+2014,HZ_CZ ,LOUZ ,SK_2879,negative,negative,negative,Negative
+2014,HZ_CZ ,LOUZ ,SK_2880,negative,negative,negative,Negative
+2014,HZ_CZ ,LOUZ ,SK_2881,negative,negative,negative,Negative
+2014,HZ_CZ ,LOUZ ,SK_2882,negative,negative,negative,Negative
+2014,HZ_CZ ,LOUZ ,SK_2883,negative,negative,negative,Negative
+2014,NA,CHL161 ,SK_2884,negative,negative,negative,Negative
+2014,HZ_CZ ,CHL161 ,SK_2885,negative,negative,negative,Negative
+2014,HZ_CZ ,MIL64 ,SK_2886,negative,negative,negative,Negative
+2014,HZ_CZ ,MIL64 ,SK_2887,negative,negative,negative,Negative
+2014,HZ_CZ ,MIL64 ,SK_2888,negative,negative,negative,Negative
+2014,HZ_CZ ,MIL64 ,SK_2889,negative,negative,negative,Negative
+2014,HZ_BR ,BRUNN3 ,SK_2890,negative,negative,negative,Negative
+2014,HZ_BR ,JOACH ,SK_2891,negative,negative,negative,Negative
+2014,HZ_BR ,DANE22 ,SK_2892,negative,negative,negative,Negative
+2014,HZ_BR ,DANE22 ,SK_2893,negative,negative,negative,Negative
+2014,HZ_BR ,NEUR14 ,SK_2894,negative,negative,negative,Negative
+2014,HZ_BR ,ZACK20 ,SK_2895,negative,negative,negative,Negative
+2014,HZ_BR ,SCHM1 ,SK_2896,negative,negative,negative,Negative
+2014,HZ_BR ,HOWZ30 ,SK_2897,negative,negative,negative,Negative
+2014,HZ_BR ,HOWZ30 ,SK_2898,negative,negative,negative,Negative
+2014,HZ_BR ,HOWZ30 ,SK_2899,negative,negative,negative,Negative
+2014,HZ_BR ,AHDF7 ,SK_2900,negative,negative,negative,Negative
+2014,HZ_BR ,NEUR14 ,SK_2905,negative,negative,negative,Negative
+2014,HZ_BR ,ZACK20 ,SK_2906,negative,negative,negative,Negative
+2014,HZ_BR ,ZACK20 ,SK_2907,negative,negative,negative,Negative
+2014,HZ_BR ,RUDN21 ,SK_2908,negative,negative,negative,Negative
+2014,HZ_BR ,FLIE28 ,SK_2909,negative,negative,negative,Negative
+2014,HZ_BR ,FLIE28 ,SK_2910,negative,negative,negative,Negative
+2014,HZ_BR ,JOACH ,SK_2911,positive,positive,negative,E_ferrisi
+2014,HZ_BR ,JOACH ,SK_2912,negative,negative,negative,Negative
+2014,HZ_BR ,HOWZ30 ,SK_2913,positive,positive,positive,E_ferrisi
+2014,HZ_BR ,HOWZ30 ,SK_2914,negative,negative,negative,Negative
+2014,HZ_BR ,HOWZ30 ,SK_2915,negative,negative,negative,Negative
+2014,HZ_BR ,HOWZ30 ,SK_2916,negative,negative,negative,Negative
+2014,HZ_BR ,NEULO9 ,SK_2917,positive,negative,negative,E_ferrisi
+2014,HZ_BR ,NEULO9 ,SK_2918,negative,positive,negative,E_ferrisi
+2014,HZ_BR ,NEULO9 ,SK_2919,negative,positive,negative,E_ferrisi
+2014,HZ_BR ,NEULO9 ,SK_2920,positive,positive,positive,E_ferrisi
+2014,HZ_BR ,NEULO9 ,SK_2921,negative,negative,negative,Negative
+2014,HZ_BR ,BOECK ,SK_2922,negative,negative,negative,Negative
+2014,HZ_BR ,SCHM1 ,SK_2923,negative,negative,negative,Negative
+2014,HZ_BR ,TEMM ,SK_2924,negative,positive,negative,E_ferrisi
+2014,HZ_BR ,LUEB21 ,SK_2925,negative,negative,negative,Negative
+2014,HZ_BR ,ZEHL21 ,SK_2926,negative,negative,negative,Negative
+2014,HZ_BR ,STEG1 ,SK_2927,negative,negative,negative,Negative
+2014,HZ_BR ,STEG1 ,SK_2928,negative,negative,negative,Negative
+2014,HZ_BR ,STEG1 ,SK_2929,negative,negative,negative,Negative
+2014,HZ_BR ,AHDF7 ,SK_2930,negative,negative,negative,Negative
+2014,HZ_BR ,AHDF7 ,SK_2931,negative,negative,negative,Negative
+2014,HZ_BR ,STEG1 ,SK_2932,negative,negative,negative,Negative
+2014,HZ_BR ,AHDF7 ,SK_2933,negative,negative,negative,Negative
+2014,HZ_BR ,AHDF7 ,SK_2934,negative,negative,negative,Negative
+2014,HZ_BR ,NETEM7 ,SK_2935,negative,negative,negative,Negative
+2015,HZ_BAV ,LERA9 ,SK_2951,negative,positive,negative,E_ferrisi
+2015,HZ_BAV ,LERA9 ,SK_2952,negative,negative,negative,Negative
+2015,HZ_BAV ,LERA9 ,SK_2953,negative,negative,negative,Negative
+2015,HZ_BAV ,LERA9 ,SK_2954,negative,negative,negative,Negative
+2015,HZ_BAV ,LETZ ,SK_2955,negative,negative,negative,Negative
+2015,HZ_BAV ,LETZ ,SK_2956,negative,negative,negative,Negative
+2015,HZ_BAV ,LETZ ,SK_2957,negative,negative,negative,Negative
+2015,HZ_BAV ,OBERT3A ,SK_2958,negative,negative,negative,Negative
+2015,HZ_BAV ,OBERT3B ,SK_2959,negative,negative,negative,Negative
+2015,HZ_BAV ,OBERT3A ,SK_2960,negative,negative,negative,Negative
+2015,HZ_BAV ,OBERT3A ,SK_2961,negative,negative,negative,Negative
+2015,HZ_BAV ,OEDE ,SK_2962,negative,negative,negative,Negative
+2015,HZ_BAV ,OBERN8 ,SK_2963,negative,negative,negative,Negative
+2015,HZ_BAV ,OBERN8 ,SK_2964,negative,negative,negative,Negative
+2015,HZ_BAV ,GEISL7 ,SK_2965,negative,negative,negative,Negative
+2015,HZ_BAV ,OBERN8 ,SK_2966,negative,negative,negative,Negative
+2015,HZ_BAV ,TIEF28 ,SK_2967,negative,negative,negative,Negative
+2015,HZ_BAV ,ZUM16 ,SK_2968,negative,negative,negative,Negative
+2015,HZ_BAV ,GFALL9 ,SK_2969,negative,negative,negative,Negative
+2015,HZ_BAV ,KLESS2 ,SK_2970,negative,negative,negative,Negative
+2015,HZ_BAV ,KLESS2 ,SK_2971,negative,negative,negative,Negative
+2015,HZ_BAV ,KLESS2 ,SK_2972,negative,negative,positive,E_ferrisi
+2015,HZ_BAV ,KLESS2 ,SK_2973,negative,negative,negative,Negative
+2015,HZ_BAV ,LOID5 ,SK_2974,negative,negative,negative,Negative
+2015,HZ_BAV ,LOID5 ,SK_2975,positive,positive,positive,E_ferrisi
+2015,HZ_BAV ,LOID5 ,SK_2976,negative,negative,negative,Negative
+2015,HZ_BAV ,NEUALL ,SK_2977,negative,negative,negative,Negative
+2015,HZ_BAV ,NEUALL ,SK_2978,negative,negative,negative,Negative
+2015,HZ_BAV ,ZAIT36 ,SK_2979,negative,negative,negative,Negative
+2015,HZ_BAV ,ZAIT36 ,SK_2980,negative,negative,negative,Negative
+2015,HZ_BAV ,ZAIT36 ,SK_2981,negative,negative,negative,Negative
+2015,HZ_BAV ,ZAIT36 ,SK_2982,negative,negative,negative,Negative
+2015,HZ_BAV ,UNSCHH ,SK_2983,negative,negative,negative,Negative
+2015,HZ_BAV ,LERA9 ,SK_2984,negative,negative,negative,Negative
+2015,HZ_BAV ,LERA9 ,SK_2985,negative,negative,negative,Negative
+2015,HZ_BAV ,EITEN8 ,SK_2986,negative,negative,negative,Negative
+2015,HZ_BAV ,KLESS2 ,SK_2987,negative,negative,negative,Negative
+2015,HZ_BAV ,LERA9 ,SK_2988,negative,negative,negative,Negative
+2015,HZ_BAV ,LERA9 ,SK_2989,negative,negative,negative,Negative
+2015,HZ_BAV ,LERA9 ,SK_2990,negative,negative,negative,Negative
+2015,HZ_BAV ,LETZ ,SK_2991,negative,negative,negative,Negative
+2015,HZ_BAV ,LETZ ,SK_2992,negative,negative,negative,Negative
+2015,HZ_BAV ,LETZ ,SK_2993,negative,negative,negative,Negative
+2015,HZ_BAV ,LETZ ,SK_2994,negative,negative,negative,Negative
+2015,HZ_BAV ,LETZ ,SK_2995,negative,negative,negative,Negative
+2015,HZ_BAV ,LETZ ,SK_2996,negative,positive,positive,E_falciformis
+2015,HZ_BAV ,LETZ ,SK_2997,negative,negative,negative,Negative
+2015,HZ_BAV ,LETZ ,SK_2998,negative,positive,positive,E_ferrisi
+2015,HZ_BAV ,TAUCH6 ,SK_2999,negative,negative,negative,Negative
+2015,HZ_BAV ,KLESS2 ,SK_3000,negative,negative,negative,Negative
+2015,HZ_BAV ,LOID5 ,SK_3001,negative,negative,negative,Negative
+2015,HZ_BAV ,LOID5 ,SK_3002,negative,negative,negative,Negative
+2015,HZ_BAV ,LOID5 ,SK_3003,negative,positive,positive,E_ferrisi
+2015,HZ_BAV ,LOID5 ,SK_3004,negative,negative,negative,Negative
+2015,HZ_BAV ,LOID5 ,SK_3005,negative,negative,negative,Negative
+2015,HZ_BAV ,ROTZG2 ,SK_3006,negative,negative,negative,Negative
+2015,HZ_BAV ,GSCHW ,SK_3007,negative,negative,negative,Negative
+2015,HZ_BAV ,GSCHW ,SK_3008,negative,negative,negative,Negative
+2015,HZ_BAV ,GSCHW ,SK_3009,negative,negative,negative,Negative
+2015,HZ_BAV ,GSCHW ,SK_3010,negative,negative,negative,Negative
+2015,HZ_BAV ,MOOSH ,SK_3011,negative,negative,negative,Negative
+2015,HZ_BAV ,MOOSH ,SK_3012,negative,negative,negative,Negative
+2015,HZ_BAV ,MOOSH ,SK_3013,negative,negative,negative,Negative
+2015,HZ_BAV ,MOOSH ,SK_3014,negative,negative,negative,Negative
+2015,HZ_BAV ,MOOSH ,SK_3015,negative,negative,negative,Negative
+2015,HZ_BAV ,LUCK ,SK_3016,negative,negative,negative,Negative
+2015,HZ_BAV ,STADT1 ,SK_3017,negative,negative,negative,Negative
+2015,HZ_BAV ,STADT1 ,SK_3018,negative,negative,negative,Negative
+2015,HZ_BAV ,SCHI39 ,SK_3019,negative,positive,positive,E_falciformis
+2015,HZ_BAV ,GOTT ,SK_3020,negative,negative,negative,Negative
+2015,HZ_BAV ,SCHI39 ,SK_3021,negative,negative,negative,Negative
+2015,HZ_BAV ,SCHI39 ,SK_3022,negative,negative,negative,Negative
+2015,HZ_BAV ,MOOSH ,SK_3023,negative,negative,negative,Negative
+2015,HZ_BAV ,OBERN8 ,SK_3024,negative,negative,negative,Negative
+2015,HZ_BAV ,GRAS12 ,SK_3025,negative,negative,positive,E_ferrisi
+2015,HZ_BAV ,GROSB9 ,SK_3026,negative,negative,negative,Negative
+2015,HZ_BAV ,LOID5 ,SK_3027,positive,positive,positive,E_vermiformis
+2015,HZ_BAV ,LOID5 ,SK_3028,negative,negative,positive,E_ferrisi
+2015,HZ_BAV ,MAIEH5 ,SK_3029,negative,negative,positive,E_ferrisi
+2015,HZ_BAV ,LUCK ,SK_3030,negative,negative,negative,Negative
+2015,HZ_BAV ,LUCK ,SK_3031,negative,negative,negative,Negative
+2015,HZ_BAV ,GRAS12 ,SK_3032,negative,negative,negative,Negative
+2015,HZ_BAV ,STEINA6 ,SK_3033,negative,positive,positive,E_vermiformis
+2015,HZ_BAV ,NEUS78 ,SK_3034,negative,negative,negative,Negative
+2015,HZ_BAV ,NEUS78 ,SK_3035,positive,positive,positive,E_ferrisi
+2015,HZ_BAV ,GRAS12 ,SK_3036,negative,negative,negative,Negative
+2015,HZ_BAV ,PARIN ,SK_3037,negative,negative,negative,Negative
+2015,HZ_BAV ,PARIN ,SK_3038,negative,negative,negative,Negative
+2015,HZ_BAV ,PARIN ,SK_3039,negative,negative,negative,Negative
+2015,HZ_BAV ,PARIN ,SK_3040,negative,negative,negative,Negative
+2015,HZ_BAV ,PARIN ,SK_3041,positive,positive,positive,E_ferrisi
+2015,HZ_BAV ,PARIN ,SK_3042,positive,positive,positive,E_ferrisi
+2015,HZ_BAV ,PARIN ,SK_3043,negative,negative,negative,Negative
+2015,HZ_BAV ,OBERL3 ,SK_3044,negative,negative,negative,Negative
+2015,HZ_BAV ,OBERS14 ,SK_3045,negative,negative,negative,Negative
+2015,HZ_BAV ,OBERS14 ,SK_3046,negative,negative,negative,Negative
+2015,HZ_BAV ,LERA9 ,SK_3047,negative,negative,negative,Negative
+2015,HZ_BAV ,OBERS2 ,SK_3048,negative,negative,negative,Negative
+2015,HZ_BAV ,PEMF12 ,SK_3049,negative,negative,negative,Negative
+2015,HZ_BAV ,PEMF12 ,SK_3050,negative,negative,negative,Negative
+2015,HZ_BAV ,PEMF12 ,SK_3051,negative,negative,negative,Negative
+2015,HZ_BAV ,PEMF12 ,SK_3052,negative,negative,negative,Negative
+2015,HZ_BAV ,PEMF12 ,SK_3053,negative,negative,negative,Negative
+2015,HZ_BAV ,WOPP8 ,SK_3054,negative,negative,negative,Negative
+2015,HZ_BAV ,WOPP8 ,SK_3055,negative,negative,negative,Negative
+2015,HZ_BAV ,ENGEL1 ,SK_3056,negative,negative,negative,Negative
+2015,HZ_BAV ,ENGEL1 ,SK_3057,negative,negative,negative,Negative
+2015,HZ_BAV ,GAILAU2 ,SK_3058,negative,negative,negative,Negative
+2015,HZ_BAV ,GAILDS8 ,SK_3059,negative,negative,negative,Negative
+2015,HZ_BAV ,GAILDS8 ,SK_3060,negative,negative,negative,Negative
+2015,HZ_BAV ,UNSAN16 ,SK_3061,negative,negative,negative,Negative
+2015,HZ_BAV ,UNSAN16 ,SK_3062,negative,negative,negative,Negative
+2015,HZ_BAV ,UNSAN16 ,SK_3063,negative,negative,negative,Negative
+2015,HZ_BAV ,UNSAN2 ,SK_3064,negative,negative,negative,Negative
+2015,HZ_BAV ,UNSAN2 ,SK_3065,negative,negative,negative,Negative
+2015,HZ_BAV ,UNSAN2 ,SK_3066,negative,negative,negative,Negative
+2015,HZ_BAV ,UNSAN2 ,SK_3067,negative,negative,negative,Negative
+2015,HZ_BAV ,UNSAN2 ,SK_3068,negative,negative,negative,Negative
+2015,HZ_BAV ,BAUH5 ,SK_3069,negative,negative,negative,Negative
+2015,HZ_BAV ,BAUH5 ,SK_3070,negative,negative,negative,Negative
+2015,HZ_BAV ,HETZ18 ,SK_3071,negative,negative,negative,Negative
+2015,HZ_BAV ,HETZ18 ,SK_3072,negative,negative,negative,Negative
+2015,HZ_BAV ,STAUN ,SK_3073,negative,negative,negative,Negative
+2015,HZ_BAV ,TRESS9 ,SK_3074,negative,negative,negative,Negative
+2015,HZ_BAV ,REICHM1 ,SK_3075,negative,negative,negative,Negative
+2015,HZ_BAV ,GAILAU3 ,SK_3076,negative,negative,negative,Negative
+2015,HZ_BAV ,GAILAU3 ,SK_3077,negative,negative,negative,Negative
+2015,HZ_BAV ,JAGE1 ,SK_3078,negative,negative,negative,Negative
+2015,HZ_BAV ,JAGE1 ,SK_3079,negative,negative,negative,Negative
+2015,HZ_BAV ,UNPRO1 ,SK_3080,negative,negative,negative,Negative
+2015,HZ_BAV ,ENGEL1 ,SK_3081,negative,negative,negative,Negative
+2015,HZ_BAV ,UNPRO1 ,SK_3082,negative,negative,negative,Negative
+2015,HZ_BAV ,GAILAU3 ,SK_3083,negative,negative,negative,Negative
+2015,HZ_BAV ,GAILAU3 ,SK_3084,negative,negative,negative,Negative
+2015,HZ_BAV ,OBEMU23 ,SK_3085,negative,negative,negative,Negative
+2015,HZ_BR ,BADFR45 ,SK_3091,negative,negative,negative,Negative
+2015,HZ_BR ,CROU17 ,SK_3092,negative,negative,negative,Negative
+2015,HZ_BR ,JOACH10 ,SK_3093,negative,negative,negative,Negative
+2015,HZ_BR ,JOACH10 ,SK_3094,negative,negative,negative,Negative
+2015,HZ_BR ,ALTM29 ,SK_3095,negative,negative,negative,Negative
+2015,HZ_BR ,ALTR39 ,SK_3096,negative,negative,negative,Negative
+2015,HZ_BR ,HAMMER8 ,SK_3097,negative,negative,negative,Negative
+2015,HZ_BR ,LETS38 ,SK_3098,negative,negative,negative,Negative
+2015,HZ_BR ,HAMMER18 ,SK_3099,negative,negative,negative,Negative
+2015,HZ_BR ,MILMC47 ,SK_3100,negative,negative,negative,Negative
+2015,HZ_BR ,MILMC47 ,SK_3101,negative,negative,negative,Negative
+2015,HZ_BR ,MILMC47 ,SK_3102,negative,negative,negative,Negative
+2015,HZ_BR ,STORK17 ,SK_3103,negative,positive,positive,E_ferrisi
+2015,HZ_BR ,NEUG21 ,SK_3104,negative,negative,negative,Negative
+2015,HZ_BR ,ALBER4 ,SK_3105,negative,negative,negative,Negative
+2015,HZ_BR ,STORK17 ,SK_3106,negative,positive,negative,E_ferrisi
+2015,HZ_BR ,ZEHL1 ,SK_3107,negative,negative,negative,Negative
+2015,HZ_BR ,NEUG21 ,SK_3108,negative,negative,negative,Negative
+2015,HZ_BR ,SCHIFF29 ,SK_3109,negative,negative,negative,Negative
+2015,HZ_BR ,GIEL68 ,SK_3110,negative,negative,negative,Negative
+2015,HZ_BR ,GIEL68 ,SK_3111,negative,negative,negative,Negative
+2015,HZ_BR ,GIEL68 ,SK_3112,negative,negative,negative,Negative
+2015,HZ_BR ,GIEL68 ,SK_3113,negative,negative,negative,Negative
+2015,HZ_BR ,GIEL68 ,SK_3114,negative,negative,negative,Negative
+2015,HZ_BR ,GIEL68 ,SK_3115,negative,negative,negative,Negative
+2015,HZ_BR ,GIEL68 ,SK_3116,negative,negative,negative,Negative
+2015,HZ_BR ,GIEL68 ,SK_3117,negative,negative,negative,Negative
+2015,HZ_BR ,GIEL68 ,SK_3118,negative,negative,negative,Negative
+2015,HZ_BR ,GIEL68 ,SK_3119,negative,negative,negative,Negative
+2015,HZ_BR ,HOWZ30 ,SK_3120,negative,negative,negative,Negative
+2015,HZ_BR ,GIEL68 ,SK_3121,negative,negative,negative,Negative
+2015,HZ_BR ,DANE22 ,SK_3122,negative,negative,negative,Negative
+2015,HZ_BR ,DANE22 ,SK_3123,negative,negative,negative,Negative
+2015,HZ_BR ,DANE22 ,SK_3124,negative,negative,negative,Negative
+2015,HZ_BR ,DANE22 ,SK_3125,negative,negative,negative,Negative
+2015,HZ_BR ,DANE22 ,SK_3126,negative,positive,positive,E_ferrisi
+2015,HZ_BR ,DANE22 ,SK_3127,negative,positive,positive,Double
+2015,HZ_BR ,DANE22 ,SK_3128,negative,positive,negative,E_ferrisi
+2015,HZ_BR ,DANE22 ,SK_3129,positive,positive,negative,E_ferrisi
+2015,HZ_BR ,DANE22 ,SK_3130,negative,negative,negative,Negative
+2015,HZ_BR ,DANE22 ,SK_3131,negative,positive,positive,E_ferrisi
+2015,HZ_BR ,DANE22 ,SK_3132,negative,negative,negative,Negative
+2015,HZ_BR ,DANE22 ,SK_3133,negative,negative,negative,Negative
+2015,HZ_BR ,TORFH ,SK_3134,negative,negative,negative,Negative
+2015,HZ_BR ,SCHIFF29 ,SK_3135,negative,negative,negative,Negative
+2015,HZ_BR ,MADL11 ,SK_3136,negative,negative,negative,Negative
+2015,HZ_BR ,SCHIFF29 ,SK_3137,negative,negative,negative,Negative
+2015,HZ_BR ,ORTB7 ,SK_3138,negative,negative,negative,Negative
+2015,HZ_BR ,ORTB7 ,SK_3139,negative,negative,negative,Negative
+2015,HZ_BR ,ORTB7 ,SK_3140,negative,positive,negative,E_falciformis
+2015,HZ_BR ,HAMMEL ,SK_3141,negative,negative,negative,Negative
+2015,HZ_BR ,HAMMEL ,SK_3142,negative,negative,negative,Negative
+2015,HZ_BR ,ORTB7 ,SK_3143,negative,negative,negative,Negative
+2015,HZ_BR ,HAMMEL ,SK_3144,negative,negative,negative,Negative
+2015,HZ_BR ,HAMMEL ,SK_3145,negative,negative,negative,Negative
+2015,HZ_BR ,NEUM39 ,SK_3146,negative,negative,negative,Negative
+2015,HZ_BR ,ORTB7 ,SK_3147,negative,negative,negative,Negative
+2015,HZ_BR ,PAPP1 ,SK_3148,negative,negative,negative,Negative
+2015,HZ_BR ,PAPP1 ,SK_3149,negative,negative,negative,Negative
+2015,HZ_BR ,ZEHL1 ,SK_3150,negative,negative,negative,Negative
+2015,HZ_BR ,LIEB38 ,SK_3151,positive,positive,positive,E_ferrisi
+2015,HZ_BR ,NEULO9 ,SK_3152,negative,negative,negative,Negative
+2015,HZ_BR ,HOPPE1 ,SK_3153,negative,negative,negative,Negative
+2015,HZ_BR ,SCHOR16 ,SK_3154,negative,negative,negative,Negative
+2015,HZ_BR ,SCHOR16 ,SK_3155,negative,negative,negative,Negative
+2015,HZ_BR ,SCHOR16 ,SK_3156,negative,negative,negative,Negative
+2015,HZ_BR ,SCHOR16 ,SK_3157,negative,negative,negative,Negative
+2015,HZ_BR ,SCHOR16 ,SK_3158,negative,negative,negative,Negative
+2015,HZ_BR ,HOHST1 ,SK_3159,negative,negative,negative,Negative
+2015,HZ_BR ,NEUM39 ,SK_3160,negative,negative,negative,Negative
+2015,HZ_BR ,NEUM39 ,SK_3161,negative,negative,negative,Negative
+2015,HZ_BR ,HAMMEL ,SK_3162,negative,negative,negative,Negative
+2015,HZ_BR ,GIEL68 ,SK_3163,negative,negative,negative,Negative
+2015,HZ_BR ,GIEL68 ,SK_3164,negative,negative,negative,Negative
+2015,HZ_BR ,GIEL68 ,SK_3165,negative,negative,negative,Negative
+2015,HZ_BR ,GIEL68 ,SK_3166,negative,negative,negative,Negative
+2015,HZ_BR ,GIEL68 ,SK_3167,negative,negative,negative,Negative
+2015,HZ_BR ,DANE22 ,SK_3168,negative,negative,negative,Negative
+2015,HZ_BR ,DANE22 ,SK_3169,negative,negative,negative,Negative
+2015,HZ_BR ,DANE22 ,SK_3170,negative,negative,negative,Negative
+2015,HZ_BR ,LIEB38 ,SK_3171,negative,negative,negative,Negative
+2015,HZ_BR ,NEULO9 ,SK_3172,negative,negative,negative,Negative
+2015,HZ_BR ,DENS12 ,SK_3173,negative,negative,negative,Negative
+2015,HZ_BR ,NEULO9 ,SK_3175,negative,negative,negative,Negative
+2015,HZ_BR ,GOTTES ,SK_3176,negative,negative,negative,Negative
+2015,HZ_BR ,GOTTES ,SK_3177,negative,negative,negative,Negative
+2015,HZ_BR ,STEG1 ,SK_3178,negative,negative,negative,Negative
+2015,HZ_BR ,STERNF2 ,SK_3179,negative,negative,negative,Negative
+2015,HZ_BR ,STERNF2 ,SK_3180,negative,negative,negative,Negative
+2015,HZ_BR ,DOBB8 ,SK_3181,negative,negative,negative,Negative
+2015,HZ_BR ,STERNF2 ,SK_3182,negative,negative,negative,Negative
+2015,HZ_BR ,BRITZ2 ,SK_3183,negative,negative,negative,Negative
+2015,HZ_BR ,LINDE53 ,SK_3184,positive,positive,positive,E_ferrisi
+2015,HZ_BR ,BRITZ2 ,SK_3185,negative,negative,negative,Negative
+2015,HZ_BR ,STERNF2 ,SK_3186,negative,positive,positive,E_ferrisi
+2015,HZ_BR ,ERKNKI ,SK_3187,negative,negative,negative,Negative
+2015,HZ_BR ,RUTE41 ,SK_3188,negative,negative,negative,Negative
+2015,HZ_BR ,TRIEP30 ,SK_3189,negative,negative,negative,Negative
+2015,HZ_BR ,RUTERE ,SK_3190,negative,negative,negative,Negative
+2015,HZ_BR ,LYCHE6 ,SK_3191,negative,negative,negative,Negative
+2015,HZ_BR ,LYCHE6 ,SK_3192,negative,negative,negative,Negative
+2015,HZ_BR ,ALTTH ,SK_3193,negative,negative,negative,Negative
+2015,HZ_BR ,SCHIFF29 ,SK_3194,negative,negative,negative,Negative
+2015,HZ_BR ,PAUS ,SK_3195,negative,negative,negative,Negative
+2015,HZ_BR ,BEETZL ,SK_3196,negative,negative,negative,Negative
+2015,HZ_BR ,BEETZL ,SK_3197,negative,negative,negative,Negative
+2015,HZ_BR ,BEETZL ,SK_3198,negative,negative,negative,Negative
+2015,HZ_BR ,BESTE6 ,SK_3199,negative,negative,negative,Negative
+2015,HZ_BR ,BESTE6 ,SK_3200,negative,negative,negative,Negative
+2015,HZ_BR ,BESTE6 ,SK_3201,negative,negative,negative,Negative
+2015,HZ_BR ,BESTE6 ,SK_3202,negative,negative,negative,Negative
+2015,HZ_BR ,BESTE6 ,SK_3203,negative,positive,negative,E_ferrisi
+2015,HZ_BR ,BESTE6 ,SK_3204,negative,negative,negative,Negative
+2015,HZ_BR ,BESTE6 ,SK_3205,negative,negative,negative,Negative
+2015,HZ_BR ,BESTE6 ,SK_3206,negative,negative,negative,Negative
+2015,HZ_BR ,SCHEN8h ,SK_3207,negative,negative,negative,Negative
+2015,HZ_BR ,SCHEN8h ,SK_3208,negative,negative,negative,Negative
+2015,HZ_BR ,SCHEN8h ,SK_3209,negative,negative,negative,Negative
+2015,HZ_BR ,SCHEN8f ,SK_3210,negative,negative,negative,Negative
+2015,HZ_BR ,MARIE ,SK_3211,negative,negative,negative,Negative
+2015,HZ_BR ,BUCHH ,SK_3212,negative,negative,negative,Negative
+2015,HZ_BR ,SCHEN8h ,SK_3213,negative,negative,negative,Negative
+2015,HZ_BAV ,LETZ ,SK_3301,negative,negative,negative,Negative
+2015,HZ_BAV ,KLESS2 ,SK_3302,negative,negative,negative,Negative
+2015,HZ_BAV ,MICH17 ,SK_3303,negative,negative,negative,Negative
+2015,HZ_BAV ,THALM5 ,SK_3304,negative,negative,negative,Negative
+2015,HZ_BAV ,NEUALL ,SK_3305,negative,negative,negative,Negative
+2015,HZ_BAV ,ZAIT36 ,SK_3306,negative,negative,negative,Negative
+2015,HZ_BAV ,UNSCHH ,SK_3307,negative,negative,negative,Negative
+2015,HZ_BAV ,LETZ ,SK_3308,negative,negative,negative,Negative
+2015,HZ_BAV ,LERA9 ,SK_3309,negative,negative,negative,Negative
+2015,HZ_BAV ,LERA9 ,SK_3310,negative,negative,negative,Negative
+2015,HZ_BAV ,KLESS2 ,SK_3311,negative,negative,negative,Negative
+2015,HZ_BAV ,THALM5 ,SK_3312,negative,negative,negative,Negative
+2015,HZ_BAV ,STADT1 ,SK_3313,negative,negative,negative,Negative
+2015,HZ_BAV ,KLESS2 ,SK_3314,negative,negative,negative,Negative
+2015,HZ_BAV ,ZUM16 ,SK_3315,negative,negative,negative,Negative
+2015,HZ_BAV ,GRAS12 ,SK_3316,negative,negative,negative,Negative
+2015,HZ_BAV ,SCHI39 ,SK_3317,negative,negative,negative,Negative
+2015,HZ_BAV ,ROTZG2 ,SK_3318,negative,negative,negative,Negative
+2015,HZ_BAV ,TAUCH6 ,SK_3319,negative,negative,negative,Negative
+2015,HZ_BAV ,PILM44 ,SK_3320,negative,negative,negative,Negative
+2015,HZ_BAV ,GOTT ,SK_3321,negative,negative,negative,Negative
+2015,HZ_BAV ,PILM44 ,SK_3322,negative,negative,negative,Negative
+2015,HZ_BAV ,MUNSF2 ,SK_3323,negative,negative,negative,Negative
+2015,HZ_BAV ,DUNZL3 ,SK_3324,negative,negative,negative,Negative
+2015,HZ_BAV ,PARIN ,SK_3325,negative,negative,negative,Negative
+2015,HZ_BAV ,OBERS2 ,SK_3326,negative,negative,negative,Negative
+2015,HZ_BAV ,BAUH5 ,SK_3327,negative,negative,negative,Negative
+2015,HZ_BAV ,TROB4 ,SK_3328,negative,negative,negative,Negative
+2015,HZ_BAV ,ENGEL1 ,SK_3329,negative,negative,negative,Negative
+2015,HZ_BAV ,ENGEL1 ,SK_3330,negative,negative,negative,Negative
+2015,HZ_BAV ,LETZ ,SK_3331,negative,negative,negative,Negative
+2015,HZ_BAV ,PEMF12 ,SK_3332,negative,negative,negative,Negative
+2015,HZ_BAV ,ENGEL1 ,SK_3333,negative,negative,negative,Negative
+2015,HZ_BAV ,GROSB9 ,SK_3334,negative,negative,negative,Negative
+2015,HZ_BAV ,PEMF12 ,SK_3335,negative,negative,negative,Negative
+2015,HZ_BAV ,PEMF12 ,SK_3336,negative,negative,negative,Negative
+2015,HZ_BAV ,PEMF12 ,SK_3337,negative,negative,negative,Negative
+2015,HZ_BAV ,PEMF12 ,SK_3338,negative,negative,negative,Negative
+2015,HZ_BAV ,LERA9 ,SK_3339,negative,negative,negative,Negative
+2015,HZ_BAV ,HOF12 ,SK_3340,negative,negative,negative,Negative
+2015,HZ_BAV ,GAILAU3 ,SK_3341,negative,negative,negative,Negative
+2015,HZ_BAV ,GAILAU3 ,SK_3342,negative,negative,negative,Negative
+2015,HZ_BAV ,UNPRO1 ,SK_3343,negative,negative,negative,Negative
+2015,HZ_BAV ,MATT11 ,SK_3344,negative,negative,negative,Negative
+2015,HZ_BAV ,MATT11 ,SK_3345,negative,negative,negative,Negative
+2015,HZ_BAV ,NUNZ11 ,SK_3346,negative,negative,negative,Negative
+2015,HZ_BAV ,NIEDMU ,SK_3347,negative,negative,negative,Negative
+2015,HZ_BAV ,GEISL7 ,SK_3348,negative,negative,negative,Negative
+2015,HZ_BAV ,WIED1 ,SK_3349,negative,negative,negative,Negative
+2015,HZ_BR ,HOWZ30 ,SK_3350,negative,negative,negative,Negative
+2015,HZ_BR ,HOWZ30 ,SK_3351,negative,negative,negative,Negative
+2015,HZ_BR ,HOWZ30 ,SK_3352,negative,negative,negative,Negative
+2015,HZ_BR ,HOWZ30 ,SK_3353,negative,negative,negative,Negative
+2015,HZ_BR ,HOWZ30 ,SK_3354,negative,negative,negative,Negative
+2015,HZ_BR ,HOWZ30 ,SK_3355,negative,negative,negative,Negative
+2015,HZ_BR ,CROU17 ,SK_3356,negative,negative,negative,Negative
+2015,HZ_BR ,BADFR45 ,SK_3357,negative,negative,negative,Negative
+2015,HZ_BR ,ALTR39 ,SK_3358,negative,negative,negative,Negative
+2015,HZ_BR ,GIEL68 ,SK_3359,negative,negative,negative,Negative
+2015,HZ_BR ,GIEL68 ,SK_3360,negative,negative,negative,Negative
+2015,HZ_BR ,STORK17 ,SK_3361,negative,negative,negative,Negative
+2015,HZ_BR ,GIEL68 ,SK_3362,negative,negative,negative,Negative
+2015,HZ_BR ,GIEL68 ,SK_3363,negative,negative,negative,Negative
+2015,HZ_BR ,NEUG21 ,SK_3364,negative,negative,negative,Negative
+2015,HZ_BR ,GIEL68 ,SK_3365,negative,negative,negative,Negative
+2015,HZ_BR ,HAMMEL ,SK_3366,negative,negative,negative,Negative
+2015,HZ_BR ,ORTB7 ,SK_3367,negative,negative,negative,Negative
+2015,HZ_BR ,PAPP1 ,SK_3368,negative,negative,negative,Negative
+2015,HZ_BR ,DANE22 ,SK_3369,negative,negative,negative,Negative
+2015,HZ_BR ,LIEB38 ,SK_3370,negative,negative,negative,Negative
+2015,HZ_BR ,HAMMEL ,SK_3371,negative,negative,negative,Negative
+2015,HZ_BR ,GIEL68 ,SK_3372,negative,negative,negative,Negative
+2015,HZ_BR ,DANE22 ,SK_3373,negative,negative,negative,Negative
+2015,HZ_BR ,GIEL68 ,SK_3374,negative,negative,negative,Negative
+2015,HZ_BR ,DANE22 ,SK_3375,negative,negative,negative,Negative
+2015,HZ_BR ,GOTTES ,SK_3376,negative,negative,negative,Negative
+2015,HZ_BR ,STERNF2 ,SK_3377,negative,negative,negative,Negative
+2015,HZ_BR ,BESTE6 ,SK_3378,negative,negative,negative,Negative
+2015,HZ_BR ,BESTE6 ,SK_3379,negative,negative,negative,Negative
+2015,HZ_BAV ,GAILAU3 ,SK_3380,negative,negative,negative,Negative
+2015,HZ_BAV ,GAILAU3 ,SK_3381,negative,negative,negative,Negative
+2015,HZ_BAV ,GAILAU3 ,SK_3382,negative,negative,negative,Negative
+2015,HZ_BAV ,GAILAU3 ,SK_3383,negative,negative,negative,Negative
+2015,HZ_BAV ,GAILAU3 ,SK_3384,negative,negative,negative,Negative
+2015,HZ_BAV ,GAILAU3 ,SK_3385,negative,negative,negative,Negative
+2015,HZ_BAV ,GAILAU9 ,SK_3386,negative,negative,negative,Negative
+2015,HZ_BAV ,MOOSM ,SK_3387,negative,negative,negative,Negative
+2015,HZ_BAV ,MOOSM ,SK_3388,negative,negative,negative,Negative
+2015,HZ_BAV ,ECKD5 ,SK_3389,negative,negative,negative,Negative
+2015,HZ_BAV ,ECKD5 ,SK_3390,negative,negative,negative,Negative
+2015,HZ_BAV ,ECKD5 ,SK_3391,negative,negative,negative,Negative
+2015,HZ_BAV ,NIEDPR ,SK_3392,negative,negative,negative,Negative
+2015,HZ_BAV ,NIEDPR ,SK_3393,negative,negative,negative,Negative
+2015,HZ_BAV ,MUNSF2 ,SK_3394,negative,negative,negative,Negative
+2015,HZ_BAV ,MUNSF2 ,SK_3395,negative,negative,negative,Negative
+2015,HZ_BAV ,MATT11 ,SK_3396,negative,negative,negative,Negative
+2015,HZ_BAV ,MATT11 ,SK_3397,negative,negative,negative,Negative
+2015,HZ_BAV ,MATT11 ,SK_3398,negative,negative,negative,Negative
+2015,HZ_BAV ,GUTH1 ,SK_3399,negative,negative,negative,Negative
+2015,HZ_BAV ,JAGE1 ,SK_3400,negative,negative,negative,Negative
+2015,HZ_BAV ,UNPRO1 ,SK_3401,negative,negative,negative,Negative
+2015,HZ_BAV ,HOF12 ,SK_3402,negative,negative,negative,Negative
+2015,HZ_BAV ,WIED1 ,SK_3403,negative,negative,negative,Negative
+2015,HZ_BAV ,GUTH1 ,SK_3404,negative,negative,negative,Negative
+2015,HZ_BAV ,GUTH1 ,SK_3405,negative,negative,negative,Negative
+2015,HZ_BAV ,GEISL7 ,SK_3406,negative,negative,negative,Negative
+2015,HZ_BAV ,GEISL7 ,SK_3407,negative,negative,negative,Negative
+2015,HZ_BAV ,ELTH3 ,SK_3408,negative,negative,negative,Negative
+2015,HZ_BAV ,ENGEL1 ,SK_3409,negative,negative,negative,Negative
+2015,HZ_BAV ,NUNZ11 ,SK_3410,negative,negative,negative,Negative
+2015,HZ_BAV ,NUNZ11 ,SK_3411,negative,negative,negative,Negative
+2015,HZ_BAV ,NIEDMU ,SK_3412,negative,negative,negative,Negative
+2015,HZ_BAV ,OBERT3A ,SK_3413,negative,negative,negative,Negative
+2015,HZ_BAV ,OBERT3A ,SK_3414,negative,negative,negative,Negative
+2015,HZ_BAV ,OBERT3A ,SK_3415,negative,negative,negative,Negative
+2015,HZ_BAV ,OBERT3B ,SK_3416,negative,negative,negative,Negative
+2015,HZ_BAV ,OBERT3B ,SK_3417,negative,negative,negative,Negative
+2015,HZ_BAV ,OBERT3B ,SK_3418,negative,negative,negative,Negative
+2015,HZ_BAV ,LERA9 ,SK_3419,negative,negative,negative,Negative
+2015,HZ_BAV ,LERA9 ,SK_3420,negative,negative,negative,Negative
+2015,HZ_BAV ,LERA9 ,SK_3421,negative,negative,negative,Negative
+2015,HZ_BAV ,LERA9 ,SK_3422,negative,negative,negative,Negative
+2015,HZ_BAV ,LERA9 ,SK_3423,negative,negative,negative,Negative
+2015,HZ_BAV ,LERA9 ,SK_3424,negative,negative,negative,Negative
+2015,HZ_BAV ,LERA9 ,SK_3425,negative,negative,negative,Negative
+2015,HZ_BAV ,LERA9 ,SK_3426,negative,negative,negative,Negative
+2015,HZ_BAV ,LERA9 ,SK_3427,negative,negative,negative,Negative
+2015,HZ_BAV ,LERA9 ,SK_3428,negative,negative,negative,Negative
+2015,HZ_BAV ,ZILCH4 ,SK_3429,negative,negative,negative,Negative
+2015,HZ_BAV ,ZILCH4 ,SK_3430,negative,negative,negative,Negative
+2015,HZ_BAV ,ZILCH4 ,SK_3431,negative,negative,negative,Negative
+2015,HZ_BAV ,ZILCH4 ,SK_3432,negative,negative,negative,Negative
+2015,HZ_BAV ,ZILCH4 ,SK_3433,negative,negative,negative,Negative
+2015,HZ_BAV ,ZILCH4 ,SK_3434,negative,negative,negative,Negative
+2015,HZ_BAV ,ZILCH4 ,SK_3435,negative,negative,negative,Negative
+2015,HZ_BAV ,ZILCH4 ,SK_3436,negative,negative,negative,Negative
+2015,HZ_BAV ,ZILCH4 ,SK_3437,negative,negative,negative,Negative
+2015,HZ_BAV ,ZILCH4 ,SK_3438,negative,negative,negative,Negative
+2015,HZ_BAV ,ZILCH4 ,SK_3439,negative,negative,negative,Negative
+2015,HZ_BAV ,LETZ ,SK_3440,negative,negative,negative,Negative
+2015,HZ_BAV ,LETZ ,SK_3441,negative,negative,negative,Negative
+2015,HZ_BAV ,LETZ ,SK_3442,negative,negative,negative,Negative
+2015,HZ_BAV ,LETZ ,SK_3443,negative,negative,negative,Negative
+2015,HZ_BAV ,LETZ ,SK_3444,negative,negative,negative,Negative
+2015,HZ_BAV ,LETZ ,SK_3445,negative,negative,negative,Negative
+2015,HZ_BAV ,FUCHS5 ,SK_3446,negative,negative,negative,Negative
+2015,HZ_BAV ,FUCHS5 ,SK_3447,negative,negative,negative,Negative
+2015,HZ_BAV ,FUCHS5 ,SK_3448,negative,negative,negative,Negative
+2015,HZ_BAV ,FUCHS5 ,SK_3449,negative,negative,negative,Negative
+2015,HZ_BAV ,FUCHS5 ,SK_3450,negative,negative,negative,Negative
+2015,HZ_BAV ,FUCHS5 ,SK_3451,negative,negative,negative,Negative
+2015,HZ_BAV ,TAUCH6 ,SK_3452,negative,negative,negative,Negative
+2015,HZ_BAV ,TAUCH6 ,SK_3453,negative,negative,negative,Negative
+2015,HZ_BAV ,TAUCH6 ,SK_3454,negative,negative,negative,Negative
+2015,HZ_BAV ,TAUCH6 ,SK_3455,negative,negative,negative,Negative
+2015,HZ_BAV ,TAUCH6 ,SK_3456,negative,negative,negative,Negative
+2015,HZ_BAV ,TAUCH6 ,SK_3457,negative,negative,negative,Negative
+2015,HZ_BAV ,MAIEH5 ,SK_3458,negative,negative,negative,Negative
+2015,HZ_BAV ,MAIEH5 ,SK_3459,negative,negative,negative,Negative
+2015,HZ_BAV ,MAIEH5 ,SK_3460,negative,negative,negative,Negative
+2015,NA,PlCzW ,SK_3461,negative,negative,negative,Negative
+2015,NA,PlCzW ,SK_3462,negative,negative,negative,Negative
+2015,NA,PlDram3 ,SK_3463,negative,negative,negative,Negative
+2015,NA,PlDram3 ,SK_3464,negative,negative,negative,Negative
+2015,NA,PlDram3 ,SK_3465,negative,negative,negative,Negative
+2015,NA,PlDram3 ,SK_3466,negative,negative,negative,Negative
+2015,NA,PlDram3 ,SK_3467,negative,negative,negative,Negative
+2015,NA,PlDram3 ,SK_3468,negative,negative,negative,Negative
+2015,NA,NA,SK_3469,negative,negative,negative,Negative
+2016,NA,NA,SK_3470,negative,negative,negative,Negative
+2017,NA,NA,SK_3471,negative,negative,negative,Negative
+2015,NA,NA,SK_3472,negative,negative,negative,Negative
+2015,NA,NA,SK_3473,negative,negative,negative,Negative
+2015,NA,NA,SK_3474,negative,negative,negative,Negative
+2015,NA,NA,SK_3475,negative,negative,negative,Negative
+2015,NA,PlZol6 ,SK_3476,negative,negative,negative,Negative
+2015,NA,PlZol6 ,SK_3477,negative,negative,negative,Negative
+2015,NA,PlZol6 ,SK_3478,negative,negative,negative,Negative
+2015,HZ_BAV ,GAILAU9 ,SK_3479,negative,negative,negative,Negative
+2015,HZ_BAV ,GAILAU9 ,SK_3480,negative,negative,negative,Negative
+2015,HZ_BAV ,GAILAU9 ,SK_3481,negative,negative,negative,Negative
+2015,HZ_BAV ,GAILAU9 ,SK_3482,negative,negative,negative,Negative
+2015,HZ_BAV ,GUTH1 ,SK_3483,negative,negative,negative,Negative
+2015,HZ_BAV ,GUTH1 ,SK_3484,negative,negative,negative,Negative
+2015,HZ_BAV ,GUTH1 ,SK_3485,negative,negative,negative,Negative
+2015,HZ_BAV ,GUTH1 ,SK_3486,negative,negative,negative,Negative
+2015,HZ_BAV ,GUTH1 ,SK_3487,negative,negative,negative,Negative
+2015,HZ_BAV ,ZILCH4 ,SK_3488,negative,negative,negative,Negative
+2015,HZ_BAV ,ZILCH4 ,SK_3489,negative,negative,negative,Negative
+2016,HZ_BR ,NA,A_0001 ,negative,negative,negative,Negative
+2016,HZ_BR ,NA,A_0002 ,negative,negative,negative,Negative
+2016,HZ_BR ,NA,A_0003 ,negative,negative,negative,Negative
+2016,HZ_BR ,SCHORF16 ,AA_0001 ,negative,negative,negative,Negative
+2016,HZ_BR ,SCHORF16 ,AA_0002 ,negative,negative,negative,Negative
+2016,HZ_BR ,SCHORF16 ,AA_0003 ,negative,negative,negative,Negative
+2016,HZ_BR ,SCHORF16 ,AA_0004 ,negative,negative,negative,Negative
+2016,HZ_BR ,SCHORF16 ,AA_0005 ,negative,negative,negative,Negative
+2016,HZ_BR ,SCHORF16 ,AA_0006 ,negative,negative,negative,Negative
+2016,HZ_BR ,SCHORF16 ,AA_0007 ,negative,negative,negative,Negative
+2016,HZ_BR ,SCHORF16 ,AA_0008 ,negative,negative,negative,Negative
+2016,HZ_BR ,SCHORF16 ,AA_0009 ,negative,negative,negative,Negative
+2016,HZ_BR ,SCHORF16 ,AA_0010 ,negative,negative,negative,Negative
+2016,HZ_BR ,SCHORF16 ,AA_0011 ,negative,negative,negative,Negative
+2016,HZ_BR ,SCHORF16 ,AA_0012 ,negative,negative,negative,Negative
+2016,HZ_BR ,SCHORF16 ,AA_0013 ,negative,negative,negative,Negative
+2016,HZ_BR ,SCHORF16 ,AA_0014 ,negative,negative,negative,Negative
+2016,HZ_BR ,SCHORF16 ,AA_0015 ,negative,negative,negative,Negative
+2016,HZ_BR ,SCHORF16 ,AA_0016 ,negative,negative,negative,Negative
+2016,HZ_BR ,SCHORF16 ,AA_0017 ,negative,negative,negative,Negative
+2016,HZ_BR ,SCHORF16 ,AA_0018 ,negative,negative,negative,Negative
+2016,HZ_BR ,SCHORF16 ,AA_0019 ,negative,negative,negative,Negative
+2016,HZ_BR ,SCHORF16 ,AA_0020 ,negative,negative,negative,Negative
+2016,HZ_BR ,SCHORF16 ,AA_0021 ,negative,negative,negative,Negative
+2016,HZ_BR ,SCHORF16 ,AA_0022 ,negative,negative,negative,Negative
+2016,HZ_BR ,SCHORF16 ,AA_0023 ,negative,negative,negative,Negative
+2016,HZ_BR ,SCHORF16 ,AA_0024 ,negative,negative,negative,Negative
+2016,HZ_BR ,SCHORF16 ,AA_0025 ,negative,negative,negative,Negative
+2016,HZ_BR ,SCHORF16 ,AA_0026 ,negative,negative,negative,Negative
+2016,HZ_BR ,SCHORF16 ,AA_0027 ,negative,negative,negative,Negative
+2016,HZ_BR ,SCHORF16 ,AA_0028 ,negative,negative,negative,Negative
+2016,HZ_BR ,SCHORF16 ,AA_0029 ,negative,negative,negative,Negative
+2016,HZ_BR ,SCHORF16 ,AA_0030 ,negative,negative,negative,Negative
+2016,HZ_BR ,SCHORF16 ,AA_0031 ,negative,negative,negative,Negative
+2016,HZ_BR ,SCHORF16 ,AA_0032 ,negative,negative,negative,Negative
+2016,HZ_BR ,SCHORF16 ,AA_0033 ,negative,negative,negative,Negative
+2016,HZ_BR ,SCHORF16 ,AA_0034 ,negative,negative,negative,Negative
+2016,HZ_BR ,SCHORF16 ,AA_0035 ,negative,negative,negative,Negative
+2016,HZ_BR ,SCHORF16 ,AA_0036 ,negative,negative,negative,Negative
+2016,HZ_BR ,SCHORF16 ,AA_0037 ,negative,negative,negative,Negative
+2016,HZ_BR ,SCHORF16 ,AA_0038 ,negative,negative,negative,Negative
+2016,HZ_BR ,SCHORF16 ,AA_0039 ,negative,negative,negative,Negative
+2016,HZ_BR ,SCHORF16 ,AA_0040 ,negative,negative,negative,Negative
+2016,HZ_BR ,SCHORF16 ,AA_0041 ,negative,negative,negative,Negative
+2016,HZ_BR ,SCHORF16 ,AA_0042 ,negative,negative,negative,Negative
+2016,HZ_BR ,SCHORF16 ,AA_0043 ,negative,negative,negative,Negative
+2016,HZ_BR ,SCHORF16 ,AA_0044 ,negative,negative,negative,Negative
+2016,HZ_BR ,SCHORF16 ,AA_0045 ,negative,negative,negative,Negative
+2016,HZ_BR ,SCHORF16 ,AA_0046 ,negative,negative,negative,Negative
+2016,HZ_BR ,HOPPE1 ,AA_0047 ,negative,negative,negative,Negative
+2016,HZ_BR ,HOPPE1 ,AA_0048 ,negative,negative,negative,Negative
+2016,HZ_BR ,HOPPE1 ,AA_0049 ,negative,negative,negative,Negative
+2016,HZ_BR ,HOPPE1 ,AA_0050 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_ZIND ,AA_0051 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_ZIND ,AA_0052 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_ZIND ,AA_0053 ,Tissue,Tissue,Tissue,E_ferrisi
+2016,HZ_BR ,E_ZIND ,AA_0054 ,positive,positive,negative,E_vermiformis
+2016,HZ_BR ,E_PAPP ,AA_0055 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_PAPP ,AA_0056 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_PAPP ,AA_0057 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_HOHE ,AA_0058 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_HOHE ,AA_0059 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_HOHE ,AA_0060 ,negative,negative,negative,Negative
+2016,HZ_BR ,SCHEN8h ,AA_0061 ,negative,negative,negative,Negative
+2016,HZ_BR ,SCHEN8h ,AA_0062 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_WOLZ ,AA_0063 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_LIEB ,AA_0064 ,positive,positive,positive,E_ferrisi
+2016,HZ_BR ,E_LIEB ,AA_0065 ,positive,positive,positive,E_ferrisi
+2016,HZ_BR ,E_LIEB ,AA_0066 ,positive,positive,positive,E_ferrisi
+2016,HZ_BR ,E_LIEB ,AA_0067 ,positive,positive,positive,E_ferrisi
+2016,HZ_BR ,E_LIEB ,AA_0068 ,Tissue,Tissue,positive,E_ferrisi
+2016,HZ_BR ,E_LIEB ,AA_0069 ,Tissue,Tissue,negative,E_falciformis
+2016,HZ_BR ,E_LIEB ,AA_0070 ,positive,positive,positive,E_ferrisi
+2016,HZ_BR ,E_KLAN ,AA_0071 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_MIL1 ,AA_0072 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_MIL1 ,AA_0073 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_MIL1 ,AA_0074 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_MIL1 ,AA_0075 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_GRAB ,AA_0076 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_AMTO ,AA_0077 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_AMTO ,AA_0078 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_WOLZ ,AA_0079 ,negative,positive,positive,E_falciformis
+2016,HZ_BR ,E_WOLZ ,AA_0080 ,positive,positive,negative,Double
+2016,HZ_BR ,E_WOLZ ,AA_0080c,positive,positive,positive,E_ferrisi
+2016,HZ_BR ,E_WOLZ ,AA_0080i,positive,positive,positive,E_vermiformis
+2016,HZ_BR ,E_WOLZ ,AA_0081 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_WOLZ ,AA_0082 ,positive,positive,negative,E_falciformis
+2016,HZ_BR ,HOPPE1 ,AA_0083 ,negative,negative,negative,Negative
+2016,HZ_BR ,HOPPE1 ,AA_0084 ,negative,negative,negative,Negative
+2016,HZ_BR ,HOPPE1 ,AA_0085 ,negative,negative,negative,Negative
+2016,HZ_BR ,HOPPE1 ,AA_0086 ,negative,negative,negative,Negative
+2016,HZ_BR ,HOPPE1 ,AA_0087 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_WOLZ ,AA_0088 ,positive,positive,positive,E_falciformis
+2016,HZ_BR ,E_WOLZ ,AA_0089 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_GRAB ,AA_0090 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_MU14 ,AA_0091 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_MU14 ,AA_0092 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_MIL1 ,AA_0093 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_MIL1 ,AA_0094 ,positive,positive,positive,E_ferrisi
+2016,HZ_BR ,E_MIL1 ,AA_0095 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_OE62 ,AA_0096 ,negative,negative,negative,Negative
+2016,HZ_BR ,RUDN21 ,AA_0097 ,negative,negative,negative,Negative
+2016,HZ_BR ,RUDN21 ,AA_0098 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_GR17 ,AA_0099 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_RO38 ,AA_0100 ,positive,positive,positive,E_ferrisi
+2016,HZ_BR ,E_RO38 ,AA_0100c,positive,positive,positive,Double
+2016,HZ_BR ,E_RO38 ,AA_0101 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_GRAF ,AA_0102 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_ZEH8 ,AA_0103 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_ZEH8 ,AA_0104 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_ZEH8 ,AA_0105 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_ZEH8 ,AA_0106 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_ZEH8 ,AA_0107 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_ZEH8 ,AA_0108 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_ZEH8 ,AA_0109 ,negative,negative,negative,Negative
+2016,HZ_BR ,HOPPE1 ,AA_0110 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_KIR1 ,AA_0111 ,Tissue,Tissue,negative,E_vermiformis
+2016,HZ_BR ,E_KIR1 ,AA_0112 ,negative,Tissue,Tissue,E_falciformis
+2016,HZ_BR ,E_WOLZ ,AA_0113 ,Tissue,Tissue,Tissue,E_ferrisi
+2016,HZ_BR ,E_KIR1 ,AA_0114 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_ZEH8 ,AA_0115 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_ZEH8 ,AA_0116 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_ZEH8 ,AA_0117 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_ZEH8 ,AA_0118 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_ZEH8 ,AA_0119 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_KIR1 ,AA_0120 ,negative,negative,positive,E_ferrisi
+2016,HZ_BR ,E_KIR1 ,AA_0121 ,Tissue,Tissue,negative,E_ferrisi
+2016,HZ_BR ,E_ZEH8 ,AA_0122 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_MIL1 ,AA_0123 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_MIL1 ,AA_0124 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_MIL1 ,AA_0125 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_KI13 ,AA_0126 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_RIB8 ,AA_0127 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_ALTE ,AA_0128 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_RIB8 ,AA_0129 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_EGS7 ,AA_0130 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_EGS7 ,AA_0131 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_EGS7 ,AA_0132 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_GUTS ,AA_0133 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_EGS7 ,AA_0134 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_EGS7 ,AA_0135 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_KI13 ,AA_0136 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_KI13 ,AA_0137 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_STE1 ,AA_0138 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_ANDE ,AA_0139 ,negative,positive,positive,E_ferrisi
+2016,HZ_BR ,E_WILM ,AA_0140 ,Tissue,Tissue,Tissue,E_vermiformis
+2016,HZ_BR ,E_WILM ,AA_0141 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_WILM ,AA_0142 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_MU14 ,AA_0143 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_LUDE ,AA_0144 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_WRI6 ,AA_0145 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_DU19 ,AA_0146 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_LUCK ,AA_0147 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_DU19 ,AA_0148 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_LUCK ,AA_0149 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_DU19 ,AA_0150 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_DU19 ,AA_0151 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_DU19 ,AA_0152 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_DU19 ,AA_0153 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_DU19 ,AA_0154 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_DU19 ,AA_0155 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_DU19 ,AA_0156 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_DU19 ,AA_0157 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_DU19 ,AA_0158 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_DU19 ,AA_0159 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_DU19 ,AA_0160 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_DORW ,AA_0161 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_DORW ,AA_0162 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_DORW ,AA_0163 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_HIND ,AA_0164 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_HIND ,AA_0165 ,positive,positive,positive,E_ferrisi
+2016,HZ_BR ,E_HIND ,AA_0166 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_HIND ,AA_0167 ,Tissue,negative,negative,E_ferrisi
+2016,HZ_BR ,E_HIND ,AA_0168 ,negative,Tissue,negative,E_ferrisi
+2016,HZ_BR ,E_HIND ,AA_0169 ,positive,positive,positive,E_ferrisi
+2016,HZ_BR ,E_HIND ,AA_0170 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_HIND ,AA_0171 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_HIND ,AA_0172 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_DOB1 ,AA_0173 ,negative,positive,positive,E_ferrisi
+2016,HZ_BR ,E_HIND ,AA_0174 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_HIND ,AA_0175 ,Tissue,negative,negative,E_ferrisi
+2016,HZ_BR ,E_HIND ,AA_0176 ,negative,negative,negative,Negative
+2016,HZ_BR ,STEG1 ,AA_0177 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_GERS ,AA_0178 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_GERS ,AA_0179 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_ZOOT ,AA_0180 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_ZOOT ,AA_0181 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_NE20 ,AA_0182 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_ZOOT ,AA_0183 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_ZOOT ,AA_0184 ,negative,negative,negative,Negative
+2016,HZ_BR ,DOBB8 ,AA_0185 ,negative,negative,negative,Negative
+2016,HZ_BR ,DOBB8 ,AA_0186 ,negative,negative,negative,Negative
+2016,HZ_BR ,DOBB8 ,AA_0187 ,negative,negative,negative,Negative
+2016,HZ_BR ,DOBB8 ,AA_0188 ,negative,negative,negative,Negative
+2016,HZ_BR ,DOBB8 ,AA_0189 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_HIND ,AA_0190 ,Tissue,Tissue,Tissue,E_ferrisi
+2016,HZ_BR ,E_DOB1 ,AA_0191 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_MA20 ,AA_0192 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_MA20 ,AA_0193 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_MA20 ,AA_0194 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_MA20 ,AA_0195 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_AD23 ,AA_0196 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_MA20 ,AA_0197 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_AMR1 ,AA_0198 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_AD23 ,AA_0199 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_AD23 ,AA_0200 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_AD23 ,AA_0201 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_AD23 ,AA_0202 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_ST18 ,AA_0203 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_AD23 ,AA_0204 ,Tissue,Tissue,Tissue,E_vermiformis
+2016,HZ_BR ,E_ST18 ,AA_0205 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_AD23 ,AA_0206 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_MO12 ,AA_0207 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_ST18 ,AA_0208 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_MO12 ,AA_0209 ,negative,negative,negative,Negative
+2016,HZ_BR ,LETS38 ,AA_0210 ,negative,negative,negative,Negative
+2016,HZ_BR ,E_MA20 ,AA_0211 ,negative,negative,negative,Negative
+2017,HZ_BR,DANE22,AA_0237,positive,positive,positive,E_ferrisi
+2017,HZ_BR,NA,AA_0238,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0239,negative,negative,negative,Negative
+2017,HZ_BR,BUCHH,AA_0240,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0241,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0242,negative,negative,negative,Negative
+2017,HZ_BR,BRITZ2,AA_0243,positive,positive,positive,E_ferrisi
+2017,HZ_BR,MARIE,AA_0244,negative,negative,negative,Negative
+2017,HZ_BR,BESTE6,AA_0245,negative,positive,positive,E_ferrisi
+2017,HZ_BR,BESTE6,AA_0246,negative,negative,negative,Negative
+2017,HZ_BR,BESTE6,AA_0247,negative,negative,negative,Negative
+2017,HZ_BR,BESTE6,AA_0248,negative,positive,positive,E_ferrisi
+2017,HZ_BR,BESTE6,AA_0249,positive,positive,positive,E_falciformis
+2017,HZ_BR,BESTE6,AA_0250,negative,negative,negative,Negative
+2017,HZ_BR,BESTE6,AA_0251,negative,negative,negative,Negative
+2017,HZ_BR,BESTE6,AA_0252,positive,negative,positive,E_ferrisi
+2017,HZ_BR,BESTE6,AA_0253,negative,negative,negative,Negative
+2017,HZ_BR,MARIE,AA_0254,negative,negative,negative,Negative
+2017,HZ_BR,MARIE,AA_0255,negative,negative,negative,Negative
+2017,HZ_BR,BESTE6,AA_0256,negative,negative,negative,Negative
+2017,HZ_BR,BESTE6,AA_0257,positive,positive,positive,E_ferrisi
+2017,HZ_BR,SCHEN8h,AA_0258,negative,negative,negative,Negative
+2017,HZ_BR,BESTE6,AA_0259,positive,positive,positive,E_ferrisi
+2017,HZ_BR,BESTE6,AA_0260,negative,positive,positive,E_ferrisi
+2017,HZ_BR,MARIE,AA_0261,positive,positive,negative,E_falciformis
+2017,HZ_BR,MARIE,AA_0262,negative,negative,negative,Negative
+2017,HZ_BR,MARIE,AA_0263,negative,negative,negative,Negative
+2017,HZ_BR,ERKNKI,AA_0264,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0265,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0266,negative,negative,negative,Negative
+2017,HZ_BR,SCHORFHOF,AA_0267,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0268,negative,negative,negative,Negative
+2017,HZ_BR,GIEL68,AA_0269,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0270,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0271,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0272,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0273,negative,positive,negative,Other
+2017,HZ_BR,GIEL68,AA_0274,negative,negative,negative,Negative
+2017,HZ_BR,GIEL68,AA_0275,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0276,negative,negative,negative,Negative
+2017,HZ_BR,SCHORFHOF,AA_0277,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0278,negative,negative,negative,Negative
+2017,HZ_BR,GIEL68,AA_0279,negative,negative,negative,Negative
+2017,HZ_BR,GIEL68,AA_0280,negative,negative,negative,Negative
+2017,HZ_BR,SCHORFHOF,AA_0281,negative,negative,negative,Negative
+2017,HZ_BR,SCHORFHOF,AA_0282,negative,negative,negative,Negative
+2017,HZ_BR,SCHORFHOF,AA_0283,negative,negative,negative,Negative
+2017,HZ_BR,SCHORFHOF,AA_0284,negative,negative,negative,Negative
+2017,HZ_BR,SCHORFHOF,AA_0285,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0286,negative,negative,negative,Negative
+2017,HZ_BR,GIEL68,AA_0287,negative,negative,negative,Negative
+2017,HZ_BR,GIEL68,AA_0288,negative,negative,negative,Negative
+2017,HZ_BR,GIEL68,AA_0289,negative,negative,negative,Negative
+2017,HZ_BR,GIEL68,AA_0290,negative,negative,negative,Negative
+2017,HZ_BR,SCHORFHOF,AA_0291,negative,negative,negative,Negative
+2017,HZ_BR,SCHORFHOF,AA_0292,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0293,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0294,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0295,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0296,positive,positive,negative,E_ferrisi
+2017,HZ_BR,NA,AA_0297,negative,positive,negative,Negative
+2017,HZ_BR,NA,AA_0298,positive,positive,positive,E_ferrisi
+2017,HZ_BR,NA,AA_0299,positive,positive,positive,E_ferrisi
+2017,HZ_BR,NA,AA_0300,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0301,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0302,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0303,negative,positive,positive,E_ferrisi
+2017,HZ_BR,NA,AA_0304,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0305,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0306,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0307,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0308,positive,positive,positive,E_ferrisi
+2017,HZ_BR,NA,AA_0309,negative,positive,positive,E_ferrisi
+2017,HZ_BR,NA,AA_0310,negative,positive,positive,E_falciformis
+2017,HZ_BR,NA,AA_0311,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0312,positive,positive,positive,E_ferrisi
+2017,HZ_BR,NA,AA_0313,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0314,positive,positive,positive,E_ferrisi
+2017,HZ_BR,NA,AA_0315,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0316,positive,positive,positive,E_ferrisi
+2017,HZ_BR,NA,AA_0317,positive,positive,positive,E_ferrisi
+2017,HZ_BR,NA,AA_0318,negative,positive,negative,Negative
+2017,HZ_BR,NA,AA_0319,positive,positive,positive,E_ferrisi
+2017,HZ_BR,NA,AA_0320,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0321,positive,positive,positive,E_vermiformis
+2017,HZ_BR,NA,AA_0322,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0323,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0324,negative,negative,negative,Negative
+2017,HZ_BR,STORK84,AA_0325,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0326,negative,negative,negative,Negative
+2017,HZ_BR,STORK84,AA_0327,negative,negative,negative,Negative
+2017,HZ_BR,STORK84,AA_0328,positive,positive,negative,E_falciformis
+2017,HZ_BR,NA,AA_0329,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0330,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0331,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0332,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0333,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0334,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0335,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0336,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0337,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0338,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0339,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0340,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0341,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0342,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0343,negative,positive,positive,E_falciformis
+2017,HZ_BR,STORK84,AA_0344,negative,negative,negative,Negative
+2017,HZ_BR,STORK84,AA_0345,positive,negative,positive,E_falciformis
+2017,HZ_BR,STORK84,AA_0346,negative,negative,negative,Negative
+2017,HZ_BR,STORK84,AA_0347,negative,negative,positive,E_falciformis
+2017,HZ_BR,STORK84,AA_0348,negative,positive,positive,E_ferrisi
+2017,HZ_BR,STORK84,AA_0349,positive,positive,positive,E_vermiformis
+2017,HZ_BR,STORK84,AA_0350,negative,negative,positive,E_ferrisi
+2017,HZ_BR,STORK84,AA_0351,negative,negative,negative,Negative
+2017,HZ_BR,STORK84,AA_0352,negative,negative,negative,Negative
+2017,HZ_BR,STORK84,AA_0353,negative,negative,negative,Negative
+2017,HZ_BR,STORK84,AA_0354,negative,negative,negative,Negative
+2017,HZ_BR,STORK84,AA_0355,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0356,negative,negative,negative,Negative
+2017,HZ_BR,STORK84,AA_0357,negative,negative,negative,Negative
+2017,HZ_BR,STORK84,AA_0358,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0359,negative,negative,negative,Negative
+2017,HZ_BR,STORK84,AA_0360,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0361,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0362,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0363,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0364,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0365,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0366,positive,positive,positive,E_falciformis
+2017,HZ_BR,NA,AA_0367,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0368,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0369,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0370,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0371,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0372,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0373,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0374,positive,positive,positive,E_ferrisi
+2017,HZ_BR,NA,AA_0375,negative,positive,positive,E_ferrisi
+2017,HZ_BR,NA,AA_0376,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0377,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0378,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0379,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0380,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0381,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0382,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0383,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0384,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0385,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0386,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0387,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0388,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0389,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0390,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0391,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0392,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0393,negative,positive,positive,E_ferrisi
+2017,HZ_BR,NA,AA_0394,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0395,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0396,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0397,positive,positive,positive,E_falciformis
+2017,HZ_BR,NA,AA_0398,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0399,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0400,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0401,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0402,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0403,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0404,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0405,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0406,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0407,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0408,positive,positive,positive,E_falciformis
+2017,HZ_BR,NA,AA_0409,negative,positive,positive,E_ferrisi
+2017,HZ_BR,NA,AA_0410,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0411,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0412,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0413,positive,positive,positive,E_ferrisi
+2017,HZ_BR,NA,AA_0414,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0415,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0416,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0417,positive,positive,positive,E_ferrisi
+2017,HZ_BR,NA,AA_0418,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0419,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0420,negative,negative,positive,Other
+2017,HZ_BR,NA,AA_0421,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0422,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0423,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0424,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0425,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0426,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0427,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0428,positive,positive,positive,E_ferrisi
+2017,HZ_BR,NA,AA_0429,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0430,positive,positive,positive,E_ferrisi
+2017,HZ_BR,NA,AA_0431,positive,positive,positive,E_ferrisi
+2017,HZ_BR,NA,AA_0432,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0433,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0434,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0435,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0436,positive,positive,positive,E_ferrisi
+2017,HZ_BR,NA,AA_0437,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0438,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0439,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0440,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0441,positive,positive,positive,E_ferrisi
+2017,HZ_BR,NA,AA_0442,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0443,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0444,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0445,negative,positive,positive,E_falciformis
+2017,HZ_BR,NA,AA_0446,positive,positive,positive,E_ferrisi
+2017,HZ_BR,NA,AA_0447,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0448,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0449,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0450,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0451,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0452,positive,positive,positive,E_ferrisi
+2017,HZ_BR,NA,AA_0453,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0454,positive,positive,positive,E_ferrisi
+2017,HZ_BR,NA,AA_0455,positive,negative,negative,E_ferrisi
+2017,HZ_BR,NA,AA_0456,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0457,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0458,positive,positive,positive,E_ferrisi
+2017,HZ_BR,NA,AA_0459,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0460,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0461,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0462,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0463,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0464,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0465,positive,positive,positive,E_ferrisi
+2017,HZ_BR,NA,AA_0466,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0467,negative,positive,positive,E_falciformis
+2017,HZ_BR,NA,AA_0468,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0469,positive,positive,positive,E_ferrisi
+2017,HZ_BR,NA,AA_0470,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0471,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0472,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0473,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0474,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0475,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0476,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0477,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0478,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0479,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0480,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0481,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0482,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0483,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0484,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0485,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0486,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0487,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0488,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0489,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0490,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0491,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0492,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0493,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0494,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0495,positive,positive,positive,E_ferrisi
+2017,HZ_BR,NA,AA_0496,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0497,negative,positive,negative,E_vermiformis
+2017,HZ_BR,NA,AA_0498,negative,positive,positive,E_falciformis
+2017,HZ_BR,NA,AA_0499,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0500,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0501,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0502,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0503,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0504,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0505,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0506,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0507,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0508,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0509,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0510,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0511,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0512,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0513,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0514,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0515,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0516,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0517,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0518,negative,positive,negative,E_ferrisi
+2017,HZ_BR,NA,AA_0519,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0520,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0521,negative,negative,negative,Negative
+2017,HZ_BR,NA,AA_0522,positive,negative,positive,E_ferrisi
+2017,HZ_BR,NA,AA_0523,negative,positive,positive,E_falciformis
