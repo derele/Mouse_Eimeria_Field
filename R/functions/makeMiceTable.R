@@ -1,5 +1,9 @@
-makeMiceTable <- function(pathToMyData, pathtoHMHZfunction= "functions/HMHZ_Functions.R"){
+makeMiceTable <- function(pathToMyData = "data/Field_data/",
+                          pathtoHMHZfunction= "R/functions/HMHZ_Functions.R"){
   
+  pathToMyData = "data/Field_data/"
+  pathtoHMHZfunction= "R/functions/HMHZ_Functions.R"
+
   #### NB: all data are locally kept in a folder Data_important
   #### TO BE DEFINED HERE
   
@@ -445,5 +449,52 @@ makeMiceTable <- function(pathToMyData, pathtoHMHZfunction= "functions/HMHZ_Func
   mergedMiceTable$Year[
     mergedMiceTable$Mouse_ID %in% c("AA_0330", "AA_0450", "AA_0451", "AA_0452")] <- 2017
   
+  # Add Eimeria information
+  ## flotation
+  flot <- read.csv("data/Eimeria_detection/FINALOocysts2015to2017.csv")
+  
+  ## how many neubauer cells were counted 
+  flot$Ncells <- apply(flot[paste0("N_oocysts_sq", 1:8)], 1, function(x) sum(!is.na(x)))
+  
+  flot$OPG <- rowSums(flot[,paste0("N_oocysts_sq", 1:8)], na.rm = T) / flot$Ncells * 10000 /
+    (flot$PBS_dil_in_mL * flot$Feces_g)
+  
+  # flot$Mouse_ID[!flot$Mouse_ID %in% miceTable$Mouse_ID]
+  # SK_3174 only missing :(
+  mergedMiceTable <- merge(mergedMiceTable, flot, all = T)
+  
+  ## qPCr
+  qpcr <- read.csv("data/Eimeria_detection/FINALqpcrData_2016_2017_threshold5.csv")
+  #qpcr$Mouse_ID[!qpcr$Mouse_ID %in% miceTable$Mouse_ID]
+  #all there :)
+  mergedMiceTable <- merge(mergedMiceTable, 
+                           qpcr[c("Mouse_ID", "delta_ct_ilwe_MminusE", "delta_ct_cewe_MminusE", "observer")],
+                           all = T)
+  
+  ## species identification
+  species <- read.csv("data/Eimeria_detection/Eimeria_species_assignment_14_17.csv")
+  names(species)[names(species) %in% "Species"] <- "eimeriaSpecies"
+  
+  # space error damn!
+  species$Mouse_ID <- gsub(" ", "", as.character(species$Mouse_ID))
+  mergedMiceTable <- merge(mergedMiceTable, 
+                           species[c("Mouse_ID", "n18S_Seq", "COI_Seq", "ORF470_Seq", "eimeriaSpecies")],
+                           by = "Mouse_ID", all = T)
+  
+  # clean Year
+  mergedMiceTable[grep("A_00", mergedMiceTable$Mouse_ID),"Year"] <- 2016
+
+  ## TO BE CHANGED WITH TISSUE RESULTS
+  mergedMiceTable$eimeriaSpecies <- as.character(mergedMiceTable$eimeriaSpecies)
+  mergedMiceTable$eimeriaSpecies[mergedMiceTable$Mouse_ID %in% "AA_0111"] <- "Double_ferrisi_vermiformis"
+  mergedMiceTable$eimeriaSpecies[mergedMiceTable$Mouse_ID %in% "AA_0244"] <- "Double_tbd"
+  mergedMiceTable$eimeriaSpecies[mergedMiceTable$Mouse_ID %in% "AA_0245"] <- "Double_tbd"
+  mergedMiceTable$eimeriaSpecies[mergedMiceTable$Mouse_ID %in% "AA_0436"] <- "Double_tbd"
+  mergedMiceTable$eimeriaSpecies[mergedMiceTable$Mouse_ID %in% "AA_0497"] <- "Double_tbd"
+  mergedMiceTable$eimeriaSpecies <- as.factor(mergedMiceTable$eimeriaSpecies)
+  
   return(mergedMiceTable)
 }
+
+# miceTable <- makeMiceTable()
+# write.csv(miceTable, "data/MiceTable_fullEimeriaInfos_2014to2017.csv", row.names = F)

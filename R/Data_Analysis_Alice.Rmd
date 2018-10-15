@@ -32,32 +32,42 @@ library(knitr)
 source("functions/HMHZ_Functions.R")
 source("functions/makeMiceTable.R")
 
-# Define threshold for qPCR data (cf Enas & Victor papers)
-THRESHOLD <- 5 # choice of sensitivity
-
 ## Load data from oocysts counting 
-flotDF <- read.csv("../raw_data/Eimeria_detection/FINALOocysts2015to2017.csv")
-LorenzoDF <- read.csv("../raw_data/Eimeria_detection/Eimeria_oocysts_2015&2017_Lorenzo.csv")
-## Import PCR data
-PCRdf <- read.csv("../raw_data/Eimeria_detection/Inventory_contents_all.csv")
-## Import qPCR data
-if (THRESHOLD == 5){
-  qpcrData <- read.csv("../raw_data/Eimeria_detection/FINALqpcrData_2016_2017_threshold5.csv")
-} else {
-  qpcrData <- read.csv("../raw_data/Eimeria_detection/FINALqpcrData_2016_2017_threshold3.75.csv")
-}
+flotDF <- read.csv("../data/Eimeria_detection/FINALOocysts2015to2017.csv")
+LorenzoDF <- read.csv("../data/Eimeria_detection/Eimeria_oocysts_2015&2017_Lorenzo.csv")
+# ## Import PCR data
+# PCRdf <- read.csv("../data/Eimeria_detection/Inventory_contents_all.csv")
+# ## Import qPCR data
+# qpcrData <- read.csv("../data/Eimeria_detection/FINALqpcrData_2016_2017_threshold5.csv")
+# # qpcrData <- qpcrData[!is.na(qpcrData$delta_ct_ilwe_MminusE) & !is.na(qpcrData$delta_ct_cewe_MminusE),]
 
-qpcrData <- qpcrData[!is.na(qpcrData$delta_ct_ilwe_MminusE) & !is.na(qpcrData$delta_ct_cewe_MminusE),]
-
-#################### Load data ####################
+#################### Load full data ####################
 # General data
-miceTable <- makeMiceTable("../../Data_important/")
+miceTable <- read.csv("../data/MiceTable_fullEimeriaInfos_2014to2017.csv")
 
 # Remove other rodents
-otherRodentsID <- c(miceTable$Mouse_ID[miceTable$Species %in% "Pet mus musculus"],
-                    miceTable$Mouse_ID[grep("ZZ", miceTable$Mouse_ID)])
-myData <- miceTable[!miceTable$Mouse_ID %in% otherRodentsID,]
+miceTable <- miceTable[!miceTable$Species %in% "Pet mus musculus",]
+miceTable <- miceTable[-grep("ZZ", miceTable$Mouse_ID),]
+miceTable <- miceTable[!miceTable$Mouse_ID %in% paste0("A_000", 1:3),]
+## Remove wildpark Schorfheide (not needed, test)
+wsh <- c(paste0("AA_000", 1:9), paste0("AA_00", 10:46))
+miceTable <- miceTable[!miceTable$Mouse_ID %in% wsh ,]
+
+# Give a PCR status
+# by default, I enter PCRstatus as negative, then overwrite
+miceTable$PCRstatus = "negative"
+  # PCR positive = one of the 3 other markers than AP5 sequenced 
+# (Ap5 was used for detection only, the other markers for confirmation)
+miceTable$PCRstatus[miceTable$n18S_Seq == "positive" | 
+                      miceTable$COI_Seq == "positive" | 
+                      miceTable$ORF470_Seq == "positive"] <- "positive"
+ 
+# PCRstatus is NA if everything is NA
+miceTable$PCRstatus[is.na(miceTable$n18S_Seq) &
+                      is.na(miceTable$COI_Seq) &
+                      is.na(miceTable$ORF470_Seq)] <- NA
 ```
+
 # Eimeria detection oocysts flotation
 
 ## Improving Eimeria oocysts detection
@@ -65,20 +75,14 @@ myData <- miceTable[!miceTable$Mouse_ID %in% otherRodentsID,]
 ```{r oocystsDetec, echo=FALSE, warning=FALSE}
 flotDF$OPG <- as.numeric(as.character(flotDF$OPG))
 flotDF <- flotDF[!is.na(flotDF$OPG),]
-
 ## Lorenzo count (in 1mL dilution) for comparison
 LorenzoDF <- LorenzoDF[!is.na(LorenzoDF$OPG),]
 ### Plot comparative Alice (dilution 0.1mL for most samples) and Lorenzo (dilution 1mL)
 compData <- merge(flotDF, LorenzoDF, by = "Mouse_ID", all = T)
-# merge with current data
-myData <- merge(myData, flotDF, all = T)
-
 ### Comparison 2 methods of flotation
 # How many samples new were detected by decreasing the dilution?
 N1 <- sum(compData$OPG.x > 0 & compData$OPG.y == 0, na.rm = T)
-
 adjrsq <- summary(lm(compData$OPG.x ~ compData$OPG.y))$adj.r.squared
-
 ggplot(
   compData, aes(x = OPG.x+1, y = OPG.y+1)) +
   geom_point(alpha = .5, size = 4) +
@@ -90,12 +94,6 @@ ggplot(
   scale_y_log10() + 
   scale_x_log10() +
   theme_bw()
-
-# Remove other rodents
-myData <- myData[!myData$Mouse_ID %in% otherRodentsID,]
-# correct year
-myData$Year[is.na(myData$Year)] <- myData$year[is.na(myData$Year)]
-myData <- subset(myData, select = -c(year))
 ```
 
 `r N1` new samples were detected while diluting by 0.1mL PBS instead of 1mL before counting in Neubauer chamber.
@@ -104,11 +102,11 @@ Adjusted R-squared = `r round(adjrsq, 2)` represents the amount of variation in 
 
 ## OPG that we keep
 
-Number of Mus musculus caught with OPG values: `r nrow(myData[!is.na(myData$OPG),])`
+Number of Mus musculus caught with OPG values: `r nrow(miceTable[!is.na(miceTable$OPG),])`
 
 ```{r oocystssmooth, echo=FALSE, warning=FALSE}
-ggplot(myData[!is.na(myData$OPG) &
-                               myData$OPG >0,], aes(x = HI, y = OPG+1)) +
+ggplot(miceTable[!is.na(miceTable$OPG) &
+                               miceTable$OPG >0,], aes(x = HI, y = OPG+1)) +
   geom_point(aes(fill = as.factor(Year)), pch = 21, alpha = .8, size = 4) +
   geom_smooth(se=F) +
   scale_y_log10() +
@@ -116,7 +114,6 @@ ggplot(myData[!is.na(myData$OPG) &
   theme(legend.position="top") +
   theme(legend.title = element_blank()) +
   facet_grid(. ~ Year)
-
 ```
 
 # Eimeria detection PCR
@@ -124,81 +121,43 @@ ggplot(myData[!is.na(myData$OPG) &
 PCR positive = one of the 3 other markers than AP5 sequenced (Ap5 was used for detection only, the other markers for confirmation)
 
 ```{r pcr, echo=FALSE, warning=FALSE}
-#correct wrong names
-toremove <- paste0(paste0("X",1:30, "_"), collapse = "|")
-names(PCRdf) <- gsub(toremove, "", names(PCRdf))
-names(PCRdf)[names(PCRdf)%in%"ID_mouse"] <- "Mouse_ID"
-names(PCRdf)[names(PCRdf)%in%"Year"] <- "yearpcr"
-
-PCRdf$Mouse_ID = gsub(" ", "", PCRdf$Mouse_ID) # fix the extra space
-
-# by default, I enter PCRstatus as negative, then overwrite
-PCRdf$PCRstatus = "negative"
-  
-# PCR positive = one of the 3 other markers than AP5 sequenced 
-# (Ap5 was used for detection only, the other markers for confirmation)
-PCRdf$PCRstatus[PCRdf$`18S_Seq` == "positive" | 
-                  PCRdf$COI_Seq == "positive" | 
-                  PCRdf$ORF470_Seq == "positive"] <- "positive"
-
-# PCRstatus is NA if everything is NA
-PCRdf$PCRstatus[is.na(PCRdf$Ap5_PCR) & 
-                  is.na(PCRdf$`18S_Seq`) &
-                  is.na(PCRdf$COI_Seq) &
-                  is.na(PCRdf$ORF470_Seq)] <- NA
-
-# merge with actual df
-myData2 <- merge(myData, PCRdf, by = c("Mouse_ID"), all = T)
-# Keep code and transect from original data
-myData2$Code <- myData2$Code.x
-myData2$Transect <- myData2$Transect.x
-
-myData <- myData2
-rm(myData2)
-
-# Remove other rodents
-myData <- myData[!myData$Mouse_ID %in% otherRodentsID,]
-# correct year
-myData$Year[is.na(myData$Year)] <- myData$yearpcr[is.na(myData$Year)]
-myData <- subset(myData, select = -c(yearpcr))
-
 # plot PCR
-ggplot(myData[!is.na(myData$PCRstatus),], aes(y = HI, x = PCRstatus)) +
-  # geom_smooth() +
+ggplot(miceTable[miceTable$PCRstatus == "positive",], 
+       aes(y = HI, x = eimeriaSpecies)) +
   geom_violin() +
-  geom_jitter(aes(fill = PCRstatus), pch = 21, alpha = .2, size = 4) +
+  geom_jitter(aes(fill = eimeriaSpecies),
+              width = .1, pch = 21, alpha = .4, size = 4) +
   theme_bw() +
   theme(legend.position="top") +
   theme(legend.title = element_blank()) +
-  facet_grid(. ~ Year) +
   ggtitle("Violin plots on PCR data")
 ```
 
-PCR positive = one of the 3 markers 18S, COI or ORF470) gave a sequence. Number of Mus musculus caught with PCR performed: `r nrow(myData[!is.na(myData$PCRstatus),])`
+PCR positive = one of the 3 markers 18S, COI or ORF470) gave a sequence. Number of Mus musculus caught with PCR performed: `r nrow(miceTable[!is.na(miceTable$n18S_Seq)|!is.na(miceTable$COI_Seq)|!is.na(miceTable$ORF470_Seq),])`
 
 # Eimeria detection qPCR 
 
 We keep only the values for mice having been tested for BOTH ileum and cecum!
 
 ```{r qpcr, echo= FALSE}
-# merge
-myData <- merge(myData, qpcrData, by = "Mouse_ID", all = T)
-
 # plot qPCR
-ggplot(myData[!is.na(myData$delta_ct_MminusE) & 
-                                  myData$delta_ct_MminusE > - THRESHOLD,],
-                         aes(x = HI)) +
-  geom_point(aes(y = delta_ct_MminusE, fill = qPCRsummary), pch = 21, alpha = .8, size = 4) +
-  geom_smooth(aes(y = delta_ct_MminusE))+#, col = as.factor(Year))) +
-  theme_bw() +
-  theme(legend.position="top") +
-  theme(legend.title = element_blank()) +
-  facet_grid(. ~ Year) +
-  ggtitle(paste0("Smooth on qPCR data (positive only (> -", THRESHOLD, ")"))
+ferrisiDFqpcr <- miceTable[!is.na(miceTable$delta_ct_cewe_MminusE) &
+                       miceTable$delta_ct_cewe_MminusE > -5 &
+                         !is.na(miceTable$eimeriaSpecies) &
+                         miceTable$eimeriaSpecies == "E_ferrisi",]
 
-ggplot(myData[myData$Year %in% c(2016, 2017),], aes(x = HI, y = delta_ct_MminusE, col = OPG > 0)) +
+ggplot(ferrisiDFqpcr, 
+       aes(x = HI, y = delta_ct_cewe_MminusE)) +
+  geom_point() +
+  facet_grid(.~eimeriaSpecies) +
+  geom_smooth() +
+  theme_classic() +
+  ggtitle("ferrisiqpcr")
+
+ggplot(miceTable[miceTable$Year %in% c(2016, 2017),],
+       aes(x = HI, y = delta_ct_cewe_MminusE, col = OPG > 0)) +
   geom_point(size = 5) + 
-  geom_hline(yintercept = -THRESHOLD) +
+  geom_hline(yintercept = -5) +
   facet_grid(.~Year) +
   theme_bw() +
   ggtitle("Remark of J. Wolinska: some individuals here HAVE qPCR value, but no oocyst count?")
@@ -206,65 +165,35 @@ ggplot(myData[myData$Year %in% c(2016, 2017),], aes(x = HI, y = delta_ct_MminusE
 # Todo later: test if points for HI ~ 0.5 are dead ends...
 ```
 
-Number of Mus musculus caught with qPCR performed: `r nrow(myData[!is.na(myData$delta_ct_MminusE),])`
-
 # General stats on sampling 
 
 ```{r generalstats, echo = FALSE, message=FALSE}
-## Remove useless mice:
-# wildpark Schorfheide (not needed, test)
-wsh <- c(paste0("AA_000", 1:9), paste0("AA_00", 10:46))
-# apodemus caught in 2016
-apd <- c("A_0001", "A_0002", "A_0003")
-# useless info
-useless <- c(wsh, apd)
-
-# Keep mice with OPG, PCR or qPCR status
-myData <- myData[!myData$Mouse_ID %in% useless & # no wilpark schofheide
-                             (!is.na(myData$OPG) | 
-                                !is.na(myData$PCRstatus) |
-                                !is.na(myData$delta_ct_MminusE)),] # have one of these status
-
 ## Which mice are not found (no HI given for these mice)?
-miceInfoNeeded <- myData$Mouse_ID[is.na(myData$HI)]
+miceInfoNeeded <- miceTable$Mouse_ID[is.na(miceTable$HI)]
 # latitude or longitude missing for mice:
-latLongMissing <- myData$Mouse_ID[
-  is.na(myData$Latitude) |
-    is.na(myData$Longitude)]
-# keep only North Germany
-myData <- myData[!is.na(myData$Latitude) &
-                   myData$Latitude > 51 &
-                   myData$Longitude < 17, ]
+latLongMissing <- miceTable$Mouse_ID[
+  is.na(miceTable$Latitude) |
+    is.na(miceTable$Longitude)]
+
 # Total
-Nmice <- nrow(myData)
-Nfarm <- length(unique(myData$farm))
+Nmice <- nrow(miceTable)
+Nfarm <- length(unique(miceTable$farm))
 
 # Create map of samples
-mapHMHZ <- HI.map(df = myData, size = 2, alpha = .3, margin = 0.2, zoom = 8) 
+mapHMHZ <- HI.map(df = miceTable[!is.na(miceTable$Longitude) & !is.na(miceTable$Latitude), ], 
+                  size = 2, alpha = .3, margin = 0.2, zoom = 8) 
 mapHMHZ
 
 # mean and 95% ci of N of mice caught / farm (assuming normal distribution)
-MEAN <- mean(by(myData, myData["farm"], nrow))
-CI <- qnorm(0.975)*sd(by(myData, myData["farm"], nrow))/
-  sqrt(nrow(myData))
+MEAN <- mean(by(miceTable, miceTable["farm"], nrow))
+CI <- qnorm(0.975)*sd(by(miceTable, miceTable["farm"], nrow))/
+  sqrt(nrow(miceTable))
 
 # Hybrid index calculation:
-minHINloci = min(as.numeric(substr(myData$HI_NLoci, 4,6)), na.rm = T)
-maxHINloci = max(as.numeric(substr(myData$HI_NLoci, 4,6)), na.rm = T)
-meanHINloci = round(mean(as.numeric(substr(myData$HI_NLoci, 4,6)), na.rm = T))
-
-######### Compare our methods of detection ######### 
-noo <- table(!is.na(myData$OPG))[2]
-npcr <- table(!is.na(myData$PCRstatus))[2]
-nqPCR <- table(!is.na(myData$delta_ct_MminusE))[2]
+minHINloci = min(as.numeric(substr(miceTable$HI_NLoci, 4,6)), na.rm = T)
+maxHINloci = max(as.numeric(substr(miceTable$HI_NLoci, 4,6)), na.rm = T)
+meanHINloci = round(mean(as.numeric(substr(miceTable$HI_NLoci, 4,6)), na.rm = T))
 ```
-
-We keep mice with OPG, PCR or qPCR status, in North Germany.
-
-* Number of Mus musculus caught with OPG counted: `r nrow(myData[!is.na(myData$OPG),])`
-* Number of Mus musculus caught with qPCR performed: `r nrow(myData[!is.na(myData$delta_ct_MminusE),])`
-* Number of Mus musculus caught with either OPG counted or qPCR performed: `r nrow(myData[!is.na(myData$delta_ct_MminusE) | !is.na(myData$OPG),])`
-* Number of Mus musculus caught with OPG counted AND qPCR performed: `r nrow(myData[!is.na(myData$delta_ct_MminusE) & !is.na(myData$OPG),])`
 
 * Some information regarding latitude and longitude are missing for the following mice:
 
@@ -278,18 +207,12 @@ We keep mice with OPG, PCR or qPCR status, in North Germany.
 
 * `r Nmice` mice were captured over three years, from `r Nfarm` farms
 
-* From these mice:
-
-* `r noo` mice had Eimeria detected by feces flotation,
-* `r npcr` mice had Eimeria detected by colon content PCR (cf paper Victor),
-* `r nqPCR` mice had Eimeria detected by qPCR on intestinal tissues
-
 * On average, `r round(MEAN,2)` mice were caught per farm (95% CI `r round(CI,2)`)
 
 * **Hybrid indexes** were calculated as ratio of M.m.d/M.m.m alleles (between `r minHINloci` and `r maxHINloci`, on average `r meanHINloci` loci)
 
 ```{r plotDensHI, echo=FALSE, warning=FALSE, fig.width=5,fig.height=3,fig.cap="\\label{fig:plot1}Number of animals caught along the hybrid index "}
-ggplot(myData, aes(x = HI)) +
+ggplot(miceTable, aes(x = HI)) +
   geom_histogram(binwidth = 0.05, col = "black", fill = "lightblue") +
   theme_bw() +
   ggtitle("Density of hybrids") +
@@ -301,22 +224,22 @@ ggplot(myData, aes(x = HI)) +
 ## Prevalence tables
 
 ```{r prevcompared, echo = FALSE}
-prevalenceFlotation <- getPrevalenceTable(table(myData$OPG > 0, 
-                                                myData$Year))
-prevalencePCR <- getPrevalenceTable(table(myData$PCRstatus, 
-                                          myData$Year))
-prevalenceqPCR <- getPrevalenceTable(table(myData$delta_ct_MminusE > - THRESHOLD, 
-                                           myData$Year))
+prevalenceFlotation <- getPrevalenceTable(table(miceTable$OPG > 0, 
+                                                miceTable$Year))
+prevalencePCR <- getPrevalenceTable(table(miceTable$PCRstatus == "positive", 
+                                          miceTable$Year))
+prevalenceqPCR <- getPrevalenceTable(table(miceTable$delta_ct_cewe_MminusE > - 5, 
+                                           miceTable$Year))
 
 # samples are negative appart if ONE at least is positive
-myData$allDetectionMethod <- "negative"
+miceTable$allDetectionMethod <- "negative"
 
-myData$allDetectionMethod[myData$OPG > 0 |
-                            myData$PCRstatus == "positive" |
-                            myData$delta_ct_MminusE > - THRESHOLD] <- "positive"
+miceTable$allDetectionMethod[miceTable$OPG > 0 |
+                               miceTable$PCRstatus == "positive" |
+                              miceTable$delta_ct_cewe_MminusE > - 5] <- "positive"
 
-prevalenceTot <- getPrevalenceTable(table(myData$allDetectionMethod,
-                                          myData$Year ))
+prevalenceTot <- getPrevalenceTable(table(miceTable$allDetectionMethod,
+                                          miceTable$Year ))
 
 ```
 
@@ -327,24 +250,24 @@ kable(prevalenceFlotation, caption = "Prevalence of Eimeria per year, based on o
 
 ```{r tabPrevPCR, echo=FALSE, results='asis'}
 library(knitr)
-kable(prevalencePCR, caption = "Prevalence of Eimeria per year, based on PCR detection. A mouse was considered infected by Eimeria ifone of the 3 markers (COI, 18S or ORF470) gave a sequence")
+kable(prevalencePCR, caption = "Prevalence of Eimeria per year, based on PCR detection. A mouse was considered infected by Eimeria if one of the 3 markers (COI, 18S or ORF470) gave a sequence")
 ```
 
 ```{r tabPrevqPCR, echo=FALSE, results='asis'}
 library(knitr)
-kable(prevalenceqPCR, caption = "Prevalence of Eimeria per year, based on qPCR")
+kable(prevalenceqPCR, caption = "Prevalence of Eimeria per year, based on qPCR in cecum")
 ```
 
 ```{r tabPrevtot, echo=FALSE, results='asis'}
-kable(prevalenceTot, caption = "Prevalence of Eimeria per year, based on all detections methods. A mouse was considered infected by Eimeria if one of the 3 markers (COI, 18S or ORF470) gave a sequence, OR if it had a positive count of oocysts in its feces, OR if it was qPCR positive")
+kable(prevalenceTot, caption = "Prevalence of Eimeria per year, based on all detections methods. A mouse was considered infected by Eimeria if one of the 3 markers (COI, 18S or ORF470) gave a sequence, OR if it had a positive count of oocysts in its feces, OR if it was qPCR positive in cecum tissue")
 ```
 
 ## OPG-PCR
 
 ```{r opgpcr, echo=FALSE, warning=FALSE}
 # first, compare PCR and oocysts
-completeData1 <- myData[!is.na(myData$OPG) &
-                          !is.na(myData$PCRstatus),]
+completeData1 <- miceTable[!is.na(miceTable$OPG) &
+                             !is.na(miceTable$PCRstatus),]
 
 myVennDiagram2 <- function(data){      
   area1 = nrow(subset(data, PCRstatus == "positive"))
@@ -371,14 +294,14 @@ myVennDiagram2(completeData1)
 
 ```{r opgpcrVenn, echo=FALSE, warning=FALSE}
 # first, compare PCR and oocysts
-completeDataopgqpcr <- myData[!is.na(myData$OPG) &
-                          !is.na(myData$delta_ct_MminusE),]
+completeDataopgqpcr <- miceTable[!is.na(miceTable$OPG) &
+                          !is.na(miceTable$delta_ct_cewe_MminusE),]
 
 myVennDiagram3 <- function(data){      
-  area1 = nrow(subset(data, delta_ct_MminusE > -THRESHOLD))
+  area1 = nrow(subset(data, delta_ct_cewe_MminusE > -5))
   area2 = nrow(subset(data, OPG > 0))
   ## areas of 2-group overlap
-  cross.area = nrow(subset(data, delta_ct_MminusE > -THRESHOLD & OPG > 0))
+  cross.area = nrow(subset(data, delta_ct_cewe_MminusE > -5 & OPG > 0))
   grid.newpage()
   draw.pairwise.venn(area1 = area1, 
                      area2 = area2, 
@@ -396,559 +319,127 @@ myVennDiagram3(completeDataopgqpcr)
 ```
 
 ```{r opgqpcr, echo=FALSE, warning=FALSE}
-data1 <- myData[!is.na(myData$delta_ct_MminusE) &
-                            !is.na(myData$OPG), ]
-ggplot(data1,
-       aes(x = delta_ct_MminusE, y = OPG)) +
-  geom_point(aes(fill = qPCRsummary),
-             alpha = .5, size = 4, pch = 21) +
-  geom_smooth(method = "lm", se = FALSE, col = "red") +
-  theme_bw()  +
-  # scale_y_log10() +
-  ggtitle("Compare qPCR results and OPG")
-
-summary(lm(data1$OPG ~ data1$delta_ct_MminusE))
+# data1 <- miceTable[!is.na(miceTable$delta_ct_cewe_MminusE) &
+#                             !is.na(miceTable$OPG), ]
+# ggplot(data1,
+#        aes(x = delta_ct_cewe_MminusE, y = OPG)) +
+#   geom_point(alpha = .5, size = 4, pch = 21) +
+#   geom_smooth(method = "lm", se = FALSE, col = "red") +
+#   theme_bw()  +
+#   # scale_y_log10() +
+#   ggtitle("Compare qPCR results and OPG")
+# 
+# summary(lm(data1$OPG ~ data1$delta_ct_MminusE))
 ```
 ## OPG-qPCR-PCR
 
 ```{r opgpcrpcr, echo=FALSE, warning=FALSE}
 # to compare, keep only samples tested for the 3 methods
-completeData <- myData[!is.na(myData$OPG) &
-                                   !is.na(myData$PCRstatus) &
-                                   !is.na(myData$delta_ct_MminusE),]
-
-myVennDiagram3 <- function(data){      
-  area1 = nrow(subset(data, PCRstatus == "positive"))
-  area2 = nrow(subset(data, OPG > 0))
-  area3 = nrow(subset(data, delta_ct_MminusE > - THRESHOLD))
-  ## areas of 2-group overlap
-  n12 = nrow(subset(data, PCRstatus == "positive" & OPG > 0)) 
-  n23 = nrow(subset(data, delta_ct_MminusE > - THRESHOLD & OPG > 0))
-  n13 = nrow(subset(data, PCRstatus == "positive" & delta_ct_MminusE > - THRESHOLD))
-  ## areas of 3-group overlap
-  n123 = nrow(subset(data, PCRstatus == "positive" & 
-                       OPG > 0 &
-                       delta_ct_MminusE > - THRESHOLD))
-  grid.newpage()
-  draw.triple.venn(area1 = area1, area2 = area2, area3 = area3,
-                   n12 = n12, n23 = n23, n13 = n13,
-                   n123 = n123,
-                   category = c("PCR", "OPG", "qPCR"),
-                   col = "transparent", 
-                   fill = c("grey","green","orange"),
-                   alpha = 0.50,                  
-                   cex = 1.5, cat.cex = 1.5, fontfamily = "serif", fontface = "bold",
-                   cat.col = c("grey","green","orange"),
-                   cat.fontfamily = "serif")
-}
-```
-
-```{r venn2, echo=FALSE, warning=FALSE, message=FALSE, fig.width=5,fig.height=3,fig.cap="\\label{fig:venn1}Comparison of detection: PCR vs flotation vs qPCŔ"}
-myVennDiagram3(completeData)
-```
-
-# BCI
-
-## BCI vs OPG
-
-```{r BCI, echo = FALSE, warning=FALSE}
-ggplot(myData, aes(x = HI, y = BCI, fill = myData$OPG + 1)) +
-  geom_point(pch = 21, size = 4, col = "black") +
-  scale_fill_gradient(low = "white", high = "black", 
-                      breaks = c(1, 10, 100, 1000, 10000, 100000, 1000000), 
-                      name = "OPG", trans = "log") +
-  theme_bw() +
-  facet_grid(. ~ Year)
-
-summary(lm(myData$BCI ~ myData$OPG + myData$HI))
-```
-
-# Testing hybrid vigor along HMHZ
-
-```{r, echo = FALSE}
-write.csv(myData, paste0("../FinalFullDF_flotationPcrqPCR_Threshold_", THRESHOLD, ".csv"), row.names = F)
-```
-
-# PART II for comparison: qPCR detection threshold = -3.75
-
-```{r, echo = FALSE}
-# Define threshold for qPCR data (cf Enas & Victor papers)
-THRESHOLD <- 3.75 # choice of specificity
-
-## Load data from oocysts counting 
-flotDF <- read.csv("../raw_data/Eimeria_detection/FINALOocysts2015to2017.csv")
-LorenzoDF <- read.csv("../raw_data/Eimeria_detection/Eimeria_oocysts_2015&2017_Lorenzo.csv")
-## Import PCR data
-PCRdf <- read.csv("../raw_data/Eimeria_detection/Inventory_contents_all.csv")
-## Import qPCR data
-if (THRESHOLD == 5){
-  qpcrData <- read.csv("../raw_data/Eimeria_detection/FINALqpcrData_2016_2017_threshold5.csv")
-} else {
-  qpcrData <- read.csv("../raw_data/Eimeria_detection/FINALqpcrData_2016_2017_threshold3.75.csv")
-}
-
-qpcrData <- qpcrData[!is.na(qpcrData$delta_ct_ilwe_MminusE) & !is.na(qpcrData$delta_ct_cewe_MminusE),]
-
-#################### Load data ####################
-# General data
-miceTable <- makeMiceTable("../../Data_important/")
-
-# Remove other rodents
-otherRodentsID <- c(miceTable$Mouse_ID[miceTable$Species %in% "Pet mus musculus"],
-                    miceTable$Mouse_ID[grep("ZZ", miceTable$Mouse_ID)])
-myData <- miceTable[!miceTable$Mouse_ID %in% otherRodentsID,]
-```
-
-# Eimeria detection oocysts flotation
-
-## Improving Eimeria oocysts detection
-
-```{r oocystsDetec_3.75, echo=FALSE, warning=FALSE}
-flotDF$OPG <- as.numeric(as.character(flotDF$OPG))
-flotDF <- flotDF[!is.na(flotDF$OPG),]
-
-## Lorenzo count (in 1mL dilution) for comparison
-LorenzoDF <- LorenzoDF[!is.na(LorenzoDF$OPG),]
-### Plot comparative Alice (dilution 0.1mL for most samples) and Lorenzo (dilution 1mL)
-compData <- merge(flotDF, LorenzoDF, by = "Mouse_ID", all = T)
-# merge with current data
-myData <- merge(myData, flotDF, all = T)
-
-### Comparison 2 methods of flotation
-# How many samples new were detected by decreasing the dilution?
-N1 <- sum(compData$OPG.x > 0 & compData$OPG.y == 0, na.rm = T)
-
-adjrsq <- summary(lm(compData$OPG.x ~ compData$OPG.y))$adj.r.squared
-
-ggplot(
-  compData, aes(x = OPG.x+1, y = OPG.y+1)) +
-  geom_point(alpha = .5, size = 4) +
-  coord_equal(ratio=1) +
-  xlab("OPG + 1 counted in 0.1ml") + 
-  ylab("OPG + 1 counted in 1ml") + 
-  geom_smooth(method = "lm", se = FALSE, col = "red") +
-  geom_abline(intercept = 0, slope = 1, linetype = 3) +
-  scale_y_log10() + 
-  scale_x_log10() +
-  theme_bw()
-
-# Remove other rodents
-myData <- myData[!myData$Mouse_ID %in% otherRodentsID,]
-# correct year
-myData$Year[is.na(myData$Year)] <- myData$year[is.na(myData$Year)]
-myData <- subset(myData, select = -c(year))
-```
-
-`r N1` new samples were detected while diluting by 0.1mL PBS instead of 1mL before counting in Neubauer chamber.
-
-Adjusted R-squared = `r round(adjrsq, 2)` represents the amount of variation in y explained by x.
-
-## OPG that we keep
-
-Number of Mus musculus caught with OPG values: `r nrow(myData[!is.na(myData$OPG),])`
-
-```{r oocystssmooth_3.75, echo=FALSE, warning=FALSE}
-ggplot(myData[!is.na(myData$OPG) &
-                               myData$OPG >0,], aes(x = HI, y = OPG+1)) +
-  geom_point(aes(fill = as.factor(Year)), pch = 21, alpha = .8, size = 4) +
-  geom_smooth(se=F) +
-  scale_y_log10() +
-  theme_bw() +
-  theme(legend.position="top") +
-  theme(legend.title = element_blank()) +
-  facet_grid(. ~ Year)
-
-```
-
-# Eimeria detection PCR
-
-PCR positive = one of the 3 other markers than AP5 sequenced (Ap5 was used for detection only, the other markers for confirmation)
-
-```{r pcr_3.75, echo=FALSE, warning=FALSE}
-#correct wrong names
-toremove <- paste0(paste0("X",1:30, "_"), collapse = "|")
-names(PCRdf) <- gsub(toremove, "", names(PCRdf))
-names(PCRdf)[names(PCRdf)%in%"ID_mouse"] <- "Mouse_ID"
-names(PCRdf)[names(PCRdf)%in%"Year"] <- "yearpcr"
-
-PCRdf$Mouse_ID = gsub(" ", "", PCRdf$Mouse_ID) # fix the extra space
-
-# by default, I enter PCRstatus as negative, then overwrite
-PCRdf$PCRstatus = "negative"
-  
-# PCR positive = one of the 3 other markers than AP5 sequenced 
-# (Ap5 was used for detection only, the other markers for confirmation)
-PCRdf$PCRstatus[PCRdf$`18S_Seq` == "positive" | 
-                  PCRdf$COI_Seq == "positive" | 
-                  PCRdf$ORF470_Seq == "positive"] <- "positive"
-
-# PCRstatus is NA if everything is NA
-PCRdf$PCRstatus[is.na(PCRdf$Ap5_PCR) & 
-                  is.na(PCRdf$`18S_Seq`) &
-                  is.na(PCRdf$COI_Seq) &
-                  is.na(PCRdf$ORF470_Seq)] <- NA
-
-# merge with actual df
-myData2 <- merge(myData, PCRdf, by = c("Mouse_ID"), all = T)
-# Keep code and transect from original data
-myData2$Code <- myData2$Code.x
-myData2$Transect <- myData2$Transect.x
-
-myData <- myData2
-rm(myData2)
-
-# Remove other rodents
-myData <- myData[!myData$Mouse_ID %in% otherRodentsID,]
-# correct year
-myData$Year[is.na(myData$Year)] <- myData$yearpcr[is.na(myData$Year)]
-myData <- subset(myData, select = -c(yearpcr))
-
-# plot PCR
-ggplot(myData[!is.na(myData$PCRstatus),], aes(y = HI, x = PCRstatus)) +
-  # geom_smooth() +
-  geom_violin() +
-  geom_jitter(aes(fill = PCRstatus), pch = 21, alpha = .2, size = 4) +
-  theme_bw() +
-  theme(legend.position="top") +
-  theme(legend.title = element_blank()) +
-  facet_grid(. ~ Year) +
-  ggtitle("Violin plots on PCR data")
-```
-
-PCR positive = one of the 3 markers 18S, COI or ORF470) gave a sequence. Number of Mus musculus caught with PCR performed: `r nrow(myData[!is.na(myData$PCRstatus),])`
-
-# Eimeria detection qPCR 
-
-We keep only the values for mice having been tested for BOTH ileum and cecum!
-
-```{r qpcr_3.75, echo= FALSE}
-# merge
-myData <- merge(myData, qpcrData, by = "Mouse_ID", all = T)
-
-# plot qPCR
-ggplot(myData[!is.na(myData$delta_ct_MminusE) & 
-                                  myData$delta_ct_MminusE > - THRESHOLD,],
-                         aes(x = HI)) +
-  geom_point(aes(y = delta_ct_MminusE, fill = qPCRsummary), pch = 21, alpha = .8, size = 4) +
-  geom_smooth(aes(y = delta_ct_MminusE))+#, col = as.factor(Year))) +
-  theme_bw() +
-  theme(legend.position="top") +
-  theme(legend.title = element_blank()) +
-  facet_grid(. ~ Year) +
-  ggtitle(paste0("Smooth on qPCR data (positive only (> -", THRESHOLD, ")"))
-
-ggplot(myData[myData$Year %in% c(2016, 2017),], aes(x = HI, y = delta_ct_MminusE, col = OPG > 0)) +
-  geom_point(size = 5) + 
-  geom_hline(yintercept = -THRESHOLD) +
-  facet_grid(.~Year) +
-  theme_bw() +
-  ggtitle("Remark of J. Wolinska: some individuals here HAVE qPCR value, but no oocyst count?")
-
-# Todo later: test if points for HI ~ 0.5 are dead ends...
-```
-
-Number of Mus musculus caught with qPCR performed: `r nrow(myData[!is.na(myData$delta_ct_MminusE),])`
-
-# General stats on sampling 
-
-```{r generalstats_3.75, echo = FALSE, message=FALSE}
-## Remove useless mice:
-# wildpark Schorfheide (not needed, test)
-wsh <- c(paste0("AA_000", 1:9), paste0("AA_00", 10:46))
-# apodemus caught in 2016
-apd <- c("A_0001", "A_0002", "A_0003")
-# useless info
-useless <- c(wsh, apd)
-
-# Keep mice with OPG, PCR or qPCR status
-myData <- myData[!myData$Mouse_ID %in% useless & # no wilpark schofheide
-                             (!is.na(myData$OPG) | 
-                                !is.na(myData$PCRstatus) |
-                                !is.na(myData$delta_ct_MminusE)),] # have one of these status
-
-## Which mice are not found (no HI given for these mice)?
-miceInfoNeeded <- myData$Mouse_ID[is.na(myData$HI)]
-# latitude or longitude missing for mice:
-latLongMissing <- myData$Mouse_ID[
-  is.na(myData$Latitude) |
-    is.na(myData$Longitude)]
-# keep only North Germany
-myData <- myData[!is.na(myData$Latitude) &
-                   myData$Latitude > 51 &
-                   myData$Longitude < 17, ]
-# Total
-Nmice <- nrow(myData)
-Nfarm <- length(unique(myData$farm))
-
-# Create map of samples
-mapHMHZ <- HI.map(df = myData, size = 2, alpha = .3, margin = 0.2, zoom = 8) 
-mapHMHZ
-
-# mean and 95% ci of N of mice caught / farm (assuming normal distribution)
-MEAN <- mean(by(myData, myData["farm"], nrow))
-CI <- qnorm(0.975)*sd(by(myData, myData["farm"], nrow))/
-  sqrt(nrow(myData))
-
-# Hybrid index calculation:
-minHINloci = min(as.numeric(substr(myData$HI_NLoci, 4,6)), na.rm = T)
-maxHINloci = max(as.numeric(substr(myData$HI_NLoci, 4,6)), na.rm = T)
-meanHINloci = round(mean(as.numeric(substr(myData$HI_NLoci, 4,6)), na.rm = T))
-
-######### Compare our methods of detection ######### 
-noo <- table(!is.na(myData$OPG))[2]
-npcr <- table(!is.na(myData$PCRstatus))[2]
-nqPCR <- table(!is.na(myData$delta_ct_MminusE))[2]
-```
-
-We keep mice with OPG, PCR or qPCR status, in North Germany.
-
-* Number of Mus musculus caught with OPG counted: `r nrow(myData[!is.na(myData$OPG),])`
-* Number of Mus musculus caught with qPCR performed: `r nrow(myData[!is.na(myData$delta_ct_MminusE),])`
-* Number of Mus musculus caught with either OPG counted or qPCR performed: `r nrow(myData[!is.na(myData$delta_ct_MminusE) | !is.na(myData$OPG),])`
-* Number of Mus musculus caught with OPG counted AND qPCR performed: `r nrow(myData[!is.na(myData$delta_ct_MminusE) & !is.na(myData$OPG),])`
-
-* Some information regarding latitude and longitude are missing for the following mice:
-
-`r latLongMissing`
-
-* We still miss info (HI) on the following mice (ask Jarda):
-
-`r miceInfoNeeded` 
-
-# General informations on HMHZ
-
-* `r Nmice` mice were captured over three years, from `r Nfarm` farms
-
-* From these mice:
-
-* `r noo` mice had Eimeria detected by feces flotation,
-* `r npcr` mice had Eimeria detected by colon content PCR (cf paper Victor),
-* `r nqPCR` mice had Eimeria detected by qPCR on intestinal tissues
-
-* On average, `r round(MEAN,2)` mice were caught per farm (95% CI `r round(CI,2)`)
-
-* **Hybrid indexes** were calculated as ratio of M.m.d/M.m.m alleles (between `r minHINloci` and `r maxHINloci`, on average `r meanHINloci` loci)
-
-```{r plotDensHI_3.75, echo=FALSE, warning=FALSE, fig.width=5,fig.height=3,fig.cap="\\label{fig:plot1}Number of animals caught along the hybrid index "}
-ggplot(myData, aes(x = HI)) +
-  geom_histogram(binwidth = 0.05, col = "black", fill = "lightblue") +
-  theme_bw() +
-  ggtitle("Density of hybrids") +
-  facet_grid(. ~ Year)
-```
-
-# Prevalence of our 3 different methods
-
-## Prevalence tables
-
-```{r prevcompared_3.75, echo = FALSE}
-prevalenceFlotation <- getPrevalenceTable(table(myData$OPG > 0, 
-                                                myData$Year))
-prevalencePCR <- getPrevalenceTable(table(myData$PCRstatus, 
-                                          myData$Year))
-prevalenceqPCR <- getPrevalenceTable(table(myData$delta_ct_MminusE > - THRESHOLD, 
-                                           myData$Year))
-
-# samples are negative appart if ONE at least is positive
-myData$allDetectionMethod <- "negative"
-
-myData$allDetectionMethod[myData$OPG > 0 |
-                            myData$PCRstatus == "positive" |
-                            myData$delta_ct_MminusE > - THRESHOLD] <- "positive"
-
-prevalenceTot <- getPrevalenceTable(table(myData$allDetectionMethod,
-                                          myData$Year ))
-```
-
-```{r tabPrevOO_3.75, echo=FALSE, results='asis'}
-library(knitr)
-kable(prevalenceFlotation, caption = "Prevalence of Eimeria per year, based on oocyst flotation")
-```
-
-```{r tabPrevPCR_3.75, echo=FALSE, results='asis'}
-library(knitr)
-kable(prevalencePCR, caption = "Prevalence of Eimeria per year, based on PCR detection. A mouse was considered infected by Eimeria ifone of the 3 markers (COI, 18S or ORF470) gave a sequence")
-```
-
-```{r tabPrevqPCR_3.75, echo=FALSE, results='asis'}
-library(knitr)
-kable(prevalenceqPCR, caption = "Prevalence of Eimeria per year, based on qPCR")
-```
-
-```{r tabPrevtot_3.75, echo=FALSE, results='asis'}
-kable(prevalenceTot, caption = "Prevalence of Eimeria per year, based on all detections methods. A mouse was considered infected by Eimeria if one of the 3 markers (COI, 18S or ORF470) gave a sequence, OR if it had a positive count of oocysts in its feces, OR if it was qPCR positive")
-```
-
-## OPG-PCR
-
-```{r opgpcr_3.75, echo=FALSE, warning=FALSE}
-# first, compare PCR and oocysts
-completeData1 <- myData[!is.na(myData$OPG) &
-                          !is.na(myData$PCRstatus),]
-
-myVennDiagram2 <- function(data){      
-  area1 = nrow(subset(data, PCRstatus == "positive"))
-  area2 = nrow(subset(data, OPG > 0))
-  ## areas of 2-group overlap
-  cross.area = nrow(subset(data, PCRstatus == "positive" & OPG > 0))
-  grid.newpage()
-  g <- draw.pairwise.venn(area1 = area1, 
-                          area2 = area2, 
-                          cross.area = cross.area, 
-                          category = c("PCR", "OPG"),
-                          col = "transparent", 
-                          fill = c("grey","green"),
-                          alpha = 0.50,                  
-                          cex = 1.5, cat.cex = 1.5, fontfamily = "serif", fontface = "bold",
-                          cat.col = c("grey","green"),
-                          cat.fontfamily = "serif")
-  grid.arrange(gTree(children=g), bottom="3 methods, threshold for qPCR = - 5")
-}
-
-myVennDiagram2(completeData1)
-```
-
-## OPG-qPCR
-
-```{r opgpcrVenn_3.75, echo=FALSE, warning=FALSE}
-# first, compare PCR and oocysts
-completeDataopgqpcr <- myData[!is.na(myData$OPG) &
-                          !is.na(myData$delta_ct_MminusE),]
-
-myVennDiagram3 <- function(data){      
-  area1 = nrow(subset(data, delta_ct_MminusE > -THRESHOLD))
-  area2 = nrow(subset(data, OPG > 0))
-  ## areas of 2-group overlap
-  cross.area = nrow(subset(data, delta_ct_MminusE > -THRESHOLD & OPG > 0))
-  grid.newpage()
-  draw.pairwise.venn(area1 = area1, 
-                     area2 = area2, 
-                     cross.area = cross.area, 
-                     category = c("qPCR", "OPG"),
-                     col = "transparent", 
-                     fill = c("grey","green"),
-                     alpha = 0.50,                  
-                     cex = 1.5, cat.cex = 1.5, fontfamily = "serif", fontface = "bold",
-                     cat.col = c("grey","green"),
-                     cat.fontfamily = "serif")
-}
-
-myVennDiagram3(completeDataopgqpcr)
-```
-
-```{r opgqpcr_3.75, echo=FALSE, warning=FALSE}
-ggplot(myData[!is.na(myData$delta_ct_MminusE),],
-       aes(x = delta_ct_MminusE, y = OPG)) +
-  geom_point(aes(fill = qPCRsummary),
-             alpha = .5, size = 4, pch = 21) +
-  geom_smooth(method = "lm", se = FALSE, col = "red") +
-  theme_bw()  +
-  scale_y_log10() +
-  ggtitle("Compare qPCR results and OPG")
-
-data1 <- myData[!is.na(myData$delta_ct_MminusE) &
-                            !is.na(myData$OPG), ]
-summary(lm(data1$OPG ~ data1$delta_ct_MminusE))
-
-data2 <- data1[data1$OPG > 0 & data1$delta_ct_MminusE > -THRESHOLD , ]
-summary(lm(data2$OPG ~ data2$delta_ct_MminusE))
-```
-
-## OPG-qPCR-PCR
-
-```{r opgpcrpcr_3.75, echo=FALSE, warning=FALSE}
-# to compare, keep only samples tested for the 3 methods
-completeData <- myData[!is.na(myData$OPG) &
-                                   !is.na(myData$PCRstatus) &
-                                   !is.na(myData$delta_ct_MminusE),]
-
-myVennDiagram3 <- function(data){      
-  area1 = nrow(subset(data, PCRstatus == "positive"))
-  area2 = nrow(subset(data, OPG > 0))
-  area3 = nrow(subset(data, delta_ct_MminusE > - THRESHOLD))
-  ## areas of 2-group overlap
-  n12 = nrow(subset(data, PCRstatus == "positive" & OPG > 0)) 
-  n23 = nrow(subset(data, delta_ct_MminusE > - THRESHOLD & OPG > 0))
-  n13 = nrow(subset(data, PCRstatus == "positive" & delta_ct_MminusE > - THRESHOLD))
-  ## areas of 3-group overlap
-  n123 = nrow(subset(data, PCRstatus == "positive" & 
-                       OPG > 0 &
-                       delta_ct_MminusE > - THRESHOLD))
-  grid.newpage()
-  draw.triple.venn(area1 = area1, area2 = area2, area3 = area3,
-                   n12 = n12, n23 = n23, n13 = n13,
-                   n123 = n123,
-                   category = c("PCR", "OPG", "qPCR"),
-                   col = "transparent", 
-                   fill = c("grey","green","orange"),
-                   alpha = 0.50,                  
-                   cex = 1.5, cat.cex = 1.5, fontfamily = "serif", fontface = "bold",
-                   cat.col = c("grey","green","orange"),
-                   cat.fontfamily = "serif")
-}
-```
-
-```{r venn2_3.75, echo=FALSE, warning=FALSE, message=FALSE, fig.width=5,fig.height=3,fig.cap="\\label{fig:venn1}Comparison of detection: PCR vs flotation vs qPCR"}
-myVennDiagram3(completeData)
-```
-
-# BCI
-
-## BCI vs OPG
-
-```{r BCI_3.75, echo = FALSE, warning=FALSE}
-ggplot(myData, aes(x = HI, y = BCI, fill = myData$OPG + 1)) +
-  geom_point(pch = 21, size = 4, col = "black") +
-  scale_fill_gradient(low = "white", high = "black", 
-                      breaks = c(1, 10, 100, 1000, 10000, 100000, 1000000), 
-                      name = "OPG", trans = "log") +
-  theme_bw() +
-  facet_grid(. ~ Year)
-
-summary(lm(myData$BCI ~ myData$OPG + myData$HI))
-```
-
-# Testing hybrid vigor along HMHZ
-
-```{r , echo = FALSE}
-write.csv(myData, paste0("../FinalFullDF_flotationPcrqPCR_Threshold_", THRESHOLD, ".csv"), row.names = F)
-```
-
-# Bonus part: genotyping of mice case/control
-
-```{r forlater, echo=FALSE, warning=FALSE}
-#### Bonus: mice SNP chip
-# infectedMice
-myDataHI <- myData[!is.na(myData$HI),]
-
-# positive for flotation and have an hybrid index
-N_OPGPositive <- nrow(myDataHI[myDataHI$OPG > 0 & 
-                                 !is.na(myDataHI$OPG),])
-totalOPG <- nrow(myDataHI[!is.na(myDataHI$OPG),])
-
-# positive for flotation and have an hybrid index
-N_qPCRPositive <- nrow(myDataHI[myDataHI$delta_ct_MminusE > - THRESHOLD &
-                                  !is.na(myDataHI$delta_ct_MminusE), ])
-totalqPCR <- nrow(myDataHI[!is.na(myDataHI$delta_ct_MminusE),])
-
-# positive for flotation and have an hybrid index
-N_QuantitativePositive <- nrow(myDataHI[(myDataHI$OPG > 0 | 
-                                           myDataHI$delta_ct_MminusE > - THRESHOLD) &
-                                          (!is.na(myDataHI$delta_ct_MminusE) |
-                                          !is.na(myDataHI$OPG)),])
-totalQuantitative <- nrow(myDataHI[!is.na(myDataHI$OPG) | 
-                                     !is.na(myDataHI$delta_ct_MminusE),])
+# completeData <- myData[!is.na(myData$OPG) &
+#                                    !is.na(myData$PCRstatus) &
+#                                    !is.na(myData$delta_ct_MminusE),]
 # 
-# * `r N_QuantitativePositive` out of `r totalQuantitative` are positive for either flotation or qPCR, and have an hybrid index.
+# myVennDiagram3 <- function(data){      
+#   area1 = nrow(subset(data, PCRstatus == "positive"))
+#   area2 = nrow(subset(data, OPG > 0))
+#   area3 = nrow(subset(data, delta_ct_MminusE > - THRESHOLD))
+#   ## areas of 2-group overlap
+#   n12 = nrow(subset(data, PCRstatus == "positive" & OPG > 0)) 
+#   n23 = nrow(subset(data, delta_ct_MminusE > - THRESHOLD & OPG > 0))
+#   n13 = nrow(subset(data, PCRstatus == "positive" & delta_ct_MminusE > - THRESHOLD))
+#   ## areas of 3-group overlap
+#   n123 = nrow(subset(data, PCRstatus == "positive" & 
+#                        OPG > 0 &
+#                        delta_ct_MminusE > - THRESHOLD))
+#   grid.newpage()
+#   draw.triple.venn(area1 = area1, area2 = area2, area3 = area3,
+#                    n12 = n12, n23 = n23, n13 = n13,
+#                    n123 = n123,
+#                    category = c("PCR", "OPG", "qPCR"),
+#                    col = "transparent", 
+#                    fill = c("grey","green","orange"),
+#                    alpha = 0.50,                  
+#                    cex = 1.5, cat.cex = 1.5, fontfamily = "serif", fontface = "bold",
+#                    cat.col = c("grey","green","orange"),
+#                    cat.fontfamily = "serif")
+# }
+# ```
+# 
+# ```{r venn2, echo=FALSE, warning=FALSE, message=FALSE, fig.width=5,fig.height=3,fig.cap="\\label{fig:venn1}Comparison of detection: PCR vs flotation vs qPCŔ"}
+# myVennDiagram3(completeData)
+```
 
-# to fix here!!
+# Testing hybrid vigor along HMHZ
+
+```{r}
+ggplot(miceTable, aes(x = eimeriaSpecies, y = OPG +1)) +
+  geom_violin() +
+  geom_jitter(width = .1, pch = 21, size = 2) +
+  scale_y_log10() +
+  theme_classic() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
+
+ferrisiDFflot <- miceTable[!is.na(miceTable$OPG) &
+                         miceTable$OPG > 0 &
+                         !is.na(miceTable$eimeriaSpecies) &
+                         miceTable$eimeriaSpecies == "E_ferrisi",]
+
+ggplot(ferrisiDFflot, aes(x = HI, y = OPG)) +
+  geom_point() +
+  scale_y_log10() +
+  geom_smooth()
+
+## qPCR by OPG
+ferrisiDFflot_n_qpcr <- miceTable[!is.na(miceTable$OPG) &
+                                    miceTable$OPG > 0 &
+                                    !is.na(miceTable$delta_ct_cewe_MminusE) &
+                                    miceTable$delta_ct_cewe_MminusE > -5 &
+                                    !is.na(miceTable$eimeriaSpecies) &
+                                    miceTable$eimeriaSpecies == "E_ferrisi",]
+  
+ggplot(ferrisiDFflot_n_qpcr, aes(x = delta_ct_cewe_MminusE, y = OPG)) +
+  geom_point() +
+  scale_y_log10() +
+  geom_smooth(method = "lm") +
+  theme_classic()
+
+## BCI vs OPG
+ggplot(ferrisiDFflot, aes(x = BCI, y = OPG)) +
+  geom_point() +
+  scale_y_log10() +
+  geom_smooth(method = "lm") +
+  theme_classic()
+
+summary(lm(ferrisiDFflot$BCI ~ ferrisiDFflot$OPG))
+
+## BCI vs qPCR
+ggplot(ferrisiDFqpcr, 
+       aes(x = BCI, y = delta_ct_cewe_MminusE)) +
+  geom_point(aes(fill = HI), pch = 21, size = 5) +
+  scale_fill_gradient(low = "blue", high = "red") +
+  geom_smooth(method = "lm") +
+  theme_classic()
+
+summary(lm(ferrisiDFqpcr$BCI ~ ferrisiDFqpcr$delta_ct_cewe_MminusE))
+
+hist(miceTable$BCI, breaks = 50) 
+
+## BCI vs qPCR
+ferrisiDFqpcr$delta_ct_cewe_MminusE
+
+ferrisiDFqpcr$intensity <- "high"
+ferrisiDFqpcr$intensity[ferrisiDFqpcr$delta_ct_cewe_MminusE < -2] <- "middle"
+ferrisiDFqpcr$intensity[ferrisiDFqpcr$delta_ct_cewe_MminusE < -4] <- "low"
+
+ggplot(ferrisiDFqpcr, 
+       aes(x = HI, y = BCI)) +
+  geom_point(aes(fill = delta_ct_cewe_MminusE), pch = 21, size = 5) +
+  facet_grid(.~intensity) +
+  geom_smooth() +
+  theme_classic()
 
 ```
 
-* `r N_OPGPositive` out of `r totalOPG` are positive for flotation and have an hybrid index.
-
-
-* `r N_qPCRPositive` out of `r totalqPCR` are positive for qPCR and have an hybrid index.
 
 Discussed with Stuart:
   

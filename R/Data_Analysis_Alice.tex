@@ -29,6 +29,46 @@
             pdfborder={0 0 0},
             breaklinks=true}
 \urlstyle{same}  % don't use monospace font for urls
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
 \usepackage{longtable,booktabs}
 \usepackage{graphicx,grffile}
 \makeatletter
@@ -74,15 +114,16 @@
 }
 
 \setlength{\droptitle}{-2em}
+
   \title{Report: Hybrid vigor in response to Eimeria in the HMHZ}
-  \pretitle{\vspace{\droptitle}\centering\huge}
+    \pretitle{\vspace{\droptitle}\centering\huge}
   \posttitle{\par}
-  \author{Alice}
-  \preauthor{\centering\large\emph}
+    \author{Alice}
+    \preauthor{\centering\large\emph}
   \postauthor{\par}
-  \predate{\centering\large\emph}
+      \predate{\centering\large\emph}
   \postdate{\par}
-  \date{27 September 2018}
+    \date{15 October 2018}
 
 \usepackage{float} 
 \let\origfigure\figure 
@@ -116,10 +157,10 @@ explained by x.
 
 \subsection{OPG that we keep}\label{opg-that-we-keep}
 
-Number of Mus musculus caught with OPG values: 486
+Number of Mus musculus caught with OPG values: 484
 
 \begin{verbatim}
-## `geom_smooth()` using method = 'loess'
+## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
 \end{verbatim}
 
 \includegraphics{Data_Analysis_Alice_files/figure-latex/oocystssmooth-1.pdf}
@@ -132,7 +173,7 @@ used for detection only, the other markers for confirmation)
 \includegraphics{Data_Analysis_Alice_files/figure-latex/pcr-1.pdf}
 
 PCR positive = one of the 3 markers 18S, COI or ORF470) gave a sequence.
-Number of Mus musculus caught with PCR performed: 962
+Number of Mus musculus caught with PCR performed: 1165
 
 \section{Eimeria detection qPCR}\label{eimeria-detection-qpcr}
 
@@ -140,41 +181,31 @@ We keep only the values for mice having been tested for BOTH ileum and
 cecum!
 
 \begin{verbatim}
-## `geom_smooth()` using method = 'loess'
+## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
 \end{verbatim}
 
 \includegraphics{Data_Analysis_Alice_files/figure-latex/qpcr-1.pdf}
 
 \begin{verbatim}
-## Warning: Removed 168 rows containing missing values (geom_point).
+## Warning: Removed 107 rows containing missing values (geom_point).
 \end{verbatim}
 
 \includegraphics{Data_Analysis_Alice_files/figure-latex/qpcr-2.pdf}
-
-Number of Mus musculus caught with qPCR performed: 371
 
 \section{General stats on sampling}\label{general-stats-on-sampling}
 
 \includegraphics{Data_Analysis_Alice_files/figure-latex/generalstats-1.pdf}
 
-We keep mice with OPG, PCR or qPCR status, in North Germany.
-
 \begin{itemize}
-\item
-  Number of Mus musculus caught with OPG counted: 485
-\item
-  Number of Mus musculus caught with qPCR performed: 371
-\item
-  Number of Mus musculus caught with either OPG counted or qPCR
-  performed: 513
-\item
-  Number of Mus musculus caught with OPG counted AND qPCR performed: 343
+\tightlist
 \item
   Some information regarding latitude and longitude are missing for the
   following mice:
 \end{itemize}
 
-SK\_3174
+AA\_0080c, AA\_0080i, AA\_0100c, SK\_2903, SK\_2904, SK\_2958, SK\_2959,
+SK\_2960, SK\_2961, SK\_3174, SK\_3333, SK\_3417, SK\_3461, SK\_3462,
+SK\_3469, SK\_3470, SK\_3471
 
 \begin{itemize}
 \tightlist
@@ -182,39 +213,39 @@ SK\_3174
   We still miss info (HI) on the following mice (ask Jarda):
 \end{itemize}
 
-AA\_0411, AA\_0412, AA\_0420, SK\_2668, SK\_2669, SK\_2671, SK\_2674,
-SK\_2675, SK\_2676, SK\_2677, SK\_2678, SK\_2681, SK\_2682, SK\_2684,
-SK\_2685, SK\_2687, SK\_2688, SK\_2690, SK\_2692, SK\_2693, SK\_2695,
-SK\_2696, SK\_2699, SK\_2700, SK\_2701, SK\_2702, SK\_2703, SK\_2704,
-SK\_2705, SK\_2710, SK\_2713, SK\_2715, SK\_2724, SK\_2727, SK\_2729,
-SK\_2733, SK\_2734, SK\_2736, SK\_2737, SK\_2738, SK\_2739, SK\_2745,
-SK\_2750, SK\_2751, SK\_2752, SK\_2754, SK\_2755, SK\_2756, SK\_2758,
-SK\_2759, SK\_2760, SK\_2761, SK\_2775, SK\_2778, SK\_2780, SK\_2782,
-SK\_2789, SK\_2792, SK\_2793, SK\_2794, SK\_2795, SK\_2798, SK\_2799,
-SK\_2800, SK\_2801, SK\_2802, SK\_2803, SK\_2804, SK\_2805, SK\_3174
+AA\_0080c, AA\_0080i, AA\_0100c, AA\_0411, AA\_0412, AA\_0420, AA\_0464,
+SK\_2668, SK\_2669, SK\_2671, SK\_2674, SK\_2675, SK\_2676, SK\_2677,
+SK\_2678, SK\_2681, SK\_2682, SK\_2684, SK\_2685, SK\_2687, SK\_2688,
+SK\_2690, SK\_2692, SK\_2693, SK\_2695, SK\_2696, SK\_2699, SK\_2700,
+SK\_2701, SK\_2702, SK\_2703, SK\_2704, SK\_2705, SK\_2710, SK\_2713,
+SK\_2715, SK\_2724, SK\_2727, SK\_2729, SK\_2733, SK\_2734, SK\_2736,
+SK\_2737, SK\_2738, SK\_2739, SK\_2745, SK\_2750, SK\_2751, SK\_2752,
+SK\_2754, SK\_2755, SK\_2756, SK\_2758, SK\_2759, SK\_2760, SK\_2761,
+SK\_2775, SK\_2778, SK\_2780, SK\_2782, SK\_2789, SK\_2792, SK\_2793,
+SK\_2794, SK\_2795, SK\_2798, SK\_2799, SK\_2800, SK\_2801, SK\_2802,
+SK\_2803, SK\_2804, SK\_2805, SK\_2851, SK\_2852, SK\_2853, SK\_2854,
+SK\_2855, SK\_2856, SK\_2857, SK\_2858, SK\_2859, SK\_2860, SK\_2861,
+SK\_2862, SK\_2863, SK\_2864, SK\_2865, SK\_2866, SK\_2868, SK\_2869,
+SK\_2870, SK\_2871, SK\_2873, SK\_2874, SK\_2875, SK\_2876, SK\_2877,
+SK\_2878, SK\_2879, SK\_2880, SK\_2881, SK\_2884, SK\_2885, SK\_2886,
+SK\_2887, SK\_2888, SK\_2889, SK\_2958, SK\_2959, SK\_2960, SK\_2961,
+SK\_3174, SK\_3333, SK\_3417, SK\_3461, SK\_3462, SK\_3469, SK\_3470,
+SK\_3471
 
 \section{General informations on
 HMHZ}\label{general-informations-on-hmhz}
 
 \begin{itemize}
 \item
-  655 mice were captured over three years, from 157 farms
+  1339 mice were captured over three years, from 285 farms
 \item
-  From these mice:
-\item
-  485 mice had Eimeria detected by feces flotation,
-\item
-  652 mice had Eimeria detected by colon content PCR (cf paper Victor),
-\item
-  371 mice had Eimeria detected by qPCR on intestinal tissues
-\item
-  On average, 4.04 mice were caught per farm (95\% CI 0.34)
+  On average, NA mice were caught per farm (95\% CI NA)
 \item
   \textbf{Hybrid indexes} were calculated as ratio of M.m.d/M.m.m
-  alleles (between 4 and 14, on average 13 loci)
+  alleles (between 1 and 14, on average 12 loci)
 \end{itemize}
 
-\begin{figure}[htbp]
+\begin{figure}
 \centering
 \includegraphics{Data_Analysis_Alice_files/figure-latex/plotDensHI-1.pdf}
 \caption{\label{fig:plot1}Number of animals caught along the hybrid
@@ -226,78 +257,79 @@ methods}\label{prevalence-of-our-3-different-methods}
 
 \subsection{Prevalence tables}\label{prevalence-tables}
 
-\begin{longtable}[]{@{}lrrrr@{}}
+\begin{longtable}[]{@{}lrrrrrr@{}}
 \caption{Prevalence of Eimeria per year, based on oocyst
 flotation}\tabularnewline
 \toprule
-& 2014 & 2015 & 2016 & 2017\tabularnewline
+& 2010 & 2011 & 2014 & 2015 & 2016 & 2017\tabularnewline
 \midrule
 \endfirsthead
 \toprule
-& 2014 & 2015 & 2016 & 2017\tabularnewline
+& 2010 & 2011 & 2014 & 2015 & 2016 & 2017\tabularnewline
 \midrule
 \endhead
-FALSE & 0 & 92.0 & 126.00 & 167.00\tabularnewline
-TRUE & 0 & 10.0 & 25.00 & 65.00\tabularnewline
-total & 0 & 102.0 & 151.00 & 232.00\tabularnewline
-prevalence(\%) & NaN & 9.8 & 16.56 & 28.02\tabularnewline
+FALSE & 0 & 0 & 0 & 92.0 & 126.00 & 165.00\tabularnewline
+TRUE & 0 & 0 & 0 & 10.0 & 25.00 & 65.00\tabularnewline
+total & 0 & 0 & 0 & 102.0 & 151.00 & 230.00\tabularnewline
+prevalence(\%) & NaN & NaN & NaN & 9.8 & 16.56 & 28.26\tabularnewline
 \bottomrule
 \end{longtable}
 
-\begin{longtable}[]{@{}lrrrr@{}}
+\begin{longtable}[]{@{}lrrrrrr@{}}
 \caption{Prevalence of Eimeria per year, based on PCR detection. A mouse
-was considered infected by Eimeria ifone of the 3 markers (COI, 18S or
+was considered infected by Eimeria if one of the 3 markers (COI, 18S or
 ORF470) gave a sequence}\tabularnewline
 \toprule
-& 2014 & 2015 & 2016 & 2017\tabularnewline
+& 2010 & 2011 & 2014 & 2015 & 2016 & 2017\tabularnewline
 \midrule
 \endfirsthead
 \toprule
-& 2014 & 2015 & 2016 & 2017\tabularnewline
+& 2010 & 2011 & 2014 & 2015 & 2016 & 2017\tabularnewline
 \midrule
 \endhead
-negative & 53.00 & 110.00 & 146.00 & 226.00\tabularnewline
-positive & 23.00 & 12.00 & 20.00 & 62.00\tabularnewline
-total & 76.00 & 122.00 & 166.00 & 288.00\tabularnewline
-prevalence(\%) & 30.26 & 9.84 & 12.05 & 21.53\tabularnewline
+FALSE & 0 & 0 & 241.00 & 417.00 & 149.00 & 207.00\tabularnewline
+TRUE & 0 & 0 & 40.00 & 27.00 & 21.00 & 62.00\tabularnewline
+total & 0 & 0 & 281.00 & 444.00 & 170.00 & 269.00\tabularnewline
+prevalence(\%) & NaN & NaN & 14.23 & 6.08 & 12.35 & 23.05\tabularnewline
 \bottomrule
 \end{longtable}
 
-\begin{longtable}[]{@{}lrrrr@{}}
-\caption{Prevalence of Eimeria per year, based on qPCR}\tabularnewline
+\begin{longtable}[]{@{}lrrrrrr@{}}
+\caption{Prevalence of Eimeria per year, based on qPCR in
+cecum}\tabularnewline
 \toprule
-& 2014 & 2015 & 2016 & 2017\tabularnewline
+& 2010 & 2011 & 2014 & 2015 & 2016 & 2017\tabularnewline
 \midrule
 \endfirsthead
 \toprule
-& 2014 & 2015 & 2016 & 2017\tabularnewline
+& 2010 & 2011 & 2014 & 2015 & 2016 & 2017\tabularnewline
 \midrule
 \endhead
-FALSE & 0 & 0 & 134.00 & 167.00\tabularnewline
-TRUE & 0 & 0 & 30.00 & 40.00\tabularnewline
-total & 0 & 0 & 164.00 & 207.00\tabularnewline
-prevalence(\%) & NaN & NaN & 18.29 & 19.32\tabularnewline
+FALSE & 0 & 0 & 0 & 0 & 136.00 & 187\tabularnewline
+TRUE & 0 & 0 & 0 & 0 & 29.00 & 33\tabularnewline
+total & 0 & 0 & 0 & 0 & 165.00 & 220\tabularnewline
+prevalence(\%) & NaN & NaN & NaN & NaN & 17.58 & 15\tabularnewline
 \bottomrule
 \end{longtable}
 
-\begin{longtable}[]{@{}lrrrr@{}}
+\begin{longtable}[]{@{}lrrrrrr@{}}
 \caption{Prevalence of Eimeria per year, based on all detections
 methods. A mouse was considered infected by Eimeria if one of the 3
 markers (COI, 18S or ORF470) gave a sequence, OR if it had a positive
-count of oocysts in its feces, OR if it was qPCR
-positive}\tabularnewline
+count of oocysts in its feces, OR if it was qPCR positive in cecum
+tissue}\tabularnewline
 \toprule
-& 2014 & 2015 & 2016 & 2017\tabularnewline
+& 2010 & 2011 & 2014 & 2015 & 2016 & 2017\tabularnewline
 \midrule
 \endfirsthead
 \toprule
-& 2014 & 2015 & 2016 & 2017\tabularnewline
+& 2010 & 2011 & 2014 & 2015 & 2016 & 2017\tabularnewline
 \midrule
 \endhead
-negative & 53.00 & 105.00 & 122.00 & 195.00\tabularnewline
-positive & 23.00 & 17.00 & 45.00 & 95.00\tabularnewline
-total & 76.00 & 122.00 & 167.00 & 290.00\tabularnewline
-prevalence(\%) & 30.26 & 13.93 & 26.95 & 32.76\tabularnewline
+negative & 49 & 55 & 243.00 & 428.00 & 123.00 & 227.00\tabularnewline
+positive & 0 & 0 & 40.00 & 32.00 & 47.00 & 93.00\tabularnewline
+total & 49 & 55 & 283.00 & 460.00 & 170.00 & 320.00\tabularnewline
+prevalence(\%) & 0 & 0 & 14.13 & 6.96 & 27.65 & 29.06\tabularnewline
 \bottomrule
 \end{longtable}
 
@@ -306,7 +338,7 @@ prevalence(\%) & 30.26 & 13.93 & 26.95 & 32.76\tabularnewline
 \includegraphics{Data_Analysis_Alice_files/figure-latex/opgpcr-1.pdf}
 
 \begin{verbatim}
-## (polygon[GRID.polygon.805], polygon[GRID.polygon.806], polygon[GRID.polygon.807], polygon[GRID.polygon.808], text[GRID.text.809], text[GRID.text.810], text[GRID.text.811], text[GRID.text.812], text[GRID.text.813])
+## (polygon[GRID.polygon.829], polygon[GRID.polygon.830], polygon[GRID.polygon.831], polygon[GRID.polygon.832], text[GRID.text.833], text[GRID.text.834], text[GRID.text.835], text[GRID.text.836], text[GRID.text.837])
 \end{verbatim}
 
 \subsection{OPG-qPCR}\label{opg-qpcr}
@@ -314,460 +346,213 @@ prevalence(\%) & 30.26 & 13.93 & 26.95 & 32.76\tabularnewline
 \includegraphics{Data_Analysis_Alice_files/figure-latex/opgpcrVenn-1.pdf}
 
 \begin{verbatim}
-## (polygon[GRID.polygon.814], polygon[GRID.polygon.815], polygon[GRID.polygon.816], polygon[GRID.polygon.817], text[GRID.text.818], text[GRID.text.819], text[GRID.text.820], text[GRID.text.821], text[GRID.text.822])
-\end{verbatim}
-
-\includegraphics{Data_Analysis_Alice_files/figure-latex/opgqpcr-1.pdf}
-
-\begin{verbatim}
-## 
-## Call:
-## lm(formula = data1$OPG ~ data1$delta_ct_MminusE)
-## 
-## Residuals:
-##    Min     1Q Median     3Q    Max 
-## -49104  -7092  -7092  -7092 594318 
-## 
-## Coefficients:
-##                        Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)               28056       7882   3.559 0.000425 ***
-## data1$delta_ct_MminusE     4193       1662   2.522 0.012119 *  
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Residual standard error: 49140 on 341 degrees of freedom
-## Multiple R-squared:  0.01831,    Adjusted R-squared:  0.01543 
-## F-statistic: 6.361 on 1 and 341 DF,  p-value: 0.01212
+## (polygon[GRID.polygon.838], polygon[GRID.polygon.839], polygon[GRID.polygon.840], polygon[GRID.polygon.841], text[GRID.text.842], text[GRID.text.843], text[GRID.text.844], text[GRID.text.845], text[GRID.text.846])
 \end{verbatim}
 
 \subsection{OPG-qPCR-PCR}\label{opg-qpcr-pcr}
 
-\begin{figure}[htbp]
-\centering
-\includegraphics{Data_Analysis_Alice_files/figure-latex/venn2-1.pdf}
-\caption{\label{fig:venn1}Comparison of detection: PCR vs flotation vs
-qPCŔ}
-\end{figure}
-
-\begin{verbatim}
-## (polygon[GRID.polygon.900], polygon[GRID.polygon.901], polygon[GRID.polygon.902], polygon[GRID.polygon.903], polygon[GRID.polygon.904], polygon[GRID.polygon.905], text[GRID.text.906], text[GRID.text.907], text[GRID.text.908], text[GRID.text.909], text[GRID.text.910], text[GRID.text.911], text[GRID.text.912], text[GRID.text.913], text[GRID.text.914], text[GRID.text.915])
-\end{verbatim}
-
-\section{BCI}\label{bci}
-
-\subsection{BCI vs OPG}\label{bci-vs-opg}
-
-\includegraphics{Data_Analysis_Alice_files/figure-latex/BCI-1.pdf}
-
-\begin{verbatim}
-## 
-## Call:
-## lm(formula = myData$BCI ~ myData$OPG + myData$HI)
-## 
-## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -0.20165 -0.02542  0.01057  0.03494  0.13137 
-## 
-## Coefficients:
-##               Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)  6.304e-01  4.424e-03 142.490  < 2e-16 ***
-## myData$OPG  -2.061e-07  5.449e-08  -3.782 0.000176 ***
-## myData$HI   -1.760e-02  6.779e-03  -2.596 0.009710 ** 
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Residual standard error: 0.05359 on 476 degrees of freedom
-##   (176 observations deleted due to missingness)
-## Multiple R-squared:  0.04528,    Adjusted R-squared:  0.04127 
-## F-statistic: 11.29 on 2 and 476 DF,  p-value: 1.625e-05
-\end{verbatim}
-
 \section{Testing hybrid vigor along
 HMHZ}\label{testing-hybrid-vigor-along-hmhz}
 
-\section{PART II for comparison: qPCR detection threshold =
--3.75}\label{part-ii-for-comparison-qpcr-detection-threshold--3.75}
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(miceTable, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ eimeriaSpecies, }\DataTypeTok{y =}\NormalTok{ OPG }\OperatorTok{+}\DecValTok{1}\NormalTok{)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_violin}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_jitter}\NormalTok{(}\DataTypeTok{width =}\NormalTok{ .}\DecValTok{1}\NormalTok{, }\DataTypeTok{pch =} \DecValTok{21}\NormalTok{, }\DataTypeTok{size =} \DecValTok{2}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale_y_log10}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme_classic}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{axis.text.x =} \KeywordTok{element_text}\NormalTok{(}\DataTypeTok{angle =} \DecValTok{45}\NormalTok{, }\DataTypeTok{hjust =} \DecValTok{1}\NormalTok{)) }
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
-## Warning in makeMiceTable("../../Data_important/"): NAs introduced by
-## coercion
-
-## Warning in makeMiceTable("../../Data_important/"): NAs introduced by
-## coercion
-\end{verbatim}
-
-\section{Eimeria detection oocysts
-flotation}\label{eimeria-detection-oocysts-flotation-1}
-
-\subsection{Improving Eimeria oocysts
-detection}\label{improving-eimeria-oocysts-detection-1}
-
-\includegraphics{Data_Analysis_Alice_files/figure-latex/oocystsDetec_3.75-1.pdf}
-
-22 new samples were detected while diluting by 0.1mL PBS instead of 1mL
-before counting in Neubauer chamber.
-
-Adjusted R-squared = 0.81 represents the amount of variation in y
-explained by x.
-
-\subsection{OPG that we keep}\label{opg-that-we-keep-1}
-
-Number of Mus musculus caught with OPG values: 486
-
-\begin{verbatim}
-## `geom_smooth()` using method = 'loess'
-\end{verbatim}
-
-\includegraphics{Data_Analysis_Alice_files/figure-latex/oocystssmooth_3.75-1.pdf}
-
-\section{Eimeria detection PCR}\label{eimeria-detection-pcr-1}
-
-PCR positive = one of the 3 other markers than AP5 sequenced (Ap5 was
-used for detection only, the other markers for confirmation)
-
-\includegraphics{Data_Analysis_Alice_files/figure-latex/pcr_3.75-1.pdf}
-
-PCR positive = one of the 3 markers 18S, COI or ORF470) gave a sequence.
-Number of Mus musculus caught with PCR performed: 962
-
-\section{Eimeria detection qPCR}\label{eimeria-detection-qpcr-1}
-
-We keep only the values for mice having been tested for BOTH ileum and
-cecum!
-
-\begin{verbatim}
-## `geom_smooth()` using method = 'loess'
-\end{verbatim}
-
-\includegraphics{Data_Analysis_Alice_files/figure-latex/qpcr_3.75-1.pdf}
-
-\begin{verbatim}
-## Warning: Removed 168 rows containing missing values (geom_point).
-\end{verbatim}
-
-\includegraphics{Data_Analysis_Alice_files/figure-latex/qpcr_3.75-2.pdf}
-
-Number of Mus musculus caught with qPCR performed: 371
-
-\section{General stats on sampling}\label{general-stats-on-sampling-1}
-
-\begin{verbatim}
-## Warning in file.remove(index[[url]]): cannot remove file
-## '470a3353e013428057316f09bebc2634.rds', reason 'No such file or directory'
+## Warning: Removed 855 rows containing non-finite values (stat_ydensity).
 \end{verbatim}
 
 \begin{verbatim}
-## Warning in file.remove(index[[url]]): cannot remove file
-## '38fbfc523793116165689a0313c890a2.rds', reason 'No such file or directory'
+## Warning: Removed 855 rows containing missing values (geom_point).
+\end{verbatim}
+
+\includegraphics{Data_Analysis_Alice_files/figure-latex/unnamed-chunk-1-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ferrisiDFflot <-}\StringTok{ }\NormalTok{miceTable[}\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(miceTable}\OperatorTok{$}\NormalTok{OPG) }\OperatorTok{&}
+\StringTok{                         }\NormalTok{miceTable}\OperatorTok{$}\NormalTok{OPG }\OperatorTok{>}\StringTok{ }\DecValTok{0} \OperatorTok{&}
+\StringTok{                         }\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(miceTable}\OperatorTok{$}\NormalTok{eimeriaSpecies) }\OperatorTok{&}
+\StringTok{                         }\NormalTok{miceTable}\OperatorTok{$}\NormalTok{eimeriaSpecies }\OperatorTok{==}\StringTok{ "E_ferrisi"}\NormalTok{,]}
+
+\KeywordTok{ggplot}\NormalTok{(ferrisiDFflot, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ HI, }\DataTypeTok{y =}\NormalTok{ OPG)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale_y_log10}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_smooth}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
+\end{verbatim}
+
+\includegraphics{Data_Analysis_Alice_files/figure-latex/unnamed-chunk-1-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## qPCR by OPG}
+\NormalTok{ferrisiDFflot_n_qpcr <-}\StringTok{ }\NormalTok{miceTable[}\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(miceTable}\OperatorTok{$}\NormalTok{OPG) }\OperatorTok{&}
+\StringTok{                                    }\NormalTok{miceTable}\OperatorTok{$}\NormalTok{OPG }\OperatorTok{>}\StringTok{ }\DecValTok{0} \OperatorTok{&}
+\StringTok{                                    }\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(miceTable}\OperatorTok{$}\NormalTok{delta_ct_cewe_MminusE) }\OperatorTok{&}
+\StringTok{                                    }\NormalTok{miceTable}\OperatorTok{$}\NormalTok{delta_ct_cewe_MminusE }\OperatorTok{>}\StringTok{ }\OperatorTok{-}\DecValTok{5} \OperatorTok{&}
+\StringTok{                                    }\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(miceTable}\OperatorTok{$}\NormalTok{eimeriaSpecies) }\OperatorTok{&}
+\StringTok{                                    }\NormalTok{miceTable}\OperatorTok{$}\NormalTok{eimeriaSpecies }\OperatorTok{==}\StringTok{ "E_ferrisi"}\NormalTok{,]}
+  
+\KeywordTok{ggplot}\NormalTok{(ferrisiDFflot_n_qpcr, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ delta_ct_cewe_MminusE, }\DataTypeTok{y =}\NormalTok{ OPG)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale_y_log10}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_smooth}\NormalTok{(}\DataTypeTok{method =} \StringTok{"lm"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme_classic}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Data_Analysis_Alice_files/figure-latex/unnamed-chunk-1-3.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## BCI vs OPG}
+\KeywordTok{ggplot}\NormalTok{(ferrisiDFflot, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ BCI, }\DataTypeTok{y =}\NormalTok{ OPG)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale_y_log10}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_smooth}\NormalTok{(}\DataTypeTok{method =} \StringTok{"lm"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme_classic}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: Removed 1 rows containing non-finite values (stat_smooth).
 \end{verbatim}
 
 \begin{verbatim}
-## Warning in file.remove(index[[url]]): cannot remove file
-## '77d569e91de72d296943f667074aa269.rds', reason 'No such file or directory'
+## Warning: Removed 1 rows containing missing values (geom_point).
 \end{verbatim}
 
-\begin{verbatim}
-## Warning in file.remove(index[[url]]): cannot remove file
-## '022b99a7810e5f121831862b7ae5585c.rds', reason 'No such file or directory'
-\end{verbatim}
+\includegraphics{Data_Analysis_Alice_files/figure-latex/unnamed-chunk-1-4.pdf}
 
-\begin{verbatim}
-## Warning in file.remove(index[[url]]): cannot remove file
-## '304d0f0a73e271eaf822f46811766f2c.rds', reason 'No such file or directory'
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in file.remove(index[[url]]): cannot remove file
-## '0334f529ea54c1d0ccf1cd725091cad0.rds', reason 'No such file or directory'
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in file.remove(index[[url]]): cannot remove file
-## '64129c1d3ac5deae5e8ed253206b774d.rds', reason 'No such file or directory'
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in file.remove(index[[url]]): cannot remove file
-## '72f10416ae8d9fb0622179a5c939c1ff.rds', reason 'No such file or directory'
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in file.remove(index[[url]]): cannot remove file
-## '226174bf385d58f14a113ec142144b62.rds', reason 'No such file or directory'
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in file.remove(index[[url]]): cannot remove file
-## '3b753e162cfb58b4a26adc1d5b6851ec.rds', reason 'No such file or directory'
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in file.remove(index[[url]]): cannot remove file
-## '22009ff43e754b87b1de5c26c172be48.rds', reason 'No such file or directory'
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in file.remove(index[[url]]): cannot remove file
-## 'b7c4544b894e579df026e737678920d9.rds', reason 'No such file or directory'
-\end{verbatim}
-
-\includegraphics{Data_Analysis_Alice_files/figure-latex/generalstats_3.75-1.pdf}
-
-We keep mice with OPG, PCR or qPCR status, in North Germany.
-
-\begin{itemize}
-\item
-  Number of Mus musculus caught with OPG counted: 485
-\item
-  Number of Mus musculus caught with qPCR performed: 371
-\item
-  Number of Mus musculus caught with either OPG counted or qPCR
-  performed: 513
-\item
-  Number of Mus musculus caught with OPG counted AND qPCR performed: 343
-\item
-  Some information regarding latitude and longitude are missing for the
-  following mice:
-\end{itemize}
-
-SK\_3174
-
-\begin{itemize}
-\tightlist
-\item
-  We still miss info (HI) on the following mice (ask Jarda):
-\end{itemize}
-
-AA\_0411, AA\_0412, AA\_0420, SK\_2668, SK\_2669, SK\_2671, SK\_2674,
-SK\_2675, SK\_2676, SK\_2677, SK\_2678, SK\_2681, SK\_2682, SK\_2684,
-SK\_2685, SK\_2687, SK\_2688, SK\_2690, SK\_2692, SK\_2693, SK\_2695,
-SK\_2696, SK\_2699, SK\_2700, SK\_2701, SK\_2702, SK\_2703, SK\_2704,
-SK\_2705, SK\_2710, SK\_2713, SK\_2715, SK\_2724, SK\_2727, SK\_2729,
-SK\_2733, SK\_2734, SK\_2736, SK\_2737, SK\_2738, SK\_2739, SK\_2745,
-SK\_2750, SK\_2751, SK\_2752, SK\_2754, SK\_2755, SK\_2756, SK\_2758,
-SK\_2759, SK\_2760, SK\_2761, SK\_2775, SK\_2778, SK\_2780, SK\_2782,
-SK\_2789, SK\_2792, SK\_2793, SK\_2794, SK\_2795, SK\_2798, SK\_2799,
-SK\_2800, SK\_2801, SK\_2802, SK\_2803, SK\_2804, SK\_2805, SK\_3174
-
-\section{General informations on
-HMHZ}\label{general-informations-on-hmhz-1}
-
-\begin{itemize}
-\item
-  655 mice were captured over three years, from 157 farms
-\item
-  From these mice:
-\item
-  485 mice had Eimeria detected by feces flotation,
-\item
-  652 mice had Eimeria detected by colon content PCR (cf paper Victor),
-\item
-  371 mice had Eimeria detected by qPCR on intestinal tissues
-\item
-  On average, 4.04 mice were caught per farm (95\% CI 0.34)
-\item
-  \textbf{Hybrid indexes} were calculated as ratio of M.m.d/M.m.m
-  alleles (between 4 and 14, on average 13 loci)
-\end{itemize}
-
-\begin{figure}[htbp]
-\centering
-\includegraphics{Data_Analysis_Alice_files/figure-latex/plotDensHI_3.75-1.pdf}
-\caption{\label{fig:plot1}Number of animals caught along the hybrid
-index}
-\end{figure}
-
-\section{Prevalence of our 3 different
-methods}\label{prevalence-of-our-3-different-methods-1}
-
-\subsection{Prevalence tables}\label{prevalence-tables-1}
-
-\begin{longtable}[]{@{}lrrrr@{}}
-\caption{Prevalence of Eimeria per year, based on oocyst
-flotation}\tabularnewline
-\toprule
-& 2014 & 2015 & 2016 & 2017\tabularnewline
-\midrule
-\endfirsthead
-\toprule
-& 2014 & 2015 & 2016 & 2017\tabularnewline
-\midrule
-\endhead
-FALSE & 0 & 92.0 & 126.00 & 167.00\tabularnewline
-TRUE & 0 & 10.0 & 25.00 & 65.00\tabularnewline
-total & 0 & 102.0 & 151.00 & 232.00\tabularnewline
-prevalence(\%) & NaN & 9.8 & 16.56 & 28.02\tabularnewline
-\bottomrule
-\end{longtable}
-
-\begin{longtable}[]{@{}lrrrr@{}}
-\caption{Prevalence of Eimeria per year, based on PCR detection. A mouse
-was considered infected by Eimeria ifone of the 3 markers (COI, 18S or
-ORF470) gave a sequence}\tabularnewline
-\toprule
-& 2014 & 2015 & 2016 & 2017\tabularnewline
-\midrule
-\endfirsthead
-\toprule
-& 2014 & 2015 & 2016 & 2017\tabularnewline
-\midrule
-\endhead
-negative & 53.00 & 110.00 & 146.00 & 226.00\tabularnewline
-positive & 23.00 & 12.00 & 20.00 & 62.00\tabularnewline
-total & 76.00 & 122.00 & 166.00 & 288.00\tabularnewline
-prevalence(\%) & 30.26 & 9.84 & 12.05 & 21.53\tabularnewline
-\bottomrule
-\end{longtable}
-
-\begin{longtable}[]{@{}lrrrr@{}}
-\caption{Prevalence of Eimeria per year, based on qPCR}\tabularnewline
-\toprule
-& 2014 & 2015 & 2016 & 2017\tabularnewline
-\midrule
-\endfirsthead
-\toprule
-& 2014 & 2015 & 2016 & 2017\tabularnewline
-\midrule
-\endhead
-FALSE & 0 & 0 & 138.00 & 177.00\tabularnewline
-TRUE & 0 & 0 & 26.00 & 30.00\tabularnewline
-total & 0 & 0 & 164.00 & 207.00\tabularnewline
-prevalence(\%) & NaN & NaN & 15.85 & 14.49\tabularnewline
-\bottomrule
-\end{longtable}
-
-\begin{longtable}[]{@{}lrrrr@{}}
-\caption{Prevalence of Eimeria per year, based on all detections
-methods. A mouse was considered infected by Eimeria if one of the 3
-markers (COI, 18S or ORF470) gave a sequence, OR if it had a positive
-count of oocysts in its feces, OR if it was qPCR
-positive}\tabularnewline
-\toprule
-& 2014 & 2015 & 2016 & 2017\tabularnewline
-\midrule
-\endfirsthead
-\toprule
-& 2014 & 2015 & 2016 & 2017\tabularnewline
-\midrule
-\endhead
-negative & 53.00 & 105.00 & 124.00 & 198.00\tabularnewline
-positive & 23.00 & 17.00 & 43.00 & 92.00\tabularnewline
-total & 76.00 & 122.00 & 167.00 & 290.00\tabularnewline
-prevalence(\%) & 30.26 & 13.93 & 25.75 & 31.72\tabularnewline
-\bottomrule
-\end{longtable}
-
-\subsection{OPG-PCR}\label{opg-pcr-1}
-
-\includegraphics{Data_Analysis_Alice_files/figure-latex/opgpcr_3.75-1.pdf}
-\includegraphics{Data_Analysis_Alice_files/figure-latex/opgpcr_3.75-2.pdf}
-
-\subsection{OPG-qPCR}\label{opg-qpcr-1}
-
-\includegraphics{Data_Analysis_Alice_files/figure-latex/opgpcrVenn_3.75-1.pdf}
-
-\begin{verbatim}
-## (polygon[GRID.polygon.1869], polygon[GRID.polygon.1870], polygon[GRID.polygon.1871], polygon[GRID.polygon.1872], text[GRID.text.1873], text[GRID.text.1874], text[GRID.text.1875], text[GRID.text.1876], text[GRID.text.1877])
-\end{verbatim}
-
-\includegraphics{Data_Analysis_Alice_files/figure-latex/opgqpcr_3.75-1.pdf}
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(}\KeywordTok{lm}\NormalTok{(ferrisiDFflot}\OperatorTok{$}\NormalTok{BCI }\OperatorTok{~}\StringTok{ }\NormalTok{ferrisiDFflot}\OperatorTok{$}\NormalTok{OPG))}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
 ## 
 ## Call:
-## lm(formula = data1$OPG ~ data1$delta_ct_MminusE)
+## lm(formula = ferrisiDFflot$BCI ~ ferrisiDFflot$OPG)
 ## 
 ## Residuals:
-##    Min     1Q Median     3Q    Max 
-## -32526  -8357  -8357  -8357 600298 
+##       Min        1Q    Median        3Q       Max 
+## -0.186174 -0.013713  0.008491  0.028530  0.067600 
 ## 
 ## Coefficients:
-##                        Estimate Std. Error t value Pr(>|t|)  
-## (Intercept)               18692       7645   2.445    0.015 *
-## data1$delta_ct_MminusE     2756       2110   1.306    0.192  
+##                     Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)        6.183e-01  8.720e-03  70.908  < 2e-16 ***
+## ferrisiDFflot$OPG -2.764e-09  9.995e-10  -2.765  0.00891 ** 
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 49480 on 341 degrees of freedom
-## Multiple R-squared:  0.004979,   Adjusted R-squared:  0.002061 
-## F-statistic: 1.706 on 1 and 341 DF,  p-value: 0.1924
+## Residual standard error: 0.04712 on 36 degrees of freedom
+##   (1 observation deleted due to missingness)
+## Multiple R-squared:  0.1752, Adjusted R-squared:  0.1523 
+## F-statistic: 7.648 on 1 and 36 DF,  p-value: 0.00891
 \end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## BCI vs qPCR}
+\KeywordTok{ggplot}\NormalTok{(ferrisiDFqpcr, }
+       \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ BCI, }\DataTypeTok{y =}\NormalTok{ delta_ct_cewe_MminusE)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{fill =}\NormalTok{ HI), }\DataTypeTok{pch =} \DecValTok{21}\NormalTok{, }\DataTypeTok{size =} \DecValTok{5}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale_fill_gradient}\NormalTok{(}\DataTypeTok{low =} \StringTok{"blue"}\NormalTok{, }\DataTypeTok{high =} \StringTok{"red"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_smooth}\NormalTok{(}\DataTypeTok{method =} \StringTok{"lm"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme_classic}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Data_Analysis_Alice_files/figure-latex/unnamed-chunk-1-5.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(}\KeywordTok{lm}\NormalTok{(ferrisiDFqpcr}\OperatorTok{$}\NormalTok{BCI }\OperatorTok{~}\StringTok{ }\NormalTok{ferrisiDFqpcr}\OperatorTok{$}\NormalTok{delta_ct_cewe_MminusE))}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
 ## 
 ## Call:
-## lm(formula = data2$OPG ~ data2$delta_ct_MminusE)
-## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -114277  -62907  -46511   15482  522445 
-## 
-## Coefficients:
-##                        Estimate Std. Error t value Pr(>|t|)  
-## (Intercept)               43894      26591   1.651   0.1092  
-## data2$delta_ct_MminusE   -19601      10955  -1.789   0.0837 .
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Residual standard error: 132800 on 30 degrees of freedom
-## Multiple R-squared:  0.09642,    Adjusted R-squared:  0.0663 
-## F-statistic: 3.201 on 1 and 30 DF,  p-value: 0.08368
-\end{verbatim}
-
-\subsection{OPG-qPCR-PCR}\label{opg-qpcr-pcr-1}
-
-\begin{figure}[htbp]
-\centering
-\includegraphics{Data_Analysis_Alice_files/figure-latex/venn2_3.75-1.pdf}
-\caption{\label{fig:venn1}Comparison of detection: PCR vs flotation vs
-qPCR}
-\end{figure}
-
-\begin{verbatim}
-## (polygon[GRID.polygon.1955], polygon[GRID.polygon.1956], polygon[GRID.polygon.1957], polygon[GRID.polygon.1958], polygon[GRID.polygon.1959], polygon[GRID.polygon.1960], text[GRID.text.1961], text[GRID.text.1962], text[GRID.text.1963], text[GRID.text.1964], text[GRID.text.1965], text[GRID.text.1966], text[GRID.text.1967], text[GRID.text.1968], text[GRID.text.1969], text[GRID.text.1970])
-\end{verbatim}
-
-\section{BCI}\label{bci-1}
-
-\subsection{BCI vs OPG}\label{bci-vs-opg-1}
-
-\includegraphics{Data_Analysis_Alice_files/figure-latex/BCI_3.75-1.pdf}
-
-\begin{verbatim}
-## 
-## Call:
-## lm(formula = myData$BCI ~ myData$OPG + myData$HI)
+## lm(formula = ferrisiDFqpcr$BCI ~ ferrisiDFqpcr$delta_ct_cewe_MminusE)
 ## 
 ## Residuals:
 ##      Min       1Q   Median       3Q      Max 
-## -0.20165 -0.02542  0.01057  0.03494  0.13137 
+## -0.14333 -0.04150  0.01148  0.04930  0.08291 
 ## 
 ## Coefficients:
-##               Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)  6.304e-01  4.424e-03 142.490  < 2e-16 ***
-## myData$OPG  -2.061e-07  5.449e-08  -3.782 0.000176 ***
-## myData$HI   -1.760e-02  6.779e-03  -2.596 0.009710 ** 
+##                                      Estimate Std. Error t value Pr(>|t|)
+## (Intercept)                          0.591278   0.015494  38.162   <2e-16
+## ferrisiDFqpcr$delta_ct_cewe_MminusE -0.008099   0.005076  -1.596    0.119
+##                                        
+## (Intercept)                         ***
+## ferrisiDFqpcr$delta_ct_cewe_MminusE    
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 0.05359 on 476 degrees of freedom
-##   (176 observations deleted due to missingness)
-## Multiple R-squared:  0.04528,    Adjusted R-squared:  0.04127 
-## F-statistic: 11.29 on 2 and 476 DF,  p-value: 1.625e-05
+## Residual standard error: 0.05654 on 36 degrees of freedom
+## Multiple R-squared:  0.06604,    Adjusted R-squared:  0.0401 
+## F-statistic: 2.546 on 1 and 36 DF,  p-value: 0.1193
 \end{verbatim}
 
-\section{Testing hybrid vigor along
-HMHZ}\label{testing-hybrid-vigor-along-hmhz-1}
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{hist}\NormalTok{(miceTable}\OperatorTok{$}\NormalTok{BCI, }\DataTypeTok{breaks =} \DecValTok{50}\NormalTok{) }
+\end{Highlighting}
+\end{Shaded}
 
-\section{Bonus part: genotyping of mice
-case/control}\label{bonus-part-genotyping-of-mice-casecontrol}
+\includegraphics{Data_Analysis_Alice_files/figure-latex/unnamed-chunk-1-6.pdf}
 
-\begin{itemize}
-\item
-  100 out of 483 are positive for flotation and have an hybrid index.
-\item
-  56 out of 369 are positive for qPCR and have an hybrid index.
-\end{itemize}
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## BCI vs qPCR}
+\NormalTok{ferrisiDFqpcr}\OperatorTok{$}\NormalTok{delta_ct_cewe_MminusE}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] -0.2700000 -2.1300000 -2.2166667 -2.5800000 -3.5933333 -1.1500000
+##  [7] -3.9400000  0.9433333  1.9600000 -1.4500000 -2.7700000 -3.1266667
+## [13] -1.9033333 -2.2533333 -4.6866667 -3.3500000 -4.8333333  1.1300000
+## [19] -2.8966667 -3.0766667 -4.8200000 -2.3750000 -1.6100000 -4.5500000
+## [25] -3.4350000 -4.7300000 -2.0700000 -2.8200000 -3.0600000 -4.9450000
+## [31] -2.8500000 -1.1300000 -4.9850000 -3.5300000 -3.2200000  1.3300000
+## [37]  0.3500000 -2.8400000
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ferrisiDFqpcr}\OperatorTok{$}\NormalTok{intensity <-}\StringTok{ "high"}
+\NormalTok{ferrisiDFqpcr}\OperatorTok{$}\NormalTok{intensity[ferrisiDFqpcr}\OperatorTok{$}\NormalTok{delta_ct_cewe_MminusE }\OperatorTok{<}\StringTok{ }\OperatorTok{-}\DecValTok{2}\NormalTok{] <-}\StringTok{ "middle"}
+\NormalTok{ferrisiDFqpcr}\OperatorTok{$}\NormalTok{intensity[ferrisiDFqpcr}\OperatorTok{$}\NormalTok{delta_ct_cewe_MminusE }\OperatorTok{<}\StringTok{ }\OperatorTok{-}\DecValTok{4}\NormalTok{] <-}\StringTok{ "low"}
+
+\KeywordTok{ggplot}\NormalTok{(ferrisiDFqpcr, }
+       \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ HI, }\DataTypeTok{y =}\NormalTok{ BCI)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{fill =}\NormalTok{ delta_ct_cewe_MminusE), }\DataTypeTok{pch =} \DecValTok{21}\NormalTok{, }\DataTypeTok{size =} \DecValTok{5}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{facet_grid}\NormalTok{(.}\OperatorTok{~}\NormalTok{intensity) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_smooth}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme_classic}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
+\end{verbatim}
+
+\includegraphics{Data_Analysis_Alice_files/figure-latex/unnamed-chunk-1-7.pdf}
 
 Discussed with Stuart:
 
