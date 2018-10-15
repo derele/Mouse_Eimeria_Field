@@ -26,3 +26,4 @@ R/*.R~,
 raw_data/Eimeria_detection/\.Rhistory
 
 R/\.Rhistory
+.Rproj.user
