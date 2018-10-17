@@ -45,6 +45,11 @@ LorenzoDF <- read.csv("../data/Eimeria_detection/Eimeria_oocysts_2015&2017_Loren
 # General data
 miceTable <- read.csv("../data/MiceTable_fullEimeriaInfos_2014to2017.csv")
 
+# keep only North Germany 
+miceTable <- miceTable[!is.na(miceTable$Latitude) & 
+                   miceTable$Latitude > 51 & 
+                   miceTable$Longitude < 17, ] 
+
 # Remove other rodents
 miceTable <- miceTable[!miceTable$Species %in% "Pet mus musculus",]
 miceTable <- miceTable[-grep("ZZ", miceTable$Mouse_ID),]
@@ -52,6 +57,13 @@ miceTable <- miceTable[!miceTable$Mouse_ID %in% paste0("A_000", 1:3),]
 ## Remove wildpark Schorfheide (not needed, test)
 wsh <- c(paste0("AA_000", 1:9), paste0("AA_00", 10:46))
 miceTable <- miceTable[!miceTable$Mouse_ID %in% wsh ,]
+
+# keep only Brandenburg transect
+miceTable <- miceTable[!is.na(miceTable$Latitude) &
+                         miceTable$Latitude > 51.5 &
+                         miceTable$Latitude < 53.4 &
+                         miceTable$Longitude < 14.6 &
+                         miceTable$Longitude > 12, ]
 
 # Give a PCR status
 # by default, I enter PCRstatus as negative, then overwrite
@@ -66,6 +78,29 @@ miceTable$PCRstatus[miceTable$n18S_Seq == "positive" |
 miceTable$PCRstatus[is.na(miceTable$n18S_Seq) &
                       is.na(miceTable$COI_Seq) &
                       is.na(miceTable$ORF470_Seq)] <- NA
+
+# Export dataset for Alice's article
+write.csv(miceTable, "../data/MiceTableMusAliceArticle.csv", row.names = F)
+```
+
+```{r dataInfos}
+# How many mice from which year?
+miceTable <- miceTable[miceTable$Year %in% c("2015", "2016", "2017"),]
+table(miceTable$Year)
+
+# and for detection every method?
+
+# qPCR
+sum(table(miceTable$delta_ct_cewe_MminusE > -5 | miceTable$delta_ct_ilwe_MminusE > -5))
+table(miceTable$delta_ct_cewe_MminusE > -5 | miceTable$delta_ct_ilwe_MminusE > -5)
+
+# OPG
+sum(table(miceTable$OPG > 0))
+table(miceTable$OPG > 0)
+
+# species
+sum(table(miceTable$eimeriaSpecies != "Negative"))
+table(miceTable$eimeriaSpecies != "Negative")
 ```
 
 # Eimeria detection oocysts flotation
@@ -135,36 +170,6 @@ ggplot(miceTable[miceTable$PCRstatus == "positive",],
 
 PCR positive = one of the 3 markers 18S, COI or ORF470) gave a sequence. Number of Mus musculus caught with PCR performed: `r nrow(miceTable[!is.na(miceTable$n18S_Seq)|!is.na(miceTable$COI_Seq)|!is.na(miceTable$ORF470_Seq),])`
 
-# Eimeria detection qPCR 
-
-We keep only the values for mice having been tested for BOTH ileum and cecum!
-
-```{r qpcr, echo= FALSE}
-# plot qPCR
-ferrisiDFqpcr <- miceTable[!is.na(miceTable$delta_ct_cewe_MminusE) &
-                       miceTable$delta_ct_cewe_MminusE > -5 &
-                         !is.na(miceTable$eimeriaSpecies) &
-                         miceTable$eimeriaSpecies == "E_ferrisi",]
-
-ggplot(ferrisiDFqpcr, 
-       aes(x = HI, y = delta_ct_cewe_MminusE)) +
-  geom_point() +
-  facet_grid(.~eimeriaSpecies) +
-  geom_smooth() +
-  theme_classic() +
-  ggtitle("ferrisiqpcr")
-
-ggplot(miceTable[miceTable$Year %in% c(2016, 2017),],
-       aes(x = HI, y = delta_ct_cewe_MminusE, col = OPG > 0)) +
-  geom_point(size = 5) + 
-  geom_hline(yintercept = -5) +
-  facet_grid(.~Year) +
-  theme_bw() +
-  ggtitle("Remark of J. Wolinska: some individuals here HAVE qPCR value, but no oocyst count?")
-
-# Todo later: test if points for HI ~ 0.5 are dead ends...
-```
-
 # General stats on sampling 
 
 ```{r generalstats, echo = FALSE, message=FALSE}
@@ -177,16 +182,19 @@ latLongMissing <- miceTable$Mouse_ID[
 
 # Total
 Nmice <- nrow(miceTable)
+Nmice
 Nfarm <- length(unique(miceTable$farm))
+Nfarm
 
 # Create map of samples
 mapHMHZ <- HI.map(df = miceTable[!is.na(miceTable$Longitude) & !is.na(miceTable$Latitude), ], 
-                  size = 2, alpha = .3, margin = 0.2, zoom = 8) 
+                  size = 2, alpha = .3, margin = .8, zoom = 8) 
 mapHMHZ
 
 # mean and 95% ci of N of mice caught / farm (assuming normal distribution)
-MEAN <- mean(by(miceTable, miceTable["farm"], nrow))
-CI <- qnorm(0.975)*sd(by(miceTable, miceTable["farm"], nrow))/
+MEAN <- mean(by(miceTable, miceTable["farm"], nrow), na.rm = T)
+MEAN
+CI <- qnorm(0.975)*sd(by(miceTable, miceTable["farm"], nrow), na.rm = T)/
   sqrt(nrow(miceTable))
 
 # Hybrid index calculation:
@@ -228,7 +236,8 @@ prevalenceFlotation <- getPrevalenceTable(table(miceTable$OPG > 0,
                                                 miceTable$Year))
 prevalencePCR <- getPrevalenceTable(table(miceTable$PCRstatus == "positive", 
                                           miceTable$Year))
-prevalenceqPCR <- getPrevalenceTable(table(miceTable$delta_ct_cewe_MminusE > - 5, 
+prevalenceqPCR <- getPrevalenceTable(table(miceTable$delta_ct_cewe_MminusE > - 5 |
+                                             miceTable$delta_ct_ilwe_MminusE > - 5, 
                                            miceTable$Year))
 
 # samples are negative appart if ONE at least is positive
@@ -255,7 +264,7 @@ kable(prevalencePCR, caption = "Prevalence of Eimeria per year, based on PCR det
 
 ```{r tabPrevqPCR, echo=FALSE, results='asis'}
 library(knitr)
-kable(prevalenceqPCR, caption = "Prevalence of Eimeria per year, based on qPCR in cecum")
+kable(prevalenceqPCR, caption = "Prevalence of Eimeria per year, based on qPCR in cecum and ileum")
 ```
 
 ```{r tabPrevtot, echo=FALSE, results='asis'}
@@ -367,77 +376,6 @@ myVennDiagram3(completeDataopgqpcr)
 # 
 # ```{r venn2, echo=FALSE, warning=FALSE, message=FALSE, fig.width=5,fig.height=3,fig.cap="\\label{fig:venn1}Comparison of detection: PCR vs flotation vs qPCŔ"}
 # myVennDiagram3(completeData)
-```
-
-# Testing hybrid vigor along HMHZ
-
-```{r}
-ggplot(miceTable, aes(x = eimeriaSpecies, y = OPG +1)) +
-  geom_violin() +
-  geom_jitter(width = .1, pch = 21, size = 2) +
-  scale_y_log10() +
-  theme_classic() +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
-
-ferrisiDFflot <- miceTable[!is.na(miceTable$OPG) &
-                         miceTable$OPG > 0 &
-                         !is.na(miceTable$eimeriaSpecies) &
-                         miceTable$eimeriaSpecies == "E_ferrisi",]
-
-ggplot(ferrisiDFflot, aes(x = HI, y = OPG)) +
-  geom_point() +
-  scale_y_log10() +
-  geom_smooth()
-
-## qPCR by OPG
-ferrisiDFflot_n_qpcr <- miceTable[!is.na(miceTable$OPG) &
-                                    miceTable$OPG > 0 &
-                                    !is.na(miceTable$delta_ct_cewe_MminusE) &
-                                    miceTable$delta_ct_cewe_MminusE > -5 &
-                                    !is.na(miceTable$eimeriaSpecies) &
-                                    miceTable$eimeriaSpecies == "E_ferrisi",]
-  
-ggplot(ferrisiDFflot_n_qpcr, aes(x = delta_ct_cewe_MminusE, y = OPG)) +
-  geom_point() +
-  scale_y_log10() +
-  geom_smooth(method = "lm") +
-  theme_classic()
-
-## BCI vs OPG
-ggplot(ferrisiDFflot, aes(x = BCI, y = OPG)) +
-  geom_point() +
-  scale_y_log10() +
-  geom_smooth(method = "lm") +
-  theme_classic()
-
-summary(lm(ferrisiDFflot$BCI ~ ferrisiDFflot$OPG))
-
-## BCI vs qPCR
-ggplot(ferrisiDFqpcr, 
-       aes(x = BCI, y = delta_ct_cewe_MminusE)) +
-  geom_point(aes(fill = HI), pch = 21, size = 5) +
-  scale_fill_gradient(low = "blue", high = "red") +
-  geom_smooth(method = "lm") +
-  theme_classic()
-
-summary(lm(ferrisiDFqpcr$BCI ~ ferrisiDFqpcr$delta_ct_cewe_MminusE))
-
-hist(miceTable$BCI, breaks = 50) 
-
-## BCI vs qPCR
-ferrisiDFqpcr$delta_ct_cewe_MminusE
-
-ferrisiDFqpcr$intensity <- "high"
-ferrisiDFqpcr$intensity[ferrisiDFqpcr$delta_ct_cewe_MminusE < -2] <- "middle"
-ferrisiDFqpcr$intensity[ferrisiDFqpcr$delta_ct_cewe_MminusE < -4] <- "low"
-
-ggplot(ferrisiDFqpcr, 
-       aes(x = HI, y = BCI)) +
-  geom_point(aes(fill = delta_ct_cewe_MminusE), pch = 21, size = 5) +
-  facet_grid(.~intensity) +
-  geom_smooth() +
-  theme_classic()
-
 ```
 
 
