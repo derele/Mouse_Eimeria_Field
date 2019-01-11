@@ -5,9 +5,9 @@ AA_0526,HZ_BR,Germany,"Brodowiner Dorfstr. 1, 16230",52.9148,13.9624,11/09/18,13
 AA_0527,HZ_BR,Germany,"Pelitz 3, 16230",52.9093,13.9932,11/09/18,13/09/18,male,adult,Mus musculus,2018,FALSE,11.82,73,73,0.0179,0.0441,0.0438,0.0141,0.1061,NA,NA,0.7,16,0,0,0,0,0,0,0,0
 AA_0528,HZ_BR,Germany,"Ribbecker Dorfstr. 8, 14641",53.0332,13.2567,12/09/18,13/09/18,female,adult,Mus musculus,2018,FALSE,15.26,78,84.5,0.0342,NA,NA,NA,NA,NA,NA,0.28,0,0,0,0,0,0,0,0,0
 AA_0529,HZ_BR,Germany,"Ribbecker Dorfstr. 8, 14641",53.0332,13.2567,12/09/18,13/09/18,male,adult,Mus musculus,2018,FALSE,13.11,75,81.2,0.0173,0.0491,0.0533,0.0133,0.0739,NA,NA,0.17,0,0,0,0,0,0,0,0,0
-AA_0530,HZ_BR,Germany,"Wedefelder weg 13, 16775",53.0219,13.1750,12/09/18,13/09/18,male,adult,Mus musculus,2018,FALSE,11.52,71.5,79,0.0082,0.0663,0.0689,0.0186,0.1483,NA,NA,0.45,0,0,0,0,0,0,0,0,0
-AA_0531,HZ_BR,Germany,"Wedefelder weg 13, 16775",53.0219,13.1750,12/09/18,13/09/18,female,pregnant,Mus musculus,2018,FALSE,20.52,88,85,0.0701,NA,NA,NA,NA,2,3,0.13,0,0,0,0,0,0,0,0,0
-AA_0532,HZ_BR,Germany,"Wedefelder weg 13, 16775",53.0219,13.1750,12/09/18,13/09/18,male,adult,Mus musculus,2018,FALSE,15.62,78,82,0.0182,0.0805,0.0766,0.0242,0.1448,NA,NA,0.23,0,0,0,0,0,0,0,0,0
+AA_0530,HZ_BR,Germany,"Wedefelder weg 13, 16775",53.0219,13.175,12/09/18,13/09/18,male,adult,Mus musculus,2018,FALSE,11.52,71.5,79,0.0082,0.0663,0.0689,0.0186,0.1483,NA,NA,0.45,0,0,0,0,0,0,0,0,0
+AA_0531,HZ_BR,Germany,"Wedefelder weg 13, 16775",53.0219,13.175,12/09/18,13/09/18,female,pregnant,Mus musculus,2018,FALSE,20.52,88,85,0.0701,NA,NA,NA,NA,2,3,0.13,0,0,0,0,0,0,0,0,0
+AA_0532,HZ_BR,Germany,"Wedefelder weg 13, 16775",53.0219,13.175,12/09/18,13/09/18,male,adult,Mus musculus,2018,FALSE,15.62,78,82,0.0182,0.0805,0.0766,0.0242,0.1448,NA,NA,0.23,0,0,0,0,0,0,0,0,0
 AA_0533,HZ_BR,Germany,"Bergsdorfestr. 6, 16775",52.9576,13.2821,12/09/18,13/09/18,female,adult,Mus musculus,2018,FALSE,20.41,90,93,0.0339,NA,NA,NA,NA,NA,NA,0.32,0,0,0,0,0,0,0,0,0
 AA_0534,HZ_BR,Germany,"Bergsdorfestr. 6, 16775",52.9576,13.2821,12/09/18,13/09/18,male,adult,Mus musculus,2018,FALSE,21.02,82,89.5,0.0377,79,0.0812,0.0592,0.1407,NA,NA,0.36,0,0,0,0,0,0,0,0,0
 AA_0535,HZ_BR,Germany,"Bergsdorfestr. 6, 16775",52.9576,13.2821,12/09/18,13/09/18,male,adult,Mus musculus,2018,FALSE,16.83,79,84,0.0187,0.0854,0.0818,0.0262,0.1576,NA,NA,0.26,0,0,0,0,0,0,0,0,0
@@ -15,7 +15,7 @@ AA_0536,HZ_BR,Germany,"Bergsdorfestr. 6, 16775",52.9576,13.2821,12/09/18,13/09/1
 AA_0537,HZ_BR,Germany,"Alter Dechtowerweg 2, 16833",52.7949,12.7802,12/09/18,13/09/18,male,adult,Mus musculus,2018,FALSE,17.93,80,NA,0.0374,82,0.0825,0.0361,0.1367,NA,NA,0.35,0,0,33,0,0,0,0,0,82
 AA_0538,HZ_BR,Germany,"Alter Dechtowerweg 2, 16833",52.7949,12.7802,12/09/18,13/09/18,female,pregnant,Mus musculus,2018,FALSE,21.5,79,77,0.0472,NA,NA,NA,NA,3,2,0.68,0,0,1,0,0,0,0,10,151
 AA_0539,HZ_BR,Germany,"Alter Dechtowerweg 2, 16833",52.7949,12.7802,12/09/18,13/09/18,male,adult,Mus musculus,2018,FALSE,15.5,79,80,0.0319,0.0911,0.0896,0.0271,0.1528,NA,NA,0.42,93,0,0,0,0,0,0,2,0
-AA_0540,HZ_BR,Germany,"Dorfstr. 1, 16833",52.7723,12.7220,12/09/18,13/09/18,female,adult,Mus musculus,2018,FALSE,17.3,84,81,0.0623,NA,NA,NA,NA,0,0,0.22,0,0,0,0,0,0,0,0,0
+AA_0540,HZ_BR,Germany,"Dorfstr. 1, 16833",52.7723,12.722,12/09/18,13/09/18,female,adult,Mus musculus,2018,FALSE,17.3,84,81,0.0623,NA,NA,NA,NA,0,0,0.22,0,0,0,0,0,0,0,0,0
 AA_0541,HZ_BR,Germany,"Muhlenweg 5, 14728",52.5736,12.3726,12/09/18,13/09/18,male,adult,Mus musculus,2018,FALSE,20.99,89,93,71,0.1209,0.1211,0.0351,0.2095,NA,NA,0.15,0,0,0,0,0,0,0,0,3
 AA_0542,HZ_BR,Germany,"Altglietzener Dorfstr. 31, 16259",52.8327,14.0908,12/09/18,13/09/18,male,adult,Mus musculus,2018,FALSE,15.81,79.5,76,0.0582,0.0641,0.0665,0.0173,0.0652,NA,NA,0.33,0,0,0,0,0,0,0,0,1
 AA_0543,HZ_BR,Germany,"Muhlenweg 5, 14728",52.5736,12.3726,12/09/18,13/09/18,female,pregnant,Mus musculus,2018,FALSE,26.57,80,82,0.0875,NA,NA,NA,NA,2,6,0.25,0,0,0,0,0,0,0,0,0
@@ -36,7 +36,7 @@ AA_0557,HZ_BR,Germany,"Altglietzener Dorfstr. 31, 16259",52.8327,14.0908,12/09/1
 AA_0558,HZ_BR,Germany,"Neuglietzener str. 30, 16259",52.8361,14.1192,12/09/18,13/09/18,male,juvenile,Mus musculus,2018,FALSE,10.85,70,64,0.03,NA,NA,NA,NA,NA,NA,0.1,0,0,0,0,0,0,0,0,0
 AA_0559,HZ_BR,Germany,"Molhenberg 1, 15517",52.3973,14.0671,12/09/18,13/09/18,female,pregnant,Mus musculus,2018,FALSE,26.65,82,60,0.03,NA,NA,NA,NA,1,5,0.19,0,38,19,2,0,0,0,0,0
 AA_0560,HZ_BR,Germany,"Molhenberg 1, 15517",52.3973,14.0671,12/09/18,13/09/18,female,juvenile,Mus musculus,2018,TRUE,16.66,80,62,0.03,NA,NA,NA,NA,NA,NA,0.21,0,0,7,0,0,0,0,1,0
-AA_0561,HZ_BR,Germany,"Molhenberg 1, 15517",52.3973,14.0671,12/09/18,13/09/18,female,pregnant,Mus musculus,2018,FALSE,19.96,77,63,0.02,NA,NA,NA,NA,3.0000,3,0.46,0,18,0,0,0,0,0,0,0
+AA_0561,HZ_BR,Germany,"Molhenberg 1, 15517",52.3973,14.0671,12/09/18,13/09/18,female,pregnant,Mus musculus,2018,FALSE,19.96,77,63,0.02,NA,NA,NA,NA,3,3,0.46,0,18,0,0,0,0,0,0,0
 AA_0562,HZ_BR,Germany,"Dorfstrasse 2, 16359",52.7369,13.6605,12/09/18,13/09/18,male,juvenile,Mus musculus,2018,FALSE,12.63,69,71,0.04,NA,NA,NA,NA,NA,NA,0.23,0,0,0,0,0,0,0,0,0
 AA_0563,HZ_BR,Germany,"Molhenberg 1, 15517",52.3973,14.0671,12/09/18,13/09/18,female,juvenile,Mus musculus,2018,FALSE,6.94,55,51,0.01,NA,NA,NA,NA,NA,NA,0.15,0,0,0,0,0,0,0,0,0
 AA_0564,HZ_BR,Germany,"Dorfstrasse 2, 16359",52.7369,13.6605,12/09/18,13/09/18,female,juvenile,Mus musculus,2018,FALSE,12.03,67,63,0.03,NA,NA,NA,NA,NA,NA,0.15,0,18,0,0,0,0,0,0,0
@@ -49,26 +49,26 @@ AA_0570,HZ_BR,Germany,"Mildenberger str. 1, 16792",52.9934,13.3049,13/09/18,14/0
 AA_0571,HZ_BR,Germany,"Mildenberger str. 1, 16792",52.9934,13.3049,13/09/18,14/09/18,male,adult,Mus musculus,2018,FALSE,16.94,71.9,87,0.0186,0.0733,0.0743,0.0261,0.3272,NA,NA,0.46,0,6,0,0,0,0,0,0,0
 AA_0572,HZ_BR,Germany,"Mildenberger str. 1, 16792",52.9934,13.3049,13/09/18,14/09/18,female,pregnant,Mus musculus,2018,FALSE,21.52,81.73,84.15,0.0176,NA,NA,NA,NA,2,3,0.71,0,52,0,0,0,0,0,0,1
 AA_0573,HZ_BR,Germany,"Dorfstrasse 44, 16248",52.9306,14.0736,13/09/18,14/09/18,male,adult,Mus musculus,2018,FALSE,13.47,76.37,69.49,0.023,0.0655,0.0696,0.0202,0.0906,NA,NA,0.49,1,22,0,0,0,0,0,0,0
-AA_0574,HZ_BR,Germany,"Warsowerstr. 8, 14662",52.7272,12.6270,13/09/18,14/09/18,male,adult,Mus musculus,2018,FALSE,19.4,85.41,89.15,0.04,0.0904,0.0881,0.0237,0.0897,NA,NA,0.97,0,10,0,0,0,0,0,0,10
+AA_0574,HZ_BR,Germany,"Warsowerstr. 8, 14662",52.7272,12.627,13/09/18,14/09/18,male,adult,Mus musculus,2018,FALSE,19.4,85.41,89.15,0.04,0.0904,0.0881,0.0237,0.0897,NA,NA,0.97,0,10,0,0,0,0,0,0,10
 AA_0575,HZ_BR,Germany,"Dorfstrasse 44, 16248",52.9306,14.0736,13/09/18,14/09/18,female,adult,Mus musculus,2018,FALSE,11.66,69.13,67.05,0.0327,NA,NA,NA,NA,NA,NA,0.42,0,0,0,0,0,0,0,0,0
-AA_0576,HZ_BR,Germany,"Warsowerstr. 8, 14662",52.7272,12.6270,13/09/18,14/09/18,female,adult,Mus musculus,2018,FALSE,17.85,82.35,81.59,0.0451,NA,NA,NA,NA,NA,NA,0.47,0,0,0,0,0,0,0,0,1
-AA_0577,HZ_BR,Germany,"Warsowerstr. 8, 14662",52.7272,12.6270,13/09/18,14/09/18,female,adult,Mus musculus,2018,FALSE,17.51,79.77,87.71,0.0357,NA,NA,NA,NA,NA,NA,0.71,0,0,0,0,0,0,0,0,0
-AA_0578,HZ_BR,Germany,"Beeskower str. 24, 15848",52.2130,14.0923,13/09/18,14/09/18,female,adult,Mus musculus,2018,FALSE,15.06,82.84,78.83,0.0178,NA,NA,NA,NA,NA,NA,0.71,0,0,0,0,0,0,0,0,0
-AA_0579,HZ_BR,Germany,"Beeskower str. 24, 15848",52.2130,14.0923,13/09/18,14/09/18,male,adult,Mus musculus,2018,TRUE,15.81,78.88,70,0.0204,0.0727,0.071,0.0199,0.1155,NA,NA,0.54,5,0,0,0,0,0,0,0,0
-AA_0580,HZ_BR,Germany,"Beeskower str. 24, 15848",52.2130,14.0923,13/09/18,14/09/18,male,adult,Mus musculus,2018,FALSE,23.21,86.96,82.3,0.1965,0.0377,0.0814,0.0307,0.1605,NA,NA,0.94,53,87,2,0,0,0,0,0,1
-AA_0581,HZ_BR,Germany,"Warsowerstr. 8, 14662",52.7272,12.6270,13/09/18,14/09/18,male,adult,Mus musculus,2018,FALSE,15.98,78.45,85.79,0.0296,0.0748,0.0714,0.0282,0.1811,NA,NA,0.14,0,0,0,0,0,0,0,0,0
-AA_0582,HZ_BR,Germany,"Warsowerstr. 8, 14662",52.7272,12.6270,13/09/18,14/09/18,female,adult,Mus musculus,2018,TRUE,23.81,91,82,0.06,NA,NA,NA,NA,NA,NA,0.6,0,0,0,0,0,0,0,0,0
-AA_0583,HZ_BR,Germany,"Warsowerstr. 8, 14662",52.7272,12.6270,13/09/18,14/09/18,male,juvenile,Mus musculus,2018,TRUE,14.25,77,82,0.05,NA,NA,NA,NA,NA,NA,0.22,0,0,0,0,0,0,0,0,0
-AA_0584,HZ_BR,Germany,"Warsowerstr. 8, 14662",52.7272,12.6270,13/09/18,14/09/18,male,adult,Mus musculus,2018,TRUE,15.33,76,76,0.03,NA,NA,NA,NA,NA,NA,0.29,0,0,0,0,0,0,0,0,0
+AA_0576,HZ_BR,Germany,"Warsowerstr. 8, 14662",52.7272,12.627,13/09/18,14/09/18,female,adult,Mus musculus,2018,FALSE,17.85,82.35,81.59,0.0451,NA,NA,NA,NA,NA,NA,0.47,0,0,0,0,0,0,0,0,1
+AA_0577,HZ_BR,Germany,"Warsowerstr. 8, 14662",52.7272,12.627,13/09/18,14/09/18,female,adult,Mus musculus,2018,FALSE,17.51,79.77,87.71,0.0357,NA,NA,NA,NA,NA,NA,0.71,0,0,0,0,0,0,0,0,0
+AA_0578,HZ_BR,Germany,"Beeskower str. 24, 15848",52.213,14.0923,13/09/18,14/09/18,female,adult,Mus musculus,2018,FALSE,15.06,82.84,78.83,0.0178,NA,NA,NA,NA,NA,NA,0.71,0,0,0,0,0,0,0,0,0
+AA_0579,HZ_BR,Germany,"Beeskower str. 24, 15848",52.213,14.0923,13/09/18,14/09/18,male,adult,Mus musculus,2018,TRUE,15.81,78.88,70,0.0204,0.0727,0.071,0.0199,0.1155,NA,NA,0.54,5,0,0,0,0,0,0,0,0
+AA_0580,HZ_BR,Germany,"Beeskower str. 24, 15848",52.213,14.0923,13/09/18,14/09/18,male,adult,Mus musculus,2018,FALSE,23.21,86.96,82.3,0.1965,0.0377,0.0814,0.0307,0.1605,NA,NA,0.94,53,87,2,0,0,0,0,0,1
+AA_0581,HZ_BR,Germany,"Warsowerstr. 8, 14662",52.7272,12.627,13/09/18,14/09/18,male,adult,Mus musculus,2018,FALSE,15.98,78.45,85.79,0.0296,0.0748,0.0714,0.0282,0.1811,NA,NA,0.14,0,0,0,0,0,0,0,0,0
+AA_0582,HZ_BR,Germany,"Warsowerstr. 8, 14662",52.7272,12.627,13/09/18,14/09/18,female,adult,Mus musculus,2018,TRUE,23.81,91,82,0.06,NA,NA,NA,NA,NA,NA,0.6,0,0,0,0,0,0,0,0,0
+AA_0583,HZ_BR,Germany,"Warsowerstr. 8, 14662",52.7272,12.627,13/09/18,14/09/18,male,juvenile,Mus musculus,2018,TRUE,14.25,77,82,0.05,NA,NA,NA,NA,NA,NA,0.22,0,0,0,0,0,0,0,0,0
+AA_0584,HZ_BR,Germany,"Warsowerstr. 8, 14662",52.7272,12.627,13/09/18,14/09/18,male,adult,Mus musculus,2018,TRUE,15.33,76,76,0.03,NA,NA,NA,NA,NA,NA,0.29,0,0,0,0,0,0,0,0,0
 AA_0585,HZ_BR,Germany,"Mildenberger str. 1, 16792",52.9934,13.3049,13/09/18,14/09/18,female,pregnant,Mus musculus,2018,FALSE,22.3,86,77,0.04,NA,NA,NA,NA,2,2,0.27,0,0,0,0,0,0,0,0,33
-AA_0586,HZ_BR,Germany,"Beeskower str. 24, 15848",52.2130,14.0923,13/09/18,14/09/18,male,juvenile,Mus musculus,2018,FALSE,6.2,57,54,0.01,NA,NA,NA,NA,NA,NA,0.25,0,0,0,0,0,0,0,0,0
-AA_0587,HZ_BR,Germany,"Beeskower str. 24, 15848",52.2130,14.0923,13/09/18,14/09/18,female,adult,Mus musculus,2018,FALSE,17.85,78,70,0.1,NA,NA,NA,NA,NA,NA,0.43,0,0,0,0,0,0,0,0,205
-AA_0588,HZ_BR,Germany,"Beeskower str. 24, 15848",52.2130,14.0923,13/09/18,14/09/18,male,juvenile,Mus musculus,2018,FALSE,6.21,57,57,0.01,NA,NA,NA,NA,NA,NA,0.28,0,0,0,0,0,0,0,0,0
-AA_0589,HZ_BR,Germany,"Beeskower str. 24, 15848",52.2130,14.0923,13/09/18,14/09/18,male,juvenile,Mus musculus,2018,FALSE,8.04,61,65,0.01,NA,NA,NA,NA,NA,NA,0.71,0,0,0,0,0,0,0,0,0
-AA_0590,HZ_BR,Germany,"Beeskower str. 24, 15848",52.2130,14.0923,13/09/18,14/09/18,female,juvenile,Mus musculus,2018,TRUE,7.17,57,61,0.01,NA,NA,NA,NA,NA,NA,0.27,0,0,0,0,0,0,0,0,0
-AA_0591,HZ_BR,Germany,"Beeskower str. 24, 15848",52.2130,14.0923,13/09/18,14/09/18,male,juvenile,Mus musculus,2018,TRUE,6.96,62,62,0.01,NA,NA,NA,NA,NA,NA,0.24,0,0,0,0,0,0,0,0,0
-AA_0592,HZ_BR,Germany,"Wernbergstrasse, 16248",52.9455,14.1010,13/09/18,14/09/18,female,adult,Mus musculus,2018,TRUE,13.93,75,79,0.03,NA,NA,NA,NA,NA,NA,0.74,0,0,0,0,0,0,0,0,0
-AA_0593,HZ_BR,Germany,"Gabow 67, 16259",52.8170,14.0745,13/09/18,14/09/18,female,pregnant,Mus musculus,2018,TRUE,15.08,79,89,0.03,NA,NA,NA,NA,4,1,0.64,0,0,0,0,0,0,0,0,4
+AA_0586,HZ_BR,Germany,"Beeskower str. 24, 15848",52.213,14.0923,13/09/18,14/09/18,male,juvenile,Mus musculus,2018,FALSE,6.2,57,54,0.01,NA,NA,NA,NA,NA,NA,0.25,0,0,0,0,0,0,0,0,0
+AA_0587,HZ_BR,Germany,"Beeskower str. 24, 15848",52.213,14.0923,13/09/18,14/09/18,female,adult,Mus musculus,2018,FALSE,17.85,78,70,0.1,NA,NA,NA,NA,NA,NA,0.43,0,0,0,0,0,0,0,0,205
+AA_0588,HZ_BR,Germany,"Beeskower str. 24, 15848",52.213,14.0923,13/09/18,14/09/18,male,juvenile,Mus musculus,2018,FALSE,6.21,57,57,0.01,NA,NA,NA,NA,NA,NA,0.28,0,0,0,0,0,0,0,0,0
+AA_0589,HZ_BR,Germany,"Beeskower str. 24, 15848",52.213,14.0923,13/09/18,14/09/18,male,juvenile,Mus musculus,2018,FALSE,8.04,61,65,0.01,NA,NA,NA,NA,NA,NA,0.71,0,0,0,0,0,0,0,0,0
+AA_0590,HZ_BR,Germany,"Beeskower str. 24, 15848",52.213,14.0923,13/09/18,14/09/18,female,juvenile,Mus musculus,2018,TRUE,7.17,57,61,0.01,NA,NA,NA,NA,NA,NA,0.27,0,0,0,0,0,0,0,0,0
+AA_0591,HZ_BR,Germany,"Beeskower str. 24, 15848",52.213,14.0923,13/09/18,14/09/18,male,juvenile,Mus musculus,2018,TRUE,6.96,62,62,0.01,NA,NA,NA,NA,NA,NA,0.24,0,0,0,0,0,0,0,0,0
+AA_0592,HZ_BR,Germany,"Wernbergstrasse, 16248",52.9455,14.101,13/09/18,14/09/18,female,adult,Mus musculus,2018,TRUE,13.93,75,79,0.03,NA,NA,NA,NA,NA,NA,0.74,0,0,0,0,0,0,0,0,0
+AA_0593,HZ_BR,Germany,"Gabow 67, 16259",52.817,14.0745,13/09/18,14/09/18,female,pregnant,Mus musculus,2018,TRUE,15.08,79,89,0.03,NA,NA,NA,NA,4,1,0.64,0,0,0,0,0,0,0,0,4
 AA_0594,HZ_BR,Germany,Felchower str. 15,53.0059,14.0801,14/09/18,15/09/18,male,adult,Mus musculus,2018,FALSE,18.08,79.3,86.5,0.0239,0.0676,0.0663,0.0234,0.1826,NA,NA,0.36,1,1,0,0,0,0,0,0,0
 AA_0595,HZ_BR,Germany,Felchower str. 15,53.0059,14.0801,14/09/18,15/09/18,male,adult,Mus musculus,2018,FALSE,11.88,75.2,71.2,0.0224,0.0518,0.0533,0.0109,0.0097,NA,NA,0.35,0,0,0,0,0,0,0,0,0
 AA_0596,HZ_BR,Germany,Gellmersdorfer str. 15,52.9906,14.0741,14/09/18,15/09/18,male,adult,Mus musculus,2018,TRUE,16.94,81,81.1,0.0331,0.0673,0.0644,0.0221,0.16,NA,NA,0.52,0,0,0,0,0,0,0,0,0
@@ -148,11 +148,11 @@ AA_0669,HZ_BR,Germany,"Buchholzer str. 7, 16230",52.9328,13.9106,16/09/18,17/09/
 AA_0670,HZ_BR,Germany,Sukower str. 8,53.5516,11.5091,16/09/18,17/09/18,male,juvenile,Mus musculus,2018,TRUE,8.87,62.2,67.6,0.0125,0.0387,0.0391,0.0057,0.0058,NA,NA,0.26,0,0,0,0,0,0,0,0,0
 AA_0671,HZ_BR,Germany,Alte Dorfstr. 3,53.6228,11.3333,16/09/18,17/09/18,female,pregnant,Mus musculus,2018,TRUE,21.25,82.9,83.5,0.06,NA,NA,NA,NA,4,4,0.44,0,0,0,0,0,0,0,0,0
 AA_0672,HZ_BR,Germany,"Dorfstr. 2, 16359",52.7369,13.6605,12/09/18,17/09/18,male,juvenile,Mus musculus,2018,FALSE,10.24,58.6,60.8,0.03,NA,NA,NA,NA,NA,NA,0.36,0,0,0,0,0,0,0,0,0
-AA_0673,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-AA_0674,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-AA_0675,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-AA_0676,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-AA_0677,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-AA_0678,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-AA_0679,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-AA_0680,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+AA_0673,HZ_BR,Germany,"Kraatzer Weg 11, 16775",52.9967,13.1779,17/09/18,18/09/18,male,adult,Mus musculus,2018,FALSE,14.93,78.2,79,0.031,0.072,0.0702,0.0194,0.0457,NA,NA,0.15,0,4,0,0,0,0,0,0,0
+AA_0674,HZ_BR,Germany,"Kraatzer Weg 11, 16775",52.9967,13.1779,17/09/18,18/09/18,male,adult,Mus musculus,2018,FALSE,14.94,73,78.2,0.0204,0.0669,0.719,0.0143,0.0177,NA,NA,0.13,0,0,0,0,0,0,0,0,0
+AA_0675,HZ_BR,Germany,"Kraatzer Weg 11, 16775",52.9967,13.1779,17/09/18,18/09/18,female,adult,Mus musculus,2018,FALSE,13.33,73,71,0.02,NA,NA,NA,NA,NA,NA,0.79,0,2,0,0,0,0,0,0,0
+AA_0676,HZ_BR,Germany,"Kraatzer Weg 11, 16775",52.9967,13.1779,17/09/18,18/09/18,female,adult,Mus musculus,2018,FALSE,12.4,69,71,0.03,NA,NA,NA,NA,NA,NA,0.12,0,6,0,0,0,0,0,0,0
+AA_0677,HZ_BR,Germany,"Kraatzer Weg 11, 16775",52.9967,13.1779,17/09/18,18/09/18,male,juvenile,Mus musculus,2018,FALSE,8.84,60,63,0.03,NA,NA,NA,NA,NA,NA,0.18,0,7,0,0,0,0,0,0,0
+AA_0678,HZ_BR,Germany,"Buchholzer str. 7, 16230",53.9328,13.9106,17/09/18,18/09/18,male,adult,Mus musculus,2018,FALSE,10.72,69,70.1,0.0175,0.0508,0.0506,0.039,0.0145,NA,NA,0.4,0,0,0,0,0,0,0,0,0
+AA_0679,HZ_BR,Germany,"Los 1, 15377",52.6077,14.0839,17/09/18,18/09/18,male,adult,Mus musculus,2018,TRUE,14.15,75.1,71.7,0.0316,0.0716,0.0758,0.0245,0.141,NA,NA,0.66,0,0,0,0,0,0,0,0,0
+AA_0680,HZ_BR,Germany,"Liebenberger Weg, 16792",52.9228,13.2566,17/09/18,18/09/18,male,adult,Mus musculus,2018,FALSE,12.25,69.8,81.3,0.0201,0.0837,0.0881,0.0201,0.0526,NA,NA,0.09,0,0,0,0,0,0,0,0,0
