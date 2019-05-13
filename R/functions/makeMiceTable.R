@@ -1,22 +1,15 @@
-makeMiceTable <- function(pathToMyData = "data/Field_data/",
-                          pathtoHMHZfunction= "R/functions/HMHZ_Functions.R"){
-  
-  pathToMyData = "data/Field_data/"
-  pathtoHMHZfunction= "R/functions/HMHZ_Functions.R"
+## How to clean input data? To update every year...
 
-  #### NB: all data are locally kept in a folder Data_important
-  #### TO BE DEFINED HERE
-  
-  ## How to clean input data? To update every year...
-  source(pathtoHMHZfunction)
+makeMiceTable <- function(){
+  pathToMyData = "https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/data/"
+  source("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/R/functions/HMHZ_Functions.R")
   library(data.table)
   library(ggmap)
   library(reshape)
-  ## ************* ## NB : correct worms with Jenny!!
-  
+
   ## MICE TABLE *****************************
   ## Jaroslav table genotypes 2014 --> 2017 BEWARE IT LACKS SAMPLES !!!!!
-  HIJardaTable <- read.csv(paste0(pathToMyData, "EmanuelData.csv"), 
+  HIJardaTable <- read.csv(paste0(pathToMyData, "Field_data/EmanuelData.csv"), 
                            na.strings=c(""," ","NA"), stringsAsFactors = FALSE)
   HIJardaTable <- HIJardaTable[!names(HIJardaTable) == "X"]
   HIJardaTable <- HIJardaTable[!HIJardaTable$Year %in% c(2010, 2011),]
@@ -44,7 +37,7 @@ makeMiceTable <- function(pathToMyData = "data/Field_data/",
   HIJardaTable$Mouse_ID[duplicated(HIJardaTable$Mouse_ID)]
   
   # Complement data with previous tables (2014, 2015) 
-  diss2014.1 <- read.csv(paste0(pathToMyData, "HZ14_Mice 31-12-14_dissections.csv"),
+  diss2014.1 <- read.csv(paste0(pathToMyData, "Field_data/HZ14_Mice%2031-12-14_dissections.csv"),
                          na.strings=c(""," ","NA"), stringsAsFactors = FALSE)
   
   # Homogenize : Mouse_ID, lat, lon, worms
@@ -58,7 +51,7 @@ makeMiceTable <- function(pathToMyData = "data/Field_data/",
                    "Trichuris_muris", "Taenia_taeniformis"))
   
   # Genotypes 2014
-  diss2014.2 <- read.csv(paste0(pathToMyData, "HZ14_Mice 31-12-14_genotypes.csv"),
+  diss2014.2 <- read.csv(paste0(pathToMyData, "Field_data/HZ14_Mice%2031-12-14_genotypes.csv"),
                          stringsAsFactors=F)
   diss2014.2$Mouse_ID <- paste0(diss2014.2$ID, "_", diss2014.2$PIN)
   
@@ -69,6 +62,8 @@ makeMiceTable <- function(pathToMyData = "data/Field_data/",
   # Merge & complete
   diss2014 <- merge(diss2014.1, diss2014.2,  
                     by = c("Mouse_ID"), all = T)
+  
+  # POSSIBLE PROBLEM: both tables you merge have similar columns not containing the same amount of data
   diss2014 <- fillGapsAfterMerge(diss2014)
   
   # Merge & complete
@@ -80,7 +75,7 @@ makeMiceTable <- function(pathToMyData = "data/Field_data/",
   which(!rowSums(!is.na(mergedMiceTable)))  
   
   ## 2015 part 1
-  diss2015.1 <- read.csv(paste0(pathToMyData, "Genotypes_Bav2015.csv"), 
+  diss2015.1 <- read.csv(paste0(pathToMyData, "Field_data/Genotypes_Bav2015.csv"), 
                          na.strings=c(""," ","NA"), stringsAsFactors = FALSE)
   
   # Manual names uniformisation
@@ -95,7 +90,7 @@ makeMiceTable <- function(pathToMyData = "data/Field_data/",
   mergedMiceTable <- fillGapsAfterMerge(mergedMiceTable)
   
   ## 2015 part 2
-  diss2015.2 <- read.csv(paste0(pathToMyData, "HZ15_Mice_Parasite.csv"), 
+  diss2015.2 <- read.csv(paste0(pathToMyData, "Field_data/HZ15_Mice_Parasite.csv"), 
                          na.strings=c(""," ","NA"), stringsAsFactors = FALSE)
   
   # remove transported mice
@@ -123,13 +118,13 @@ makeMiceTable <- function(pathToMyData = "data/Field_data/",
   which(!rowSums(!is.na(mergedMiceTable)))  
   
   ###################### 2016
-  diss2016 <- read.csv(paste0(pathToMyData, "HZ16_Mice_18-07-16_dissections.csv"), 
+  diss2016 <- read.csv(paste0(pathToMyData, "Field_data/HZ16_Mice_18-07-16_dissections.csv"), 
                        na.strings=c(""," ","NA"), stringsAsFactors = F)[-c(1:2),]
   names(diss2016)[names(diss2016) %in% "ID_mouse"] <- "Mouse_ID"
   diss2016$Mouse_ID <- as.character(diss2016$Mouse_ID)
   
   ## Add worms 
-  worms16 <- read.csv(paste0(pathToMyData, "HZ16_Worms.csv"), 
+  worms16 <- read.csv(paste0(pathToMyData, "Field_data/HZ16_Worms.csv"), 
                       na.strings=c(""," ","NA"), stringsAsFactors = F)[-11]
   ## rename with homogeneity
   names(worms16) <- c("Mouse_ID", "Syphacia_obvelata", "Aspiculuris_tetraptera", "Mix_Syphacia_Aspiculuris",
@@ -157,9 +152,9 @@ makeMiceTable <- function(pathToMyData = "data/Field_data/",
   which(!rowSums(!is.na(mergedMiceTable)))  
   
   # add missing or wrong latitude/longitude
-  loc2016 <- read.csv(paste0(pathToMyData, "Cleaned_HMHZ_2016_All.csv" ),
+  loc2016 <- read.csv(paste0(pathToMyData, "Field_data/Cleaned_HMHZ_2016_All.csv" ),
                       stringsAsFactors=F)
-  loc2016 <- loc2016[names(loc2016) %in% c( "location", "GPS.coordinates.long", "GPS.coordinates.lat")]
+  loc2016 <- loc2016[names(loc2016) %in% c("location", "GPS.coordinates.long", "GPS.coordinates.lat")]
   names(loc2016) <- c("Code", "longitude", "latitude")
   
   mergedMiceTable <- merge(mergedMiceTable, loc2016, by = "Code", all.x = TRUE)
@@ -191,7 +186,7 @@ makeMiceTable <- function(pathToMyData = "data/Field_data/",
   
   ## **********************************************************
   ## 2017
-  diss2017 <- read.csv(paste0(pathToMyData, "HZ17_September_Mice_Dissection.csv"),
+  diss2017 <- read.csv(paste0(pathToMyData, "Field_data/HZ17_September_Mice_Dissection.csv"),
                        na.strings=c(""," ","NA"), stringsAsFactors = F)
   
   # correction excel bullshit
@@ -203,7 +198,7 @@ makeMiceTable <- function(pathToMyData = "data/Field_data/",
   names(diss2017)[names(diss2017) == "Ectoparasites"] <- "Flea"      
   
   ## Add worms 
-  worms17 <- read.csv2(paste0(pathToMyData, "HZ17_September_Mice_Dissection_Jen_final.csv"),
+  worms17 <- read.csv2(paste0(pathToMyData, "Field_data/HZ17_September_Mice_Dissection_Jen_final.csv"),
                        stringsAsFactors = F)
   
   names(worms17)[names(worms17) %in% "Mesocestoides"] <- "Taenia_martis"
@@ -230,7 +225,7 @@ makeMiceTable <- function(pathToMyData = "data/Field_data/",
   mergedMiceTable$Sex[grep("male*.", mergedMiceTable$Sex)] <- "M"
   
   # Add old HI from previous jarda table
-  oldJarda <- read.csv(paste0(pathToMyData, "HIforEH_May2017.csv"),
+  oldJarda <- read.csv(paste0(pathToMyData, "/Field_data/HIforEH_May2017.csv"),
                        stringsAsFactors=F)
   
   # Uniformize IDs
@@ -428,7 +423,7 @@ makeMiceTable <- function(pathToMyData = "data/Field_data/",
   ## 26 June 2018, add Jarda new csv
   missingMice = mergedMiceTable$Mouse_ID[is.na(mergedMiceTable$HI)]
   
-  newCsv = read.csv(paste0(pathToMyData, "EmanuelData_26061018.csv"),
+  newCsv = read.csv(paste0(pathToMyData, "Field_data/EmanuelData_26061018.csv"),
                     stringsAsFactors=F)
   newCsv$PIN = gsub("SK", "SK_", newCsv$PIN)
   
@@ -451,7 +446,7 @@ makeMiceTable <- function(pathToMyData = "data/Field_data/",
   
   # Add Eimeria information
   ## flotation
-  flot <- read.csv("data/Eimeria_detection/FINALOocysts2015to2017.csv")
+  flot <- read.csv(paste0(pathToMyData, "Eimeria_detection/FINALOocysts2015to2017.csv"))
   
   ## how many neubauer cells were counted 
   flot$Ncells <- apply(flot[paste0("N_oocysts_sq", 1:8)], 1, function(x) sum(!is.na(x)))
@@ -464,7 +459,7 @@ makeMiceTable <- function(pathToMyData = "data/Field_data/",
   mergedMiceTable <- merge(mergedMiceTable, flot, all = T)
   
   ## qPCr
-  qpcr <- read.csv("data/Eimeria_detection/FINALqpcrData_2016_2017_threshold5.csv")
+  qpcr <- read.csv(paste0(pathToMyData, "/Eimeria_detection/FINALqpcrData_2016_2017_threshold5.csv"))
   #qpcr$Mouse_ID[!qpcr$Mouse_ID %in% miceTable$Mouse_ID]
   #all there :)
   mergedMiceTable <- merge(mergedMiceTable, 
@@ -472,7 +467,7 @@ makeMiceTable <- function(pathToMyData = "data/Field_data/",
                            all = T)
   
   ## species identification
-  species <- read.csv("data/Eimeria_detection/Eimeria_species_assignment_14_17.csv")
+  species <- read.csv(paste0(pathToMyData, "/Eimeria_detection/Eimeria_species_assignment_14_17.csv"))
   names(species)[names(species) %in% "Species"] <- "eimeriaSpecies"
   
   # space error damn!
@@ -496,5 +491,22 @@ makeMiceTable <- function(pathToMyData = "data/Field_data/",
   return(mergedMiceTable)
 }
 
-# miceTable <- makeMiceTable()
+miceTable <- makeMiceTable()
 # write.csv(miceTable, "data/MiceTable_fullEimeriaInfos_2014to2017.csv", row.names = F)
+
+# Luke plays around from here :
+
+# load new data
+
+# 1. merge dissection table 2018 with miceTable
+
+# 2. merge genotype table 2018 with new merged table (when Jarda send it)
+
+## test and make sure it's correct (Luke + Alice talking about tests)
+
+## Luke: Put working code (but not the tests) into the function
+
+## Alice: Put tests into a testing script 
+
+
+
