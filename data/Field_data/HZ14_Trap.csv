@@ -1,4 +1,4 @@
-Transect,Continent,State,Country,Locality,Code,NDeg,NMin,NSec,EDeg,EMin,ESec,Latitude,Longitude,Who,,
+Transect,Continent,State,Country,Address,Code,NDeg,NMin,NSec,EDeg,EMin,ESec,Latitude,Longitude,Who,,
 HZ_BR,Europe,Germany,Brandenburg,Althüttendorf,AHDF7,52,57,45,13,48,32,"52° 57' 45""","13° 48' 32""",EH,"Zu den Ihlowbergen 7, Althüttendorf",
 HZ_BR,Europe,Germany,Brandenburg,Beetz,BEETZ,52,48,49,13,0,58,"52° 48' 49""","13° 0' 58""",OG,"Beetzer Dorfstrasse 125, 16766 Kremmen",
 HZ_BR,Europe,Germany,Brandenburg,Böckenberg,BOECK,53,7,60,13,45,18,"53° 7' 60""","13° 45' 18""",EH,Getreideverarbeitung,
