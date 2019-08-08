@@ -1,4 +1,4 @@
-Transect,State,Locality,Code,ID_mouse,Sex,Species,Year,Capture,Dissection,Head taken?,Ectoparasites,Body_weight,Body_length,Tail_length,Liver_mass,Spleen_mass,Testis_mass,Left epididymis weight,Seminal vesicle weight,Embryo,Notes
+Transect,State,Locality,Code,Mouse_ID,Sex,Species,Year,Trap_date,Dissection_date,Head taken?,Ectoparasites,Body_weight,Body_length,Tail_length,Liver,Spleen,Testis,Left_epididymis,Seminal_vesicles,Embryo,Notes
 ,,,,,nb male :,93,,,,159,,,,,,,,,,,
 ,,,,,nb female :,117,,,,,,,,,,,,,,,
 HZ_BR,Germany,,,A_0001,,apodemus,2016,01.06.2016,02.06.2016,,,32.26,100,105,1.39,0.16,NA,,,,training

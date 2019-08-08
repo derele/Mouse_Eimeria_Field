@@ -1,4 +1,4 @@
-Mouse_ID,Transect,State,Address,Latitude,Longitude,Capture,Dissection,Sex,Status,Species,Year,Ectoparasites,Body_weight,Body_length,Tail_length,Spleen_mass,Left_Testis_mass,Right_Testis_mass,epididymis weight,Seminal.vesicle.weight,Embryo_left,Embryo_right,Feces_weight,ASP,SYP,HET,MART,CP,HD,HM,MM,TM,ML
+Mouse_ID,Transect,State,Address,Latitude,Longitude,Trap_date,Dissection_date,Sex,Status,Species,Year,Ectoparasites,Body_weight,Body_length,Tail_length,Spleen,Left_Testis,Right_Testis,Epididymis,Seminal_vesicles,Embryo_left,Embryo_right,Feces,ASP,SYP,HET,MART,CP,HD,HM,MM,TM,ML
 AA_0524,HZ_BR,Germany,"Brodowiner Dorfstr. 88, 16230",52.9148,13.9621,11/09/18,12/09/18,female,adult,Mus musculus,2018,TRUE,23.61,86,74,0.09,NA,NA,NA,NA,NA,NA,1.1,10,1,0,0,0,0,0,0,0,0
 AA_0525,HZ_BR,Germany,"Brodowiner Dorfstr. 88, 16230",52.9148,13.9621,11/09/18,12/09/18,male,adult,Mus musculus,2018,TRUE,15.39,72,73,0.07,NA,NA,NA,NA,NA,NA,0.34,29,13,0,0,0,0,0,0,0,0
 AA_0526,HZ_BR,Germany,"Brodowiner Dorfstr. 1, 16230",52.9148,13.9624,11/09/18,13/09/18,male,adult,Mus musculus,2018,FALSE,17.16,82,75,0.0326,0.0734,0.0752,0.0206,0.1088,NA,NA,0.97,8,0,10,0,0,0,0,0,0,0
