@@ -1,4 +1,4 @@
-# Eimeria_Wild, Data analysis for parasites in the house mouse hybrid zone  
+# Eimeria_Wild, Data ~analysis~ storage for parasites in the house mouse hybrid zone  
 
 ###  Current Maintainer: Lubomir Bednar
 
@@ -7,12 +7,12 @@
 Mouse_Eimeria_Datababasing
 
 
-This repository is for storage of all !relevant material! on wild mice capture and Eimeria detection. Each file should be named according to the tamplate of:
+This repository is for storage of all !relevant data! on wild mice capture (and currently still Eimeria - and other parasite - detection). Each file is named according to the following structure:
+
 HZyear_Parasite_DetectionMethod_OtherInfo.format (Detection assays)
 HZYear_Trap (Trapping information)
 HZYear_Dissection (Dissection information)
 HZYear_Genotypes (Genotype information on captured mice)
-The templates for filling each mandatory column is indicated next to the column names.
 
 E.g.: HZ18_Eimeria_qPCR_raw.csv
 E.g.: HZ18_Trap
@@ -21,7 +21,9 @@ E.g.: HZ18_Genotypes
 
 Folders:
 data = Main folder containing Cryptosporidium, Eimeria_detection, Field_data
-	
+
+Mandatory columns and their content:
+
 	Cryptosporidium =  A folder dedicated to detection of Cryptosporidium parasites, intended for storage of !raw! data. Must contain in the very least a "Mouse_ID"(AA_xxxx) and "Year"(xxxx) columns.
 
 	Eimeria_detection = Like Cryptosporidium but for Eimeria. All detection methods and flotation raw data go in here to be used by the group. Must contain in the very least a "Mouse_ID" and "Year" columns.
@@ -48,7 +50,7 @@ R = This folder contains data processing scripts for cleaning the raw data table
 	#after processing and cleaning, write to the appropriate repo and Git it
 	write.csv(E7, "./Eimeria_Lab/data/3_recordingTables/E7_112018_Eim_FACS_clean.csv", quote = FALSE)
 
-.git = A folder for GitHub use when initializing new repo or cloning an existing one. I wouldn't touch it unless you know what you're doing.
+# WHAT THE HELL IS THIS ???:
 
 DO NOT edit the raw data in these folders. You can clone the repos, work with the data and generate new tables as you please. The envisioned structure is that each manuscript has it's own folder/repo, the raw data is loaded from the raw. GitHub files and saved in the manuscript folder. Then all can be edited and analysed there.
  "makeMiceTable.R" should be updated. Never touch the raw data, they are our *precioussss*
