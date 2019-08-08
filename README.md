@@ -1,10 +1,11 @@
 # Eimeria_Wild, Data analysis for parasites in the house mouse hybrid zone  
 
-###  Maintainers: Alice Balard, Emanuel Heitlinger
-### last update : 22 june 2018
+###  Current Maintainer: Lubomir Bednar
 
 # <span style="color:darkred">1. Organisation<span>
+
 Mouse_Eimeria_Datababasing
+
 
 This repository is for storage of all !relevant material! on wild mice capture and Eimeria detection. Each file should be named according to the tamplate of:
 HZyear_Parasite_DetectionMethod_OtherInfo.format (Detection assays)
@@ -50,11 +51,4 @@ R = This folder contains data processing scripts for cleaning the raw data table
 .git = A folder for GitHub use when initializing new repo or cloning an existing one. I wouldn't touch it unless you know what you're doing.
 
 DO NOT edit the raw data in these folders. You can clone the repos, work with the data and generate new tables as you please. The envisioned structure is that each manuscript has it's own folder/repo, the raw data is loaded from the raw. GitHub files and saved in the manuscript folder. Then all can be edited and analysed there.
-
-# <span style="color:darkred">2. Important things to know<span>
-
-The mice data from the HMHZ should not be touched. They are in our team Seafile folde "Data_important". You can put it in your local computer, and to generate the mice table that contains all the data, you should do the following:
-
-> miceTable <- makeMiceTable("path/to/Data_important/")
-
-Each year, when new data are generated (HI, etc.), the R script "makeMiceTable.R" should be updated. Never touch the raw data, they are our *precioussss*
+ "makeMiceTable.R" should be updated. Never touch the raw data, they are our *precioussss*
