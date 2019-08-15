@@ -1,20 +1,23 @@
 Samples_to_prepare ,From,To,Usage,Type of tube,
 LIV,AA_0681,AA_0923,Czech,2mL,Add EtOH 70%
+LIV1,AA_0681,AA_0923,Molecular Biology,2mL,Add EtOH 70%
 KI,AA_0681,AA_0923,Czech,Cryo,
 SG,AA_0681,AA_0923,Czech,Cryo,
 ELFO,AA_0681,AA_0923,Czech,Cryo,
 LUN,AA_0681,AA_0923,Czech,Cryo,
+SPL1,AA_0681,AA_0923,Molecular Biology,Cryo,
 SPL2,AA_0681,AA_0923,Czech,Cryo,
-FEC,AA_0681,AA_0923,Immunology,Cryo,
-ILWE,AA_0681,AA_0923,Immunology,2mL,Add Formaline 4%
-CEWE,AA_0681,AA_0923,Immunology,2mL,Add Formaline 4%
-LIV,AA_0681,AA_0923,Molecular Biology,2mL,Add EtOH 70%
-MES,AA_0681,AA_0923,Immunology,Cryo,
-ILWE,AA_0681,AA_0923,Molecular Biology,Cryo,
 CEWE,AA_0681,AA_0923,Molecular Biology,Cryo,
+CEWE,AA_0681,AA_0923,Immunology,2mL,Add Formaline 4%
+MES,AA_0681,AA_0923,Immunology,Cryo,
+ILWE,AA_0681,AA_0923,Immunology,2mL,Add Formaline 4%
+ILWE,AA_0681,AA_0923,Molecular Biology,Cryo,
 CECE,AA_0681,AA_0923,Molecular Biology,Cryo,
 COCE1,AA_0681,AA_0923,Molecular Biology,Cryo,
 COCE2,AA_0681,AA_0923,Molecular Biology,Cryo,
 WFOR,AA_0681,AA_0923,Worms,2mL,Add Formaline 4%
 WEOH,AA_0681,AA_0923,Worms,2mL,Add EtOH 70%
 FEC,AA_0681,AA_0923,Flotation,15ml,
+FEC,AA_0681,AA_0923,Immunology,Cryo,
+SICE,AA_0681,AA_0923,Immunology,Cryo,
+COWE,AA_0681,AA_0923,Immunology,Cryo,
