@@ -13,8 +13,7 @@ MES,AA_0681,AA_0923,Immunology,Cryo,
 ILWE,AA_0681,AA_0923,Immunology,2mL,Add Formaline 4%
 ILWE,AA_0681,AA_0923,Molecular Biology,Cryo,
 CECE,AA_0681,AA_0923,Molecular Biology,Cryo,
-COCE1,AA_0681,AA_0923,Molecular Biology,Cryo,
-COCE2,AA_0681,AA_0923,Molecular Biology,Cryo,
+COCE,AA_0681,AA_0923,Molecular Biology,Cryo,
 WFOR,AA_0681,AA_0923,Worms,2mL,Add Formaline 4%
 WEOH,AA_0681,AA_0923,Worms,2mL,Add EtOH 70%
 FEC,AA_0681,AA_0923,Flotation,15ml,

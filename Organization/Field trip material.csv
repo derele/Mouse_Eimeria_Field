@@ -1,26 +1,26 @@
-Material,Quantity,Packed,,
-Petri dishes ,500,,,
-1000µL tips not filter ,2 Bag,,,
-1000µL tips box,10 Boxes,,,
-Normal trash bags,5 rolls,,Buy in supermarket,
-Slides,1 Box,,,
-Traps,All,,Count/by car,
-Dissection instruments,,,,
-Tweezers,5,,,
-Bottles for cleaning instruments,,,,
-Soap,,,Buy in supermarket,
-Microscope Optical,1,,'Course room, Manu/Grit',
-Stereomicroscope,1,,ask Grit and Jenny,older
-Water bottles,30,,,
-Cages,All,,,
-Box of Gloves (S),3,,,
-Box of Gloves (M),3,,,
-Box of Gloves (L),3,,,
-EtOH 99% (Molecular),1L,,pick up from IZW,
+Material,Quantity,,LIV,250
+Petri dishes ,500,,SG,250
+1000µL tips not filter ,2 Bag,,ELFO,250
+1000µL tips box,10 Boxes,,LUN,250
+Normal trash bags,5 rolls,Buy in supermarket,SPL2,250
+Slides,1 Box,,FEC,250
+Traps,All,Count/by car,ILWE,250
+Dissection instruments,,,CEWE,250
+Tweezers,5,,LIV,250
+Cleaning bottles  (instr),,,MES,250
+Soap,,Buy in supermarket,ILWE,250
+Microscope Optical,1,'Course room, Manu/Grit',CEWE,250
+Stereomicroscope,1,ask Grit and Jenny,CECE,250
+Water bottles,30,,COCE1,250
+Cages,All,,COCE2,250
+Box of Gloves (S),3,,WFOR,250
+Box of Gloves (M),3,,WEOH,250
+Box of Gloves (L),3,,FEC,250
+EtOH 99% (Molecular),1L,pick up from IZW,,
 EtOH 70% (Cleaning),5L,,,
 Spray bottles,4,,,
-K2CrO4 2.5% ,4L,,Pre-made,
-Sack of Mice food,1,,ask Karin,
+K2CrO4 2.5% ,4L,Pre-made,,
+Sack of Mice food,1,ask Karin,,
 Lighthers,3 packages,,,
 Phone holders,5,,,
 USB car adapters,5,,,
@@ -33,28 +33,10 @@ Aluminium,2,,,
 Scissors ,2,,,
 Knives,5,,,
 Pipettes 1000µL,3,,,
-Liquid nitrogen tank,,,Ask Nishit,
+Liquid nitrogen tank,,Ask Nishit,,
 Brown tape ,,,,
 1.5mL Eppy,1 Bag,,,
 15mL Falcons,,,,
 Cyotubes ,1 Bag,,,
 Bag holders,4,,,
 Waste bags,2 packages,,,
-LIV,250,Yes,,
-SG,250,Yes,,
-ELFO,250,Yes,,
-LUN,250,Yes,,
-SPL2,250,Yes,,
-FEC,250,Yes,,
-ILWE,250,Yes,,
-CEWE,250,Yes,,
-LIV,250,Yes,,
-MES,250,Yes,,
-ILWE,250,Yes,,
-CEWE,250,Yes,,
-CECE,250,Yes,,
-COCE1,250,Yes,,
-COCE2,250,Yes,,
-WFOR,250,Yes,,
-WEOH,250,Yes,,
-FEC,250,Yes,,
