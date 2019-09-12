@@ -1,0 +1,90 @@
+Mouse_ID,Transect,State,Address,Latitude,Longitude,Trap_date,Dissection_date,Sex,Status,Species,Year,Ectoparasites,Body_weight,Body_length,Tail_length,Spleen,Left_Testis,Right_Testis,Epididymis,Seminal_vesicles,Embryo_left,Embryo_right,Feces,ASP,SYP,HET,MART,CP,HD,HM,MM,TM
+AA_0681,HZ_BR,Germany,Schonebeckerstr. 21,51.9761,13.7315,11/09/19,12/09/19,male,adult,Mus musculus,2019,FALSE,17.49,89.4,75.1,0.0277,0.0602,0.0567,0.0217,0.17,NA,NA,0.45,NA,NA,NA,NA,NA,NA,NA,NA,11
+AA_0682,HZ_BR,Germany,Schonebeckerstr. 21,51.9761,13.7315,11/09/19,12/09/19,male,adult,Mus musculus,2019,FALSE,17.54,88,77.3,0.0529,0.0517,0.0544,0.017,0.1073,NA,NA,0.55,NA,NA,NA,NA,NA,NA,NA,NA,3
+AA_0683,HZ_BR,Germany,Schonebeckerstr. 21,51.9761,13.7315,11/09/19,12/09/19,female,adult,Mus musculus,2019,FALSE,18.14,87.6,71.1,0.0432,NA,NA,NA,NA,NA,NA,0.61,NA,3,NA,NA,NA,NA,NA,NA,2
+AA_0684,HZ_BR,Germany,Schonebeckerstr. 21,51.9761,13.7315,11/09/19,12/09/19,female,adult,Mus musculus,2019,FALSE,15.52,88.2,77,0.043,NA,NA,NA,NA,NA,NA,0.34,NA,NA,NA,NA,NA,NA,NA,NA,7
+AA_0685,HZ_BR,Germany,Schonebeckerstr. 21,51.9761,13.7315,11/09/19,12/09/19,male,adult,Mus musculus,2019,FALSE,12.2,77.6,70.9,0.0558,0.0377,0.0377,0.0098,0.0532,NA,NA,0.14,NA,NA,NA,NA,NA,NA,NA,NA,NA
+AA_0686,HZ_BR,Germany,Schonebeckerstr. 21,51.9761,13.7315,11/09/19,12/09/19,male,young,Mus musculus,2019,FALSE,9.71,72,66.8,0.0138,0.0216,0.0215,0.0035,0.0043,NA,NA,0.16,NA,NA,NA,NA,NA,NA,NA,NA,NA
+AA_0687,HZ_BR,Germany,Zehdenickerstr. 8C,52.9794,13.7299,11/09/19,12/09/19,female,adult,Mus musculus,2019,FALSE,14.42,82.1,77.3,0.0367,NA,NA,NA,NA,NA,NA,0.38,NA,NA,NA,NA,NA,NA,NA,NA,7
+AA_0688,HZ_BR,Germany,Zehdenickerstr. 8B,52.9789,13.7325,11/09/19,12/09/19,male,young,Mus musculus,2019,FALSE,11.6,73.6,61.1,0.0309,0.0481,0.0513,0.0142,0.0708,NA,NA,0.22,NA,NA,NA,NA,NA,NA,NA,NA,NA
+AA_0689,HZ_BR,Germany,Zehdenickerstr. 8B,52.9789,13.7325,11/09/19,12/09/19,male,adult,Mus musculus,2019,FALSE,17.65,85.4,79.4,0.0471,0.0677,0.074,0.0175,0.1179,NA,NA,0.54,NA,19,NA,NA,NA,NA,NA,NA,2
+AA_0690,HZ_BR,Germany,Zehdenickerstr. 8C,52.9794,13.7299,11/09/19,12/09/19,female,adult,Mus musculus,2019,FALSE,15.51,84.7,78.7,0.0439,NA,NA,NA,NA,NA,NA,0.59,NA,NA,NA,NA,NA,NA,NA,NA,NA
+AA_0691,HZ_BR,Germany,Zehdenickerstr. 8C,52.9794,13.7299,11/09/19,12/09/19,female,adult,Mus musculus,2019,FALSE,15.47,82.8,74.4,0.0516,NA,NA,NA,NA,NA,NA,0.18,NA,NA,NA,NA,NA,NA,NA,NA,1
+AA_0692,HZ_BR,Germany,Schonebeckerstr. 21,51.9761,13.7315,11/09/19,12/09/19,male,young,Mus musculus,2019,FALSE,9.47,69.4,65.7,0.0147,0.0341,0.0356,0.0047,0.0058,NA,NA,0.48,NA,NA,NA,NA,NA,NA,NA,NA,NA
+AA_0693,HZ_BR,Germany,Zehdenickerstr. 8B,52.9789,13.7325,11/09/19,12/09/19,female,adult,Mus musculus,2019,FALSE,14.06,76.6,68.5,0.0503,NA,NA,NA,NA,NA,NA,0.32,NA,4,NA,NA,NA,NA,NA,NA,NA
+AA_0694,HZ_BR,Germany,Zehdenickerstr. 8C,52.9794,13.7299,11/09/19,12/09/19,male,adult,Mus musculus,2019,FALSE,9.92,68.4,61.7,0.0271,NA,NA,NA,NA,NA,NA,0.24,NA,2,NA,NA,NA,NA,NA,NA,NA
+AA_0695,HZ_BR,Germany,Zehdenickerstr. 8C,52.9794,13.7299,11/09/19,12/09/19,female,pregnant,Mus musculus,2019,FALSE,17.2,92.3,82.9,0.0339,NA,NA,NA,NA,4,4,0.1,NA,NA,NA,NA,NA,NA,NA,NA,NA
+AA_0696,HZ_BR,Germany,Zehdenickerstr. 8C,52.9794,13.7299,11/09/19,12/09/19,male,young,Mus musculus,2019,FALSE,8.56,66.2,64,0.0201,NA,NA,NA,NA,NA,NA,0.36,NA,NA,NA,NA,NA,NA,NA,NA,NA
+AA_0697,HZ_BR,Germany,Angermunde,52.9756,13.9851,11/09/19,12/09/19,male,adult,Mus musculus,2019,FALSE,16.11,81.8,78.8,0.0147,0.0788,0.0802,0.1297,0.0202,NA,NA,0.54,NA,NA,NA,NA,NA,NA,NA,NA,NA
+AA_0698,HZ_BR,Germany,Angermunde,52.9756,13.9851,11/09/19,12/09/19,male,young,Mus musculus,2019,FALSE,7.57,62.3,69.9,0.008,NA,NA,NA,NA,NA,NA,0.03,NA,NA,NA,NA,NA,NA,NA,NA,NA
+AA_0699,HZ_BR,Germany,Angermunde,52.9756,13.9851,11/09/19,12/09/19,female,adult,Mus musculus,2019,FALSE,13.86,81.3,76.6,0.017,NA,NA,NA,NA,NA,NA,0.53,NA,NA,NA,NA,NA,NA,NA,NA,NA
+AA_0700,HZ_BR,Germany,Angermunde,52.9756,13.9851,11/09/19,12/09/19,male,young,Mus musculus,2019,FALSE,9.46,68.7,67,0.01,NA,NA,NA,NA,NA,NA,0.33,NA,NA,NA,NA,NA,NA,NA,NA,NA
+AA_0701,HZ_BR,Germany,Angermunde,52.9756,13.9851,11/09/19,12/09/19,female,young,Mus musculus,2019,FALSE,8.22,66.6,64.4,0.0089,NA,NA,NA,NA,NA,NA,0.34,NA,NA,NA,NA,NA,NA,NA,NA,NA
+AA_0702,HZ_BR,Germany,Angermunde,52.9756,13.9851,11/09/19,12/09/19,male,young,Mus musculus,2019,FALSE,8.65,65,65.2,0.113,NA,NA,NA,NA,NA,NA,0.35,NA,NA,NA,NA,NA,NA,NA,NA,NA
+AA_0703,HZ_BR,Germany,Dorfstr. 64,52.978,12.918,11/09/19,12/09/19,male,adult,Mus musculus,2019,FALSE,21.77,91.4,92.5,0.031,0.0893,0.086,0.2198,0.038,NA,NA,0.27,NA,NA,NA,NA,NA,NA,NA,NA,NA
+AA_0704,HZ_BR,Germany,Topfstr. 36,52.9751,13.7543,11/09/19,12/09/19,female,adult,Mus musculus,2019,FALSE,17.88,85.5,63.4,0.0958,NA,NA,NA,NA,NA,NA,0.72,NA,141,NA,NA,NA,NA,NA,NA,NA
+AA_0705,HZ_BR,Germany,Angermunde,52.9756,13.9851,11/09/19,12/09/19,male,young,Mus musculus,2019,FALSE,8.11,65,66.3,0.0096,NA,NA,NA,NA,NA,NA,0.31,NA,NA,NA,NA,NA,NA,NA,NA,NA
+AA_0706,HZ_BR,Germany,Angermunde,52.9756,13.9851,11/09/19,12/09/19,female,young,Mus musculus,2019,FALSE,8.64,64.3,68.3,0.0128,NA,NA,NA,NA,NA,NA,0.48,NA,NA,NA,NA,NA,NA,NA,NA,NA
+AA_0707,HZ_BR,Germany,Neuenhage Reitehof,52.535,13.6891,11/09/19,12/09/19,female,adult,Mus musculus,2019,FALSE,15.9,87.5,78.2,0.0209,NA,NA,NA,NA,NA,NA,0.37,NA,NA,NA,NA,NA,NA,NA,NA,NA
+AA_0708,HZ_BR,Germany,Neuenhage Reitehof,52.535,13.6891,11/09/19,12/09/19,male,young,Mus musculus,2019,FALSE,8.68,66,69,0.0112,NA,NA,NA,NA,NA,NA,0.34,NA,NA,NA,NA,NA,NA,NA,NA,NA
+AA_0709,HZ_BR,Germany,Neuenhage Reitehof,52.535,13.6891,11/09/19,12/09/19,female,adult,Mus musculus,2019,FALSE,15.8,83.4,77.8,0.0213,NA,NA,NA,NA,NA,NA,0.23,NA,NA,NA,NA,NA,NA,NA,NA,NA
+AA_0710,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+AA_0711,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+AA_0712,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+AA_0713,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+AA_0714,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+AA_0715,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+AA_0716,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+AA_0717,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+AA_0718,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+AA_0719,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+AA_0720,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+AA_0721,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+AA_0722,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+AA_0723,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+AA_0724,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+AA_0725,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+AA_0726,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+AA_0727,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+AA_0728,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+AA_0729,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+AA_0730,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+AA_0731,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+AA_0732,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+AA_0733,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+AA_0734,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+AA_0735,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+AA_0736,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+AA_0737,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+AA_0738,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+AA_0739,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+AA_0740,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+AA_0741,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+AA_0742,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+AA_0743,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+AA_0744,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+AA_0745,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+AA_0746,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+AA_0747,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+AA_0748,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+AA_0749,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+AA_0750,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+AA_0751,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+AA_0752,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+AA_0753,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+AA_0754,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+AA_0755,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+AA_0756,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+AA_0757,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+AA_0758,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+AA_0759,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+AA_0760,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+AA_0761,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+AA_0762,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+AA_0763,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+AA_0764,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+AA_0765,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+AA_0766,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+AA_0767,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+AA_0768,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+AA_0769,HZ_BR,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
