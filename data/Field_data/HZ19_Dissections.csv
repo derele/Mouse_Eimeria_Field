@@ -49,7 +49,7 @@ AA_0727,HZ_BR,Germany,Alter Kiez 4,53.0006,13.4758,12/09/19,13/09/19,female,youn
 AA_0728,HZ_BR,Germany,Alter Kiez 4,53.0006,13.4758,12/09/19,13/09/19,female,young,Mus musculus,2019,TRUE,6.03,56.4,50,0.0008,NA,NA,NA,NA,NA,NA,0.23,0,0,0,0,0,0,0,0,0
 AA_0729,HZ_BR,Germany,Alter Kiez 4,53.0006,13.4758,12/09/19,13/09/19,female,adult,Mus musculus,2019,TRUE,17.32,84.1,76.7,0.0291,NA,NA,NA,NA,NA,NA,0.55,0,5,0,0,0,0,0,28,0
 AA_0730,HZ_BR,Germany,Verlorenlorter Weg 21,52.7988,13.0979,12/09/19,13/09/19,female,adult,Mus musculus,2019,FALSE,11.63,73.7,76.2,0.0159,NA,NA,NA,NA,NA,NA,0.6,0,0,0,0,0,0,0,0,0
-AA_0731,HZ_BR,Germany,Boitzenburger Chaussee,53.2215,13.328,13/09/19,14/09/19,male,adult,Mus musculus,2019,FALSE,15.22,18.16,17.13,0.0293,0.0464,0.046,0.0105,0.0205,NA,NA,0.46,0,4,0,0,0,0,0,0,0
+AA_0731,HZ_BR,Germany,Boitzenburger Chaussee,53.2215,13.328,13/09/19,14/09/19,male,adult,Mus musculus,2019,FALSE,15.22,81.16,71.13,0.0293,0.0464,0.046,0.0105,0.0205,NA,NA,0.46,0,4,0,0,0,0,0,0,0
 AA_0732,HZ_BR,Germany,Boitzenburger Chaussee,53.2215,13.328,13/09/19,14/09/19,male,adult,Mus musculus,2019,FALSE,15.19,85.1,71.2,0.0418,0.056,0.579,0.0174,0.1121,NA,NA,0.04,0,0,0,0,0,0,0,0,0
 AA_0733,HZ_BR,Germany,Boitzenburger Chaussee,53.2215,13.328,13/09/19,14/09/19,female,adult,Mus musculus,2019,FALSE,17.74,85.6,75.8,0.0557,NA,NA,NA,NA,NA,NA,0.47,1,0,0,0,0,0,0,0,0
 AA_0734,HZ_BR,Germany,Boitzenburger Chaussee,53.2215,13.328,13/09/19,14/09/19,female,adult,Mus musculus,2019,FALSE,16.79,83.7,74.5,0.0475,NA,NA,NA,NA,NA,NA,0.09,0,0,0,0,0,0,0,0,0
@@ -57,7 +57,7 @@ AA_0735,HZ_BR,Germany,Kustrichen 10a,53.2242,13.3804,13/09/19,14/09/19,male,adul
 AA_0736,HZ_BR,Germany,Kustrichen 10a,53.2242,13.3804,13/09/19,14/09/19,male,young,Mus musculus,2019,FALSE,10.07,65.9,68,0.0246,NA,NA,NA,NA,NA,NA,0.15,0,0,0,0,0,0,0,0,0
 AA_0737,HZ_BR,Germany,Kustrichen 10a,53.2242,13.3804,13/09/19,14/09/19,female,young,Mus musculus,2019,FALSE,5.55,57.3,56.3,0.0145,NA,NA,NA,NA,NA,NA,0.08,0,0,0,0,0,0,0,0,0
 AA_0738,HZ_BR,Germany,Boitzenburger Chaussee,53.2215,13.328,13/09/19,14/09/19,female,adult,Mus musculus,2019,FALSE,12.18,76.8,67.9,0.028,NA,NA,NA,NA,NA,NA,0.49,0,0,0,0,0,0,0,0,0
-AA_0739,HZ_BR,Germany,Schlossstr. 35,53.0895,14.1237,13/09/19,14/09/19,male,adult,Mus musculus,2019,FALSE,18.39,86.1,73.5,0.0285,0.0619,0.063,0.0161,0.105,NA,NA,0.29,0,17,0,0,0,0,0,0,0
+AA_0739,HZ_BR,Germany,Schlossstr. 35,53.0895,14.1237,13/09/19,14/09/19,male,adult,Mus musculus,2019,FALSE,18.39,86.1,73.5,0.0285,0.0619,0.063,0.0161,0.105,NA,NA,0.29,0,22,0,0,0,0,0,0,0
 AA_0740,HZ_BR,Germany,Schlossstr. 36,53.089,14.123,13/09/19,14/09/19,male,adult,Mus musculus,2019,FALSE,19.27,85.3,66.2,0.027,0.0098,0.0536,0.0187,0.1169,NA,NA,0.43,0,0,0,0,0,0,0,0,2
 AA_0741,HZ_BR,Germany,Schlossstr. 36,53.089,14.123,13/09/19,14/09/19,female,adult,Mus musculus,2019,FALSE,21.21,92.4,76.1,0.03,NA,NA,NA,NA,NA,NA,0.59,238,0,0,0,0,0,0,0,3
 AA_0742,HZ_BR,Germany,Schlossstr. 36,53.089,14.123,13/09/19,14/09/19,female,young,Mus musculus,2019,FALSE,9.88,65.4,60.3,0.0245,NA,NA,NA,NA,NA,NA,0.25,0,9,0,0,0,0,0,0,0
