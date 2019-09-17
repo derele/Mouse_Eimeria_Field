@@ -108,7 +108,7 @@ AA_0786,HZ_BR,Germany,Burstr. 4,53.1929,13.6069,15/09/19,16/09/19,female,adult,M
 AA_0787,HZ_BR,Germany,Burstr. 4,53.1929,13.6069,15/09/19,16/09/19,male,adult,Mus musculus,2019,FALSE,16.66,86.5,76.7,0.0328,0.0916,0.0922,0.0179,0.0447,NA,NA,0.33,0,0,0,0,0,0,0,0,0
 AA_0788,HZ_BR,Germany,Lichtenhain 3,53.2289,13.5951,15/09/19,16/09/19,male,adult,Mus musculus,2019,TRUE,16.47,86.7,70.3,0.0405,0.0679,0.067,0.017,0.0602,NA,NA,0.44,0,52,0,0,0,0,0,0,0
 AA_0789,HZ_BR,Germany,Herzfelderstr. 12,53.187,13.6478,15/09/19,16/09/19,female,adult,Mus musculus,2019,FALSE,16.62,78,72.8,0.0392,NA,NA,NA,NA,NA,NA,0.22,0,0,0,0,0,0,0,0,0
-AA_0790,HZ_BR,Germany,Lichtenhain 3,53.2289,13.5951,15/09/19,16/09/19,female,adult,Mus musculus,2019,TRUE,13.75,76.5,72.1,0.0624,NA,NA,NA,NA,NA,NA,0.49,0,0,0,0,0,0,0,0,0
+AA_0790,HZ_BR,Germany,Lichtenhain 3,53.2289,13.5951,15/09/19,16/09/19,female,pregnant,Mus musculus,2019,TRUE,13.75,76.5,72.1,0.0624,NA,NA,NA,NA,3,3,0.49,0,0,0,0,0,0,0,0,0
 AA_0791,HZ_BR,Germany,Lichtenhain 3,53.2289,13.5951,15/09/19,16/09/19,male,adult,Mus musculus,2019,FALSE,12.14,77.2,65.9,0.0291,0.0625,0.0594,0.017,0.0623,NA,NA,0.37,0,28,0,0,0,0,0,0,0
 AA_0792,HZ_BR,Germany,Lichtenhain 3,53.2289,13.5951,15/09/19,16/09/19,male,young,Mus musculus,2019,TRUE,6.46,61.4,56.6,0.01,NA,NA,NA,NA,NA,NA,0.33,0,57,0,0,0,0,0,0,0
 AA_0793,HZ_BR,Germany,Dorfstr. 28,53.1426,13.9534,15/09/19,16/09/19,female,adult,Mus musculus,2019,FALSE,19.83,94.7,77.8,0.0422,NA,NA,NA,NA,NA,NA,0.56,0,19,0,0,0,0,0,0,0
@@ -121,8 +121,59 @@ AA_0799,HZ_BR,Germany,Dorfstr. 28,53.1426,13.9534,15/09/19,16/09/19,male,adult,M
 AA_0800,HZ_BR,Germany,Schmiedeberg,53.1427,13.9576,15/09/19,16/09/19,male,adult,Mus musculus,2019,FALSE,9.58,70.6,56.4,0.0135,0.0294,0.0305,0.0084,0.0075,NA,NA,0.49,0,16,0,0,0,0,0,0,0
 AA_0801,HZ_BR,Germany,Dorfstr. 28,53.1426,13.9534,15/09/19,16/09/19,female,adult,Mus musculus,2019,FALSE,20.13,92.2,77.7,0.0782,NA,NA,NA,NA,NA,NA,0.36,0,61,0,0,0,0,0,0,0
 AA_0802,HZ_BR,Germany,Dorfstr. 28,53.1426,13.9534,15/09/19,16/09/19,female,adult,Mus musculus,2019,FALSE,20.38,95.8,NA,0.044,NA,NA,NA,NA,NA,NA,0.64,15,97,0,0,0,0,0,0,0
-AA_0803,HZ_BR,Germany,Dorfstr. 28,53.1426,13.9534,15/09/19,16/09/19,female,adult,Mus musculus,2019,TRUE,22.59,89.2,77.1,0.0348,NA,NA,NA,NA,NA,NA,0.43,10,0,0,0,0,0,0,0,0
+AA_0803,HZ_BR,Germany,Dorfstr. 28,53.1426,13.9534,15/09/19,16/09/19,female,pregnant,Mus musculus,2019,TRUE,22.59,89.2,77.1,0.0348,NA,NA,NA,NA,1,2,0.43,10,0,0,0,0,0,0,0,0
 AA_0804,HZ_BR,Germany,Dorfstr. 28,53.1426,13.9534,15/09/19,16/09/19,female,adult,Mus musculus,2019,FALSE,16.21,89,75.1,0.0263,NA,NA,NA,NA,NA,NA,0.62,3,0,0,0,0,0,0,0,0
 AA_0805,HZ_BR,Germany,Dorfstr. 28,53.1426,13.9534,15/09/19,16/09/19,female,adult,Mus musculus,2019,FALSE,16.8,86,74.6,0.0265,NA,NA,NA,NA,NA,NA,0.35,17,0,0,0,0,0,0,0,0
 AA_0806,HZ_BR,Germany,Dorfstr. 28,53.1426,13.9534,15/09/19,16/09/19,female,adult,Mus musculus,2019,FALSE,19.94,92.4,78.7,0.044,NA,NA,NA,NA,NA,NA,0.59,35,0,0,0,0,0,0,0,0
-AA_0807,HZ_BR,Germany,Dorfstr. 28,53.1426,13.9534,15/09/19,16/09/19,female,adult,Mus musculus,2019,FALSE,24.12,87.4,76.5,0.0451,NA,NA,NA,NA,NA,NA,0.57,15,0,0,0,0,0,0,0,0
+AA_0807,HZ_BR,Germany,Dorfstr. 28,53.1426,13.9534,15/09/19,16/09/19,female,pregnant,Mus musculus,2019,FALSE,24.12,87.4,76.5,0.0451,NA,NA,NA,NA,5,0,0.57,15,0,0,0,0,0,0,0,0
+AA_0808,HZ_BR,Germany,Chausseestr. 3,53.1885,13.9952,16/09/19,17/09/19,male,adult,Mus musculus,2019,TRUE,13.38,74.6,63.5,0.0254,0.0541,0.0561,0.013,0.0618,NA,NA,0.55,0,61,0,0,0,0,0,0,0
+AA_0809,HZ_BR,Germany,Chausseestr. 3,53.1885,13.9952,16/09/19,17/09/19,male,adult,Mus musculus,2019,FALSE,14.06,80.6,79.9,0.019,0.0876,0.0207,0.108,0.09,NA,NA,0.34,0,0,0,0,0,0,0,0,0
+AA_0810,HZ_BR,Germany,Chausseestr. 3,53.1885,13.9952,16/09/19,17/09/19,female,adult,Mus musculus,2019,FALSE,11.48,73.1,71.6,0.03,NA,NA,NA,NA,NA,NA,0.29,0,0,0,0,0,0,0,0,0
+AA_0811,HZ_BR,Germany,Berkenlatten 8,53.1305,13.7596,16/09/19,17/09/19,female,adult,Mus musculus,2019,TRUE,13.93,77.2,71.8,0.0298,NA,NA,NA,NA,NA,NA,0.47,0,0,0,0,0,0,0,0,0
+AA_0812,HZ_BR,Germany,Chausseestr. 3,53.1885,13.9952,16/09/19,17/09/19,male,adult,Mus musculus,2019,TRUE,12.92,73.8,69.5,0.041,0.0367,0.039,0.0107,0.029,NA,NA,0.37,0,0,0,0,0,0,0,0,0
+AA_0813,HZ_BR,Germany,Berkenlatten 8,53.1305,13.7596,16/09/19,17/09/19,male,adult,Mus musculus,2019,TRUE,16.17,81.4,69.47,0.029,0.065,0.0718,0.065,0.049,NA,NA,0.51,0,2,0,0,0,0,0,0,13
+AA_0814,HZ_BR,Germany,Berkenlatten 8,53.1305,13.7596,16/09/19,17/09/19,female,adult,Mus musculus,2019,TRUE,17.3,84.2,66.8,0.055,NA,NA,NA,NA,NA,NA,0.11,0,73,0,0,0,0,0,0,46
+AA_0815,HZ_BR,Germany,Berkenlatten 8,53.1305,13.7596,16/09/19,17/09/19,female,adult,Mus musculus,2019,TRUE,14.03,81.9,66.8,0.046,NA,NA,NA,NA,NA,NA,0.47,0,119,0,0,4,0,0,0,2
+AA_0816,HZ_BR,Germany,Neu Temmenerstr. 1,53.0962,13.7587,16/09/19,17/09/19,male,adult,Mus musculus,2019,TRUE,19.04,85.3,78.8,0.08,0.088,0.088,0.022,0.135,NA,NA,0.49,0,0,0,0,0,0,0,0,0
+AA_0817,HZ_BR,Germany,Neu Temmenerstr. 1,53.0962,13.7587,16/09/19,17/09/19,male,adult,Mus musculus,2019,TRUE,18.77,83.5,78.4,0.1036,0.069,0.072,0.02,0.141,NA,NA,0.48,0,178,27,0,0,0,0,0,0
+AA_0818,HZ_BR,Germany,Berkenlatten 8,53.1305,13.7596,16/09/19,17/09/19,male,young,Mus musculus,2019,TRUE,12.43,76.3,66.5,0.4002,NA,NA,NA,NA,NA,NA,0.5,0,11,0,0,0,0,0,0,0
+AA_0819,HZ_BR,Germany,Berkenlatten 8,53.1305,13.7596,16/09/19,17/09/19,female,adult,Mus musculus,2019,TRUE,12.64,74.3,65.4,0.0261,NA,NA,NA,NA,NA,NA,0.69,0,39,0,0,0,0,0,0,0
+AA_0820,HZ_BR,Germany,Berkenlatten 8,53.1305,13.7596,16/09/19,17/09/19,male,adult,Mus musculus,2019,TRUE,18.88,85.5,78.2,0.045,0.0718,0.0741,0.0205,0.1114,NA,NA,0.48,0,17,0,0,0,0,0,0,0
+AA_0821,HZ_BR,Germany,Berkenlatten 8,53.1305,13.7596,16/09/19,17/09/19,male,adult,Mus musculus,2019,TRUE,15.08,79.8,63.2,0.0332,0.0537,0.0564,0.0163,0.0717,NA,NA,0.35,0,113,0,0,0,0,0,0,0
+AA_0822,HZ_BR,Germany,Siedlerstr. ,52.684,14.0119,16/09/19,17/09/19,female,adult,Mus musculus,2019,TRUE,12.34,77.27,70.1,0.027,NA,NA,NA,NA,NA,NA,0.36,0,0,0,0,0,0,0,0,0
+AA_0823,HZ_BR,Germany,Granseerstr. 3,53.0655,13.1059,16/09/19,17/09/19,female,adult,Mus musculus,2019,FALSE,14.14,77.1,78.2,0.0405,NA,NA,NA,NA,NA,NA,0.43,0,37,0,0,0,0,0,0,0
+AA_0824,HZ_BR,Germany,Zebeldorferstr. ,53.0526,13.2297,16/09/19,17/09/19,male,adult,Mus musculus,2019,FALSE,13.27,75.1,76.5,0.0205,0.0491,0.0538,0.012,0.0472,NA,NA,0.29,0,1,0,0,0,0,0,0,0
+AA_0825,HZ_BR,Germany,Zebeldorferstr. ,53.0526,13.2297,16/09/19,17/09/19,male,adult,Mus musculus,2019,FALSE,16.88,85.4,88.6,0.0419,0.0661,0.082,0.0208,0.157,NA,NA,0.36,0,2,0,0,0,0,0,0,0
+AA_0826,HZ_BR,Germany,Chausseestr. 19,53.1961,13.9883,16/09/19,17/09/19,female,pregnant,Mus musculus,2019,FALSE,17.63,88.1,71.7,0.0416,NA,NA,NA,NA,4,1,0.38,2,10,0,0,0,0,0,0,0
+AA_0827,HZ_BR,Germany,Zebeldorferstr. ,53.0526,13.2297,16/09/19,17/09/19,female,young,Mus musculus,2019,FALSE,10.43,68.8,71.3,0.0187,NA,NA,NA,NA,NA,NA,0.33,0,0,0,0,0,0,0,0,0
+AA_0828,HZ_BR,Germany,Berkenlatten 8,53.1405,13.7596,16/09/19,17/09/19,male,adult,Mus musculus,2019,TRUE,14.07,79.6,67.2,0.0267,0.0545,0.0565,0.0095,0.0089,NA,NA,0.56,0,1,0,0,0,0,0,0,0
+AA_0829,HZ_BR,Germany,Neu Temmenerstr. 1,53.0962,13.7587,16/09/19,17/09/19,male,adult,Mus musculus,2019,TRUE,16.28,81,65.3,0.0705,0.0562,0.0587,0.0151,0.0846,NA,NA,0.61,0,184,3,0,0,0,0,0,0
+AA_0830,HZ_BR,Germany,Zebeldorferstr. ,53.0526,13.2297,16/09/19,17/09/19,female,adult,Mus musculus,2019,FALSE,16.89,89.3,85,0.0372,NA,NA,NA,NA,NA,NA,0.14,0,0,0,0,0,0,0,0,0
+AA_0831,HZ_BR,Germany,Chausseestr. 3,53.1885,13.9952,16/09/19,17/09/19,female,adult,Mus musculus,2019,FALSE,12.77,78.9,76,0.0233,NA,NA,NA,NA,NA,NA,0.41,0,0,0,0,0,0,0,0,0
+AA_0832,HZ_BR,Germany,Siedlerstr. ,52.684,14.0119,16/09/19,17/09/19,male,adult,Mus musculus,2019,TRUE,13.41,79,66.5,0.0189,0.0646,0.0638,0.015,0.1097,NA,NA,0.52,0,0,0,0,0,0,0,0,0
+AA_0833,HZ_BR,Germany,Chausseestr. 19,53.1961,13.9883,16/09/19,17/09/19,male,adult,Mus musculus,2019,TRUE,17.64,87.3,71.1,0.0579,0.0613,0.0653,0.0199,0.0944,NA,NA,0.5,0,56,0,0,0,0,0,0,0
+AA_0834,HZ_BR,Germany,Zebeldorferstr. ,53.0526,13.2297,16/09/19,17/09/19,male,adult,Mus musculus,2019,TRUE,17.52,86.6,90,0.0186,0.0771,0.0824,0.0275,0.2637,NA,NA,0.48,0,0,0,0,0,0,0,0,0
+AA_0835,HZ_BR,Germany,Chausseestr. 19,53.1961,13.9883,16/09/19,17/09/19,male,adult,Mus musculus,2019,TRUE,12,80.7,74.8,0.057,NA,NA,NA,NA,NA,NA,0.02,0,3,0,0,0,0,0,0,0
+AA_0836,HZ_BR,Germany,Granseerstr. 3,53.0655,13.1059,16/09/19,17/09/19,male,adult,Mus musculus,2019,FALSE,15.58,82.2,84.8,0.0168,0.0822,0.0838,0.025,0.1636,NA,NA,0.09,0,358,0,0,0,0,0,0,0
+AA_0837,HZ_BR,Germany,,,,17/09/19,18/09/19,,,Mus musculus,2019,,,,,,,,,,,,,0,0,0,0,0,0,0,0,0
+AA_0838,HZ_BR,Germany,,,,17/09/19,18/09/19,,,Mus musculus,2019,,,,,,,,,,,,,0,0,0,0,0,0,0,0,0
+AA_0839,HZ_BR,Germany,,,,17/09/19,18/09/19,,,Mus musculus,2019,,,,,,,,,,,,,0,0,0,0,0,0,0,0,0
+AA_0840,HZ_BR,Germany,,,,17/09/19,18/09/19,,,Mus musculus,2019,,,,,,,,,,,,,0,0,0,0,0,0,0,0,0
+AA_0841,HZ_BR,Germany,,,,17/09/19,18/09/19,,,Mus musculus,2019,,,,,,,,,,,,,0,0,0,0,0,0,0,0,0
+AA_0842,HZ_BR,Germany,,,,17/09/19,18/09/19,,,Mus musculus,2019,,,,,,,,,,,,,0,0,0,0,0,0,0,0,0
+AA_0843,HZ_BR,Germany,,,,17/09/19,18/09/19,,,Mus musculus,2019,,,,,,,,,,,,,0,0,0,0,0,0,0,0,0
+AA_0844,HZ_BR,Germany,,,,17/09/19,18/09/19,,,Mus musculus,2019,,,,,,,,,,,,,0,0,0,0,0,0,0,0,0
+AA_0845,HZ_BR,Germany,,,,17/09/19,18/09/19,,,Mus musculus,2019,,,,,,,,,,,,,0,0,0,0,0,0,0,0,0
+AA_0846,HZ_BR,Germany,,,,17/09/19,18/09/19,,,Mus musculus,2019,,,,,,,,,,,,,0,0,0,0,0,0,0,0,0
+AA_0847,HZ_BR,Germany,,,,17/09/19,18/09/19,,,Mus musculus,2019,,,,,,,,,,,,,0,0,0,0,0,0,0,0,0
+AA_0848,HZ_BR,Germany,,,,17/09/19,18/09/19,,,Mus musculus,2019,,,,,,,,,,,,,0,0,0,0,0,0,0,0,0
+AA_0849,HZ_BR,Germany,,,,17/09/19,18/09/19,,,Mus musculus,2019,,,,,,,,,,,,,0,0,0,0,0,0,0,0,0
+AA_0850,HZ_BR,Germany,,,,17/09/19,18/09/19,,,Mus musculus,2019,,,,,,,,,,,,,0,0,0,0,0,0,0,0,0
+AA_0851,HZ_BR,Germany,,,,17/09/19,18/09/19,,,Mus musculus,2019,,,,,,,,,,,,,0,0,0,0,0,0,0,0,0
+AA_0852,HZ_BR,Germany,,,,17/09/19,18/09/19,,,Mus musculus,2019,,,,,,,,,,,,,0,0,0,0,0,0,0,0,0
+AA_0853,HZ_BR,Germany,,,,17/09/19,18/09/19,,,Mus musculus,2019,,,,,,,,,,,,,0,0,0,0,0,0,0,0,0
+AA_0854,HZ_BR,Germany,,,,17/09/19,18/09/19,,,Mus musculus,2019,,,,,,,,,,,,,0,0,0,0,0,0,0,0,0
+AA_0855,HZ_BR,Germany,,,,17/09/19,18/09/19,,,Mus musculus,2019,,,,,,,,,,,,,0,0,0,0,0,0,0,0,0
+AA_0856,HZ_BR,Germany,,,,17/09/19,18/09/19,,,Mus musculus,2019,,,,,,,,,,,,,0,0,0,0,0,0,0,0,0
+AA_0857,HZ_BR,Germany,,,,17/09/19,18/09/19,,,Mus musculus,2019,,,,,,,,,,,,,0,0,0,0,0,0,0,0,0
+AA_0858,HZ_BR,Germany,,,,17/09/19,18/09/19,,,Mus musculus,2019,,,,,,,,,,,,,0,0,0,0,0,0,0,0,0
