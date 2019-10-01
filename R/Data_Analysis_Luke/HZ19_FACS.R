@@ -20,8 +20,7 @@ names(cells) <- c("Sample","CD4p", "Foxp3p_in_CD4p(Treg)", "Ki67p_in_CD4p_Foxp3p
                 "Ki67p_in_CD8p_Tbetp(dividing_activated_CD8p)", "IFNgp_in_CD4p","IL17Ap_in_CD4p", "IFNgp_in_CD8p")
 
 #extract Mouse_ID from that mess and paste in "LM0" to standardize with our data structure
-# broken atm
-cells$Mouse_ID <- gsub("\\d+: (mLN|spleen)(_\\d{3})_\\d{3}\\.fcs", "AA_0\\2", cells$Sample)
+cells$Mouse_ID <- gsub("\\d+: (mLN|spleen)\\_(\\d{3})_\\d{3}\\.fcs", "AA_0\\2", cells$Sample)
 cells$tissue <- gsub("\\d+: (mLN|spleen)_(\\d{3})_\\d{3}.fcs", "\\1", cells$Sample)
 
 #####################################################################################################################################
@@ -30,7 +29,7 @@ dissURL <- "https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/ma
 Dissections <- read.csv(text=getURL(dissURL))
 
 #merge FACS with para data
-HZ19 <- merge(Dissections, cell.counts, by = "Mouse_ID")
+HZ19 <- merge(Dissections, cells, by = "Mouse_ID")
 
 #remove percentages from cell columns
 
@@ -41,58 +40,50 @@ facs.measure.cols <- c("Sample","CD4p", "Foxp3p_in_CD4p(Treg)", "Ki67p_in_CD4p_F
                        "Ki67p_in_CD4p_Foxp3n_RORgtp(dividing_Th17)", "CD8p","Tbetp_in_CD8p(activated_CD8p)",
                        "Ki67p_in_CD8p_Tbetp(dividing_activated_CD8p)", "IFNgp_in_CD4p","IL17Ap_in_CD4p", "IFNgp_in_CD8p")
 
+# remove "%" signs and convert to numeric
+HZ19[] <- lapply(HZ19, gsub, pattern='%', replacement='')
+HZ19[, 35:49] <- sapply(HZ19[, 35:49], as.numeric)
+HZ19$tissue <- as.factor(HZ19$tissue)
+HZ19$Sample <- as.factor(HZ19$Sample)
 #test for normality
-#if(!require(devtools)) install.packages("devtools")
-#devtools::install_github("kassambara/ggpubr") use for every cell line
-ggdensity(E7$ThCD4p.cells, 
-          main = "Density plot of ThCD4p cells",
-          xlab = "population counts")
 
-## tabulate  medians for different infection histories and anterior vs posterior
-## create list of cell populations summaries infection strains
-cell.medians <- lapply(facs.measure.cols, function (x){
-  tapply(E7[, x], list(E7$infHistory, as.factor(E7$Position)), median)
-})
-names(cell.medians) <- facs.measure.cols
-cell.medians
+## tabulate  medians for 
+# cell.medians <- lapply(facs.measure.cols, function (x){
+#   tapply(HZ19[, x], list(HZ19$Sex, as.factor(HZ19$tissue)), median)
+# })
+# names(cell.medians) <- facs.measure.cols
+# cell.medians
 
-#cell means of all mice across infection histories (maybe trim 5% for outliers witth mean( , trim = .05)?)
-with(E7, mean(ThCD4p.cells[infHistory == "E64:E64"]))
-with(E7, mean(ThCD4p.cells[infHistory == "E64:E88"]))
-with(E7, mean(ThCD4p.cells[infHistory == "E88:E64"]))
-with(E7, mean(ThCD4p.cells[infHistory == "E88:E88"]))
-
-cell.means <- lapply(facs.measure.cols, function (x){
-  tapply(E7[, x], list(E7$infHistory, as.factor(E7$Position)), mean)
-})
-names(cell.means) <- facs.measure.cols
-cell.means
+# cell.means <- lapply(facs.measure.cols, function (x){
+#   tapply(HZ19[, x], list(HZ19$infHistory, as.factor(HZ19$Position)), mean)
+# })
+# names(cell.means) <- facs.measure.cols
+# cell.means
 
 #check distribution with histogram
-histogram(~infHistory | facs.measure.cols, data = E7)
-histogram(~Position | facs.measure.cols, data = E7)
+histogram(~Sex | facs.measure.cols, data = HZ19)
+histogram(~tissue | facs.measure.cols, data = HZ19)
 
 ## #check distribution infHistory
-plotCells.inf <- function (col){
-  ggplot(E7, aes(infHistory, get(col))) +
+plotCells.tissue <- function (col){
+  ggplot(HZ19, aes(tissue, get(col))) +
     geom_boxplot() +
     geom_jitter(width=0.2) +
-    facet_wrap(~Position) +
     ggtitle(col)
 }
 
-facs_boxplots.inf <- lapply(facs.measure.cols, plotCells.inf)
-names(facs_boxplots.inf) <-  facs.measure.cols
+facs_boxplots.tissue <- lapply(facs.measure.cols, plotCells.tissue)
+names(facs_boxplots.tissue) <-  facs.measure.cols
 
-for(i in seq_along(facs_boxplots.inf)){
-  pdf(paste0(names(facs_boxplots.inf)[[i]], ".inf.pdf"))
-  plot(facs_boxplots.inf[[i]])
+for(i in seq_along(facs_boxplots.tissue)){
+  pdf(paste0(names(facs_boxplots.tissue)[[i]], ".tissue.pdf"))
+  plot(facs_boxplots.tissue[[i]])
   dev.off()
 }
 
 ## #check distribution Position
 plotCells.position<- function (col){
-  ggplot(E7, aes(Position, get(col))) +
+  ggplot(HZ19, aes(Position, get(col))) +
     geom_boxplot() +
     geom_jitter(width=0.2) +
     facet_wrap(~infHistory) +
@@ -117,16 +108,16 @@ for(i in seq_along(facs_boxplots.position)){
 ### SO MUCH that this changes the results completely!!!
 
 # distribution testing before modeling
-hist(E7$ThCD4p)
-descdist(E7$ThCD4p)
-descdist(E7$TcCD8p)
-descdist(E7$Th1IFNgp_in_CD4p)
+hist(HZ19$ThCD4p)
+descdist(HZ19$ThCD4p)
+descdist(HZ19$TcCD8p)
+descdist(HZ19$Th1IFNgp_in_CD4p)
 
 
 # model interaction of cell populations with primary and secondary infection + constant position direction (PRIMARY : SECONDARY + POSITION)
 mods.l <- lapply(facs.measure.cols, function (x) {
   lm(get(x) ~ (primary * challenge) + Position,
-     data=E7)
+     data=HZ19)
 })
 names(mods.l) <- facs.measure.cols
 lapply(mods.l, summary)
@@ -144,7 +135,7 @@ for(i in seq_along(facs.measure.cols)){
 # model interaction of cell populations with primary, secondary infection and position (PRIMARY : SECONDARY : POSITION)
 mods.i <- lapply(facs.measure.cols, function (x) {
   lm(get(x) ~ primary * challenge * Position,
-     data=E7)
+     data=HZ19)
 })
 names(mods.i) <- facs.measure.cols
 lapply(mods.i, summary)
@@ -166,7 +157,7 @@ lapply(seq_along(mods.i), function(i) anova(mods.i[[i]], mods.l[[i]]))
 
 modsHY.l <- lapply(facs.measure.cols, function (x) {
   lm(get(x) ~ (primary * challenge) + Position + HybridStatus,
-     data=E7)
+     data=HZ19)
 })
 
 names(modsHY.l) <- facs.measure.cols
@@ -202,7 +193,7 @@ summary(glht(modsHY.l[["Tc1IFNgp_in_CD8p"]], mcp(HybridStatus="Tukey")))
 
 # ---------------------------------------------------------- Make connections between facets of models--------
 # transform data for graphing
-# E7.long <- reshape(data = E7, timevar = "infHistory", idvar = "EH_ID", direction = "long", varying = facs.measure.cols)
+# HZ19.long <- reshape(data = HZ19, timevar = "infHistory", idvar = "EH_ID", direction = "long", varying = facs.measure.cols)
 
-# E7.melt <- melt(setDT(E7), measure=patterns(facs.measure.cols), 
+# HZ19.melt <- melt(setDT(HZ19), measure=patterns(facs.measure.cols), 
 #     value.name = facs.measure.cols, variable.name='EH_ID')
