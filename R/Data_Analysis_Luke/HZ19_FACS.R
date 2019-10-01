@@ -64,7 +64,7 @@ HZ19$Sample <- as.factor(HZ19$Sample)
 histogram(~Sex | facs.measure.cols, data = HZ19)
 histogram(~tissue | facs.measure.cols, data = HZ19)
 
-## #check distribution infHistory
+## #check overall populations between tissues
 plotCells.tissue <- function (col){
   ggplot(HZ19, aes(tissue, get(col))) +
     geom_boxplot() +
@@ -81,24 +81,6 @@ for(i in seq_along(facs_boxplots.tissue)){
   dev.off()
 }
 
-## #check distribution Position
-plotCells.position<- function (col){
-  ggplot(HZ19, aes(Position, get(col))) +
-    geom_boxplot() +
-    geom_jitter(width=0.2) +
-    facet_wrap(~infHistory) +
-    ggtitle(col)
-}
-
-facs_boxplots.position <- lapply(facs.measure.cols, plotCells.position)
-names(facs_boxplots.position) <-  facs.measure.cols
-
-for(i in seq_along(facs_boxplots.position)){
-  pdf(paste0(names(facs_boxplots.position)[[i]], ".position.pdf"))
-  plot(facs_boxplots.position[[i]])
-  dev.off()
-}
-
 ### raw counts are modeled either as poisson or negative binomial in
 ### either case one could use the overall count (cell_counts) as
 ### "offset" to specify the "duration of observation" (normally
@@ -108,10 +90,9 @@ for(i in seq_along(facs_boxplots.position)){
 ### SO MUCH that this changes the results completely!!!
 
 # distribution testing before modeling
-hist(HZ19$ThCD4p)
-descdist(HZ19$ThCD4p)
-descdist(HZ19$TcCD8p)
-descdist(HZ19$Th1IFNgp_in_CD4p)
+hist(HZ19$CD4p)
+descdist(HZ19$CD4p)
+descdist(HZ19$`Foxp3p_in_CD4p(Treg)`)
 
 
 # model interaction of cell populations with primary and secondary infection + constant position direction (PRIMARY : SECONDARY + POSITION)
