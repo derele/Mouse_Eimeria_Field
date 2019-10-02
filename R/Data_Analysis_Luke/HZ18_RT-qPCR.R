@@ -17,4 +17,9 @@ diss <- select(HZ18dissection, Mouse_ID, Latitude, Longitude, Sex, Status, Body_
 # merge HImus and diss
 HImus <- merge(HImus, diss, by = "Mouse_ID")
 #load in RT-qPCR data
-RTURL<- ""
+RTURL<- "https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/data/HZ18_RT-qPCR.csv"
+RT <- read.csv(text = getURL(RTURL))
+# correct names + add sample column
+RT$Name <- sapply(RT$Name, as.character)
+RT$Name <- gsub("(\\D{4})_\\D{2}_\\d{3}", "\\4", RT$Sample)
+cells$tissue <- gsub("\\d+: (mLN|spleen)_(\\d{3})_\\d{3}.fcs", "\\1", cells$Sample)
