@@ -20,7 +20,7 @@ names(cells) <- c("Sample","CD4p", "Foxp3p_in_CD4p(Treg)", "Ki67p_in_CD4p_Foxp3p
                 "Ki67p_in_CD8p_Tbetp(dividing_activated_CD8p)", "IFNgp_in_CD4p","IL17Ap_in_CD4p", "IFNgp_in_CD8p")
 
 #extract Mouse_ID from that mess and paste in "LM0" to standardize with our data structure
-cells$Mouse_ID <- gsub("\\d+: (mLN|spleen)\\_(\\d{3})_\\d{3}\\.fcs", "AA_0\\2", cells$Sample)
+cells$Mouse_ID <- gsub("\\d+: (mLN|spleen)_(\\d{3})_\\d{3}\\.fcs", "AA_0\\2", cells$Sample)
 cells$tissue <- gsub("\\d+: (mLN|spleen)_(\\d{3})_\\d{3}.fcs", "\\1", cells$Sample)
 
 #####################################################################################################################################
@@ -43,8 +43,10 @@ facs.measure.cols <- c("Sample","CD4p", "Foxp3p_in_CD4p(Treg)", "Ki67p_in_CD4p_F
 # remove "%" signs and convert to numeric
 HZ19[] <- lapply(HZ19, gsub, pattern='%', replacement='')
 HZ19[, 35:49] <- sapply(HZ19[, 35:49], as.numeric)
+HZ19[, 14:33] <- sapply(HZ19[, 14:33], as.numeric)
 HZ19$tissue <- as.factor(HZ19$tissue)
 HZ19$Sample <- as.factor(HZ19$Sample)
+
 #test for normality
 
 ## tabulate  medians for 
@@ -61,25 +63,25 @@ HZ19$Sample <- as.factor(HZ19$Sample)
 # cell.means
 
 #check distribution with histogram
-histogram(~Sex | facs.measure.cols, data = HZ19)
-histogram(~tissue | facs.measure.cols, data = HZ19)
+# histogram(~Sex | facs.measure.cols, data = HZ19)
+# histogram(~tissue | facs.measure.cols, data = HZ19)
 
 ## #check overall populations between tissues
-plotCells.tissue <- function (col){
-  ggplot(HZ19, aes(tissue, get(col))) +
-    geom_boxplot() +
-    geom_jitter(width=0.2) +
-    ggtitle(col)
-}
-
-facs_boxplots.tissue <- lapply(facs.measure.cols, plotCells.tissue)
-names(facs_boxplots.tissue) <-  facs.measure.cols
-
-for(i in seq_along(facs_boxplots.tissue)){
-  pdf(paste0(names(facs_boxplots.tissue)[[i]], ".tissue.pdf"))
-  plot(facs_boxplots.tissue[[i]])
-  dev.off()
-}
+# plotCells.tissue <- function (col){
+#   ggplot(HZ19, aes(tissue, get(col))) +
+#     geom_boxplot() +
+#     geom_jitter(width=0.2) +
+#     ggtitle(col)
+# }
+# 
+# facs_boxplots.tissue <- lapply(facs.measure.cols, plotCells.tissue)
+# names(facs_boxplots.tissue) <-  facs.measure.cols
+# 
+# for(i in seq_along(facs_boxplots.tissue)){
+#   pdf(paste0(names(facs_boxplots.tissue)[[i]], ".tissue.pdf"))
+#   plot(facs_boxplots.tissue[[i]])
+#   dev.off()
+# }
 
 ### raw counts are modeled either as poisson or negative binomial in
 ### either case one could use the overall count (cell_counts) as
@@ -94,21 +96,24 @@ hist(HZ19$CD4p)
 descdist(HZ19$CD4p)
 descdist(HZ19$`Foxp3p_in_CD4p(Treg)`)
 
+# subest by spleen
+SpleenDF <- filter(HZ19, tissue == "spleen")
+mLNDF <- filter(HZ19, tissue == "mLN")
 
 # model interaction of cell populations with primary and secondary infection + constant position direction (PRIMARY : SECONDARY + POSITION)
 mods.l <- lapply(facs.measure.cols, function (x) {
-  lm(get(x) ~ (primary * challenge) + Position,
-     data=HZ19)
+  lm(get(x) ~ (Body_weight * Spleen),
+     data=SpleenDF)
 })
 names(mods.l) <- facs.measure.cols
 lapply(mods.l, summary)
 
 for(i in seq_along(facs.measure.cols)){
-  eff <- ggpredict(mods.l[[i]], terms=c("primary", "challenge", "Position"))
+  eff <- ggpredict(mods.l[[i]], terms=c("Body_weight", "Spleen"))
   plot <-  plot(eff, rawdata=TRUE) +
     scale_y_continuous(paste("percent", facs.measure.cols[[i]])) +
     ggtitle(paste("predicted values of", facs.measure.cols[[i]]))
-  pdf(paste0(facs.measure.cols[[i]], ".priXcha+pos.pdf"))
+  pdf(paste0(facs.measure.cols[[i]], ".spleen.pdf"))
   print(plot)
   dev.off()
 }
