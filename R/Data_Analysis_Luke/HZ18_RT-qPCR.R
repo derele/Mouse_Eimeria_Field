@@ -3,6 +3,7 @@ library(RCurl)
 library(dplyr)
 library(ggplot2)
 require(dplyr)
+library(tidyverse)
 
 #load in genotypes
 genotypeURL <- "https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/data/Field_data/HZ18_Genotypes.csv"
@@ -20,6 +21,16 @@ HImus <- merge(HImus, diss, by = "Mouse_ID")
 RTURL<- "https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/data/HZ18_RT-qPCR.csv"
 RT <- read.csv(text = getURL(RTURL))
 # correct names + add sample column
-RT$Name <- sapply(RT$Name, as.character)
-RT$Name <- gsub("(\\D{4})_\\D{2}_\\d{3}", "\\4", RT$Sample)
-cells$tissue <- gsub("\\d+: (mLN|spleen)_(\\d{3})_\\d{3}.fcs", "\\1", cells$Sample)
+RT <- RT %>% separate(Name, c("CEWE", "AA", "Mouse_ID"))
+RT$Mouse_ID <- sub("^", "AA_0", RT$Mouse_ID )
+RT$AA <- NULL
+names(RT)[names(RT) == "CEWE"] <- "tissue"
+# calculate averages
+RT <- data.frame(RT %>% group_by(Target.SYBR, Mouse_ID, add = TRUE) %>% 
+                       summarize(SD = sd(Ct.SYBR),
+                                 Ct.Mean = mean(Ct.SYBR)))
+#rename columns to merge by Mouse_ID
+names(RT)[names(RT) == "Target.SYBR"] <- "Target"
+# merge HImus and RT
+HZ18 <- merge(RT, HImus)
+#start graphing
