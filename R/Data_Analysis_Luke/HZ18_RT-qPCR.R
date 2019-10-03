@@ -34,3 +34,7 @@ names(RT)[names(RT) == "Target.SYBR"] <- "Target"
 # merge HImus and RT
 HZ18 <- merge(RT, HImus)
 #start graphing
+ggplot(data = HZ18, aes(x = HI, y = Ct.Mean)) +
+  geom_point() + 
+  facet_wrap("Target")
+# add infection intensity data
