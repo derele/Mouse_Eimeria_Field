@@ -4,6 +4,7 @@ library(dplyr)
 library(ggplot2)
 require(dplyr)
 library(tidyverse)
+library(reshape2)
 
 #load in genotypes
 genotypeURL <- "https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/data/Field_data/HZ18_Genotypes.csv"
@@ -26,15 +27,50 @@ RT$Mouse_ID <- sub("^", "AA_0", RT$Mouse_ID )
 RT$AA <- NULL
 names(RT)[names(RT) == "CEWE"] <- "tissue"
 # calculate averages
-RT <- data.frame(RT %>% group_by(Target.SYBR, Mouse_ID, add = TRUE) %>% 
-                       summarize(SD = sd(Ct.SYBR),
-                                 Ct.Mean = mean(Ct.SYBR)))
+RT <- RT %>% group_by(Mouse_ID, Target.SYBR) %>% summarise(Ct.SYBR = mean(Ct.SYBR))
 #rename columns to merge by Mouse_ID
 names(RT)[names(RT) == "Target.SYBR"] <- "Target"
+names(RT)[names(RT) == "Ct.SYBR"] <- "RT.Ct"
 # merge HImus and RT
 HZ18 <- merge(RT, HImus)
 #start graphing
-ggplot(data = HZ18, aes(x = HI, y = Ct.Mean)) +
+ggplot(data = HZ18, aes(x = HI, y = RT.Ct)) +
   geom_point() + 
   facet_wrap("Target")
 # add infection intensity data
+detectURL <- "https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/data/Eimeria_detection/Svenja/joined_qPCR_tables_cecum.csv"
+detect <- read.csv(text = getURL(detectURL))
+#cleanup and merge
+detect <- detect %>% separate(Mouse_ID, c("CEWE", "AA", "Mouse_ID"))
+detect$Mouse_ID <- sub("^", "AA_0", detect$Mouse_ID )
+names(detect)[names(detect) == "CEWE"] <- "tissue"
+detect$AA <- NULL
+detect$Ct.SYBR <- NULL
+detect[,4:8] <- NULL
+names(detect)[names(detect) == "Ct.Mean.SYBR"] <- "inf.Ct"
+names(detect)[names(detect) == "Ct.Dev..SYBR"] <- "inf.Ct.Dev"
+detect <- detect %>% drop_na(delta)
+HZ18 <- merge(detect, HZ18, by = "Mouse_ID")
+# graph
+ggplot(data = HZ18, aes(x = HI, y = RT.Ct, color = delta)) +
+  geom_point() + 
+  facet_wrap("Target")
+# calculate endogenous controls
+RT <- data.frame(RT)
+RT.wide <- reshape(RT[, c("Target", "Mouse_ID","RT.Ct")],
+                   timevar = "Target", idvar = "Mouse_ID", direction = "wide", )
+refGenes <- c("RT.Ct.beta.Actin", "RT.Ct.GAPDH")
+targetGenes <- c("RT.Ct.CXCR3", "RT.Ct.GBP2", "RT.Ct.IL.12b", "RT.Ct.IL.6", "RT.Ct.IRG6")
+RT.wide <- data.frame(RT.wide)
+
+## one general efficiency factor, as not measured for caecum
+eff.factor <- 1.9
+
+RT.eff <-  eff.factor^(RT.wide[, c(refGenes, targetGenes)] * -1)
+
+normIDX <- apply(RT.eff[, refGenes], 1, prod)^
+  (1/length(refGenes))
+
+RT.norm <- RT.eff[, targetGenes] / normIDX
+
+names(RT.norm) <- gsub("CqM", "NE", names(RT.norm))
