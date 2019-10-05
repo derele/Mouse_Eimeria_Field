@@ -55,15 +55,18 @@ HZ18 <- merge(detect, HZ18, by = "Mouse_ID")
 ggplot(data = HZ18, aes(x = HI, y = RT.Ct, color = delta)) +
   geom_point() + 
   facet_wrap("Target")
-# calculate endogenous controls
+# calculate endogenous controls and log expression
 RT <- data.frame(RT)
+RT <- RT %>% drop_na(RT.Ct)
 RT.wide <- reshape(RT[, c("Target", "Mouse_ID","RT.Ct")],
-                   timevar = "Target", idvar = "Mouse_ID", direction = "wide", )
-refGenes <- c("RT.Ct.beta.Actin", "RT.Ct.GAPDH")
-targetGenes <- c("RT.Ct.CXCR3", "RT.Ct.GBP2", "RT.Ct.IL.12b", "RT.Ct.IL.6", "RT.Ct.IRG6")
-RT.wide <- data.frame(RT.wide)
+                   timevar = "Target", idvar = "Mouse_ID", direction = "wide")
+#name columns like RT
+# names(RT.wide)[names(RT.wide) == "RT.Ct.beta-Actin"] <- "inf.Ct"
 
-## one general efficiency factor, as not measured for caecum
+refGenes <- c("RT.Ct.beta-Actin", "RT.Ct.GAPDH")
+targetGenes <- c("RT.Ct.CXCR3", "RT.Ct.GBP2", "RT.Ct.IL-12b", 
+                 "RT.Ct.IL-6", "RT.Ct.IRG6")
+
 eff.factor <- 1.9
 
 RT.eff <-  eff.factor^(RT.wide[, c(refGenes, targetGenes)] * -1)
@@ -73,4 +76,16 @@ normIDX <- apply(RT.eff[, refGenes], 1, prod)^
 
 RT.norm <- RT.eff[, targetGenes] / normIDX
 
-names(RT.norm) <- gsub("CqM", "NE", names(RT.norm))
+names(RT.norm) <- gsub("RT.Ct", "NE", names(RT.norm))
+
+## dropping everything but IDs and normalized values... look into SDs,
+## non-normalized etc... if needed!!
+RT.norm <- cbind(Mouse_ID=RT.wide[, "Mouse_ID"], RT.norm)
+
+# remove arbitrary RT columns, group, merge with HZ18
+HZ18 <- distinct(HZ18)
+HZ18 <- merge(HZ18, RT.norm, by = "Mouse_ID")
+#graph fix
+ggplot(data = HZ18, aes(x = HI, y = RT.Ct, color = delta)) +
+  geom_point() + 
+  facet_wrap("Target")
