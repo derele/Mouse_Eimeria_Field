@@ -37,7 +37,7 @@ HZ18 <- merge(RT, HImus)
 ggplot(data = HZ18, aes(x = HI, y = RT.Ct)) +
   geom_point() + 
   facet_wrap("Target")
-# add infection intensity data
+# add infection intensity data (Eimeria - Mouse)
 detectURL <- "https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/data/Eimeria_detection/Svenja/joined_qPCR_tables_cecum.csv"
 detect <- read.csv(text = getURL(detectURL))
 #cleanup and merge
@@ -85,7 +85,16 @@ RT.norm <- cbind(Mouse_ID=RT.wide[, "Mouse_ID"], RT.norm)
 # remove arbitrary RT columns, group, merge with HZ18
 HZ18 <- distinct(HZ18)
 HZ18 <- merge(HZ18, RT.norm, by = "Mouse_ID")
-#graph fix
-ggplot(data = HZ18, aes(x = HI, y = RT.Ct, color = delta)) +
+#reshape RT.norm to graph
+RT.norm.long <- reshape(RT.norm, direction = "long", varying = c("NE.CXCR3", "NE.GBP2", "NE.IL-12b", "NE.IL-6", "NE.IRG6"), 
+                        idvar = "Mouse_ID")
+RT.norm.long <- merge(RT.norm.long, detect, by = "Mouse_ID")
+HI <- HImus[, 1:2]
+RT.norm.long <- merge(RT.norm.long, HI, by = "Mouse_ID")
+RT.norm.long$inf <- RT.norm.long$delta < 6 
+#graph (mus - eim = delta)
+ggplot(data = RT.norm.long, aes(x = HI, y = NE, color = inf)) +
   geom_point() + 
-  facet_wrap("Target")
+  geom_smooth() +
+  facet_wrap("time")
+
