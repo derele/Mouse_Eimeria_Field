@@ -91,10 +91,39 @@ RT.norm.long <- reshape(RT.norm, direction = "long", varying = c("NE.CXCR3", "NE
 RT.norm.long <- merge(RT.norm.long, detect, by = "Mouse_ID")
 HI <- HImus[, 1:2]
 RT.norm.long <- merge(RT.norm.long, HI, by = "Mouse_ID")
-RT.norm.long$inf <- RT.norm.long$delta < 6 
-#graph (mus - eim = delta)
+names(RT.norm.long)[names(RT.norm.long)  == "time"] <- "Target"
+#graph (mus - eim = delta) (obsolete as we have melting curves)
 ggplot(data = RT.norm.long, aes(x = HI, y = NE, color = inf)) +
   geom_point() + 
   geom_smooth() +
-  facet_wrap("time")
+  facet_wrap("Target")
+# load, process and add melting curve detection
+MCURL <- "https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/data/Eimeria_detection/Svenja/table_ct_and_more.csv"
+MC <- read.csv(text = getURL(MCURL))
+names(MC)[names(MC) == "Name"] <- "Mouse_ID"
+MC <- MC %>% separate(Mouse_ID, c("CEWE", "AA", "Mouse_ID"))
+MC$Mouse_ID <- sub("^", "AA_0", MC$Mouse_ID )
+MC$CEWE <- NULL
+MC$AA <- NULL
+RT.norm.long <- merge(RT.norm.long, MC, by = "Mouse_ID")
+HZ18 <- merge(HZ18, MC, by = "Mouse_ID")
+# graph with melting curve data
+ggplot(data = RT.norm.long, aes(x = HI, y = NE, color = Eimeria.presence.in.Caecum)) +
+  geom_point() + 
+  geom_smooth() +
+  facet_wrap("Target")
+# separate into FALSE/TRUE for better trend visualization
+RTtrue <- filter(RT.norm.long, Eimeria.presence.in.Caecum == TRUE)
+RTfalse <- filter(RT.norm.long, Eimeria.presence.in.Caecum == FALSE)
 
+ggplot(data = RTtrue, aes(x = HI, y = NE)) +
+  geom_point() + 
+  geom_smooth() +
+  labs(title = ("Eimeria positive samples")) +
+  facet_wrap("Target")
+
+ggplot(data = RTfalse, aes(x = HI, y = NE)) +
+  geom_point() +
+  geom_smooth() +
+  labs(title = ("Eimeria negative samples")) +
+  facet_wrap("Target")
