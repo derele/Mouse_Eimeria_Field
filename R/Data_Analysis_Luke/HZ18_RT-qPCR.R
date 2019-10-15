@@ -146,3 +146,9 @@ ggplot(data = RT, aes(x = HI, y = RT.Ct, color = Eimeria.presence.in.Caecum)) +
   geom_smooth() +
   labs(title = ("Raw CTs")) +
   facet_wrap("Target")
+
+# graph Eim-mouse vs HI like Alice's bananas
+MC <- merge(MC, HI, by = "Mouse_ID")
+ggplot(MC, aes(HI, deltaCtMmE_tissue)) + 
+  geom_point() +
+  geom_smooth()
