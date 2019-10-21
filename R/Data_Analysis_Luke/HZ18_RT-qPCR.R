@@ -27,7 +27,7 @@ RT$Mouse_ID <- sub("^", "AA_0", RT$Mouse_ID )
 RT$AA <- NULL
 names(RT)[names(RT) == "CEWE"] <- "tissue"
 # calculate averages
-RT <- RT %>% group_by(Mouse_ID, Target.SYBR) %>% summarise(Ct.SYBR = mean(Ct.SYBR))
+RT <- RT %>% dplyr::group_by(Mouse_ID, Target.SYBR) %>% dplyr::summarise(Ct.SYBR = mean(Ct.SYBR))
 #rename columns to merge by Mouse_ID
 names(RT)[names(RT) == "Target.SYBR"] <- "Target"
 names(RT)[names(RT) == "Ct.SYBR"] <- "RT.Ct"
