@@ -1,8 +1,9 @@
 library(httr)
 library(RCurl)
-library(tidyverse)
 library(Rmisc)
+library(tidyverse)
 library(purrr)
+library(ggplot2)
 
 #read in 2016-2017 qPCRs (based on threshold, check emlting curves too)
 Mice <- "https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/data/MiceTable_fullEimeriaInfos_2014to2017.csv"
