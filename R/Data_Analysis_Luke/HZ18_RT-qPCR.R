@@ -103,6 +103,9 @@ Eim <- MC[,c(1,4)]
 names(Eim)[names(Eim) == "Eimeria.presence.in.Caecum"] <- "inf"
 RT.long <- merge(RT.long, Eim)
 
+# write out on Win home
+write.csv(RT.long, file = "~/Mouse_Eimeria_Databasing/data/Gene_expression/HZ18_RT-qPCR_RTlong.csv", row.names = FALSE)
+
 ggplot(RT.long, aes(HI, NE, color = inf)) +
   geom_point() +
   geom_smooth() +
