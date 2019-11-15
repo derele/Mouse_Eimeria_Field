@@ -99,7 +99,7 @@ MC$CEWE <- NULL
 MC$AA <- NULL
 HZ18 <- merge(HZ18, MC, by = "Mouse_ID")
 #subset MC 
-Eim <- MC[,c(1,4)]
+Eim <- MC[,c(1,4,11)]
 names(Eim)[names(Eim) == "Eimeria.presence.in.Caecum"] <- "inf"
 RT.long <- merge(RT.long, Eim)
 
