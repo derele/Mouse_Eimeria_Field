@@ -74,16 +74,26 @@ targetGenes <- c("RT.Ct.CXCR3", "RT.Ct.GBP2", "RT.Ct.IL.12b",
 RT.wide <- RT.wide %>% mutate(refMean = rowMeans(select(., refGenes)))
 RT.wide <- data.frame(RT.wide)
 refMean <- as.numeric(RT.wide$refMean)
+
+RT.wide$CXCR3 <- (RT.wide$refMean - RT.wide$RT.Ct.CXCR3)
+RT.wide$IRG6 <- (RT.wide$refMean - RT.wide$RT.Ct.IRG6)
+RT.wide$IL.12b <- (RT.wide$refMean - RT.wide$RT.Ct.IL.12b)
+RT.wide$GBP2 <- (RT.wide$refMean - RT.wide$RT.Ct.GBP2)
+RT.wide$IL.6 <- (RT.wide$refMean - RT.wide$RT.Ct.IL.6)
 RT.wide$RT.Ct.beta.Actin <- NULL
 RT.wide$RT.Ct.GAPDH <- NULL
-RT.wide[,2:6] <- sweep(RT.wide[2:6],1,refMean,'-')
 RT.wide$refMean <- NULL
+RT.wide$RT.Ct.CXCR3 <- NULL
+RT.wide$RT.Ct.GBP2 <- NULL
+RT.wide$RT.Ct.IL.12b <- NULL
+RT.wide$RT.Ct.IL.6 <- NULL
+RT.wide$RT.Ct.IRG6 <- NULL
 
-names(RT.wide)[names(RT.wide) == "RT.Ct.CXCR3"] <- "CXCR3"
-names(RT.wide)[names(RT.wide) == "RT.Ct.GBP2"] <- "GBP2"
-names(RT.wide)[names(RT.wide) == "RT.Ct.IL.12b"] <- "IL-12b"
-names(RT.wide)[names(RT.wide) == "RT.Ct.IL.6"] <- "IL-6"
-names(RT.wide)[names(RT.wide) == "RT.Ct.IRG6"] <- "IRG6"
+names(RT.wide)[names(RT.wide) == "CXCR3"] <- "CXCR3"
+names(RT.wide)[names(RT.wide) == "GBP2"] <- "GBP2"
+names(RT.wide)[names(RT.wide) == "IL.12b"] <- "IL-12b"
+names(RT.wide)[names(RT.wide) == "IL.6"] <- "IL-6"
+names(RT.wide)[names(RT.wide) == "IRG6"] <- "IRG6"
 
 RT.long <- melt(RT.wide, id.vars = "Mouse_ID")
 names(RT.long)[names(RT.long) == "variable"] <- "Target"
@@ -105,11 +115,18 @@ RT.long <- merge(RT.long, Eim)
 
 # write out on Win home
 write.csv(RT.long, file = "~/Mouse_Eimeria_Databasing/data/Gene_expression/HZ18_RT-qPCR_RTlong.csv", row.names = FALSE)
+#write out on Deb work
+write.csv(RT.long, file = "Repositories/Mouse_Eimeria_Databasing/Mouse_Eimeria_Databasing/data/Gene_expression/HZ18_RT-qPCR_RTlong.csv", row.names = FALSE)
 
 ggplot(RT.long, aes(HI, NE, color = inf)) +
   geom_point() +
   geom_smooth() +
   facet_wrap("Target")
+
+ggplot(RT.long, aes(deltaCtMmE_tissue, NE, color = inf))  +
+  geom_point() + 
+  facet_wrap("Target")+ 
+  geom_smooth(method = "lm")
 
 ############################################################### not used anymore
 # eff.factor <- 1.9
