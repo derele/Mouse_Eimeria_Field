@@ -112,9 +112,12 @@ HZ18 <- merge(HZ18, MC, by = "Mouse_ID")
 Eim <- MC[,c(1,4,11)]
 names(Eim)[names(Eim) == "Eimeria.presence.in.Caecum"] <- "inf"
 RT.long <- merge(RT.long, Eim)
+NE <- subset(x = RT.long$NE, subset = TRUE)
+HZ18 <- merge(HZ18, RT.long)
 
 # write out on Win home
 write.csv(RT.long, file = "~/Mouse_Eimeria_Databasing/data/Gene_expression/HZ18_RT-qPCR_RTlong.csv", row.names = FALSE)
+write.csv(HZ18, file = "~/Mouse_Eimeria_Databasing/data/Gene_expression/HZ18_complete.csv", row.names = FALSE)
 #write out on Deb work
 write.csv(RT.long, file = "Repositories/Mouse_Eimeria_Databasing/Mouse_Eimeria_Databasing/data/Gene_expression/HZ18_RT-qPCR_RTlong.csv", row.names = FALSE)
 
