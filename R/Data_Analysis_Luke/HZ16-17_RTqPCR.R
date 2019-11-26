@@ -25,21 +25,17 @@ Positive <- rbind(Positive, Double_tbd)
 Positive <- rbind(Positive, Double_det)
 Positive <- rbind(Positive, Other)
 
-
-
-data.frame(E64, E88, Double, Double_tbd, Double_det, Other) %>% reduce(inner_join, by = "Mouse_ID")
-
-# select positive samples 2016
-positive2016a <- filter(PCR, qPCRstatus == "positive", year == 2016, qPCRsummary == "infected cecum")
-positive2016b <- filter(PCR, qPCRstatus == "positive", year == 2016, qPCRsummary == "cecum stronger")
-positive2016c <- filter(PCR, qPCRstatus == "positive", year == 2016, qPCRsummary == "ileum stronger")
-# select positive samples 2017
-positive2017a <- filter(PCR, qPCRstatus == "positive", year == 2017, qPCRsummary == "infected cecum")
-positive2017b <- filter(PCR, qPCRstatus == "positive", year == 2017, qPCRsummary == "cecum stronger")
-positive2017c <- filter(PCR, qPCRstatus == "positive", year == 2017, qPCRsummary == "ileum stronger")
-# select negative samples
-negative2016 <- filter(PCR, qPCRstatus == "negative", year == 2016, qPCRsummary == "non infected")
-negative2017 <- filter(PCR, qPCRstatus == "negative", year == 2017, qPCRsummary == "non infected")
+# # select positive samples 2016
+# positive2016a <- filter(PCR, qPCRstatus == "positive", year == 2016, qPCRsummary == "infected cecum")
+# positive2016b <- filter(PCR, qPCRstatus == "positive", year == 2016, qPCRsummary == "cecum stronger")
+# positive2016c <- filter(PCR, qPCRstatus == "positive", year == 2016, qPCRsummary == "ileum stronger")
+# # select positive samples 2017
+# positive2017a <- filter(PCR, qPCRstatus == "positive", year == 2017, qPCRsummary == "infected cecum")
+# positive2017b <- filter(PCR, qPCRstatus == "positive", year == 2017, qPCRsummary == "cecum stronger")
+# positive2017c <- filter(PCR, qPCRstatus == "positive", year == 2017, qPCRsummary == "ileum stronger")
+# # select negative samples
+# negative2016 <- filter(PCR, qPCRstatus == "negative", year == 2016, qPCRsummary == "non infected")
+# negative2017 <- filter(PCR, qPCRstatus == "negative", year == 2017, qPCRsummary == "non infected")
 # randomly select negative samples (28 per 2016, 29 per 2017)
 negative2016 <- sample_n(negative2016, 28)
 negative2017 <- sample_n(negative2017, 33)
