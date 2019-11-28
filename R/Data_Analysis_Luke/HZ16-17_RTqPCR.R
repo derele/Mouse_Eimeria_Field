@@ -25,29 +25,14 @@ Positive <- rbind(Positive, Double_tbd)
 Positive <- rbind(Positive, Double_det)
 Positive <- rbind(Positive, Other)
 
-# # select positive samples 2016
-# positive2016a <- filter(PCR, qPCRstatus == "positive", year == 2016, qPCRsummary == "infected cecum")
-# positive2016b <- filter(PCR, qPCRstatus == "positive", year == 2016, qPCRsummary == "cecum stronger")
-# positive2016c <- filter(PCR, qPCRstatus == "positive", year == 2016, qPCRsummary == "ileum stronger")
-# # select positive samples 2017
-# positive2017a <- filter(PCR, qPCRstatus == "positive", year == 2017, qPCRsummary == "infected cecum")
-# positive2017b <- filter(PCR, qPCRstatus == "positive", year == 2017, qPCRsummary == "cecum stronger")
-# positive2017c <- filter(PCR, qPCRstatus == "positive", year == 2017, qPCRsummary == "ileum stronger")
-# # select negative samples
-# negative2016 <- filter(PCR, qPCRstatus == "negative", year == 2016, qPCRsummary == "non infected")
-# negative2017 <- filter(PCR, qPCRstatus == "negative", year == 2017, qPCRsummary == "non infected")
-# randomly select negative samples (28 per 2016, 29 per 2017)
-negative2016 <- sample_n(negative2016, 28)
-negative2017 <- sample_n(negative2017, 33)
-negative <- bind_rows(negative2016, negative2017)
-#merge
-positiveA <- bind_rows(positive2016a, positive2017a)
-positiveB <- bind_rows(positive2016b, positive2017b)
-positiveC <- bind_rows(positive2016c, positive2017c)
-positiveAB <- bind_rows(positiveA, positiveB)
-positive <- bind_rows(positiveAB, positiveC)
-dplyr::arrange(positive, year)
-HZ16and17 <- rbind(positive, negative)
+### Check against MC analysis
+MC_LandM <- "https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/data/Eimeria_detection/HZ16-17_InfInt_MC_Lorenzo%26Mert.csv"
+MC_LandM <- read.csv(text = getURL(MC_LandM))
+
+MC_LandM <- merge(MC_LandM, Positive)
+TruePositives <- subset(MC_LandM, Caecum == "pos")
+write.csv(TruePositives, file = "./Repositories/Mouse_Eimeria_Databasing/Mouse_Eimeria_Databasing/data/Eimeria_detection/MC_verified_positives.csv")
+
 ############################## Add oocyst data
 oocysts <- "https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/data/Eimeria_detection/Eimeria_oocysts_2015%262017_Lorenzo.csv"
 oocysts <- read.csv(text = getURL(oocysts))
