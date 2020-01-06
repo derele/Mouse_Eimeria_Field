@@ -25,6 +25,21 @@ RT5 <- read.csv(text = getURL(RT5))
 RT6 <- "https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/data/Gene_expression/HZ16-17_RT-qPCRs/HZ16-17_RT-qPCR6.CSV"
 RT6 <- read.csv(text = getURL(RT6))
 
+RT7 <- "https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/data/Gene_expression/HZ16-17_RT-qPCRs/HZ16-17_RT-qPCR7.CSV"
+RT7 <- read.csv(text = getURL(RT7))
+
+RT8 <- "https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/data/Gene_expression/HZ16-17_RT-qPCRs/HZ16-17_RT-qPCR8.CSV"
+RT8 <- read.csv(text = getURL(RT8))
+
+RT9 <- "https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/data/Gene_expression/HZ16-17_RT-qPCRs/HZ16-17_RT-qPCR9.CSV"
+RT9 <- read.csv(text = getURL(RT9))
+  
+RT10 <- "https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/data/Gene_expression/HZ16-17_RT-qPCRs/HZ16-17_RT-qPCR10.CSV" 
+RT10 <- read.csv(text = getURL(RT10))  
+  
+RT11 <- "https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/data/Gene_expression/HZ16-17_RT-qPCRs/HZ16-17_RT-qPCR11.CSV" 
+RT11 <- read.csv(text = getURL(RT11)) 
+
 # clean and merge it all
 RT1$Ct.Mean.SYBR <- NULL
 RT1$Ct.Dev..SYBR <- NULL
@@ -36,19 +51,34 @@ RT3$Amount.SYBR <- NULL
 RT4$Amount.SYBR <- NULL
 RT5$Amount.SYBR <- NULL
 RT6$Amount.SYBR <- NULL
+RT7$Amount.SYBR <- NULL
+RT8$Amount.SYBR <- NULL
+RT9$Amount.SYBR <- NULL
+RT10$Amount.SYBR <- NULL
+RT11$Amount.SYBR <- NULL
+
 RT1$Pos <- NULL
 RT2$Pos <- NULL
 RT3$Pos <- NULL
 RT4$Pos <- NULL
 RT5$Pos <- NULL
 RT6$Pos <- NULL
-
+RT7$Pos <- NULL
+RT8$Pos <- NULL
+RT9$Pos <- NULL
+RT10$Pos <- NULL
+RT11$Pos <- NULL
 
 RT <- rbind(RT1, RT2)
 RT <- rbind(RT, RT3)
 RT <- rbind(RT, RT4)
 RT <- rbind(RT, RT5)
 RT <- rbind(RT, RT6)
+RT <- rbind(RT, RT7)
+RT <- rbind(RT, RT8)
+RT <- rbind(RT, RT9)
+RT <- rbind(RT, RT10)
+RT <- rbind(RT, RT11)
 
 #remove negative controls
 RT <- RT[!grepl("IRG6A", RT$Name),]
@@ -99,6 +129,8 @@ ggplot(RT.long, aes(x = NE, y = Mouse_ID)) +
   facet_wrap("Target")
 ##################################################################################
 
+!!!!! start fix: fx by adding HZ18 genotypes to "HZgenotype" and dissection data from 2014-2017 to "diss"
+
 #load in genotypes (make for 16-17)
 genotypeURL <- "https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/data/Field_data/HZ10_HZ17_Genotypes_complete.csv"
 HZgenotype <- read.csv(text = getURL(genotypeURL))
@@ -111,6 +143,8 @@ HZ18dissection <- read.csv(text = getURL(dissectionURL))
 diss <- select(HZ18dissection, Mouse_ID, Latitude, Longitude, Sex, Status, Body_weight, Spleen, ASP, SYP, HET, MART, CP, HD, HM, MM, TM)
 # merge HImus and diss
 HImus <- merge(HImus, diss, by = "Mouse_ID")
+
+!!!!!!! end fix
 
 # correct names + add sample column
 RT <- RT %>% separate(Name, c("CEWE", "AA", "Mouse_ID"))
