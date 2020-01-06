@@ -140,13 +140,20 @@ ggplot(RT.long, aes(x = NE, y = Mouse_ID)) +
 ##################################################################################
 
 #load in genotypes (make for 16-17)
-genotypeURL <- "https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/data/Field_data/HZ10_HZ17_Genotypes_complete.csv"
-HZgenotype <- read.csv(text = getURL(genotypeURL))
+HZ16genotype <- "https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/data/Field_data/HZ16_Genotypes_47-211.csv"
+HZ16genotype <- read.csv(text = getURL(HZ16genotype))
+
+HZ17genotype <- "https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/data/Field_data/HZ10_HZ17_Genotypes_47-510.csv"
+HZ17genotype <- read.csv(text = getURL(HZ17genotype))
+
 HZ18genotype <- "https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/data/Field_data/HZ18_Genotypes.csv"
 HZ18genotype <- read.csv(text = getURL(HZ18genotype))
-HZgenotype <- rbind.fill(HZ18genotype, HZgenotype)
+
+HZgenotype <- rbind.fill(HZ18genotype, HZ16genotype)
+HZgenotype <- rbind.fill(HZ17genotype, HZgenotype)
 # subest by HI
-HImus <- select(HZgenotype, HI, Mouse_ID)
+HImus <- select(HZgenotype, HI, Mouse_ID, Year)
+HImus <- unique(HImus)
 #load in dissections
 HZ18dissection <- "https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/data/Field_data/HZ18_Dissections.csv"
 HZ18dissection <- read.csv(text = getURL(HZ18dissection))
@@ -166,14 +173,19 @@ HZdissections <- rbind.fill(HZdissections, HZ17dissection2)
 
 #subset by columns relevant for mapping and gene expression
 diss <- select(HZdissections, Mouse_ID, Latitude, Longitude, Year, Sex, Status, Body_weight, Spleen, ASP, SYP, HET, MART, CP, HD, HM, MM, TM)
+diss <- unique(diss)
 # merge HImus and diss
 HImus <- merge(HImus, diss, by = "Mouse_ID")
 
 # merge HImus and RT
 HZ18 <- merge(RT.long, HImus)
-ggplot(HZ18, aes(x = NE, y = HI)) +
+HZ18$Year <- as.factor(HZ18$Year)
+
+ggplot(HZ18, aes(x = NE, y = HI, color = Year)) +
   geom_point() +
   facet_wrap("Target", scales = "free_x")
+
+
 # load in sample list
 
 
