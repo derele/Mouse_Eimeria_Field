@@ -123,29 +123,6 @@ RT.wide$refMean <- NULL
 RT.long <- melt(RT.wide, id.vars = "Mouse_ID")
 names(RT.long)[names(RT.long) == "variable"] <- "Target"
 names(RT.long)[names(RT.long) == "value"] <- "NE"
-
-ggplot(RT.long, aes(x = NE, y = Mouse_ID)) +
-  geom_point() +
-  facet_wrap("Target")
-##################################################################################
-
-!!!!! start fix: fx by adding HZ18 genotypes to "HZgenotype" and dissection data from 2014-2017 to "diss"
-
-#load in genotypes (make for 16-17)
-genotypeURL <- "https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/data/Field_data/HZ10_HZ17_Genotypes_complete.csv"
-HZgenotype <- read.csv(text = getURL(genotypeURL))
-# subest by HI
-HImus <- select(HZgenotype, HI, Mouse_ID)
-#load in dissections
-dissectionURL <- "https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/data/Field_data/HZ18_Dissections.csv"
-HZ18dissection <- read.csv(text = getURL(dissectionURL))
-#subset by columns relevant for mapping and gene expression
-diss <- select(HZ18dissection, Mouse_ID, Latitude, Longitude, Sex, Status, Body_weight, Spleen, ASP, SYP, HET, MART, CP, HD, HM, MM, TM)
-# merge HImus and diss
-HImus <- merge(HImus, diss, by = "Mouse_ID")
-
-!!!!!!! end fix
-
 # correct names + add sample column
 RT <- RT %>% separate(Name, c("CEWE", "AA", "Mouse_ID"))
 RT$Mouse_ID <- sub("^", "AA_0", RT$Mouse_ID )
@@ -156,9 +133,47 @@ RT <- RT %>% dplyr::group_by(Mouse_ID, Target.SYBR) %>% dplyr::summarise(Ct.SYBR
 #rename columns to merge by Mouse_ID
 names(RT)[names(RT) == "Target.SYBR"] <- "Target"
 names(RT)[names(RT) == "Ct.SYBR"] <- "RT.Ct"
-# merge HImus and RT
-HZ18 <- merge(RT, HImus)
 
+ggplot(RT.long, aes(x = NE, y = Mouse_ID)) +
+  geom_point() +
+  facet_wrap("Target")
+##################################################################################
+
+#load in genotypes (make for 16-17)
+genotypeURL <- "https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/data/Field_data/HZ10_HZ17_Genotypes_complete.csv"
+HZgenotype <- read.csv(text = getURL(genotypeURL))
+HZ18genotype <- "https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/data/Field_data/HZ18_Genotypes.csv"
+HZ18genotype <- read.csv(text = getURL(HZ18genotype))
+HZgenotype <- rbind.fill(HZ18genotype, HZgenotype)
+# subest by HI
+HImus <- select(HZgenotype, HI, Mouse_ID)
+#load in dissections
+HZ18dissection <- "https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/data/Field_data/HZ18_Dissections.csv"
+HZ18dissection <- read.csv(text = getURL(HZ18dissection))
+
+HZ16dissection <- "https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/data/Field_data/HZ16_Dissection_1-211.csv"
+HZ16dissection <- read.csv(text = getURL(HZ16dissection))
+
+HZ17dissection <- "https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/data/Field_data/HZ17_Dissections_212-236.csv"
+HZ17dissection <- read.csv(text = getURL(HZ17dissection))
+
+HZ17dissection2 <- "https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/data/Field_data/HZ17_Dissections_237-523.csv"
+HZ17dissection2 <- read.csv(text = getURL(HZ17dissection2))
+
+HZdissections <- rbind.fill(HZ18dissection, HZ16dissection)
+HZdissections <- rbind.fill(HZdissections, HZ17dissection)
+HZdissections <- rbind.fill(HZdissections, HZ17dissection2)
+
+#subset by columns relevant for mapping and gene expression
+diss <- select(HZdissections, Mouse_ID, Latitude, Longitude, Year, Sex, Status, Body_weight, Spleen, ASP, SYP, HET, MART, CP, HD, HM, MM, TM)
+# merge HImus and diss
+HImus <- merge(HImus, diss, by = "Mouse_ID")
+
+# merge HImus and RT
+HZ18 <- merge(RT.long, HImus)
+ggplot(HZ18, aes(x = NE, y = HI)) +
+  geom_point() +
+  facet_wrap("Target", scales = "free_x")
 # load in sample list
 
 
