@@ -171,28 +171,50 @@ HZdissections <- rbind.fill(HZ18dissection, HZ16dissection)
 HZdissections <- rbind.fill(HZdissections, HZ17dissection)
 HZdissections <- rbind.fill(HZdissections, HZ17dissection2)
 
-#subset by columns relevant for mapping and gene expression
+#subset by columns relevant for mapping and gene expression 
 diss <- select(HZdissections, Mouse_ID, Latitude, Longitude, Year, Sex, Status, Body_weight, Spleen, ASP, SYP, HET, MART, CP, HD, HM, MM, TM)
 diss <- unique(diss)
-# merge HImus and diss
+# merge HImus and diss (MAKES MESS WITH YEARS)
 HImus <- merge(HImus, diss, by = "Mouse_ID")
 
-# merge HImus and RT
+# merge HImus and RT (rename from HZ18 because it is NOT!°!!!!!!!!!!!!!)
 HZ18 <- merge(RT.long, HImus)
 HZ18$Year <- as.factor(HZ18$Year)
 
-ggplot(HZ18, aes(x = NE, y = HI, color = Year)) +
+ggplot(HZ18, aes(x = NE, y = HI)) +
   geom_point() +
-  facet_wrap("Target", scales = "free_x")
+  coord_flip() +
+  facet_wrap("Target", scales = "free_y") +
+  theme(axis.text=element_text(size=12, face = "bold"), 
+        axis.title=element_text(size=14,face="bold"),
+        strip.text.x = element_text(size = 14, face = "bold"),
+        legend.text=element_text(size=12, face = "bold"),
+        legend.title = element_text(size = 12, face = "bold"))+
+  ggtitle("Overall wild gene expression")
+
+# now compare with Lorenzos data for only true positives
+Lorenzo <- "https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/data/Eimeria_detection/MC_verified_positives.csv"
+Lorenzo <- read.csv(text = getURL(Lorenzo))
+POS <- merge(HZ18, Lorenzo, all.x = TRUE)
 
 
+
+ggplot(POS, aes(x = HI, y = NE)) +
+  geom_point() +
+  geom_smooth() +
+  facet_wrap("Target", scales = "free_y") +
+  theme(axis.text=element_text(size=12, face = "bold"), 
+        axis.title=element_text(size=14,face="bold"),
+        strip.text.x = element_text(size = 14, face = "bold"),
+        legend.text=element_text(size=12, face = "bold"),
+        legend.title = element_text(size = 12, face = "bold"))+
+  ggtitle("Eimeria positive samples gene expression")
 # load in sample list
 
 
 ### Check against MC analysis (Lorenzo)
 LorenzoMC <- "https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/data/Eimeria_detection/HZ16-17_InfInt_MC_Lorenzo%26Mert.csv"
 LorenzoMC <- read.csv(text = getURL(LorenzoMC))
-
 LorenzoMC <- merge(LorenzoMC, Positive)
 TruePositives <- subset(LorenzoMC, Caecum == "pos")
 write.csv(TruePositives, file = "~/Mouse_Eimeria_Databasing/Mouse_Eimeria_Databasing/data/Eimeria_detection/MC_verified_positives.csv")
