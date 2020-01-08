@@ -124,24 +124,27 @@ RT.long <- melt(RT.wide, id.vars = "Mouse_ID")
 names(RT.long)[names(RT.long) == "variable"] <- "Target"
 names(RT.long)[names(RT.long) == "value"] <- "NE"
 # correct names + add sample column
-RT <- RT %>% separate(Name, c("CEWE", "AA", "Mouse_ID"))
-RT$Mouse_ID <- sub("^", "AA_0", RT$Mouse_ID )
+RT <- separate(RT, c("Mouse_ID"), into = c("AA", "Number"))
+RT$Mouse_ID <- sub("^", "AA_", RT$Number )
 RT$AA <- NULL
-names(RT)[names(RT) == "CEWE"] <- "tissue"
+RT$Number <- NULL
 # calculate averages
-RT <- RT %>% dplyr::group_by(Mouse_ID, Target.SYBR) %>% dplyr::summarise(Ct.SYBR = mean(Ct.SYBR))
-#rename columns to merge by Mouse_ID
-names(RT)[names(RT) == "Target.SYBR"] <- "Target"
-names(RT)[names(RT) == "Ct.SYBR"] <- "RT.Ct"
-
+RT <- RT %>% dplyr::group_by(Mouse_ID, Target) %>% dplyr::summarise(RT.Ct = mean(RT.Ct))
+#basic graph
 ggplot(RT.long, aes(x = NE, y = Mouse_ID)) +
   geom_point() +
   facet_wrap("Target")
-##################################################################################
 
-#load in genotypes (make for 16-17)
-HZ16genotype <- "https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/data/Field_data/HZ16_Genotypes_47-211.csv"
-HZ16genotype <- read.csv(text = getURL(HZ16genotype))
+# ggplot(POS, aes(x = HI, y = NE)) +
+#   geom_point() +
+#   geom_smooth() +
+#   facet_wrap("Target", scales = "free_y") +
+#   theme(axis.text=element_text(size=12, face = "bold"), 
+#         axis.title=element_text(size=14,face="bold"),
+#         strip.text.x = element_text(size = 14, face = "bold"),
+#         legend.text=element_text(size=12, face = "bold"),
+#         legend.title = element_text(size = 12, face = "bold"))+
+#   ggtitle("Eimeria positive samples gene expression")
 
 HZ17genotype <- "https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/data/Field_data/HZ10_HZ17_Genotypes_47-510.csv"
 HZ17genotype <- read.csv(text = getURL(HZ17genotype))
@@ -149,39 +152,51 @@ HZ17genotype <- read.csv(text = getURL(HZ17genotype))
 HZ18genotype <- "https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/data/Field_data/HZ18_Genotypes.csv"
 HZ18genotype <- read.csv(text = getURL(HZ18genotype))
 
-HZgenotype <- rbind.fill(HZ18genotype, HZ16genotype)
-HZgenotype <- rbind.fill(HZ17genotype, HZgenotype)
+HZgenotype <- rbind.fill(HZ17genotype, HZ18genotype)
 # subest by HI
 HImus <- select(HZgenotype, HI, Mouse_ID, Year)
-HImus <- unique(HImus)
+HImus <- distinct(HImus)
 #load in dissections
-HZ18dissection <- "https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/data/Field_data/HZ18_Dissections.csv"
-HZ18dissection <- read.csv(text = getURL(HZ18dissection))
-
-HZ16dissection <- "https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/data/Field_data/HZ16_Dissection_1-211.csv"
-HZ16dissection <- read.csv(text = getURL(HZ16dissection))
-
-HZ17dissection <- "https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/data/Field_data/HZ17_Dissections_212-236.csv"
-HZ17dissection <- read.csv(text = getURL(HZ17dissection))
-
-HZ17dissection2 <- "https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/data/Field_data/HZ17_Dissections_237-523.csv"
-HZ17dissection2 <- read.csv(text = getURL(HZ17dissection2))
-
-HZdissections <- rbind.fill(HZ18dissection, HZ16dissection)
-HZdissections <- rbind.fill(HZdissections, HZ17dissection)
-HZdissections <- rbind.fill(HZdissections, HZ17dissection2)
-
-#subset by columns relevant for mapping and gene expression 
-diss <- select(HZdissections, Mouse_ID, Latitude, Longitude, Year, Sex, Status, Body_weight, Spleen, ASP, SYP, HET, MART, CP, HD, HM, MM, TM)
-diss <- unique(diss)
-# merge HImus and diss (MAKES MESS WITH YEARS)
-HImus <- merge(HImus, diss, by = "Mouse_ID")
+# HZ18dissection <- "https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/data/Field_data/HZ18_Dissections.csv"
+# HZ18dissection <- read.csv(text = getURL(HZ18dissection))
+# 
+# HZ16dissection <- "https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/data/Field_data/HZ16_Dissection_1-211.csv"
+# HZ16dissection <- read.csv(text = getURL(HZ16dissection))
+# 
+# HZ17dissection <- "https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/data/Field_data/HZ17_Dissections_212-236.csv"
+# HZ17dissection <- read.csv(text = getURL(HZ17dissection))
+# 
+# HZ17dissection2 <- "https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/data/Field_data/HZ17_Dissections_237-523.csv"
+# HZ17dissection2 <- read.csv(text = getURL(HZ17dissection2))
+# 
+# HZdissections <- rbind.fill(HZ18dissection, HZ16dissection)
+# HZdissections <- rbind.fill(HZdissections, HZ17dissection)
+# HZdissections <- rbind.fill(HZdissections, HZ17dissection2)
+# 
+# #subset by columns relevant for mapping and gene expression 
+# diss <- select(HZdissections, Mouse_ID, Latitude, Longitude, Year, Sex, Status, Body_weight, Spleen, ASP, SYP, HET, MART, CP, HD, HM, MM, TM)
+# diss <- unique(diss)
+# # merge HImus and diss (MAKES MESS WITH YEARS)
+# HImus <- merge(HImus, diss, by = "Mouse_ID")
 
 # merge HImus and RT (rename from HZ18 because it is NOT!°!!!!!!!!!!!!!)
-HZ18 <- merge(RT.long, HImus)
-HZ18$Year <- as.factor(HZ18$Year)
+HZ16_17 <- merge(RT.long, HImus)
+HZ16_17$Year <- as.factor(HZ16_17$Year)
+HZ18G <- select(HZ18genotype, Mouse_ID, Year, HI)
+HZ18 <- "https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/data/Gene_expression/HZ18_RT-qPCR_RTlong.csv"
+HZ18 <- read.csv(text = getURL(HZ18))
+HZ18$inf <- NULL
+HZ18$deltaCtMmE_tissue <- NULL
+HZ18 <- merge(HZ18G, HZ18)
+HZ18$Target <- as.character(HZ18$Target)
+HZ18 <- HZ18[!(HZ18$Target == "IL-6"),]
+HZ18 <- HZ18[!(HZ18$Target == "GBP2"),]
+HZ18$Target[HZ18$Target == "IL-12b"] <- "IL.12"
+HZ18$Target <- as.factor(HZ18$Target)
+HZ <- rbind(HZ18, HZ16_17)
+HZ <- distinct(HZ,.keep_all = TRUE)
 
-ggplot(HZ18, aes(x = NE, y = HI)) +
+ggplot(HZ, aes(x = NE, y = HI)) +
   geom_point() +
   coord_flip() +
   facet_wrap("Target", scales = "free_y") +
@@ -192,14 +207,33 @@ ggplot(HZ18, aes(x = NE, y = HI)) +
         legend.title = element_text(size = 12, face = "bold"))+
   ggtitle("Overall wild gene expression")
 
-# now compare with Lorenzos data for only true positives
-Lorenzo <- "https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/data/Eimeria_detection/MC_verified_positives.csv"
-Lorenzo <- read.csv(text = getURL(Lorenzo))
-POS <- merge(HZ18, Lorenzo, all.x = TRUE)
+# ### Load in known MC positives and merge together
+HZ16_17MC <- "https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/data/Eimeria_detection/HZ16-17_InfInt_MC_Lorenzo%26Mert.csv"
+HZ16_17MC <- read.csv(text = getURL(HZ16_17MC))
+TruePositives1 <- subset(HZ16_17MC, Caecum == "pos")
+# write.csv(TruePositives, file = "~/Mouse_Eimeria_Databasing/Mouse_Eimeria_Databasing/data/Eimeria_detection/MC_verified_positives.csv")
+HZ18MC <- "https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/data/Eimeria_detection/Svenja/table_ct_and_more.csv"
+HZ18MC <- read.csv(text = getURL(HZ18MC))
+colnames(HZ18MC)[4] <- "Caecum"
+HZ18MC$Caecum <- as.character(HZ18MC$Caecum)
+HZ18MC$Caecum[HZ18MC$Caecum == "TRUE"] <- "pos"
+HZ18MC$Caecum[HZ18MC$Caecum == "FALSE"] <- "neg"
+TruePositives2 <- subset(HZ18MC, Caecum == "pos")
+TruePositives1 <- select(TruePositives1, Mouse_ID, Caecum)
+colnames(TruePositives2)[1] <- "Mouse_ID"
+TruePositives2 <- select(TruePositives2, Mouse_ID, Caecum)
+TruePositives2 <- separate(TruePositives2, c("Mouse_ID"), into = c("Tissue", "AA", "Mouse_ID"))
+TruePositives2$Mouse_ID <- sub("^", "AA_0", TruePositives2$Mouse_ID)
+TruePositives2$Tissue <- NULL
+TruePositives2$AA <- NULL
+TruePositives <- rbind(TruePositives1, TruePositives2)
 
-
-
-ggplot(POS, aes(x = HI, y = NE)) +
+# load in all known negatives and merge together
+HZ1 <- full_join(HZ, TruePositives)
+HZ1$Caecum <- replace_na(HZ1$Caecum, "neg")
+colnames(HZ1)[6] <- "MC"
+# compare in one big DF and ggplot to see POS vs NEG
+ggplot(data=subset(HZ1, !is.na(x = HZ1$Target)), aes(x = HI, y = NE, color = MC)) +
   geom_point() +
   geom_smooth() +
   facet_wrap("Target", scales = "free_y") +
@@ -208,16 +242,39 @@ ggplot(POS, aes(x = HI, y = NE)) +
         strip.text.x = element_text(size = 14, face = "bold"),
         legend.text=element_text(size=12, face = "bold"),
         legend.title = element_text(size = 12, face = "bold"))+
-  ggtitle("Eimeria positive samples gene expression")
-# load in sample list
+  ggtitle("Overall wild gene expression vs HI")
+
+##################################################################################
+# now load in intensity data and add it to HZ1
+int1 <- "https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/data/Eimeria_detection/FINALqpcrData_2016_2017_threshold3.75.csv"
+int1 <- read.csv(text = getURL(int1))
+int1 <- select(int1, Mouse_ID, delta_ct_cewe_MminusE)
+colnames(int1)[2] <- "delta"
+
+int2 <- select(HZ18MC, Name, deltaCtMmE_tissue)
+colnames(int2)[2] <- "delta"
+int2 <- separate(int2, c("Name"), into = c("Tissue", "AA", "Mouse_ID"))
+int2$Mouse_ID <- sub("^", "AA_0", int2$Mouse_ID)
+int2$Tissue <- NULL
+int2$AA <- NULL
+
+int <- rbind(int1, int2)
+
+HZ1 <- merge(int, HZ1)
+
+ggplot(data=subset(HZ1, !is.na(x = HZ1$Target)), aes(x = delta, y = NE, color = MC)) +
+  geom_point() +
+  geom_smooth() +
+  facet_wrap("Target", scales = "free_y") +
+  theme(axis.text=element_text(size=12, face = "bold"), 
+        axis.title=element_text(size=14,face="bold"),
+        strip.text.x = element_text(size = 14, face = "bold"),
+        legend.text=element_text(size=12, face = "bold"),
+        legend.title = element_text(size = 12, face = "bold"))+
+  ggtitle("Overall wild gene expression vs delta")
 
 
-### Check against MC analysis (Lorenzo)
-LorenzoMC <- "https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/data/Eimeria_detection/HZ16-17_InfInt_MC_Lorenzo%26Mert.csv"
-LorenzoMC <- read.csv(text = getURL(LorenzoMC))
-LorenzoMC <- merge(LorenzoMC, Positive)
-TruePositives <- subset(LorenzoMC, Caecum == "pos")
-write.csv(TruePositives, file = "~/Mouse_Eimeria_Databasing/Mouse_Eimeria_Databasing/data/Eimeria_detection/MC_verified_positives.csv")
+
 
 ############################## Add oocyst data
 oocysts <- "https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/data/Eimeria_detection/Eimeria_oocysts_2015%262017_Lorenzo.csv"
