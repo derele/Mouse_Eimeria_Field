@@ -95,7 +95,7 @@ RT$RT.Ct <- as.numeric(as.character(RT$RT.Ct))
 
 # remove NAs, calculate averages + save long
 RT <- na.omit(RT)
-RT.long <- RT %>% dplyr::group_by(Mouse_ID, Target) %>% dplyr::summarise(RT.Ct = mean(RT.Ct))
+RT.long <- RT %>% dplyr::group_by(Mouse_ID, Target) %>% dplyr::summarise(RT.Ct = mean(RT.Ct), .drop = FALSE)
 RT.long <- data.frame(RT.long)
 RT.wide <- reshape(RT.long[, c("Target", "Mouse_ID","RT.Ct")],
                    timevar = "Target", idvar = "Mouse_ID", direction = "wide")
@@ -124,12 +124,12 @@ RT.long <- melt(RT.wide, id.vars = "Mouse_ID")
 names(RT.long)[names(RT.long) == "variable"] <- "Target"
 names(RT.long)[names(RT.long) == "value"] <- "NE"
 # correct names + add sample column
-RT <- separate(RT, c("Mouse_ID"), into = c("AA", "Number"))
-RT$Mouse_ID <- sub("^", "AA_", RT$Number )
-RT$AA <- NULL
-RT$Number <- NULL
+# RT <- separate(RT, c("Mouse_ID"), into = c("AA", "Number"))
+# RT$Mouse_ID <- sub("^", "AA_", RT$Number )
+# RT$AA <- NULL
+# RT$Number <- NULL
 # calculate averages
-RT <- RT %>% dplyr::group_by(Mouse_ID, Target) %>% dplyr::summarise(RT.Ct = mean(RT.Ct))
+# RT <- RT %>% dplyr::group_by(Mouse_ID, Target) %>% dplyr::summarise(RT.Ct = mean(RT.Ct))
 #basic graph
 ggplot(RT.long, aes(x = NE, y = Mouse_ID)) +
   geom_point() +
@@ -272,8 +272,9 @@ ggplot(data=subset(HZ1, !is.na(x = HZ1$Target)), aes(x = delta, y = NE, color = 
         legend.text=element_text(size=12, face = "bold"),
         legend.title = element_text(size = 12, face = "bold"))+
   ggtitle("Overall wild gene expression vs delta")
-
-
+# write out the RT-qPCRs that need to be done to fill in missing positives
+missing <- HZ1[is.na(HZ1$Target),]
+write.csv(HZ1, )
 
 
 ############################## Add oocyst data

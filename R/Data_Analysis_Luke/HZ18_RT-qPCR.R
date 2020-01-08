@@ -27,7 +27,7 @@ RT$Mouse_ID <- sub("^", "AA_0", RT$Mouse_ID )
 RT$AA <- NULL
 names(RT)[names(RT) == "CEWE"] <- "tissue"
 # calculate averages
-RT <- RT %>% dplyr::group_by(Mouse_ID, Target.SYBR) %>% dplyr::summarise(Ct.SYBR = mean(Ct.SYBR))
+RT <- RT %>% dplyr::group_by(Mouse_ID, Target.SYBR) %>% dplyr::summarise(Ct.SYBR = mean(Ct.SYBR), .drop = FALSE)
 #rename columns to merge by Mouse_ID
 names(RT)[names(RT) == "Target.SYBR"] <- "Target"
 names(RT)[names(RT) == "Ct.SYBR"] <- "RT.Ct"
@@ -119,7 +119,7 @@ HZ18 <- merge(HZ18, RT.long)
 write.csv(RT.long, file = "~/Mouse_Eimeria_Databasing/data/Gene_expression/HZ18_RT-qPCR_RTlong.csv", row.names = FALSE)
 write.csv(HZ18, file = "~/Mouse_Eimeria_Databasing/data/Gene_expression/HZ18_complete.csv", row.names = FALSE)
 #write out on Deb work
-write.csv(RT.long, file = "Repositories/Mouse_Eimeria_Databasing/Mouse_Eimeria_Databasing/data/Gene_expression/HZ18_RT-qPCR_RTlong.csv", row.names = FALSE)
+write.csv(RT.long, file = "~/Documents/Mouse_Eimeria_Databasing/data/Gene_expression/HZ18_RT-qPCR_RTlong.csv", row.names = FALSE)
 
 ggplot(RT.long, aes(HI, NE, color = inf)) +
   geom_point() +
