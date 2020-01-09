@@ -209,28 +209,49 @@ ggplot(HZ, aes(x = NE, y = HI)) +
 
 # ### Load in known MC positives and merge together
 HZ16_17MC <- "https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/data/Eimeria_detection/HZ16-17_InfInt_MC_Lorenzo%26Mert.csv"
-HZ16_17MC <- read.csv(text = getURL(HZ16_17MC))
+HZ16_17MC <- read.csv(text = getURL(HZ16_17MC), na.strings = c("", "NA"))
 TruePositives1 <- subset(HZ16_17MC, Caecum == "pos")
+#just to assign years, fix later by rewriting the table
+years_add <- "https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/data/Eimeria_detection/FINALqpcrData_2016_2017_threshold3.75.csv"
+years_add <- read.csv(text = getURL(years_add))
+years_add <- select(years_add, year, Mouse_ID)
+HZ16_17MC <- merge(HZ16_17MC, years_add)
+colnames(HZ16_17MC)[7] <- "Year"
+TruePositives1 <- select(HZ16_17MC, Mouse_ID, Year, Caecum)
 # write.csv(TruePositives, file = "~/Mouse_Eimeria_Databasing/Mouse_Eimeria_Databasing/data/Eimeria_detection/MC_verified_positives.csv")
 HZ18MC <- "https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/data/Eimeria_detection/Svenja/table_ct_and_more.csv"
 HZ18MC <- read.csv(text = getURL(HZ18MC))
 colnames(HZ18MC)[4] <- "Caecum"
+HZ18MC$Year <- "2018"
 HZ18MC$Caecum <- as.character(HZ18MC$Caecum)
 HZ18MC$Caecum[HZ18MC$Caecum == "TRUE"] <- "pos"
 HZ18MC$Caecum[HZ18MC$Caecum == "FALSE"] <- "neg"
 TruePositives2 <- subset(HZ18MC, Caecum == "pos")
-TruePositives1 <- select(TruePositives1, Mouse_ID, Caecum)
+TruePositives1 <- select(TruePositives1, Mouse_ID, Caecum, Year)
 colnames(TruePositives2)[1] <- "Mouse_ID"
-TruePositives2 <- select(TruePositives2, Mouse_ID, Caecum)
+TruePositives2 <- select(TruePositives2, Mouse_ID, Caecum, Year)
 TruePositives2 <- separate(TruePositives2, c("Mouse_ID"), into = c("Tissue", "AA", "Mouse_ID"))
 TruePositives2$Mouse_ID <- sub("^", "AA_0", TruePositives2$Mouse_ID)
 TruePositives2$Tissue <- NULL
 TruePositives2$AA <- NULL
 TruePositives <- rbind(TruePositives1, TruePositives2)
+TruePositives <- subset(TruePositives, Caecum == "pos")
 
 # load in all known negatives and merge together
-HZ1 <- full_join(HZ, TruePositives)
-HZ1$Caecum <- replace_na(HZ1$Caecum, "neg")
+TrueNegatives1 <- subset(HZ16_17MC, Caecum == "neg")
+TrueNegatives2 <- subset(HZ18MC, Caecum == "neg")
+TrueNegatives1 <- select(TrueNegatives1, Mouse_ID, Caecum, Year)
+TrueNegatives2 <- separate(TrueNegatives2, c("Name"), into = c("Tissue", "AA", "Mouse_ID"))
+TrueNegatives2$Mouse_ID <- sub("^", "AA_0", TrueNegatives2$Mouse_ID)
+TrueNegatives2$Tissue <- NULL
+TrueNegatives2$AA <- NULL
+TrueNegatives2 <- select(TrueNegatives2, Mouse_ID, Caecum, Year)
+TrueNegatives <- rbind(TrueNegatives1, TrueNegatives2)
+Trues <- rbind(TrueNegatives, TruePositives)
+
+HZ1 <- merge(HZ, Trues)
+HZ1 <- subset(HZ1, Caecum == "pos" & Caecum == "neg")
+# HZ1$Caecum <- replace_na(HZ1$Caecum, "neg")
 colnames(HZ1)[6] <- "MC"
 # compare in one big DF and ggplot to see POS vs NEG
 ggplot(data=subset(HZ1, !is.na(x = HZ1$Target)), aes(x = HI, y = NE, color = MC)) +
@@ -248,10 +269,11 @@ ggplot(data=subset(HZ1, !is.na(x = HZ1$Target)), aes(x = HI, y = NE, color = MC)
 # now load in intensity data and add it to HZ1
 int1 <- "https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/data/Eimeria_detection/FINALqpcrData_2016_2017_threshold3.75.csv"
 int1 <- read.csv(text = getURL(int1))
-int1 <- select(int1, Mouse_ID, delta_ct_cewe_MminusE)
+int1 <- select(int1, Mouse_ID, delta_ct_cewe_MminusE, Year)
 colnames(int1)[2] <- "delta"
+colnames(int1)[3] <- "Year"
 
-int2 <- select(HZ18MC, Name, deltaCtMmE_tissue)
+int2 <- select(HZ18MC, Name, deltaCtMmE_tissue, Year)
 colnames(int2)[2] <- "delta"
 int2 <- separate(int2, c("Name"), into = c("Tissue", "AA", "Mouse_ID"))
 int2$Mouse_ID <- sub("^", "AA_0", int2$Mouse_ID)
@@ -262,7 +284,7 @@ int <- rbind(int1, int2)
 
 HZ1 <- merge(int, HZ1)
 
-ggplot(data=subset(HZ1, !is.na(x = HZ1$Target)), aes(x = delta, y = NE, color = MC)) +
+ggplot(data=subset(HZ1, !is.na(x = HZ1$Target) & !is.na(x = HZ1$MC)), aes(x = delta, y = NE, color = MC)) +
   geom_point() +
   geom_smooth() +
   facet_wrap("Target", scales = "free_y") +
@@ -274,8 +296,11 @@ ggplot(data=subset(HZ1, !is.na(x = HZ1$Target)), aes(x = delta, y = NE, color = 
   ggtitle("Overall wild gene expression vs delta")
 # write out the RT-qPCRs that need to be done to fill in missing positives
 missing <- HZ1[is.na(HZ1$Target),]
-write.csv(HZ1, )
+write.csv(missing, "~/Documents/Mouse_Eimeria_Databasing/data/Gene_expression/MC_identified_extra_samples_to_process.csv")
 
+# pick out high delta, MC negative samples
+High_delta_negs <- subset(HZ1, MC == "neg" & delta > -5)
+write.csv(High_delta_negs, "~/Documents/Mouse_Eimeria_Databasing/data/Eimeria_detection/HZ16-18_high_delta_negatives.csv")
 
 ############################## Add oocyst data
 oocysts <- "https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/data/Eimeria_detection/Eimeria_oocysts_2015%262017_Lorenzo.csv"
