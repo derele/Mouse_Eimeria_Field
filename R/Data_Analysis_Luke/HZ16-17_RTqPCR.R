@@ -269,7 +269,7 @@ ggplot(data=subset(HZ1, !is.na(x = HZ1$Target)), aes(x = HI, y = NE, color = MC)
 # now load in intensity data and add it to HZ1
 int1 <- "https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/data/Eimeria_detection/FINALqpcrData_2016_2017_threshold3.75.csv"
 int1 <- read.csv(text = getURL(int1))
-int1 <- select(int1, Mouse_ID, delta_ct_cewe_MminusE, Year)
+int1 <- dplyr::select(int1, Mouse_ID, delta_ct_cewe_MminusE, year)
 colnames(int1)[2] <- "delta"
 colnames(int1)[3] <- "Year"
 
@@ -279,6 +279,7 @@ int2 <- separate(int2, c("Name"), into = c("Tissue", "AA", "Mouse_ID"))
 int2$Mouse_ID <- sub("^", "AA_0", int2$Mouse_ID)
 int2$Tissue <- NULL
 int2$AA <- NULL
+
 
 int <- rbind(int1, int2)
 
