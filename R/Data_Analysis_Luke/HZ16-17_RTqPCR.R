@@ -251,7 +251,11 @@ TrueNegatives <- rbind(TrueNegatives1, TrueNegatives2)
 Trues <- rbind(TrueNegatives, TruePositives)
 
 HZ1 <- merge(HZ, Trues)
+<<<<<<< HEAD
 # HZ1 <- subset(HZ1, Caecum == "pos" & Caecum == "neg")
+=======
+#HZ1 <- subset(HZ1, Caecum == "pos" & Caecum == "neg")
+>>>>>>> 2a0d008159822c03e03544a9b0b2687b54cdb5a0
 # HZ1$Caecum <- replace_na(HZ1$Caecum, "neg")
 colnames(HZ1)[6] <- "MC"
 # compare in one big DF and ggplot to see POS vs NEG
@@ -270,7 +274,11 @@ ggplot(data=subset(HZ1, !is.na(x = HZ1$Target)), aes(x = HI, y = NE, color = MC)
 # now load in intensity data and add it to HZ1
 int1 <- "https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/data/Eimeria_detection/FINALqpcrData_2016_2017_threshold3.75.csv"
 int1 <- read.csv(text = getURL(int1))
+<<<<<<< HEAD
 int1 <- select(int1, Mouse_ID, delta_ct_cewe_MminusE, year)
+=======
+int1 <- dplyr::select(int1, Mouse_ID, delta_ct_cewe_MminusE, year)
+>>>>>>> 2a0d008159822c03e03544a9b0b2687b54cdb5a0
 colnames(int1)[2] <- "delta"
 colnames(int1)[3] <- "Year"
 
@@ -280,6 +288,7 @@ int2 <- separate(int2, c("Name"), into = c("Tissue", "AA", "Mouse_ID"))
 int2$Mouse_ID <- sub("^", "AA_0", int2$Mouse_ID)
 int2$Tissue <- NULL
 int2$AA <- NULL
+
 
 int <- rbind(int1, int2)
 
@@ -296,12 +305,12 @@ ggplot(data=subset(HZ1, !is.na(x = HZ1$Target) & !is.na(x = HZ1$MC)), aes(x = de
         legend.title = element_text(size = 12, face = "bold"))+
   ggtitle("Overall wild gene expression vs delta")
 # write out the RT-qPCRs that need to be done to fill in missing positives
-missing <- HZ1[is.na(HZ1$Target),]
-write.csv(missing, "~/Documents/Mouse_Eimeria_Databasing/data/Gene_expression/MC_identified_extra_samples_to_process.csv")
+missing <- HZ1[is.na(HZ1$NE),]
+write.csv(missing, "~/Mouse_Eimeria_Databasing/data/Gene_expression/MC_identified_extra_samples_to_process.csv")
 
 # pick out high delta, MC negative samples
 High_delta_negs <- subset(HZ1, MC == "neg" & delta > -5)
-write.csv(High_delta_negs, "~/Documents/Mouse_Eimeria_Databasing/data/Eimeria_detection/HZ16-18_high_delta_negatives.csv")
+write.csv(High_delta_negs, "~/Mouse_Eimeria_Databasing/data/Eimeria_detection/HZ16-18_high_delta_negatives.csv")
 
 ## Add NA group for negative MCs as Emanuel suggested (converts numbers to chr so X axis looks wild)
 HZ1$Eimstatus <- ifelse(HZ1$MC == "neg", "NA", HZ1$delta)
