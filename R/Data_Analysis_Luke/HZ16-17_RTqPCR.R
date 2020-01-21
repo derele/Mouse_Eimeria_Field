@@ -5,6 +5,7 @@ library(tidyverse)
 library(purrr)
 library(ggplot2)
 library(reshape2)
+library(naniar)
 
 # load in runs
 RT1 <- "https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/data/Gene_expression/HZ16-17_RT-qPCRs/HZ16-17_RT-qPCR1.CSV"
@@ -250,7 +251,7 @@ TrueNegatives <- rbind(TrueNegatives1, TrueNegatives2)
 Trues <- rbind(TrueNegatives, TruePositives)
 
 HZ1 <- merge(HZ, Trues)
-HZ1 <- subset(HZ1, Caecum == "pos" & Caecum == "neg")
+# HZ1 <- subset(HZ1, Caecum == "pos" & Caecum == "neg")
 # HZ1$Caecum <- replace_na(HZ1$Caecum, "neg")
 colnames(HZ1)[6] <- "MC"
 # compare in one big DF and ggplot to see POS vs NEG
@@ -269,7 +270,7 @@ ggplot(data=subset(HZ1, !is.na(x = HZ1$Target)), aes(x = HI, y = NE, color = MC)
 # now load in intensity data and add it to HZ1
 int1 <- "https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/data/Eimeria_detection/FINALqpcrData_2016_2017_threshold3.75.csv"
 int1 <- read.csv(text = getURL(int1))
-int1 <- select(int1, Mouse_ID, delta_ct_cewe_MminusE, Year)
+int1 <- select(int1, Mouse_ID, delta_ct_cewe_MminusE, year)
 colnames(int1)[2] <- "delta"
 colnames(int1)[3] <- "Year"
 
@@ -301,6 +302,23 @@ write.csv(missing, "~/Documents/Mouse_Eimeria_Databasing/data/Gene_expression/MC
 # pick out high delta, MC negative samples
 High_delta_negs <- subset(HZ1, MC == "neg" & delta > -5)
 write.csv(High_delta_negs, "~/Documents/Mouse_Eimeria_Databasing/data/Eimeria_detection/HZ16-18_high_delta_negatives.csv")
+
+## Add NA group for negative MCs as Emanuel suggested (converts numbers to chr so X axis looks wild)
+HZ1$Eimstatus <- ifelse(HZ1$MC == "neg", "NA", HZ1$delta)
+HZ1$Eimstatus <- as.numeric(HZ1$Eimstatus)
+
+
+ggplot(HZ1, aes(x = Eimstatus, y = NE, color = MC)) +
+  geom_point() +
+  geom_smooth() +
+  geom_miss_point() +
+  facet_wrap("Target", scales = "free") +
+  theme(axis.text=element_text(size=12, face = "bold"), 
+        axis.title=element_text(size=14,face="bold"),
+        strip.text.x = element_text(size = 14, face = "bold"),
+        legend.text=element_text(size=12, face = "bold"),
+        legend.title = element_text(size = 12, face = "bold"))+
+  ggtitle("Overall wild gene expression vs delta")
 
 ############################## Add oocyst data
 oocysts <- "https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/data/Eimeria_detection/Eimeria_oocysts_2015%262017_Lorenzo.csv"
