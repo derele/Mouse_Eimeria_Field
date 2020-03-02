@@ -131,6 +131,18 @@ ggplot(RT.long, aes(deltaCtMmE_tissue, NE, color = inf))  +
   facet_wrap("Target")+ 
   geom_smooth(method = "lm")
 
+ggplot(RT.long, 
+       aes(x = inf, y = NE, color = inf)) +
+  geom_jitter() +
+  geom_boxplot() +
+  facet_wrap("Target", scales = "free") +
+  theme(axis.text=element_text(size=12, face = "bold"), 
+        axis.title=element_text(size=14,face="bold"),
+        strip.text.x = element_text(size = 14, face = "bold"),
+        legend.text=element_text(size=12, face = "bold"),
+        legend.title = element_text(size = 12, face = "bold"))+
+  ggtitle("HZ18_gene_downregulation")
+
 ############################################################### not used anymore
 # eff.factor <- 1.9
 # 
