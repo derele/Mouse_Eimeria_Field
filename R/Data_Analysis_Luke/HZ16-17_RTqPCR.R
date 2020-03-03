@@ -305,6 +305,7 @@ ggplot(data=subset(HZ1, !is.na(x = HZ1$Target) & !is.na(x = HZ1$MC)), aes(x = de
         legend.title = element_text(size = 12, face = "bold"))+
   ggtitle("Overall wild gene expression vs delta")
 # write out the RT-qPCRs that need to be done to fill in missing positives
+
 missing <- HZ1[is.na(HZ1$NE),]
 write.csv(missing, "~/Mouse_Eimeria_Databasing/data/Gene_expression/MC_identified_extra_samples_to_process.csv")
 
@@ -345,5 +346,27 @@ PositiveInvestigate <- rbind(DoublePositive, OocystPositive, qPCRPositive)
 PositiveInvestigate <- distinct(PositiveInvestigate)
 HZ16and17 <- merge(HZ16and17, PositiveInvestigate, by = "Mouse_ID")
 
-################### Add melting cuve analysis data #######################
+################### graph like Svenja's results #######################
+HZ2 <- read.csv(text = getURL("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/data/Gene_expression/HZ18_RT-qPCR_RTlong.csv"))
+HZ1 <- select(HZ1, Mouse_ID, Target, delta, NE, HI, MC)
+HZ2 <- select(HZ2, Mouse_ID, Target, deltaCtMmE_tissue, inf, NE, HI)
+#### name columns to match
+colnames(HZ2)[3] <- "delta"
+colnames(HZ2)[4] <- "MC"
+HZ1$MC <- as.character(HZ1$MC)
+HZ1$MC[HZ1$MC == "pos"] <- "TRUE"
+HZ1$MC[HZ1$MC == "neg"] <- "FALSE"
+HZgraph <- rbind(HZ1, HZ2)
 
+
+ggplot(HZgraph, 
+       aes(x = MC, y = NE, color = MC)) +
+  geom_jitter() +
+  geom_boxplot() +
+  facet_wrap("Target", scales = "free") +
+  theme(axis.text=element_text(size=12, face = "bold"), 
+        axis.title=element_text(size=14,face="bold"),
+        strip.text.x = element_text(size = 14, face = "bold"),
+        legend.text=element_text(size=12, face = "bold"),
+        legend.title = element_text(size = 12, face = "bold"))+
+  ggtitle("HZ16-18_gene_downregulation")
