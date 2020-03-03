@@ -1,4 +1,4 @@
-sample,% CD4+,% Foxp3+ in CD4+ (Treg),% Ki-67+ in Foxp3+ (dividing Treg),% RORgt+ in Foxp3+ Treg,FSC-A_SSC-A_subset/single/live/CD4+/Foxp3-_Freq._of_Parent,% T-bet+ in CD4+Foxp3- (Th1),% Ki-67+ in CD4+Foxp3-T-bet+ (dividing Th1),% RORgt+ in CD4+Foxp3- (Th17),% Ki-67+ in CD4+Foxp3-RORgt+ (dividing Th17),% CD8+,% T-bet+ in CD8+ (activated CD8+),% Ki-67+ in CD8+T-bet+ (dividing activated CD8+),% IFN-g+ in CD4+,% IL-17A+ in CD4+,% IFN-g+ in CD8+
+sample,ThCD4p,Treg_Foxp3_in_CD4p,Dividing_Ki67p_in_Foxp3p,RORgtp_in_Foxp3p,FSC-A_SSC-A_subset/single/live/CD4+/Foxp3-_Freq._of_Parent,Th1Tbetp_in_CD4pFoxp3n,Dividing_Ki67p_in_Tbetp,Th17RORgp_in_CD4pFoxp3n,Dividing_Ki67p_in_RORgtp,TcCD8p,% T-bet+ in CD8+ (activated CD8+),Dividing_Ki67p_in_Tbetp,Th1IFNgp_in_CD4p,Th17IL17Ap_in_CD4p,Tc1IFNgp_in_CD8p
 1: mLN_681_030.fcs,20.0 %,6.81 %,33.6 %,15.8 %,89.3 %,15.9 %,31.9 %,5.70 %,8.26 %,11.1 %,27.9 %,21.3 %,12.7 %,1.92 %,12.0 %
 2: mLN_682_031.fcs,27.7 %,5.82 %,24.9 %,2.40 %,87.1 %,11.0 %,41.3 %,0.43 %,12.8 %,15.0 %,26.7 %,22.0 %,4.78 %,1.16 %,4.70 %
 3: mLN_683_032.fcs,33.6 %,9.83 %,25.5 %,4.09 %,87.1 %,10.6 %,34.0 %,1.93 %,6.25 %,17.5 %,23.9 %,15.8 %,3.12 %,1.78 %,11.1 %

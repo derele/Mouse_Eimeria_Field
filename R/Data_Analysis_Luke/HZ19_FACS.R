@@ -47,6 +47,40 @@ HZ19[, 14:33] <- sapply(HZ19[, 14:33], as.numeric)
 HZ19$tissue <- as.factor(HZ19$tissue)
 HZ19$Sample <- as.factor(HZ19$Sample)
 
+#################### process like E7 
+FACS <- dplyr::select(HZ19, Mouse_ID, CD4p, CD8p, Th1IFNgp_in_CD4p, Th17IL17Ap_in_CD4p, Tc1IFNgp_in_CD8p, Treg_Foxp3_in_CD4p,
+                      Dividing_Ki67p_in_Foxp3p, RORgtp_in_Foxp3p, Th1Tbetp_in_CD4pFoxp3n, Dividing_Ki67p_in_Tbetp,
+                      Th17RORgp_in_CD4pFoxp3n, Dividing_Ki67p_in_RORgtp, Position, infHistory)
+
+FACS <- dplyr::distinct(FACS)
+
+
+
+
+# tranform into long
+
+FACS <- melt(FACS,
+             direction = "long",
+             varying = list(names(FACS)[2:13]),
+             v.names = "cell.pop",
+             na.rm = T, value.name = "counts", 
+             id.vars = c("EH_ID", "Position", "infHistory"))
+FACS <- na.omit(FACS)
+names(FACS)[names(FACS) == "variable"] <- "pop"
+
+#################################
+ggplot(HZ19, aes(y =  , x = , color = )) +
+  geom_point() +
+  # ylim(2, -17) +
+  facet_grid(Target~infHistory, scales = "free") +
+  theme(axis.text=element_text(size=12, face = "bold"), 
+        axis.title=element_text(size=14,face="bold"),
+        strip.text.x = element_text(size = 14, face = "bold"),
+        legend.text=element_text(size=12, face = "bold"),
+        legend.title = element_text(size = 12, face = "bold"))+
+  ggtitle("")
+
+
 #test for normality
 
 ## tabulate  medians for 
