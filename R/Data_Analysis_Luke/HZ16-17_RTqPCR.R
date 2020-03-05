@@ -377,6 +377,7 @@ ggplot(HZgraph,
        aes(x = MC, y = NE, color = MC)) +
   geom_boxplot(outlier.shape = NA) +
   geom_jitter() +
+  stat_compare_means(aes(label = ..p.signif..)) +
   facet_wrap("Target", scales = "free") +
   labs(y="deltaCT = Target - HKG", x = "infected", colour = "infected") +
   theme(axis.text=element_text(size=12, face = "bold"),
