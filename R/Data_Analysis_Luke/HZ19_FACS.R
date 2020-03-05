@@ -1,51 +1,71 @@
 library(httr)
 library(RCurl)
+library(Rmisc)
+library(tidyverse)
+library(readxl)
 library(dplyr)
-library(magrittr)
-library(ggplot2)
-library(ggpubr)
-library(lattice)
-library(data.table)
-library(ggeffects)
-library(multcomp)
-library(fitdistrplus)
+# guess this one will have to be hard coded
+FACSraw1 <- read_xlsx("~/Documents/Mouse_Eimeria_Databasing/data/Field_data/HZ19_FACS_raw.xlsx", sheet = 1)
+FACSraw2 <- read_xlsx("~/Documents/Mouse_Eimeria_Databasing/data/Field_data/HZ19_FACS_raw.xlsx", sheet = 2)
+FACSraw3 <- read_xlsx("~/Documents/Mouse_Eimeria_Databasing/data/Field_data/HZ19_FACS_raw.xlsx", sheet = 3)
+FACSraw4 <- read_xlsx("~/Documents/Mouse_Eimeria_Databasing/data/Field_data/HZ19_FACS_raw.xlsx", sheet = 4)
 
-cellsfileUrl <- "https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/data/Field_data/HZ19_FACS_complete.csv"
-cells <- read.csv(text=getURL(cellsfileUrl))
+# extract sample names and position 
+FACSraw1$Mouse_ID <-gsub("\\d+: (mLN|spleen)_(\\d{3})_\\d{3}.fcs", "AA_0\\2", FACSraw1$sample)
+FACSraw1$Position <- gsub("\\d+: (mLN|spleen)_(\\d{3})_\\d{3}.fcs", "\\1", FACSraw1$sample)
+FACSraw2$Mouse_ID <-gsub("\\d+: (mLN|spleen)_(\\d{3})_\\d{3}.fcs", "AA_0\\2", FACSraw2$sample)
+FACSraw2$Position <- gsub("\\d+: (mLN|spleen)_(\\d{3})_\\d{3}.fcs", "\\1", FACSraw2$sample)
+FACSraw3$Mouse_ID <-gsub("\\d+: (mLN|spleen)_(\\d{3})_\\d{3}.fcs", "AA_0\\2", FACSraw3$sample)
+FACSraw3$Position <- gsub("\\d+: (mLN|spleen)_(\\d{3})_\\d{3}.fcs", "\\1", FACSraw3$sample)
+FACSraw3 <- subset(FACSraw3[1:45,])
+FACSraw3.1 <- subset(FACSraw3[46:90,])
+FACSraw3.1$Mouse_ID <-paste(gsub("(mLN|spleen)_(\\d{3})_\\d{3}.fcs", "AA_0\\2", FACSraw3.1$sample))
+FACSraw3.1$Position <-paste(gsub("(mLN|spleen)_(\\d{3})_\\d{3}.fcs", "\\1", FACSraw3.1$sample))
 
-#rename columns sensibly
-names(cells) <- c("Sample","CD4p", "Foxp3p_in_CD4p(Treg)", "Ki67p_in_CD4p_Foxp3p(dividing_Treg)","RORgtp_in_CD4p_Foxp3p(Treg17)","Scatter",
-                "Tbetp_in_CD4p_Foxp3n(Th1)", "Ki67_in_CD4p_Foxp3n_Tbetp(dividing_Th1)","RORgtp_in_CD4p_Foxp3n(Th17)",
-                "Ki67p_in_CD4p_Foxp3n_RORgtp(dividing_Th17)", "CD8p","Tbetp_in_CD8p(activated_CD8p)",
-                "Ki67p_in_CD8p_Tbetp(dividing_activated_CD8p)", "IFNgp_in_CD4p","IL17Ap_in_CD4p", "IFNgp_in_CD8p")
-
-#extract Mouse_ID from that mess and paste in "LM0" to standardize with our data structure
-cells$Mouse_ID <- gsub("\\d+: (mLN|spleen)_(\\d{3})_\\d{3}\\.fcs", "AA_0\\2", cells$Sample)
-cells$tissue <- gsub("\\d+: (mLN|spleen)_(\\d{3})_\\d{3}.fcs", "\\1", cells$Sample)
+FACSraw4$Mouse_ID <-gsub("(mLN|spleen)_(\\d{3})_\\d{3}.fcs", "AA_0\\2", FACSraw4$Sample)
+FACSraw4$Position <- gsub("(mLN|spleen)_(\\d{3})_\\d{3}.fcs", "\\1", FACSraw4$Sample)
+# remove that strage Sample column
+FACSraw1 <- FACSraw1[,-c(1)]
+FACSraw2 <- FACSraw2[,-c(1)]
+FACSraw3 <- FACSraw3[,-c(1)]
+FACSraw3.1 <- FACSraw3.1[,-c(1)]
+FACSraw4 <- FACSraw4[,-c(1)]
+# combine into one and remove wrong sample (Hongwei said) makes some NAs
+FACS1 <- full_join(FACSraw1, FACSraw2)
+FACS2 <- full_join(FACSraw3, FACSraw4)
+FACS3 <- full_join(FACS2, FACSraw3.1)
+FACS <- full_join(FACS1,FACS3)
 
 #####################################################################################################################################
 #introduce Dissections data
 dissURL <- "https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/data/Field_data/HZ19_Dissections.csv"
 Dissections <- read.csv(text=getURL(dissURL))
+Dissections <- select(Dissections, Mouse_ID, Sex, Status, Year, Ectoparasites, Body_weight, Body_length, Spleen, Feces, ASP, SYP, HET, MART, CP, HD,
+               HM, MM, TM)
+HZ19 <- merge(Dissections, FACS, by = "Mouse_ID")
 
-#merge FACS with para data
-HZ19 <- merge(Dissections, cells, by = "Mouse_ID")
-
-#remove percentages from cell columns
-
-
-##select cell population names (now using .cells to calculate with actual cell populations)
-facs.measure.cols <- c("Sample","CD4p", "Foxp3p_in_CD4p(Treg)", "Ki67p_in_CD4p_Foxp3p(dividing_Treg)","RORgtp_in_CD4p_Foxp3p(Treg17)","Scatter",
-                       "Tbetp_in_CD4p_Foxp3n(Th1)", "Ki67_in_CD4p_Foxp3n_Tbetp(dividing_Th1)","RORgtp_in_CD4p_Foxp3n(Th17)",
-                       "Ki67p_in_CD4p_Foxp3n_RORgtp(dividing_Th17)", "CD8p","Tbetp_in_CD8p(activated_CD8p)",
-                       "Ki67p_in_CD8p_Tbetp(dividing_activated_CD8p)", "IFNgp_in_CD4p","IL17Ap_in_CD4p", "IFNgp_in_CD8p")
-
+#create R and .csv friendly column names
+colnames(HZ19)[19]<- "CD4"
+colnames(HZ19)[20]<- "Treg"
+colnames(HZ19)[21]<- "Div_Treg"
+colnames(HZ19)[22]<- "Treg17"
+colnames(HZ19)[24]<- "Th1"
+colnames(HZ19)[25]<- "Div_Th1"
+colnames(HZ19)[26]<- "Th17"
+colnames(HZ19)[27]<- "Div_Th17"
+colnames(HZ19)[28]<- "CD8"
+colnames(HZ19)[29]<- "Act_CD8"
+colnames(HZ19)[30]<- "Div_Act_CD8"
+colnames(HZ19)[31]<- "IFNy_CD4"
+colnames(HZ19)[32]<- "IL17A_CD4"
+colnames(HZ19)[33]<- "IFNy_CD8"
+colnames(HZ19)[23]<- "Treg_prop"
 # remove "%" signs and convert to numeric
 HZ19[] <- lapply(HZ19, gsub, pattern='%', replacement='')
-HZ19[, 35:49] <- sapply(HZ19[, 35:49], as.numeric)
-HZ19[, 14:33] <- sapply(HZ19[, 14:33], as.numeric)
-HZ19$tissue <- as.factor(HZ19$tissue)
-HZ19$Sample <- as.factor(HZ19$Sample)
+HZ19[, 6:33] <- sapply(HZ19[, 6:33], as.numeric)
+HZ19$Position <- as.factor(HZ19$Position)
+# write out
+write.csv(HZ19, "~/Documents/Mouse_Eimeria_Databasing/data/Field_data/HZ19_FACS_complete.csv")
 
 #################### process like E7 
 FACS <- dplyr::select(HZ19, Mouse_ID, CD4p, CD8p, Th1IFNgp_in_CD4p, Th17IL17Ap_in_CD4p, Tc1IFNgp_in_CD8p, Treg_Foxp3_in_CD4p,

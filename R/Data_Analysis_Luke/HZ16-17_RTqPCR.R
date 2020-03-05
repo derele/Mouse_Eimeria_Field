@@ -251,11 +251,11 @@ TrueNegatives <- rbind(TrueNegatives1, TrueNegatives2)
 Trues <- rbind(TrueNegatives, TruePositives)
 
 HZ1 <- merge(HZ, Trues)
-<<<<<<< HEAD
+
 # HZ1 <- subset(HZ1, Caecum == "pos" & Caecum == "neg")
-=======
+
 #HZ1 <- subset(HZ1, Caecum == "pos" & Caecum == "neg")
->>>>>>> 2a0d008159822c03e03544a9b0b2687b54cdb5a0
+
 # HZ1$Caecum <- replace_na(HZ1$Caecum, "neg")
 colnames(HZ1)[6] <- "MC"
 # compare in one big DF and ggplot to see POS vs NEG
@@ -274,11 +274,11 @@ ggplot(data=subset(HZ1, !is.na(x = HZ1$Target)), aes(x = HI, y = NE, color = MC)
 # now load in intensity data and add it to HZ1
 int1 <- "https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/data/Eimeria_detection/FINALqpcrData_2016_2017_threshold3.75.csv"
 int1 <- read.csv(text = getURL(int1))
-<<<<<<< HEAD
+
 int1 <- select(int1, Mouse_ID, delta_ct_cewe_MminusE, year)
-=======
+
 int1 <- dplyr::select(int1, Mouse_ID, delta_ct_cewe_MminusE, year)
->>>>>>> 2a0d008159822c03e03544a9b0b2687b54cdb5a0
+
 colnames(int1)[2] <- "delta"
 colnames(int1)[3] <- "Year"
 
@@ -356,6 +356,8 @@ colnames(HZ2)[4] <- "MC"
 HZ1$MC <- as.character(HZ1$MC)
 HZ1$MC[HZ1$MC == "pos"] <- "TRUE"
 HZ1$MC[HZ1$MC == "neg"] <- "FALSE"
+HZ2$Target <- as.character(HZ2$Target)
+HZ2$Target[HZ2$Target == "IL-12b"] <- "IL.12"
 HZgraph <- rbind(HZ1, HZ2)
 
 
@@ -370,3 +372,18 @@ ggplot(HZgraph,
         legend.text=element_text(size=12, face = "bold"),
         legend.title = element_text(size = 12, face = "bold"))+
   ggtitle("HZ16-18_gene_downregulation")
+
+ggplot(HZgraph, 
+       aes(x = MC, y = NE, color = MC)) +
+  geom_boxplot(outlier.shape = NA) +
+  geom_jitter() +
+  facet_wrap("Target", scales = "free") +
+  labs(y="deltaCT = Target - HKG", x = "infected", colour = "infected") +
+  theme(axis.text=element_text(size=12, face = "bold"),
+        title = element_text(size = 16, face = "bold"),
+        axis.title=element_text(size=14,face="bold"),
+        strip.text.x = element_text(size = 14, face = "bold"),
+        legend.text=element_text(size=12, face = "bold"),
+        legend.title = element_text(size = 12, face = "bold"))+
+  ggtitle("Gene expression in wild samples")
+
