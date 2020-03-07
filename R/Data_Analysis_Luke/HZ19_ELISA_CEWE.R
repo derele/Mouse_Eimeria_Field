@@ -11,34 +11,32 @@ library(drc)
 library(data.table)
 
 ##### add clean tables ELISA 1
-E1_std <- "https://raw.githubusercontent.com/derele/Eimeria_Lab/master/data/3_recordingTables/P3_112019_Eim_CEWE_ELISAs/P3_112019_Eim_CEWE_ELISA1_std.csv"
-E1_std <- read.csv(text = getURL(E1_std))
+HZ_std1 <- read.csv(text = getURL("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/data/ELISAs/HZ19_CEWE_ELISA1_std.csv"))
 
-E1_samples <- "https://raw.githubusercontent.com/derele/Eimeria_Lab/master/data/3_recordingTables/P3_112019_Eim_CEWE_ELISAs/P3_112019_Eim_CEWE_ELISA1_samples.csv"
-E1_samples <- read.csv(text = getURL(E1_samples))
+HZ19_samples1 <- read.csv(text = getURL("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/data/ELISAs/HZ19_CEWE_ELISA1_samples.csv"))
 
 ###### use drc to construct standard curve and pinpointprotein content
 
 model1<-drm(OD~Conc,
             fct=LL.4(names=c("Slope", "Lower", "Upper", "ED50")),
-            data=E1_std)
+            data=HZ_std1)
 plot(model1)
 
-E1<-ED(model1, E1_samples$OD, type="absolute", display=F)
-row.names(E1) <- E1_samples$label
+HZ1<-ED(model1, HZ19_samples1$OD, type="absolute", display=F)
+row.names(HZ1) <- HZ19_samples1$Mouse_ID
 
-points(y=E1_samples$OD,x=E1[,1],col="lightblue",pch=19,cex=2)
-text(y =E1_samples$OD, x = E1[,1], labels=E1_samples$label, data=E1, cex=0.9, font=2)
+points(y=HZ19_samples1$OD,x=HZ19_samples1[,1],col="lightblue",pch=19,cex=2)
+text(y =HZ19_samples1$OD, x = HZ1[,1], labels=HZ19_samples1$Mouse_ID, data=HZ1, cex=0.9, font=2)
 
-E1 <- data.frame(E1)
-colnames(E1)[1] <- "IFNy"
-E1 <- dplyr::select(E1, IFNy)
-setDT(E1, keep.rownames = TRUE)[]
-colnames(E1)[1] <- "label"
-E1 <- merge(E1, E1_samples)
-E1$OD <- NULL
+HZ1 <- data.frame(HZ1)
+colnames(HZ1)[1] <- "IFNy"
+HZ1 <- dplyr::select(HZ1, IFNy)
+setDT(HZ1, keep.rownames = TRUE)[]
+colnames(HZ1)[1] <- "Mouse_ID"
+HZ1<- merge(HZ1, HZ19_samples1)
+HZ1$OD <- NULL
 
-write.csv(E1, "./Eimeria_Lab/data/3_recordingTables/P3_112019_Eim_CEWE_ELISAs/EP_112019_Eim_CEWE_ELISA1_complete.csv")
+write.csv(HZ1, "./Documents/Mouse_Eimeria_Databasing/data/ELISAs/HZ19_CEWE_ELISA1_complete.csv")
 write.csv(E1, "C:/Users/Luke Bednar/Documents/Eimeria_Lab/data/3_recordingTables/P3_112019_Eim_CEWE_ELISAs/P3_112019_Eim_CEWE_ELISA1_complete.csv")
 
 ############### load in ELISA2
