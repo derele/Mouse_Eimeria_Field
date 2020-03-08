@@ -388,3 +388,4 @@ ggplot(HZgraph,
         legend.title = element_text(size = 12, face = "bold"))+
   ggtitle("Gene expression in wild samples")
 
+write.csv(HZgraph, "C:/Users/Luke Bednar/Mouse_Eimeria_Databasing/data/Gene_expression/HZ16-18_gene_expression.csv")
