@@ -55,7 +55,7 @@ model2<-drm(OD~Conc,
 plot(model2)
 
 E2<-ED(model2, E2_samples$OD, type="absolute", display=F)
-row.names(E2) <- E2_samples$label
+row.names(E2) <- E2_samples$Mouse_ID
 
 points(y=E2_samples$OD,x=E2[,1],col="lightblue",pch=19,cex=2)
 text(y =E2_samples$OD, x = E2[,1], labels=E2_samples$Mouse_ID, data=E2, cex=0.9, font=2)
