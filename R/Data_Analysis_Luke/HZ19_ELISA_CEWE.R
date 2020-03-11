@@ -36,15 +36,15 @@ colnames(HZ1)[1] <- "Mouse_ID"
 HZ1<- merge(HZ1, HZ19_samples1)
 HZ1$OD <- NULL
 
-write.csv(HZ1, "./Documents/Mouse_Eimeria_Databasing/data/ELISAs/HZ19_CEWE_ELISA1_complete.csv")
-write.csv(E1, "C:/Users/Luke Bednar/Documents/Eimeria_Lab/data/3_recordingTables/P3_112019_Eim_CEWE_ELISAs/P3_112019_Eim_CEWE_ELISA1_complete.csv")
+# write.csv(HZ1, "./Documents/Mouse_Eimeria_Databasing/data/ELISAs/HZ19_CEWE_ELISA1_complete.csv")
+write.csv(E1, "C:/Users/Luke Bednar/Mouse_Eimeria_Databasing/data/ELISAs/HZ19_CEWE_ELISA1_complete.csv")
 
 ############### load in ELISA2
 
-E2_std <- "https://raw.githubusercontent.com/derele/Eimeria_Lab/master/data/3_recordingTables/E7_P3_Eim_CEWE_ELISA1_std.csv"
+E2_std <- "https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/data/ELISAs/HZ19_CEWE_ELISA2_std.csv"
 E2_std <- read.csv(text = getURL(E2_std))
 
-E2_samples <- "https://raw.githubusercontent.com/derele/Eimeria_Lab/master/data/3_recordingTables/P3_112019_Eim_CEWE_ELISAs/P3_112019_Eim_CEWE_ELISA2_samples.csv"
+E2_samples <- "https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/data/ELISAs/HZ19_CEWE_ELISA2_samples.csv"
 E2_samples <- read.csv(text = getURL(E2_samples))
 
 ###### use drc to construct standard curve and pinpointprotein content
@@ -58,20 +58,21 @@ E2<-ED(model2, E2_samples$OD, type="absolute", display=F)
 row.names(E2) <- E2_samples$label
 
 points(y=E2_samples$OD,x=E2[,1],col="lightblue",pch=19,cex=2)
-text(y =E2_samples$OD, x = E2[,1], labels=E2_samples$label, data=E2, cex=0.9, font=2)
+text(y =E2_samples$OD, x = E2[,1], labels=E2_samples$Mouse_ID, data=E2, cex=0.9, font=2)
 
 E2 <- data.frame(E2)
 colnames(E2)[1] <- "IFNy"
 E2 <- dplyr::select(E2, IFNy)
 setDT(E2, keep.rownames = TRUE)[]
-colnames(E2)[1] <- "label"
-E2 <- merge(E2, E2_samples)
-E2$OD <- NULL
+colnames(E2)[1] <- "Mouse_ID"
 
-write.csv(E2, "./Eimeria_Lab/data/3_recordingTables/P3_112019_Eim_CEWE_ELISAs/EP_112019_Eim_CEWE_ELISA2_complete.csv")
-write.csv(E2, "C:/Users/Luke Bednar/Documents/Eimeria_Lab/data/3_recordingTables/P3_112019_Eim_CEWE_ELISAs/P3_112019_Eim_CEWE_ELISA2_complete.csv")
+
+write.csv(E2, "C:/Users/Luke Bednar/Mouse_Eimeria_Databasing/data/ELISAs/HZ19_CEWE_ELISA2_complete.csv")
+# write.csv(E2, "C:/Users/Luke Bednar/Documents/Eimeria_Lab/data/3_recordingTables/P3_112019_Eim_CEWE_ELISAs/P3_112019_Eim_CEWE_ELISA2_complete.csv")
 
 ######################### merge all and write out
 
-E <- rbind(E1, E2)
-write.csv(E, "C:/Users/Luke Bednar/Documents/Eimeria_Lab/data/3_recordingTables/P3_112019_Eim_CEWE_ELISAs/P3_112019_Eim_CEWE_ELISAs_complete.csv")
+E <- rbind(HZ1, E2)
+write.csv(E, "C:/Users/Luke Bednar/Mouse_Eimeria_Databasing/data/ELISAs/HZ19_CEWE_ELISAs_complete.csv")
+
+#################
