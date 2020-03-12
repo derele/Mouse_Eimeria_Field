@@ -70,7 +70,42 @@ colnames(E2)[1] <- "Mouse_ID"
 write.csv(E2, "C:/Users/Luke Bednar/Mouse_Eimeria_Databasing/data/ELISAs/HZ19_CEWE_ELISA2_complete.csv")
 # write.csv(E2, "C:/Users/Luke Bednar/Documents/Eimeria_Lab/data/3_recordingTables/P3_112019_Eim_CEWE_ELISAs/P3_112019_Eim_CEWE_ELISA2_complete.csv")
 
+
+############### load in ELISA3
+
+E3_std <- "https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/data/ELISAs/HZ19_CEWE_ELISA3_std.csv"
+E3_std <- read.csv(text = getURL(E3_std))
+
+E3_samples <- "https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/data/ELISAs/HZ19_CEWE_ELISA3_samples.csv"
+E3_samples <- read.csv(text = getURL(E3_samples))
+
+###### use drc to construct standard curve and pinpointprotein content
+
+model3<-drm(OD~Conc,
+            fct=LL.4(names=c("Slope", "Lower", "Upper", "ED50")),
+            data=E3_std)
+plot(model3)
+
+E3<-ED(model3, E3_samples$OD, type="absolute", display=F)
+row.names(E3) <- E3_samples$Mouse_ID
+
+points(y=E3_samples$OD,x=E3[,1],col="lightblue",pch=19,cex=2)
+text(y =E3_samples$OD, x = E3[,1], labels=E3_samples$Mouse_ID, data=E3, cex=0.9, font=2)
+
+E3 <- data.frame(E3)
+colnames(E3)[1] <- "IFNy"
+E3 <- dplyr::select(E3, IFNy)
+setDT(E3, keep.rownames = TRUE)[]
+colnames(E3)[1] <- "Mouse_ID"
+
+
+write.csv(E3, "C:/Users/Luke Bednar/Mouse_Eimeria_Databasing/data/ELISAs/HZ19_CEWE_ELISA3_complete.csv")
+
+
+
 ######################### merge all and write out
+
+
 
 E <- rbind(HZ1, E2)
 write.csv(E, "C:/Users/Luke Bednar/Mouse_Eimeria_Databasing/data/ELISAs/HZ19_CEWE_ELISAs_complete.csv")
