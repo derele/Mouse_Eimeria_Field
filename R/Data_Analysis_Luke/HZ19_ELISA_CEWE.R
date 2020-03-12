@@ -108,6 +108,8 @@ write.csv(E3, "C:/Users/Luke Bednar/Mouse_Eimeria_Databasing/data/ELISAs/HZ19_CE
 
 
 E <- rbind(HZ1, E2)
+E <- rbind(E, E3)
+
 write.csv(E, "C:/Users/Luke Bednar/Mouse_Eimeria_Databasing/data/ELISAs/HZ19_CEWE_ELISAs_complete.csv")
 
 #################
