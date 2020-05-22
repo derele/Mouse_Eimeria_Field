@@ -103,6 +103,27 @@ RT.wide <- reshape(RT.long[, c("Target", "Mouse_ID","RT.Ct")],
 # set ref and target genes
 refGenes <- c("RT.Ct.B-actin", "RT.Ct.GAPDH")
 targetGenes <- c("RT.Ct.CXCR3", "RT.Ct.IL-12", "RT.Ct.IRG6")
+# compare graphically becaus I'm just disabled like that
+HKG1 <- dplyr::filter(RT.long, Target == "B-actin")
+HKG2 <- dplyr::filter(RT.long, Target ==  "GAPDH")
+HKG <- rbind(HKG1, HKG2)
+ggplot(HKG, aes(x = Target, y = RT.Ct, color = Target)) +
+  geom_point() +
+  geom_boxplot() +
+  stat_compare_means(aes(label = ..p.signif..), size = 8, label.y.npc =1) +
+  labs(y="deltaCT = Target - HKG", x = "deltaCT = Mouse - Eimeria", colour = "infection") +
+  theme(title = element_text(size = 16, face = "bold"),
+        axis.text=element_text(size=12, face = "bold"),
+        axis.title=element_text(size=14,face="bold"),
+        legend.position = "none",
+        strip.text.x = element_text(size = 14, face = "bold"),
+        legend.text=element_text(size=12, face = "bold"),
+        legend.title = element_blank()) +
+  ggtitle("HKG differences HZ16-17")
+HKG$EXP <- "HZ16-17"
+write.csv(HKG, "C:/Users/Luke Bednar/Eimeria_Lab/data/3_recordingTables/HKG_HZ16-17.csv")
+
+
 # calculate ref genes in new column and subtract targets from HKG average, create new columns
 require(dplyr)
 RT.wide <- RT.wide %>% mutate(refMean = rowMeans(na.rm = TRUE, dplyr::select(RT.wide, refGenes)))

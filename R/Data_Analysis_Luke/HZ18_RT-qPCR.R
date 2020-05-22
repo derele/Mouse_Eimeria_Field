@@ -67,6 +67,29 @@ ggplot(RT, aes(HI, RT.Ct)) +
   geom_point() +
   geom_smooth() +
   facet_wrap('Target')
+
+# # compare graphically becaus I'm just disabled like that
+HKG1 <- dplyr::filter(RT, Target == "beta-Actin")
+HKG2 <- dplyr::filter(RT, Target ==  "GAPDH")
+HKG <- rbind(HKG1, HKG2)
+ggplot(HKG, aes(x = Target, y = RT.Ct, color = Target)) +
+  geom_point() +
+  geom_boxplot() +
+  stat_compare_means(aes(label = ..p.signif..), size = 8, label.y.npc =1) +
+  labs(y="deltaCT = Target - HKG", x = "deltaCT = Mouse - Eimeria", colour = "infection") +
+  theme(title = element_text(size = 16, face = "bold"),
+        axis.text=element_text(size=12, face = "bold"),
+        axis.title=element_text(size=14,face="bold"),
+        legend.position = "none",
+        strip.text.x = element_text(size = 14, face = "bold"),
+        legend.text=element_text(size=12, face = "bold"),
+        legend.title = element_blank()) +
+  ggtitle("HKG differences HZ18")
+
+HKG$EXP <- "HZ18"
+write.csv(HKG, "C:/Users/Luke Bednar/Eimeria_Lab/data/3_recordingTables/HKG_HZ18.csv")
+
+
 # subtract ref genes and make long for graphing
 refGenes <- c("RT.Ct.beta-Actin", "RT.Ct.GAPDH")
 targetGenes <- c("RT.Ct.CXCR3", "RT.Ct.GBP2", "RT.Ct.IL.12b", 
