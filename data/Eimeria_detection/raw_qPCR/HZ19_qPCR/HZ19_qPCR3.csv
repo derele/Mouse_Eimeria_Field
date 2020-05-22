@@ -1,0 +1,111 @@
+Document Name: HZ19_qPCR3 
+Plate Type: Absolute Quantification
+User: user
+
+Document Information
+
+Operator: user
+Run Date: Monday, May 18, 2020 12:10:49
+Last Modified: Monday, May 18, 2020 14:04:02
+Instrument Type: Applied Biosystems 7300 Real-Time PCR System
+
+Comments:
+SDS v1.3
+
+Well,Sample Name,Detector,Task,Ct,StdDev Ct,Qty,Mean Qty,StdDev Qty,Filtered,Tm
+A1,0701,Eimeria,Unknown,31.97,0.921,,,,,74.20
+A2,0701,Eimeria,Unknown,33.59,0.921,,,,,74.20
+A3,0701,Eimeria,Unknown,33.53,0.921,,,,,74.40
+A4,0701,Mus,Unknown,26.31,1.986,,,,,79.20
+A5,0701,Mus,Unknown,23.50,1.986,,,,,79.50
+A6,0701,Mus,Unknown,22.47,1.986,,,,,79.70
+A7,0827,Eimeria,Unknown,32.92,2.046,,,,,74.40
+A8,0827,Eimeria,Unknown,32.13,2.046,,,,,74.70
+A9,0827,Eimeria,Unknown,36.00,2.046,,,,,81.80
+A10,0827,Mus,Unknown,24.92,1.583,,,,,79.00
+A11,0827,Mus,Unknown,23.80,1.583,,,,,79.00
+A12,0827,Mus,Unknown,21.79,1.583,,,,,79.00
+B1,0700,Eimeria,Unknown,32.61,0.685,,,,,74.70
+B2,0700,Eimeria,Unknown,33.61,0.685,,,,,83.00
+B3,0700,Eimeria,Unknown,32.30,0.685,,,,,74.20
+B4,0700,Mus,Unknown,25.35,1.838,,,,,79.50
+B5,0700,Mus,Unknown,23.32,1.838,,,,,79.50
+B6,0700,Mus,Unknown,21.68,1.838,,,,,79.70
+B7,0744,Eimeria,Unknown,31.23,0.240,,,,,74.40
+B8,0744,Eimeria,Unknown,30.92,0.240,,,,,74.20
+B9,0744,Eimeria,Unknown,31.39,0.240,,,,,74.20
+B10,0744,Mus,Unknown,25.12,1.404,,,,,79.20
+B11,0744,Mus,Unknown,24.46,1.404,,,,,79.20
+B12,0744,Mus,Unknown,22.42,1.404,,,,,79.20
+C1,0699,Eimeria,Unknown,30.01,0.658,,,,,83.00
+C2,0699,Eimeria,Unknown,31.23,0.658,,,,,83.00
+C3,0699,Eimeria,Unknown,31.04,0.658,,,,,83.00
+C4,0699,Mus,Unknown,22.11,9.610,,,,,79.70
+C5,0699,Mus,Unknown,21.27,9.610,,,,,79.70
+C6,0699,Mus,Unknown,5.06,9.610,,,,,80.00
+C7,0764,Eimeria,Unknown,34.06,0.797,,,,,81.00
+C8,0764,Eimeria,Unknown,32.47,0.797,,,,,83.00
+C9,0764,Eimeria,Unknown,33.34,0.797,,,,,80.30
+C10,0764,Mus,Unknown,24.84,1.319,,,,,79.50
+C11,0764,Mus,Unknown,23.82,1.319,,,,,79.20
+C12,0764,Mus,Unknown,22.22,1.319,,,,,79.20
+D1,0697,Eimeria,Unknown,32.30,0.911,,,,,74.70
+D2,0697,Eimeria,Unknown,31.20,0.911,,,,,72.30
+D3,0697,Eimeria,Unknown,33.01,0.911,,,,,74.90
+D4,0697,Mus,Unknown,26.13,1.114,,,,,79.70
+D5,0697,Mus,Unknown,25.04,1.114,,,,,79.70
+D6,0697,Mus,Unknown,23.91,1.114,,,,,80.00
+D7,0740,Eimeria,Unknown,31.04,1.218,,,,,74.40
+D8,0740,Eimeria,Unknown,32.14,1.218,,,,,74.20
+D9,0740,Eimeria,Unknown,33.48,1.218,,,,,73.90
+D10,0740,Mus,Unknown,24.20,1.555,,,,,79.50
+D11,0740,Mus,Unknown,23.46,1.555,,,,,79.50
+D12,0740,Mus,Unknown,21.21,1.555,,,,,79.50
+E1,0689,Eimeria,Unknown,25.16,0.811,,,,,74.70
+E2,0689,Eimeria,Unknown,26.61,0.811,,,,,74.90
+E3,0689,Eimeria,Unknown,25.24,0.811,,,,,75.20
+E4,0689,Mus,Unknown,24.75,1.377,,,,,79.70
+E5,0689,Mus,Unknown,23.18,1.377,,,,,79.70
+E6,0689,Mus,Unknown,22.00,1.377,,,,,80.00
+E7,0824,Eimeria,Unknown,32.17,0.290,,,,,74.90
+E8,0824,Eimeria,Unknown,32.52,0.290,,,,,74.90
+E9,0824,Eimeria,Unknown,32.75,0.290,,,,,74.20
+E10,0824,Mus,Unknown,23.73,6.473,,,,,79.50
+E11,0824,Mus,Unknown,23.02,6.473,,,,,79.50
+E12,0824,Mus,Unknown,12.18,6.473,,,,,79.50
+F1,0723,Eimeria,Unknown,32.77,0.508,,,,,74.20
+F2,0723,Eimeria,Unknown,31.80,0.508,,,,,74.90
+F3,0723,Eimeria,Unknown,32.54,0.508,,,,,75.20
+F4,0723,Mus,Unknown,26.07,1.642,,,,,79.50
+F5,0723,Mus,Unknown,24.27,1.642,,,,,79.70
+F6,0723,Mus,Unknown,22.79,1.642,,,,,80.00
+F7,0819,Eimeria,Unknown,34.25,1.554,,,,,75.40
+F8,0819,Eimeria,Unknown,31.16,1.554,,,,,74.70
+F9,0819,Eimeria,Unknown,32.98,1.554,,,,,74.40
+F10,0819,Mus,Unknown,24.83,1.376,,,,,79.50
+F11,0819,Mus,Unknown,24.20,1.376,,,,,79.50
+F12,0819,Mus,Unknown,22.19,1.376,,,,,79.50
+G1,0694,Eimeria,Unknown,25.49,0.591,,,,,74.20
+G2,0694,Eimeria,Unknown,26.64,0.591,,,,,74.40
+G3,0694,Eimeria,Unknown,26.31,0.591,,,,,74.70
+G4,0694,Mus,Unknown,26.04,2.029,,,,,79.20
+G5,0694,Mus,Unknown,24.04,2.029,,,,,79.20
+G6,0694,Mus,Unknown,21.98,2.029,,,,,79.70
+G7,0828,Eimeria,Unknown,35.56,2.092,,,,,83.50
+G8,0828,Eimeria,Unknown,31.38,2.092,,,,,74.20
+G9,0828,Eimeria,Unknown,33.49,2.092,,,,,74.40
+G10,0828,Mus,Unknown,25.52,1.707,,,,,79.20
+G11,0828,Mus,Unknown,24.32,1.707,,,,,79.20
+G12,0828,Mus,Unknown,22.16,1.707,,,,,79.20
+H1,0696,Eimeria,Unknown,29.73,1.366,,,,,74.40
+H2,0696,Eimeria,Unknown,31.51,1.366,,,,,74.40
+H3,0696,Eimeria,Unknown,32.42,1.366,,,,,74.20
+H4,0696,Mus,Unknown,26.28,2.352,,,,,79.20
+H5,0696,Mus,Unknown,24.04,2.352,,,,,79.50
+H6,0696,Mus,Unknown,21.58,2.352,,,,,79.70
+H7,NTC,Eimeria,Unknown,32.68,0.883,,,,,74.90
+H8,NTC,Eimeria,Unknown,33.94,0.883,,,,,74.40
+H9,NTC,Eimeria,Unknown,34.38,0.883,,,,,74.40
+H10,NTC,Mus,Unknown,Undetermined,,,,,,80.00
+H11,NTC,Mus,Unknown,Undetermined,,,,,,72.30
+H12,NTC,Mus,Unknown,Undetermined,,,,,,73.20
