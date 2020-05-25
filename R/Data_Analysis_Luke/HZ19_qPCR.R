@@ -14,17 +14,24 @@ qPCR3 <- read.csv(text = getURL("https://raw.githubusercontent.com/derele/Mouse_
 qPCR4 <- read.csv(text = getURL("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/data/Eimeria_detection/raw_qPCR/HZ19_qPCR/HZ19_qPCR4.csv"))
 qPCR5 <- read.csv(text = getURL("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/data/Eimeria_detection/raw_qPCR/HZ19_qPCR/HZ19_qPCR5.csv"))
 qPCR6 <- read.csv(text = getURL("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/data/Eimeria_detection/raw_qPCR/HZ19_qPCR/HZ19_qPCR6.csv"))
+qPCR7 <- read.csv(text = getURL("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/data/Eimeria_detection/raw_qPCR/HZ19_qPCR/HZ19_qPCR7.csv"))
+qPCR8 <- read.csv(text = getURL("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/data/Eimeria_detection/raw_qPCR/HZ19_qPCR/HZ19_qPCR8.csv"))
+
 
 qPCR <- rbind(qPCR1, qPCR2)
 qPCR <- rbind(qPCR, qPCR3)
 qPCR <- rbind(qPCR, qPCR4)
 qPCR <- rbind(qPCR, qPCR5)
 qPCR <- rbind(qPCR, qPCR6)
-qPCR$Mouse_ID <- as.character(qPCR$Mouse_ID)
+qPCR <- rbind(qPCR, qPCR7)
+qPCR <- rbind(qPCR, qPCR8)
+
+
 
 names(qPCR)[names(qPCR) == "Detector"] <- "Target"
 names(qPCR)[names(qPCR) == "Sample.Name"] <- "Mouse_ID"
 qPCR$Ct <- as.numeric(as.character(qPCR$Ct))
+qPCR$Mouse_ID <- as.character(qPCR$Mouse_ID)
 
 qPCR.long <- qPCR %>% dplyr::group_by(Mouse_ID, Target) %>% dplyr::summarise(Ct = mean(Ct, na.rm = T))
 qPCR.long <- data.frame(qPCR.long)
