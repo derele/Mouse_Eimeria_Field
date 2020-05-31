@@ -19,8 +19,11 @@ qPCR$X <- NULL
 ELISA_CEWE <- read.csv(text = getURL("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/data/ELISAs/HZ19_CEWE_ELISAs_complete.csv"))
 ELISA_CEWE$X <- NULL
 
+
 FACS <- read.csv(text = getURL("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/data/Field_data/HZ19_FACS_complete.csv"))
+FACS.long <- read.csv(text = getURL("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/data/Field_data/HZ19_FACS_long_mln.csv"))
 FACS$X <- NULL
+FACS.long$X <- NULL
 
 immuno <- merge(qPCR, ELISA_CEWE, all = T)
 immuno <- merge(immuno, FACS, all = T)
@@ -30,6 +33,7 @@ write.csv(immuno, "/Users/Luke Bednar/Mouse_Eimeria_Databasing/data/HZ19_immuno.
 # turn tables into long and merge to graph
 
 immuno.long <- merge(qPCR, ELISA_CEWE)
+immuno.long <- merge(immuno.long, FACS.long)
 # let's have a look
 ggscatter(immuno.long, x = "IFNy", y = "delta", add = "reg.line", color = "MC.Eimeria") +
   facet_wrap(~MC.Eimeria)+
@@ -37,10 +41,21 @@ ggscatter(immuno.long, x = "IFNy", y = "delta", add = "reg.line", color = "MC.Ei
   stat_regline_equation(label.x = 50, label.y = 2) + 
   ggtitle("HZ19 infections vs IFNy")
 
-# now let's add FACS and look at the delta vs populations
-FACS.long <- melt(FACS,
-               direction = "long",
-               varying = list(names(FACS)[2:13]),
-               v.names = "cell.pop",
-               na.rm = T, value.name = "counts", 
-               id.vars = c("Mouse_ID", "Position", "infHistory"))
+# now FACS look at the delta vs populations
+ggscatter(immuno.long, x = "delta", y = "counts", add = "reg.line", color = "MC.Eimeria") +
+  facet_grid(~pop)+
+  stat_cor(label.x = -20, label.y = 0) +
+  stat_regline_equation(label.x = -20, label.y = 5) + 
+  ggtitle("HZ19 infections vs IFNy")
+
+ggscatter(subset(immuno.long, immuno.long$MC.Eimeria == "TRUE"), x = "counts", y = "delta", add = "reg.line", color = "MC.Eimeria") +
+  facet_wrap(~pop)+
+  stat_cor(label.x = -20, label.y = 0) +
+  stat_regline_equation(label.x = -20, label.y = 5) + 
+  ggtitle("HZ19 infections vs IFNy")
+
+ggscatter(subset(immuno.long, immuno.long$MC.Eimeria == "FALSE"), x = "counts", y = "delta", add = "reg.line", color = "MC.Eimeria") +
+  facet_wrap(~pop)+
+  stat_cor(label.x = -20, label.y = 0) +
+  stat_regline_equation(label.x = -20, label.y = 5) + 
+  ggtitle("HZ19 infections vs IFNy")
