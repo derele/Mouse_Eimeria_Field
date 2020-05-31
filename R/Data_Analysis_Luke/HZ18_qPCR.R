@@ -16,4 +16,4 @@ qPCR <- select(qPCR, Mouse_ID, Eimeria.presence.in.Caecum, deltaCtMmE_tissue)
 names(qPCR)[names(qPCR) == "Eimeria.presence.in.Caecum"] <- "MC.Eimeria"
 names(qPCR)[names(qPCR) == "deltaCtMmE_tissue"] <- "delta"
 
-write.csv(qPCR, "/Users/Luke Bednar/Mouse_Eimeria_Databasing/data/Eimeria_detection/HZ18_.csv")
+write.csv(qPCR, "/Users/Luke Bednar/Mouse_Eimeria_Databasing/data/Eimeria_detection/HZ18_qPCR.csv")

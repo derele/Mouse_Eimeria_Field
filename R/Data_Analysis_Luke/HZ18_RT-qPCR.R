@@ -6,88 +6,25 @@ require(dplyr)
 library(tidyverse)
 library(reshape2)
 
-#load in genotypes
-genotypeURL <- "https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/data/Field_data/HZ18_Genotypes.csv"
-HZ18genotype <- read.csv(text = getURL(genotypeURL))
-# subest by HI
-HImus <- select(HZ18genotype, HI, Mouse_ID)
-#load in dissections
-dissectionURL <- "https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/data/Field_data/HZ18_Dissections.csv"
-HZ18dissection <- read.csv(text = getURL(dissectionURL))
-#subset by columns relevant for mapping and gene expression
-diss <- select(HZ18dissection, Mouse_ID, Latitude, Longitude, Sex, Status, Body_weight, Spleen, ASP, SYP, HET, MART, CP, HD, HM, MM, TM)
-# merge HImus and diss
-HImus <- merge(HImus, diss, by = "Mouse_ID")
+
 #load in RT-qPCR data
-RTURL<- "https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/data/HZ18_RT-qPCR.csv"
-RT <- read.csv(text = getURL(RTURL))
+RT <- read.csv(text = getURL("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/data/HZ18_RT-qPCR.csv"))
 # correct names + add sample column
 RT <- RT %>% separate(Name, c("CEWE", "AA", "Mouse_ID"))
 RT$Mouse_ID <- sub("^", "AA_0", RT$Mouse_ID )
 RT$AA <- NULL
-names(RT)[names(RT) == "CEWE"] <- "tissue"
+RT$CEWE <- NULL
 # calculate averages
-RT <- RT %>% dplyr::group_by(Mouse_ID, Target.SYBR) %>% dplyr::summarise(Ct.SYBR = mean(Ct.SYBR), .drop = FALSE)
+RT <- RT %>% dplyr::group_by(Mouse_ID, Target.SYBR) %>% dplyr::summarise(Ct.SYBR = mean(Ct.SYBR))
 #rename columns to merge by Mouse_ID
 names(RT)[names(RT) == "Target.SYBR"] <- "Target"
 names(RT)[names(RT) == "Ct.SYBR"] <- "RT.Ct"
-# merge HImus and RT
-HZ18 <- merge(RT, HImus)
-#start graphing
-ggplot(data = HZ18, aes(x = HI, y = RT.Ct)) +
-  geom_point() + 
-  facet_wrap("Target")
-# # add infection intensity data (Eimeria - Mouse)
-# detectURL <- "https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/data/Eimeria_detection/Svenja/joined_qPCR_tables_cecum.csv"
-# detect <- read.csv(text = getURL(detectURL))
-# #cleanup and merge
-# detect <- detect %>% separate(Mouse_ID, c("CEWE", "AA", "Mouse_ID"))
-# detect$Mouse_ID <- sub("^", "AA_0", detect$Mouse_ID )
-# names(detect)[names(detect) == "CEWE"] <- "tissue"
-# detect$AA <- NULL
-# detect$Ct.SYBR <- NULL
-# detect[,4:8] <- NULL
-# names(detect)[names(detect) == "Ct.Mean.SYBR"] <- "inf.Ct"
-# names(detect)[names(detect) == "Ct.Dev..SYBR"] <- "inf.Ct.Dev"
-# detect <- detect %>% drop_na(delta)
-# HZ18 <- merge(detect, HZ18, by = "Mouse_ID")
-# # graph
-# ggplot(data = HZ18, aes(x = HI, y = RT.Ct, color = delta)) +
-#   geom_point() + 
-#   facet_wrap("Target")
-# calculate endogenous controls and log expression
+
+
 RT <- data.frame(RT)
-RT <- RT %>% drop_na(RT.Ct)
+# RT <- RT %>% drop_na(RT.Ct)
 RT.wide <- reshape(RT[, c("Target", "Mouse_ID","RT.Ct")],
                    timevar = "Target", idvar = "Mouse_ID", direction = "wide")
-# side trip to look at raw CT values before transformation
-HI <- HImus[, 1:2]
-RT <- merge(RT, HI, by = 'Mouse_ID')
-ggplot(RT, aes(HI, RT.Ct)) +
-  geom_point() +
-  geom_smooth() +
-  facet_wrap('Target')
-
-# # compare graphically becaus I'm just disabled like that
-HKG1 <- dplyr::filter(RT, Target == "beta-Actin")
-HKG2 <- dplyr::filter(RT, Target ==  "GAPDH")
-HKG <- rbind(HKG1, HKG2)
-ggplot(HKG, aes(x = Target, y = RT.Ct, color = Target)) +
-  geom_point() +
-  geom_boxplot() +
-  stat_compare_means(aes(label = ..p.signif..), size = 8, label.y.npc =1) +
-  labs(y="deltaCT = Target - HKG", x = "deltaCT = Mouse - Eimeria", colour = "infection") +
-  theme(title = element_text(size = 16, face = "bold"),
-        axis.text=element_text(size=12, face = "bold"),
-        axis.title=element_text(size=14,face="bold"),
-        legend.position = "none",
-        strip.text.x = element_text(size = 14, face = "bold"),
-        legend.text=element_text(size=12, face = "bold"),
-        legend.title = element_blank()) +
-  ggtitle("HKG differences HZ18")
-
-HKG$EXP <- "HZ18"
-write.csv(HKG, "C:/Users/Luke Bednar/Eimeria_Lab/data/3_recordingTables/HKG_HZ18.csv")
 
 
 # subtract ref genes and make long for graphing
@@ -121,10 +58,10 @@ names(RT.wide)[names(RT.wide) == "IRG6"] <- "IRG6"
 RT.long <- melt(RT.wide, id.vars = "Mouse_ID")
 names(RT.long)[names(RT.long) == "variable"] <- "Target"
 names(RT.long)[names(RT.long) == "value"] <- "NE"
-RT.long <- merge(RT.long, HI)
+
 # load, process and add melting curve detection
-MCURL <- "https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/data/Eimeria_detection/Svenja/table_ct_and_more.csv"
-MC <- read.csv(text = getURL(MCURL))
+MC <- read.csv(text = getURL("https://github.com/derele/Mouse_Eimeria_Databasing/blob/master/data/Eimeria_detection/HZ18_qPCR.csv"))
+
 names(MC)[names(MC) == "Name"] <- "Mouse_ID"
 MC <- MC %>% separate(Mouse_ID, c("CEWE", "AA", "Mouse_ID"))
 MC$Mouse_ID <- sub("^", "AA_0", MC$Mouse_ID )
