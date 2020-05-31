@@ -5,10 +5,10 @@ library(tidyverse)
 library(readxl)
 library(dplyr)
 # guess this one will have to be hard coded
-FACSraw1 <- read_xlsx("~/Documents/Mouse_Eimeria_Databasing/data/Field_data/HZ19_FACS_raw.xlsx", sheet = 1)
-FACSraw2 <- read_xlsx("~/Documents/Mouse_Eimeria_Databasing/data/Field_data/HZ19_FACS_raw.xlsx", sheet = 2)
-FACSraw3 <- read_xlsx("~/Documents/Mouse_Eimeria_Databasing/data/Field_data/HZ19_FACS_raw.xlsx", sheet = 3)
-FACSraw4 <- read_xlsx("~/Documents/Mouse_Eimeria_Databasing/data/Field_data/HZ19_FACS_raw.xlsx", sheet = 4)
+FACSraw1 <- read_xlsx("/Users/Luke Bednar/Mouse_Eimeria_Databasing/data/Field_data/HZ19_FACS_raw.xlsx", sheet = 1)
+FACSraw2 <- read_xlsx("/Users/Luke Bednar/Mouse_Eimeria_Databasing/data/Field_data/HZ19_FACS_raw.xlsx", sheet = 2)
+FACSraw3 <- read_xlsx("/Users/Luke Bednar/Mouse_Eimeria_Databasing/data/Field_data/HZ19_FACS_raw.xlsx", sheet = 3)
+FACSraw4 <- read_xlsx("/Users/Luke Bednar/Mouse_Eimeria_Databasing/data/Field_data/HZ19_FACS_raw.xlsx", sheet = 4)
 
 # extract sample names and position 
 FACSraw1$Mouse_ID <-gsub("\\d+: (mLN|spleen)_(\\d{3})_\\d{3}.fcs", "AA_0\\2", FACSraw1$sample)
@@ -37,36 +37,43 @@ FACS3 <- full_join(FACS2, FACSraw3.1)
 FACS <- full_join(FACS1,FACS3)
 
 #####################################################################################################################################
-#introduce Dissections data
-dissURL <- "https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/data/Field_data/HZ19_Dissections.csv"
-Dissections <- read.csv(text=getURL(dissURL))
-Dissections <- select(Dissections, Mouse_ID, Sex, Status, Year, Ectoparasites, Body_weight, Body_length, Spleen, Feces, ASP, SYP, HET, MART, CP, HD,
-               HM, MM, TM)
-HZ19 <- merge(Dissections, FACS, by = "Mouse_ID")
 
 #create R and .csv friendly column names
-colnames(HZ19)[19]<- "CD4"
-colnames(HZ19)[20]<- "Treg"
-colnames(HZ19)[21]<- "Div_Treg"
-colnames(HZ19)[22]<- "Treg17"
-colnames(HZ19)[24]<- "Th1"
-colnames(HZ19)[25]<- "Div_Th1"
-colnames(HZ19)[26]<- "Th17"
-colnames(HZ19)[27]<- "Div_Th17"
-colnames(HZ19)[28]<- "CD8"
-colnames(HZ19)[29]<- "Act_CD8"
-colnames(HZ19)[30]<- "Div_Act_CD8"
-colnames(HZ19)[31]<- "IFNy_CD4"
-colnames(HZ19)[32]<- "IL17A_CD4"
-colnames(HZ19)[33]<- "IFNy_CD8"
-colnames(HZ19)[23]<- "Treg_prop"
-# remove "%" signs and convert to numeric
-HZ19[] <- lapply(HZ19, gsub, pattern='%', replacement='')
-HZ19[, 6:33] <- sapply(HZ19[, 6:33], as.numeric)
-HZ19$Position <- as.factor(HZ19$Position)
-# write out
-write.csv(HZ19, "~/Documents/Mouse_Eimeria_Databasing/data/Field_data/HZ19_FACS_complete.csv")
+colnames(FACS)[1]<- "CD4"
+colnames(FACS)[2]<- "Treg"
+colnames(FACS)[3]<- "Div_Treg"
+colnames(FACS)[4]<- "Treg17"
+#remove this until known
+FACS$`FSC-A, SSC-A subset/single/live/CD4+/Foxp3-,Freq. of Parent` <- NULL
+colnames(FACS)[5]<- "Th1"
+colnames(FACS)[6]<- "Div_Th1"
+colnames(FACS)[7]<- "Th17"
+colnames(FACS)[8]<- "Div_Th17"
+colnames(FACS)[9]<- "CD8"
+colnames(FACS)[10]<- "Act_CD8"
+colnames(FACS)[11]<- "Div_Act_CD8"
+colnames(FACS)[12]<- "IFNy_CD4"
+colnames(FACS)[13]<- "IL17A_CD4"
+colnames(FACS)[14]<- "IFNy_CD8"
 
+# remove "%" signs and convert to numeric
+FACS[] <- lapply(FACS, gsub, pattern='%', replacement='')
+FACS[, 1:14] <- sapply(FACS[, 1:14], as.numeric)
+FACS$Position <- as.factor(FACS$Position)
+# write out
+write.csv(FACS, "/Users/Luke Bednar/Mouse_Eimeria_Databasing/data/Field_data/HZ19_FACS_complete.csv")
+# write out long for HZ19 immuno
+SpleenDF <- filter(FACS, Position == "spleen")
+mLNDF <- filter(FACS, Position == "mLN")
+FACS.long.mln <- melt(mLNDF,
+             direction = "long",
+             varying = list(names(mLNDF)[1:14]),
+             v.names = "cell.pop",
+             na.rm = T, value.name = "counts", 
+             id.vars = c("Mouse_ID", "Position"))
+FACS.long.mln <- na.omit(FACS.long.mln)
+names(FACS.long.mln)[names(FACS.long.mln) == "variable"] <- "pop"
+write.csv(FACS.long.mln, "/Users/Luke Bednar/Mouse_Eimeria_Databasing/data/Field_data/HZ19_FACS_long_mln.csv")
 #################### process like E7 
 FACS <- dplyr::select(HZ19, Mouse_ID, CD4p, CD8p, Th1IFNgp_in_CD4p, Th17IL17Ap_in_CD4p, Tc1IFNgp_in_CD8p, Treg_Foxp3_in_CD4p,
                       Dividing_Ki67p_in_Foxp3p, RORgtp_in_Foxp3p, Th1Tbetp_in_CD4pFoxp3n, Dividing_Ki67p_in_Tbetp,
