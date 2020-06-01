@@ -34,6 +34,7 @@ write.csv(immuno, "/Users/Luke Bednar/Mouse_Eimeria_Databasing/data/HZ19_immuno.
 
 immuno.long <- merge(qPCR, ELISA_CEWE)
 immuno.long <- merge(immuno.long, FACS.long)
+write.csv(immuno.long, "/Users/Luke Bednar/Mouse_Eimeria_Databasing/data/wild_immuno_long.csv")
 # let's have a look
 ggscatter(immuno.long, x = "IFNy", y = "delta", add = "reg.line", color = "MC.Eimeria") +
   facet_wrap(~MC.Eimeria)+
