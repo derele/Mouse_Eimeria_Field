@@ -29,12 +29,13 @@ immuno <- merge(qPCR, ELISA_CEWE, all = T)
 immuno <- merge(immuno, FACS, all = T)
 
 write.csv(immuno, "/Users/Luke Bednar/Mouse_Eimeria_Databasing/data/HZ19_immuno.csv")
-
+write.csv(immuno, "./Mouse_Eimeria_Databasing/data/HZ19_immuno.csv")
 # turn tables into long and merge to graph
 
 immuno.long <- merge(qPCR, ELISA_CEWE)
 immuno.long <- merge(immuno.long, FACS.long)
 write.csv(immuno.long, "/Users/Luke Bednar/Mouse_Eimeria_Databasing/data/HZ19_wild_immuno_long.csv")
+write.csv(immuno.long, "./Mouse_Eimeria_Databasing/data/HZ19_wild_immuno_long.csv")
 # let's have a look
 ggscatter(immuno.long, x = "IFNy", y = "delta", add = "reg.line", color = "MC.Eimeria") +
   facet_wrap(~MC.Eimeria)+
