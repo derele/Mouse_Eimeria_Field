@@ -8,7 +8,7 @@ library(reshape2)
 
 
 #load in RT-qPCR data
-RT <- read.csv(text = getURL("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/data/HZ18_RT-qPCR.csv"))
+RT <- read.csv(text = getURL("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Databasing/master/data/Gene_expression/HZ18_RT-qPCR_RTlong.csv"))
 # correct names + add sample column
 RT <- RT %>% separate(Name, c("CEWE", "AA", "Mouse_ID"))
 RT$Mouse_ID <- sub("^", "AA_0", RT$Mouse_ID )
@@ -60,3 +60,33 @@ names(RT.long)[names(RT.long) == "variable"] <- "Target"
 names(RT.long)[names(RT.long) == "value"] <- "NE"
 
 write.csv(RT.wide, "/Users/Luke Bednar/Mouse_Eimeria_Databasing/data/Gene_expression/HZ18_RT-qPCR_complete.csv")
+
+
+
+
+ggscatter(RT, x = "deltaCtMmE_tissue", y = "NE", add = "reg.line") +
+  facet_grid(inf~Target, scales = "free")+
+  stat_cor(label.x =-5, label.y = 0) +
+  stat_regline_equation(label.x = -5, label.y = 0) + 
+  labs(y = "NE", x = "deltaCT = Mouse - Eimeria") +
+  theme(axis.text=element_text(size=12, face = "bold"),
+        title = element_text(size = 16, face = "bold"),
+        axis.title=element_text(size=14,face="bold"),
+        strip.text.x = element_text(size = 14, face = "bold"),
+        legend.text=element_text(size=12, face = "bold"),
+        legend.title = element_text(size = 12, face = "bold"))+
+  ggtitle("expression vs delta")
+
+ggscatter(RT, x = "inf", y = "NE", add = "reg.line") +
+  facet_grid(~Target, scales = "free")+
+  geom_boxplot() +
+  stat_cor(label.x =-5, label.y = 0) +
+  stat_regline_equation(label.x = -5, label.y = 0) + 
+  labs(y = "NE", x = "deltaCT = Mouse - Eimeria") +
+  theme(axis.text=element_text(size=12, face = "bold"),
+        title = element_text(size = 16, face = "bold"),
+        axis.title=element_text(size=14,face="bold"),
+        strip.text.x = element_text(size = 14, face = "bold"),
+        legend.text=element_text(size=12, face = "bold"),
+        legend.title = element_text(size = 12, face = "bold"))+
+  ggtitle("Genes during infections")
