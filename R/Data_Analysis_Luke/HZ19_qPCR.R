@@ -55,3 +55,4 @@ qPCR.wide$EXP_type <- "wild"
 qPCR.wide$MC.Mus <- NULL
 
 write.csv(qPCR.wide, "/Users/Luke Bednar/Mouse_Eimeria_Databasing/data/Eimeria_detection/HZ19_qPCR.csv")
+write.csv(qPCR.wide, "./Mouse_Eimeria_Databasing/data/Eimeria_detection//HZ19_qPCR.csv")
