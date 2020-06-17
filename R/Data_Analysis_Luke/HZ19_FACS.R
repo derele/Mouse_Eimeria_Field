@@ -4,11 +4,17 @@ library(Rmisc)
 library(tidyverse)
 library(readxl)
 library(dplyr)
-# guess this one will have to be hard coded
+# guess this one will have to be hard coded (win)
 FACSraw1 <- read_xlsx("/Users/Luke Bednar/Mouse_Eimeria_Databasing/data/Field_data/HZ19_FACS_raw.xlsx", sheet = 1)
 FACSraw2 <- read_xlsx("/Users/Luke Bednar/Mouse_Eimeria_Databasing/data/Field_data/HZ19_FACS_raw.xlsx", sheet = 2)
 FACSraw3 <- read_xlsx("/Users/Luke Bednar/Mouse_Eimeria_Databasing/data/Field_data/HZ19_FACS_raw.xlsx", sheet = 3)
 FACSraw4 <- read_xlsx("/Users/Luke Bednar/Mouse_Eimeria_Databasing/data/Field_data/HZ19_FACS_raw.xlsx", sheet = 4)
+# guess this one will have to be hard coded (linux)
+FACSraw1 <- read_xlsx("./Mouse_Eimeria_Databasing/data/Field_data/HZ19_FACS_raw.xlsx", sheet = 1)
+FACSraw2 <- read_xlsx("./Mouse_Eimeria_Databasing/data/Field_data/HZ19_FACS_raw.xlsx", sheet = 2)
+FACSraw3 <- read_xlsx("./Mouse_Eimeria_Databasing/data/Field_data/HZ19_FACS_raw.xlsx", sheet = 3)
+FACSraw4 <- read_xlsx("./Mouse_Eimeria_Databasing/data/Field_data/HZ19_FACS_raw.xlsx", sheet = 4)
+
 
 # extract sample names and position 
 FACSraw1$Mouse_ID <-gsub("\\d+: (mLN|spleen)_(\\d{3})_\\d{3}.fcs", "AA_0\\2", FACSraw1$sample)
