@@ -1,7 +1,5 @@
-# Eimeria_Wild, storage of data gemerated from the European house mouse hybrid zone (EHMHZ)  
-
-Mouse_Eimeria_Datababasing
-This repository is for storage of all !relevant data! on wild mice capture (and currently still Eimeria - and other parasite - detection).
+# Mouse_Eimeria_Field, storage of data generated from the European house mouse hybrid zone (EHMHZ)  
+This repository is for storage of all relevant data on wild mice capture, including detection of Eimeria, Cryptosporidium, worms, detection methods and gene expression. 
 
 # Structure:
 ## [data](https://github.com/derele/Mouse_Eimeria_Field/tree/master/data) = contains all cleaned up data generated during our field excursions and 
