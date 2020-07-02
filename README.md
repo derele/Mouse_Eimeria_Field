@@ -2,22 +2,17 @@
 This repository is for storage of all relevant data on wild mice capture, including detection of Eimeria, Cryptosporidium, worms, detection methods and gene expression. 
 
 # Structure:
-## [data](https://github.com/derele/Mouse_Eimeria_Field/tree/master/data) = contains all cleaned up data generated during our field excursions and 
-templates for tables
+## [data](https://github.com/derele/Mouse_Eimeria_Field/tree/master/data) = contains all cleaned up data generated during our field excursions and templates for tables
 
-### [Field_data](https://github.com/derele/Mouse_Eimeria_Field/tree/master/data/Field_data) = records from the field excursions, contains Trapping,
-Dissections and Genotype data.
+### [Field_data](https://github.com/derele/Mouse_Eimeria_Field/tree/master/data/Field_data) = records from the field excursions, contains Trapping, Dissections and Genotype data.
 
-### [Eimeria_detection](https://github.com/derele/Mouse_Eimeria_Field/tree/master/data/Eimeria_detection) = clean tables of Mouse-Eimeria qPCRs and
-flotation result tables.
+### [Eimeria_detection](https://github.com/derele/Mouse_Eimeria_Field/tree/master/data/Eimeria_detection) = clean tables of Mouse-Eimeria qPCRs and flotation result tables.
 
 ### [Templates](https://github.com/derele/Eimeria_Lab/tree/master/data/Templates) = examples of what correspondingly named tables should look like
 
-#### [Gene_exprssion](https://github.com/derele/Mouse_Eimeria_Field/tree/master/data/Gene_expression) = Folder for storing tidy gene expression 
-tables from the wild
+#### [Gene_exprssion](https://github.com/derele/Mouse_Eimeria_Field/tree/master/data/Gene_expression) = Folder for storing tidy gene expression  tables from the wild
 
-### [Cryptosporidium](https://github.com/derele/Mouse_Eimeria_Field/tree/master/data/Cryptosporidium) = Similar to Eimeria_detection. For storage 
-of tidy tables related to Cyptosporidium screening in the wild.
+### [Cryptosporidium](https://github.com/derele/Mouse_Eimeria_Field/tree/master/data/Cryptosporidium) = Similar to Eimeria_detection. For storage of tidy tables related to Cyptosporidium screening in the wild.
 
 ## [data_access_code](https://github.com/derele/Mouse_Eimeria_Field/tree/master/data/data_access_code) = contains examples of R code related to accessing and reading information from the [data](https://github.com/derele/Mouse_Eimeria_Field/tree/master/data) folder.
 
@@ -27,15 +22,13 @@ of tidy tables related to Cyptosporidium screening in the wild.
 # 1. Accessing data:
 ## 1.1. General description:
 
-All data in this repository has been processed and saved as a clean table according to the corresponding 
-[template](https://github.com/derele/Mouse_Eimeria_Field/tree/master/data/Templates)
+All data in this repository has been processed and saved as a clean table according to the corresponding [template](https://github.com/derele/Mouse_Eimeria_Field/tree/master/data/Templates)
 
 All file names contain information to distinguish the year of collection, assay (where applicable), type of fieldwork (where applicable) and a format.
 In addition, elements of the name may designate: [tissue type](https://github.com/derele/Mouse_Eimeria_Field/tree/master/Tissue_labels.csv) or assay type (e.g., RT-qPCR)
 
 Exmaple: HZ19_CEWE_Eim_qPCR.csv
-This means the table contains information generated from 2019, the tissue used in the assay was Caecum, assay was targeted to screen for Eimeria, 
-the assay type was a qPCR and the table is in a .csv format.
+This means the table contains information generated from 2019, the tissue used in the assay was Caecum, assay was targeted to screen for Eimeria, the assay type was a qPCR and the table is in a .csv format.
 
 ## 1.2. Examples:
 ### 1.2.1. Example 1 
@@ -51,9 +44,7 @@ or
 HZYear_TissueType_Parasite_AssayType.format
 E.g.: HZ19_CEWE_Eim_RT-qPCR.csv
 
-Raw data should be stored here and processed using code saved here as well. Both should be subsequently deleted once a clean table exists.
-The raw data and code should be both commited and pushed to git to keep track of events. Commit messages should contain information on what
-files are being handled.
+Raw data should be stored here and processed using code saved here as well. Both should be subsequently deleted once a clean table exists. The raw data and code should be both commited and pushed to git to keep track of events. Commit messages should contain information on what files are being handled.
 
 General rule is:
 1. upload raw data table
