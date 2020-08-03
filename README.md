@@ -10,7 +10,7 @@ This repository is for storage of all relevant data on wild mice capture, includ
 
 ### [Templates](https://github.com/derele/Eimeria_Lab/tree/master/data/Templates) = examples of what correspondingly named tables should look like
 
-#### [Gene_exprssion](https://github.com/derele/Mouse_Eimeria_Field/tree/master/data/Gene_expression) = Folder for storing tidy gene expression  tables from the wild
+### [Gene_exprssion](https://github.com/derele/Mouse_Eimeria_Field/tree/master/data/Gene_expression) = Folder for storing tidy gene expression  tables from the wild
 
 ### [Cryptosporidium](https://github.com/derele/Mouse_Eimeria_Field/tree/master/data/Cryptosporidium) = Similar to Eimeria_detection. For storage of tidy tables related to Cyptosporidium screening in the wild.
 
