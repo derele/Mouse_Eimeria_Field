@@ -1,0 +1,775 @@
+"","Address","Longitude","Latitude","Year"
+"1","Althüttendorf",13.4832,52.5745,2014
+"2","Beetz",13.058,52.4849,2014
+"3","Böckenberg",13.4518,53.76,2014
+"4","Brunn",12.3137,52.5431,2014
+"5","Danewitz",13.3959,52.442,2014
+"6","Flieth",13.4855,53.94,2014
+"7","Friedrichsfelde 11",13.5036,53.539,2014
+"8","Hammer",13.2621,52.5248,2014
+"9","Hohenwutzen 30",14.78,52.5012,2014
+"10","Joachimstahl",13.4358,52.5844,2014
+"11","Liebenthal",13.2749,52.5456,2014
+"12","Lietzow",12.509,52.371,2014
+"13","Lübars",13.2128,52.3716,2014
+"14","Neu-Temmen",13.4632,53.512,2014
+"15","Neugaul",14.714,52.4517,2014
+"16","Neulöwenberg",13.115,52.543,2014
+"17","Neurüdnitz",14.1056,52.4723,2014
+"18","Pausien",13.241,52.3814,2014
+"19","Rüdnitz 21",13.3824,52.431,2014
+"20","Schmachtenhagen",13.2042,52.4719,2014
+"21","Staffelde",12.5933,52.4347,2014
+"22","Stegelitz",11.4312,49.5257,2014
+"23","Temmen",13.452,53.548,2014
+"24","Tempelfelde",13.432,52.424,2014
+"25","Zäckericker Loose",14.1427,52.4718,2014
+"26","Zehlendorf 1",13.2358,52.4749,2014
+"27","Zehlendorf 21a",13.2316,52.4631,2014
+"28","Bezvěrov1",13.314,49.594,2014
+"29","Bezvěrov2",13.311,49.5939,2014
+"30","Blažim 39",13.256,49.551,2014
+"31","Buškovice2",13.2227,50.1318,2014
+"32","Chlum Svaté Máří1",12.3155,50.96,2014
+"33","Chlum Svaté Máří 161",12.3151,50.95,2014
+"34","Chotíkov 1",12.3021,50.79,2014
+"35","Dolní Dvory",12.2514,50.5,2014
+"36","Hohenberg 1",12.1246,50.67,2014
+"37","Hůrka3",12.151,50.711,2014
+"38","Jindřichov 31",12.2351,50.621,2014
+"39","Jindřichov 5",12.2356,50.624,2014
+"40","Josefov 20",12.3447,50.1241,2014
+"41","Kaceřov2",12.3024,50.856,2014
+"42","Kozlov",13.157,50.63,2014
+"43","Krasíkov",12.566,49.5252,2014
+"44","Křižovatka1",12.2322,50.1151,2014
+"45","Křižovatka 60",12.2336,50.1138,2014
+"46","Křižovatka silo",12.2342,50.1138,2014
+"47","Kübelhof1",11.2628,50.1142,2014
+"48","Květná 13",12.317,50.1214,2014
+"49","Loužek",12.2717,50.621,2014
+"50","Maiersreuth 9",12.2433,49.5919,2014
+"51","Milhostov 64",12.273,50.932,2014
+"52","Münchenreuth 31",12.1659,50.25,2014
+"53","Nebanice 64, Vrbová",12.2721,50.655,2014
+"54","Nebanice 10 Farm Pub",12.2813,50.653,2014
+"55","Nepomyšl 172",13.1824,50.1258,2014
+"56","Nová Ves 1 (CH)",12.2514,50.1039,2014
+"57","Obilná2",12.2817,50.547,2014
+"58","Ödmeiersrieth 4",12.315,49.3349,2014
+"59","Odrava 26",12.293,50.616,2014
+"60","Pastuchovice",13.233,50.49,2014
+"61","Přehořov 11",13.2241,50.141,2014
+"62","Přílezy - Pig house",12.5634,50.531,2014
+"63","Rosenbühl 2",12.1359,49.5929,2014
+"64","Šabina 86",12.3552,50.85,2014
+"65","Šabina horses",12.3458,50.86,2014
+"66","Seybothenreuth",11.4312,49.5257,2014
+"67","Straas2",11.4545,50.1053,2014
+"68","Týniště4",13.1057,50.85,2014
+"69","Unterweissenbach",12.612,50.925,2014
+"70","Verušičky 15",13.1035,50.831,2014
+"71","Vrbice 7",13.1351,50.858,2014
+"72","Vrbička 4",13.1736,50.1039,2014
+"73","Wolfsbühl 4",12.1528,50.048,2014
+"74","Wolferszwing 1",12.1641,49.652,2014
+"75","Žihle Statek",13.2311,50.232,2014
+"76","Bauhof 5",12.5056,49.3517,2015
+"77","Dünzling 3",12.1133,48.8858,2015
+"78","Eckendorf 5",12.2325,49.4467,2015
+"79","Eitenzell 8",12.4631,49.0508,2015
+"80","Eltheim 3",12.3108,48.9845348,2015
+"81","Engelsberg 1",12.3844,49.0919,2015
+"82","Fuchsendorf 5",12.2731,49.5044,2015
+"83","Gailsbach, Auweg 2",12.2347,48.8861,2015
+"84","Gailsbach, Auweg 3",12.2356,48.8856,2015
+"85","Gailsbach, Auweg 9",12.2361,48.8847,2015
+"86","Gailsbach, Dorfstrasse 8",12.2339,48.8864,2015
+"87","Geisling 7",12.3167,48.9717,2015
+"88","Gfäll 9",12.4203,49.1017,2015
+"89","Gottschalling",11.9839,47.7883,2015
+"90","Grassersdorf 12",12.5228,49.3669,2015
+"91","Grossbergerdorf 9",12.6325,49.2508,2015
+"92","Gschwendt 43a",12.0689,48.8558,2015
+"93","Guthof 1",12.5128,49.1275,2015
+"94","Hetzmannsdorf 18",12.5256,49.3519,2015
+"95","Hof 12",12.4069,49.4636,2015
+"96","Jagerhaus 1",12.3106,48.9497,2015
+"97","Klessing 2",12.5028,49.1528,2015
+"98","Lerau 9",12.2875,49.6044,2015
+"99","Letzau",12.245,49.6772,2015
+"100","Loidsberg 5",12.3836,49.0664,2015
+"101","Luckenpaint",12.135,48.894,2015
+"102","Maierhof 5",12.4347,48.0931,2015
+"103","Mattenzell 11",12.4356,49.1144,2015
+"104","Michelstahl 17",12.5931,49.4264,2015
+"105","Moosham 18",12.2672,48.9256,2015
+"106","Moosmühle 1",12.3481,48.9678,2015
+"107","Münchshof 2",12.1178,49.3619,2015
+"108","Neuallkofen 2",12.2675,48.9719,2015
+"109","Neusath 78",12.2125,49.4639,2015
+"110","Niedermurach",12.3775,49.4489,2015
+"111","Niederpremeischl 2",12.5808,49.3447,2015
+"112","Nunzenried 11",12.4492,49.4547,2015
+"113","Oberlaichling 3",12.1606,48.8614,2015
+"114","Obermurach 23",12.3919,49.4453,2015
+"115","Obernankau 8",12.2997,49.5861,2015
+"116","Obersanding 14",12.1606,48.8864,2015
+"117","Obersanding 2",12.1611,48.8869,2015
+"118","Obertresengeld 3A",12.3261,49.6544,2015
+"119","Obertresengeld 3B",12.3278,49.6539,2015
+"120","Oedenthal 2",12.2389,49.6439,2015
+"121","Paring 202",12.0933,48.8519,2015
+"122","Pemfling 12",12.6064,49.2619,2015
+"123","Pillmersried 44",12.5139,49.3911,2015
+"124","Reichertsmühle 1",12.3772,49.4725,2015
+"125","Rötz 2",12.5406,49.3417,2015
+"126","Schierling 39",12.145,48.8336,2015
+"127","Stadtberg 1",12.1492,48.9183,2015
+"128","Staunerhof",12.5711,49.2867,2015
+"129","Steinach 6",12.2942,49.5953,2015
+"130","Tauchersdorf 6",12.2456,49.4767,2015
+"131","Thalmassing 5",12.16,48.9133,2015
+"132","Tiefenbach 28",12.5789,49.4378,2015
+"133","Tressenried 9",12.4406,49.4572,2015
+"134","Trobelsdorf 4",12.5436,49.3558,2015
+"135","Unterprombach 1",12.5281,49.1642,2015
+"136","Untersanding, Dorfstrasse 16",12.1706,48.8911,2015
+"137","Untersanding, Lerchenweg 2",12.1683,48.8911,2015
+"138","Unterschneidhart 5",12.0514,48.8594,2015
+"139","Wieden 1",12.5019,49.1447,2015
+"140","Woppmannsdorf 8",12.3544,49.125,2015
+"141","Zaitzkofen 36",12.2094,48.8375,2015
+"142","Zilchenricht 4",12.1806,49.3881,2015
+"143","Zumhof 16",12.4319,49.06,2015
+"144","Albertshof 4",13.4542,53.1478,2015
+"145","Altmädewitz 29",14.1625,52.7508,2015
+"146","Altranft 39",14.0817,52.7667,2015
+"147","Altthymen 26",13.1647,53.24,2015
+"148","Bad Freienwalde 45",14.0661,52.7733,2015
+"149","Beetz 125",13.0161,52.8136,2015
+"150","Beetz 95A - horses",13.0208,52.8192,2015
+"151","Bestensee 6",13.6025,52.2225,2015
+"152","Britz 2",13.8119,52.8875,2015
+"153","Buchholz 30",13.7881,52.5844,2015
+"154","Croustillier 17",14.1169,52.7914,2015
+"155","Danewitz 22",13.6664,52.7339,2015
+"156","Densow 12",13.3775,53.145,2015
+"157","Dobberzin 8",14.0356,53.0203,2015
+"158","Erkner Kinderbauernhof",13.7581,52.3989,2015
+"159","Gielsdorf 68",13.8756,52.6053,2015
+"160","Gottesgabe 1",14.1833,52.6378,2015
+"161","Hammelspring 6",13.4286,53.0689,2015
+"162","Hammer 18",13.4411,52.8758,2015
+"163","Hammer 8",13.4383,52.8803,2015
+"164","Hohenstein 1",13.9858,52.5689,2015
+"165","Hoppegarten 1",13.6761,52.4978,2015
+"166","Hohenwutzen 30",14.1189,52.8367,2015
+"167","Joachimstahl 10",13.7414,52.9753,2015
+"168","Letschin 38",14.3217,52.6506,2015
+"169","Liebenthal",13.4636,52.9156,2015
+"170","Linde 53",13.1278,52.8925,2015
+"171","Lychen 6",13.3122,53.2242,2015
+"172","Madlitz 11",14.3106,52.3792,2015
+"173","Marienhof 6",13.5994,52.2458,2015
+"174","Milmersdorfer Chaussee 47",13.595,53.1158,2015
+"175","Neugaul 21",14.1206,52.7547,2015
+"176","Neulöwenberg",13.1972,52.9008,2015
+"177","Neumädewitz 39",14.1611,52.7408,2015
+"178","Ort Berkenlatten 7",13.7586,53.1406,2015
+"179","Pappelwerder 1",13.6506,53.2108,2015
+"180","Pausien",13.0447,52.6372,2015
+"181","Rutenberg 41",13.3067,53.2531,2015
+"182","Rutenberg Rehof",13.3047,53.2522,2015
+"183","Schenkendorf 8 - food",13.5992,52.2725,2015
+"184","Schenkendorf 8 - horses",13.595,52.2747,2015
+"185","Schiffmühle 29",14.0569,52.8092,2015
+"186","Schorfheide 16",13.5436,52.9228,2015
+"187","Stegelitz",13.8433,53.1267,2015
+"188","Sternfelde 2",13.9703,53.0039,2015
+"189","Storkow 17",13.4458,53.0478,2015
+"190","Torfhaus",13.8517,52.5142,2015
+"191","Triepkendorf 30",13.3306,53.2903,2015
+"192","Zehlendorf 1",13.3994,52.7969,2015
+"193","Czaplin Wielki 21",15.1556,54.0206,2015
+"194","Dramino 3",14.7003,53.8792,2015
+"195","Gołańcz Pomorska 48",15.3842,54.0647,2015
+"196","Recław 8",14.6275,53.8422,2015
+"197","Trzeszyn 17",15.1511,53.9992,2015
+"198","Żółwino 6",14.6125,53.9406,2015
+"199","Hohenwutzener chaussee 3, hohenwutzen",14.0997,52.83667,2016
+"200","Münchehofer Straße 1, Hoppegarten",13.676085,52.497666,2016
+"201","Zindorf",13.928061,52.50186,2016
+"202","Kreuzbrucher Str 7 , Kreuzbruch (Kreuz7)",13.4291,52.8402,2016
+"203","Kreuzbrucher Str. 2, Kreuzbruch (Kreuz2)",13.4118,52.8367,2016
+"204","Mittelstr 1, Hammer",13.4392,52.88,2016
+"205","Große Trift, Hammer (Milchkuhhof) ",13.4473,52.8778,2016
+"206","Pappelweg 8c; 16775 Löwenberg",13.3066,52.90833,2016
+"207","an den eiskuten 8, 15749 Mittenwalde",13.599425,52.273117,2016
+"208","Wolziger hautpstrasse 24, Wolzig",13.840138,52.267513,2016
+"209","Herr Kunitz",13.978059,52.24886,2016
+"210","Freiherr-von-loeben strasse 2, 15749 Mittenwalde (Lamahof)",13.595,52.281,2016
+"211","Berliner strasse 14, 15754 friedersdorf (klein tier und zuchbedarf egon hertel)",13.765197,52.291317,2016
+"212","Marienhof 5, 15741 bestensee",13.600134,52.246817,2016
+"213","western salon pferdepension, ines Roggisch",13.9973386,52.265571,2016
+"214","Apfelallee 7, Kruge",13.877991,52.75719,2016
+"215","Schönholzerstr. 8 , Grüntal",13.730395,52.7463,2016
+"216","Weidenweg 18, 16259 Kruge",13.887276,52.757041,2016
+"217","Eberswalderstr. 2, Breydin- Trampe",13.837148,52.780079,2016
+"218","Lindenstr. 5, Klobbicke",13.8024416667,52.7595889,2016
+"219","Dorfallee 39, 16559 Liebenthal",13.4638,52.9161,2016
+"220","Klandorfer Str. 60, Marienwerder",13.5998,52.8421,2016
+"221","Dorfstr. 63, Ruhlsdorf",13.558,52.8254,2016
+"222","Prendener Dorfstr. 39, Prenden",13.5516,52.7904,2016
+"223","Dorfstr. 62, Stolzenhagen",13.4417,52.7805,2016
+"224","Hauptstr. 49, Klosterfelde",13.48,52.7918,2016
+"225","Münchehofer Straße 1, Hoppegarten",13.676085,52.497666,2016
+"226","Kageler Weg 14, Lichtenow",13.903849,52.478733,2016
+"227","Mitschurinstr. 1, Rehfelde",13.898133,52.518554,2016
+"228","Mildenberger Str. 1, Mildenberg",13.30472,52.9935,2016
+"229","Dorfanger 7, 15754 Gräbendorf",13.707342,52.242122,2016
+"230","Wolziger hautpstrasse 24, Wolzig",13.840138,52.267513,2016
+"231","Siedlung 19, 15749 Gallun",13.560048,52.243685,2016
+"232","Am Tonsee 4, Mittenwalde",13.58843,52.21563,2016
+"233","Dorfstr. 22, Danewitz",13.666418,52.733898,2016
+"234","Bahnhofstr. 21, Bernau (Rüdnitz)",13.64,52.716944,2016
+"235","Bergstr. 4B, Bernau (Rüdnitz)",13.644722,52.714056,2016
+"236","Kastanienstr. 27, Tempelfelde",13.722576,52.71158,2016
+"237","Lindenstr. 22, Klobbicke",13.802443,52.759589,2016
+"238","Lindenstr. 5, Klobbicke",13.482913,52.45388,2016
+"239","Löhmer dorfstr. 24, Werneuchen",13.683618,52.633745,2016
+"240","Wegendorfer Weg 1, Werneuchen",13.698956,52.600233,2016
+"241","Hauptstr. 26, spreenhagen",13.875585,52.34145,2016
+"242","Zehdenicker Str 8, 16247 Joachimsthal",13.7336,52.9784,2016
+"243","Mittelstr. 5, 16244 Eichhorst",13.636433,52.890269,2016
+"244","Schulstr. 10, 16244 Eichhorst",13.63666,52.89051,2016
+"245","Mühlengasse 14, 16348 Wandlitz (Prenden)",13.55461,52.78755,2016
+"246","Dorfanger 7, 15754 Gräbendorf",13.707342,52.242122,2016
+"247","Pferdeoase, Märkisch Buchholz",13.763339,52.106315,2016
+"248","Mildenberger Str. 1, Mildenberg",13.30472,52.9935,2016
+"249","Badinger Dorferstr. 40, Badingen",13.251838,53.00027,2016
+"250","Granseer Str 45, Großwoltersdorf",13.090672,53.072079,2016
+"251","IGB",13.029748,53.14144,2016
+"252","Bornmühlenstr., Fürstenberg",13.14741,53.172124,2016
+"253","Siedlung 11, Gräfendorf",13.1949,51.909612,2016
+"254","Rosenthal 62",13.462218,51.863059,2016
+"255","15936 Rosenthal 38",13.463558,51.862758,2016
+"256","15936 Rosenthal 10",13.460798,51.86995,2016
+"257","Körbitz 11",13.113572,51.895026,2016
+"258","14913 Grüna 17",13.082355,52.031213,2016
+"259","14913 Grüna 10",13.084008,52.030218,2016
+"260","Oehna 59",13.04327,51.929931,2016
+"261","Oehna 62",13.043982,51.929943,2016
+"262","Kirchstr. 1, Groß Ziethen",13.89739,52.95691,2016
+"263","Serwester Dorfstr. 72, Serwest",13.924824,52.929032,2016
+"264","Groß Fredenwalde 29, 17268 Gerswalde",13.79691,53.12959,2016
+"265","Klein Fredenwalde ",13.76991,53.12783,2016
+"266","Glambecker Str. 23, Parlow",13.76791,53.02505,2016
+"267","Glambecker Str. 22, Parlow",13.766596,53.02507,2016
+"268","Templiner Str. 18D, 17268 Temmen-Ringenwalde",13.71264,53.06147,2016
+"269","Kirchstr.13, Tuchen",13.787479,52.754538,2016
+"270","Dorfstr. 9, 16230 Breydin-Trampe",13.837111,52.776694,2016
+"271","Neulüdersdorf 9, Neulüdersdorf",13.186732,53.038544,2016
+"272","Granseeer Str. . Großwoltersdorf",13.10663,53.065466,2016
+"273","Wendefeld, Wendefeld",13.16023,53.034708,2016
+"274","Altedorfstr.  Altlüdersdorf",13.186732,53.038544,2016
+"275","Ribbecker Dorfstr. 8, Ribbeck",13.256764,53.032128,2016
+"276","Pferdeoase, Märkisch Buchholz",13.763339,52.106315,2016
+"277","Micheal Nier, Gutsmannstr. 41, 15755",13.608102,52.130086,2016
+"278","Eisenbahnerstrasse 9, Märkisch Buchholz, Volkmann",13.75148,52.10668,2016
+"279","Eichenhof, Eichenweg34, Löpten",13.67908,52.1462,2016
+"280","Egsdorferstr. 7, 15749",13.58764,52.15826,2016
+"281","Schiffmühle 29, 16259",14.05693,52.80912,2016
+"282","Gartenstr. 2, Heckelberg",13.837288,52.738159,2016
+"283","Brunower Straße 1, 16259 Höhenland- Steinbeck",13.907177,52.71788,2016
+"284","Lüdersdorfer Dorfstraße 8, Wriezen – Lüdersdorf",14.082995,52.699579,2016
+"285","Wriezener Straße 6, Frankenfelde",14.058403,52.669965,2016
+"286","Wriezener Straße 7, Frankenfelde",14.05844,52.670084,2016
+"287","Dorfstr. 52, Brodowin",13.956417,52.915588,2016
+"288","Dorfstr. 31, Niederfinow",13.899922,52.840734,2016
+"289","Dorfstrasse 15, Ringenwalde",13.718,53.0575,2016
+"290","Ringenwalderstrasse 31, ",13.7112,53.0334,2016
+"291","Wilmine 5, 17268 Gerswalde",13.772821,53.116421,2016
+"292","Dorfstrasse 34a, Ringenwalde",13.7212,53.0575,2016
+"293","An der Schäferei 10, 15518, Steinhöfel",14.043857,52.430311,2016
+"294","Max-Schmelingstr. 31, 15374, Hoppegarten",14.018114,52.489685,2016
+"295","Hirsegarten 6d, 15528, Speenhagen",13.886509,52.33122,2016
+"296","Hirsegarten 5, Spreenhagen",13.884526,52.335667,2016
+"297","Hauptstr. 34, Sprenhagen",13.875007,52.340229,2016
+"298","Steinhöfelerstr. 1, 15518, Steinhöfel Buchholz",14.127122,52.421551,2016
+"299","Dubenerhauptstr. 19, 15926",13.809616,51.897811,2016
+"300","Freiimfelde 1 15926 Luckau/ Duben",13.787119,51.885597,2016
+"301","Hindenbergerdorfstr. 31 03222",13.847336,51.853542,2016
+"302","Uckeroergutshof 3, 15926 Luckau",13.614258,51.854556,2016
+"303","Dorfweg. 21, 15936 Dahme",13.534375,51.848838,2016
+"304","Heckelbergerstr. 6, 16259 Brunow",13.867283,52.731077,2016
+"305","Serwester Dorfstr. 56, Serwest",13.991718,52.933813,2016
+"306","Felchower Straße 15a, Crussow",14.080622,53.005224,2016
+"307","Mühlengasse 14, 16348 Wandlitz (Prenden)",13.55461,52.78755,2016
+"308","Böckenberg 31, 17268 Gerswalde",13.755,53.13322,2016
+"309","Templiner Str. 22, Temmen-Ringenwalde",13.7145,53.0602,2016
+"310","Poratz 18",13.7926,53.0629,2016
+"311","Lindenallee 3A, 17268 Temmen-Ringenwalde",13.7527,53.098183,2016
+"312","Fredenwalder Weg 1, Stegelitz",13.843372,53.126703,2016
+"313","Werbelliner Dorfstraße 27, Werbellin",13.7027,52.890079,2016
+"314","Wensickendorfer Str.21A, Zehlendorf",13.387899,52.775155,2016
+"315","Granseer Str. 58, Großwoltersdorf",13.09432,53.070217,2016
+"316","Eichenweg, Strasen",12.998334,53.207467,2016
+"317","Pälitzhof 1,17255 Wustrow",12.9707638,53.203156,2016
+"318","Pälitzhof 3, Wustrow",12.9707638,53.203156,2016
+"319","Bornmülenstraße, Fürstenberg",13.147471,53.172124,2016
+"320","Neulüdersdorf 20, Neulüdersdorf",13.172672,53.050558,2016
+"321","Rheinberger Str., Fürstenberg",13.126998,53.170048,2016
+"322","Granseer Str. 1, Großwoltersdorf",13.106627,53.06548,2016
+"323","Dorfstr. 16, Zootzen",13.213816,53.151642,2016
+"324","Zur Flake 4, Strasen",12.993232,53.211841,2016
+"325","Poststr. 1, Dobberzin",14.035729,53.019926,2016
+"326","Poststr. 8, Dobberzin",14.035471,53.020251,2016
+"327","Kastanienallee 2, 16278 Angermünde - Sternfelde",13.97029,53.00394,2016
+"328","Kirchstr. 5, 16230 Amtbritz- Chorin",13.815899,52.886437,2016
+"329","Alihmbsmühle 4, 17268",13.62279,53.07628,2016
+"330","Neudorf 2, 16348 Wandlitz",13.516796,52.79819,2016
+"331","Wandlitzerstrasse 16, Lanke",13.523066,52.758042,2016
+"332","Wriezenerstr. 38 Wilhermsauer Loose",14.321733,52.650566,2016
+"333","Mahlerstr. 20, Wriezen",14.125579,52.733087,2016
+"334","Storkower Str 18, Storkow",13.445741,53.04789,2016
+"335","Am Röddelinsee1, 17268 Templin",13.449635,53.094694,2016
+"336","Hauptstr. 12, Densow",13.377,53.1449,2016
+"337","Altthymer Dorfstr. 3, Bartselhof",13.164,53.2314,2016
+"338","Altthymer Dorfstr. 23, Altthymen",13.164659,53.239927,2016
+"339","Müggelseedamm 31a, Berlin",13.647899,52.448977,2016
+"340","Lindenstraße 19, Alt Madlitz",14.279504,52.384948,2016
+"341","Eberswalderstr. 158A, Müncheberg",14.094352,52.525605,2016
+"342","Trempelberger Weg 3, Steinhöfel Oder-Spree",14.181204,52.46718,2016
+"343","Mühlenstr.12, Briesen",14.30442,52.379044,2016
+"344","Molkenberger Str. 12, Fürstenwalde/Spree",14.062102,52.3846215,2016
+"345","Peterlinenweg, Kreuzung B5-L384, Falkenhagen",14.2972631,52.408109,2016
+"346","Neue Zittauer Str. ?, Erkner",13.749045,52.403302,2016
+"347","Hohenwutzener chaussee 3, hohenwutzen",14.0997,52.83667,2017
+"348","Münchehofer Straße 1, Hoppegarten",13.676085,52.497666,2017
+"349","Zindorf",13.928061,52.50186,2017
+"350","Kreuzbrucher Str 7 , Kreuzbruch (Kreuz7)",13.4291,52.8402,2017
+"351","Kreuzbrucher Str. 2, Kreuzbruch (Kreuz2)",13.4118,52.8367,2017
+"352","Mittelstr 1, Hammer",13.4392,52.88,2017
+"353","Große Trift, Hammer (Milchkuhhof) ",13.4473,52.8778,2017
+"354","Pappelweg 8c; 16775 Löwenberg",13.3066,52.90833,2017
+"355","an den eiskuten 8, 15749 Mittenwalde",13.599425,52.273117,2017
+"356","Wolziger hautpstrasse 24, Wolzig",13.840138,52.267513,2017
+"357","Herr Kunitz",13.978059,52.24886,2017
+"358","Freiherr-von-loeben strasse 2, 15749 Mittenwalde (Lamahof)",13.595,52.281,2017
+"359","Berliner strasse 14, 15754 friedersdorf (klein tier und zuchbedarf egon hertel)",13.765197,52.291317,2017
+"360","Marienhof 5, 15741 bestensee",13.600134,52.246817,2017
+"361","western salon pferdepension, ines Roggisch",13.9973386,52.265571,2017
+"362","Apfelallee 7, Kruge",13.877991,52.75719,2017
+"363","Schönholzerstr. 8 , Grüntal",13.730395,52.7463,2017
+"364","Weidenweg 18, 16259 Kruge",13.887276,52.757041,2017
+"365","Eberswalderstr. 2, Breydin- Trampe",13.837148,52.780079,2017
+"366","Lindenstr. 5, Klobbicke",13.8024416667,52.7595889,2017
+"367","Dorfallee 39, 16559 Liebenthal",13.4638,52.9161,2017
+"368","Klandorfer Str. 60, Marienwerder",13.5998,52.8421,2017
+"369","Dorfstr. 63, Ruhlsdorf",13.558,52.8254,2017
+"370","Prendener Dorfstr. 39, Prenden",13.5516,52.7904,2017
+"371","Dorfstr. 62, Stolzenhagen",13.4417,52.7805,2017
+"372","Hauptstr. 49, Klosterfelde",13.48,52.7918,2017
+"373","Münchehofer Straße 1, Hoppegarten",13.676085,52.497666,2017
+"374","Kageler Weg 14, Lichtenow",13.903849,52.478733,2017
+"375","Mitschurinstr. 1, Rehfelde",13.898133,52.518554,2017
+"376","Mildenberger Str. 1, Mildenberg",13.30472,52.9935,2017
+"377","Dorfanger 7, 15754 Gräbendorf",13.707342,52.242122,2017
+"378","Wolziger hautpstrasse 24, Wolzig",13.840138,52.267513,2017
+"379","Siedlung 19, 15749 Gallun",13.560048,52.243685,2017
+"380","Am Tonsee 4, Mittenwalde",13.58843,52.21563,2017
+"381","Dorfstr. 22, Danewitz",13.666418,52.733898,2017
+"382","Bahnhofstr. 21, Bernau (Rüdnitz)",13.64,52.716944,2017
+"383","Bergstr. 4B, Bernau (Rüdnitz)",13.644722,52.714056,2017
+"384","Kastanienstr. 27, Tempelfelde",13.722576,52.71158,2017
+"385","Lindenstr. 22, Klobbicke",13.802443,52.759589,2017
+"386","Lindenstr. 5, Klobbicke",13.482913,52.45388,2017
+"387","Löhmer dorfstr. 24, Werneuchen",13.683618,52.633745,2017
+"388","Wegendorfer Weg 1, Werneuchen",13.698956,52.600233,2017
+"389","Hauptstr. 26, spreenhagen",13.875585,52.34145,2017
+"390","Zehdenicker Str 8, 16247 Joachimsthal",13.7336,52.9784,2017
+"391","Mittelstr. 5, 16244 Eichhorst",13.636433,52.890269,2017
+"392","Schulstr. 10, 16244 Eichhorst",13.63666,52.89051,2017
+"393","Mühlengasse 14, 16348 Wandlitz (Prenden)",13.55461,52.78755,2017
+"394","Dorfanger 7, 15754 Gräbendorf",13.707342,52.242122,2017
+"395","Pferdeoase, Märkisch Buchholz",13.763339,52.106315,2017
+"396","Mildenberger Str. 1, Mildenberg",13.30472,52.9935,2017
+"397","Badinger Dorferstr. 40, Badingen",13.251838,53.00027,2017
+"398","Granseer Str 45, Großwoltersdorf",13.090672,53.072079,2017
+"399","IGB",13.029748,53.14144,2017
+"400","Bornmühlenstr., Fürstenberg",13.14741,53.172124,2017
+"401","Siedlung 11, Gräfendorf",13.1949,51.909612,2017
+"402","Rosenthal 62",13.462218,51.863059,2017
+"403","15936 Rosenthal 38",13.463558,51.862758,2017
+"404","15936 Rosenthal 10",13.460798,51.86995,2017
+"405","Körbitz 11",13.113572,51.895026,2017
+"406","14913 Grüna 17",13.082355,52.031213,2017
+"407","14913 Grüna 10",13.084008,52.030218,2017
+"408","Oehna 59",13.04327,51.929931,2017
+"409","Oehna 62",13.043982,51.929943,2017
+"410","Kirchstr. 1, Groß Ziethen",13.89739,52.95691,2017
+"411","Serwester Dorfstr. 72, Serwest",13.924824,52.929032,2017
+"412","Groß Fredenwalde 29, 17268 Gerswalde",13.79691,53.12959,2017
+"413","Klein Fredenwalde ",13.76991,53.12783,2017
+"414","Glambecker Str. 23, Parlow",13.76791,53.02505,2017
+"415","Glambecker Str. 22, Parlow",13.766596,53.02507,2017
+"416","Templiner Str. 18D, 17268 Temmen-Ringenwalde",13.71264,53.06147,2017
+"417","Kirchstr.13, Tuchen",13.787479,52.754538,2017
+"418","Dorfstr. 9, 16230 Breydin-Trampe",13.837111,52.776694,2017
+"419","Neulüdersdorf 9, Neulüdersdorf",13.186732,53.038544,2017
+"420","Granseeer Str. . Großwoltersdorf",13.10663,53.065466,2017
+"421","Wendefeld, Wendefeld",13.16023,53.034708,2017
+"422","Altedorfstr.  Altlüdersdorf",13.186732,53.038544,2017
+"423","Ribbecker Dorfstr. 8, Ribbeck",13.256764,53.032128,2017
+"424","Pferdeoase, Märkisch Buchholz",13.763339,52.106315,2017
+"425","Micheal Nier, Gutsmannstr. 41, 15755",13.608102,52.130086,2017
+"426","Eisenbahnerstrasse 9, Märkisch Buchholz, Volkmann",13.75148,52.10668,2017
+"427","Eichenhof, Eichenweg34, Löpten",13.67908,52.1462,2017
+"428","Egsdorferstr. 7, 15749",13.58764,52.15826,2017
+"429","Schiffmühle 29, 16259",14.05693,52.80912,2017
+"430","Gartenstr. 2, Heckelberg",13.837288,52.738159,2017
+"431","Brunower Straße 1, 16259 Höhenland- Steinbeck",13.907177,52.71788,2017
+"432","Lüdersdorfer Dorfstraße 8, Wriezen – Lüdersdorf",14.082995,52.699579,2017
+"433","Wriezener Straße 6, Frankenfelde",14.058403,52.669965,2017
+"434","Wriezener Straße 7, Frankenfelde",14.05844,52.670084,2017
+"435","Dorfstr. 52, Brodowin",13.956417,52.915588,2017
+"436","Dorfstr. 31, Niederfinow",13.899922,52.840734,2017
+"437","Dorfstrasse 15, Ringenwalde",13.718,53.0575,2017
+"438","Ringenwalderstrasse 31, ",13.7112,53.0334,2017
+"439","Wilmine 5, 17268 Gerswalde",13.772821,53.116421,2017
+"440","Dorfstrasse 34a, Ringenwalde",13.7212,53.0575,2017
+"441","An der Schäferei 10, 15518, Steinhöfel",14.043857,52.430311,2017
+"442","Max-Schmelingstr. 31, 15374, Hoppegarten",14.018114,52.489685,2017
+"443","Hirsegarten 6d, 15528, Speenhagen",13.886509,52.33122,2017
+"444","Hirsegarten 5, Spreenhagen",13.884526,52.335667,2017
+"445","Hauptstr. 34, Sprenhagen",13.875007,52.340229,2017
+"446","Steinhöfelerstr. 1, 15518, Steinhöfel Buchholz",14.127122,52.421551,2017
+"447","Dubenerhauptstr. 19, 15926",13.809616,51.897811,2017
+"448","Freiimfelde 1 15926 Luckau/ Duben",13.787119,51.885597,2017
+"449","Hindenbergerdorfstr. 31 03222",13.847336,51.853542,2017
+"450","Uckeroergutshof 3, 15926 Luckau",13.614258,51.854556,2017
+"451","Dorfweg. 21, 15936 Dahme",13.534375,51.848838,2017
+"452","Heckelbergerstr. 6, 16259 Brunow",13.867283,52.731077,2017
+"453","Serwester Dorfstr. 56, Serwest",13.991718,52.933813,2017
+"454","Felchower Straße 15a, Crussow",14.080622,53.005224,2017
+"455","Mühlengasse 14, 16348 Wandlitz (Prenden)",13.55461,52.78755,2017
+"456","Böckenberg 31, 17268 Gerswalde",13.755,53.13322,2017
+"457","Templiner Str. 22, Temmen-Ringenwalde",13.7145,53.0602,2017
+"458","Poratz 18",13.7926,53.0629,2017
+"459","Lindenallee 3A, 17268 Temmen-Ringenwalde",13.7527,53.098183,2017
+"460","Fredenwalder Weg 1, Stegelitz",13.843372,53.126703,2017
+"461","Werbelliner Dorfstraße 27, Werbellin",13.7027,52.890079,2017
+"462","Wensickendorfer Str.21A, Zehlendorf",13.387899,52.775155,2017
+"463","Granseer Str. 58, Großwoltersdorf",13.09432,53.070217,2017
+"464","Eichenweg, Strasen",12.998334,53.207467,2017
+"465","Pälitzhof 1,17255 Wustrow",12.9707638,53.203156,2017
+"466","Pälitzhof 3, Wustrow",12.9707638,53.203156,2017
+"467","Bornmülenstraße, Fürstenberg",13.147471,53.172124,2017
+"468","Neulüdersdorf 20, Neulüdersdorf",13.172672,53.050558,2017
+"469","Rheinberger Str., Fürstenberg",13.126998,53.170048,2017
+"470","Granseer Str. 1, Großwoltersdorf",13.106627,53.06548,2017
+"471","Dorfstr. 16, Zootzen",13.213816,53.151642,2017
+"472","Zur Flake 4, Strasen",12.993232,53.211841,2017
+"473","Poststr. 1, Dobberzin",14.035729,53.019926,2017
+"474","Poststr. 8, Dobberzin",14.035471,53.020251,2017
+"475","Kastanienallee 2, 16278 Angermünde - Sternfelde",13.97029,53.00394,2017
+"476","Kirchstr. 5, 16230 Amtbritz- Chorin",13.815899,52.886437,2017
+"477","Alihmbsmühle 4, 17268",13.62279,53.07628,2017
+"478","Neudorf 2, 16348 Wandlitz",13.516796,52.79819,2017
+"479","Wandlitzerstrasse 16, Lanke",13.523066,52.758042,2017
+"480","Wriezenerstr. 38 Wilhermsauer Loose",14.321733,52.650566,2017
+"481","Mahlerstr. 20, Wriezen",14.125579,52.733087,2017
+"482","Storkower Str 18, Storkow",13.445741,53.04789,2017
+"483","Am Röddelinsee1, 17268 Templin",13.449635,53.094694,2017
+"484","Hauptstr. 12, Densow",13.377,53.1449,2017
+"485","Altthymer Dorfstr. 3, Bartselhof",13.164,53.2314,2017
+"486","Altthymer Dorfstr. 23, Altthymen",13.164659,53.239927,2017
+"487","Müggelseedamm 31a, Berlin",13.647899,52.448977,2017
+"488","Lindenstraße 19, Alt Madlitz",14.279504,52.384948,2017
+"489","Eberswalderstr. 158A, Müncheberg",14.094352,52.525605,2017
+"490","Trempelberger Weg 3, Steinhöfel Oder-Spree",14.181204,52.46718,2017
+"491","Mühlenstr.12, Briesen",14.30442,52.379044,2017
+"492","Molkenberger Str. 12, Fürstenwalde/Spree",14.062102,52.3846215,2017
+"493","Peterlinenweg, Kreuzung B5-L384, Falkenhagen",14.2972631,52.408109,2017
+"494","Neue Zittauer Str. ?, Erkner",13.749045,52.403302,2017
+"495","Brodowiner Dorfstrasse 88, 16230",13.9621,52.9148,2018
+"496","Wergener Dorfstrasse 1, 16230",13.9624,52.9148,2018
+"497","Pelitz 3, 16230",13.9932,52.9095,2018
+"498","Macherslust 3-5, 16225",13.8462,52.8484,2018
+"499","Ladersdorfe strasse, 25, 16245 ",14.0435,52.9333,2018
+"500","Oderberger strasse 18, 16248",14.11,52.9162,2018
+"501","Hohersaatener strasse 8, 16259",14.1425,52.8716,2018
+"502","Hohersaatener strasse 4, 16259",14.1425,52.8716,2018
+"503","Corinastrasse 18, 16248",13.9155,52.8515,2018
+"504","Karlswerter Weg, 13167",13.92,52.81,2018
+"505","Alte Heerstrasse 39, 16259",14.08,52.77,2018
+"506","Badinger str., 25, 16775",13.3281,52.9801,2018
+"507","R.-Breitscheid str. 13, 16792",13.3193,52.9721,2018
+"508","Rieckesthal 1, 16792",13.2328,53.03,2018
+"509","Hohersaatener Dorfstrasse 9, 16259",14.1425,52.8716,2018
+"510","Chausee str. 43A, 16259",14.0898,52.8371,2018
+"511","Neuturnow 99, 16259",14.0667,52.8103,2018
+"512","Herrenwiese 7, 16259",14.0974,52.8003,2018
+"513","Herrenwiese 8, 16259",14.0995,52.7985,2018
+"514","Eberswalder Chausee 3, 15377",14.0564,52.5408,2018
+"515","Molkenberg 12, 15517",14.0674,52.4018,2018
+"516","Kolpiner str. 3, 15526",13.9976,52.2654,2018
+"517","Ahrensdorfer str. 23, 15845",14.0906,52.2064,2018
+"518","Freienwalde weg 4, 16259",13.95,52.77,2018
+"519","Dorfstr. 2, 16359",13.6605,52.7369,2018
+"520","Kastanienweg 10, 14728",12.4196,52.7413,2018
+"521","Kastanienweg 6, 14728",12.4182,52.7436,2018
+"522","Klessen, 14728",12.4913,52.7395,2018
+"523","Molhenberg 1, 15517",14.0671,52.3973,2018
+"524","Neuglietzener str. 30, 16259",14.1192,52.8361,2018
+"525","Altglietzener Dorfstr. 31, 16259",14.0908,52.8327,2018
+"526","Ribbecker Dorfstr. 8, 14641",13.2567,52.0332,2018
+"527","Berlzin-Brunnerstr. 24, 16833",12.7588,52.7625,2018
+"528","Muhlenweg 5, 14728",12.3726,52.5736,2018
+"529","Dorfstr. 1, 16833",12.722,52.7723,2018
+"530","Alter Dechtowerweg 2, 16833",12.7802,52.7949,2018
+"531","Bergsdorfestr. 6, 16775",13.2821,52.9576,2018
+"532","Wedefelder weg 13, 16775",13.175,53.0219,2018
+"533","Wirchstr. 11, ",13.7883,52.7544,2018
+"534","Dorfstr. 25, ",13.8345,52.7817,2018
+"535","Dorfstr. 26,",13.8341,52.7819,2018
+"536","Dorfstr. 40,",13.8351,52.78,2018
+"537","Dorfstr. 9, 16230",13.8376,52.7766,2018
+"538","Melchowerweg, 1",13.7219,52.7436,2018
+"539","Dorfstr. 8,",13.6625,52.7354,2018
+"540","Dorfstr. 30,",13.6692,52.7327,2018
+"541","Dorfstr. 22, 16230",13.716,52.7576,2018
+"542","Steinstr. 7",12.5356,52.6637,2018
+"543","Rhinower str. 26",12.3451,52.673,2018
+"544","Elslaake",12.3792,52.6941,2018
+"545","Siedlung 1, 16236",13.7214,52.7077,2018
+"546","Bluenweg 5, ",13.7214,52.7077,2018
+"547","Beerbaum 20c, ",13.7911,52.7288,2018
+"548","Ahornstr. 21, 16259",13.8816,52.7713,2018
+"549","Krummenpfahl 2, ",13.9259,52.7725,2018
+"550","Krummenpfahl 21, ",13.9245,52.7681,2018
+"551","Ahornstroussei 17, 16259",13.8853,52.7708,2018
+"552","Beeskower str. 24, 15848",14.0923,52.213,2018
+"553","Gabow 67, 16259",14.0745,52.817,2018
+"554","Dorfstrasse 44, 16248",14.0736,52.9306,2018
+"555","Warsowerstr. 8, 14662",12.627,52.7272,2018
+"556","Mildenberger str. 1, 16792",13.3049,52.9934,2018
+"557","Wernbergstrasse, 16248",14.101,52.9455,2018
+"558","Burgwall 3, 16248",14.1052,52.948,2018
+"559","Dorfstr. 24,",14.1286,52.8035,2018
+"560","Kietz 13",14.1052,52.948,2018
+"561","Kirchweg 3. 15848",14.1951,52.1911,2018
+"562","Wochoseener Dorfstr, 13",13.9054,52.2264,2018
+"563","Molkenberger str. 2, 15517",14.0618,52.3846,2018
+"564","Börnicker str.",13.641,52.6654,2018
+"565","Ernst-Thälmann-Straße 17, 16321 ",13.639,52.6632,2018
+"566","Ahornhof Willmersdorf",13.6829,52.6621,2018
+"567","Schulstr. 3",13.6579,52.6995,2018
+"568","NABU-Erlebniszentrum Blumberger Mühle",13.9658,53.0351,2018
+"569","Angermunder str. 12",14.0813,52.9991,2018
+"570","Dorfstr. 9, 16818",12.8535,52.7188,2018
+"571","Dorfstr. 39, 14712",12.389,52.6575,2018
+"572","Gusowerfeldweg 5, 15754",13.7306,52.2595,2018
+"573","Felchower str. 15, 16278",14.0801,53.0059,2018
+"574","Am stodtberg 2, 16278",13.0671,52.9766,2018
+"575","Gellmersdorfer str. 15, 16278",14.0741,52.9906,2018
+"576","Chausseestr.",13.9631,53.0989,2018
+"577","Granseerstr. 69, 16775",13.0992,53.0689,2018
+"578","Semlinerstr. 1",12.4558,52.6306,2018
+"579","Grosswoltersdorferstr. 5, 16775",13.1294,53.0621,2018
+"580","Granseerstr. 7, 16775",13.1241,53.0576,2018
+"581","Breite str.20, 16978",13.2515,53.1015,2018
+"582","Dannenwalderstr. 17, 16798",13.2463,53.0998,2018
+"583","Lindenstr. 18, 16775",13.0536,53.1041,2018
+"584","Bornower str. 18, 10848",14.1953,52.1917,2018
+"585","Hansenweg 5, 15754",13.7491,52.315,2018
+"586","Dorfanges 7, 15754",13.7072,52.2422,2018
+"587","Dorfstr. 27",12.7491,52.721,2018
+"588","Alte Postshosse 4",14.2049,52.4498,2018
+"589","Furstenwalder Chaussee 1, 15518",14.2193,52.4577,2018
+"590","Landsbergerstr. 21",13.6261,52.5968,2018
+"591","Dorfstr. 17",13.8905,52.7719,2018
+"592","Kastanienstrr. 27, ",13.7222,52.7117,2018
+"593","Dorfstr. 10",13.5437,52.6267,2018
+"594","Graffenberger str. ",13.9978,53.0346,2018
+"595","NABU-Erlebniszentrum Blumberger Mühle",13.9658,53.0351,2018
+"596","Neuestr. 9",13.2839,53.0624,2018
+"597","Zabelsdorferdorfstr. 51",13.2498,53.0492,2018
+"598","Friedensplatz 1, 16775",13.0521,53.1041,2018
+"599","Chausee Ausbau",13.2676,53.0462,2018
+"600","Linden allee 14, 16798",13.2628,53.1161,2018
+"601","Hauptstr. 16, 16798",13.2145,53.1515,2018
+"602","Landistr. 1, 16278",14.0939,53.0705,2018
+"603","Landin Hauptstr. 7, 16278",14.1413,53.0785,2018
+"604","Unter den Linden, 63",11.4982,53.4997,2018
+"605","Unter den Linden, 23",11.5011,53.507,2018
+"606","Sukower str. 8",11.5091,53.5516,2018
+"607","Büdnerecke 8",11.5069,53.5501,2018
+"608","Alte Dorfstr. 3",11.3333,53.6228,2018
+"609","Leindenallee",11.2717,53.6875,2018
+"610","Gadebuscher str. 18",11.2456,53.6999,2018
+"611","Seefeldstr. ",11.2236,53.7073,2018
+"612","Hauptstr. 2",11.1994,53.708,2018
+"613","Schulstr. 21",11.1983,53.7108,2018
+"614","Gutengermendorf 83",13.1705,52.9448,2018
+"615","Gutengermendorf 89",13.1705,52.9435,2018
+"616","Liebenberger weg",13.2566,52.9228,2018
+"617","Steinberg weg",13.3777,52.9892,2018
+"618","Dölner Chaussee",13.4752,53.0028,2018
+"619","Buchholzerstr. 7, 16230",13.9106,52.9328,2018
+"620","Serwester Dorftstr. 2, 16230",13.9201,52.9298,2018
+"621","Buchholzerstr. 8, 16230",13.9059,52.9328,2018
+"622","Ihlower weg 1, 15345",14.0176,52.6289,2018
+"623","Müncheberger Chaussee 1, 15371",14.022,52.6047,2018
+"624","Eberswalder str. 158, 15374",14.0932,52.5251,2018
+"625","Kräuterweg 21, 15518",14.1076,52.3931,2018
+"626","Alte Dorfstr. 36, 15518",14.1076,52.3931,2018
+"627","Gutengermendorf 3, 16775",13.1785,52.9339,2018
+"628","Grossmutzer Dorfstr. 63, 16775",13.1075,52.932,2018
+"629","Dorfstr. 7, 15306",14.2893,52.4406,2018
+"630","Tempelberger weg 3, 15518",14.1812,52.467,2018
+"631","Los 1, 15377",14.0839,52.6077,2018
+"632","Eggersdorferstr.",13.7843,52.4939,NA
+"633","Schaferei",13.7892,52.5035,NA
+"634","Reitehof Neunhagen",13.6989,52.5691,NA
+"635","Triftweg",13.7379,52.5717,NA
+"636","Bundesstr.",13.8442,52.7434,NA
+"637","Topferstr. 16",13.7543,52.9751,NA
+"638","Schonbeckerstr. 21",13.7315,52.9761,NA
+"639","Zehdenickerstr. 8C",13.7299,52.9794,NA
+"640","Zehdenickerstr. 8B",13.7325,52.9789,NA
+"641","Karl Liebknechtstr. 36C",13.9565,52.8586,NA
+"642","Am Wiesengrund 22",13.9851,52.9756,NA
+"643","Sommerswalder Chaussee",13.0798,52.7384,NA
+"644","Kuckschwinkel 4",13.0702,52.7375,NA
+"645","Heckerweg",12.8027,52.7938,NA
+"646","Dammkrug 2",12.7833,52.8368,NA
+"647","Dorfstr.",12.8041,52.8396,NA
+"648","Dorfstr. 64",12.9189,52.8786,NA
+"649","Dorfstr. 42",13.0312,52.8029,NA
+"650","Neu Zittauerstr. 11-15",13.7132,52.3774,NA
+"651","Jagerstr. 17A",13.7713,52.3839,NA
+"652","Berlinerstr. 2-5",13.7409,52.3885,NA
+"653","Wiesenweg",13.8464,52.351,NA
+"654","Drosselsteg",13.8579,52.3737,NA
+"655","Verlorenlorter Weg 21",13.0979,52.7988,NA
+"656","Blossiner Hauptstraße 3-11",13.8,52.2591,NA
+"657","Lindenstr. 36",13.9917,52.9781,NA
+"658","Alter Kiez 4",13.4758,53.0006,NA
+"659","Steindamm 1",13.4219,53.0388,NA
+"660","Dorfstraße 18",13.7846,52.2971,NA
+"661","Dorfhanger 7",13.7076,52.2449,NA
+"662","Dorfstr. 32",13.9565,52.9046,NA
+"663","Zur Muhle 3",13.9004,52.9556,NA
+"664","Gros Vates 34",13.5595,53.0049,NA
+"665","Dollner Chaussee 13",13.4884,53.0006,NA
+"666","Alt Kiez 4",13.4758,53.0006,NA
+"667","Eberswalderstr.",13.8383,52.737,NA
+"668","Reifeshof Waldkale",13.761,52.5691,NA
+"669","Am Dorfleich 8",13.6209,52.569,NA
+"670","Freiheitstr. 2B",13.6163,52.3253,NA
+"671","Altlandsberger weg",13.6259,52.5689,NA
+"672","Dorsfstr. 18",13.7076,52.2424,NA
+"673","Str. Der Jungend 14",13.3235,52.8597,NA
+"674","Ernst Thalman weg 129",13.2786,52.8301,NA
+"675","Birkenshorst",13.2417,52.8241,NA
+"676","Hohenbrucher Dorfstr. 23A",13.1038,52.7985,NA
+"677","Hauptstr. ",13.7417,52.68,NA
+"678","Seefelder Chaussee",13.683,52.6301,NA
+"679","Berliner Allee 38",13.7216,52.6309,NA
+"680","Hauptstr. 10",13.7405,52.6801,NA
+"681","Ringstr.",13.7775,52.6971,NA
+"682","Soltystr. 7",14.2126,53.181,NA
+"683","Schulstr. 7",14.1128,53.1389,NA
+"684","Schwedterstr. 10",14.1149,53.0316,NA
+"685","Schlossstr. 36",14.123,53.089,NA
+"686","Schlossstr. 35",14.1237,53.0895,NA
+"687","Kustrinchen 10a",13.3804,53.2242,NA
+"688","Boilzburger Chaussee 6",13.328,53.2215,NA
+"689","Gruner weg 4",13.3214,53.197,NA
+"690","Zehdenickerstr. 5",13.3856,53.0318,NA
+"691","Am Wissengrund 4",13.5375,52.9943,NA
+"692","Badingerstr. 22",13.2763,52.9721,NA
+"693","Rudolf-Breitscheid-Straße 13",13.319,52.972,NA
+"694","Zehdenickerstr. 1",13.3048,52.9932,NA
+"695","Am Grunen weg",13.143,53.0014,NA
+"696","Buberower weg 10",13.1846,52.9691,NA
+"697","Gutengermendorf",13.1838,52.9477,NA
+"698","Muhlenweg",13.8971,52.2747,NA
+"699","Kummersdorfer Hauptstr. 7",13.8867,52.2717,NA
+"700","Buschgartenweg",13.7046,52.2578,NA
+"701","Dorfplatz 3",13.8042,52.2452,NA
+"702","Kummersdorfer Hauptstr. 60",13.8599,52.2704,NA
+"703","Bergstr. 23",14.1441,53.1227,NA
+"704","Burgstr. 3",13.9591,53.0911,NA
+"705","",13.8667,52.2722,NA
+"706","Am Park 8",13.8927,52.2596,NA
+"707","Seerdorftstr. 13",13.9051,52.2264,NA
+"708","Kiesberg 1",13.8955,52.2674,NA
+"709","Muhlenstr. 7",13.851,52.514,NA
+"710","Friedenwalder Chaussee 1",13.9538,52.7364,NA
+"711","Dorfstr.",13.8376,52.7766,NA
+"712","Dorfplatz",13.8707,52.7293,NA
+"713","Steinbeck",13.9086,52.7176,NA
+"714","Sonnenweg 6",13.925,52.7089,NA
+"715","Hauptstr. 14",13.5497,53.2599,NA
+"716","Hasew weg 50",13.2008,52.9584,NA
+"717","Graver weg 7",13.2132,52.9462,NA
+"718","Timbergerstr. 16",13.2195,52.9445,NA
+"719","Feldweg 1",13.2372,53.026,NA
+"720","Dammwaldestr. 3",13.2497,53.0999,NA
+"721","Brunoldstr. 20",13.7459,52.9759,NA
+"722","Prenzlauerstr. 51",13.7184,53.2979,NA
+"723","Prenzlauerstr. 49",13.7195,53.2975,NA
+"724","Goethestr. 20",13.6013,53.2639,NA
+"725","Hasener weg 49",13.1973,52.9606,NA
+"726","Wendefeld",13.1577,53.036,NA
+"727","Alte Dorfstr.",13.1714,53.0429,NA
+"728","Kastanienstr. 38",13.2884,53.1044,NA
+"729","Bahnofstr.",13.8877,52.7032,NA
+"730","Gartenstr. 14",13.8832,52.7015,NA
+"731","Eichbrandt 7",13.85,52.632,NA
+"732","Alt-Gielsdorf 42",13.8642,52.6109,NA
+"733","Alt-Gielsdorf 43",13.8647,52.6102,NA
+"734","Lichtenhain 3",13.5951,53.2289,NA
+"735","Sternthal 12",13.622,53.2204,NA
+"736","Busstr. 10",13.6062,53.1922,NA
+"737","Busstr. 4",13.6069,53.1929,NA
+"738","Herzfelderstr. 12",13.6478,53.187,NA
+"739","Dorfstr. 28",13.9534,53.1426,NA
+"740","Schmiedeberg",13.9576,53.1427,NA
+"741","Parsteiner weg 18",14.0638,52.9632,NA
+"742","Chauseestr. 19",13.9883,53.1901,NA
+"743","Chauseestr. 3",13.9952,53.1885,NA
+"744","Granseerstr. 3",13.1059,53.0655,NA
+"745","Alt-Globsow Seestr. 16",13.1126,53.1291,NA
+"746","Alte Dorfstr.",13.9871,53.0376,NA
+"747","Zabelsdorferstr. ",13.2297,53.0526,NA
+"748","Ringstr. 15",14.0193,52.6017,NA
+"749","Ringstr. 16",14.0194,52.6021,NA
+"750","Mittelstr. 6",14.0227,52.6008,NA
+"751","Dorsfstr. ",14.0223,52.6046,NA
+"752","Siedlerstr.",14.0123,52.6839,NA
+"753","Gotschendorf",13.67,53.0929,NA
+"754","Ort Willmine",13.773,53.115,NA
+"755","Neu Temmenerstr. 1",13.7587,53.0962,NA
+"756","Ahlimbsmuhle 3",13.6221,53.0738,NA
+"757","Berkenlatten",13.7596,53.1405,NA
+"758","Grunowerstr. 3",14.0678,52.6203,NA
+"759","Weinbergstr. 69",14.1013,52.9456,NA
+"760","Stolzenhagenerstr. 25",13.1146,52.9207,NA
+"761","Kratzer weg 9",13.2131,52.9446,NA
+"762","Dorfstr. 20",13.1202,53.0073,NA
+"763","Hof Friedenfelde",13.7174,53.1267,NA
+"764","Gross Kolpin 29",13.6796,53.1162,NA
+"765","Muhlen weg 2",14.1141,52.6101,NA
+"766","Batzow 7",14.1138,52.6332,NA
+"767","Hauptstr. 13",14.1163,52.6415,NA
+"768","Ihlower Ring",14.0707,52.6175,NA
+"769","Neu Suntaber 7",13.9632,53.1075,NA
+"770","Mesenberge Dorfstr. 18",13.1032,52.9713,NA
+"771","Am Bahdamm 1",13.3114,52.9756,NA
+"772","Bahhoftsr. 7",13.6336,53.0997,NA
+"773","Lunsenhof 6",13.7157,53.127,NA
+"774","Bockenberg 39",13.7393,53.1362,NA
