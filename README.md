@@ -25,9 +25,14 @@ research projects:
 
 ## [data_input](https://github.com/derele/Mouse_Eimeria_Field/tree/master/data_input) 
 
+All input data is kept together (can be merged by the identifier)
+_"Mouse_ID"_, other columns should not be repeated in input data
+tables. The columns are documented for the different categories of input data as indicated below.  
+
+
 ###  [Mouse_data](https://github.com/derele/Mouse_Eimeria_Field/tree/master/data_input/Mouse_data) 
 
-This contains two important datasets for each year: 
+This contains two important datasets for each year:
 
 - Dissections 
 
