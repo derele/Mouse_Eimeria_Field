@@ -12,16 +12,16 @@ expression, etc...
 Analysis ready datasets to be used (or which have bin used) in
 research projects:
 
-- MiceTableMusAliceArticle.csv: Has been compiled using the script [MiceTableMusAliceArticle.R]()
-
+- [MiceTableMusAliceArticle.csv]: Has been compiled using the script [MiceTableMusAliceArticle.R](https://github.com/derele/Mouse_Eimeria_Field/blob/master/R/input2product/MiceTableMusAliceArticle.R)
 
 
 ## [data_input](https://github.com/derele/Mouse_Eimeria_Field/tree/master/data_input) 
 
 ###  [Mouse_data](https://github.com/derele/Mouse_Eimeria_Field/tree/master/data_input/Mouse_data) 
 
-This contains two important datasets for each year: dissections and
-genotyping.
+This contains two important datasets for each year: 
+
+- Dissections 
 
 Trapping data is originally compiled in as "trapping data"
 (HZ\\d\\d_Trap.csv) by the catching teams. We also store this
@@ -36,6 +36,8 @@ e.g. HZ18_Dissections.csv
 For documentation on the trapping procedure and dissection (including
 standardised column name) see: !ADD LINK!
 
+
+- Genotypes 
 Genotype data is compiled for us by Jaroslav Pialek (for
 2014-2019). It follows the same naming scheme: e.g. HZ18_Genotypes.csv
 
@@ -67,10 +69,24 @@ column names see !ADD LINK!
 
 ### [Cryptosporidium](https://github.com/derele/Mouse_Eimeria_Field/tree/master/data_input/Cryptosporidium)
 
-
-
 For documentation of the assays behind datasets and the standardised column names see !ADD LINK!
 
+
+### Templates:
+
+[template](https://github.com/derele/Mouse_Eimeria_Field/tree/master/data_input/Templates)
+
+All file names contain information to distinguish the year of
+collection, assay (where applicable), type of fieldwork (where
+applicable) and a format.  In addition, elements of the name may
+designate: [tissue
+type](https://github.com/derele/Mouse_Eimeria_Field/tree/master/data_input/Templates/Tissue_labels.csv)
+or assay type (e.g., RT-qPCR)
+
+Exmaple: HZ19_CEWE_Eim_qPCR.csv This means the table contains
+information generated from 2019, the tissue used in the assay was
+Caecum, assay was targeted to screen for Eimeria, the assay type was a
+qPCR and the table is in a .csv format.
 
 ## [R](https://github.com/derele/Mouse_Eimeria_Field/tree/master/R) 
 
@@ -84,17 +100,20 @@ currently:
 
 - [DataReviewBasics.R](https://github.com/derele/Mouse_Eimeria_Field/tree/master/R/input2product/DataReviewBasics.R):
 
- A comprehensive review of all the data throughout the years. From a
- huge candidate list of potential columns, this estabishes some groups
- of standardized meaningful columns.  Pre-2017 data is based on
- [MiceTableMusAliceArticle.csv](https://github.com/derele/Mouse_Eimeria_Field/tree/master/data_products)
+ A comprehensive review of "all*" the data throughout the years. From
+ a huge candidate list of potential columns, this estabishes some
+ groups of standardized meaningful columns.  Pre-2017 data is based on
+ [MiceTableMusAliceArticle.csv](https://github.com/derele/Mouse_Eimeria_Field/tree/master/data_products/MiceTableMusAliceArticle.csv)
  in which Alice had compiled the most coprehensive list of possible
- columns. We select a workable subset of colums (as documented for
+ columns. *We select a workable subset of columns (as documented for
  individual datasets, see abofe) and add 2018 and 2019 data.
+ 
+ We will expand the workable subset of columns further...  
+ 
 
 - [MiceTableMusAliceArticle.R](https://github.com/derele/Mouse_Eimeria_Field/tree/master/R/input2product/MiceTableMusAliceArticle.R):
   this has been used to compile
-  [MiceTableMusAliceArticle.csv](https://github.com/derele/Mouse_Eimeria_Field/tree/master/data_products).It's
+  [MiceTableMusAliceArticle.csv](https://github.com/derele/Mouse_Eimeria_Field/tree/master/data_products/MiceTableMusAliceArticle.csv).It's
   currently not executable in the present re-structed
   repository. (Also, as a coding advice: please don't write the whole
   content of a scritp into one single function)
@@ -124,40 +143,14 @@ them.
 
 
 
-# 1. Accessing data:
-## 1.1. General description:
 
-All data in this repository has been processed and saved as a clean
-table according to the corresponding
-[template](https://github.com/derele/Mouse_Eimeria_Field/tree/master/data_input/Templates)
+### Luke's documentation of his procedure read
 
-All file names contain information to distinguish the year of
-collection, assay (where applicable), type of fieldwork (where
-applicable) and a format.  In addition, elements of the name may
-designate: [tissue
-type](https://github.com/derele/Mouse_Eimeria_Field/tree/master/data_input/Templates/Tissue_labels.csv)
-or assay type (e.g., RT-qPCR)
-
-Exmaple: HZ19_CEWE_Eim_qPCR.csv This means the table contains
-information generated from 2019, the tissue used in the assay was
-Caecum, assay was targeted to screen for Eimeria, the assay type was a
-qPCR and the table is in a .csv format.
-
-## 1.2. Examples:
-### 1.2.1. Example 1 
-
-### 1.2.1. Example 2 
-
-# 2. Adding data:
-## 2.1. General description:
-Each file should be named according to the tamplate of:
-HZYear_TypeOfFieldwork.format
-E.g.: HZ19_Dissections.csv
-or
-HZYear_TissueType_Parasite_AssayType.format
-E.g.: HZ19_CEWE_Eim_RT-qPCR.csv
-
-Raw data should be stored here and processed using code saved here as well. Both should be subsequently deleted once a clean table exists. The raw data and code should be both commited and pushed to git to keep track of events. Commit messages should contain information on what files are being handled.
+Raw data should be stored here and processed using code saved here as
+well. Both should be subsequently deleted once a clean table
+exists. The raw data and code should be both commited and pushed to
+git to keep track of events. Commit messages should contain
+information on what files are being handled.
 
 General rule is:
 1. upload raw data table
@@ -165,7 +158,5 @@ General rule is:
 3. upload clean data table
 4. delete raw data table and code
 
-## 2.2. Examples:
-### 2.2.1. Adding genotype data
-
-### 2.2.2. Adding qPCR data
+We need to figure out what this means for each individual (still
+undocumented dataset)
