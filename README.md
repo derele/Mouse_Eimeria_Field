@@ -92,8 +92,8 @@ Code required for data processing and curation.
 
 ### [input2product](https://github.com/derele/Mouse_Eimeria_Field/tree/master/R/input2product)
 
-Code producing final data producsts in
-[data_product](https://github.com/derele/Mouse_Eimeria_Field/tree/master/data_product),
+Code producing final data products in
+[data_products](https://github.com/derele/Mouse_Eimeria_Field/tree/master/data_products),
 currently:
 
 - [DataReviewBasics.R](https://github.com/derele/Mouse_Eimeria_Field/tree/master/R/input2product/DataReviewBasics.R):
@@ -104,7 +104,7 @@ currently:
  [MiceTableMusAliceArticle.csv](https://github.com/derele/Mouse_Eimeria_Field/tree/master/data_products/MiceTableMusAliceArticle.csv)
  in which Alice had compiled the most coprehensive list of possible
  columns. *We select a workable subset of columns (as documented for
- individual datasets, see abofe) and add 2018 and 2019 data.
+ individual datasets, see above) and add 2018 and 2019 data.
  
  We will expand the workable subset of columns further...  
  
