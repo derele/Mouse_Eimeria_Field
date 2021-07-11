@@ -1,10 +1,9 @@
 # Storage and curation of data generated from the European house mouse hybrid zone
 
-This repository is for storage of all relevant data on wild mice
-capture and 
-
-including detection of Eimeria, Cryptosporidium, worms,
-detection methods and gene expression.
+This repository is for storage, curation and documentation of all
+relevant data on wild mice capture follwing laboratory assays
+including detection of Eimeria, Cryptosporidium, worms, gene
+expression, etc...
 
 # Structure:
 
@@ -12,17 +11,18 @@ detection methods and gene expression.
 
 ###  [Mouse_data](https://github.com/derele/Mouse_Eimeria_Field/tree/master/data_input/Mouse_data) 
 
-This contains two important datasets for each year: Dissections and
+This contains two important datasets for each year: dissections and
 genotyping.
 
 Trapping data is originally compiled in as "trapping data"
 (HZ\\d\\d_Trap.csv) by the catching teams. We also store this
-farm-level data to be able to resolve potential potential problems in
-the data. The trapping data, however, is already merged with
-dissection data during the field trip to control the accuracy of
-locations and assignment of mice to those. This results in combined
-mouse dissection datasets, which follow the the nameing scheme :
-HZ(\\d\\d for year)_Dissections.csv, e.g. HZ18_Dissections.csv
+farm-level data here to be able to resolve potential potential
+problems in the data later. The trapping data, however, is already
+merged with dissection data during the field trip to control the
+accuracy of locations and assignment of mice to those on the
+spot. This results in combined mouse dissection datasets, which follow
+the the nameing scheme : HZ(\\d\\d for year)_Dissections.csv,
+e.g. HZ18_Dissections.csv
 
 For documentation on the trapping procedure and dissection (including
 standardised column name) see: !ADD LINK!
@@ -42,12 +42,23 @@ labowork, this results in two datasets Eimeria qPCRs and flotation result
 For documentation of the assays behind datasets and the standardised
 column names see !ADD LINK!
 
+WHAT about EIMERIA species TYPING!? This data seems missing or not
+added in a standardized way!
+
 
 ### [Gene_expression](https://github.com/derele/Mouse_Eimeria_Field/tree/master/data_input/Gene_expression) 
 
-For documentation of the assays behind datasets and the standardised column names see !ADD LINK!
+Datasets are: 
+- x
+- Y
+- Z
+
+For documentation of the assays behind datasets and the standardised
+column names see !ADD LINK!
 
 ### [Cryptosporidium](https://github.com/derele/Mouse_Eimeria_Field/tree/master/data_input/Cryptosporidium)
+
+
 
 For documentation of the assays behind datasets and the standardised column names see !ADD LINK!
 
