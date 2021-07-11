@@ -12,7 +12,7 @@ expression, etc...
 Analysis ready datasets to be used (or which have bin used) in
 research projects:
 
-- [MiceTableMusAliceArticle.csv]: Has been compiled using the script [MiceTableMusAliceArticle.R](https://github.com/derele/Mouse_Eimeria_Field/blob/master/R/input2product/MiceTableMusAliceArticle.R)
+- [MiceTableMusAliceArticle.csv](https://github.com/derele/Mouse_Eimeria_Field/tree/master/data_products/MiceTableMusAliceArticle.csv): Has been compiled using the script [MiceTableMusAliceArticle.R](https://github.com/derele/Mouse_Eimeria_Field/blob/master/R/input2product/MiceTableMusAliceArticle.R)
 
 
 ## [data_input](https://github.com/derele/Mouse_Eimeria_Field/tree/master/data_input) 
