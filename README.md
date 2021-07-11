@@ -7,6 +7,15 @@ expression, etc...
 
 # Structure:
 
+## [data_products](https://github.com/derele/Mouse_Eimeria_Field/tree/master/data_products) 
+
+Analysis ready datasets to be used (or which have bin used) in
+research projects:
+
+- MiceTableMusAliceArticle.csv: Has been compiled using the script [MiceTableMusAliceArticle.R]()
+
+
+
 ## [data_input](https://github.com/derele/Mouse_Eimeria_Field/tree/master/data_input) 
 
 ###  [Mouse_data](https://github.com/derele/Mouse_Eimeria_Field/tree/master/data_input/Mouse_data) 
@@ -63,13 +72,55 @@ column names see !ADD LINK!
 For documentation of the assays behind datasets and the standardised column names see !ADD LINK!
 
 
-## [data_access_code](https://github.com/derele/Mouse_Eimeria_Field/tree/master/data_input/data_access_code) 
+## [R](https://github.com/derele/Mouse_Eimeria_Field/tree/master/R) 
 
-R code for growing the combined final data products
+Code required for data processing and curation.
 
-For the current of the art see !ADD LINK!
+### [input2product](https://github.com/derele/Mouse_Eimeria_Field/tree/master/R/input2product)
 
-## [data_creation_code](https://github.com/derele/Mouse_Eimeria_Field/tree/master/data_input/data_creation_code) = R for the processing of raw data before storage in [data](https://github.com/derele/Mouse_Eimeria_Field/tree/master/data).
+Code producing final data producsts in
+[data_product](https://github.com/derele/Mouse_Eimeria_Field/tree/master/data_product),
+currently:
+
+- [DataReviewBasics.R](https://github.com/derele/Mouse_Eimeria_Field/tree/master/R/input2product/DataReviewBasics.R):
+
+ A comprehensive review of all the data throughout the years. From a
+ huge candidate list of potential columns, this estabishes some groups
+ of standardized meaningful columns.  Pre-2017 data is based on
+ [MiceTableMusAliceArticle.csv](https://github.com/derele/Mouse_Eimeria_Field/tree/master/data_products)
+ in which Alice had compiled the most coprehensive list of possible
+ columns. We select a workable subset of colums (as documented for
+ individual datasets, see abofe) and add 2018 and 2019 data.
+
+- [MiceTableMusAliceArticle.R](https://github.com/derele/Mouse_Eimeria_Field/tree/master/R/input2product/MiceTableMusAliceArticle.R):
+  this has been used to compile
+  [MiceTableMusAliceArticle.csv](https://github.com/derele/Mouse_Eimeria_Field/tree/master/data_products).It's
+  currently not executable in the present re-structed
+  repository. (Also, as a coding advice: please don't write the whole
+  content of a scritp into one single function)
+
+
+### [raw2input](https://github.com/derele/Mouse_Eimeria_Field/tree/master/R/raw2input) 
+
+Contains code that might be helpful to curate the data _before_ it
+goes into
+[data_input](https://github.com/derele/Mouse_Eimeria_Field/tree/master/data_input),
+currently: 
+
+- [HMHZ_Functions.R](https://github.com/derele/Mouse_Eimeria_Field/tree/master/R/raw2input/HMHZ_Functions.R):
+  a few functions to e.g. translate degree into decimal lat/long and
+  some ideas on clustering corrdinates for farm-level analysis (might
+  be rather analysis code).
+
+
+### [analysis](https://github.com/derele/Mouse_Eimeria_Field/tree/master/R/analysis) 
+
+Contains some old data analysis scipts. PLEASE DON'T use this
+repository TO TRACK DATA ANALYSIS projects. The data analysis scripts
+tracke here should be purely for reviewing the correctnes of data. The
+older scirpts are left here for inspiration for now. We might remove
+them. 
+
 
 
 
