@@ -8,29 +8,52 @@ detection methods and gene expression.
 
 # Structure:
 
-## [data_access_code](https://github.com/derele/Mouse_Eimeria_Field/tree/master/data/data_access_code) = R code for growing the combined final data products
+## [data_input](https://github.com/derele/Mouse_Eimeria_Field/tree/master/data_input) 
 
-### [Field_data](https://github.com/derele/Mouse_Eimeria_Field/tree/master/data/Field_data) = Trapping, Dissections and Genotype data. The first two taken during the field trip the latter (genotyping) from Jaroslav Pialek.
+###  [Mouse_data](https://github.com/derele/Mouse_Eimeria_Field/tree/master/data_input/Mouse_data) 
 
-### [Eimeria_detection](https://github.com/derele/Mouse_Eimeria_Field/tree/master/data/Eimeria_detection) = Eimeria qPCRs and flotation result
+This contains two datasets for each year: Dissections and genotyping
+
+Trapping data is originally compiled in as "trapping data"
+(HZ\\d\\d_Trap.csv) by field trips during catching. During the field
+trip it is merged with dissection data.  This results in combined
+mouse-dissections datasets, which follow the the nameing scheme :
+HZ(\\d\\d for year)_Dissections.csv, e.g. HZ18_Dissections.csv
+
+For documentation on the trapping procedure and dissection (including
+standardised column name) see: !ADD LINK!
+
+Genotype data is compiled for us by Jaroslav Pialek (for
+2014-2019). It follows the same naming scheme: e.g. HZ18_Genotypes.csv
+
+For documentation on the assays behind the genotyping datases
+(including standardised column name) see:: !ADD LINK!
+
+
+### [Eimeria_detection](https://github.com/derele/Mouse_Eimeria_Field/tree/master/data_input/Eimeria_detection) 
+
+We screen our samples for parasite infections during the following
+labowork, this results in two datasets Eimeria qPCRs and flotation result
+
+For documentation of the assays behind datasets and the standardised
+column names see !ADD LINK!
+
+
+### [Gene_exprssion](https://github.com/derele/Mouse_Eimeria_Field/tree/master/data_input/Gene_expression) = Gene expression data
 
 For documentation of the assays behind datasets and the standardised column names see !ADD LINK!
 
-### [Gene_exprssion](https://github.com/derele/Mouse_Eimeria_Field/tree/master/data/Gene_expression) = Gene expression data
+### [Cryptosporidium](https://github.com/derele/Mouse_Eimeria_Field/tree/master/data_input/Cryptosporidium) = Cyptosporidium screening
 
 For documentation of the assays behind datasets and the standardised column names see !ADD LINK!
 
-### [Cryptosporidium](https://github.com/derele/Mouse_Eimeria_Field/tree/master/data/Cryptosporidium) = Cyptosporidium screening
 
-For documentation of the assays behind datasets and the standardised column names see !ADD LINK!
-
-## [data_access_code](https://github.com/derele/Mouse_Eimeria_Field/tree/master/data/data_access_code) = R code for growing the combined final data products
+## [data_access_code](https://github.com/derele/Mouse_Eimeria_Field/tree/master/data_input/data_access_code) = R code for growing the combined final data products
 
 For the current of the art see !ADD LINK!
 
-## [data_creation_code](https://github.com/derele/Mouse_Eimeria_Field/tree/master/data/data_creation_code) = R for the processing of raw data before storage in [data](https://github.com/derele/Mouse_Eimeria_Field/tree/master/data).
+## [data_creation_code](https://github.com/derele/Mouse_Eimeria_Field/tree/master/data_input/data_creation_code) = R for the processing of raw data before storage in [data](https://github.com/derele/Mouse_Eimeria_Field/tree/master/data).
 
-## [data](https://github.com/derele/Mouse_Eimeria_Field/tree/master/data) = contains all data from field excursions and follow up lab work it also has the templates for the table that should be use for recording 
 
 
 # 1. Accessing data:
@@ -38,13 +61,13 @@ For the current of the art see !ADD LINK!
 
 All data in this repository has been processed and saved as a clean
 table according to the corresponding
-[template](https://github.com/derele/Mouse_Eimeria_Field/tree/master/data/Templates)
+[template](https://github.com/derele/Mouse_Eimeria_Field/tree/master/data_input/Templates)
 
 All file names contain information to distinguish the year of
 collection, assay (where applicable), type of fieldwork (where
 applicable) and a format.  In addition, elements of the name may
 designate: [tissue
-type](https://github.com/derele/Mouse_Eimeria_Field/tree/master/Tissue_labels.csv)
+type](https://github.com/derele/Mouse_Eimeria_Field/tree/master/data_input/Templates/Tissue_labels.csv)
 or assay type (e.g., RT-qPCR)
 
 Exmaple: HZ19_CEWE_Eim_qPCR.csv This means the table contains
