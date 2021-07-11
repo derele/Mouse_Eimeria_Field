@@ -9,7 +9,7 @@ expression, etc...
 
 ## [data_products](https://github.com/derele/Mouse_Eimeria_Field/tree/master/data_products) 
 
-Analysis ready datasets to be used (or which have bin used) in
+Analysis ready datasets to be used (or which have been used) in
 research projects:
 
 - [MiceTableMusAliceArticle.csv](https://github.com/derele/Mouse_Eimeria_Field/tree/master/data_products/MiceTableMusAliceArticle.csv): Has been compiled using the script [MiceTableMusAliceArticle.R](https://github.com/derele/Mouse_Eimeria_Field/blob/master/R/input2product/MiceTableMusAliceArticle.R)
@@ -72,9 +72,7 @@ column names see !ADD LINK!
 For documentation of the assays behind datasets and the standardised column names see !ADD LINK!
 
 
-### Templates:
-
-[template](https://github.com/derele/Mouse_Eimeria_Field/tree/master/data_input/Templates)
+### [Templates](https://github.com/derele/Mouse_Eimeria_Field/tree/master/data_input/Templates)
 
 All file names contain information to distinguish the year of
 collection, assay (where applicable), type of fieldwork (where
@@ -140,23 +138,3 @@ tracke here should be purely for reviewing the correctnes of data. The
 older scirpts are left here for inspiration for now. We might remove
 them. 
 
-
-
-
-
-### Luke's documentation of his procedure read
-
-Raw data should be stored here and processed using code saved here as
-well. Both should be subsequently deleted once a clean table
-exists. The raw data and code should be both commited and pushed to
-git to keep track of events. Commit messages should contain
-information on what files are being handled.
-
-General rule is:
-1. upload raw data table
-2. upload code to process raw data table
-3. upload clean data table
-4. delete raw data table and code
-
-We need to figure out what this means for each individual (still
-undocumented dataset)
