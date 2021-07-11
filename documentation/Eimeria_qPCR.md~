@@ -1,0 +1,23 @@
+
+We perform relative qPCR for detection and quantification of Eimeria
+DNA in intestinal tissue. We amplify a locus in the nuclear genome of
+the house mouse and a locus in the mitochondrial genome (COI) of
+Eimeria. We then calculate a "delta" between the two ct values.
+
+
+We report these in HZ\\d\\d_ standard columns are: 
+
+- delta_ct_ilwe_MminusE: threshold cycle for mouse minus Eimeria in
+  Ileum tissue. Only E. vermiformis is (at low pervalence in Ileum
+  tissue) and we therfore don't obtain this data-type for all years.  
+
+- delta_ct_cewe_MminusE: threshold cycle for mouse minus Eimeria in
+  Caecume tissue. E. ferrisi and E. falcifromis are detected here. We
+  should have this (as coprehensively as possible) for every year!
+
+- MC.Eimeria: TRUE/FALSE. This was established in 2018 as an
+  improvement over the '> -5 delta ct rule' for identification of
+  Eimeria -positive qPCRs. Melting curves have to show a drastic drop
+  at XX°C to indicate melting of a proper Eimeria COI amplification
+  product. It might be added where possible for per 2018 data post-hoc
+  (if melting curves exist for a review of raw data). 

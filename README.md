@@ -36,7 +36,6 @@ e.g. HZ18_Dissections.csv
 For documentation on the trapping procedure and dissection (including
 standardised column name) see: !ADD LINK!
 
-
 - Genotypes 
 Genotype data is compiled for us by Jaroslav Pialek (for
 2014-2019). It follows the same naming scheme: e.g. HZ18_Genotypes.csv
@@ -48,13 +47,17 @@ For documentation on the assays behind the genotyping datases
 ### [Eimeria_detection](https://github.com/derele/Mouse_Eimeria_Field/tree/master/data_input/Eimeria_detection) 
 
 We screen our samples for parasite infections during the following
-labowork, this results in two datasets Eimeria qPCRs and flotation result
+labowork, this results in two datasets:
+
+- qPCRs
+
+- flotation and oocyst counting 
 
 For documentation of the assays behind datasets and the standardised
-column names see !ADD LINK!
+column names see: (https://github.com/derele/Mouse_Eimeria_Field/tree/master/documentation/Eimeria_detection.md)
 
-WHAT about EIMERIA species TYPING!? This data seems missing or not
-added in a standardized way!
+- WHAT about EIMERIA species TYPING!? This data seems missing or not
+added in an even remotely standardized way!
 
 
 ### [Gene_expression](https://github.com/derele/Mouse_Eimeria_Field/tree/master/data_input/Gene_expression) 
