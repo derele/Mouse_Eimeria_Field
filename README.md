@@ -12,12 +12,16 @@ detection methods and gene expression.
 
 ###  [Mouse_data](https://github.com/derele/Mouse_Eimeria_Field/tree/master/data_input/Mouse_data) 
 
-This contains two datasets for each year: Dissections and genotyping
+This contains two important datasets for each year: Dissections and
+genotyping.
 
 Trapping data is originally compiled in as "trapping data"
-(HZ\\d\\d_Trap.csv) by field trips during catching. During the field
-trip it is merged with dissection data.  This results in combined
-mouse-dissections datasets, which follow the the nameing scheme :
+(HZ\\d\\d_Trap.csv) by the catching teams. We also store this
+farm-level data to be able to resolve potential potential problems in
+the data. The trapping data, however, is already merged with
+dissection data during the field trip to control the accuracy of
+locations and assignment of mice to those. This results in combined
+mouse dissection datasets, which follow the the nameing scheme :
 HZ(\\d\\d for year)_Dissections.csv, e.g. HZ18_Dissections.csv
 
 For documentation on the trapping procedure and dissection (including
@@ -39,16 +43,18 @@ For documentation of the assays behind datasets and the standardised
 column names see !ADD LINK!
 
 
-### [Gene_exprssion](https://github.com/derele/Mouse_Eimeria_Field/tree/master/data_input/Gene_expression) = Gene expression data
+### [Gene_expression](https://github.com/derele/Mouse_Eimeria_Field/tree/master/data_input/Gene_expression) 
 
 For documentation of the assays behind datasets and the standardised column names see !ADD LINK!
 
-### [Cryptosporidium](https://github.com/derele/Mouse_Eimeria_Field/tree/master/data_input/Cryptosporidium) = Cyptosporidium screening
+### [Cryptosporidium](https://github.com/derele/Mouse_Eimeria_Field/tree/master/data_input/Cryptosporidium)
 
 For documentation of the assays behind datasets and the standardised column names see !ADD LINK!
 
 
-## [data_access_code](https://github.com/derele/Mouse_Eimeria_Field/tree/master/data_input/data_access_code) = R code for growing the combined final data products
+## [data_access_code](https://github.com/derele/Mouse_Eimeria_Field/tree/master/data_input/data_access_code) 
+
+R code for growing the combined final data products
 
 For the current of the art see !ADD LINK!
 
