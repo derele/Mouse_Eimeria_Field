@@ -1,7 +1,7 @@
 ### We start with the structure of the file
 ### "data/MiceTable_fullEimeriaInfos_2014to2017.csv"
 
-ALL <- read.csv("data/MiceTable_fullEimeriaInfos_2014to2017.csv")
+ALL <- read.csv("data_input/MiceTable_fullEimeriaInfos_2014to2017.csv")
 
 colnames(ALL)
 ### this has 141 columns! Crazy! The way Alice had organized this is
@@ -49,10 +49,10 @@ EimGeno.cols <- c("n18S_Seq", "COI_Seq", "ORF470_Seq", "eimeriaSpecies")
 ################### 2018 #################################################
 
 ### The basics from the dissection
-Dis2018 <- read.csv("data/Field_data/HZ18_Dissections.csv")
+Dis2018 <- read.csv("data_input/Mouse_data/HZ18_Dissections.csv")
 
 ### The mouse genotyping from Jarda's table
-Gen2018 <- read.csv("data/Field_data/HZ18_Genotypes.csv")
+Gen2018 <- read.csv("data_input/Mouse_data/HZ18_Genotypes.csv")
 
 ## So Jarda's genotyping table acutally has all the main data!  As
 ## long as we don't want to look at the other parasites we have to do
@@ -60,7 +60,7 @@ Gen2018 <- read.csv("data/Field_data/HZ18_Genotypes.csv")
 DisGen2018 <- Gen2018[, colnames(Gen2018)%in%c(basics, gen.loci), ]
 
 ### So adding the oocysts, the qPCR and the Eimeria Species genotyping...
-Eflot2018 <- read.csv("data/Eimeria_detection/HZ18_Eim_Flotation.csv")
+Eflot2018 <- read.csv("data_input/Eimeria_detection/HZ18_Eim_Flotation.csv")
 
 colnames(Eflot2018)
 ## Flotation columns have different names, check them if you need and
@@ -73,7 +73,7 @@ colnames(Eflot2018)
 ### will add only the OPG: see
 colnames(Eflot2018)[colnames(Eflot2018)%in%oocyst.cols]
 
-EqPCR2018 <- read.csv("data/Eimeria_detection/HZ18_qPCR.csv")
+EqPCR2018 <- read.csv("data_input/Eimeria_detection/HZ18_qPCR.csv")
 ## the "delta" is __ delta_ct_cewe_MminusE __ as we only do cecum wall
 ## (we don't do illeum as vermiformis is so rare).
 colnames(EqPCR2018)[colnames(EqPCR2018)%in%"delta"] <- "delta_ct_cewe_MminusE"
@@ -81,3 +81,48 @@ colnames(EqPCR2018)[colnames(EqPCR2018)%in%"delta"] <- "delta_ct_cewe_MminusE"
 ## now we will add
 colnames(EqPCR2018)[colnames(EqPCR2018)%in%EqPCR.cols]
 
+
+## For 2018 we have very strange Eimeria detection data... We have to
+## see how to add it. For now I'm assuming it's 18S and Eimeria
+## sp. means no amplification or sequencing result. 
+
+EimPCR <- read.csv("data_input/Eimeria_detection/Svenja/table_ct_and_more.csv")
+
+EimPCR$Mouse_ID <- gsub("CEWE_AA_", "AA_0", EimPCR$Name)
+EimPCR$eimeriaSpecies <-  gsub("E\\. ", "E_", EimPCR$Eimeria.subspecies)
+EimPCR$eimeriaSpecies[EimPCR$eimeriaSpecies%in%c("non infected", "Eimeria sp.")] <- "Negative"
+
+## This has Sex data (mouse sex?), which also is in the General
+## (genotype datset) remove it from this here to avoid dupication!
+EimPCR$Sex <- NULL
+
+
+## merging
+Edetect2018 <- merge(EqPCR2018[colnames(EqPCR2018)%in%c(basics, EqPCR.cols)],
+                     EimPCR[colnames(EimPCR)%in%c(basics, EimGeno.cols)])
+
+Edetect2018 <- merge(Edetect2018, 
+                     Eflot2018[colnames(Eflot2018)%in%c(basics,oocyst.cols)])
+
+ALL2018 <- merge(Edetect2018, 
+                 Gen2018[, colnames(Gen2018)%in%c(basics, gen.loci), ])
+
+### selecting some output columns
+
+output.cols <- intersect(colnames(ALL2018), 
+                         c(basics, "HI", oocyst.cols, EimGeno.cols, EqPCR.cols, oocyst.cols))
+
+## adding the missing output columns (MC.Eimeria) to ALL (the pre 2017 dataset)
+ALL[, output.cols[!output.cols%in%colnames(ALL)]] <- NA
+
+output.product <- rbind(ALL[, output.cols], ALL2018[, output.cols])
+
+## dropping "unlocted" samples 
+output.product <- output.product[!is.na(output.product$Latitude)&
+                                 !is.na(output.product$Longitude),]
+
+
+write.csv(output.product, "data_products/Eimeria_Detection.csv", row.names = FALSE)
+
+
+### We could go on to add the 2019 data here.

@@ -12,6 +12,14 @@ expression, etc...
 Analysis ready datasets to be used (or which have been used) in
 research projects:
 
+- [Eimeria_Detection.csv](https://github.com/derele/Mouse_Eimeria_Field/tree/master/data_products/Eimeria_Detection.csv):
+  Has been compiled using the script
+  [DataReviewBasics.R](https://github.com/derele/Mouse_Eimeria_Field/tree/master/R/input2product/DataReviewBasics.R). As
+  a first attempt so streamline most of this repository this only
+  contains Eimeria detetion and (very basic: HI, Sex, ID, Longitude,
+  Latitude) mouse data, from the beginning of time until 2018. 
+
+
 - [MiceTableMusAliceArticle.csv](https://github.com/derele/Mouse_Eimeria_Field/tree/master/data_products/MiceTableMusAliceArticle.csv): Has been compiled using the script [MiceTableMusAliceArticle.R](https://github.com/derele/Mouse_Eimeria_Field/blob/master/R/input2product/MiceTableMusAliceArticle.R)
 
 
@@ -110,6 +118,9 @@ currently:
  individual datasets, see above) and add 2018 and 2019 data.
  
  We will expand the workable subset of columns further...  
+ 
+ 
+ 
  
 
 - [MiceTableMusAliceArticle.R](https://github.com/derele/Mouse_Eimeria_Field/tree/master/R/input2product/MiceTableMusAliceArticle.R):
