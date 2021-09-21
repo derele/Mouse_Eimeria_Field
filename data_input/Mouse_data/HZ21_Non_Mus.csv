@@ -1,0 +1,13 @@
+Mouse_ID,Species,Address,Address_ZIP,Latitude,Longitude,Trap_Date,Dissection_Date,Sex,Status,Body_Weight,Body_Length,Tail_Length,Spleen,Ectoparasites_Logical,Fleas,Ticks
+ZZ_0075,Myodes_glareolus,Am Uhrenturm 1,"Am Uhrenturm 1, 15345 Altlandsberg",52.6084,13.8681,14/09/2021,15/09/2021,M,young,7.36,62.34,22.90,0.0077,,,
+ZZ_0076,Myodes_glareolus,Wriezen 37,"Dorfstraße 37, 16269 Wriezen",52.6914,14.1025,14/09/2021,15/09/2021,M,adult,23.53,92.49,42.61,0.0311,,,
+ZZ_0077,Myodes_glareolus,Am Uhrenturm 1,"Am Uhrenturm 1, 15345 Altlandsberg",52.6084,13.8681,14/09/2021,15/09/2021,F,pregnant,23.91,92.26,43.69,0.0439,,,
+ZZ_0078,Myodes_glareolus,"Parkstraße 5, Frankenfelde","Parkstraße 5, 16269 Wriezen",52.6848,14.0440,15/09/2021,16/09/2021,F,adult,20.89,99.75,37.80,0.0352,,,
+ZZ_0079,Microtus_arvalis,In Willmersdorf 401,"In Willmersdorf 401, 16356 Werneuchen",52.6624,13.6926,15/09/2021,16/09/2021,,adult,17.37,95.43,28.15,0.0363,T,T,
+ZZ_0080,Microtus_arvalis,Prenzlauer Str. 14 Schorfheide,"Prenzlauer Str. 14, 16244 Schorfheide",52.9179,13.5413,15/09/2021,16/09/2021,M,adult,19.23,95.84,23.85,0.0565,T,T,
+ZZ_0081,Myodes_glareolus,Beerbaumer Weg 11,"Beerbaumer Weg 11, 16230 Breydin",52.7516,13.7895,16/09/2021,17/09/2021,F,pregnant,28.81,101.15,42.50,0.0290,T,T,
+ZZ_0082,Apodemus_flavicollis,Beerbaum 12,"Beerbaum 12, 16259 Heckelberg-Brunow",52.7304,13.7890,16/09/2021,17/09/2021,,adult,22.66,98.17,90.28,0.1714,T,,T
+ZZ_0083,Microtus_arvalis,Tuchener Weg 3,"Tuchener Weg 3, 16259 Heckelberg-Brunow",52.7398,13.8343,17/09/2021,18/09/2021,M,adult,14.53,87.95,24.77,0.0623,,,
+ZZ_0084,Apodemus_flavicollis,"Alttarnow 15, Bad Freienwalde","Alttornow 15, 16259 Bad Freienwalde (Oder)",52.7852,14.0402,17/09/2021,18/09/2021,M,adult,19.58,99.23,75.60,0.0900,T,T,
+ZZ_0085,Apodemus_flavicollis,"Ringstraße 17a, Ernsthof","Ringstraße 17, 15377 Oberbarnim",52.6009,14.0219,18/09/2021,18/09/2021,M,adult,22.70,95.32,72.04,0.0636,,,
+ZZ_0086,Myodes_glareolus,Grunow 16,"Dorfstraße 16, 15377 Oberbarnim",52.6045,14.0351,18/09/2021,18/09/2021,M,adult,20.43,93.42,37.81,0.0280,,,
