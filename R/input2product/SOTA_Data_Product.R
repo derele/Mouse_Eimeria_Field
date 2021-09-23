@@ -80,7 +80,7 @@ apd <- c("A_0001", "A_0002", "A_0003")
 useless <- c(wsh, apd)
 Alice <- Alice[!(Alice$Mouse_ID %in% useless),]
 
-Jarda <- read.csv("https://raw.githubusercontent.com/tlobnow/Cryptosporidium-BSc/Main-Branch/EmanuelData.csv", na.strings=c(""," ","NA"))
+Jarda <- read.csv("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Field/master/data_input/Mouse_data/HZ19_GenotypingJarda.csv", na.strings=c(""," ","NA"))
 setnames(Jarda, old = c("PIN", "X_Longit", "Y_Latit"), new = c("Mouse_ID", "Longitude", "Latitude"), skip_absent = T)
 Jarda$Mouse_ID <- gsub(pattern = "SK", replacement = "SK_", x = Jarda$Mouse_ID)
 Jarda$Mouse_ID <- gsub(pattern = "Sk3173", replacement = "SK_3173", x = Jarda$Mouse_ID)
