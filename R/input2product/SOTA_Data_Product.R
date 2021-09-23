@@ -509,10 +509,13 @@ SOTA <- SOTA %>% arrange(Mouse_ID) %>% group_by(Mouse_ID) %>% fill(c(everything(
 #### 6. add 2021 Dissection Data ###############################################
 HZ21_Dis <- read.csv("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Field/master/data_input/Mouse_data/HZ21_Dissections.csv")
 HZ21_Dis <- HZ21_Dis %>% mutate(Year = 2021)
+Worms21 <- HZ21_Dis %>% select("Mouse_ID", 28:36)
+
 
   ## merge
 SOTA <- full_join(SOTA, HZ21_Dis[colnames(HZ21_Dis) %in% c(basics, dissection.cols)])
-#### TODO: add worm data from HZ21 as well
+SOTA <- full_join(SOTA, Worms21) %>% arrange(Mouse_ID) %>% group_by(Mouse_ID) %>% fill(c(everything()), .direction = "downup") %>% ungroup() %>% distinct(Mouse_ID, .keep_all = T)
+
 
   ## Non_Mus Data
 Non_Mus21 <- read.csv("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Field/master/data_input/Mouse_data/HZ21_Non_Mus.csv")
@@ -538,7 +541,7 @@ SOTA <- SOTA %>% select(-Trichuris)
 
     ## Taenia == Taenia taeniformis + Taenia martis
 SOTA <- SOTA %>% 
-  mutate(Taenia_sp = case_when((Taenia == 0  & Taenia_martis == 0) | (Taenia == 0  & Taenia_taeniformis == 0) | Taenia == 0 | Taenia_martis == 0 ~ 0,
+  mutate(Taenia_sp = case_when( (Taenia == 0  & Taenia_martis == 0) | (Taenia == 0  & Taenia_taeniformis == 0) | Taenia == 0 | Taenia_martis == 0 ~ 0,
                                 (Taenia == 1  & Taenia_martis == 1) | (Taenia == 1  & Taenia_taeniformis == 1) | Taenia == 1 ~ 1,
                                 Taenia == 2 & Taenia_martis == 0 ~ 2,
                                 Taenia == 3 & Taenia_martis == 3 ~ 3,
@@ -554,7 +557,6 @@ colnames(SOTA)[colnames(SOTA)%in%"Heterakis"] <- "Heterakis_sp"
     ## Hymenolepis
 SOTA <- SOTA %>% mutate(Hymenolepis_sp = case_when(Hymenolepis_microstoma >= 0 ~ Hymenolepis_microstoma,
                                                    Hymenolepis_diminuta > 0 ~ Hymenolepis_diminuta))
-
 
 
 
