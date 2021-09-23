@@ -507,10 +507,12 @@ SOTA <- SOTA %>% arrange(Mouse_ID) %>% group_by(Mouse_ID) %>% fill(c(everything(
 
 
 #### 6. add 2021 Dissection Data ###############################################
+HZ21_Dis <- read.csv("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Field/master/data_input/Mouse_data/HZ21_Dissections.csv")
+HZ21_Dis <- HZ21_Dis %>% mutate(Year = 2021)
 
   ## merge
-SOTA <- full_join(SOTA, HZ21_Dis[colnames(HZ21_Dis) %in% c(basics, dissection.cols, final.worms.cols, tissue.cols)])
-
+SOTA <- full_join(SOTA, HZ21_Dis[colnames(HZ21_Dis) %in% c(basics, dissection.cols)])
+#### TODO: add worm data from HZ21 as well
 
   ## Non_Mus Data
 Non_Mus21 <- read.csv("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Field/master/data_input/Mouse_data/HZ21_Non_Mus.csv")
