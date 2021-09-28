@@ -8,19 +8,19 @@ library(visdat)
 
 
 #### Select Columns ############################################################
-basics          <- c("Mouse_ID", "Address", "Region", "Sex", "Longitude", 
+basics          <- c("Mouse_ID", "Address", "Sex", "Longitude", 
                      "Latitude", "Year", "HI", "HI_NLoci")
 
 gen.loci        <- c("mtBamH", "YNPAR", "X332", "X347", "X65", "Tsx", "Btk", "Syap1",
                      "Es1", "Gpd1", "Idh1", "Mpi", "Np", "Sod1", "Es1C", "Gpd1C",
                      "Idh1C", "MpiC", "NpC", "Sod1C", "HI_NLoci",
-                     "HI", "Zfy2", "Y")
+                     "HI", "Zfy2", "Y", "Region")
 
 dissection.cols <- c("Body_Weight", "Body_Length", "Tail_Length", "Status", "Spleen", 
                      "Left_Testis", "Right_Testis", "Seminal_Vesicles_Weight", "Liver",
                      "Sperm", "Left_Epididymis", "Right_Epididymis", 
                      "Right_Ovarium_Weight", "Left_Ovarium_Weight",
-                     "Left_Embryo", "Right_Embryo", "Notes",
+                     "Left_Embryo", "Right_Embryo", "Fleas", "Ticks", "Ectoparasites_Logical", 
                      "Arrival", "Dissection_Date", "Trap_Date", "Host")
 
 tissue.cols     <- c("SPL1", "SPL2", "ELFO", "LIV", "KI", "LUN", "SG",
@@ -35,9 +35,9 @@ initial.worms.cols   <- c("Aspiculuris","Syphacia_obvelata","Trichuris_muris", "
                              "Trichuris", "Heterakis", "Mastophorus", "Ectoparasites_Logical", 
                              "Aspiculuris", "Catenotaenia_pusilla")
 
-final.worms.cols <- c("Aspiculuris_sp", "Syphacia_sp", "Trichuris_muris", "Taenia_sp", "Fleas", "Ticks",
+final.worms.cols <- c("Aspiculuris_sp", "Syphacia_sp", "Trichuris_muris", "Taenia_sp",
                       "Heterakis_sp", "Mastophorus_muris", "Hymenolepis_sp", "Catenotaenia_pusilla",
-                      "Heligmosomoides_polygurus", "Ectoparasites_Logical", "Worms_presence")
+                      "Heligmosomoides_polygurus", "Worms_presence")
 
 oocyst.cols     <- c("counter", "Feces_Weight", "Date_count", "N_oocysts_sq1",
                      "N_oocysts_sq2", "N_oocysts_sq3",  "N_oocysts_sq4",
@@ -53,7 +53,7 @@ Gene.Exp.cols   <- c("IFNy",        "CD4",         "Treg",
                      "Treg17",      "Th1",         "Th17",   
                      "CD8",         "Act_CD8",     "IFNy_CD4",    "IL17A_CD4",  
                      "IFNy_CD8",    "IL.12",       "IRG6",        "CXCR3",           
-                     "IL-6"    ,    "GBP2")
+                     "IL.6"    ,    "GBP2")
 
 Crypto_qPCR.cols <- c("Ct_mean", "Oocyst_Predict")
 
@@ -71,7 +71,6 @@ Crypto_qPCR.cols <- c("Ct_mean", "Oocyst_Predict")
 
 #### 1. Load Data #################################################################
 Alice <- read.csv("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Field/master/data_input/MiceTable_fullEimeriaInfos_2014to2017.csv")
-Alice <- read.csv("MiceTable_fullEimeriaInfos_2014to2017.csv")
 Alice$HI_NLoci <- gsub(pattern = "HI ", replacement = "", x = Alice$HI_NLoci)
 Alice$HI_NLoci <- as.integer(Alice$HI_NLoci)
 Alice$Mouse_ID <- gsub(pattern = "Sk3173", replacement = "SK_3173", x = Alice$Mouse_ID)
@@ -82,7 +81,6 @@ useless <- c(wsh, apd)
 Alice <- Alice[!(Alice$Mouse_ID %in% useless),]
 
 Jarda <- read.csv("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Field/master/data_input/Mouse_data/HZ19_GenotypingJarda.csv", na.strings=c(""," ","NA"))
-Jarda <- read.csv("Mouse_data/HZ19_GenotypingJarda.csv", na.strings=c(""," ","NA"))
 setnames(Jarda, old = c("PIN", "X_Longit", "Y_Latit"), new = c("Mouse_ID", "Longitude", "Latitude"), skip_absent = T)
 Jarda$Mouse_ID <- gsub(pattern = "SK", replacement = "SK_", x = Jarda$Mouse_ID)
 Jarda$Mouse_ID <- gsub(pattern = "Sk3173", replacement = "SK_3173", x = Jarda$Mouse_ID)
@@ -182,17 +180,19 @@ SOTA <- SOTA%>% arrange(Mouse_ID) %>% group_by(Mouse_ID) %>% fill(c(everything()
 
 ## Fleas == "Flea", "Fleas"
 SOTA <- SOTA %>% mutate(Fleas_Count = ifelse(Flea %in% c("0", "1", "2", "3", "4", "5", "6", "9", "11", "12"), as.numeric(Flea),
-                                                       ifelse(NA)),
-                                  Fleas_Logical = ifelse(Flea == "fleas", TRUE,
-                                                         ifelse(Flea == "TRUE", TRUE,
-                                                                ifelse(Flea == "TRUE (collected)", TRUE,
-                                                                       ifelse(Fleas_Count > 0, TRUE,
-                                                                              ifelse(Fleas_Count == 0, FALSE,
-                                                                                     ifelse(Flea == "FALSE", FALSE,
-                                                                                            ifelse(NA)))))))) %>%
-  select(-Flea)
+                                             ifelse(NA)),
+                        Fleas = case_when(Flea == "fleas" ~ T,
+                                          Flea == "TRUE" ~ T,
+                                          Flea == "TRUE (collected)" ~ T,
+                                          Flea == "FALSE"~ F,
+                                          Fleas_Count > 0 ~ T,
+                                          Fleas_Count == 0 ~ F,
+                                          Ectoparasites_Logical == T ~ T,
+                                          Ectoparasites_Logical == F ~ F,
+                                          Ectoparasites_Logical == T & is.na(Flea) ~ T)) %>%
+                        
+  select(-c(Flea, Fleas_Count))
 SOTA <- SOTA%>% arrange(Mouse_ID) %>% group_by(Mouse_ID) %>% fill(c(everything()), .direction = "downup") %>% ungroup() %>% distinct(Mouse_ID, .keep_all = T) 
-
 
 ## Head_Taken == "Head_taken", "Head.taken."
 MT_Head_Taken <- SOTA %>% select(Mouse_ID, Head.taken.) %>%  pivot_longer(names_to = "Temp", values_to = "Head_Taken", cols = c(Head.taken.)) %>% 
@@ -224,7 +224,6 @@ MT_Liver <- SOTA %>% select(Mouse_ID, Liver_mass) %>% pivot_longer(names_to = "T
 MT_Liver <- MT_Liver %>% distinct(Mouse_ID, .keep_all = T) 
 SOTA <- full_join(SOTA, MT_Liver) %>% select(-c(Liver_mass))
 rm(MT_Liver)
-
 
 ## Notes == "comments", "Note", "Notes", ("Embryo")
 MT_Notes <- SOTA %>% select(Mouse_ID, Note, Notes, comments)  %>% pivot_longer(names_to = "Temp",  values_to = "Notes", cols = c(Note, Notes, comments)) %>%  
@@ -278,6 +277,7 @@ SOTA <- SOTA %>% arrange(Mouse_ID) %>% group_by(Mouse_ID) %>% fill(c(everything(
 colnames(SOTA)[colnames(SOTA)%in%"Syphacia_obvelata"] <- "Syphacia"
 
 
+
 ## Testis_mass Separation
 ## Wrong data input for "Testis_mass": instead of individual Left_Testis or 
 ## Right_Testis data, a combination of "Left_Testis/Right_Testis" was supplied
@@ -289,16 +289,21 @@ SOTA_Sep$Left_Testis1 <- as.double(SOTA_Sep$Left_Testis1)
 SOTA_Sep$Right_Testis1 <- as.double(SOTA_Sep$Right_Testis1)
 SOTA <- full_join(SOTA, SOTA_Sep) %>% select(-Testis_mass)
 rm(SOTA_Sep)
+
+
     ## Left_Testis  == "Left_Testis1", "Left_Testis_mass"
 MT_Left_Testis <- SOTA %>% select(Mouse_ID, Left_Testis1, Left_Testis_mass) %>% pivot_longer(names_to = "Temp",  values_to = "Left_Testis", cols = c(Left_Testis1, Left_Testis_mass)) %>% 
   arrange(Mouse_ID) %>%  group_by(Mouse_ID) %>%  fill(c(everything()), .direction = "downup") %>%  ungroup() %>%  select(Mouse_ID, Left_Testis) %>% distinct(Mouse_ID, .keep_all = T) 
 SOTA <- full_join(SOTA, MT_Left_Testis) %>% select(-c(Left_Testis_mass, Left_Testis1))
 rm(MT_Left_Testis)
+
+
     ## Right_Testis == Right_Testis1", "Right_Testis_mass"
 MT_Right_Testis <- SOTA %>% select(Mouse_ID, Right_Testis1, Right_Testis_mass) %>% pivot_longer(names_to = "Temp",  values_to = "Right_Testis", cols = c(Right_Testis1, Right_Testis_mass)) %>% 
   arrange(Mouse_ID) %>%  group_by(Mouse_ID) %>%  fill(c(everything()), .direction = "downup") %>%  ungroup() %>%  select(Mouse_ID, Right_Testis) %>% distinct(Mouse_ID, .keep_all = T) 
 SOTA <- full_join(SOTA, MT_Right_Testis) %>% select(-c(Right_Testis_mass, Right_Testis1))
 rm(MT_Right_Testis)
+
 
 
 ## Tail_Length == "Tail_length", "LCd"
@@ -323,6 +328,8 @@ MT_Year <- SOTA %>% select(Mouse_ID, Year, year) %>% pivot_longer(names_to = "Te
 SOTA <- full_join(SOTA, MT_Year) %>% select(-c(year)) %>% arrange(Mouse_ID) %>% group_by(Mouse_ID) %>% fill(c(everything()), .direction = "downup") %>% ungroup() %>% distinct(Mouse_ID, .keep_all = T) 
 rm(MT_Year)
 
+
+
 #### MANUAL CORRECTIONS ########################################################
     ## correct Year for specific samples
 SOTA$Year[ SOTA$Mouse_ID %in% c("SK_2903", "SK_2904")] <- 2014
@@ -342,9 +349,7 @@ SOTA <- SOTA %>% mutate(Multiple_Mice_per_Box = ifelse(Mouse_ID %in% c("AA_0514"
 
 SOTA <- SOTA[colnames(SOTA) %in% c(basics, gen.loci, dissection.cols, oocyst.cols, initial.worms.cols)] %>%
   filter(!is.na(Longitude), 
-         !is.na(Latitude), 
-         !is.na(Sex), 
-         !is.na(HI))
+         !is.na(Latitude))
 
 ################################################################################
 #### 3. ADD NEW DATA ###########################################################
@@ -364,11 +369,8 @@ SOTA <- SOTA[colnames(SOTA) %in% c(basics, gen.loci, dissection.cols, oocyst.col
 
 #### 3.1. add new Dissection Data ####################################
 Dis2018 <- read.csv("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Field/master/data_input/Mouse_data/HZ18_Dissections.csv")
-Dis2018 <- read.csv("Mouse_data/HZ18_Dissections.csv")
 Dis2019 <- read.csv("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Field/master/data_input/Mouse_data/HZ19_Dissections.csv")
-Dis2019 <- read.csv("Mouse_data/HZ19_Dissections.csv")
 Dis2021 <- read.csv("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Field/master/data_input/Mouse_data/HZ21_Dissections.csv")
-Dis2021 <- read.csv("Mouse_data/HZ21_Dissections.csv")
 
 colnames(Dis2018)[colnames(Dis2018)%in%"Dissection_date"] <- "Dissection_Date"
 colnames(Dis2018)[colnames(Dis2018)%in%"ASP"] <- "Aspiculuris"
@@ -428,7 +430,6 @@ SOTA$Sex[grep("male*.", SOTA$Sex)] <- "M"
 
 #### 3.2. add Oocyst Counting Data (Flotation Data) ############################
 Eflot2018 <- read.csv("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Field/master/data_input/Eimeria_detection/HZ18_Eim_Flotation.csv")
-Eflot2018 <- read.csv("Eimeria_detection/HZ18_Eim_Flotation.csv")
 Eflot2018$Ncells <- Eflot2018$Sume
 Eflot2018$PBS_dil_in_mL <- Eflot2018$PBS_vol
 Eflot2018$Feces_Weight <- Eflot2018$Feces
@@ -437,13 +438,11 @@ Eflot2018 <- Eflot2018[colnames(Eflot2018)%in%c(basics,oocyst.cols)]
 
 #### 3.3. add 2018 qPCR Data ###################################################
 EqPCR2018 <- read.csv("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Field/master/data_input/Eimeria_detection/HZ18_qPCR.csv")
-EqPCR2018 <- read.csv("Eimeria_detection/HZ18_qPCR.csv")
 colnames(EqPCR2018)[colnames(EqPCR2018)%in%"delta"] <- "delta_ct_cewe_MminusE"
 EqPCR2018 <- EqPCR2018[colnames(EqPCR2018)%in%c(basics, EqPCR.cols)]
 
 #### 3.4. add 2018 Eimeria Genotyping Data #####################################
 EimPCR <- read.csv("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Field/master/data_input/Eimeria_detection/Svenja/table_ct_and_more.csv")
-EimPCR <- read.csv("Eimeria_detection/Svenja/table_ct_and_more.csv")
 EimPCR$Mouse_ID <- gsub("CEWE_AA_", "AA_0", EimPCR$Name)
 EimPCR$eimeriaSpecies <-  gsub("E\\. ", "E_", EimPCR$Eimeria.subspecies)
 EimPCR$eimeriaSpecies[EimPCR$eimeriaSpecies%in%c("non infected", "Eimeria sp.")] <- "Negative"
@@ -452,7 +451,6 @@ EimPCR <- EimPCR[colnames(EimPCR)%in%c(basics, EimGeno.cols)]
 
 #### 3.5. add 2019 qPCR Data ###################################################
 EqPCR2019 <- read.csv("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Field/master/data_input/Eimeria_detection/HZ19_CEWE_qPCR.csv")
-EqPCR2019 <- read.csv("Eimeria_detection/HZ19_CEWE_qPCR.csv")
 colnames(EqPCR2019)[colnames(EqPCR2019)%in%"delta"] <- "delta_ct_cewe_MminusE"
 colnames(EqPCR2019)[colnames(EqPCR2019)%in%"MC"] <- "MC.Eimeria"
 EqPCR2019 <- EqPCR2019[colnames(EqPCR2019)%in%c(basics, EqPCR.cols)]
@@ -467,7 +465,7 @@ SOTA <- full_join(SOTA, EqPCR2019)   %>% arrange(Mouse_ID) %>% group_by(Mouse_ID
 
 #### 3.6. add 2016-18 Gene Expression Data #####################################
 Gene_Expression <- read.csv("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Field/master/data_input/Gene_expression/HZ16-18_gene_expression.csv") %>% select(-c(X, HI)) 
-Gene_Expression <- read.csv("Gene_expression/HZ16-18_gene_expression.csv") %>% select(-c(X, HI)) 
+Gene_Expression$Target <- gsub(pattern = "IL-6", replacement = "IL.6", x = Gene_Expression$Target)
 colnames(Gene_Expression)[colnames(Gene_Expression)%in%"delta"] <- "delta_ct_cewe_MminusE"
 colnames(Gene_Expression)[colnames(Gene_Expression)%in%"MC"] <- "MC.Eimeria"
 Gene_Expression <- unique(Gene_Expression)
@@ -477,33 +475,28 @@ SOTA <- full_join(SOTA, Gene_Expression)  %>% arrange(Mouse_ID) %>% group_by(Mou
 
 #### 3.7 add 2019 CEWE Elisa ###################################################
 CEWE_Elisa <- read.csv("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Field/master/data_input/HZ19_CEWE_ELISA.csv") %>% select(-X)
-CEWE_Elisa <- read.csv("HZ19_CEWE_ELISA.csv") %>% select(-X)
 SOTA <- full_join(SOTA, CEWE_Elisa) %>% arrange(Mouse_ID) %>% group_by(Mouse_ID) %>% fill(c(everything()), .direction = "downup") %>% ungroup() %>% distinct(Mouse_ID, .keep_all = T) 
 
 
 #### 3.8 add 2019 MES FACS #####################################################
 MES_FACS <- read.csv("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Field/master/data_input/HZ19_MES_FACS.csv") %>% select(-X)
-MES_FACS <- read.csv("HZ19_MES_FACS.csv") %>% select(-X)
 SOTA <- full_join(SOTA, MES_FACS) %>% arrange(Mouse_ID) %>% group_by(Mouse_ID) %>% fill(c(everything()), .direction = "downup") %>% ungroup() %>% distinct(Mouse_ID, .keep_all = T) 
 
 
 #### 3.9 add 2019 Immuno #######################################################
 Immuno19 <- read.csv("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Field/master/data_input/HZ19_immuno.csv") %>% select(-X)
-Immuno19 <- read.csv("HZ19_immuno.csv") %>% select(-X)
 SOTA <- full_join(SOTA, Immuno19) %>% arrange(Mouse_ID) %>% group_by(Mouse_ID) %>% fill(c(everything()), .direction = "downup") %>% ungroup() %>% distinct(Mouse_ID, .keep_all = T) 
 colnames(Immuno19)[colnames(Immuno19)%in%"delta"] <- "delta_ct_cewe_MminusE"
 
 
 #### 4. ADD CRYPTO DATA ########################################################
 Crypto_qPCR <- read.csv("https://raw.githubusercontent.com/tlobnow/Cryptosporidium-BSc/Main-Branch/Crypto_Detection.csv") %>% select(-X)
-Crypto_qPCR <- read.csv("/Users/FinnLo/Documents/Programming/R/HZ_SC_and_Raw_Data/Cryptosporidium-BSc/Crypto_Detection.csv") %>% select(-X)
 Crypto_qPCR <- Crypto_qPCR[colnames(Crypto_qPCR) %in% c(Crypto_qPCR.cols, "Mouse_ID")]
 SOTA <- full_join(SOTA, Crypto_qPCR) %>% arrange(Mouse_ID) %>% group_by(Mouse_ID) %>% fill(c(everything()), .direction = "downup") %>% ungroup() %>% distinct(Mouse_ID, .keep_all = T)
 
 
 #### 5. ADD NON-MUS DATA #######################################################
 Non_Mus <- read.csv("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Field/master/data_input/Eimeria_detection/Other_rodents/rawdata_other_rodents.csv")
-Non_Mus <- read.csv("Eimeria_detection/Other_rodents/rawdata_other_rodents.csv")
 colnames(Non_Mus)[colnames(Non_Mus)%in%"Oocyst_g"] <- "OPG"
 colnames(Non_Mus)[colnames(Non_Mus)%in%"Ocount_11"] <- "N_oocysts_sq1"
 colnames(Non_Mus)[colnames(Non_Mus)%in%"Ocount_12"] <- "N_oocysts_sq2"
@@ -523,7 +516,6 @@ SOTA <- SOTA %>% arrange(Mouse_ID) %>% group_by(Mouse_ID) %>% fill(c(everything(
 
 #### 6. add 2021 Dissection Data ###############################################
 HZ21_Dis <- read.csv("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Field/master/data_input/Mouse_data/HZ21_Dissections.csv")
-HZ21_Dis <- read.csv("Mouse_data/HZ21_Dissections.csv")
 HZ21_Dis <- HZ21_Dis %>% mutate(Year = 2021)
 Worms21 <- HZ21_Dis %>% select("Mouse_ID", 28:36)
 
@@ -534,7 +526,6 @@ SOTA <- full_join(SOTA, HZ21_Dis[colnames(HZ21_Dis) %in% c(basics, dissection.co
 
   ## Non_Mus Data
 Non_Mus21 <- read.csv("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Field/master/data_input/Mouse_data/HZ21_Non_Mus.csv")
-Non_Mus21 <- read.csv("Mouse_data/HZ21_Non_Mus.csv")
 Non_Mus21 <- Non_Mus21 %>%
   mutate(Ticks = case_when(Ticks == T ~ T,
                            is.na(Ticks) ~ F),
@@ -549,9 +540,13 @@ Non_Mus21 <- Non_Mus21 %>%
 
 #### MANUAL CORRECTION ######################################################
   # Worms
-    ## Aspiculuris
+    ## Aspiculuris_sp
 SOTA <- SOTA %>% mutate(Aspiculuris_sp =  case_when(!is.na(Aspiculuris_Syphacia) ~ Aspiculuris_Syphacia - Syphacia,
                                                           is.na(Aspiculuris_Syphacia) ~ Aspiculuris))
+
+    ## Syphacia_sp
+SOTA <- SOTA %>% mutate(Syphacia_sp = case_when(!is.na(Aspiculuris_Syphacia) ~ Aspiculuris_Syphacia - Aspiculuris_sp,
+                                                is.na(Aspiculuris_Syphacia) ~ Syphacia))
 
     ## Trichuris == "Trichuris" "Trichuris_muris"
 SOTA <- SOTA %>% select(-Trichuris)
@@ -597,6 +592,8 @@ SOTA <- SOTA[colnames(SOTA) %in% c(basics,
                                    #initial.worms.cols,
                                    final.worms.cols)]
                                             
+SOTA[colnames(SOTA) %in% c(basics, final.worms.cols)] %>% group_by(Year) %>% vis_miss()
+
 
 write.csv(SOTA, "SOTA_Data_Product.csv")
 
