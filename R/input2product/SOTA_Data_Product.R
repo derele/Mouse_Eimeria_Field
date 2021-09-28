@@ -524,7 +524,7 @@ Worms21 <- HZ21_Dis %>% select("Mouse_ID", 28:36)
 SOTA <- full_join(SOTA, HZ21_Dis[colnames(HZ21_Dis) %in% c(basics, dissection.cols)])
 
 
-  ## Non_Mus Data
+  ## Non_Mus21 Data
 Non_Mus21 <- read.csv("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Field/master/data_input/Mouse_data/HZ21_Non_Mus.csv")
 Non_Mus21 <- Non_Mus21 %>%
   mutate(Ticks = case_when(Ticks == T ~ T,
@@ -535,6 +535,7 @@ Non_Mus21 <- Non_Mus21 %>%
                                            is.na(Ectoparasites_Logical) ~ F),
          Year = 2021)
 
+SOTA <- full_join(SOTA, Non_Mus21[colnames(Non_Mus21) %in% c(basics, dissection.cols, tissue.cols)])
 
 
 
