@@ -49,11 +49,12 @@ EqPCR.cols      <- c("delta_ct_ilwe_MminusE", "delta_ct_cewe_MminusE", "MC.Eimer
 
 EimGeno.cols    <- c("n18S_Seq", "COI_Seq", "ORF470_Seq", "eimeriaSpecies")
 
-Gene.Exp.cols   <- c("IFNy",        "CD4",         "Treg",   
-                     "Treg17",      "Th1",         "Th17",   
-                     "CD8",         "Act_CD8",     "IFNy_CD4",    "IL17A_CD4",  
-                     "IFNy_CD8",    "IL.12",       "IRG6",        "CXCR3",           
+Gene.Exp.cols   <- c("IFNy",        "IL.12",       "IRG6",        "CXCR3",           
                      "IL.6"    ,    "GBP2")
+
+CellCount.cols <- c( "Treg",   "CD4", "Treg17",      "Th1",         "Th17",   
+                     "CD8",    "Act_CD8",     "IFNy_CD4",    "IL17A_CD4",  
+                     "IFNy_CD8")
 
 Crypto_qPCR.cols <- c("Ct_mean", "Oocyst_Predict")
 
