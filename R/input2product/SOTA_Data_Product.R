@@ -2,7 +2,6 @@ library(tidyverse)
 library(data.table)
 library(visdat)
 
-#setwd("/Users/FinnLo/Documents/Programming/R/HZ_SC_and_Raw_Data/Mouse_Eimeria_Field/data_input/")
 #### Creating a STATE OF THE ART Data Product (SOTA Data Product) ##############
 ################################################################################
 
@@ -49,14 +48,16 @@ EqPCR.cols      <- c("delta_ct_ilwe_MminusE", "delta_ct_cewe_MminusE", "MC.Eimer
 
 EimGeno.cols    <- c("n18S_Seq", "COI_Seq", "ORF470_Seq", "eimeriaSpecies")
 
-Gene.Exp.cols   <- c("IFNy",        "IL.12",       "IRG6",        "CXCR3",           
-                     "IL.6"    ,    "GBP2")
+Gene.Exp.cols   <- c("IFNy", "IL.12", "IRG6", "CXCR3", "IL.6", "GBP2",
+                     "IL.10", "IL.13", "IL.10", "IL.13", "IL1RN",
+                     "CXCR3", "CASP1", "CXCL9", "GAPDH", 
+                     "IDO1", "IRGM1", "MPO", "MUC2", "MUC5AC", "MYD88", 
+                     "NCR1", "PPIB", "PRF1", "RETNLB", "SOCS1", "TICAM1", "TNF")
 
-CellCount.cols <- c( "Treg",   "CD4", "Treg17",      "Th1",         "Th17",   
-                     "CD8",    "Act_CD8",     "IFNy_CD4",    "IL17A_CD4",  
-                     "IFNy_CD8")
+CellCount.cols <- c( "Treg", "CD4", "Treg17", "Th1", "Th17", "CD8",
+                     "Act_CD8", "IFNy_CD4", "IL17A_CD4", "IFNy_CD8")
 
-Crypto_qPCR.cols <- c("Ct_mean", "Oocyst_Predict")
+Crypto_qPCR.cols <- c("Ct_mean", "Oocyst_Predict", "ILWE_DNA_Content_ng.microliter")
 
 
 #### Work Flow #################################################################
@@ -65,7 +66,7 @@ Crypto_qPCR.cols <- c("Ct_mean", "Oocyst_Predict")
     ## Alice was very un-invasive, so she left the columns unchanged, even if they
     ## contain the same data point, but column names differed slightly (e.g. spelling)
     ## We will clean that up, narrow down the columns to a manageable size.
-    
+
     ## Once there are no double columns left, we can continue to add new data 
     ## (that also complies with our standardized column names)
     ## and add new assays, ...
@@ -464,7 +465,8 @@ SOTA <- full_join(SOTA, Detection18) %>% arrange(Mouse_ID) %>% group_by(Mouse_ID
 SOTA <- full_join(SOTA, EqPCR2019)   %>% arrange(Mouse_ID) %>% group_by(Mouse_ID) %>% fill(c(everything()), .direction = "downup") %>% ungroup() %>% distinct(Mouse_ID, .keep_all = T) 
 
 
-#### 3.6. add 2016-18 Gene Expression Data #####################################
+#### 3.6. add Gene Expression Data ############################################
+    # 2016-2018
 Gene_Expression <- read.csv("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Field/master/data_input/Gene_expression/HZ16-18_gene_expression.csv") %>% select(-c(X, HI)) 
 Gene_Expression$Target <- gsub(pattern = "IL-6", replacement = "IL.6", x = Gene_Expression$Target)
 colnames(Gene_Expression)[colnames(Gene_Expression)%in%"delta"] <- "delta_ct_cewe_MminusE"
@@ -472,6 +474,62 @@ colnames(Gene_Expression)[colnames(Gene_Expression)%in%"MC"] <- "MC.Eimeria"
 Gene_Expression <- unique(Gene_Expression)
 Gene_Expression <- Gene_Expression %>% pivot_wider(names_from = "Target", values_from = "NE")
 SOTA <- full_join(SOTA, Gene_Expression)  %>% arrange(Mouse_ID) %>% group_by(Mouse_ID) %>% fill(c(everything()), .direction = "downup") %>% ungroup() %>% distinct(Mouse_ID, .keep_all = T) 
+
+#### 2016-2019 (Luke)
+IFC1 <- read.csv("https://raw.githubusercontent.com/derele/Eimeria_Lab/master/data/Experiment_results/IFC1.csv")
+IFC2 <- read.csv("https://raw.githubusercontent.com/derele/Eimeria_Lab/master/data/Experiment_results/IFC2.csv")
+IFC3 <- read.csv("https://raw.githubusercontent.com/derele/Eimeria_Lab/master/data/Experiment_results/IFC3.csv")
+IFC4 <- read.csv("https://raw.githubusercontent.com/derele/Eimeria_Lab/master/data/Experiment_results/IFC4.csv")
+IFC5 <- read.csv("https://raw.githubusercontent.com/derele/Eimeria_Lab/master/data/Experiment_results/IFC5.csv")
+IFC  <- bind_rows(IFC1, IFC2, IFC3, IFC4, IFC5)
+
+    ## adjust IDs
+colnames(IFC)[colnames(IFC)%in%"EH_ID"] <- "Mouse_ID"
+IFC$Mouse_ID <- gsub(pattern = "A", replacement = "AA_", x = IFC$Mouse_ID)
+IFC$Mouse_ID <- gsub(pattern = "AA_AA_", replacement = "AA_", x = IFC$Mouse_ID)
+IFC$Mouse_ID <- gsub(pattern = "LM", replacement = "LM_", x = IFC$Mouse_ID)
+## filter out LM_XXXX
+IFC <- IFC[IFC$Mouse_ID %like% "AA_", ]
+
+    ## remove unsuccessful amplifications 
+    ## == 999, equivalent to bad quality, should not be used
+    ## Luke's Version:
+        IFC <- subset(IFC, IFC$Value != 999)
+        IFC <- IFC %>% group_by(Mouse_ID, Target) %>% summarise(Ct = mean(Value)) 
+        IFC <- distinct(IFC)
+#IFC <- IFC %>% 
+#  filter(Value != 999, Call %in% "Pass") %>% 
+#  group_by(Mouse_ID, Target) %>% 
+#  summarise(IFC_Ct_mean = mean(Value, na.rm=TRUE),
+#            IFC_Ct_Var = var(Value, na.rm=TRUE),
+#            IFC_Ct_N = n())
+        
+        
+    ## separate data using the pivot_wider()
+    ## turns Gene Expression Markers into individual columns (from Target),
+    ## values taken (from Ct)
+IFC <- pivot_wider(IFC, names_from = "Target", values_from = "Ct")
+
+## We need to add Variance and n() again - if I add variance before pivoting, 
+# it will lead to numerous lines, because we have numerous variances for the different markers, 
+# same for the n()... either we create a variance variable for EACH marker individually 
+# or we don't include it for the pivoting... 
+
+
+    ## rename columns that have incorrect column names
+colnames(IFC)[colnames(IFC)%in%"IL6"]   <- "IL.6"
+colnames(IFC)[colnames(IFC)%in%"IL12A"] <- "IL.12"
+colnames(IFC)[colnames(IFC)%in%"IL10"]  <- "IL.10"
+colnames(IFC)[colnames(IFC)%in%"IL17A"] <- "IL.17"
+colnames(IFC)[colnames(IFC)%in%"IL13"]  <- "IL.13"
+colnames(IFC)[colnames(IFC)%in%"IFNG"]  <- "IFNy"
+
+
+
+    ## merge
+SOTA <- full_join(SOTA, IFC)
+#SOTA$Mouse_ID[duplicated(SOTA$Mouse_ID)]
+SOTA <- SOTA %>% arrange(Mouse_ID) %>% group_by(Mouse_ID) %>% fill(c(everything()), .direction = "downup") %>% ungroup() %>% distinct(Mouse_ID, .keep_all = T) 
 
 
 #### 3.7 add 2019 CEWE Elisa ###################################################
@@ -523,6 +581,7 @@ Worms21 <- HZ21_Dis %>% select("Mouse_ID", 28:36)
 
   ## merge
 SOTA <- full_join(SOTA, HZ21_Dis[colnames(HZ21_Dis) %in% c(basics, dissection.cols)])
+SOTA[!duplicated(SOTA), ]
 
 
   ## Non_Mus21 Data
@@ -580,6 +639,12 @@ SOTA <- full_join(SOTA, Worms21) %>% arrange(Mouse_ID) %>% group_by(Mouse_ID) %>
     ## Worms Presence
 SOTA <- SOTA %>% mutate(Worms_presence = case_when(Aspiculuris_sp | Trichuris_muris | Taenia_sp | Heligmosomoides_polygurus | Heterakis_sp | Mastophorus_muris | Hymenolepis_sp | Catenotaenia_pusilla > 0 ~ T))
 
+
+
+
+
+
+
  
 #### 7. SELECT NEEDED COLUMNS ##################################################
 SOTA <- SOTA[colnames(SOTA) %in% c(basics,
@@ -590,14 +655,11 @@ SOTA <- SOTA[colnames(SOTA) %in% c(basics,
                                    EqPCR.cols,
                                    gen.loci,
                                    Gene.Exp.cols,
+                                   CellCount.cols,
                                    oocyst.cols,
                                    #initial.worms.cols,
                                    final.worms.cols)]
-                                            
-SOTA[colnames(SOTA) %in% c(basics, final.worms.cols)] %>% group_by(Year) %>% vis_miss()
-
 
 write.csv(SOTA, "SOTA_Data_Product.csv")
 
-
-
+#SOTA %>% group_by(Year, Mouse_ID) %>% vis_miss()
