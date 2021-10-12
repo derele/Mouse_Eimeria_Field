@@ -83,5 +83,5 @@ Crypto_DNA.cols   <- c("ILWE_DNA_Content_ng.microliter", "ILWE_Tissue_used_up")
       mutate(Top_Location = Crypto_mus_caught >= 3,
              Infection_Rate = Crypto_mus_caught / mus_caught)
 ## write csv
-    write.csv(Crypto_Detection, "Crypto_Detection.csv")
+    write.csv(Crypto_Detection, "data_products/Crypto_Detection.csv")
     
