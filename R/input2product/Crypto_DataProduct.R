@@ -45,7 +45,7 @@ Crypto_DNA.cols   <- c("ILWE_DNA_Content_ng.microliter", "ILWE_Tissue_used_up")
     Crypto_DNA   <- read.csv("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Field/master/data_input/Cryptosporidium/DNA_Extraction_ILWE_2018_2021.csv")
 
 ### add Crypto_qPCR Data and filter out duplicates
-    Crypto_qPCR           <- read.csv("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Field/master/data_input/Cryptosporidium/Crypto_qPCR_2016_2019.csv") 
+    Crypto_qPCR           <- read.csv("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Field/master/data_input/Cryptosporidium/Crypto_qPCR_2016_2021.csv") 
 
 
 ### calculate Oocysts with prediction model
@@ -84,4 +84,5 @@ Crypto_DNA.cols   <- c("ILWE_DNA_Content_ng.microliter", "ILWE_Tissue_used_up")
              Infection_Rate = Crypto_mus_caught / mus_caught)
 ## write csv
     write.csv(Crypto_Detection, "data_products/Crypto_Detection.csv")
+    
     
