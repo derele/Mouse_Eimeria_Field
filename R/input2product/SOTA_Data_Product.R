@@ -549,7 +549,7 @@ colnames(Immuno19)[colnames(Immuno19)%in%"delta"] <- "delta_ct_cewe_MminusE"
 
 
 #### 4. ADD CRYPTO DATA ########################################################
-Crypto_qPCR <- read.csv("https://raw.githubusercontent.com/tlobnow/Cryptosporidium-BSc/Main-Branch/Crypto_Detection.csv") %>% select(-X)
+Crypto_qPCR <- read.csv("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Field/master/data_products/Crypto_Detection.csv") %>% select(-X)
 Crypto_qPCR <- Crypto_qPCR[colnames(Crypto_qPCR) %in% c(Crypto_qPCR.cols, "Mouse_ID")]
 SOTA <- full_join(SOTA, Crypto_qPCR) %>% arrange(Mouse_ID) %>% group_by(Mouse_ID) %>% fill(c(everything()), .direction = "downup") %>% ungroup() %>% distinct(Mouse_ID, .keep_all = T)
 
