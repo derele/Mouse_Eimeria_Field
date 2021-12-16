@@ -63,7 +63,7 @@ Dissection,Ectoparasites_Logical,"Mouse had Fleas, Ticks, both, none",logical,,T
 Dissection,Trap_Date,Trapping Date,,,,Unify Dates,Capture
 Dissection,Dissection_Date,Dissection Date,,,,Unify Dates,Dissection
 Dissection,Host,Rodent species,chr,,"Apodemus_flavicollis, Microtus_arvalis, Myodes_glareolus",set all other to mus musculus,
-Dissection_Tissue,SPL1,"Spleen tissue taken for CZ, Alcohol",logical,,1,better T/F??,
+Dissection_Tissue,SPL1,"Spleen tissue taken for CZ, Alcohol",logical,,T/F,better T/F??,
 Dissection_Tissue,SPL2,"Spleen tissue taken for EH, Cryo",logical,,1,better T/F??,
 Dissection_Tissue,ELFO,"Kidney and Leg muscle tissue taken for CZ, Cryo",logical,,1,better T/F??,
 Dissection_Tissue,LIV,"Liver tissue taken for CZ, Alcohol",logical,,2,better T/F??,
