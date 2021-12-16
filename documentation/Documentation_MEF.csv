@@ -5,17 +5,9 @@ Eimeria qPCR,MC.Eimeria,This was established in 2018 as an improvement over the 
 Eimeria qPCR,Ct.Eimeria,"Started in 2018, used to generate delta_ct_cewe_MminusE",num,,20-38,need to add raw data from Svenja,
 Eimeria qPCR,Ct.Mus,"Started in 2018, used to generate delta_ct_cewe_MminusE",num,,19-28,need to add raw data from Svenja,
 Oocyst Counting,counter,Person who counted,chr,,,,
-Oocyst Counting,Feces_Weight,amount of feces used in flotation,num,g,,,"Feces_g
-Feces"
+Oocyst Counting,Feces_Weight,amount of feces used in flotation,num,g,,,"Feces_g, Feces"
 Oocyst Counting,Date_count,Date counted,Date,,,Unify Dates,
-Oocyst Counting,"N_oocysts_sq1
-N_oocysts_sq2
-N_oocysts_sq3
-N_oocysts_sq4
-N_oocysts_sq5
-N_oocysts_sq6
-N_oocysts_sq7
-N_oocysts_sq8",individual count for each single square on the neubauer chamber (up to 8),num,,,,
+Oocyst Counting,N_oocysts_sq1 - sq8,individual count for each single square on the neubauer chamber (up to 8),num,,,,
 Oocyst Counting,mean_neubauer,mean of the 8 squares,num,,,,
 Oocyst Counting,PBS_dil_in_mL,volume of PBS in which sample was diluted,num,mL,,,
 Oocyst Counting,Ncells,"number of neubauer ""cells"" (squares) counted",num,,1-8,,
@@ -51,27 +43,17 @@ Mouse Genotyping,Sod1C,Mouse Genotyping Marker,chr,,"mm, dd, dm",X,
 Mouse Genotyping,Zfy2,"Mouse Genotyping Marker, Y-Chromosomal, zinc finger protein 2",chr,,"m, d",X,
 Mouse Genotyping,Y,Mouse Genotyping Marker,chr,,"m, d",X,
 Mouse Genotyping,Region,"Trapping Location characterized as either domesticus, musculus or hybrid zone",chr,,"dom, DyM, mus",,REGion
-Dissection,Body_Weight,body weight of mouse,num,g,3 - 45,,"Body_weight
-BW"
-Dissection,Body_Length,"body length, determined from nose to anus",num,cm,45 - 105,,"Body_length
-L"
-Dissection,Tail_Length,"tail length, determined from anus to tail tip",num,cm,10 - 110,,"Tail_length
-LCd"
+Dissection,Body_Weight,body weight of mouse,num,g,3 - 45,,"Body_weight, BW"
+Dissection,Body_Length,"body length, determined from nose to anus",num,cm,45 - 105,,"Body_length, L"
+Dissection,Tail_Length,"tail length, determined from anus to tail tip",num,cm,10 - 110,,"Tail_length, LCd"
 Dissection,Status,"status of mouse (juvenile, adult, pregnant)",chr,,"juvenile, adult, pregnant, post partum",,
 Dissection,Spleen,Spleen weight,num,g,0 - 450,X (should be <1 ),
-Dissection,Left_Testis,Left Testicle weight,num,g,0 - 90,X (should be <1 ),"Testis_mass
-Left_Testis_mass"
-Dissection,Right_Testis,Right Testicle weight,num,g,0 - 90,X (should be <1 ),"Testis_mass
-Right_Testis_mass"
-Dissection,Seminal_Vesicles_Weight,Seminal Vesicles weight,num,g,0 - 350,X (should be <1 ),"SemVes
-Seminal.vesicle.weight
-Seminal_Vesicles_Weight"
-Dissection,Left_Epididymis,Left Epididymis weight,num,g,0 - 50,X (should be <1 ),"Left_epididymis
-Left.epididymis.weight"
-Dissection,Right_Ovarium_Weight,Right ovarium weight,num,g,0 - 6,X (should be <1 ),"Right_ovarium
-Right.ovarium.weight"
-Dissection,Left_Ovarium_Weight,Left ovarium weight,num,g,0 - 45,X (should be <1 ),"Left_ovarium
-Left.ovarium.weight"
+Dissection,Left_Testis,Left Testicle weight,num,g,0 - 90,X (should be <1 ),"Testis_mass, Left_Testis_mass"
+Dissection,Right_Testis,Right Testicle weight,num,g,0 - 90,X (should be <1 ),"Testis_mass, Right_Testis_mass"
+Dissection,Seminal_Vesicles_Weight,Seminal Vesicles weight,num,g,0 - 350,X (should be <1 ),"SemVes, Seminal.vesicle.weight, Seminal_Vesicles_Weight"
+Dissection,Left_Epididymis,Left Epididymis weight,num,g,0 - 50,X (should be <1 ),"Left_epididymis, Left.epididymis.weight"
+Dissection,Right_Ovarium_Weight,Right ovarium weight,num,g,0 - 6,X (should be <1 ),"Right_ovarium, Right.ovarium.weight"
+Dissection,Left_Ovarium_Weight,Left ovarium weight,num,g,0 - 45,X (should be <1 ),"Left_ovarium, Left.ovarium.weight"
 Dissection,Liver,,,,,"DELETE, not needed",
 Dissection,Left_Embryo,number of embryos in left uterus horn,num,,1 - 6,,Embryo_Left
 Dissection,Right_Embryo,number of embryos in right uterus horn,num,,1 - 6,,Embryo_Right
@@ -100,39 +82,20 @@ Dissection_Tissue,WEOH,Worms in Ethanol,logical,,1,better T/F??,
 Dissection_Tissue,WFOR,Worms in Formalin,logical,,1,better T/F??,
 Dissection_Tissue,FEC,"Feces taken for EH, Cryo",logical,,1,better T/F??,
 Dissection_Tissue,T/O,"Testis or ovaries taken for CZ, Cryo",logical,,1,better T/F??,
-Worms,Aspiculuris_sp,"infects caecum, colon",num,,0-500,,"Aspiculuris
-Aspiculuris_Syphacia
-ASP"
-Worms,Syphacia_sp,"infects caecum, colon",num,,0-500,,"Syphacia
-Aspiculuris_Syphacia
-SYP"
-Worms,Trichuris_muris,infects caecum,,,0-200,,"Trichuris
-TM"
-Worms,Taenia_sp,"infects liver, body cavity",,,0-6,,"Taenia_martis
-Taenia_taeniformis
-Taenia
-MART"
-Worms,Heterakis_sp,"infects caecum, colon",,,0-50,,"Heterakis
-HET"
+Worms,Aspiculuris_sp,"infects caecum, colon",num,,0-500,,"Aspiculuris, Aspiculuris_Syphacia, ASP"
+Worms,Syphacia_sp,"infects caecum, colon",num,,0-500,,"Syphacia, Aspiculuris_Syphacia, SYP"
+Worms,Trichuris_muris,infects caecum,,,0-200,,"Trichuris, TM"
+Worms,Taenia_sp,"infects liver, body cavity",,,0-6,,"Taenia_martis, Taenia_taeniformis, Taenia, MART"
+Worms,Heterakis_sp,"infects caecum, colon",,,0-50,,"Heterakis, HET"
 Worms,Mastophorus_muris,infects the stomach,,,0-50,,
-Worms,Hymenolepis_sp,infects small intestine,,,0-8,,"Hymenolepis_microstoma
-Hymenolepis_diminuta
-Hymenolepis_diminiuta
-HM
-HD"
+Worms,Hymenolepis_sp,infects small intestine,,,0-8,,"Hymenolepis_microstoma, Hymenolepis_diminuta, Hymenolepis_diminiuta, HM, HD"
 Worms,Catenotaenia_pusilla,infects small intestine,,,0-7,,CP
 Worms,Heligmosomoides_polygurus,,,,0-11,,
 Worms,Worms_presence,worms present or not present,logical,,T/F,,
 Eimeria Genotyping,n18S_Seq,"nuclear small subunit ribosomal DNA used as a marker for Eimeria Genotyping (phylogenetic analysis, ~1,500 bp)",chr,,positive / negative,,
 Eimeria Genotyping,COI_Seq,fragment of the mitochondrial cytochrome c oxi- dase subunit I gene(COI; ~800 bp) for Eimeria Genotyping (phylogenetic analysis),chr,,positive / negative,,
 Eimeria Genotyping,ORF470_Seq,apicoplast ORF470 (~800 bp) for Eimeria Genotyping (phylogenetic analysis),chr,,positive / negative,,
-Eimeria Genotyping,eimeriaSpecies,Eimeria Species determined through Genotyping approaches,chr,,"E_falciformis,
-E_ferrisi,
-Eimeria_alorani
-Eimeria_falciformis
-Eimeria_sp_Apodemus
-Eimeria_vermiformis
-Negative",,
+Eimeria Genotyping,eimeriaSpecies,Eimeria Species determined through Genotyping approaches,chr,,"E_falciformis, E_ferrisi, Eimeria_alorani, Eimeria_falciformis, Eimeria_sp_Apodemus, Eimeria_vermiformis, Negative",,
 Gene Expression,B-actin,"Housekeeping Gene, 
 nonmuscle cytoskeletal actin,  involved in cell motility, structure and integrity",num,,19 - 31,,
 Gene Expression,CASP1,Caspase-1/Interleukin-1 converting enzyme is an evolutionarily conserved enzyme that proteolytically cleaves other proteins,num,,-25 - -13,,
@@ -167,6 +130,6 @@ FACS (Cell Counting),Act-CD8,,num,,,,
 FACS (Cell Counting),IFNy-CD4,,num,,,,
 FACS (Cell Counting),IL17A-CD4,,num,,,,
 FACS (Cell Counting),IFNy_CD8,,num,,,,
-FACS (Cell Counting),Ct_mean,,num,,,,
-FACS (Cell Counting),Oocyst_Predict,,num,,,,
-FACS (Cell Counting),ILWE_DNA_Content_ng.microliter,,num,ng/µL,,,
+Cryptosporidium qPCR,Ct_mean,"Ct-value generated from Ileum wall DNA, qPCRs performed since 2016",num,,20 - 40 ,,
+Cryptosporidium qPCR,Oocyst_Predict,calculated with an oocyst prediction model that is based on known Standard-Curve DNA concentrations,num,,0 - 1x10^6,,
+Cryptosporidium qPCR,ILWE_DNA_Content_ng.microliter,mean DNA content measured with NanoDrop after Ileum wall tissue DNA-Extraction,num,ng/µL,0 - 1600,,
