@@ -47,14 +47,13 @@ Dissection,Body_Weight,body weight of mouse,num,g,3 - 45,,"Body_weight, BW"
 Dissection,Body_Length,"body length, determined from nose to anus",num,cm,45 - 105,,"Body_length, L"
 Dissection,Tail_Length,"tail length, determined from anus to tail tip",num,cm,10 - 110,,"Tail_length, LCd"
 Dissection,Status,"status of mouse (juvenile, adult, pregnant)",chr,,"juvenile, adult, pregnant, post partum",,
-Dissection,Spleen,Spleen weight,num,g,0 - 450,X (should be <1 ),
-Dissection,Left_Testis,Left Testicle weight,num,g,0 - 90,X (should be <1 ),"Testis_mass, Left_Testis_mass"
-Dissection,Right_Testis,Right Testicle weight,num,g,0 - 90,X (should be <1 ),"Testis_mass, Right_Testis_mass"
-Dissection,Seminal_Vesicles_Weight,Seminal Vesicles weight,num,g,0 - 350,X (should be <1 ),"SemVes, Seminal.vesicle.weight, Seminal_Vesicles_Weight"
-Dissection,Left_Epididymis,Left Epididymis weight,num,g,0 - 50,X (should be <1 ),"Left_epididymis, Left.epididymis.weight"
-Dissection,Right_Ovarium_Weight,Right ovarium weight,num,g,0 - 6,X (should be <1 ),"Right_ovarium, Right.ovarium.weight"
-Dissection,Left_Ovarium_Weight,Left ovarium weight,num,g,0 - 45,X (should be <1 ),"Left_ovarium, Left.ovarium.weight"
-Dissection,Liver,,,,,"DELETE, not needed",
+Dissection,Spleen,Spleen weight,num,g,0 - 450,X,
+Dissection,Left_Testis,Left Testicle weight,num,g,0 - 90,X,"Testis_mass, Left_Testis_mass"
+Dissection,Right_Testis,Right Testicle weight,num,g,0 - 90,X,"Testis_mass, Right_Testis_mass"
+Dissection,Seminal_Vesicles_Weight,Seminal Vesicles weight,num,g,0 - 350,X,"SemVes, Seminal.vesicle.weight, Seminal_Vesicles_Weight"
+Dissection,Left_Epididymis,Left Epididymis weight,num,g,0 - 50,X,"Left_epididymis, Left.epididymis.weight"
+Dissection,Right_Ovarium_Weight,Right ovarium weight,num,g,0 - 6,X,"Right_ovarium, Right.ovarium.weight"
+Dissection,Left_Ovarium_Weight,Left ovarium weight,num,g,0 - 45,X,"Left_ovarium, Left.ovarium.weight"
 Dissection,Left_Embryo,number of embryos in left uterus horn,num,,1 - 6,,Embryo_Left
 Dissection,Right_Embryo,number of embryos in right uterus horn,num,,1 - 6,,Embryo_Right
 Dissection,Fleas,"logical condition, fleas visible",logical,,T/F,,Flea
@@ -84,52 +83,52 @@ Dissection_Tissue,FEC,"Feces taken for EH, Cryo",num,,1,better logical?,
 Dissection_Tissue,T/O,"Testis or ovaries taken for CZ, Cryo",num,,1,better logical?,
 Worms,Aspiculuris_sp,"infects caecum, colon",num,,0-500,,"Aspiculuris, Aspiculuris_Syphacia, ASP"
 Worms,Syphacia_sp,"infects caecum, colon",num,,0-500,,"Syphacia, Aspiculuris_Syphacia, SYP"
-Worms,Trichuris_muris,infects caecum,,,0-200,,"Trichuris, TM"
-Worms,Taenia_sp,"infects liver, body cavity",,,0-6,,"Taenia_martis, Taenia_taeniformis, Taenia, MART"
-Worms,Heterakis_sp,"infects caecum, colon",,,0-50,,"Heterakis, HET"
-Worms,Mastophorus_muris,infects the stomach,,,0-50,,
-Worms,Hymenolepis_sp,infects small intestine,,,0-8,,"Hymenolepis_microstoma, Hymenolepis_diminuta, Hymenolepis_diminiuta, HM, HD"
-Worms,Catenotaenia_pusilla,infects small intestine,,,0-7,,CP
-Worms,Heligmosomoides_polygurus,,,,0-11,,
+Worms,Trichuris_muris,infects caecum,num,,0-200,,"Trichuris, TM"
+Worms,Taenia_sp,"infects liver, body cavity",num,,0-6,,"Taenia_martis, Taenia_taeniformis, Taenia, MART"
+Worms,Heterakis_sp,"infects caecum, colon",num,,0-50,,"Heterakis, HET"
+Worms,Mastophorus_muris,infects the stomach,num,,0-50,,
+Worms,Hymenolepis_sp,infects small intestine,num,,0-8,,"Hymenolepis_microstoma, Hymenolepis_diminuta, Hymenolepis_diminiuta, HM, HD"
+Worms,Catenotaenia_pusilla,infects small intestine,num,,0-7,,CP
+Worms,Heligmosomoides_polygurus,,num,,0-11,,
 Worms,Worms_presence,worms present or not present,logical,,T/F,,
 Eimeria Genotyping,n18S_Seq,"nuclear small subunit ribosomal DNA used as a marker for Eimeria Genotyping (phylogenetic analysis, ~1,500 bp)",chr,,positive / negative,,
 Eimeria Genotyping,COI_Seq,fragment of the mitochondrial cytochrome c oxi- dase subunit I gene(COI; ~800 bp) for Eimeria Genotyping (phylogenetic analysis),chr,,positive / negative,,
 Eimeria Genotyping,ORF470_Seq,apicoplast ORF470 (~800 bp) for Eimeria Genotyping (phylogenetic analysis),chr,,positive / negative,,
 Eimeria Genotyping,eimeriaSpecies,Eimeria Species determined through Genotyping approaches,chr,,"E_falciformis, E_ferrisi, Eimeria_alorani, Eimeria_falciformis, Eimeria_sp_Apodemus, Eimeria_vermiformis, Negative",,
 Gene Expression,B-actin,"Housekeeping Gene, 
-nonmuscle cytoskeletal actin,  involved in cell motility, structure and integrity",num,,19 - 31,,
-Gene Expression,CASP1,Caspase-1/Interleukin-1 converting enzyme is an evolutionarily conserved enzyme that proteolytically cleaves other proteins,num,,-25 - -13,,
-Gene Expression,CXCL9,binds to CXCR3 and primarily attracts activated T lymphocytes,num,,-24 - 0,,
-Gene Expression,CXCR3,important role in T cell trafficking and function,num,,-26 - -8,,
+nonmuscle cytoskeletal actin,  involved in cell motility, structure and integrity",num,,> 0,,
+Gene Expression,CASP1,Caspase-1/Interleukin-1 converting enzyme is an evolutionarily conserved enzyme that proteolytically cleaves other proteins,num,,<= 0,,
+Gene Expression,CXCL9,binds to CXCR3 and primarily attracts activated T lymphocytes,num,,<= 0,,
+Gene Expression,CXCR3,important role in T cell trafficking and function,num,,<= 0,,
 Gene Expression,GAPDH,"Housekeeping Gene, 
-enzyme for energy metabolism and the production of ATP and pyruvate",num,,2 - 26,,
-Gene Expression,IDO1,capable of modulating immune cell activation status and phenotype,num,,-24 - 2,,
-Gene Expression,IFNy,important activator of macrophages and inducer of major histocompatibility complex class II molecule expression,num,,-50 - 300,,
-Gene Expression,IL.10,"cytokine synthesis inhibitory factor, an anti-inflammatory cytokine",num,,-26 - -10,,IL10
-Gene Expression,IL.13,"produced by Th2 cells, natural killer T cell",num,,-26 - 0,,IL13
-Gene Expression,IL.17,pro-inflammatory cystine knot cytokine,num,,,,
-Gene Expression,IL1RN,interleukin-1 receptor antagonist,num,,-22 - -2,,
-Gene Expression,IL.6,acts as both a pro-inflammatory cytokine and an anti-inflammatory myokine,num,,-25 - -11,,IL-6
-Gene Expression,MPO,"most abundantly expressed in neutrophil granulocytes, and produces hypohalous acids to carry out their antimicrobial activit",num,,-26 - -4,,
-Gene Expression,MUC2,"Coats the epithelia of the intestines, airways, and other mucus membrane-containing organs",num,,-20 - 2,,
-Gene Expression,MUC5AC,Gel-forming glycoprotein of gastric and respiratory tract epithelia,num,,-24 - 2,,
-Gene Expression,MYD88,canonical adaptor for inflammatory signaling pathways downstream of members of the Toll-like receptor (TLR) and interleukin-1 (IL-1) receptor families,num,,-26 - 0,,
-Gene Expression,NCR1,"Natural cytotoxicity triggering receptor 1, may contribute to the increased efficiency of activated natural killer (NK) cells to mediate tumor cell lysis.",num,,-26 - -10,,
-Gene Expression,PPIB,"catalyzes the cis-trans isomerization of proline imidic peptide bonds, which allows it to regulate protein folding of type I collagen",num,,10-28,,
-Gene Expression,PRF1,"Pore-forming protein that plays a key role in secretory granule-dependent cell death, and in defense against virus-infected or neoplastic cells",num,,-24 - -6,,
-Gene Expression,SOCS1,SOCS-1 regulates responses to IL-12 in mice,num,,-24 - 0,,
-Gene Expression,TICAM1,"aka TRIF, cytosolic adaptor protein, plays a key role in the mammalian toll-like receptor-mediated signaling pathwa",num,,-26 - -4,,
-Gene Expression,TNF-a,inflammatory cytokine produced by macrophages/monocytes during acute inflammation,num,,-24 - -4,,
-FACS (Cell Counting),Treg,,num,,,,
-FACS (Cell Counting),CD4,,num,,,,
-FACS (Cell Counting),Treg17,,num,,,,
-FACS (Cell Counting),Th1,,num,,,,
-FACS (Cell Counting),Th17,,num,,,,
-FACS (Cell Counting),CD8,,num,,,,
-FACS (Cell Counting),Act-CD8,,num,,,,
-FACS (Cell Counting),IFNy-CD4,,num,,,,
-FACS (Cell Counting),IL17A-CD4,,num,,,,
-FACS (Cell Counting),IFNy_CD8,,num,,,,
-Cryptosporidium qPCR,Ct_mean,"Ct-value generated from Ileum wall DNA, qPCRs performed since 2016",num,,20 - 40 ,,
+enzyme for energy metabolism and the production of ATP and pyruvate",num,,> 0,,
+Gene Expression,IDO1,capable of modulating immune cell activation status and phenotype,num,,<= 0,,
+Gene Expression,IFNy,important activator of macrophages and inducer of major histocompatibility complex class II molecule expression,num,,-50 - 1000,double-check Lukes 2019 Immuno data for IFNy merge,
+Gene Expression,IL.10,"cytokine synthesis inhibitory factor, an anti-inflammatory cytokine",num,,<= 0,,IL10
+Gene Expression,IL.13,"produced by Th2 cells, natural killer T cell",num,,<= 0,,IL13
+Gene Expression,IL.17,pro-inflammatory cystine knot cytokine,num,,<= 0,,
+Gene Expression,IL1RN,interleukin-1 receptor antagonist,num,,<= 0,,
+Gene Expression,IL.6,acts as both a pro-inflammatory cytokine and an anti-inflammatory myokine,num,,<= 0,,IL-6
+Gene Expression,MPO,"most abundantly expressed in neutrophil granulocytes, and produces hypohalous acids to carry out their antimicrobial activit",num,,<= 0,,
+Gene Expression,MUC2,"Coats the epithelia of the intestines, airways, and other mucus membrane-containing organs",num,,<= 0,,
+Gene Expression,MUC5AC,Gel-forming glycoprotein of gastric and respiratory tract epithelia,num,,<= 0,,
+Gene Expression,MYD88,canonical adaptor for inflammatory signaling pathways downstream of members of the Toll-like receptor (TLR) and interleukin-1 (IL-1) receptor families,num,,<= 0,,
+Gene Expression,NCR1,"Natural cytotoxicity triggering receptor 1, may contribute to the increased efficiency of activated natural killer (NK) cells to mediate tumor cell lysis.",num,,<= 0,,
+Gene Expression,PPIB,"catalyzes the cis-trans isomerization of proline imidic peptide bonds, which allows it to regulate protein folding of type I collagen",num,,> 0,,
+Gene Expression,PRF1,"Pore-forming protein that plays a key role in secretory granule-dependent cell death, and in defense against virus-infected or neoplastic cells",num,,<= 0,,
+Gene Expression,SOCS1,SOCS-1 regulates responses to IL-12 in mice,num,,<= 0,,
+Gene Expression,TICAM1,"aka TRIF, cytosolic adaptor protein, plays a key role in the mammalian toll-like receptor-mediated signaling pathwa",num,,<= 0,,
+Gene Expression,TNF-a,inflammatory cytokine produced by macrophages/monocytes during acute inflammation,num,,<= 0,,
+FACS (Cell Counting),Treg,"Regulatory T cells (Tregs) are a specialized subpopulation of T cells that act to suppress immune response, thereby maintaining homeostasis and self-tolerance. It has been shown that Tregs are able to inhibit T cell proliferation and cytokine production and play a critical role in preventing autoimmunity",num,,0 - 70,,
+FACS (Cell Counting),CD4,"After activation and differentiation into distinct effector subtypes, CD4+T cells play a major role in mediating immune response through the secretion of specific cytokines. The CD4+T cells carry out multiple functions, ranging from activation of the cells of the innate immune system, B-lymphocytes, cytotoxic T cells, as well as nonimmune cells, and also play critical role in the suppression of immune reaction",num,,0 - 70,,
+FACS (Cell Counting),Treg17,control of Th17 responses and tissue protection during acute inflammation,num,,0 - 100,,
+FACS (Cell Counting),Th1,"Th1 T cells secrete IFN-γ, a signature cytokine that activates macrophages and DCs and thereby enhances their ability to kill intracellular pathogens and to present antigens to T lymphocytes. Th1 T cells can also secrete tumor necrosis factor (TNF), lymphotoxin, and IL-2, which contribute to antimicrobial defense as well. ",num,,0 - 50,,
+FACS (Cell Counting),Th17,Th17 cells are T helper cells which play an important role during inflammation and autoimmune disease,num,,0 - 70,,
+FACS (Cell Counting),CD8,"CD8+ T cells (often called cytotoxic T lymphocytes, or CTLs) are important for immune defense against intracellular pathogens",num,,0 - 45,,
+FACS (Cell Counting),Act_CD8,,num,,0 - 80,,
+FACS (Cell Counting),IFNy_CD4,,num,,0 - 35,,
+FACS (Cell Counting),IL17A_CD4,,num,,0 - 30,,
+FACS (Cell Counting),IFNy_CD8,,num,,0 - 100,,
+Cryptosporidium qPCR,Ct_mean,"Ct-value generated from Ileum wall DNA, qPCRs performed since 2016",num,,20 - 40,,
 Cryptosporidium qPCR,Oocyst_Predict,calculated with an oocyst prediction model that is based on known Standard-Curve DNA concentrations,num,,0 - 1x10^6,,
 Cryptosporidium qPCR,ILWE_DNA_Content_ng.microliter,mean DNA content measured with NanoDrop after Ileum wall tissue DNA-Extraction,num,ng/µL,0 - 1600,,
