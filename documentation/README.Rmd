@@ -1,3 +1,26 @@
+---
+title: "README-2.0"
+output:
+  html_document:
+    toc: yes
+    toc_float: yes
+    number_section: yes
+    fig_caption: true
+  pdf_document:
+    toc: yes
+  always_allow_html: true
+date: "`r format(Sys.time(), '%d %B %Y')`"
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(fig.align = 'center', echo = TRUE)
+```
+
+``` {r libraries-and-data, echo = F, message = F, warning = F}
+library(tidyverse)
+library(knitr)
+```
+
 # Storage and Curation of data generated from the HMHZ
 
 This repository is for storage, curation and documentation of all
@@ -5,13 +28,14 @@ relevant data on wild mice capture following laboratory assays
 including detection of _Eimeria_, _Cryptosporidium_, worms, gene
 expression, etc...
 
-# Structure:
+
 
 ## [data_input](https://github.com/derele/Mouse_Eimeria_Field/tree/master/data_input)
 All input data is kept together (can be merged by the identifier)
 _"Mouse_ID"_, other columns should not be repeated in input data
 tables. The columns are documented for the different categories of input 
 data as indicated in the documentation folder.
+
 
 
 ## [data_products](https://github.com/derele/Mouse_Eimeria_Field/tree/master/data_products)
@@ -38,14 +62,11 @@ older scripts are left here for inspiration for now. We might remove
 them.
 
 ## [documentation](https://github.com/derele/Mouse_Eimeria_Field/tree/master/documentation)
-[Main Documentation file](https://github.com/derele/Mouse_Eimeria_Field/blob/master/documentation/Documentation_MEF.csv) in csv format. New variables should be added continuously.
+Main Documentation file in csv format. New variables should be added continuously.
 
-- Assay: What kind of assay the variable is derived from
-- Variable: Name in data tables
-- Description: precise description of variable meaning
-- Type: Data type (numeric, logical, character)
-- Unit: if applicable
-- Values: for orientation
-- Correction needed: specifies that data in [SOTA](https://raw.githubusercontent.com/derele/Mouse_Eimeria_Field/master/data_products/SOTA_Data_Product.csv) may need some modification because of comma-errors or specific issues (date unification, different input across the years)
-- aka: outdated names
+``` {r Documentation-MEF, echo = F, message = F, warning = F, include = TRUE} 
 
+Docu_MEF <- read.csv("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Field/master/documentation/Documentation_MEF1.csv")
+kable(Docu_MEF[,1:7])
+
+```
