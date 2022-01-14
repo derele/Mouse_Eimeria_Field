@@ -446,6 +446,24 @@ Eflot2018$Feces_Weight <- Eflot2018$Feces
 colnames(Eflot2018)[colnames(Eflot2018)%in%oocyst.cols]
 Eflot2018 <- Eflot2018[colnames(Eflot2018)%in%c(basics,oocyst.cols)]
 
+
+## 2021
+Eflot2021 <- read.csv("data_input/HZ21_Oocysts.csv")
+Eflot2021 <- Eflot2021
+
+count.cols <- c("N_oocysts_sq1", "N_oocysts_sq2", "N_oocysts_sq3", "N_oocysts_sq4",
+                "N_oocysts_sq5", "N_oocysts_sq6","N_oocysts_sq7", "N_oocysts_sq8")
+
+Eflot2021$Ncells <- rowSums(!is.na(Eflot2021[, count.cols]))
+Eflot2021$OPG <- rowSums(Eflot2021[, count.cols])/Eflot2021$Ncells * 10000 / as.numeric(Eflot2021$Feces_g)
+
+### PROBLEM: how much PBS was used to dilute Eflot2021$PBS_dil_in_mL
+### <- 1? Or Eflot2021$PBS_dil_in_mL <- 0.1? What about the other NAs
+### in the table? We assume here for 2021 it has been 1ml
+
+Eflot2018
+
+
 #### 3.3. add 2018 qPCR Data ###################################################
 EqPCR2018 <- read.csv("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Field/master/data_input/Eimeria_detection/HZ18_qPCR.csv")
 colnames(EqPCR2018)[colnames(EqPCR2018)%in%"delta"] <- "delta_ct_cewe_MminusE"
@@ -469,8 +487,21 @@ EqPCR2019 <- EqPCR2019[colnames(EqPCR2019)%in%c(basics, EqPCR.cols)]
 #### Merge
 Detection18 <- merge(EimPCR, EqPCR2018)
 Detection18 <- merge(Detection18, Eflot2018)
-SOTA <- full_join(SOTA, Detection18) %>% arrange(Mouse_ID) %>% group_by(Mouse_ID) %>% fill(c(everything()), .direction = "downup") %>% ungroup() %>% distinct(Mouse_ID, .keep_all = T) 
-SOTA <- full_join(SOTA, EqPCR2019)   %>% arrange(Mouse_ID) %>% group_by(Mouse_ID) %>% fill(c(everything()), .direction = "downup") %>% ungroup() %>% distinct(Mouse_ID, .keep_all = T) 
+
+SOTA <- full_join(SOTA, Detection18) %>%
+    arrange(Mouse_ID) %>%
+    group_by(Mouse_ID) %>%
+    fill(c(everything()), .direction = "downup") %>%
+    ungroup() %>%
+    distinct(Mouse_ID, .keep_all = T) 
+
+SOTA <- full_join(SOTA, EqPCR2019)   %>%
+    arrange(Mouse_ID) %>%
+    group_by(Mouse_ID) %>%
+    fill(c(everything()), .direction = "downup") %>%
+    ungroup() %>%
+    distinct(Mouse_ID, .keep_all = T)
+
 rm(Eflot2018)
 rm(EqPCR2018)
 rm(EimPCR)
@@ -758,6 +789,11 @@ SOTA <- SOTA[colnames(SOTA) %in% c(basics,
                                    #initial.worms.cols,
                                    final.worms.cols)]
 colnames(SOTA)
+
+
+
+
+
 write.csv(SOTA, "data_products/SOTA_Data_Product.csv", row.names=FALSE)
 
 

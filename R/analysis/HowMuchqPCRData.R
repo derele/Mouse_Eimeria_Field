@@ -12,3 +12,15 @@ sota  %>% group_by(Year) %>%
 
 
 sota
+
+
+sota  %>% group_by(Year) %>%
+    summarize(n = n(),              
+              OOn.na = sum(is.na(OPG)),
+              OOn.Nna = sum(!is.na(OPG)),
+              FEC.Nna = sum(!is.na(Feces_Weight)), 
+              n.MC = sum(!is.na(MC.Eimeria)),
+              mD = mean(delta_ct_cewe_MminusE, na.rm=TRUE),
+              mDINF = mean(delta_ct_cewe_MminusE[as.logical(MC.Eimeria)], na.rm=TRUE))
+
+sota
