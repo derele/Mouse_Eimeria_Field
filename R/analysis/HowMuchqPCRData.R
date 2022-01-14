@@ -11,3 +11,4 @@ sota  %>% group_by(Year) %>%
               mDINF = mean(delta_ct_cewe_MminusE[as.logical(MC.Eimeria)], na.rm=TRUE))
 
 
+sota
