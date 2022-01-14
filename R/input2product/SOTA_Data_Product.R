@@ -758,7 +758,8 @@ SOTA <- SOTA[colnames(SOTA) %in% c(basics,
                                    #initial.worms.cols,
                                    final.worms.cols)]
 colnames(SOTA)
-write.csv(SOTA, "data_products/SOTA_Data_Product.csv")
+write.csv(SOTA, "data_products/SOTA_Data_Product.csv", row.names=FALSE)
 
 
 #SOTA %>% group_by(Year, Mouse_ID) %>% vis_miss()
+
