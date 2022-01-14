@@ -1,0 +1,134 @@
+Assay,Variable,Description,Type,Unit,Values,Correction_needed,aka
+Eimeria qPCR,delta_ct_ilwe_MminusE,Threshold cycle for mouse minus Eimeria in Ileum tissue. Only E. vermiformis is (at low pervalence in Ileum tissue) and we therfore don't obtain this data-type for all years.,num,,0-40,,
+Eimeria qPCR,delta_ct_cewe_MminusE,threshold cycle for mouse minus Eimeria in Caecume tissue. E. ferrisi and E. falcifromis are detected here. We should have this (as coprehensively as possible) for every year,num,,0-40,,
+Eimeria qPCR,MC.Eimeria,This was established in 2018 as an improvement over the '> -5 delta ct rule' for identification of Eimeria -positive qPCRs. Melting curves have to show a drastic drop at XX°C to indicate melting of a proper Eimeria COI amplification product. It might be added where possible for per 2018 data post-hoc if melting curves exist for a review of raw data).,logical,,T/F,,
+Eimeria qPCR,Ct.Eimeria,"Started in 2018, used to generate delta_ct_cewe_MminusE",num,,20-38,need to add raw data from Svenja,
+Eimeria qPCR,Ct.Mus,"Started in 2018, used to generate delta_ct_cewe_MminusE",num,,19-28,need to add raw data from Svenja,
+Oocyst Counting,counter,Person who counted,chr,,,,
+Oocyst Counting,Feces_Weight,amount of feces used in flotation,num,g,,,"Feces_g, Feces"
+Oocyst Counting,Date_count,Date counted,Date,,,Unify Dates,
+Oocyst Counting,N_oocysts_sq1 - sq8,individual count for each single square on the neubauer chamber (up to 8),num,,,,
+Oocyst Counting,mean_neubauer,mean of the 8 squares,num,,,,
+Oocyst Counting,PBS_dil_in_mL,volume of PBS in which sample was diluted,num,mL,,,
+Oocyst Counting,Ncells,"number of neubauer ""cells"" (squares) counted",num,,1-8,,
+Oocyst Counting,OPG,oocysts per gram feces,num,oocysts/g,,,
+Basics,Mouse_ID,"Sample Identification, chronologically named AA_XXXX since 2016, older samples (pre 2016) have the abbreviation SK_XXXX. Non-Mus rodents are indicated with ZZ_XXXX ",chr,,,,
+Basics,Address,Czech friendly address - full location with street name and Zip code,chr,,,,
+Basics,Sex,Male or Female,chr,,M/F,,
+Basics,Longitude,specifies the east–west position of Trap Location,num,,11 - 22,,
+Basics,Latitude,specifies the north-south position of Trap Location,num,,57.15 - 57.78,,
+Basics,Year,Trapping Year,num,,2010 - ,,year
+Basics,HI,"scaled: the extent of hybridization in each mouse can be estimated by the hybrid index, which is calculated as a proportion of 14 markers present in Mmm with different weights on diploid genes",num,,0-1,,
+Mouse Genotyping,HI_NLoci,"not scaled: the extent of hybridization in each mouse can be estimated by the hybrid index, which is calculated as a proportion of 14 markers present in Mmm with different weights on diploid genes",num,,1-14,,
+Mouse Genotyping,mtBamH,"Mouse Genotyping Marker: mitochondrial marker, a restriction site in the Nd1-Gene",chr,,"m, d",,
+Mouse Genotyping,YNPAR,"Mouse Genotyping Marker, Y-Chromosomal",chr,,"m, d",,
+Mouse Genotyping,X332,Mouse Genotyping Marker,chr,,"m, d, mm, dd, dm",X,
+Mouse Genotyping,X347,Mouse Genotyping Marker,chr,,"m, d, mm, dd, dm",X,
+Mouse Genotyping,X65,Mouse Genotyping Marker,chr,,"m, d, mm, dd, dm",X,
+Mouse Genotyping,Tsx,Mouse Genotyping Marker: Testis specific X-linked gene,chr,,"m, d, mm, dd, dm",X,
+Mouse Genotyping,Btk,"Mouse Genotyping Marker: Bruton agammaglobulinemia tyrosine kinase, X-linked immune deficiency",chr,,"m, d, mm, dd, dm",X,
+Mouse Genotyping,Syap1,Mouse Genotyping Marker: synapse associated protein 1 on X-Chromosome,chr,,"m, d, mm, dd, dm",X,
+Mouse Genotyping,Es1,Mouse Genotyping Marker: autosomal marker,num,,"94, 100, 94/100",X,
+Mouse Genotyping,Gpd1,Mouse Genotyping Marker: autosomal marker (glycerol-3-phosphate dehydrogenase 1 on Chr 15),num,,"95, 100, 95/100",X,
+Mouse Genotyping,Idh1,Mouse Genotyping Marker: autosomal marker (isocitrate dehydrogenase 1 (NADP+) on Chr 1),num,,"100, 100/125, 100/155, 120, 125, 125/155, 155",X,
+Mouse Genotyping,Mpi,Mouse Genotyping Marker: autosomal marker (mannose phosphate isomerase on Chr 9),num,,"100, 100/120, 120, 95/100",X,
+Mouse Genotyping,Np,Mouse Genotyping Marker: autosomal marker,num,,"70, 90, 100, 110, 125, 70/90, 90/100, 100/110",X,
+Mouse Genotyping,Sod1,Mouse Genotyping Marker: autosomal marker (superoxide dismutase 1 on Chr 16),num,,"80, 100, 120, 80/100",X,
+Mouse Genotyping,Es1C,Mouse Genotyping Marker,num,,"mm, dd, dm",X,
+Mouse Genotyping,Gpd1C,Mouse Genotyping Marker,chr,,"mm, dd, dm",X,
+Mouse Genotyping,Idh1C,Mouse Genotyping Marker,chr,,"mm, dd, dm",X,
+Mouse Genotyping,MpiC,Mouse Genotyping Marker,chr,,"mm, dd, dm",X,
+Mouse Genotyping,NpC,Mouse Genotyping Marker,chr,,"mm, dd, dm",X,
+Mouse Genotyping,Sod1C,Mouse Genotyping Marker,chr,,"mm, dd, dm",X,
+Mouse Genotyping,Zfy2,"Mouse Genotyping Marker, Y-Chromosomal, zinc finger protein 2",chr,,"m, d",X,
+Mouse Genotyping,Y,Mouse Genotyping Marker,chr,,"m, d",X,
+Mouse Genotyping,Region,"Trapping Location characterized as either domesticus, musculus or hybrid zone",chr,,"dom, DyM, mus",,REGion
+Dissection,Body_Weight,body weight of mouse,num,g,3 - 45,,"Body_weight, BW"
+Dissection,Body_Length,"body length, determined from nose to anus",num,cm,45 - 105,,"Body_length, L"
+Dissection,Tail_Length,"tail length, determined from anus to tail tip",num,cm,10 - 110,,"Tail_length, LCd"
+Dissection,Status,"status of mouse (juvenile, adult, pregnant)",chr,,"juvenile, adult, pregnant, post partum",,
+Dissection,Spleen,Spleen weight,num,g,0 - 450,X,
+Dissection,Left_Testis,Left Testicle weight,num,g,0 - 90,X,"Testis_mass, Left_Testis_mass"
+Dissection,Right_Testis,Right Testicle weight,num,g,0 - 90,X,"Testis_mass, Right_Testis_mass"
+Dissection,Seminal_Vesicles_Weight,Seminal Vesicles weight,num,g,0 - 350,X,"SemVes, Seminal.vesicle.weight, Seminal_Vesicles_Weight"
+Dissection,Left_Epididymis,Left Epididymis weight,num,g,0 - 50,X,"Left_epididymis, Left.epididymis.weight"
+Dissection,Right_Ovarium_Weight,Right ovarium weight,num,g,0 - 6,X,"Right_ovarium, Right.ovarium.weight"
+Dissection,Left_Ovarium_Weight,Left ovarium weight,num,g,0 - 45,X,"Left_ovarium, Left.ovarium.weight"
+Dissection,Left_Embryo,number of embryos in left uterus horn,num,,1 - 6,,Embryo_Left
+Dissection,Right_Embryo,number of embryos in right uterus horn,num,,1 - 6,,Embryo_Right
+Dissection,Fleas,"logical condition, fleas visible",logical,,T/F,,Flea
+Dissection,Ticks,"logical condition, ticks visible",logical,,T/F,,
+Dissection,Ectoparasites_Logical,"Mouse had Fleas, Ticks, both, none",logical,,T/F,,
+Dissection,Trap_Date,Trapping Date,,,,Unify Dates,Capture
+Dissection,Dissection_Date,Dissection Date,,,,Unify Dates,Dissection
+Dissection,Host,Rodent species,chr,,"Apodemus_flavicollis, Microtus_arvalis, Myodes_glareolus",set all other to mus musculus,
+Dissection_Tissue,SPL1,"Spleen tissue taken for CZ, Alcohol",num,,1,better logical?,
+Dissection_Tissue,SPL2,"Spleen tissue taken for EH, Cryo",num,,1,better logical?,
+Dissection_Tissue,ELFO,"Kidney and Leg muscle tissue taken for CZ, Cryo",num,,1,better logical?,
+Dissection_Tissue,LIV,"Liver tissue taken for CZ, Alcohol",num,,2,better logical?,
+Dissection_Tissue,KID,"Liver tissue taken for EH, Alcohol",num,,1,better logical?,
+Dissection_Tissue,LUN,"Lung tissue taken for CZ, Cryo",num,,1,better logical?,
+Dissection_Tissue,SG,"Salivary glands taken for CZ, Cryo",num,,1,better logical?,
+Dissection_Tissue,MES,"Mesentery tissue taken for EH, Cryo",num,,1,better logical?,
+Dissection_Tissue,COWE,"Colon wall tissue taken for EH, Cryo",num,,1,better logical?,
+Dissection_Tissue,COCE,"Colon content taken for EH, Cryo",num,,1,better logical?,
+Dissection_Tissue,COCE2,"Colon content taken for VHJD, Cryo",num,,1,better logical?,
+Dissection_Tissue,CEWE,"Cecum wall tissue taken for EH, Cryo and Formalin",num,,2,better logical?,
+Dissection_Tissue,CECE,"Cecum content taken for EH, Cryo",num,,1,better logical?,
+Dissection_Tissue,ILWE,"Ileum wall tissue taken for EH, Cryo and Formalin",num,,2,better logical?,
+Dissection_Tissue,SICE,"Small intestine content taken for EH, Cryo",num,,1,better logical?,
+Dissection_Tissue,WEOH,Worms in Ethanol,num,,1,better logical?,
+Dissection_Tissue,WFOR,Worms in Formalin,num,,1,better logical?,
+Dissection_Tissue,FEC,"Feces taken for EH, Cryo",num,,1,better logical?,
+Dissection_Tissue,T/O,"Testis or ovaries taken for CZ, Cryo",num,,1,better logical?,
+Worms,Aspiculuris_sp,"infects caecum, colon",num,,0-500,,"Aspiculuris, Aspiculuris_Syphacia, ASP"
+Worms,Syphacia_sp,"infects caecum, colon",num,,0-500,,"Syphacia, Aspiculuris_Syphacia, SYP"
+Worms,Trichuris_muris,infects caecum,num,,0-200,,"Trichuris, TM"
+Worms,Taenia_sp,"infects liver, body cavity",num,,0-6,,"Taenia_martis, Taenia_taeniformis, Taenia, MART"
+Worms,Heterakis_sp,"infects caecum, colon",num,,0-50,,"Heterakis, HET"
+Worms,Mastophorus_muris,infects the stomach,num,,0-50,,
+Worms,Hymenolepis_sp,infects small intestine,num,,0-8,,"Hymenolepis_microstoma, Hymenolepis_diminuta, Hymenolepis_diminiuta, HM, HD"
+Worms,Catenotaenia_pusilla,infects small intestine,num,,0-7,,CP
+Worms,Heligmosomoides_polygurus,,num,,0-11,,
+Worms,Worms_presence,worms present or not present,logical,,T/F,,
+Eimeria Genotyping,n18S_Seq,"nuclear small subunit ribosomal DNA used as a marker for Eimeria Genotyping (phylogenetic analysis, ~1,500 bp)",chr,,positive / negative,,
+Eimeria Genotyping,COI_Seq,fragment of the mitochondrial cytochrome c oxi- dase subunit I gene(COI; ~800 bp) for Eimeria Genotyping (phylogenetic analysis),chr,,positive / negative,,
+Eimeria Genotyping,ORF470_Seq,apicoplast ORF470 (~800 bp) for Eimeria Genotyping (phylogenetic analysis),chr,,positive / negative,,
+Eimeria Genotyping,eimeriaSpecies,Eimeria Species determined through Genotyping approaches,chr,,"E_falciformis, E_ferrisi, Eimeria_alorani, Eimeria_falciformis, Eimeria_sp_Apodemus, Eimeria_vermiformis, Negative",,
+Gene Expression,B-actin,"Housekeeping Gene, 
+nonmuscle cytoskeletal actin,  involved in cell motility, structure and integrity",num,,> 0,,
+Gene Expression,CASP1,Caspase-1/Interleukin-1 converting enzyme is an evolutionarily conserved enzyme that proteolytically cleaves other proteins,num,,<= 0,,
+Gene Expression,CXCL9,binds to CXCR3 and primarily attracts activated T lymphocytes,num,,<= 0,,
+Gene Expression,CXCR3,important role in T cell trafficking and function,num,,<= 0,,
+Gene Expression,GAPDH,"Housekeeping Gene, 
+enzyme for energy metabolism and the production of ATP and pyruvate",num,,> 0,,
+Gene Expression,IDO1,capable of modulating immune cell activation status and phenotype,num,,<= 0,,
+Gene Expression,IFNy,important activator of macrophages and inducer of major histocompatibility complex class II molecule expression,num,,-50 - 1000,double-check Lukes 2019 Immuno data for IFNy merge,
+Gene Expression,IL.10,"cytokine synthesis inhibitory factor, an anti-inflammatory cytokine",num,,<= 0,,IL10
+Gene Expression,IL.13,"produced by Th2 cells, natural killer T cell",num,,<= 0,,IL13
+Gene Expression,IL.17,pro-inflammatory cystine knot cytokine,num,,<= 0,,
+Gene Expression,IL1RN,interleukin-1 receptor antagonist,num,,<= 0,,
+Gene Expression,IL.6,acts as both a pro-inflammatory cytokine and an anti-inflammatory myokine,num,,<= 0,,IL-6
+Gene Expression,MPO,"most abundantly expressed in neutrophil granulocytes, and produces hypohalous acids to carry out their antimicrobial activit",num,,<= 0,,
+Gene Expression,MUC2,"Coats the epithelia of the intestines, airways, and other mucus membrane-containing organs",num,,<= 0,,
+Gene Expression,MUC5AC,Gel-forming glycoprotein of gastric and respiratory tract epithelia,num,,<= 0,,
+Gene Expression,MYD88,canonical adaptor for inflammatory signaling pathways downstream of members of the Toll-like receptor (TLR) and interleukin-1 (IL-1) receptor families,num,,<= 0,,
+Gene Expression,NCR1,"Natural cytotoxicity triggering receptor 1, may contribute to the increased efficiency of activated natural killer (NK) cells to mediate tumor cell lysis.",num,,<= 0,,
+Gene Expression,PPIB,"catalyzes the cis-trans isomerization of proline imidic peptide bonds, which allows it to regulate protein folding of type I collagen",num,,> 0,,
+Gene Expression,PRF1,"Pore-forming protein that plays a key role in secretory granule-dependent cell death, and in defense against virus-infected or neoplastic cells",num,,<= 0,,
+Gene Expression,SOCS1,SOCS-1 regulates responses to IL-12 in mice,num,,<= 0,,
+Gene Expression,TICAM1,"aka TRIF, cytosolic adaptor protein, plays a key role in the mammalian toll-like receptor-mediated signaling pathwa",num,,<= 0,,
+Gene Expression,TNF-a,inflammatory cytokine produced by macrophages/monocytes during acute inflammation,num,,<= 0,,
+FACS (Cell Counting),Treg,"Regulatory T cells (Tregs) are a specialized subpopulation of T cells that act to suppress immune response, thereby maintaining homeostasis and self-tolerance. It has been shown that Tregs are able to inhibit T cell proliferation and cytokine production and play a critical role in preventing autoimmunity",num,,0 - 70,,
+FACS (Cell Counting),CD4,"After activation and differentiation into distinct effector subtypes, CD4+T cells play a major role in mediating immune response through the secretion of specific cytokines. The CD4+T cells carry out multiple functions, ranging from activation of the cells of the innate immune system, B-lymphocytes, cytotoxic T cells, as well as nonimmune cells, and also play critical role in the suppression of immune reaction",num,,0 - 70,,
+FACS (Cell Counting),Treg17,control of Th17 responses and tissue protection during acute inflammation,num,,0 - 100,,
+FACS (Cell Counting),Th1,"Th1 T cells secrete IFN-γ, a signature cytokine that activates macrophages and DCs and thereby enhances their ability to kill intracellular pathogens and to present antigens to T lymphocytes. Th1 T cells can also secrete tumor necrosis factor (TNF), lymphotoxin, and IL-2, which contribute to antimicrobial defense as well. ",num,,0 - 50,,
+FACS (Cell Counting),Th17,Th17 cells are T helper cells which play an important role during inflammation and autoimmune disease,num,,0 - 70,,
+FACS (Cell Counting),CD8,"CD8+ T cells (often called cytotoxic T lymphocytes, or CTLs) are important for immune defense against intracellular pathogens",num,,0 - 45,,
+FACS (Cell Counting),Act_CD8,,num,,0 - 80,,
+FACS (Cell Counting),IFNy_CD4,,num,,0 - 35,,
+FACS (Cell Counting),IL17A_CD4,,num,,0 - 30,,
+FACS (Cell Counting),IFNy_CD8,,num,,0 - 100,,
+Cryptosporidium qPCR,Ct_mean,"Ct-value generated from Ileum wall DNA, qPCRs performed since 2016",num,,20 - 40,,
+Cryptosporidium qPCR,Oocyst_Predict,calculated with an oocyst prediction model that is based on known Standard-Curve DNA concentrations,num,,0 - 1x10^6,,
+Cryptosporidium qPCR,ILWE_DNA_Content_ng.microliter,mean DNA content measured with NanoDrop after Ileum wall tissue DNA-Extraction,num,ng/µL,0 - 1600,,
