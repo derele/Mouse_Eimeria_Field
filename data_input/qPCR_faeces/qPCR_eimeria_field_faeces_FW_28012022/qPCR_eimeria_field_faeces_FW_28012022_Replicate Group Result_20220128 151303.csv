@@ -1,0 +1,36 @@
+# File Name: qPCR_eimeria_field_faeces_FW_28012022.eds
+# Comment: 
+# Operator: DEFAULT
+# Barcode: 
+# Instrument Type: QuantStudio™ 1 System
+# Block Type: 96-Well 0.2-mL Block
+# Instrument Name: 2721220100840
+# Instrument Serial Number: 2721220100840
+# Heated Cover Serial Number: 
+# Block Serial Number: 
+# Run Start Date/Time: 2022-01-28 02:33:23 PM UTC
+# Run End Date/Time: 2022-01-28 03:54:21 PM UTC
+# Run Duration: 80 minutes 58 seconds
+# Sample Volume: 20.0
+# Cover Temperature: 105.0
+# Passive Reference: ROX
+# PCR Stage/Step Number: Stage 2 Step 3
+# Melt Stage Number: 3
+# Quantification Cycle Method: CT
+# Analysis Date/Time: 2022-01-28 03:12:47 PM UTC
+# Software Name and Version: Design & Analysis Software v2.6.1
+# Plugin Name and Version: Primary Analysis v1.7.0, Relative Quantification v1.5.0
+# Exported By: guest
+# Exported On: 2022-01-28 03:13:03 PM UTC
+"Sample","Target","Number of Replicates","Quantity","Number of Cqs","Cq Mean","Cq SD","Cq SE","Biogroup"
+"AA866","Eim","3","-","0","31.266530246395536","0.1151810372375788","0.06649980285465644",
+"AA872","Eim","3","-","0","27.625868062163466","0.14642739539498048","0.08453989614802776",
+"AA885","Eim","3","-","0","18.36649398957172","0.10568395210285751","0.0610166581956083",
+"AA899","Eim","3","-","0","32.53362785894311","0.06498764291414105","0.03752063313047861",
+"AA904","Eim","3","-","0","31.165742054231345","0.2748417877001628","0.158679980113247",
+"AA915","Eim","3","-","0","31.66510163258381","0.19478436802688356","0.11245880731425237",
+"AA930","Eim","3","-","0","31.693169296052897","0.23000771454702654","0.1327950159094164",
+"AA944","Eim","3","-","0","32.14400274015371","0.5460897944548149","0.31528508983019476",
+"AA954","Eim","3","-","0","29.90551677742664","0.1946429002074246","0.11237713083060608",
+"AA822.2","Eim","3","-","0","21.981113456509945","0.1071557623855711","0.06186640825852906",
+"NTC","Eim","3","-","0","34.594090255792416","0.06085768505561698","0.03513620084911793",
