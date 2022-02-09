@@ -1,0 +1,14 @@
+The qPCR repository includes all the files as downloaded and exported from thermo fischer cloud. Each file contatains several files from each qPCR plate.
+
+For the analysis purposes, I have created a new repository in this repository called Results.
+
+There you will find another repository called Results_files, which includes copies of each only the xlsx file results from each plate we ran. 
+
+In the Results repository you will also find a file called: Filenames_qpcr_results.csv
+
+This is a data frame which includes each name of the xlsx file with the results. Please follow this schema to add xlsx files. 
+
+The data are being used in the script: Analysis_qPCR_Data_faeces.R, located in https://github.com/derele/Mouse_Eimeria_Field/blob/master/R/analysis/Analysis_qPCR_Data_faeces.R
+
+Finally, the script produces the data product (a summary table of all the qPCR results data frames) qPCR_faeces_2022, which is in turn located in: 
+https://github.com/derele/Mouse_Eimeria_Field/tree/master/data_products
