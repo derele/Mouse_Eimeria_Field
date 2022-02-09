@@ -20,7 +20,8 @@ NT_list <- as.list(NT$qPCR.Results.file.names)
 read_qPCR_file <- function(x) {
   setwd("~/GitHub/Mouse_Eimeria_Field/data_input/qPCR_faeces/Results/Results_files")
   df1 <- read.xlsx(x, sheetIndex = 1)
-  #remove unecessary columns of the data frame
+  #remove unecessary rows of the data frame
+  #everything before actual data
   df1 <- df1 %>%
     filter(!row_number() %in% c(1:23))
   #change the column names to the names of the first row
@@ -28,6 +29,7 @@ read_qPCR_file <- function(x) {
   #Now remove the first row
   df1 <- df1 %>% filter(!row_number() %in% 1)
 }
+
 
 #apply the function you created in the last step to each of the elements (names of files)
 #of the list NT_list 
@@ -43,3 +45,4 @@ setwd("~/GitHub/Mouse_Eimeria_Field")
 
 #write the data frame in a csv file 
 write.csv(df_results, "data_products/qPCR_faeces_2022", row.names=FALSE)
+
