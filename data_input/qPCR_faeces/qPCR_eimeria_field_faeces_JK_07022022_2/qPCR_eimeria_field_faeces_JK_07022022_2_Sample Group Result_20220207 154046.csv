@@ -1,0 +1,25 @@
+# File Name: qPCR_eimeria_field_faeces_JK_07022022_2.eds
+# Comment: 
+# Operator: DEFAULT
+# Barcode: 
+# Instrument Type: QuantStudio™ 1 System
+# Block Type: 96-Well 0.2-mL Block
+# Instrument Name: 2721220100840
+# Instrument Serial Number: 2721220100840
+# Heated Cover Serial Number: 
+# Block Serial Number: 
+# Run Start Date/Time: 2022-02-07 01:32:05 PM UTC
+# Run End Date/Time: 2022-02-07 02:51:33 PM UTC
+# Run Duration: 79 minutes 27 seconds
+# Sample Volume: 20.0
+# Cover Temperature: 105.0
+# Passive Reference: ROX
+# PCR Stage/Step Number: Stage 2 Step 3
+# Melt Stage Number: 3
+# Quantification Cycle Method: CT
+# Analysis Date/Time: 2022-02-07 03:40:32 PM UTC
+# Software Name and Version: Design & Analysis Software v2.6.1
+# Plugin Name and Version: Primary Analysis v1.7.0, Relative Quantification v1.5.0
+# Exported By: guest
+# Exported On: 2022-02-07 03:40:46 PM UTC
+"Biological/Sample Group","Target","EqCq Mean","Adjusted EqCq Mean","Delta EqCq Mean","Delta EqCq SD","Delta EqCq SE","Delta Delta EqCq","Rq","Rq Min","Rq Max"
