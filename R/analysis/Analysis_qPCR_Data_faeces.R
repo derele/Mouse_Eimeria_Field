@@ -8,7 +8,7 @@ library(janitor)
 
 
 #1 change location to where the qPCR data files are
-setwd("/localstorage/fay/GitHub/Mouse_Eimeria_Field/data_input/qPCR_faeces/Results/Results_files")
+setwd("~/GitHub/Mouse_Eimeria_Field/data_input/qPCR_faeces/Results/Results_files")
 
 #read the table whith the names of each file, call it NT (= Name table)
 NT <- read.csv("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Field/master/data_input/qPCR_faeces/Results/Filenames_qpcr_results.csv")
