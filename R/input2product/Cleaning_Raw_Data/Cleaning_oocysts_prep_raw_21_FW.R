@@ -74,6 +74,7 @@ HZ21_oocysts <- HZ21_oocysts %>%
                     (PBS_dil_in_mL / (0.0001 * Ncells))) 
          / Feces_Weight)
 
+typeof(sota$OPG)
 
 #create new column to calculate the mean neubauer
 HZ21_oocysts <- HZ21_oocysts %>% 
