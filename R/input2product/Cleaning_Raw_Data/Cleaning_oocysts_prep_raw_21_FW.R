@@ -10,7 +10,7 @@ sota <- read.csv("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Field/m
 basics          <- c("Mouse_ID", "Address", "Sex", "Longitude", 
                      "Latitude", "Year", "HI", "HI_NLoci")
 
-oocyst.cols     <- c("counter", "Feces_Weight", "Date_count", "N_oocysts_sq1",
+oocyst.cols     <- c("counter", "Feces_Weight", "c", "N_oocysts_sq1",
                      "N_oocysts_sq2", "N_oocysts_sq3",  "N_oocysts_sq4",
                      "N_oocysts_sq5", "N_oocysts_sq6", "N_oocysts_sq7",
                      "N_oocysts_sq8", "mean_neubauer", "PBS_dil_in_mL", 
@@ -43,6 +43,9 @@ HZ21_oocysts <- HZ21_oocysts %>% dplyr::rename(Year = year)
 #in sota dates are month year 
 HZ21_oocysts$date_count[grep("11/*.", HZ21_oocysts$date_count)] <- "November2021"
 HZ21_oocysts$date_count[grep("12/*.", HZ21_oocysts$date_count)] <- "December2021"
+
+#date_count should be Date_count
+HZ21_oocysts <- HZ21_oocysts %>% dplyr::rename(Date_count = date_count)
 
 #column ncells is incorrectly labelled
 typeof(HZ21_oocysts$NCells)
@@ -83,3 +86,4 @@ HZ21_oocysts <- HZ21_oocysts %>% select(-N_oocysts_all_sq)
 #write the cleaned table in the repository
 
 write.csv(HZ21_oocysts, "Mouse_Eimeria_Field/data_input/Eimeria_detection/HZ21_Oocysts_cleaned.csv", row.names=FALSE)
+
