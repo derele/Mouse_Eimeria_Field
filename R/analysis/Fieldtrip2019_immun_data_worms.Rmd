@@ -1,0 +1,58 @@
+---
+title: "Fieldtrip2019_immune_data_worms"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Immune data from 2019 Field trip
+
+Here are the data produced from the collaboration between the immunology FU and our group. I will be cleaning the data, reproducing the analysis done by fu and then followingly reproducing the results with the parasite Eimeria instead of worms.
+
+#### Loading and cleaning the data
+Libraries that I will need: 
+```{r, echo=FALSE}
+library(tidyverse)
+library(tidyr)
+library(readxl)
+library(dplyr)
+library(assertive)
+library(stringr)
+library(ggplot2)
+```
+Loading the data:
+ID: Immune Data data frame
+```{r, echo=FALSE}
+ID <- read_excel("Mouse_Eimeria_Field/data_input/Fieldtrip2019datasheet_Hongwei20211122_edit_Fay.xlsx", sheet = 1)
+```
+Start cleaning:
+```{r pressure, echo=FALSE}
+# Start with viewing the structure of your data
+glimpse(ID)
+summary(ID)
+```
+Now go on with the cleaning
+**1.Lines Spaces**
+**2. Type of columns**
+```{r}
+assert_is_numeric()
+bike_share_rides <- bike_share_rides %>%
+  # Remove 'minutes' from duration: duration_trimmed
+  mutate(duration_trimmed = str_remove(duration, "minutes"),
+         # Convert duration_trimmed to numeric: duration_mins
+         duration_mins = as.numeric(duration_trimmed))
+```
+**3. What about the ranges of each column? **
+```{r}
+# Create breaks
+breaks <- c(min(bike_share_rides$duration_min), 0, 1440, max(bike_share_rides$duration_min))
+
+# Create a histogram of duration_min
+ggplot(bike_share_rides, aes(duration_min)) +
+  geom_histogram(breaks = breaks)
+```
+
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
