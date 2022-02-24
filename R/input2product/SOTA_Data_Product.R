@@ -767,12 +767,6 @@ rm(Worms21)
     ## Worms Presence
 SOTA <- SOTA %>% mutate(Worms_presence = case_when(Aspiculuris_sp | Trichuris_muris | Taenia_sp | Heligmosomoides_polygurus | Heterakis_sp | Mastophorus_muris | Hymenolepis_sp | Catenotaenia_pusilla > 0 ~ T))
 
-
-
-
-
-
-
  
 #### 7. SELECT NEEDED COLUMNS ##################################################
 SOTA <- SOTA[colnames(SOTA) %in% c(basics,
@@ -791,11 +785,15 @@ SOTA <- SOTA[colnames(SOTA) %in% c(basics,
 colnames(SOTA)
 
 
+### Field Trip 2021
+#add 2021 oocyst count data 
+#load the data
+Oocyst_2021 <- read.csv("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Field/master/data_input/Eimeria_detection/HZ21_Oocysts_cleaned.csv")
 
-
+#data cleaning was done in : Mouse_Eimeria_Field/R/input2product/Cleaning_Raw_Data/Cleaning_oocysts_prep_raw_21_FW.R
+SOTA <- SOTA %>% left_join(Oocyst_2021, by = intersect(colnames(SOTA), colnames(Oocyst_2021)))
 
 write.csv(SOTA, "data_products/SOTA_Data_Product.csv", row.names=FALSE)
 
 
-#SOTA %>% group_by(Year, Mouse_ID) %>% vis_miss()
 

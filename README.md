@@ -49,3 +49,5 @@ them.
 - Correction needed: specifies that data in [SOTA](https://raw.githubusercontent.com/derele/Mouse_Eimeria_Field/master/data_products/SOTA_Data_Product.csv) may need some modification because of comma-errors or specific issues (date unification, different input across the years)
 - aka: outdated names
 
+## Freezer Samples (-80)
+[Here](https://docs.google.com/spreadsheets/d/1AqSXkeK1bVVAKrHtJ3BtzcNf---XHzShCdP6IQAZI_Y/edit?usp=sharing) you can find the link to all freezer samples. If you take boxes upstairs to the -20 freezer, please adjust the sheet accordingly, so we are always up to date!
