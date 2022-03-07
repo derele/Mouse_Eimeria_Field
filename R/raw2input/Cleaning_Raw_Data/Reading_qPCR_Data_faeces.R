@@ -2,23 +2,28 @@ library(xlsx)
 library(tidyr)
 library(dplyr)
 library(janitor)
+library(readr)
 
 #creating script to read all the results file produced by the programm QuantStudio 1
 #the result files are located at: GitHub/Mouse_Eimeria_Field/data_input/qPCR_faeces/Results
 
-
-#1 change location to where the qPCR data files are
-setwd("~/GitHub/Mouse_Eimeria_Field/data_input/qPCR_faeces/Results/Results_files")
+#change back to the github repository (Change to where your github repository is located)
+setwd("~/Documents/GitHub/")
+#1 change the current working directory to the location where the qPCR data files are
+setwd("Mouse_Eimeria_Field/data_input/qPCR_faeces/Results/Results_files/")
 
 #read the table whith the names of each file, call it NT (= Name table)
 NT <- read.csv("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Field/master/data_input/qPCR_faeces/Results/Filenames_qpcr_results.csv")
 
-
+#create a list out of the names of each excel file
 NT_list <- as.list(NT$qPCR.Results.file.names)
+
+#change back to the github repository (Change to where your github repository is located)
+setwd("~/Documents/GitHub/")
 
 #write a function to specify how to read the qPCR files
 read_qPCR_file <- function(x) {
-  setwd("~/GitHub/Mouse_Eimeria_Field/data_input/qPCR_faeces/Results/Results_files")
+  setwd("Mouse_Eimeria_Field/data_input/qPCR_faeces/Results/Results_files")
   df1 <- read.xlsx(x, sheetIndex = 1)
   #remove unecessary rows of the data frame
   #everything before actual data
