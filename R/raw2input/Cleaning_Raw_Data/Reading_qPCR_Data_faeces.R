@@ -29,6 +29,11 @@ setwd("Mouse_Eimeria_Field/data_input/qPCR_faeces/Results/Results_files")
 read_qPCR_file <- function(x) {
   
   df1 <- read.xlsx(x, sheetIndex = 1)
+  #get the file name of the file
+  #the name of the file is the second column of this file
+  #to get that name we can start by selecting this column
+  #and then getting the name out of it
+  filename <- colnames(df1[2])
   #remove unecessary rows of the data frame
   #everything before actual data
   df1 <- df1 %>%
@@ -37,9 +42,10 @@ read_qPCR_file <- function(x) {
   colnames(df1) <- df1[1, ]
   #Now remove the first row
   df1 <- df1 %>% filter(!row_number() %in% 1)
+  #add a column with the name of the plate 
+  df1 <- df1 %>% mutate(plate = filename)
   
 }
-
 
 #apply the function you created in the last step to each of the elements (names of files)
 #of the list NT_list 
