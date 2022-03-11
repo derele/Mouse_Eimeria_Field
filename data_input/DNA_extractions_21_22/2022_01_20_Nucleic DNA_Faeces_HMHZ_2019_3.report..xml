@@ -1,0 +1,226 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:o="urn:schemas-microsoft-com:office:office"
+ xmlns:x="urn:schemas-microsoft-com:office:excel"
+ xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:html="http://www.w3.org/TR/REC-html40">
+ <Styles>
+  <Style ss:ID="Default" ss:Name="Normal">
+   <Alignment ss:Vertical="Bottom"/>
+   <Borders/>
+   <Font/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s23">
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font x:Family="Swiss" ss:Bold="1"/>
+   <Interior ss:Color="#DCDCFF" ss:Pattern="Solid"/>
+  </Style>
+ </Styles>
+ <Worksheet ss:Name="Sheet1">
+  <Table>
+  <Column ss:Index="1" ss:AutoFitWidth="0" ss:Width="120.0"/>
+  <Column ss:Index="2" ss:AutoFitWidth="0" ss:Width="120.0"/>
+  <Column ss:Index="3" ss:AutoFitWidth="0" ss:Width="120.0"/>
+  <Column ss:Index="4" ss:AutoFitWidth="0" ss:Width="120.0"/>
+  <Column ss:Index="5" ss:AutoFitWidth="0" ss:Width="120.0"/>
+  <Column ss:Index="6" ss:AutoFitWidth="0" ss:Width="120.0"/>
+  <Column ss:Index="7" ss:AutoFitWidth="0" ss:Width="120.0"/>
+  <Column ss:Index="8" ss:AutoFitWidth="0" ss:Width="120.0"/>
+  <Column ss:Index="9" ss:AutoFitWidth="0" ss:Width="120.0"/>
+  <Column ss:Index="10" ss:AutoFitWidth="0" ss:Width="120.0"/>
+  <Column ss:Index="11" ss:AutoFitWidth="0" ss:Width="120.0"/>
+  <Column ss:Index="12" ss:AutoFitWidth="0" ss:Width="120.0"/>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s23"><Data ss:Type="String">#</Data></Cell>
+    <Cell ss:StyleID="s23"><Data ss:Type="String">Sample ID</Data></Cell>
+    <Cell ss:StyleID="s23"><Data ss:Type="String">User name</Data></Cell>
+    <Cell ss:StyleID="s23"><Data ss:Type="String">Date and Time</Data></Cell>
+    <Cell ss:StyleID="s23"><Data ss:Type="String">Nucleic Acid Conc.</Data></Cell>
+    <Cell ss:StyleID="s23"><Data ss:Type="String">Unit</Data></Cell>
+    <Cell ss:StyleID="s23"><Data ss:Type="String">A260</Data></Cell>
+    <Cell ss:StyleID="s23"><Data ss:Type="String">A280</Data></Cell>
+    <Cell ss:StyleID="s23"><Data ss:Type="String">260/280</Data></Cell>
+    <Cell ss:StyleID="s23"><Data ss:Type="String">260/230</Data></Cell>
+    <Cell ss:StyleID="s23"><Data ss:Type="String">Sample Type</Data></Cell>
+    <Cell ss:StyleID="s23"><Data ss:Type="String">Factor</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">FEC_AA_0686</Data></Cell>
+    <Cell><Data ss:Type="String">user</Data></Cell>
+    <Cell><Data ss:Type="String">1/20/2022 11:52:41 AM</Data></Cell>
+    <Cell><Data ss:Type="Number">33.1</Data></Cell>
+    <Cell><Data ss:Type="String">ng/µl</Data></Cell>
+    <Cell><Data ss:Type="Number">0.663</Data></Cell>
+    <Cell><Data ss:Type="Number">0.356</Data></Cell>
+    <Cell><Data ss:Type="Number">1.86</Data></Cell>
+    <Cell><Data ss:Type="Number">1.24</Data></Cell>
+    <Cell><Data ss:Type="String">DNA</Data></Cell>
+    <Cell><Data ss:Type="Number">50</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="String">FEC_AA_0686</Data></Cell>
+    <Cell><Data ss:Type="String">user</Data></Cell>
+    <Cell><Data ss:Type="String">1/20/2022 11:53:30 AM</Data></Cell>
+    <Cell><Data ss:Type="Number">34.2</Data></Cell>
+    <Cell><Data ss:Type="String">ng/µl</Data></Cell>
+    <Cell><Data ss:Type="Number">0.685</Data></Cell>
+    <Cell><Data ss:Type="Number">0.376</Data></Cell>
+    <Cell><Data ss:Type="Number">1.82</Data></Cell>
+    <Cell><Data ss:Type="Number">1.19</Data></Cell>
+    <Cell><Data ss:Type="String">DNA</Data></Cell>
+    <Cell><Data ss:Type="Number">50</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">3</Data></Cell>
+    <Cell><Data ss:Type="String">FEC_AA_0720</Data></Cell>
+    <Cell><Data ss:Type="String">user</Data></Cell>
+    <Cell><Data ss:Type="String">1/20/2022 11:54:19 AM</Data></Cell>
+    <Cell><Data ss:Type="Number">17.9</Data></Cell>
+    <Cell><Data ss:Type="String">ng/µl</Data></Cell>
+    <Cell><Data ss:Type="Number">0.359</Data></Cell>
+    <Cell><Data ss:Type="Number">0.193</Data></Cell>
+    <Cell><Data ss:Type="Number">1.86</Data></Cell>
+    <Cell><Data ss:Type="Number">0.75</Data></Cell>
+    <Cell><Data ss:Type="String">DNA</Data></Cell>
+    <Cell><Data ss:Type="Number">50</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">4</Data></Cell>
+    <Cell><Data ss:Type="String">FEC_AA_0738</Data></Cell>
+    <Cell><Data ss:Type="String">user</Data></Cell>
+    <Cell><Data ss:Type="String">1/20/2022 11:55:03 AM</Data></Cell>
+    <Cell><Data ss:Type="Number">109.4</Data></Cell>
+    <Cell><Data ss:Type="String">ng/µl</Data></Cell>
+    <Cell><Data ss:Type="Number">2.187</Data></Cell>
+    <Cell><Data ss:Type="Number">1.229</Data></Cell>
+    <Cell><Data ss:Type="Number">1.78</Data></Cell>
+    <Cell><Data ss:Type="Number">1.22</Data></Cell>
+    <Cell><Data ss:Type="String">DNA</Data></Cell>
+    <Cell><Data ss:Type="Number">50</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">5</Data></Cell>
+    <Cell><Data ss:Type="String">FEC_AA_0754</Data></Cell>
+    <Cell><Data ss:Type="String">user</Data></Cell>
+    <Cell><Data ss:Type="String">1/20/2022 11:55:44 AM</Data></Cell>
+    <Cell><Data ss:Type="Number">46.2</Data></Cell>
+    <Cell><Data ss:Type="String">ng/µl</Data></Cell>
+    <Cell><Data ss:Type="Number">0.924</Data></Cell>
+    <Cell><Data ss:Type="Number">0.504</Data></Cell>
+    <Cell><Data ss:Type="Number">1.84</Data></Cell>
+    <Cell><Data ss:Type="Number">1.37</Data></Cell>
+    <Cell><Data ss:Type="String">DNA</Data></Cell>
+    <Cell><Data ss:Type="Number">50</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">6</Data></Cell>
+    <Cell><Data ss:Type="String">FEC_AA_0754</Data></Cell>
+    <Cell><Data ss:Type="String">user</Data></Cell>
+    <Cell><Data ss:Type="String">1/20/2022 11:56:19 AM</Data></Cell>
+    <Cell><Data ss:Type="Number">44.1</Data></Cell>
+    <Cell><Data ss:Type="String">ng/µl</Data></Cell>
+    <Cell><Data ss:Type="Number">0.883</Data></Cell>
+    <Cell><Data ss:Type="Number">0.483</Data></Cell>
+    <Cell><Data ss:Type="Number">1.83</Data></Cell>
+    <Cell><Data ss:Type="Number">1.49</Data></Cell>
+    <Cell><Data ss:Type="String">DNA</Data></Cell>
+    <Cell><Data ss:Type="Number">50</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">7</Data></Cell>
+    <Cell><Data ss:Type="String">FEC_AA_0757</Data></Cell>
+    <Cell><Data ss:Type="String">user</Data></Cell>
+    <Cell><Data ss:Type="String">1/20/2022 11:56:58 AM</Data></Cell>
+    <Cell><Data ss:Type="Number">118.2</Data></Cell>
+    <Cell><Data ss:Type="String">ng/µl</Data></Cell>
+    <Cell><Data ss:Type="Number">2.365</Data></Cell>
+    <Cell><Data ss:Type="Number">1.306</Data></Cell>
+    <Cell><Data ss:Type="Number">1.81</Data></Cell>
+    <Cell><Data ss:Type="Number">0.78</Data></Cell>
+    <Cell><Data ss:Type="String">DNA</Data></Cell>
+    <Cell><Data ss:Type="Number">50</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">8</Data></Cell>
+    <Cell><Data ss:Type="String">FEC_AA_0775</Data></Cell>
+    <Cell><Data ss:Type="String">user</Data></Cell>
+    <Cell><Data ss:Type="String">1/20/2022 11:57:45 AM</Data></Cell>
+    <Cell><Data ss:Type="Number">44.2</Data></Cell>
+    <Cell><Data ss:Type="String">ng/µl</Data></Cell>
+    <Cell><Data ss:Type="Number">0.883</Data></Cell>
+    <Cell><Data ss:Type="Number">0.508</Data></Cell>
+    <Cell><Data ss:Type="Number">1.74</Data></Cell>
+    <Cell><Data ss:Type="Number">0.88</Data></Cell>
+    <Cell><Data ss:Type="String">DNA</Data></Cell>
+    <Cell><Data ss:Type="Number">50</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">9</Data></Cell>
+    <Cell><Data ss:Type="String">FEC_AA_0780</Data></Cell>
+    <Cell><Data ss:Type="String">user</Data></Cell>
+    <Cell><Data ss:Type="String">1/20/2022 11:58:30 AM</Data></Cell>
+    <Cell><Data ss:Type="Number">83.3</Data></Cell>
+    <Cell><Data ss:Type="String">ng/µl</Data></Cell>
+    <Cell><Data ss:Type="Number">1.667</Data></Cell>
+    <Cell><Data ss:Type="Number">0.911</Data></Cell>
+    <Cell><Data ss:Type="Number">1.83</Data></Cell>
+    <Cell><Data ss:Type="Number">1.72</Data></Cell>
+    <Cell><Data ss:Type="String">DNA</Data></Cell>
+    <Cell><Data ss:Type="Number">50</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">10</Data></Cell>
+    <Cell><Data ss:Type="String">FEC_AA_0806</Data></Cell>
+    <Cell><Data ss:Type="String">user</Data></Cell>
+    <Cell><Data ss:Type="String">1/20/2022 11:59:10 AM</Data></Cell>
+    <Cell><Data ss:Type="Number">108.3</Data></Cell>
+    <Cell><Data ss:Type="String">ng/µl</Data></Cell>
+    <Cell><Data ss:Type="Number">2.167</Data></Cell>
+    <Cell><Data ss:Type="Number">1.258</Data></Cell>
+    <Cell><Data ss:Type="Number">1.72</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">DNA</Data></Cell>
+    <Cell><Data ss:Type="Number">50</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">11</Data></Cell>
+    <Cell><Data ss:Type="String">FEC_AA_0807</Data></Cell>
+    <Cell><Data ss:Type="String">user</Data></Cell>
+    <Cell><Data ss:Type="String">1/20/2022 11:59:46 AM</Data></Cell>
+    <Cell><Data ss:Type="Number">120.8</Data></Cell>
+    <Cell><Data ss:Type="String">ng/µl</Data></Cell>
+    <Cell><Data ss:Type="Number">2.416</Data></Cell>
+    <Cell><Data ss:Type="Number">1.323</Data></Cell>
+    <Cell><Data ss:Type="Number">1.83</Data></Cell>
+    <Cell><Data ss:Type="Number">2.01</Data></Cell>
+    <Cell><Data ss:Type="String">DNA</Data></Cell>
+    <Cell><Data ss:Type="Number">50</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">12</Data></Cell>
+    <Cell><Data ss:Type="String">FEC_AA_0809</Data></Cell>
+    <Cell><Data ss:Type="String">user</Data></Cell>
+    <Cell><Data ss:Type="String">1/20/2022 12:00:21 PM</Data></Cell>
+    <Cell><Data ss:Type="Number">94.3</Data></Cell>
+    <Cell><Data ss:Type="String">ng/µl</Data></Cell>
+    <Cell><Data ss:Type="Number">1.885</Data></Cell>
+    <Cell><Data ss:Type="Number">1.035</Data></Cell>
+    <Cell><Data ss:Type="Number">1.82</Data></Cell>
+    <Cell><Data ss:Type="Number">1.8</Data></Cell>
+    <Cell><Data ss:Type="String">DNA</Data></Cell>
+    <Cell><Data ss:Type="Number">50</Data></Cell>
+   </Row>
+  </Table>
+ </Worksheet>
+</Workbook>
