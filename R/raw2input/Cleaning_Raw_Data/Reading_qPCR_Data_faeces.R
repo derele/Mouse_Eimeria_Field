@@ -56,6 +56,7 @@ list_results <- lapply(NT_list, read_qPCR_file)
 #show the data frame consisting of each result data file
 df_results <- Reduce(rbind, list_results)
 
+#remove duplicates
 df_results <- unique(df_results)
 
 #change your working directory
