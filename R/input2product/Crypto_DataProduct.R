@@ -90,17 +90,14 @@ Crypto_DNA.cols   <- c("ILWE_DNA_Content_ng.microliter", "ILWE_Tissue_used_up")
     Crypto_Detection$ILWE_Crypto_Ct <- Crypto_Detection$Ct_mean
     Crypto_Detection$Oocyst_Predict_Crypto <- Crypto_Detection$Oocyst_Predict
     
-    rm(Crypto_pull)
-    rm(Crypto_pull_pos)
-    rm(Crypto_DNA)
-    rm(Crypto_qPCR)
-    rm(Crypto_Detection_1)
     
     Crypto_Detection <- Crypto_Detection[colnames(Crypto_Detection) %in% c(basics,
-                                       final_Crypto_qPCR.cols,  
-                                       Crypto_DNA.cols,
-                                       'Top_Location',
-                                       'Infection_Rate')]
+                                                                           final_Crypto_qPCR.cols,  
+                                                                           Crypto_DNA.cols,
+                                                                           'Top_Location',
+                                                                           'Infection_Rate',
+                                                                           'mus_caught',
+                                                                           'Crypto_mus_caught')]
     Crypto_Detection <- Crypto_Detection %>% select(Mouse_ID,
                                                     HI,
                                                     HI_NLoci,
@@ -120,8 +117,15 @@ Crypto_DNA.cols   <- c("ILWE_DNA_Content_ng.microliter", "ILWE_Tissue_used_up")
                                                     Top_Location,
                                                     Infection_Rate,
                                                     Tested_by,
-                                                    Machine)
+                                                    Machine,
+                                                    mus_caught,
+                                                    Crypto_mus_caught)
     
+    rm(Crypto_pull)
+    rm(Crypto_pull_pos)
+    rm(Crypto_DNA)
+    rm(Crypto_qPCR)
+    rm(Crypto_Detection_1)
 ## write csv
     write.csv(Crypto_Detection, "data_products/Crypto_Detection.csv")
     
