@@ -37,7 +37,7 @@ Crypto_DNA.cols   <- c("ILWE_DNA_Content_ng.microliter", "ILWE_Tissue_used_up")
 
 
 # add Data Product with filter for Samples that follow the 'AA_' pattern
-    SOTA <- read.csv("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Field/master/data_products/SOTA_Data_Product.csv") %>% select(-X)
+    SOTA <- read.csv("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Field/master/data_products/SOTA_Data_Product.csv")
     SOTA <- SOTA[SOTA$Mouse_ID %like% "AA_", ]
     SOTA <- SOTA[colnames(SOTA) %in% c(basics)]
   
