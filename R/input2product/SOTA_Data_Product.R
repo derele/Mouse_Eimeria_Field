@@ -767,7 +767,37 @@ rm(Worms21)
     ## Worms Presence
 SOTA <- SOTA %>% mutate(Worms_presence = case_when(Aspiculuris_sp | Trichuris_muris | Taenia_sp | Heligmosomoides_polygurus | Heterakis_sp | Mastophorus_muris | Hymenolepis_sp | Catenotaenia_pusilla > 0 ~ T))
 
- 
+
+### FIELD TRIP 2021 ############################################################################################################################################################################################
+
+
+#add Jarda Genotyping data
+# load the data 
+Jarda_21 <- read.csv("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Field/master/data_input/Mouse_data/HZ21_GenotypingJarda.csv")
+setnames(Jarda_21, old = c("PIN", "X_Longit", "Y_Latit"), new = c("Mouse_ID", "Longitude", "Latitude"), skip_absent = T)
+Jarda_21$Es1 <- as.character(Jarda_21$Es1)
+Jarda_21$Idh1 <- as.character(Jarda_21$Idh1)
+Jarda_21$HI_NLoci <- gsub(pattern = "HI ", replacement = "", x = Jarda_21$HI_NLoci)
+Jarda_21$HI_NLoci <- as.integer(Jarda_21$HI_NLoci)
+
+
+SOTA <- full_join(SOTA, Jarda_21) %>% arrange(Mouse_ID) %>% group_by(Mouse_ID) %>% fill(c(everything()), .direction = "downup") %>% ungroup() %>% distinct(Mouse_ID, .keep_all = T)
+rm(Jarda_21)
+
+
+
+#add 2021 oocyst count data 
+# load the data
+Oocyst_2021 <- read.csv("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Field/master/data_input/Eimeria_detection/HZ21_Oocysts_cleaned.csv")
+
+#data cleaning was done in : Mouse_Eimeria_Field/R/input2product/Cleaning_Raw_Data/Cleaning_oocysts_prep_raw_21_FW.R
+# so the way this is merged didn't work, when I ran the code :(
+    #SOTA <- SOTA %>% left_join(Oocyst_2021, by = intersect(colnames(SOTA), colnames(Oocyst_2021)))
+# The rest of SOTA was merged as shown below, and if you now run vis_miss on a 2021 filter, it's in there!
+    # before: 37.4% present in 2021 data
+    # now:    46.9% present in 2021 data
+SOTA <- full_join(SOTA, Oocyst_2021) %>% arrange(Mouse_ID) %>% group_by(Mouse_ID) %>% fill(c(everything()), .direction = "downup") %>% ungroup() %>% distinct(Mouse_ID, .keep_all = T)
+
 #### 7. SELECT NEEDED COLUMNS ##################################################
 SOTA <- SOTA[colnames(SOTA) %in% c(basics,
                                    tissue.cols,
@@ -784,16 +814,5 @@ SOTA <- SOTA[colnames(SOTA) %in% c(basics,
                                    final.worms.cols)]
 colnames(SOTA)
 
-
-### Field Trip 2021
-#add 2021 oocyst count data 
-#load the data
-Oocyst_2021 <- read.csv("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Field/master/data_input/Eimeria_detection/HZ21_Oocysts_cleaned.csv")
-
-#data cleaning was done in : Mouse_Eimeria_Field/R/input2product/Cleaning_Raw_Data/Cleaning_oocysts_prep_raw_21_FW.R
-SOTA <- SOTA %>% left_join(Oocyst_2021, by = intersect(colnames(SOTA), colnames(Oocyst_2021)))
-
 write.csv(SOTA, "data_products/SOTA_Data_Product.csv", row.names=FALSE)
-
-
 
