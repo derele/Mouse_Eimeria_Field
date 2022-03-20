@@ -14,7 +14,7 @@ setwd("~/GitHub/")
 setwd("Mouse_Eimeria_Field/data_input/qPCR_faeces/Results/Results_files/")
 
 #read the table whith the names of each file, call it NT (= Name table)
-NT <- read.csv("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Field/master/data_input/qPCR_faeces/Results/Filenames_qpcr_results.csv")
+NT <- read.csv("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Field/master/data_input/qPCR_faeces_21/Results/Filenames_qpcr_results.csv")
 
 #create a list out of the names of each excel file
 NT_list <- as.list(NT$qPCR.Results.file.names)
@@ -23,12 +23,12 @@ NT_list <- as.list(NT$qPCR.Results.file.names)
 setwd("~/GitHub/")
 
 #change back to the github repository (Change to where your github repository is located)
-setwd("Mouse_Eimeria_Field/data_input/qPCR_faeces/Results/Results_files")
+setwd("Mouse_Eimeria_Field/data_input/qPCR_faeces_21/Results/Results_files")
 
 #write a function to specify how to read the qPCR files
 read_qPCR_file <- function(x) {
   
-  df1 <- read.xlsx(x, sheetIndex = 1)
+  df1 <- xlsx::read.xlsx(x, sheetIndex = 1)
   #get the file name of the file
   #the name of the file is the second column of this file
   #to get that name we can start by selecting this column
