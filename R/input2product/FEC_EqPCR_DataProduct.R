@@ -1,7 +1,7 @@
 library(tidyverse)
 
-
-df_results <- read.csv('https://raw.githubusercontent.com/derele/Mouse_Eimeria_Field/master/data_products/qPCR_faeces_field_eimeria_22')
+SOTA <- read.csv('https://raw.githubusercontent.com/derele/Mouse_Eimeria_Field/master/data_products/SOTA_Data_Product.csv')
+df_results <- read.csv('https://raw.githubusercontent.com/derele/Mouse_Eimeria_Field/master/data_products/qPCR_faeces_field_eimeria_22.csv')
 
 #### PIVOT AND UNIFICATION WITH OTHER HZ DATA ##################################
 
@@ -27,6 +27,7 @@ df_results <- df_results %>% mutate(Task = case_when(Mouse_ID == 'NTC' ~ 'NTC',
                                                      Mouse_ID == 'V10_4' ~ 'STANDARD',
                                                      Mouse_ID == 'V10_5' ~ 'STANDARD',
                                                      Mouse_ID == 'V10_6' ~ 'STANDARD',
+                                                     Task     == 'UNKNOWN' ~ 'UNKNOWN',
                                                      is.na(Task) ~ 'UNKNOWN'))
 # specify Ct measurements from well plate position
 df_results <- df_results %>% mutate(Ct_index = case_when (Well.Position %in% c('A1', 'A4', 'A7', 'A10', 
@@ -65,7 +66,6 @@ df_results$FEC_Eim_Ct3 <- as.numeric(df_results$Ct3)
 
 # (Un)Select Columns for final Data Product:
 df_results <- df_results %>% select(-c(Well, `Well.Position`, Omit, Quencher, `Curve.Quality`, `Result.Quality.Issues`, `Auto.Threshold`))
-
 
 #write the data frame in a csv file 
 write.csv(df_results, "~/Documents/Mouse_Eimeria_Field/data_products/FEC_EqPCR_DataProduct.csv", row.names=FALSE)
