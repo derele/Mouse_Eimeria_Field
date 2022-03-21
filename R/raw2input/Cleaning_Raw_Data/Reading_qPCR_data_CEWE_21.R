@@ -11,7 +11,7 @@ library(readr)
 setwd("~/GitHub/")
 
 #1 change the current working directory to the location where the qPCR data files are
-setwd("Mouse_Eimeria_Field/data_input/qPCR_CEWE_21/Results_Files/")
+setwd("~/Documents/Mouse_Eimeria_Field/data_input/qPCR_CEWE_21/Results_Files/")
 
 #2. Create a list of names, out of the files in this repository
 #list those files
@@ -61,7 +61,7 @@ df_results <- Reduce(rbind, list_results)
 df_results <- unique(df_results)
 
 #change your working directory
-setwd("~/GitHub/Mouse_Eimeria_Field")
+setwd("~/Documents/Mouse_Eimeria_Field/")
 
 #write the data frame in a csv file 
-write.csv(df_results, "data_products/qPCR_CEWE_eimeria_21_22", row.names=FALSE)
+write.csv(df_results, "data_products/qPCR_CEWE_eimeria_21_22.csv", row.names=FALSE)
