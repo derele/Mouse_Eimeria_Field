@@ -1,4 +1,6 @@
 library(tidyverse)
+library(plyr)
+library(dplyr)
 library(data.table)
 library(visdat)
 library(psych)
@@ -63,6 +65,23 @@ CellCount.cols <- c( "Treg", "CD4", "Treg17", "Th1", "Th17", "CD8",
 Crypto_qPCR.cols <- c("Ct_mean", "Oocyst_Predict", "ILWE_DNA_Content_ng.microliter")
 
 
+####### Conflicting packages###################################################
+    ## Set select and filter to be by default used by dplyr and not plyr
+plyr_exports <- ls("package:plyr")
+dplyr_exports <- ls("package:dplyr")
+(both_exports <- intersect(plyr_exports, dplyr_exports))
+
+
+count <- dplyr::count
+select <- dplyr::select
+group_by <- dplyr::group_by
+summarise <- dplyr::summarise
+arrange <- dplyr::arrange
+desc <- dplyr::desc
+mutate <- dplyr::mutate
+summarize <- dplyr::summarize
+rename <- dplyr::rename 
+
 #### Work Flow #################################################################
     ## Since Alice already put together a pretty extensive data product for the years
     ## until 2017, we will use this as a starting point.
@@ -91,8 +110,14 @@ Jarda$Mouse_ID <- gsub(pattern = "SK", replacement = "SK_", x = Jarda$Mouse_ID)
 Jarda$Mouse_ID <- gsub(pattern = "Sk3173", replacement = "SK_3173", x = Jarda$Mouse_ID)
 
   ## merge and remove duplicates
-SOTA <- full_join(Alice, Jarda[colnames(Jarda) %in% c(basics, gen.loci)]) %>% select(!which(!rowSums(!is.na(Alice)))) %>% select(!which(!colSums(!is.na(Alice)))) %>%
-  arrange(Mouse_ID) %>% group_by(Mouse_ID) %>% fill(c(everything()), .direction = "downup") %>% ungroup() %>% distinct(Mouse_ID, .keep_all = T) 
+SOTA <- full_join(Alice, Jarda[colnames(Jarda) %in% 
+                                 c(basics, gen.loci)]) %>% 
+  dplyr::select(!which(!rowSums(!is.na(Alice)))) %>% 
+  dplyr::select(!which(!colSums(!is.na(Alice)))) %>%
+  arrange(Mouse_ID) %>% group_by(Mouse_ID) %>% 
+  fill(c(everything()), .direction = "downup") %>% 
+  ungroup() %>% 
+  distinct(Mouse_ID, .keep_all = T) 
 rm(Alice)
 rm(Jarda)
 
@@ -625,40 +650,47 @@ colnames(IFC)[colnames(IFC)%in%"IL17A"]  <- "IL.17A"
 colnames(IFC)[colnames(IFC)%in%"IFNG"]  <- "IFNy"
 
 #### NORMALIZING GENE EXPRESSION WITH HOUSEKEEPING GENES
+
+# this normalization is not functioning as it should 
+# therefore I will have to not include it for now
+# so that I can work on the non-normalized expression data
+# I will get back to this asap (Fay)
+
+
 # Luke used 2 housekeeping genes for normalization, PPIB and GAPDH
 # in order to normalize for these two, we will take the geometric mean and
 # subtract that number per each individual mouse
-IFC_NE <- IFC %>% mutate(Norm =  geometric.mean(IFC$GAPDH, na.rm = TRUE), # building geometric mean
-                         CASP1 =  Norm - CASP1,
-                         CXCL9 =  Norm - CXCL9,
-                         CXCR3 =  Norm - CXCR3,
-                         IDO1  =  Norm - IDO1,
-                         IFNy  =  Norm - IFNy,
-                         IL.6  =  Norm - IL.6,
-                         IL.10 =  Norm - IL.10,
-                         IL.12A =  Norm - IL.12A,
-                         IL.13  =  Norm - IL.13,
-                         IL.17A =  Norm - IL.17A,
-                         IL1RN =  Norm - IL1RN,
-                         IRGM1 =  Norm - IRGM1,
-                         MPO   =  Norm - MPO,
-                         MUC2  =  Norm - MUC2,
-                         MUC5AC =  Norm - MUC5AC,
-                         MYD88  =  Norm - MYD88,
-                         NCR1   =  Norm - NCR1,
-                         PRF1   =  Norm - PRF1,
-                         RETNLB =  Norm - RETNLB,
-                         SOCS1  =  Norm - SOCS1,
-                         TICAM1 =  Norm - TICAM1,
-                         TNF    =  Norm - TNF)
+#IFC_NE <- IFC %>% mutate(Norm =  geometric.mean(IFC$GAPDH, na.rm = TRUE), # building geometric mean
+                #         CASP1 =  Norm - CASP1,
+               #          CXCL9 =  Norm - CXCL9,
+                #         CXCR3 =  Norm - CXCR3,
+                #         IDO1  =  Norm - IDO1,
+                #         IFNy  =  Norm - IFNy,
+                #         IL.6  =  Norm - IL.6,
+                 #        IL.10 =  Norm - IL.10,
+                 #        IL.12A =  Norm - IL.12A,
+                #         IL.13  =  Norm - IL.13,
+                 #        IL.17A =  Norm - IL.17A,
+                #         IL1RN =  Norm - IL1RN,
+                #         IRGM1 =  Norm - IRGM1,
+               #          MPO   =  Norm - MPO,
+                #         MUC2  =  Norm - MUC2,
+                #         MUC5AC =  Norm - MUC5AC,
+                #         MYD88  =  Norm - MYD88,
+                #         NCR1   =  Norm - NCR1,
+                #         PRF1   =  Norm - PRF1,
+                #         RETNLB =  Norm - RETNLB,
+                #         SOCS1  =  Norm - SOCS1,
+                #         TICAM1 =  Norm - TICAM1,
+                 #        TNF    =  Norm - TNF)
 
     ## merge
 #GE_Join <- full_join(RT_sum, IFC_NE)
 #SOTA <- full_join(SOTA, GE_Join)
-SOTA <- full_join(SOTA, IFC_NE)
+SOTA <- full_join(SOTA, IFC)
 SOTA <- SOTA %>% arrange(Mouse_ID) %>% group_by(Mouse_ID) %>% fill(c(everything()), .direction = "downup") %>% ungroup() %>% distinct(Mouse_ID, .keep_all = T) 
 #rm(GE_Join)
-rm(IFC_NE)
+#rm(IFC_NE)
 
 #### 3.7 add 2019 CEWE Elisa ###################################################
 CEWE_Elisa <- read.csv("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Field/master/data_input/HZ19_CEWE_ELISA.csv") %>% select(-X)
@@ -727,6 +759,16 @@ SOTA <- full_join(SOTA, Non_Mus21[colnames(Non_Mus21) %in% c(basics, dissection.
 rm(Non_Mus21)
 
 
+####### Add oocyst data - Field Trip 2021 #######################################
+
+#load the data
+Oocyst_2021 <- read.csv("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Field/master/data_input/Eimeria_detection/HZ21_Oocysts_cleaned.csv")
+
+#data cleaning was done in : Mouse_Eimeria_Field/R/input2product/Cleaning_Raw_Data/Cleaning_oocysts_prep_raw_21_FW.R
+SOTA <- unique(SOTA)
+SOTA2 <- SOTA %>% left_join(Oocyst_2021, by = intersect(colnames(SOTA), colnames(Oocyst_2021)))
+
+
 #### MANUAL CORRECTION ######################################################
   # Worms
     ## Aspiculuris_sp
@@ -782,16 +824,8 @@ SOTA <- SOTA[colnames(SOTA) %in% c(basics,
                                    oocyst.cols,
                                    #initial.worms.cols,
                                    final.worms.cols)]
-colnames(SOTA)
 
 
-### Field Trip 2021
-#add 2021 oocyst count data 
-#load the data
-Oocyst_2021 <- read.csv("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Field/master/data_input/Eimeria_detection/HZ21_Oocysts_cleaned.csv")
-
-#data cleaning was done in : Mouse_Eimeria_Field/R/input2product/Cleaning_Raw_Data/Cleaning_oocysts_prep_raw_21_FW.R
-SOTA <- SOTA %>% left_join(Oocyst_2021, by = intersect(colnames(SOTA), colnames(Oocyst_2021)))
 
 write.csv(SOTA, "data_products/SOTA_Data_Product.csv", row.names=FALSE)
 
