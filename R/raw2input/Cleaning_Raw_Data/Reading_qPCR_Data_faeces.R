@@ -11,10 +11,10 @@ library(readr)
 setwd("~/GitHub/")
 
 #1 change the current working directory to the location where the qPCR data files are
-setwd("Mouse_Eimeria_Field/data_input/qPCR_faeces/Results/Results_files/")
+setwd("~/Documents/Mouse_Eimeria_Field/data_input/qPCR_faeces_21/Results/Results_files/")
 
 #read the table whith the names of each file, call it NT (= Name table)
-NT <- read.csv("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Field/master/data_input/qPCR_faeces/Results/Filenames_qpcr_results.csv")
+NT <- read.csv("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Field/master/data_input/qPCR_faeces_21/Results/Filenames_qpcr_results.csv")
 
 #create a list out of the names of each excel file
 NT_list <- as.list(NT$qPCR.Results.file.names)
@@ -23,12 +23,12 @@ NT_list <- as.list(NT$qPCR.Results.file.names)
 setwd("~/GitHub/")
 
 #change back to the github repository (Change to where your github repository is located)
-setwd("Mouse_Eimeria_Field/data_input/qPCR_faeces/Results/Results_files")
+setwd("~/Documents/Mouse_Eimeria_Field/data_input/qPCR_faeces_21/Results/Results_files")
 
 #write a function to specify how to read the qPCR files
 read_qPCR_file <- function(x) {
   
-  df1 <- read.xlsx(x, sheetIndex = 1)
+  df1 <- xlsx::read.xlsx(x, sheetIndex = 1)
   #get the file name of the file
   #the name of the file is the second column of this file
   #to get that name we can start by selecting this column
@@ -56,12 +56,19 @@ list_results <- lapply(NT_list, read_qPCR_file)
 #show the data frame consisting of each result data file
 df_results <- Reduce(rbind, list_results)
 
-#remove duplicates
+#remove duplicates (eliminates some NTCs)
 df_results <- unique(df_results)
 
+
 #change your working directory
-setwd("~/GitHub/Mouse_Eimeria_Field")
+#setwd("~/GitHub/Mouse_Eimeria_Field")
 
 #write the data frame in a csv file 
-write.csv(df_results, "data_products/qPCR_faeces_field_eimeria_22", row.names=FALSE)
+write.csv(df_results, "~/Documents/Mouse_Eimeria_Field/data_products/qPCR_faeces_field_eimeria_22.csv", row.names=FALSE)
+
+
+
+
+
+
 

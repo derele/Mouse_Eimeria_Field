@@ -31,13 +31,17 @@ Crypto_qPCR.cols  <- c("Ct_mean", "Ct_mean_Ep", "Ct_mean_ABI",
                        "Machine", "Measurements", "Tested_by", 
                        "qPCR_Date", "Oocyst_Predict", "Crypto_Positive")
 
+final_Crypto_qPCR.cols  <- c("ILWE_Crypto_Ct", "Ct_mean_Ep", "Ct_mean_ABI", 
+                       "Machine", "Measurements", "Tested_by", 
+                       "qPCR_Date", "Oocyst_Predict_Crypto", "Crypto_Positive")
+
 
 Crypto_DNA.cols   <- c("ILWE_DNA_Content_ng.microliter", "ILWE_Tissue_used_up")
 
 
 
 # add Data Product with filter for Samples that follow the 'AA_' pattern
-    SOTA <- read.csv("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Field/master/data_products/SOTA_Data_Product.csv") %>% select(-X)
+    SOTA <- read.csv("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Field/master/data_products/SOTA_Data_Product.csv")
     SOTA <- SOTA[SOTA$Mouse_ID %like% "AA_", ]
     SOTA <- SOTA[colnames(SOTA) %in% c(basics)]
   
@@ -82,6 +86,46 @@ Crypto_DNA.cols   <- c("ILWE_DNA_Content_ng.microliter", "ILWE_Tissue_used_up")
     Crypto_Detection <- Crypto_Detection %>%
       mutate(Top_Location = Crypto_mus_caught >= 3,
              Infection_Rate = Crypto_mus_caught / mus_caught)
+    
+    Crypto_Detection$ILWE_Crypto_Ct <- Crypto_Detection$Ct_mean
+    Crypto_Detection$Oocyst_Predict_Crypto <- Crypto_Detection$Oocyst_Predict
+    
+    
+    Crypto_Detection <- Crypto_Detection[colnames(Crypto_Detection) %in% c(basics,
+                                                                           final_Crypto_qPCR.cols,  
+                                                                           Crypto_DNA.cols,
+                                                                           'Top_Location',
+                                                                           'Infection_Rate',
+                                                                           'mus_caught',
+                                                                           'Crypto_mus_caught')]
+    Crypto_Detection <- Crypto_Detection %>% select(Mouse_ID,
+                                                    HI,
+                                                    HI_NLoci,
+                                                    qPCR_Date,
+                                                    Oocyst_Predict_Crypto,
+                                                    ILWE_Crypto_Ct,
+                                                    Ct_mean_Ep,
+                                                    Ct_mean_ABI,
+                                                    Measurements,
+                                                    Crypto_Positive,
+                                                    ILWE_DNA_Content_ng.microliter,
+                                                    ILWE_Tissue_used_up,
+                                                    Sex,
+                                                    Longitude,
+                                                    Latitude,
+                                                    Year,
+                                                    Top_Location,
+                                                    Infection_Rate,
+                                                    Tested_by,
+                                                    Machine,
+                                                    mus_caught,
+                                                    Crypto_mus_caught)
+    
+    rm(Crypto_pull)
+    rm(Crypto_pull_pos)
+    rm(Crypto_DNA)
+    rm(Crypto_qPCR)
+    rm(Crypto_Detection_1)
 ## write csv
     write.csv(Crypto_Detection, "data_products/Crypto_Detection.csv")
     

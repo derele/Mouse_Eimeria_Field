@@ -62,7 +62,7 @@ House.Keeping.cols <- c("GAPDH", "PPIB", "B.actin", "B-actin")
 CellCount.cols <- c( "Treg", "CD4", "Treg17", "Th1", "Th17", "CD8",
                      "Act_CD8", "IFNy_CD4", "IL17A_CD4", "IFNy_CD8")
 
-Crypto_qPCR.cols <- c("Ct_mean", "Oocyst_Predict", "ILWE_DNA_Content_ng.microliter")
+Crypto_qPCR.cols <- c("ILWE_Crypto_Ct", "Oocyst_Predict_Crypto", "ILWE_DNA_Content_ng.microliter")
 
 
 ####### Conflicting packages###################################################
@@ -463,30 +463,46 @@ SOTA$Sex[grep("female*.", SOTA$Sex)] <- "F"
 SOTA$Sex[grep("male*.", SOTA$Sex)] <- "M"
 
 
-#### 3.2. add Oocyst Counting Data (Flotation Data) ############################
+#### 3.2. add 2015, 2017, 2018 Oocyst Counting Data (Flotation Data) ############################
+
+# Oocyst Counts from 2015 and 2017 (Lorenzo)
+Eflot2015_17 <- read.csv("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Field/master/data_input/Eimeria_detection/Eimeria_oocysts_2015%262017_Lorenzo.csv")
+Eflot2015_17$Feces_Weight <- Eflot2015_17$Feces_g
+count.cols <- c("N_oocysts_sq1", "N_oocysts_sq2", "N_oocysts_sq3", "N_oocysts_sq4", "N_oocysts_sq5", "N_oocysts_sq6","N_oocysts_sq7", "N_oocysts_sq8")
+Eflot2015_17$Ncells <- rowSums(!is.na(Eflot2015_17[, count.cols]))
+Eflot2015_17$OPG <- rowSums(Eflot2015_17[, count.cols])/Eflot2015_17$Ncells * 10000 / as.numeric(Eflot2015_17$Feces_Weight)
+# would not use: mice were held in cages together
+# AA_0349 and ?
+# AA_0513 + AA_0514 + AA_0515
+# AA_0463 + AA_0454
+Eflot2015_17$OPG[ Eflot2015_17$Mouse_ID %in% c("AA_0349", "AA_0513", "AA_0514", "AA_0515", "AA_0463", "AA_0454")] <- NA
+Eflot2015_17 <- Eflot2015_17[colnames(Eflot2015_17)%in%c(basics,oocyst.cols)]
+SOTA <- full_join(SOTA, Eflot2015_17) %>% arrange(Mouse_ID) %>% group_by(Mouse_ID) %>% fill(c(everything()), .direction = "downup") %>% ungroup() %>% distinct(Mouse_ID, .keep_all = T) 
+
+# 2018 (not sure who counted these)
+      # for 2018, we did not include the oocyst counting data 
+      # since there were only 4 chambers counted and 
+      # the dilution differed between 1 OR 2 PBS_dil_in_mL
+      
+      # I did not change :
+        # - OPG calculations
+        # - mean_neubauer
+      # I just included the raw counts per square (1-4) in SOTA to show it was technically counted.
+      # Btw, I am really unsure about the data validity.. The counts are 0 for sooooo many samples
+      # and compared to other years, it's quite weird.
+      # Technically, I would recommend re-counting with 8 squares.
 Eflot2018 <- read.csv("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Field/master/data_input/Eimeria_detection/HZ18_Eim_Flotation.csv")
-Eflot2018$Ncells <- Eflot2018$Sume
 Eflot2018$PBS_dil_in_mL <- Eflot2018$PBS_vol
 Eflot2018$Feces_Weight <- Eflot2018$Feces
+Eflot2018$N_oocysts_sq1 <- Eflot2018$Oocyst_sq1
+Eflot2018$N_oocysts_sq2 <- Eflot2018$Oocyst_sq2
+Eflot2018$N_oocysts_sq3 <- Eflot2018$Oocyst_sq3
+Eflot2018$N_oocysts_sq4 <- Eflot2018$Oocyst_sq4
+count.cols <- c("N_oocysts_sq1", "N_oocysts_sq2", "N_oocysts_sq3", "N_oocysts_sq4")
+Eflot2018$Ncells <- rowSums(!is.na(Eflot2018[, count.cols]))
+Eflot2018$mean_neubauer <- Eflot2018$Sume / Eflot2018$Ncells
 colnames(Eflot2018)[colnames(Eflot2018)%in%oocyst.cols]
 Eflot2018 <- Eflot2018[colnames(Eflot2018)%in%c(basics,oocyst.cols)]
-
-
-## 2021
-Eflot2021 <- read.csv("data_input/HZ21_Oocysts.csv")
-Eflot2021 <- Eflot2021
-
-count.cols <- c("N_oocysts_sq1", "N_oocysts_sq2", "N_oocysts_sq3", "N_oocysts_sq4",
-                "N_oocysts_sq5", "N_oocysts_sq6","N_oocysts_sq7", "N_oocysts_sq8")
-
-Eflot2021$Ncells <- rowSums(!is.na(Eflot2021[, count.cols]))
-Eflot2021$OPG <- rowSums(Eflot2021[, count.cols])/Eflot2021$Ncells * 10000 / as.numeric(Eflot2021$Feces_g)
-
-### PROBLEM: how much PBS was used to dilute Eflot2021$PBS_dil_in_mL
-### <- 1? Or Eflot2021$PBS_dil_in_mL <- 0.1? What about the other NAs
-### in the table? We assume here for 2021 it has been 1ml
-
-Eflot2018
 
 
 #### 3.3. add 2018 qPCR Data ###################################################
@@ -502,24 +518,26 @@ EimPCR$eimeriaSpecies[EimPCR$eimeriaSpecies%in%c("non infected", "Eimeria sp.")]
 EimPCR$Sex <- NULL
 EimPCR <- EimPCR[colnames(EimPCR)%in%c(basics, EimGeno.cols)]
 
+
+#### Merge
+Detection18 <- merge(Eflot2018, EimPCR)
+Detection18 <- merge(Detection18, EqPCR2018)
+Detection18 <- merge(Detection18, Eflot2018)
+
+SOTA <- full_join(SOTA, Detection18) %>%
+  arrange(Mouse_ID) %>%
+  group_by(Mouse_ID) %>%
+  fill(c(everything()), .direction = "downup") %>%
+  ungroup() %>%
+  distinct(Mouse_ID, .keep_all = T)
+
 #### 3.5. add 2019 qPCR Data ###################################################
 EqPCR2019 <- read.csv("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Field/master/data_input/Eimeria_detection/HZ19_CEWE_qPCR.csv")
 colnames(EqPCR2019)[colnames(EqPCR2019)%in%"delta"] <- "delta_ct_cewe_MminusE"
 colnames(EqPCR2019)[colnames(EqPCR2019)%in%"MC"] <- "MC.Eimeria"
 EqPCR2019 <- EqPCR2019[colnames(EqPCR2019)%in%c(basics, EqPCR.cols)]
 
-
 #### Merge
-Detection18 <- merge(EimPCR, EqPCR2018)
-Detection18 <- merge(Detection18, Eflot2018)
-
-SOTA <- full_join(SOTA, Detection18) %>%
-    arrange(Mouse_ID) %>%
-    group_by(Mouse_ID) %>%
-    fill(c(everything()), .direction = "downup") %>%
-    ungroup() %>%
-    distinct(Mouse_ID, .keep_all = T) 
-
 SOTA <- full_join(SOTA, EqPCR2019)   %>%
     arrange(Mouse_ID) %>%
     group_by(Mouse_ID) %>%
@@ -533,7 +551,7 @@ rm(EimPCR)
 rm(EqPCR2019)
 rm(Detection18)
 
-#### 3.6. add Gene Expression Data ############################################
+#### 3.6. add Gene Expression Data #############################################
     # 2016-2018 --> Svenja has already adjusted for House Keeping Base Levels, if delta is all info you need:
     #           --> see table "https://raw.githubusercontent.com/derele/Mouse_Eimeria_Field/master/data_input/Gene_expression/HZ16-18_gene_expression.csv"
 
@@ -727,6 +745,7 @@ colnames(Non_Mus)[colnames(Non_Mus)%in%"Ocount_23"] <- "N_oocysts_sq7"
 colnames(Non_Mus)[colnames(Non_Mus)%in%"Ocount_24"] <- "N_oocysts_sq8"
 colnames(Non_Mus)[colnames(Non_Mus)%in%"Eimeria_ident"] <- "eimeriaSpecies"
 colnames(Non_Mus)[colnames(Non_Mus)%in%"CEWE_Dct"] <- "delta_ct_cewe_MminusE"
+colnames(Non_Mus)[colnames(Non_Mus)%in%"Feces_weight"] <- "Feces_Weight"
 
     ## merge
 SOTA <- full_join(SOTA, Non_Mus[colnames(Non_Mus) %in% c(basics, oocyst.cols, "delta_ct_cewe_MminusE", "eimeriaSpecies", EqPCR.cols, tissue.cols)])
@@ -809,10 +828,40 @@ rm(Worms21)
     ## Worms Presence
 SOTA <- SOTA %>% mutate(Worms_presence = case_when(Aspiculuris_sp | Trichuris_muris | Taenia_sp | Heligmosomoides_polygurus | Heterakis_sp | Mastophorus_muris | Hymenolepis_sp | Catenotaenia_pusilla > 0 ~ T))
 
- 
+
+### FIELD TRIP 2021 ############################################################################################################################################################################################
+
+
+#add Jarda Genotyping data
+# load the data 
+Jarda_21 <- read.csv("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Field/master/data_input/Mouse_data/HZ21_GenotypingJarda.csv")
+setnames(Jarda_21, old = c("PIN", "X_Longit", "Y_Latit"), new = c("Mouse_ID", "Longitude", "Latitude"), skip_absent = T)
+Jarda_21$Es1 <- as.character(Jarda_21$Es1)
+Jarda_21$Idh1 <- as.character(Jarda_21$Idh1)
+Jarda_21$HI_NLoci <- gsub(pattern = "HI ", replacement = "", x = Jarda_21$HI_NLoci)
+Jarda_21$HI_NLoci <- as.integer(Jarda_21$HI_NLoci)
+
+
+SOTA <- full_join(SOTA, Jarda_21) %>% arrange(Mouse_ID) %>% group_by(Mouse_ID) %>% fill(c(everything()), .direction = "downup") %>% ungroup() %>% distinct(Mouse_ID, .keep_all = T)
+rm(Jarda_21)
+
+
+
+#add 2021 oocyst count data 
+# load the data
+Oocyst_2021 <- read.csv("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Field/master/data_input/Eimeria_detection/HZ21_Oocysts_cleaned.csv")
+
+#data cleaning was done in : Mouse_Eimeria_Field/R/input2product/Cleaning_Raw_Data/Cleaning_oocysts_prep_raw_21_FW.R
+# so the way this is merged didn't work, when I ran the code :(
+    #SOTA <- SOTA %>% left_join(Oocyst_2021, by = intersect(colnames(SOTA), colnames(Oocyst_2021)))
+# The rest of SOTA was merged as shown below, and if you now run vis_miss on a 2021 filter, it's in there!
+    # before: 37.4% present in 2021 data
+    # now:    46.9% present in 2021 data
+SOTA <- full_join(SOTA, Oocyst_2021) %>% arrange(Mouse_ID) %>% group_by(Mouse_ID) %>% fill(c(everything()), .direction = "downup") %>% ungroup() %>% distinct(Mouse_ID, .keep_all = T)
+
 #### 7. SELECT NEEDED COLUMNS ##################################################
 SOTA <- SOTA[colnames(SOTA) %in% c(basics,
-                                   tissue.cols,
+                                   #tissue.cols,
                                    Crypto_qPCR.cols,
                                    dissection.cols,
                                    EimGeno.cols,
@@ -825,9 +874,13 @@ SOTA <- SOTA[colnames(SOTA) %in% c(basics,
                                    #initial.worms.cols,
                                    final.worms.cols)]
 
+<<<<<<< HEAD
 
 
 write.csv(SOTA, "data_products/SOTA_Data_Product.csv", row.names=FALSE)
 
 
+=======
+#write.csv(SOTA, "data_products/SOTA_Data_Product.csv", row.names=FALSE)
+>>>>>>> 47b609f7ce717d6df9a5aa0ca74a661a3d1645a4
 
