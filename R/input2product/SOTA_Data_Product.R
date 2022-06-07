@@ -874,13 +874,10 @@ SOTA <- SOTA[colnames(SOTA) %in% c(basics,
                                    #initial.worms.cols,
                                    final.worms.cols)]
 
-<<<<<<< HEAD
-
 
 write.csv(SOTA, "data_products/SOTA_Data_Product.csv", row.names=FALSE)
 
 
-=======
+
 #write.csv(SOTA, "data_products/SOTA_Data_Product.csv", row.names=FALSE)
->>>>>>> 47b609f7ce717d6df9a5aa0ca74a661a3d1645a4
 
