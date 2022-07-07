@@ -201,13 +201,25 @@ SC_1 <- SC %>% filter(plate == 'qPCR_eimeria_field_CEWE_JK_04032022.eds')   %>% 
 SC_2 <- SC %>% filter(plate == 'qPCR_eimeria_field_CEWE_JK_04032022_2.eds') %>% mutate(SC = 2)
 SC <- full_join(SC_1, SC_2); rm(SC_1); rm(SC_2)
 colnames(SC) <- paste(colnames(SC), 'Eim', sep = '_')
-colnames(SC)[colnames(SC) %in% c( "Well.Position_Eim", "Mouse_ID_Eim", 'Target_Eim', "Task_Eim", 'plate_Eim', 'SC_Eim')]       <- c("Well.Position", "Mouse_ID", 'Target', "Task", 'plate', 'SC')
+
+SC <- dplyr::rename(SC, "Well.Position" = "Well Position_Eim", 
+                    "Mouse_ID" = "Mouse_ID_Eim", 
+                    "Target" =  "Target_Eim",
+                    "Task" = "Task_Eim", 
+                    "plate" = "plate_Eim", 
+                    "SC" = "SC_Eim",
+                    Ct_Mean_Eim = "Cq Mean_Eim",
+                    Ct_StDev_Eim = "Cq SD_Eim")
+
+
 SC$Target <- gsub(pattern = "CDC42", replacement = "COI", x = SC$Target)
-SC <- SC %>% mutate(Ct_index = case_when (Well.Position %in% c('A1', 'A4', 'A7', 'A10', 'B1', 'B4', 'B7', 'B10', 'C1', 'C4', 'C7', 'C10', 'D1', 'D4', 'D7', 'D10', 'E1', 'E4', 'E7', 'E10', 'F1', 'F4', 'F7', 'F10', 'G1', 'G4', 'G7', 'G10', 'H1', 'H4', 'H7', 'H10')  ~ 'Ct1_Eim', 
+SC <- SC %>% dplyr::mutate(Ct_index = case_when (Well.Position %in% c('A1', 'A4', 'A7', 'A10', 'B1', 'B4', 'B7', 'B10', 'C1', 'C4', 'C7', 'C10', 'D1', 'D4', 'D7', 'D10', 'E1', 'E4', 'E7', 'E10', 'F1', 'F4', 'F7', 'F10', 'G1', 'G4', 'G7', 'G10', 'H1', 'H4', 'H7', 'H10')  ~ 'Ct1_Eim', 
                                           Well.Position %in% c('A2', 'A5', 'A8', 'A11', 'B2', 'B5', 'B8', 'B11', 'C2', 'C5', 'C8', 'C11', 'D2', 'D5', 'D8', 'D11', 'E2', 'E5', 'E8', 'E11', 'F2', 'F5', 'F8', 'F11', 'G2', 'G5', 'G8', 'G11', 'H2', 'H5', 'H8', 'H11')  ~ 'Ct2_Eim', 
                                           Well.Position %in% c('A3', 'A6', 'A9', 'A12', 'B3', 'B6', 'B9', 'B12', 'C3', 'C6', 'C9', 'C12', 'D3', 'D6', 'D9', 'D12', 'E3', 'E6', 'E9', 'E12', 'F3', 'F6', 'F9', 'F12', 'G3', 'G6', 'G9', 'G12', 'H3', 'H6', 'H9', 'H12')  ~ 'Ct3_Eim')) 
+
 SC <- pivot_wider(SC, names_from = "Ct_index", values_from = 'Ct_Eim') %>% arrange(Mouse_ID, SC) %>% group_by(Mouse_ID, SC) %>% fill(c(everything()), .direction = "downup") %>% ungroup() %>% distinct(Mouse_ID, SC, .keep_all = T)
-SC <- SC %>% select(Mouse_ID, SC, Ct_Mean_Eim, Ct1_Eim, Ct2_Eim, Ct3_Eim, Tm1_Eim, Tm2_Eim, Tm3_Eim, Tm4_Eim, Ct_StDev_Eim, plate)
+
+SC <- SC %>% dplyr::select(Mouse_ID, SC, Ct_Mean_Eim, Ct1_Eim, Ct2_Eim, Ct3_Eim, Tm1_Eim, Tm2_Eim, Tm3_Eim, Tm4_Eim, Ct_StDev_Eim, plate)
 
 # write STANDARD CUFVE data frame in a csv file
 write.csv(SC, "data_input/HZ21_CEWE_EqPCR_SC.csv", row.names=FALSE)
