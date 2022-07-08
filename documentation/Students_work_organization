@@ -1,5 +1,20 @@
 Josi's BA: 
-Scripts for reading and cleaning: 
+####   Scripts:
 
 located in: Mouse_Eimeria_Field/R/raw2input/Cleaning_Raw_Data/
-Cleaning_oocysts_prep_raw_21_FW.R    = reading and cleaning of oocysts counts done by Josi in the year of 2021 (The oocysts may include samples from the field, from the years 2018 -21
+- Cleaning_oocysts_prep_raw_21_FW.R    = reading and cleaning of oocysts counts done by Josi in the year of 2021
+(The oocysts may include samples from the field, from the years 2018 -21
+
+- qPCR_Data_CEWE_21_cleaning.R         = cleaning and reading of the qPCR CEWE data (infection intensities eimeria)
+- qPCR_Data_faeces_21_cleaning.R       =  cleaning and reading of the qPCR fecal data (infection intensities eimeria)
+
+
+- Mouse_Eimeria_Field/R/analysis/CEWE_FECES_infection_intensities_Josi.R  = Bachelor Thesis Analysis of Josi (copied from her github account)
+
+##### Data:
+Located in: Mouse_Eimeria_Field/data_input/
+- qPCR_CEWE_21 = contains raw files produced by the qPCR machine
+- qPCR_faeces_21  = contains raw files produced by the qPCR machine
+- FEC_EqPCR_DataProduct.csv = merging and cleaning of raw qPCR data from fecal samples
+- CEWE_EqPCR_Data_Product.csv = merging and cleaning of raw qPCR data from tissue samples
+- CEWE_EqPCR_Data_Product.csv = merged, cleaned data product of the both tissue and fecal samples, ready to merge with SOTA
