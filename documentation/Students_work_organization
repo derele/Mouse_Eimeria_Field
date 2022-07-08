@@ -18,3 +18,4 @@ Located in: Mouse_Eimeria_Field/data_input/
 - FEC_EqPCR_DataProduct.csv = merging and cleaning of raw qPCR data from fecal samples
 - CEWE_EqPCR_Data_Product.csv = merging and cleaning of raw qPCR data from tissue samples
 - CEWE_EqPCR_Data_Product.csv = merged, cleaned data product of the both tissue and fecal samples, ready to merge with SOTA
+- HZ21_CEWE_EqPCR_SC.csv = Standard curves, qPCR data
