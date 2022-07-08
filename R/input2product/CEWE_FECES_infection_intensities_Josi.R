@@ -133,6 +133,6 @@ alldata18_19_21$FEC_Eim_Ct[alldata18_19_21$Mouse_ID%in%"AA_0814"]<-"27.57534"
 
 
 
-write.csv(alldata18_19_21, "data_input/CEWE_FECES_infection_intensities", row.names=FALSE)
+write.csv(alldata18_19_21, "data_products/CEWE_FECES_infection_intensities", row.names=FALSE)
 
 
