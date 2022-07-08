@@ -874,10 +874,19 @@ SOTA <- SOTA[colnames(SOTA) %in% c(basics,
                                    #initial.worms.cols,
                                    final.worms.cols)]
 
+### 08.07.2022 Merging fecal and CEWE infection intensities from Josi's
+## BA thesis
+CEWE_FECES <- read.csv("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Field/master/data_input/CEWE_FECES_infection_intensities")
+
+SOTA2 <- full_join(SOTA, CEWE_FECES) %>% 
+  arrange(Mouse_ID) %>% 
+  group_by(Mouse_ID) %>% 
+  fill(c(everything()), .direction = "downup") %>% 
+  ungroup() %>% 
+  distinct(Mouse_ID, .keep_all = T)
+rm(CEWE_FECES)
+
 
 write.csv(SOTA, "data_products/SOTA_Data_Product.csv", row.names=FALSE)
 
-
-
-#write.csv(SOTA, "data_products/SOTA_Data_Product.csv", row.names=FALSE)
 
