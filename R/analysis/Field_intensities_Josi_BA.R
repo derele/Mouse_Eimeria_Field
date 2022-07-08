@@ -1,5 +1,7 @@
 library(tidyverse)
 
+alldata18_19_21 <- read.csv("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Field/master/data_input/CEWE_FECES_infection_intensities")
+
 
 ##how many infected due to fecal samples?
 nrow(alldata18_19_21[alldata18_19_21$MC.Eimeria.FEC=="TRUE",])
@@ -43,7 +45,7 @@ ggplot(data=alldata18_19_21,mapping=aes(x=delta_ct_cewe_MminusE,y=FEC_Eim_Ct,col
 
 ###prediction of amount of oocyst equivalents FEC
 
-Standard_curve<-read.csv("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Field/master/data_products/HZ21_CEWE_EqPCR_SC.csv")
+Standard_curve<-read.csv("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Field/master/data_input/HZ21_CEWE_EqPCR_SC.csv")
 
 ## bringing standard curve into right format
 colnames(Standard_curve)[colnames(Standard_curve)%in%"Ct_Mean_Eim"] <-"FEC_Eim_Ct"
@@ -63,7 +65,7 @@ class(Standard_curve$Oocysts)
 
 Standard_curve$Oocysts<-as.numeric(Standard_curve$Oocysts)
 
-Eimeria_detection_FEC<-Eimeria_detection%>%select(Mouse_ID,FEC_Eim_Ct)
+Eimeria_detection_FEC<-Eimeria_detection %>% dplyr::select(Mouse_ID,FEC_Eim_Ct)
 
 Linear_model<-lm(Oocysts~FEC_Eim_Ct,data=Standard_curve)
 
@@ -78,7 +80,7 @@ Eimeria_detection_FEC<-data.frame(Eimeria_detection_FEC,Oocysts_Predict_Eimeria_
 
 ###prediction of amount of oocyst equivalents tissue
 
-Standard_curve2<-read.csv("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Field/master/data_products/HZ21_CEWE_EqPCR_SC.csv")
+Standard_curve2<-read.csv("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Field/master/data_input/HZ21_CEWE_EqPCR_SC.csv")
 
 ## bringing standard curve into right format
 colnames(Standard_curve2)[colnames(Standard_curve2)%in%"Ct_Mean_Eim"] <-"delta_ct_cewe_MminusE"
@@ -96,7 +98,7 @@ class(Standard_curve2$Oocysts)
 
 Standard_curve2$Oocysts<-as.numeric(Standard_curve2$Oocysts)
 
-Eimeria_detection_CEWE<-Eimeria_detection%>%select(Mouse_ID,delta_ct_cewe_MminusE)
+Eimeria_detection_CEWE<-Eimeria_detection%>% dplyr::select(Mouse_ID,delta_ct_cewe_MminusE)
 
 Linear_model2<-lm(Oocysts~delta_ct_cewe_MminusE,data=Standard_curve2)
 
@@ -135,20 +137,18 @@ rm(Oocysts_Predict_Eimeria_FEC)
 ## merging Oocyst predict with alldata18_19_21
 colnames(Oocyst_Predict)
 
-Oocyst_Predict<-Oocyst_Predict%>%select(Mouse_ID,Oocysts_Predict_Eimeria_FEC,Oocysts_Predict_Eimeria_CEWE)
+Oocyst_Predict<-Oocyst_Predict%>% dplyr::select(Mouse_ID,Oocysts_Predict_Eimeria_FEC,Oocysts_Predict_Eimeria_CEWE)
 
 alldata_18_19_21<-merge(alldata18_19_21,Oocyst_Predict,all = TRUE)
 
 colnames(alldata_18_19_21)
 
-## sending oocyst predict to Finn
 
-Oocyst_Predict%>%write.csv("Oocyst_Predict.csv")
-
-alldata_18_19_21<-alldata_18_19_21%>%select(Mouse_ID,Year,FEC_Eim_Ct,MC.Eimeria.FEC,Oocysts_Predict_Eimeria_FEC,delta_ct_cewe_MminusE,MC.Eimeria,Oocysts_Predict_Eimeria_CEWE,OPG,MCs)
+alldata_18_19_21<-alldata_18_19_21 %>%
+  dplyr::select(Mouse_ID,Year,FEC_Eim_Ct,MC.Eimeria.FEC,Oocysts_Predict_Eimeria_FEC,delta_ct_cewe_MminusE,MC.Eimeria,Oocysts_Predict_Eimeria_CEWE,OPG,MCs)
 library(xlsx)
 
-write.xlsx(alldata_18_19_21,file="alldata_18_19_21.xlsx")
+#write.xlsx(alldata_18_19_21,file="alldata_18_19_21.xlsx")
 
 ##setting all MC_Eim_FEC FALSE as 0
 
@@ -254,17 +254,4 @@ ggplot(data=alldata_18_19_21, aes(x=Oocysts_Predict_Eimeria_FEC,y=RES))+
   theme(panel.background=element_rect(fill="gray95",color="gray40"))+
   labs(x="Predicted genome equivalents faeces",y="Residuals",color="Predicted genome equivaltents tissue",size="Residuals")+
   theme(legend.spacing.y = unit(0.05,"cm"))
-Footer
-© 2022 GitHub, Inc.
-Footer navigation
-Terms
-Privacy
-Security
-Status
-Docs
-Contact GitHub
-Pricing
-API
-Training
-Blog
-About
+
