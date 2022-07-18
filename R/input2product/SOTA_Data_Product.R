@@ -878,7 +878,7 @@ SOTA <- SOTA[colnames(SOTA) %in% c(basics,
 ## BA thesis
 CEWE_FECES <- read.csv("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Field/master/data_input/CEWE_FECES_infection_intensities")
 
-SOTA2 <- full_join(SOTA, CEWE_FECES) %>% 
+SOTA <- full_join(SOTA, CEWE_FECES) %>% 
   arrange(Mouse_ID) %>% 
   group_by(Mouse_ID) %>% 
   fill(c(everything()), .direction = "downup") %>% 
