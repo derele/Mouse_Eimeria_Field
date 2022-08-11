@@ -711,7 +711,8 @@ SOTA <- SOTA %>% arrange(Mouse_ID) %>% group_by(Mouse_ID) %>% fill(c(everything(
 #rm(IFC_NE)
 
 #### 3.7 add 2019 CEWE Elisa ###################################################
-CEWE_Elisa <- read.csv("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Field/master/data_input/HZ19_CEWE_ELISA.csv") %>% select(-X)
+CEWE_Elisa <- read.csv("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Field/master/data_input/HZ19_CEWE_ELISA.csv") %>% select(-X) %>%
+  dplyr::rename(IFNy_ELISA = IFNy)
 SOTA <- full_join(SOTA, CEWE_Elisa) %>% arrange(Mouse_ID) %>% group_by(Mouse_ID) %>% fill(c(everything()), .direction = "downup") %>% ungroup() %>% distinct(Mouse_ID, .keep_all = T) 
 rm(CEWE_Elisa)
 
