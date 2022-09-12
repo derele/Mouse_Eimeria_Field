@@ -26,7 +26,7 @@ FEC_18_19_21$Tmcorrect <- if_else(between(FEC_18_19_21$Tm1,73.5,76), TRUE, FALSE
 
 FEC_18_19_21 <- FEC_18_19_21 %>%
   group_by(Mouse_ID)%>%
-  mutate(MC.Eimeria.FEC = sum(Tmcorrect)>=3)
+  mutate(MC.Eimeria.FEC = Tmcorrect)#sum(Tmcorrect)>=3)
 
 ##removing doubled rows
 
@@ -70,7 +70,7 @@ CEWE_18_19_21$Tmcorrect <- if_else(between(CEWE_18_19_21$Tm1_Eim,73.5,76), TRUE,
 
 CEWE_18_19_21 <- CEWE_18_19_21 %>%
   group_by(Mouse_ID)%>%
-  mutate(MC.Eimeria = sum(Tmcorrect)>=3)
+  mutate(MC.Eimeria = Tmcorrect)#sum(Tmcorrect)>=3)
 
 ##removing doubled rows
 CEWE_18_19_21 <- CEWE_18_19_21 %>%
@@ -92,6 +92,8 @@ alldata_CEWE<- alldata_CEWE %>%
 
 alldata_CEWE<- alldata_CEWE %>%
   mutate(Ct.Eimeria=coalesce(Ct.Eimeria.x,Ct.Eimeria.y))
+
+
 
 colnames(alldata_CEWE)
 alldata_CEWE<-alldata_CEWE %>% 
