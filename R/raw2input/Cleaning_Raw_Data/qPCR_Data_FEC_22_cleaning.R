@@ -122,7 +122,7 @@ FEC_18_19_21_22 <- full_join(eim_results, FEC_18_19_21) %>% select(-c(Ct1, Ct2, 
 
 #write the data frame in a csv file --> you may need to use your local path
 #write.csv(FEC_18_19_21_22, "./data_input/FEC_EqPCR_DataProduct_HZ18_HZ22.csv", row.names=FALSE)
-write.csv(FEC_18_19_21_22, "~/Documents/Github/Mouse_Eimeria_Field/data_input/FEC_EqPCR_DataProduct_HZ18_HZ22.csv", row.names=FALSE)
+write.csv(FEC_18_19_21_22, "~/Documents/Github/Mouse_Eimeria_Field/data_input/FEC_EqPCR_input_data.csv", row.names=FALSE)
 
 
 ################################################################################
@@ -245,5 +245,5 @@ cryp_results <- cryp_results %>% filter(Task == "UNKNOWN")
   
 #write the data frame in a csv file 
 #write.csv(cryp_results, "./data_input/FEC_CqPCR_DataProduct_HZ22.csv", row.names=FALSE)
-write.csv(cryp_results, "~/Documents/Github/Mouse_Eimeria_Field/data_input/FEC_CqPCR_DataProduct_HZ22.csv", row.names=FALSE)
+write.csv(cryp_results, "~/Documents/Github/Mouse_Eimeria_Field/data_input/FEC_CqPCR_input_data.csv", row.names=FALSE)
 
