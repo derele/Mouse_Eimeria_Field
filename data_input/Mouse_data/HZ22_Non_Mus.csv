@@ -1,20 +1,19 @@
 Mouse_ID,Host,Address,Address_ZIP,Latitude,Longitude,Trap_Date,Dissection_Date,Sex,Status,Body_Weight,Body_Length,Tail_Length,Spleen,Ectoparasites_Logical,Fleas,Ticks,FEC,COWE,COCE,CEWE,CECE,LIV,Comments
 ZZ_0087,Myodes,"Zehdenicker Str. 11, Joachimstal",,52.9785,13.7331,21/09/2022,23/09/2022,F,adult,"17,39",90,35,0.0271,,,,,,,,,,
-ZZ_0088,Rattus ratus ,Große Trifft,,52.8786,13.4476,20/09/2022,23/09/2022,M,young ,36.1,105,81,0.0652,,TRUE,,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,0.5 mg Ketamine injected
-ZZ_0089,Microtus arutis ,Münchenhofer Str. 1,,52.4978,13.6761,21/09/2022,26/09/2022,F,adult,16.56,88,27,0.0422,,,,,,,,,,
-ZZ_0090,Microtus arutis ,Forst Joachimsthal 2,,52.9947,13.6843,22/09/2022,24/09/2022,F,adult,17.56,81,37,0.0338,,TRUE,,,,,,,,
-ZZ_0091,Microtus arutis ,Forst Joachimsthal 2,,52.9947,13.6843,22/09/2022,24/09/2022,F,adult,29.27,107,46,0.0383,,TRUE,,,,,,,,Tapeworms
-ZZ_0092,Apodemus,Werdersche Dorfstr. 43,,52.5215,13.9412,22/09/2022,24/09/2022,F,adult,27.36,94,104,0.0642,,,,,,,,,,
-ZZ_0093,Apodemus,Werdersche Dorfstr. 43,,52.5215,13.9412,22/09/2022,24/09/2022,M,adult,48.17,112,115,0.1354,,TRUE,,,,,,,,Tapeworms/ Cyst in Liver
+ZZ_0088,Rattus ratus ,GroÃŸe Trifft,,52.8786,13.4476,20/09/2022,23/09/2022,M,young ,36.1,105,81,0.0652,,TRUE,,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,0.5 mg Ketamine injected
+ZZ_0089,Microtus agrestis ,MÃ¶nchenhofer Str. 1,,52.4978,13.6761,21/09/2022,26/09/2022,F,adult,16.56,88,27,0.0422,,,,,,,,,,
+ZZ_0090,Microtus agrestis ,Forst Joachimsthal 2,,52.9947,13.6843,22/09/2022,24/09/2022,F,adult,17.56,81,37,0.0338,,TRUE,,,,,,,,
+ZZ_0091,Microtus agrestis ,Forst Joachimsthal 2,,52.9947,13.6843,22/09/2022,24/09/2022,F,adult,29.27,107,46,0.0383,,TRUE,,,,,,,,Tapeworms
+ZZ_0092,Apodemus Sylvaticus / Flaviculis,Werdersche Dorfstr. 43,,52.5215,13.9412,22/09/2022,24/09/2022,F,adult,27.36,94,104,0.0642,,,,,,,,,,
+ZZ_0093,Apodemus Sylvaticus / Flaviculis,Werdersche Dorfstr. 43,,52.5215,13.9412,22/09/2022,24/09/2022,M,adult,48.17,112,115,0.1354,,TRUE,,,,,,,,Tapeworms/ Cyst in Liver
 ZZ_0094,Vole,Serwester Dorfstr. 1,,52.92843,13.918322,24/09/2022,25/09/2022,F,pregnant,28.2,99,42,0.0747,,,,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,
 ZZ_0095,Apodemus Sylvaticus / Flaviculis,"Buchholzerstr, 3e ",,52.932789,13.917619,25/09/2022,26/09/2022,M,adult,32.84,,,0.104,,TRUE,,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,
-ZZ_0096,Vole,Rödelliner Straße 37,,53.1153,13.4781,24/09/2022,26/09/2022,M,adult,18.64,99,28,0.0927,,TRUE,,,,,,,,
-ZZ_0097,Apodemus Brandmaus,Joachimsthaler Str. 4,,52.955741,13.891761,24/09/2022,26/09/2022,F,young,20.88,82,74,0.031,,TRUE,,,,,,,,
-ZZ_0098,???,,,,,,,,,,,,,,,,,,,,,,
-ZZ_0099,,,,,,,,,,,,,,,,,,,,,,,
-ZZ_0100,,,,,,,,,,,,,,,,,,,,,,,
-ZZ_0101,,,,,,,,,,,,,,,,,,,,,,,
-ZZ_0102,,,,,,,,,,,,,,,,,,,,,,,
-ZZ_0103,,,,,,,,,,,,,,,,,,,,,,,
+ZZ_0096,Vole,RÃ¶delliner StraÃŸe 37,,53.1153,13.4781,24/09/2022,26/09/2022,M,adult,18.64,99,28,0.0927,,TRUE,,,,,,,,
+ZZ_0097,Apodemus agrarius,Joachimsthaler Str. 4,,52.955741,13.891761,24/09/2022,26/09/2022,F,young,20.88,82,74,0.031,,TRUE,,,,,,,,
+ZZ_0099,Apodemus agrarius,Haurtstr. 20 Beiersdorf,,52.694055,13.783887,26/09/2022,27/09/2022,M,young,14.84,80,75,0.051,,TRUE,,,,,,,,
+ZZ_0100,Apodemus agrarius,Siedling 10,,52.689722,13.784584,26/09/2022,27/09/2022,NA,NA,15,82,62,0.04,,,,,,,,,,
+ZZ_0101,Apodemus agrarius,Dorfstrassee 23 Gersdorf (Western Rauch),,52.771833,13.891472,26/09/2022,27/09/2022,M,adult,22.29,93,70.1,0.093,,,,,,,,,,
+ZZ_0102,Vole,Zehdenicker Str. 8,,52.978453,13.733637,26/09/2022,27/09/2022,F,adult,20.29,80.6,40.05,0.043,,,,,,,,,,
+ZZ_0103,Vole,Zehdenicker Str. 10,,52.982263,13.7317,26/09/2022,27/09/2022,F,adult,30.98,106,46,0.06,,,,,,,,,,
 ZZ_0104,,,,,,,,,,,,,,,,,,,,,,,
 ZZ_0105,,,,,,,,,,,,,,,,,,,,,,,
