@@ -136,7 +136,6 @@ write.csv(FEC_18_19_21_22, "~/Documents/Github/Mouse_Eimeria_Field/data_input/FE
 #crypto_plates <- list.files(path = "~/Documents/Github/Mouse_Eimeria_Field/data_input/qPCR_FEC_22/results/crypto_plates/")
 #write.csv(crypto_plates, "~/Documents/Github/Mouse_Eimeria_Field/data_input/qPCR_FEC_22/results/crypto_plates.csv")
 crypto_plates <- read.csv("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Field/master/data_input/qPCR_FEC_22/results/crypto_plates.csv")
-
 crypto_list <- as.list(crypto_plates$x)
 
 #write a function to specify how to read the qPCR files
