@@ -1,0 +1,19 @@
+Hey hey! Ich arbeite ja gerade an den qPCR Platten und für Eimeria FEC qPCR haben wir ja die Column MC.Eimeria.FEC eingeführt, um echte von falschen Infektionen zu unterscheiden.
+
+Josi hatte für ihre Platten nur die die Melting Temperature pro Triplicate genommen und einen Min/Max Threshold festgelegt (73.5 und 76), allerdings fallen dabei auch viele falsch-positive Samples mit rein, die zwar dieses Kriterium erfüllen, aber mehrere Tms hatten und auch visuell nicht als "echte" Infektion gewertet werden sollten (kein klarer Abfall der Tm bei ~75 Grad Celsius).
+Ich habe jetzt alle Platten visuell gecheckt und eine Column mit MC.Eimeria.FEC.vis angelegt, um gute Thresholds zu finden, anhand deren uns keine "echte" Infektion verloren geht und wir keine falsch-positiven Samples zählen.
+Mein Ansatz für eine korrekte Evaluation ist jetzt folgender:
+Noch im Data Cleaning kann man die (max 4) Tms per sample summieren und die Summe sollte (sofern es sich um ein richtiges Sample handelt) <= 79 sein: MC_eval = case_when(Tm_sum >= 79 ~ F, Tm_sum < 79 ~ T)
+Die MC evaluation kann jetzt genutzt werden, um pro Triplicate eine korrekte Infektion zu identifizieren: Sollte eines der Triplikate per Sample zwei Tms bekommen, kann es in der Summe immer noch als richtige Infektion gezählt werden, sofern die anderen beiden Messungen nur einen Tm aufweisen.
+
+(MC.Eimeria.FEC.auto = case_when(
+                                 (MC.1 == T & MC.2 == T & MC.3 == T) ~ T,
+                                 (MC.1 == F & MC.2 == T & MC.3 == T) | (MC.1 == T & MC.2 == F & MC.3 == T) | (MC.1 == T & MC.2 == T & MC.3 == F) ~ T,
+                                 (MC.1 == F & MC.2 == F & MC.3 == T) | (MC.1 == T & MC.2 == F & MC.3 == F) | (MC.1 == F & MC.2 == T & MC.3 == F) ~ F,
+                                 (MC.1 == F & MC.2 == F & MC.3 == F) ~ F))
+
+4. Ich habe im Anschluss meine manuell erstellte (MC.Eimeria.FEC.vis) column mit der automatisch generierten evaluation column (MC.Eimeria.FEC.auto) verglichen und eine identische Bewertung bekommen, die sehr akkurat ist (128/128 samples aus HZ22 wurden richtig in T/F sortiert)
+Das ist jetzt alles im Mouse Eimeria Field repository im qPCR_Data_FEC_22_cleaning.R Script zu finden.
+
+Hier ist meine erste HZ22 summary (noch ein bisschen unsortiert, hauptsaechlich fuer Adam und Victor):
+https://rpubs.com/tlobnow/950219
