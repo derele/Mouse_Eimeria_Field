@@ -176,7 +176,7 @@ eim_results <- eim_results %>% mutate(Ct_index = case_when (Well.Position %in% c
 ## pivot by Ct_index
 eim_results1 <- pivot_wider(eim_results, names_from = "Ct_index", values_from = "Cq") %>% arrange(Mouse_ID) %>% group_by(Mouse_ID) %>% 
   fill(c(everything()), .direction = "downup") %>% ungroup() %>% distinct(Mouse_ID, .keep_all = T) %>% 
-  select(-c(Tm1,Tm2,Tm3,Tm4,Tm_index, Tm_sum, MC_index, MC_eval))
+  select(-c(Tm_index, Tm_sum, MC_index, MC_eval))
 
 # pivot by Tm_index
 eim_results2 <- pivot_wider(eim_results, names_from = "Tm_index", values_from = "Tm_sum") %>% arrange(Mouse_ID) %>% group_by(Mouse_ID) %>% 
