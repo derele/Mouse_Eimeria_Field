@@ -4,21 +4,21 @@ library(dplyr)
 library(janitor)
 library(readr)
 
-
-### Load previous FEC Eimeria qPCR data (Josi worked on this)
-FEC_18_19_21 <- read.csv("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Field/master/data_input/FEC_EqPCR_DataProduct.csv")
-
-
 ################################################################################
 ####  Eimeria qPCR  ############################################################
 ################################################################################
 
+
 #create a list out of the names of each excel file (maybe you have to do that locally and upload it to github)
 #eimeria_plates <- list.files(path = "~/Documents/Github/Mouse_Eimeria_Field/data_input/qPCR_FEC_22/results/eimeria_plates/")
 #write.csv(eimeria_plates, "~/Documents/Github/Mouse_Eimeria_Field/data_input/qPCR_FEC_22/results/eimeria_plates.csv")
-eimeria_plates <- read.csv("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Field/master/data_input/qPCR_FEC_22/results/eimeria_plates.csv")
-eimeria_plates <- read.csv("~/Documents/Github/Mouse_Eimeria_Field/data_input/qPCR_FEC_22/results/eimeria_plates.csv")
-eim_list <- as.list(eimeria_plates$x)
+eimeria_plates      <- read.csv("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Field/master/data_input/qPCR_FEC_22/results/eimeria_plates.csv")
+eimeria_plates_josi <- read.csv("https://raw.githubusercontent.com/derele/Mouse_Eimeria_Field/master/data_input/qPCR_faeces_21/Results/Filenames_qpcr_results.csv")
+
+#read the table whith the names of each file, call it NT (= Name table)
+eim_list      <- as.list(eimeria_plates$x)
+eim_list_josi <- as.list(eimeria_plates_josi$qPCR.Results.file.names)
+
 
 #write a function to specify how to read the qPCR files
 read_qPCR_file <- function(x) {
@@ -46,8 +46,15 @@ read_qPCR_file <- function(x) {
 setwd("/Users/finnlo/Documents/Github/Mouse_Eimeria_Field/data_input/qPCR_FEC_22/results/eimeria_plates/")
 results <- lapply(eim_list, read_qPCR_file)
 
+setwd("~/Documents//GitHub/Mouse_Eimeria_Field/data_input/qPCR_faeces_21/Results/Results_files/")
+results_josi <- lapply(eim_list_josi, read_qPCR_file)
+
 #show the data frame consisting of each result data file
-eim_results <- Reduce(rbind, results)
+eim_results      <- Reduce(rbind, results)
+eim_results_josi <- Reduce(rbind, results_josi)
+
+# combine Josi's data (HZ18-21) and HZ22
+eim_results      <- bind_rows(eim_results, eim_results_josi)
 
 #remove duplicates (eliminates some NTCs)
 eim_results <- unique(eim_results)
@@ -55,6 +62,15 @@ eim_results <- unique(eim_results)
 # correct colnames
 colnames(eim_results)[colnames(eim_results)%in%"Sample"]  <- "Mouse_ID"
 colnames(eim_results)[colnames(eim_results)%in%"Cq Mean"] <- "FEC_Eim_Ct" # specific to this assay, to avoid confusion with other qPCRs
+
+# correct the HZ Mouse_IDs --> pattern AA_0XXX
+eim_results$Mouse_ID <- gsub(pattern = "AA", replacement = "AA_0", x = eim_results$Mouse_ID)
+eim_results$Mouse_ID <- gsub(pattern = "AA_0_", replacement = "AA_", x = eim_results$Mouse_ID)
+
+# correct the Standard Curve (SC) Mouse_IDs --> pattern VXX_X
+eim_results$Mouse_ID <- gsub(pattern = "v10_5", replacement = "V10_5", x = eim_results$Mouse_ID)
+eim_results$Mouse_ID <- gsub(pattern = "v10_2", replacement = "V10_2", x = eim_results$Mouse_ID)
+
 
 # correct colname for easier selecting
 eim_results <- dplyr::rename(eim_results, Well.Position = "Well Position",
@@ -76,6 +92,7 @@ eim_results[,c(1, 10, 13:16, 18, 20:25)] <- lapply(eim_results[, c(1, 10, 13:16,
 eim_results <- eim_results %>% mutate(FEC_Eim_Ct = case_when(is.na(FEC_Eim_Ct) ~ 0,
                                                              !is.na(FEC_Eim_Ct) ~ FEC_Eim_Ct))
 eim_results$FEC_Eim_Ct <- round(eim_results$FEC_Eim_Ct, 2)
+
 
 # specify Ct measurements from well plate position
 eim_results <- eim_results %>% mutate(Ct_index = case_when (Well.Position %in% c('A1', 'A4', 'A7', 'A10', 
@@ -189,7 +206,8 @@ eim_results$FEC_Eim_Ct3 <- as.numeric(eim_results$FEC_Eim_Ct3)
 # (Un)Select Columns for final Data Product:
 eim_results <- eim_results %>% 
   select(-c(Well, Well.Position, Omit, Quencher, Curve.Quality, Result.Quality.Issues, 
-            Auto.Threshold))
+            Auto.Threshold)) %>%
+  arrange(Mouse_ID)
 
 # To check the efficiency of my MC.Eimeria.FEC column identification of true infections, 
 # I compared a manually evaluated column (looking at the curve and giving T/F 
@@ -199,12 +217,9 @@ eim_results <- eim_results %>%
       #write.csv(MC.evaluation, "~/Documents/Github/Crypto/HZ22/MC.evaluation.csv")
 
 
-FEC_18_19_21_22 <- full_join(eim_results, FEC_18_19_21) %>% select(-c(Ct1, Ct2, Ct3)) %>% arrange(Mouse_ID)
-
-
 #write the data frame in a csv file --> you may need to use your local path
 #write.csv(FEC_18_19_21_22, "./data_input/FEC_EqPCR_DataProduct_HZ18_HZ22.csv", row.names=FALSE)
-write.csv(FEC_18_19_21_22, "~/Documents/Github/Mouse_Eimeria_Field/data_input/FEC_EqPCR_input_data.csv", row.names=FALSE)
+write.csv(eim_results, "~/Documents/Github/Mouse_Eimeria_Field/data_input/FEC_EqPCR_input_data.csv", row.names=FALSE)
 
 
 ################################################################################
