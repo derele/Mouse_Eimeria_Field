@@ -456,7 +456,6 @@ rm(Dis2018)
 rm(Dis2019)
 rm(Dis2021)
 rm(Dis1)
-rm(Dis2)
 
     ## correct the Sex column
 SOTA$Sex[grep("female*.", SOTA$Sex)] <- "F"
