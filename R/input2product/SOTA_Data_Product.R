@@ -643,7 +643,11 @@ IFC <- IFC[IFC$Mouse_ID %like% "AA_", ]
 ## remove unsuccessful amplifications 
 ## == 999, equivalent to bad quality, should not be used
 ## Luke's Version:
-IFC <- subset(IFC, IFC$Value != 999)
+#IFC <- subset(IFC, IFC$Value != 999)
+
+#Fay's version, removing all samples marked as flagged!
+IFC <- subset(IFC, IFC$Call != "Flag")
+
 IFC <- IFC %>% group_by(Mouse_ID, Target) %>% summarise(Ct = mean(Value)) 
 IFC <- distinct(IFC)
 
@@ -704,7 +708,9 @@ colnames(IFC)[colnames(IFC)%in%"IFNG"]  <- "IFNy"
     ## merge
 #GE_Join <- full_join(RT_sum, IFC_NE)
 #SOTA <- full_join(SOTA, GE_Join)
-SOTA <- full_join(SOTA, IFC)
+SOTA <- SOTA %>% 
+  left_join(IFC, unique(IFC), by = c(intersect(colnames(SOTA), colnames(IFC)))) 
+
 SOTA <- SOTA %>% arrange(Mouse_ID) %>% group_by(Mouse_ID) %>% fill(c(everything()), .direction = "downup") %>% ungroup() %>% distinct(Mouse_ID, .keep_all = T) 
 #rm(GE_Join)
 #rm(IFC_NE)
