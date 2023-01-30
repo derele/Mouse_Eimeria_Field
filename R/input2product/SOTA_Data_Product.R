@@ -643,10 +643,11 @@ IFC <- IFC[IFC$Mouse_ID %like% "AA_", ]
 ## remove unsuccessful amplifications 
 ## == 999, equivalent to bad quality, should not be used
 ## Luke's Version:
-#IFC <- subset(IFC, IFC$Value != 999)
+IFC <- subset(IFC, IFC$Value != 999)
 
 #Fay's version, removing all samples marked as flagged!
-IFC <- subset(IFC, IFC$Call != "Flag")
+#IFC <- subset(IFC, IFC$Call != "Flag")
+# then everything is missing
 
 IFC <- IFC %>% group_by(Mouse_ID, Target) %>% summarise(Ct = mean(Value)) 
 IFC <- distinct(IFC)
